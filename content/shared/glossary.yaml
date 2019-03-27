@@ -1,10 +1,14 @@
 # ==============================================================================
-# MATHIGON GLOSSARY
+# NEURAL NETS GLOSSARY
 # ==============================================================================
 
-acute-angle:
-  title: Acute angle
-  text: An __acute angle__ is an angle of size less than 90°.
+receptive-field:
+  title: Receptive field
+  text: The receptive field of a neuron is the set of neurons whose values
+    contribute to that neuron's value, based on the architecture of the neural network.
+    For example, the receptive field of a neuron in a dense layer includes the entire
+    preceding layer, while the receptive field of a neuron in a convolutional
+    or subsampling layer is typically much smaller. 
 
 acute-triangle:
   title: Acute triangle

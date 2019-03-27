@@ -14,7 +14,7 @@ This chapter draws from a Stanford
 [lecture](https://www.youtube.com/watch?v=DAOcjicFr1Y) covering
 similar material, as well as Charu Aggarwal's _Neural Networks and
 Deep Learning_ and the original papers. All of these sources are
-recommended as follow-up reading.
+recommended for follow-up reading.
 
 ---
 > id: lenet
@@ -86,8 +86,8 @@ looks like a 7:
 
 The reason for using a neural network rather than directly comparing
 input pixel values to those of a target image for each digit is that
-[[that doesn't work very well practice|that doesn't even make sense to
-try]].
+[[directly comparing pixels doesn't work very well practice|it doesn't
+even make sense to try]].
 
 ---
 > id: alexnet
@@ -243,9 +243,9 @@ throughout the network than that of VGG16.
 
 ## 2015: ResNet
 
-The winner of the 2015 contest was **ResNet**. It accelerated the trend of
-increased network depth by using 152 layers! Here's a figure
-from the paper illustrating a 34-layer version: 
+The winner of the 2015 contest was **ResNet**. It accelerated the
+trend of increased network depth by using 152 layers! Here's a figure
+from the paper illustrating a 34-layer version:
 
 ::: column(width=360)
     
@@ -280,6 +280,35 @@ a figure from the original ResNet paper:
     img(src="/resources/neural-nets/svg/resnet-unit.svg")
 
 :::
+
+---
+
+More details of the ResNet training process: 
+* Batch normalization is used after every convolutional layer
+* Xavier-He initialization
+* Momentum gradient descent with α = 0.9
+* Learning rate schedule starts at 0.1 and decays by a factor of 10 at
+  each plateau. 
+* Mini-batch: 256
+* _No_ dropout
+
+---
+
+ResNet won the 2015 contest by a significant margin. 
+
+::: column(width=360)
+
+    img(src="/resources/neural-nets/svg/imagenet-results.svg")
+
+:::
+
+---
+
+In 2016, Christian Szegedy, Sergey Ioffe, Vincent Vanhoucke, and Alex
+Alemi introduced _Inception-ResNet_ (also known as Inception-v4),
+which uses inception modules with residual connections. This model was
+used as a part of the 2016 winning submission from the
+_Trimps-Soushen_ team. 
 
 ---
 > id: review

@@ -27,3 +27,8 @@ nbproject
 # Folders to ignore
 node_modules
 server/assets/resources
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
