@@ -5,7 +5,7 @@
   "repository": "sswatson/mathigon-textbooks",
   "license": "UNLICENSED",
   "scripts": {
-    "server": "node server/app.js --use-strict & grunt concurrent",
+    "server": "node server/main.js --use-strict & grunt concurrent",
     "start": "grunt && npm run server",
     "test": "eslint */*.js"
   },
