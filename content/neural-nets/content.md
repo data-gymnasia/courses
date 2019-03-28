@@ -28,7 +28,7 @@ could achieve good results on handwritten digit recognition.
 Here's the architecture as it was represented in the original
 publication:
 
-::: column(width=360)
+::: column(width=540)
     
     img(src="/resources/neural-nets/images/lenet-5.png")
 
@@ -296,7 +296,7 @@ More details of the ResNet training process:
 
 ResNet won the 2015 contest by a significant margin. 
 
-::: column(width=360)
+::: column(width=440)
 
     img(src="/resources/neural-nets/svg/imagenet-results.svg")
 
