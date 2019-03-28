@@ -64,7 +64,7 @@ for (let c of courseIds) {
 // Web Server
 
 const app = express();
-app.set('port', 5000);
+app.set('port', 3000);
 app.set('env', 'development');
 app.set('views', path.join(__dirname, 'assets'));
 app.set('view engine', 'pug');
@@ -101,6 +101,6 @@ app.post('/course/:course/ask', function(req, res) {
   res.type('txt').send(JSON.stringify([{content: '[NOT IMPLEMENTED]'}]));
 });
 
-app.listen(5000, function() {
-  console.log('Server listening on port 5000');
+app.listen(3000, function() {
+  console.log('Server listening on port 3000');
 });
