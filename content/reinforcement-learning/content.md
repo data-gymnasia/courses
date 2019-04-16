@@ -11,6 +11,8 @@ make accurate predictions ([[supervised|unsupervised]] learning) or
 come up with useful representations of the data
 ([[unsupervised|supervised]] learning).
 
+---
+
 In **reinforcement learning**, stimulus and response interact: an
 **agent** makes decisions as it interacts with an **environment**. The
 agent receives numerical reward signals and seeks to act so as to
@@ -28,7 +30,7 @@ Suppose you want to beat the classic Nintendo game Mario Brothers, but
 you don't want to have to go through every level yourself. So you
 decide to train an algorithm to operate the controls. If your
 algorithm presses random buttons (like your little sibling), it will
-perform [[great|poorly]]: 
+perform [[poorly|great]]: 
 
     center
         <iframe width="560" height="315" src="https://www.youtube.com/embed/1qa7oRhZvbM?start=12&end=20" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -170,7 +172,7 @@ and rows).
 * What is the largest number of moves that might be required? [[2]]
 * Come up with a scheme for rewarding the agent that aligns with the
   goal of reaching the desired destination in the smallest number of
-  moves. Decide on your answer before clicking: [[-1 reward for each
+  moves. Decide on your answer before clicking: [[reward of -1 for each
   move and halt game at top right corner|]]
 * Is the optimal policy unique? [[No|Yes]]
 :::
