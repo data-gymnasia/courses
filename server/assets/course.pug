@@ -12,6 +12,10 @@ html
     link(href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,300,400i,600i' rel='stylesheet' type='text/css')
     link(href='/course.css', rel='stylesheet')
     link(href='/resources/' + course.id + '/styles.css', rel='stylesheet')
+    link(href='/prism.css', rel='stylesheet')
+    script(type='text/javascript', async, src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML")
+    script(type="text/x-mathjax-config")
+      include mathjax-config.js
 
   body
     include components.html
@@ -75,3 +79,4 @@ html
     script(src='/polyfill.js')
     script(src='/resources/' + course.id + '/functions.js')
     script(src='/course.js')
+    script(src='/prism.js')
