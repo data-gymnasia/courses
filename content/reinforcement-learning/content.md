@@ -4,8 +4,6 @@
 > id: intro
 ## Introduction
 
-_{.text-small}This website is powered by [Mathigon](http://mathigon.io)._
-
 As we discussed earlier in the course, most machine learning problems
 have a clear separation between input and output: we get a collection
 of observations, or an image, or a passage of text, and our goal is to

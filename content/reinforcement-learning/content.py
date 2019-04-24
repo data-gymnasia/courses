@@ -25,3 +25,16 @@ for i in range(EPISODES):
 
 plt.matshow(np.max(Q, axis=1).reshape(4,4))
 plt.savefig("images/matrix-output.jpg")
+
+for i in range(EPISODES):
+    s = env.reset()
+    while True:
+        a = np.argmax(Q[s,:] + 100*np.random.randn(1,env.action_space.n)/(i+1))
+        s_new, reward, done, info = env.step(a)
+        Q[s,a] = (1-α)*Q[s,a] + α*(reward + γ*np.max(Q[s_new,:]))
+        s = s_new
+        if done:
+            break
+
+plt.matshow(np.max(Q, axis=1).reshape(4,4))
+plt.savefig("images/matrix-output-2.jpg")
