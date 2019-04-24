@@ -4,6 +4,8 @@
 > id: intro
 ## Introduction
 
+_{.text-small}This website is powered by [Mathigon](http://mathigon.io)._
+
 As we discussed earlier in the course, most machine learning problems
 have a clear separation between input and output: we get a collection
 of observations, or an image, or a passage of text, and our goal is to
@@ -486,6 +488,8 @@ Continue: [[reveal code|]]
 ---
 
     pre: code.language-python
+      | import gym
+      | 
       | env = gym.make('FrozenLake-v0')
       | state_size = env.observation_space.n
       | action_size = env.action_space.n
@@ -571,6 +575,13 @@ of `Q`. Finally, we will return the index corresponding to the largest
 value. 
 
     pre: code.language-python
+      | # add to import statements: 
+      | import numpy as np 
+      | import random
+      |
+      | # add to __init__
+      | self.epsilon = 1.0
+      | 
       | def act(self, state):
       |     if np.random.rand() <= self.epsilon:
       |         return random.randrange(self.action_size)
@@ -587,6 +598,11 @@ the one-hot encoding and the [[extra axis|spline|decorator]] expected by the Ker
 object. 
 
     pre: code.language-python
+      | # add import statements 
+      | from tensorflow.keras.models import Sequential
+      | from tensorflow.keras.layers import Dense
+      | from tensorflow.keras.optimizers import Adam
+      | 
       | # add these lines to __init__:
       | self.learning_rate = 0.001
       | self.model = self._build_model()
@@ -658,7 +674,7 @@ position coresponding to the action taken.
       |         # index 0 b/c of extra axis expected by Keras: 
       |         target_f[0][action] = target 
       |         self.fit(state, target_f, epochs=1, verbose=0)
-      |     if self.epsilon > 0.01
+      |     if self.epsilon > 0.01:
       |         self.epsilon *= 0.995
     
 If we run this model, then the update messages show us that the agent
