@@ -209,11 +209,11 @@ reward|reward|loss]] obtained on the `k`th step in the future.
 
 The expectation on the right-hand side of \eqref{eq:Q} is understood
 to be calculated with respect to probability measure implied by
-$\mathcal{R}$ and $\mathbb{P}$ as well as the _optimal policy_
-$\pi$. In other words, repeatedly drawing rewards and states from
-$\mathcal{R}$ and $\mathbb{P}$ and applying the optimal policy $\pi$
-yields a well-defined random sequence of rewards,
-and the expectation is computed for that sequence. Given
+$\mathcal{R}$ and $\mathbb{P}$ as well as the _optimal policy_ $\pi$,
+starting from $(s,a)$ at time $t$. In other words, repeatedly drawing
+rewards and states from $\mathcal{R}$ and $\mathbb{P}$ and applying
+the optimal policy $\pi$ yields a well-defined random sequence of
+rewards, and the expectation is computed for that sequence. Given
 complete information about $(\mathcal{R}, \mathcal{P}, \pi)$ one could
 approximate the expectation on the right-hand side by [[simulating
 several runs of the MDP and averaging|calculating an integral|finding`r_t`]]. 
@@ -679,3 +679,243 @@ If we run this model, then the update messages show us that the agent
 takes several runs to [[begin finding the frisbee|find the frisbee
 every time]] and then begins succeeding [[more frequently|100% of the time]]. 
 
+---
+> id: Policy gradient methods
+## Policy gradient methods
+
+### Introduction
+
+Let's revisit the football player deciding whether to play the ball to
+the middle of the field or the corner. The Q-learning approach is to
+assess the [[value|convenience]] of each maneuver and choose the best one. The
+player's effectiveness is dependent on how well they can recognize how
+the play will unfold and which action will therefore lead to the best
+outcomes. 
+
+---
+
+Another possibility is that the player is simply following a rule of
+thumb: *when I have this angle on my defender is this part of the
+field, go to the corner 30% of the time and go back to the middle 70%
+of the time*. In this scenario, their policy is not based on
+predictions about states of their environment; rather it's been honed
+based on their past experience of the relationship between their
+policy and the [[results|models|probabilities]] they've achieved. 
+
+---
+
+This second approach is called a *policy gradient* method. Policy
+gradient's key difference from Q-learning is that the policy is being
+modeled directly and is adjusted based on observed rewards. 
+
+The two approaches share some mathematical similarities. Given a
+policy $\pi$ which maps the state space $\mathcal{S}$ to the set of
+probability measures on the action space $\mathcal{A}$, 
+we define the function `J` by 
+\begin{equation} 
+J(s) =
+\mathbb{E}[r_t + \gamma r_{t+1} + \gamma^2 r_{t+2} + \cdots],
+\label{eq:J} 
+\end{equation} 
+where the expectation is calculated with respect to the randomness in
+the MDP *and* the randomness in the policy $\pi$. Given omniscience of 
+the MDP and unlimited resources, we could 
+approximate $J(s)$ arbitrarily well by 
+[[simulating many runs and averaging|adding up the numbers on the
+right-hand side]]. The main distinction between `J` and `Q` is that
+[[`J` acts on states, not state-action pairs|`J` involves rewards|`Q`
+involves the future]]. 
+
+The first challenge in applying the policy gradient method will be to
+approximate the gradient of `J` so that we can update `J` according 
+to the gradient ascent rule $J \Leftarrow J + \alpha \frac{\partial J}{\partial \theta}$, where
+$\alpha$ is the learning rate and $\theta$ is a vector of all of `J`'s
+parameters. It turns out that we can crack this problem with some
+pretty interesting math ideas. 
+
+---
+
+### Approximating the gradient
+
+Let's begin with an exercise. 
+
+::: .exercise
+
+Consider a function defined as the expected value of some random
+variable which can readily be simulated. We can use Monte Carlo to
+approxiate the value of this function. Explain why it is not feasible
+to use Monte Carlo and finite difference approximations to approximate
+the *derivative* of this function. Reveal solution: [[click here|]]
+
+:::
+
+---
+
+*Solution*. Recall that statistical error is quite large compared to
+other common sources of numerical error: the mean of the random
+variable is estimated with an error that decreases as the square root
+of the number of samples. Therefore, both values in the finite
+difference approximation have significant error unless the number of
+samples used is astronomical (e.g., on the order of $10^{32}$ to get
+64-bit machine precision). Since subtraction is a numerically unstable
+way to compute derivatives (due to catastrophic cancellation), a
+finite-difference derivative estimate using Monte Carlo will be
+inaccurate to the point of meaninglessness.
+
+Next: [[click here|]]
+
+---
+
+With that exercise in mind, let's look at an expression for the
+gradient of `J`. Let's use the variable $\tau$ to represent a
+*trajectory*. For example, in a board game setting, $\tau$ would
+represent a single game, from a particular board position to the end. 
+Given a policy with parameter vector $\theta$, let's denote by
+$p_\theta(\tau)$ the probability that the the trajectory $\tau$
+occurs. Finally, let's denote by $R(\tau)$ the total discounted reward
+for the trajectory $\tau$. Then by the definition of expectation, 
+\begin{equation} 
+  J = \sum_{\tau} R(\tau) p_\theta(\tau), 
+\end{equation}
+where the sum is over all trajectories $\tau$. Therefore, 
+\begin{equation} 
+  \frac{\partial J}{\partial \theta} = \sum_{\tau} R(\tau)
+  \frac{\partial p_\theta}{\partial \theta}(\tau), 
+\end{equation}
+by [[linearity of differentiation|the fundamental theorem of
+calculus]]. 
+
+---
+
+This formula is not useful yet, because our only tool for
+approximating the probability measure on trajectories $\tau$ is to
+sample trajectories (by sampling actions according to the policy values
+and sampling from). However, we can multiply and divide by
+$p_\theta(\tau)$ to get 
+$$
+  \frac{\partial J}{\partial \theta} = \sum_{\tau} R(\tau)
+  \frac{\partial}{\partial \theta} (\log p_\theta(\tau))
+  p_{\theta}(\tau). 
+$$
+The right-hand side can be written as 
+$$
+\mathbb{E}\left[R(\tau) \frac{\partial}{\partial \theta} (\log p_\theta(\tau))\right], 
+$$
+by [[the definition|linearity]] of expectation. 
+
+---
+
+This formula still isn't useful yet because we still don't want to be
+approximating $\log p_\theta(\tau)$ by Monte Carlo when we need to
+differentiate it. However, if we write $\tau$ out as 
+$(s_0, a_0, r_0, s_1, a_1, \ldots)$,
+then 
+
+    p 
+      | \begin{equation} 
+      | p_\theta(\tau) = \prod_{t \geq 0}\left[\mathbb{P}_{(s_t,a_t)}
+      | (s_{t+1}) \mathcal{R}_{(s_t,a_t)}(r_t) \pi_{\theta}(s_t,a_t)\right]
+      | \end{equation} 
+
+This formula just says that the probability of a trajectory `\tau` is
+the probability that each transition in `\tau` occurs. Each of those
+probabilities is prescribed by one of the probability measures $\mathbb{P}$,
+$\mathcal{R}$, or $\tau$. 
+
+Taking the log of both sides turns the product into a sum, and then
+differentiating with respect to $\theta$ eliminates the first term
+since it's [[constant with respect to `theta`|linear in
+`theta`]]. Likewise, the [[second|third]] term also goes away. We're
+left with 
+$$
+\frac{\partial}{\partial \theta}\log p_{\theta}(\tau) = \sum_{t \geq
+0}\frac{\partial}{\partial \theta}\log \pi_{\theta}(s_t,a_t). 
+$$
+
+---
+
+Now *this* expression is no problem to calculate for a given
+trajectory $\tau$, since the function
+$\pi_{\theta}$ can be differentiated explicitly (using
+backpropagation, for example, if $\pi_{\theta}$ is a neural network). 
+
+Putting it all together, our Monte Carlo estimate for 
+$\partial J/\partial \theta$ is 
+
+    p 
+      | \begin{equation} \label{eq:mc}
+      | \sum_{\tau}R(\tau)\sum_{t \geq 0} \frac{\partial}{\partial \theta}
+      | \log \pi_{\theta}(s_t, a_t), 
+      | \end{equation} 
+
+where the sum is over a collection of sample trajectories $\tau$. 
+
+### Actor-Critic
+
+One difficulty with the strategy suggested above is that it converges
+very slowly. Consider, for example, a scenario where all rewards are
+positive. Then every action performed in the sample trajectories will
+get a boost from the gradient ascent procedure, and the optimal policy
+will be obtained only by virtue of genuinely better actions getting
+[[more|less]] of a boost in the long run. 
+
+---
+
+It would be preferable to instead decrement the values assigned by the
+policy to inferior actions as we go. We can do this by defining a
+baseline function $b:\mathcal{S} \to \mathbb{R}$ 
+to subtract from the reward in \eqref{eq:mc}.
+
+---
+
+Simple heuristics can be used for the baseline function, but we can
+also train a separate model for the baseline function. In fact, we've
+already discussed training a model to assess the quality of each
+state-action pair; it's called [[Q-learning|Monte Carlo]]. 
+
+---
+
+Conceptually, applying policy gradient and Q-learning jointly in this
+way can be thought of like an actor (the policy) and a critic (the
+model for Q) interacting: the actor chooses a policy and then uses the
+feedback from the critic to help determine how to adjust the
+policy. This metaphor gives rise to this algorithm class's name:
+**[[actor-critic|playwright-audience|player-coach]]**. 
+
+---
+
+To be specific, let's consider one particular actor-critic model: the
+**advantage actor critic** (AAC). The name comes the idea of weighting
+by the **advantage**
+
+    p 
+      | $$
+      | A(s_t, a_t) = Q(s_t, a_t) - \mathbb{E}_{a \sim
+      | \pi(s_t, \cdot)}[Q(s_t,a)]. 
+      | $$
+
+This value represents how much better the action $a_t$ is than an action chosen randomly [[according to
+the policy|uniformly|exponentially]]. 
+
+---
+  
+All together, the AAC algorithm is as follows. With state and action at
+time $t$ already sampled, we 
+  
+1. Sample $a_{t+1}$ from the policy proposed by the policy model 
+1. Compute the Bellman discrepancy $\delta_t = r_t + \gamma
+   \widehat{Q}(s_{t+1},a_{t+1}) - \widehat{Q}(s_t,a_t)$. Note that this is
+   similar to the Bellman discrepancy used in the Q-learning algorithm, but
+   the formula is simplified here since we can rely on the actor model to produce the
+   next action. 
+1. Update the policy parameters $\theta$: set
+   $\theta \leftarrow \theta + \alpha A(s_t, a_t)
+    \frac{\partial}{\partial \theta} \log \pi_{\theta}(s_t, a_t)$. Note that we are using the
+   advantage function in lieu of the function $R$ we considered
+   originally.
+1. Update the critic parameters $\phi$: set $\phi \leftarrow \phi +
+   \sum_{t \geq 0} 2\beta \delta_t \frac{\partial \delta_t}{\partial
+   \phi}$, where `beta` is the learning rate for the critic model. 
+
+Note that $2 \delta_t \frac{\partial \delta_t }{\partial \phi}$ is
+equal to the derivative of $\delta_t^2$ with respect to $\phi$. 
