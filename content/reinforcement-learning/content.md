@@ -290,7 +290,7 @@ and _{code.language-python}pyplot_.
       | import matplotlib.pyplot as plt
       | import gym
 
-Continue: [[Yes!|No]]
+_{button.next-step} Continue_
 
 ---
 
@@ -481,7 +481,7 @@ weights based on the observed history
 (_{code.language-python}replay_). Our main task will be to implement
 the _{code.language-python}DQNAgent_ class. 
 
-Continue: [[reveal code|]]
+_{button.next-step} Continue_
 
 ---
 
@@ -509,7 +509,7 @@ Continue: [[reveal code|]]
       |             agent.replay(batch_size)
 
 
-Continue: [[Yes!|No]]
+_{button.next-step} Continue_
 
 ---
 
@@ -554,6 +554,10 @@ to *{code.language-python}__init__*, and the method
       |     self.memory.append((state, action, reward, next_state, done))
 
 to _{code.language-python}class DQNAgent_. 
+
+_{button.next-step} Continue_
+
+---
 
 Next, let's implement the _{code.language-python}act_ method. As we
 saw in the iterative Q-learning section, we want to make some bad
@@ -708,17 +712,23 @@ This second approach is called a *policy gradient* method. Policy
 gradient's key difference from Q-learning is that the policy is being
 modeled directly and is adjusted based on observed rewards. 
 
+_{button.next-step} Continue_
+
+---
+
 The two approaches share some mathematical similarities. Given a
 policy $\pi$ which maps the state space $\mathcal{S}$ to the set of
 probability measures on the action space $\mathcal{A}$, 
 we define the function `J` by 
 \begin{equation} 
 J(s) =
-\mathbb{E}[r_t + \gamma r_{t+1} + \gamma^2 r_{t+2} + \cdots],
+\mathbb{E}[r_0 + \gamma r_{1} + \gamma^2 r_{2} + \cdots],
 \label{eq:J} 
 \end{equation} 
 where the expectation is calculated with respect to the randomness in
-the MDP *and* the randomness in the policy $\pi$. Given omniscience of 
+the MDP *and* the randomness in the policy $\pi$. Recall that $r_0$
+represents reward on the current step, $\gamma r_0$ the discounted
+reward on the next step, and so on. Given omniscience of 
 the MDP and unlimited resources, we could 
 approximate $J(s)$ arbitrarily well by 
 [[simulating many runs and averaging|adding up the numbers on the
@@ -726,12 +736,16 @@ right-hand side]]. The main distinction between `J` and `Q` is that
 [[`J` acts on states, not state-action pairs|`J` involves rewards|`Q`
 involves the future]]. 
 
+---
+
 The first challenge in applying the policy gradient method will be to
 approximate the gradient of `J` so that we can update `J` according 
 to the gradient ascent rule $J \Leftarrow J + \alpha \frac{\partial J}{\partial \theta}$, where
 $\alpha$ is the learning rate and $\theta$ is a vector of all of `J`'s
 parameters. It turns out that we can crack this problem with some
 pretty interesting math ideas. 
+
+_{button.next-step} Continue_
 
 ---
 
@@ -745,9 +759,11 @@ Consider a function defined as the expected value of some random
 variable which can readily be simulated. We can use Monte Carlo to
 approxiate the value of this function. Explain why it is not feasible
 to use Monte Carlo and finite difference approximations to approximate
-the *derivative* of this function. Reveal solution: [[click here|]]
+the *derivative* of this function. 
 
 :::
+
+_{button.next-step} Continue_
 
 ---
 
@@ -762,7 +778,7 @@ way to compute derivatives (due to catastrophic cancellation), a
 finite-difference derivative estimate using Monte Carlo will be
 inaccurate to the point of meaninglessness.
 
-Next: [[click here|]]
+_{button.next-step} Continue_
 
 ---
 
@@ -818,7 +834,7 @@ then
       | \end{equation} 
 
 This formula just says that the probability of a trajectory `\tau` is
-the probability that each transition in `\tau` occurs. Each of those
+the probability that each transition in `tau` occurs. Each of those
 probabilities is prescribed by one of the probability measures $\mathbb{P}$,
 $\mathcal{R}$, or $\tau$. 
 
@@ -827,10 +843,12 @@ differentiating with respect to $\theta$ eliminates the first term
 since it's [[constant with respect to `theta`|linear in
 `theta`]]. Likewise, the [[second|third]] term also goes away. We're
 left with 
-$$
-\frac{\partial}{\partial \theta}\log p_{\theta}(\tau) = \sum_{t \geq
-0}\frac{\partial}{\partial \theta}\log \pi_{\theta}(s_t,a_t). 
-$$
+
+    p 
+      | $$
+      | \frac{\partial}{\partial \theta}\log p_{\theta}(\tau) = \sum_{t \geq
+      | 0}\frac{\partial}{\partial \theta}\log \pi_{\theta}(s_t,a_t). 
+      | $$
 
 ---
 
@@ -844,11 +862,16 @@ $\partial J/\partial \theta$ is
 
     p 
       | \begin{equation} \label{eq:mc}
-      | \sum_{\tau}R(\tau)\sum_{t \geq 0} \frac{\partial}{\partial \theta}
+      | \overline{\sum_{\tau}}R(\tau)\sum_{t \geq 0} \frac{\partial}{\partial \theta}
       | \log \pi_{\theta}(s_t, a_t), 
       | \end{equation} 
 
-where the sum is over a collection of sample trajectories $\tau$. 
+where $\overline{\sum_{\tau}}$ indicates taking a mean over
+a collection of sample trajectories $\tau$. 
+
+_{button.next-step} Continue_
+
+---
 
 ### Actor-Critic
 
@@ -866,12 +889,15 @@ policy to inferior actions as we go. We can do this by defining a
 baseline function $b:\mathcal{S} \to \mathbb{R}$ 
 to subtract from the reward in \eqref{eq:mc}.
 
+_{button.next-step} Continue_
+
 ---
 
 Simple heuristics can be used for the baseline function, but we can
 also train a separate model for the baseline function. In fact, we've
 already discussed training a model to assess the quality of each
-state-action pair; it's called [[Q-learning|Monte Carlo]]. 
+state-action pair; it's called [[Q-learning|Monte Carlo]]. We can use
+the $Q$ function to approximate the value of each state. 
 
 ---
 
@@ -885,37 +911,46 @@ policy. This metaphor gives rise to this algorithm class's name:
 ---
 
 To be specific, let's consider one particular actor-critic model: the
-**advantage actor critic** (AAC). The name comes the idea of weighting
-by the **advantage**
+**advantage actor critic** (AAC). The name comes the idea of modifying
+the actor weight update rule by replacing reward $\mathcal{R}(\tau)$ 
+with the **advantage**
 
     p 
       | $$
-      | A(s_t, a_t) = Q(s_t, a_t) - \mathbb{E}_{a \sim
-      | \pi(s_t, \cdot)}[Q(s_t,a)]. 
+      | A(s_t, a_t) = Q(s_t, a_t) - V(s_t),
       | $$
 
-This value represents how much better the action $a_t$ is than an action chosen randomly [[according to
-the policy|uniformly|exponentially]]. 
+where $V(s)$
+represents the average value of the state $s$ when the action 
+from that state is chosen randomly according to the policy $\pi$. 
+We can write $V$ as the expectation of $f(s_t,A)$ where $f$ is
+[[`Q`|`A`|`J`]] and $A$ is chosen
+randomly from [[`pi`|the uniform distribution]]. 
+
+---
+
+To simplify the setup further and perform calculations over
+full trajectories, we will approximate the advantage by substituting 
+$r_t + \gamma V(s_{t+1})$ for $Q(s_t, a_t)$ in the formula for
+advantage, and we will train the critic model to estimate the value 
+function $V$ rather than $Q$. 
+      
+_{button.next-step} Continue_
 
 ---
   
 All together, the AAC algorithm is as follows. With state and action at
 time $t$ already sampled, we 
-  
-1. Sample $a_{t+1}$ from the policy proposed by the policy model 
-1. Compute the Bellman discrepancy $\delta_t = r_t + \gamma
-   \widehat{Q}(s_{t+1},a_{t+1}) - \widehat{Q}(s_t,a_t)$. Note that this is
-   similar to the Bellman discrepancy used in the Q-learning algorithm, but
-   the formula is simplified here since we can rely on the actor model to produce the
-   next action. 
-1. Update the policy parameters $\theta$: set
-   $\theta \leftarrow \theta + \alpha A(s_t, a_t)
-    \frac{\partial}{\partial \theta} \log \pi_{\theta}(s_t, a_t)$. Note that we are using the
-   advantage function in lieu of the function $R$ we considered
-   originally.
-1. Update the critic parameters $\phi$: set $\phi \leftarrow \phi +
-   \sum_{t \geq 0} 2\beta \delta_t \frac{\partial \delta_t}{\partial
-   \phi}$, where `beta` is the learning rate for the critic model. 
 
-Note that $2 \delta_t \frac{\partial \delta_t }{\partial \phi}$ is
-equal to the derivative of $\delta_t^2$ with respect to $\phi$. 
+1. sample $a_{t+1}$ from the policy proposed by the policy model,
+1. sample $r_t$ and $s_{t+1}$ from the environment, 
+1. add $\alpha (r_t + \gamma \widehat{V}(s_{t+1}) - \widehat{V}(s_t))
+   \log \pi_\theta(s_t, a_t)$
+   to the parameters of the actor model
+1. adjust the parameters of the critic model by fitting the network 
+   with the single-element set of training data $[s_t]$ and target 
+   $r_t + \gamma \widehat{V}(s_t)$. 
+   
+_{button.next-step} Continue_
+
+Your homework will involve implementing this model in Keras!
