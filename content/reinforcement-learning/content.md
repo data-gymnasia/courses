@@ -949,7 +949,7 @@ time $t$ already sampled, we
    to the parameters of the actor model
 1. adjust the parameters of the critic model by fitting the network 
    with the single-element set of training data $[s_t]$ and target 
-   $r_t + \gamma \widehat{V}(s_t)$. 
+   $r_t + \gamma \widehat{V}(s_{t+1})$. 
    
 _{button.next-step} Continue_
 
