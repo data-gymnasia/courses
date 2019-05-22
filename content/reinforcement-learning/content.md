@@ -740,7 +740,7 @@ involves the future]].
 
 The first challenge in applying the policy gradient method will be to
 approximate the gradient of `J` so that we can update `J` according 
-to the gradient ascent rule $J \Leftarrow J + \alpha \frac{\partial J}{\partial \theta}$, where
+to the gradient ascent rule $\theta \Leftarrow \theta + \alpha \frac{\partial J}{\partial \theta}$, where
 $\alpha$ is the learning rate and $\theta$ is a vector of all of `J`'s
 parameters. It turns out that we can crack this problem with some
 pretty interesting math ideas. 
@@ -833,7 +833,7 @@ then
       | (s_{t+1}) \mathcal{R}_{(s_t,a_t)}(r_t) \pi_{\theta}(s_t,a_t)\right]
       | \end{equation} 
 
-This formula just says that the probability of a trajectory `\tau` is
+This formula just says that the probability of a trajectory `tau` is
 the probability that each transition in `tau` occurs. Each of those
 probabilities is prescribed by one of the probability measures $\mathbb{P}$,
 $\mathcal{R}$, or $\tau$. 
