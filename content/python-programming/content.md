@@ -22,25 +22,25 @@ _{button.next-step} Continue_
 
 There are several ways to access Python:
 
-1. **Inline**. This course will let you execute Python code blocks in the webpage (thanks to [Juniper](https://github.com/ines/juniper) and [Binder](https://mybinder.org)). So if you don't want to install anything yet, you don't have to. (However, the first cell you run on any given page will be slow with this method, since your environment has to be launched behind the scenes on Binder's servers.)
+**Inline**. This course will let you execute Python code blocks in the webpage (thanks to [Juniper](https://github.com/ines/juniper) and [Binder](https://mybinder.org)). So if you don't want to install anything yet, you don't have to. (However, the first cell you run on any given page will be slow with this method, since your environment has to be launched behind the scenes on Binder's servers.)
 
 _{button.next-step} Continue_
 
 ---
 
-2. **CoCalc**. If you want a complete environment without having to install anything locally, [CoCalc](https://cocalc.com) is a batteries-included, community-oriented platform for open-source mathematical and scientific computing. You can use it for free with limited functionality, and it's $14 per month to support the project and get paid account features.
+**CoCalc**. If you want a complete environment without having to install anything locally, [CoCalc](https://cocalc.com) is a batteries-included, community-oriented platform for open-source mathematical and scientific computing. You can use it for free with limited functionality, and it's $14 per month to support the project and get paid account features.
 
 _{button.next-step} Continue_
 
 ---
 
-3. **Binder**. You can also run Python code in the cloud on the Binder website. To launch with a set of packages tailored to this course, [click here](https://mybinder.org/v2/gh/sswatson/simple-python-stack/master).
+**Binder**. You can also run Python code in the cloud on the Binder website. To launch with a set of packages tailored to this course, [click here](https://mybinder.org/v2/gh/sswatson/simple-python-stack/master).
 
 _{button.next-step} Continue_
 
 ---
 
-4. **Anaconda**. Python is bundled with its system of scientific computing packages and a system for managing your Python environment in a distribution called [Anaconda](https://www.anaconda.com/). This is the recommended way to install Python on your own machine. [Download](https://www.anaconda.com/distribution) and launch the installer to set it up on your machine. 
+**Anaconda**. Python is bundled with its system of scientific computing packages and a system for managing your Python environment in a distribution called [Anaconda](https://www.anaconda.com/). This is the recommended way to install Python on your own machine. [Download](https://www.anaconda.com/distribution) and launch the installer to set it up on your machine. 
 
 _{button.next-step} Continue_
 
@@ -50,25 +50,25 @@ _{button.next-step} Continue_
 
 Once you have Python installed, there are several ways to interact with it. 
 
-1. **REPL**. Launch a read-eval-print loop from the command line. Any code you enter will be executed immediately, and any values returned by your code will be displayed. To start a session, open your operating system's Terminal and run _{code.language-python}python_ or _{code.language-python}ipython_ (the latter being more colorful and having more features). 
+**REPL**. Launch a read-eval-print loop from the command line. Any code you enter will be executed immediately, and any values returned by your code will be displayed. To start a session, open your operating system's Terminal and run _{code.language-python}python_ or _{code.language-python}ipython_ (the latter being more colorful and having more features). 
 
 _{button.next-step} Continue_
 
 ---
 
-2. **Script**. Save a file called _{code}example.py_ and run _{code}python example.py_ from the command line (in the same directory as the file) to execute all the code in the script.
+**Script**. Save a file called _{code}example.py_ and run _{code}python example.py_ from the command line (in the same directory as the file) to execute all the code in the script.
 
 _{button.next-step} Continue_
 
 ---
 
-3. **Jupyter**. Like a REPL, but allows inserting text and math expressions, grouping code into blocks, etc. This is the interface provided by [Binder](https://mybinder.org/v2/gh/sswatson/simple-python-stack/master), and you can launch a notebook locally by running _{code.language-python}jupyter notebook_ from the command line (assuming you have Anaconda installed). 
+**Jupyter**. Like a REPL, but allows inserting text and math expressions, grouping code into blocks, etc. This is the interface provided by [Binder](https://mybinder.org/v2/gh/sswatson/simple-python-stack/master), and you can launch a notebook locally by running _{code.language-python}jupyter notebook_ from the command line (assuming you have Anaconda installed). 
 
 _{button.next-step} Continue_
 
 ---
 
-4. **Integrated development environment (IDE)**. Essential for extensive software development projects, an IDE provides an editor for writing code, conveniences to help you code more efficiently, and a debugger to help you fix your mistakes. There are many IDEs for Python, including PyCharm, Visual Studio Code, and Atom. 
+**Integrated development environment (IDE)**. Essential for extensive software development projects, an IDE provides an editor for writing code, conveniences to help you code more efficiently, and a debugger to help you fix your mistakes. There are many IDEs for Python, including PyCharm, Visual Studio Code, and Atom. 
 
 _{button.next-step} Continue_
 
@@ -1605,6 +1605,8 @@ The code above could also be rewritten as follows:
       | vals = []
       | for (k,v) in smallestFactor.items():
       |     vals.append(v)
+    
+<p></p>
       
 The statement _{code.language-python}for item in collection:_ works as follows: the first element of _{code.language-python}collection_ is assigned to _{code.language-python}item_, and the block indented below the _{code.language-python}for_ statement is executed. Then the second element of _{code.language-python}collection_ is assigned to _{code.language-python}item_, the indented block is executed again, etc., until the end of the collection is reached. 
 
@@ -1626,6 +1628,7 @@ We can nest _{code.language-python}for_ statements. For example, suppose we have
       |             s = s + entry
       |     return s
       |
+      | 
       | def test_sum():
       |     M = [[1,2,3],[4,5,6],[7,8,9]]
       |     assert sumMatrixEntries(M) == 45
@@ -1639,6 +1642,7 @@ Suppose you have imported a function _{code.language-python}sendEmail_ with two 
       | def sendEmail(address, message):
       |     "A dummy function which represents sending an email"
       |     print(f"Message {message} successfully sent to {address}")
+      | 
       | 
       | messages =  {"ava@mycompany.com": "Can you send me his file?",
       |              "fiona@mycompany.com": "Call me about the party Wednesday.",
@@ -1732,6 +1736,7 @@ Note that $10^{-8}$ can be represented in Python using scientific notation _{cod
       | def newtonsqrt(n):
       |     """Use Newton's algorithm to approximate √n"""
       | 
+      |
       | def test_newton():
       |     assert abs(newtonsqrt(2) - 1.4142135623730951) < 1e-6
       |     assert abs(newtonsqrt(9) - 3) < 1e-6
@@ -1762,7 +1767,7 @@ _{button.next-step} Continue_
 
 ---
 
-Congratulations! You have finished the Programming with Python course.
+Congratulations! You have finished the Programming with Python chapter.
 
     script(src='/juniper.min.js')
     script
