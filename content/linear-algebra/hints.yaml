@@ -1,0 +1,9 @@
+any-shape: Can the span of two vectors be a circle, for example?
+line-or-point: What if the two vectors don't point in the same direction?
+circle: Can it really be a circle? For every line through the origin, it has to contain either the whole line or just the point at the origin.
+sphere: Can it really be a sphere? For every line through the origin, it has to contain either the whole line or just the point at the origin.
+plane: What if the third vector points in a direction which is not in the plane spanned by the first two?
+too-few: Can the intersection have such a small dimension? Consider two planes intersecting in three-dimensional space.
+too-many: Can the intersection have a larger dimension than the larger-dimensional space being intersected?
+less-five: Did you really get results less than five?
+all-fives: Try running it more times.
