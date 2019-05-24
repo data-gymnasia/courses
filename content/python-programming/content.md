@@ -332,11 +332,11 @@ Textual data is represented using a sequence of characters called a **string**. 
 
     pre: code.language-python
       | """
-      | This is a multiline comment. 
+      | This is a multiline string. 
       | It can have "quotes", no problem.
       | """
       | 
-      | "This is an ordinary string. \"Quotes\" have to be escaped with a backslash"
+      | "This is an ordinary string. \"Quotes\" require a backslash."
 
 _{button.next-step} Continue_
 
@@ -860,7 +860,7 @@ Here are some of the most important scientific computing packages (along with ve
 > id: classes
 ## Classes
 
-Many Python functions use the usual [function](gloss:function) syntax, like _{code.language-python}len("hello")_. However, many other functions are called using a different syntax where an *object* comes first: 
+Many Python functions use the usual function syntax, like _{code.language-python}len("hello")_. However, many other functions are called using a different syntax where an *object* comes first: 
 
     pre(data-executable)
       | "hello".capitalize()
@@ -904,7 +904,7 @@ A function defined in the block indented below _{code.language-python}class Albu
 
 The first parameter, customarily called _{code.language-python}self_, refers to the object being created. The four lines in the init method above assign values to **attributes** which may be accessed later using the dot syntax _{code.language-python}A.name_. 
 
-Dot syntax is also used to access other methods like numYearsAgo. 
+Dot syntax is also used to access other methods like _{code.language-python}numYearsAgo_.
 
     pre: code.language-python
       | A.numYearsAgo(2019)
