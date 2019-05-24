@@ -617,12 +617,12 @@ We can give parameters **default values** and supply arguments for those paramet
 
     pre: code.language-python
       | 
-      |     def threesum(x,y,z,shift=0):
-      |         x + y + z + shift
+      | def threesum(x,y,z,shift=0):
+      |     x + y + z + shift
       | 
       | 
-      |     threesum(1,2,3) # returns 6
-      |     threesum(1,2,3,shift=5) # returns 11
+      | threesum(1,2,3) # returns 6
+      | threesum(1,2,3,shift=5) # returns 11
       |   
 
 _{button.next-step} Continue_
@@ -647,7 +647,7 @@ A function may be defined without assigning a name to it. Such a function is sai
 
     pre(data-executable)
       | def apply_three_times(f, x):
-      |     f(f(f(x)))
+      |     return f(f(f(x)))
       | 
       | 
       | apply_three_times(lambda x: x*x, 5)
@@ -1586,7 +1586,8 @@ _{button.next-step} Continue_
 We have already seen one way of doing something to each element in a collection: the *list comprehension*.
 
     pre(data-executable)
-      | smallestFactor = {2: 2, 3: 3, 4: 2, 5: 5, 6: 2, 7: 7, 8: 2, 9: 3}
+      | smallestFactor = {2: 2, 3: 3, 4: 2, 5: 5, 
+      |                   6: 2, 7: 7, 8: 2, 9: 3}
       | vals = [v for (k,v) in smallestFactor.items()]
 
 <p></p>
