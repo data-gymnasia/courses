@@ -52,7 +52,9 @@ listcomp:
     The _{code}if_ clause may be omitted.
     
     _{pre}[x**2 for x in range(5) 
-            if x % 2 == 0] # returns [0, 4, 16]_
+            if x % 2 == 0]_
+            
+    returns _{code}[0, 4, 16]_
 
 tuple:
   title: tuple

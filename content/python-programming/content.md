@@ -1134,7 +1134,7 @@ _{button.next-step} Continue_
 
 ---
 
-Slices can include a *step* value after a second colon. For example, _{code.language-python}L[1:10:2]_ returns the elements of _{code.language-python}L_ at positions 1, 3, 5, 7, and 9. The step value is often used with omitted start and stop values: 
+Slices can include a *step* value after a second colon. For example, **{code.language-python}L[1::10::2]** returns the elements of _{code.language-python}L_ at positions 1, 3, 5, 7, and 9. The step value is often used with omitted start and stop values: 
 
     pre(data-executable)
       | list(range(100, 200))[::2]
@@ -1593,7 +1593,7 @@ We have already seen one way of doing something to each element in a collection:
 
     pre(data-executable)
       | smallestFactor = {2: 2, 3: 3, 4: 2, 5: 5, 
-      |                   6: 2, 7: 7, 8: 2, 9: 3}
+      |                 6: 2, 7: 7, 8: 2, 9: 3}
       | vals = [v for (k,v) in smallestFactor.items()]
 
 <p></p>
@@ -1605,7 +1605,8 @@ In this list comprehension, we **iterate** over the pairs of the [dictionary](gl
 The code above could also be rewritten as follows:
 
     pre(data-executable)
-      | smallestFactor = {2: 2, 3: 3, 4: 2, 5: 5, 6: 2, 7: 7, 8: 2, 9: 3}
+      | smallestFactor = {2: 2, 3: 3, 4: 2, 5: 5, 
+      |                 6: 2, 7: 7, 8: 2, 9: 3}
       | vals = []
       | for (k,v) in smallestFactor.items():
       |     vals.append(v)
@@ -1754,7 +1755,7 @@ _{button.next-step} Continue_
 
 ---
 
-*Solution*. 
+*Solution*. We keep up with two separate variables, which we call _{code.language-python}x_ and **{code.language-python}old_x**, to compare the most recent two iterates: 
 
     pre(data-executable)
       | def newtonsqrt(n):
