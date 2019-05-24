@@ -479,8 +479,6 @@ _{button.next-step} Continue_
 
 Consider a simple computational task performed by commonplace software, like highlighting the rows in a spreadsheet which have a value larger than 10 in the third column. We need a new programming language feature to do this, because we need to conditionally execute code (namely, the code which highlights a row) based on the [[boolean|int|float]] value returned by the comparison operator. Python provides _{code.language-python}if_ statements for this purpose.
 
-_{button.next-step} Continue_
-
 ---
 
 ### Conditionals
@@ -702,19 +700,14 @@ A variable defined in the body of a function is in that function's **local scope
 
     pre(data-executable)
       | 
-      |   def f(x):
-      |       y = 2
-      |       return x + y
+      | def f(x):
+      |     y = 2
+      |     return x + y
       | 
       | 
-      |  y
+      | y
       | 
     
-
-    script(src='/juniper.min.js')
-    script
-      include juniper-setup.js
-
 ---
 
 ### Testing
@@ -724,7 +717,7 @@ It's good practice to write tests to accompany your functions, so you can confir
 One common way to do this is to write functions whose names begin with **{code.language-python}test_** and which contain _{code.language-python}assert_ statements. An _{code.language-python}assert_ statement throws an error if the following expression evaluates to false. You can run the test functions directly, or you can use a tool like [pytest](https://pytest.org) to find and run all of the test functions in your codebase. 
 
     pre(data-executable)
-      | def spaceconcat(s,t)
+      | def spaceconcat(s,t):
       |     """
       |     Concatenate strings s and t, ensuring a space
       |     between them if s ends with a non-space character
@@ -749,10 +742,10 @@ _{button.next-step} Continue_
 
 ---
 
-*Solution*. We check 
+*Solution*. We check the empty string conditions prior to checking the last/first characters. This solves the problem because _{code.language-python}or_ is **short-circuiting**: if the first bool is _{code.language-python}True_ in an _{code.language-python}or_ operation, the second is never evaluated.
 
     pre(data-executable)
-      | def spaceconcat(s,t)
+      | def spaceconcat(s,t):
       |     """
       |     Concatenate strings s and t, ensuring a space
       |     between them if s ends with a non-space character 
@@ -769,6 +762,10 @@ _{button.next-step} Continue_
       |     assert spaceconcat("foo ", "bar") == "foo bar"
       |     assert spaceconcat("foo", "") == "foo"
       |     assert spaceconcat("", "bar") == "bar"
+      
+    script(src='/juniper.min.js')
+    script
+      include juniper-setup.js      
             
 ---
 
@@ -840,7 +837,7 @@ Here are some of the most important scientific computing packages (along with ve
 
 <p></p>
 
-**SymPy**. Symbolic mathematics. 
+**SymPy**. Math stuff like symbolic integration/differentiation, number theory, etc.
 
     pre(data-executable)
       | from sympy import symbols, Eq, solve
@@ -1713,7 +1710,9 @@ If we want to write a Python function which returns the Collatz sequence for any
       | 
       | 
       | def test_collatz():
-      |     assert collatzSequence(17) == [17, 52, 26, 13, 40, 20, 10, 5, 16, 8, 4, 2, 1]
+      |     assert collatzSequence(17) == [17, 52, 26, 13, 
+      |                                    40, 20, 10, 5, 
+      |                                    16, 8, 4, 2, 1]
       
 <p></p>      
 
@@ -1762,6 +1761,183 @@ _{button.next-step} Continue_
       | def test_newton():
       |     assert abs(newtonsqrt(2) - 1.4142135623730951) < 1e-6
       |     assert abs(newtonsqrt(9) - 3) < 1e-6
+
+    script(src='/juniper.min.js')
+    script
+      include juniper-setup.js
+
+---
+
+> id: a-project
+## A project
+
+One of the most challenging aspects of learning to program is the difficulty of synthesizing individual skills in the service of a larger project. This section provides a stepping stone on that path by progressively solving a real-world problem. 
+
+You'll want to follow along either on your own machine or in [Binder](https://mybinder.org/v2/gh/sswatson/simple-python-stack/master). You can't use code blocks in this page, because there's an authentication step which requires a feature which isn't supported here. However, it's good practice to begin moving away from doing your programming in the tutorial web app!
+
+_{button.next-step} Continue_
+
+---
+
+### Spotify
+
+As an avid Spotify listener, you find that you'd prefer more flexibility in the way your playlists are built. For example, you find it tedious when two particularly long songs play back-to-back, and you want to eliminate those instances without having to read through and do it manually. Also, you want to have at least three separate genres represented in every block of eight consecutive songs. You want the flexibility to modify these requirements or add new ones at any time. 
+
+This is not the sort of capability that Spotify is ever going to provide through its app, but Spotify *does* support interaction through a programming language. Such an interface is called an **API** (application programming interface). 
+
+_{button.next-step} Continue_
+
+---
+
+You decide to google *Spotify API* to see what the deal is. That takes you to the [main Spotify API page](https://developer.spotify.com/documentation/web-api/), where you read about how the API uses standard HTTPS requests (these are the requests that your browser is using in the background load webpages, enter information into forms on the internet, etc.). Rather than proceeding along this route, you think to yourself "surely someone in the vast Python world has made a Python package to handle these HTTPS requests". So you google "Spotify Python API". 
+
+_{button.next-step} Continue_
+
+---
+
+Turns out, you were right. The first few hits pertain to a package called _{code.language-python}spotipy_. You check out [the docs](https://spotipy.readthedocs.io/en/latest/) and find that you can install the package by running _pip install spotipy_. Since _{code}pip_ is a command line tool, this is something we should run from the terminal. We can send code to the command line in Jupyter by prepending an exclamation point: 
+
+    pre: code.language-python
+      | !pip install spotipy
+      
+_{button.next-step} Continue_
+
+---
+
+Looking around in the documentation a bit more, we discover the functions **{code.language-python}user_playlist_tracks** and **{code.language-python}user_playlist_add_tracks**, which retrieve the tracks on a playlist and add new ones to it, respectively. So you decide to get the tracks from one of your playlists, manipulate them however you want inside the Python program, and put the new list in place of the old one. All we need from Spotify to make this work, in addition to the previous two functions, is a function to [[remove the existing tracks|swap tracks one at a time|get a list of the playlist tracks]]. 
+
+---
+
+Looking around a bit more, you find **{code.language-python}user_playlist_remove_all_occurrences_of_tracks**, which isn't exactly what you were looking for, but it will work since we can [[remove every track originally on the playlist|instruct it to remove every track on Spotify]]. 
+
+---
+
+Your plan is beginning to take shape. You decide to make sure everything works before getting into the details of how you're going to modify the playlist. You follow the instructions in the documentation for getting the appropriate authorization credentials for your Python program to access your Spotify account. That step is a bit tedious, but it's going to be worth it. Working from the example in the documentation, you eventually arrive at some code that looks like the following (note that your _{code.language-python}CLIENT_ variables and **{code.language-python}playlist_id** will necessarily be different). 
+
+    pre: code.language-python    
+      | import spotipy
+      | import spotipy.util as util
+      | 
+      | username = 'sswatson'
+      | scope = 'user-library-read'
+      | scope = 'playlist-modify-public'
+      | 
+      | CLIENT_ID = 'bcc57908a2e54cee94f9e2307db67c2e'
+      | CLIENT_SECRET = '6831b3ceaf0a40a6a1fdeb67105ef19b'
+      | 
+      | playlist_id = '57hQnYeBC4u0IUhaaHmM0k'
+      |   
+      | token = util.prompt_for_user_token(username, 
+      |                                    scope,
+      |                                    client_id=CLIENT_ID,
+      |                                    client_secret=CLIENT_SECRET,
+      |                                    redirect_uri='http://localhost/')
+      | 
+      | sp = spotipy.Spotify(auth=token)
+
+_{button.next-step} Continue_
+
+---
+
+Next, you implement your plan sans-track-modification, to make sure the functions work as expected. 
+
+    pre: code.language-python
+      | original_tracks = sp.user_playlist_tracks(username, playlist_id)
+      | remove_tracks = sp.user_playlist_remove_all_occurrences_of_tracks
+      | remove_tracks(username, playlist_id, original_tracks)
+      | sp.user_playlist_add_tracks(username, playlist_id, original_tracks)
+      
+That second line is there because you decided that function's name was so long it was getting unwieldy. 
+
+_{button.next-step} Continue_
+
+---
+
+Hmm. Error. Specifically, a _{code.language-python}SpotifyException_, which suggests that you didn't use the API in the intended way. You'll have to dig into this to figure out what went wrong. But first, it's a bit untidy to have those four lines of code loose in our program. Let's wrap them in a function. The playlist id should be an argument, and we should also take as an argument a track-modifying function that we'll start using once we get to that part. 
+
+    pre: code.language-python
+      | def modify_playlist_tracks(playlist_id, track_modifier):
+      |     original_tracks = sp.user_playlist_tracks(username, playlist_id)
+      |     new_tracks = track_modifier(original_tracks)
+      |     remove_tracks = sp.user_playlist_remove_all_occurrences_of_tracks
+      |     remove_tracks(username, playlist_id, original_tracks)
+      |     sp.user_playlist_add_tracks(username, playlist_id, new_tracks)
+
+
+Now let's figure out the error. If we examine the traceback supplied as a part of the error message, we can see that the error is being thrown from the line where we call **{code.language-python}remove_tracks**. So we look at the documentation for that function. 
+
+    pre: code.language-python
+      | help(remove_tracks)
+
+We see that the _{code.language-python}tracks_ argument is supposed to be a list of playlist ids. Is that what **{code.language-python}user_playlist_tracks** returns? You investigate. 
+
+    pre: code.language-python
+      | original_tracks = sp.user_playlist_tracks(username, playlist_id)
+      | original_tracks
+
+The output from that expression prints all over the screen, and it looks like it has a lot more data than just a list of id's. That's actually pretty helpful, because we'll need that data to modify the list appropriately. But in the meantime, we need to extract the actual playlist ids. 
+
+_{button.next-step} Continue_
+
+---
+
+You begin by checking **{code.language-python}type(original_tracks)**. It's a [[dict|list|tuple]]. So you have a look at its keys: 
+
+    pre: code.language-python
+      | original_tracks.keys()
+      
+---      
+
+This returns
+
+    pre: code.language-python
+      | dict_keys(['href', 'items', 'limit', 'next', 'offset', 'previous', 'total'])
+
+Without looking to carefully at the other items, it's a good guess that _{code.language-python}'items'_ is the one you want. You check 
+**{code.language-python}type(original_tracks['items'])** and find that it's a [[list|dict|tuple]]. To have a look at the first one, you do **{code.language-python}original_tracks['items'][0]**. Repeating this step-by-step inspection, you find finally that **{code.language-python}original_tracks['items'][0]['track']['id']** is an actual playlist id. 
+
+---
+
+::: .exercise
+**Exercise**  
+Use a list comprehension to calculate the list of all of the tracks' playlist ids. 
+:::
+
+_{button.next-step} Continue_
+
+---
+
+*Solution*. **{code.language-python}[item for item in original_tracks['items']]** would return the _{code.language-python}'items'_ list. To map each item to its playlist id, we index it with _{code.language-python}'track'_ and then with _{code.language-python}'id'_ as above. So we get **{code.language-python}[item['track']['id'] for item in original_tracks['items']]** 
+
+_{button.next-step} Continue_
+
+---
+
+You insert this list comprehension into our function to fix it. You decide to reverse the list of tracks just to confirm that running the code has an effect on the Spotify side. 
+
+    pre: code.language-python
+      | def modify_playlist_tracks(playlist_id, track_modifier):
+      |     original_tracks = sp.user_playlist_tracks(username, playlist_id)
+      |     new_tracks = track_modifier(original_tracks)
+      |     remove_tracks = sp.user_playlist_remove_all_occurrences_of_tracks
+      |     original_ids = [item['track']['id'] for item in
+      |                                         original_tracks['items']]
+      |     remove_tracks(username, playlist_id, original_ids)
+      |     sp.user_playlist_add_tracks(username, playlist_id, new_tracks)
+      | 
+      | 
+      | def track_modifier(tracks):
+      |     return reversed([item['track']['id'] for item in tracks['items']])
+      | 
+      | 
+      | modify_playlist_tracks(playlist_id, track_modifier)
+
+This works! You can check that the order of the playlist was reversed. 
+
+::: .exercise
+**Exercise**  
+Add more features to the function **{code.language-python}track_modifier** to modify playlists in ways that you find interesting or desirable. 
+:::
 
 _{button.next-step} Continue_
 
