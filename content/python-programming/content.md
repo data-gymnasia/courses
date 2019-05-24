@@ -4,15 +4,9 @@
 > id: intro
 ## Introduction
 
-In this course, we will develop mathematical ideas in concert with corresponding computational skills. This relationship is symbiotic: writing programs is an important ingredient for applying mathematical ideas to real-world problems, but it also helps us explore and visualize math ideas in ways that go beyond what we could achieve with pen, paper, and imagination. 
+This chapter is an introduction to programming in **Python**, which is a general-purpose language with a large user base in the software engineering world. With the emergence of a powerful stack of scientific computing packages since the early 2000s, it has emerged as one of the two dominant languages in data science.
 
-_{button.next-step} Continue_
-
----
-
-We will use the world's most popular programming language for data science: **Python**. 
-
-Python is a general-purpose language with a large user base in the software engineering world. With the emergence of a powerful stack of scientific computing packages since the early 2000s, it has emerged as a language of choice among data scientists as well.
+Although programming is a powerful tool, learning to program is also about honing your problem solving skills and thinking in an organized way about structure and computation. You are likely to find that computer science ideas support your ability to reason about complex systems, even in situations where you won't be programming anything. This is a useful frame of mind to bring to the learning process.
 
 _{button.next-step} Continue_
 
@@ -22,7 +16,7 @@ _{button.next-step} Continue_
 
 There are several ways to access Python:
 
-**Inline**. This course will let you execute Python code blocks in the webpage (thanks to [Juniper](https://github.com/ines/juniper) and [Binder](https://mybinder.org)). So if you don't want to install anything yet, you don't have to. (However, the first cell you run on any given page will be slow with this method, since your environment has to be launched behind the scenes on Binder's servers.)
+**Inline**. This course will let you execute Python code blocks in the webpage (thanks to [Juniper](https://github.com/ines/juniper) and [Binder](https://mybinder.org)). So if you don't want to install anything yet, you don't have to. (However, the first cell you run will be slow with this method, like up to 30 seconds, since your environment has to be launched behind the scenes on Binder's servers. If it's taking too long, reload the page.)
 
 _{button.next-step} Continue_
 
@@ -34,7 +28,7 @@ _{button.next-step} Continue_
 
 ---
 
-**Binder**. You can also run Python code in the cloud on the Binder website. To launch with a set of packages tailored to this course, [click here](https://mybinder.org/v2/gh/sswatson/simple-python-stack/master).
+**Binder**. You can also run Python code in the cloud on the Binder website. To launch with a set of packages tailored to this course, [click here](https://mybinder.org/v2/gh/sswatson/simple-python-stack/master). Then select *New* (top right corner and *Python 3*).
 
 _{button.next-step} Continue_
 
@@ -50,25 +44,25 @@ _{button.next-step} Continue_
 
 Once you have Python installed, there are several ways to interact with it. 
 
-**REPL**. Launch a read-eval-print loop from the command line. Any code you enter will be executed immediately, and any values returned by your code will be displayed. To start a session, open your operating system's Terminal and run _{code.language-python}python_ or _{code.language-python}ipython_ (the latter being more colorful and having more features). 
+**REPL**. Launch a read-eval-print loop from the command line. Any code you enter will be executed immediately, and any values returned by your code will be displayed. To start a session, open your operating system's Terminal and run _{code.language-python}python_ or _{code.language-python}ipython_ (the latter being more colorful and having more features). You can do this in Binder by selecting *New > Terminal*. 
 
 _{button.next-step} Continue_
 
 ---
 
-**Script**. Save a file called _{code}example.py_ and run _{code}python example.py_ from the command line (in the same directory as the file) to execute all the code in the script.
+**Script**. Save a file called _{code}example.py_ and run _{code}python example.py_ from the command line (in the same directory as the file) to execute all the code in the script. You can do this in Binder by selecting *New > Text File* and then changing the name of the text file to something that ends in _{code}.py_. 
 
 _{button.next-step} Continue_
 
 ---
 
-**Jupyter**. Like a REPL, but allows inserting text and math expressions, grouping code into blocks, etc. This is the interface provided by [Binder](https://mybinder.org/v2/gh/sswatson/simple-python-stack/master), and you can launch a notebook locally by running _{code.language-python}jupyter notebook_ from the command line (assuming you have Anaconda installed). 
+**Jupyter**. Like a REPL, but allows inserting text and math expressions, grouping code into blocks, etc. This is the interface provided by default in [Binder](https://mybinder.org/v2/gh/sswatson/simple-python-stack/master), and you can launch a notebook locally by running _{code.language-python}jupyter notebook_ from the command line (assuming you have Anaconda installed). 
 
 _{button.next-step} Continue_
 
 ---
 
-**Integrated development environment (IDE)**. Essential for extensive software development projects, an IDE provides an editor for writing code, conveniences to help you code more efficiently, and a debugger to help you fix your mistakes. There are many IDEs for Python, including PyCharm, Visual Studio Code, and Atom. 
+**Integrated development environment (IDE)**. Essential for extensive software development projects, an IDE provides an editor for writing code, conveniences to help you code more efficiently, and a debugger to help you fix your mistakes. There are many IDEs for Python, including Visual Studio Code, Atom, and PyCharm.
 
 _{button.next-step} Continue_
 
@@ -81,8 +75,8 @@ Sort the following Python interaction modes in the order in which they appear in
     center: video(src="images/jupyter-script-repl.mp4" width="75%" controls)
     
     x-sortable
-      .item.md(data-index="1") REPL
-      .item.md(data-index="2") script
+      .item.md(data-index="2") REPL
+      .item.md(data-index="1") script
       .item.md(data-index="0") Jupyter
 
 :::
@@ -92,7 +86,7 @@ Sort the following Python interaction modes in the order in which they appear in
 > id: basics
 ## Basics
 
-Let's begin begin by developing some basic vocabulary for the elements of a program. This section is an overview: will develop some of these ideas in greater depth in later sections.
+Let's begin by developing some basic vocabulary for the elements of a program. This section is an overview: will develop some of these ideas in greater depth in later sections.
 
 _{button.next-step} Continue_
 
@@ -150,14 +144,14 @@ Find the value of _{code.language-python}x_ at the end of the following block of
     pre: code.language-python
       | x = 3
       | y = x
-      | x = 2
+      | x = x + 1
       | x = y
     
 :::
 
 ---
 
-*Solution*. The value 3 is assigned to _{code.language-python}x_ and then also to _{code.language-python}y_ on the second line. After the third line, the value assigned to _{code.language-python}x_ is 2, and then after the fourth line it's _{code.language-python}3_ again, since the value associated with _{code.language-python}y_ is still 3 when the fourth line is executed. 
+*Solution*. The value 3 is assigned to _{code.language-python}x_ and then also to _{code.language-python}y_ on the second line. After the third line, the value assigned to _{code.language-python}x_ is 4, since the right-hand side works out to 4 an is *then* assigned to the variable _{code.language-python}x_. After the fourth line _{code.language-python}3_ is assigned to _{code.language-python}x_ again, since the value assigned to _{code.language-python}y_ is still 3 when the fourth line is executed. 
 
 _{button.next-step} Continue_
 
@@ -203,12 +197,16 @@ _{button.next-step} Continue_
 
 ---
 
-_{code.language-python}def_ is an example of a **keyword**: a name with a special meaning in the language (and which cannot be used as a variable name). 
+_{code.language-python}def_ is an example of a **keyword**: a name with a special meaning in the language. Since it has a special meaning, a keyword may not be used as a variable name. 
 
 _{button.next-step} Continue_
 
 ---
-      
+
+Note that the lines of code to be executed when the function is called **must** be indented four spaces relative to _{code.language-python}def_. For example, _{code.language-python}printtwice("hey")_ [[is not|is]] part of the definition of the function in the example above.
+
+---
+
 A function may perform an action, like _{code.language-python}printtwice_, or it may **return** an object. For example, after the following code block is run, the object _{code.language-python}28_ will be assigned to the variable _{code.language-python}y_. 
 
     pre: code.language-python
@@ -234,23 +232,23 @@ _{button.next-step} Continue_
 
 --- 
 
-:::Exercise
+::: .exercise
 **Exercise**  
-Arrange the operation descriptions below in order, according the corresponding Python operator in the list _{code}+, *, **, //, /_. You might need to experiment using the code block below. 
+Arrange the operation descriptions below in order, according the corresponding Python operator in the list _{code.language-python}+, **, *, //, /_. You might need to experiment using the code block below. 
 
     x-sortable
       .item.md(data-index="3") integer division (quotient only; no remainder)
       .item.md(data-index="0") addition      
-      .item.md(data-index="1") multiplication
-      .item.md(data-index="2") exponentiation
+      .item.md(data-index="2") multiplication
+      .item.md(data-index="1") exponentiation
       .item.md(data-index="4") division (ordinary real-number division)
       
 :::
 
     pre(data-executable)
       | 6 + 11
-      | 3 * 4
       | 2**5
+      | 3 * 4
       | 7//2
       | 7/2
 
@@ -268,10 +266,18 @@ _{button.next-step} Continue_
 
 ::: .exercise
 **Exercise**  
-* _{code.language-python}def f(x): return x*x_ is [[a statement|an expression]]
-* _{code.language-python}2 + 3*f(4)_ is [[an expression|a statement]]
-* _{code.language-python}y = 13_ is [[a statement|an expression]]
-* _{code.language-python}myName = "John" + "Doe"_ is [[a statement whose execution involves evaluating an expression|an expression]]
+_{code.language-python}def f(x): return x*x_ is [[a statement|an expression]]
+
+_{code.language-python}2 + 3*f(4)_ is [[an expression|a statement]]
+
+_{code.language-python}y = 13_ is [[a statement|an expression]]
+
+_{code.language-python}myName = "John" + "Doe"_ is
+
+    x-picker.list
+      .item(data-error="expression-1") an expression
+      .item a statement whose execution involves evaluating an expression
+
 :::
 
     script(src='/juniper.min.js')
@@ -424,7 +430,7 @@ _{button.next-step} Continue_
 
 ::: .exercise
 **Exercise**  
-Write a one-line function which takes 3 bools as arguments and returns _{code.language-python}True_ if and only if either 
+Write a one-line [function](gloss:function) which takes 3 bools as arguments and returns _{code.language-python}True_ if and only if either 
 
 1. Both of the first two arguments are _{code.language-python}True_ , or 
 2. The third argument is _{code.language-python}False_
@@ -854,7 +860,7 @@ Here are some of the most important scientific computing packages (along with ve
 > id: classes
 ## Classes
 
-Many Python functions use the usual function syntax, like _{code.language-python}len("hello")_. However, many other functions are called using a different syntax where an *object* comes first: 
+Many Python functions use the usual [function](gloss:function) syntax, like _{code.language-python}len("hello")_. However, many other functions are called using a different syntax where an *object* comes first: 
 
     pre(data-executable)
       | "hello".capitalize()
@@ -934,7 +940,7 @@ In the expression _{code.language-python}"".join("hello")_, the method _{code.la
 
 Let's revisit the spreadsheet example we discussed earlier: suppose you're writing a spreadsheet application and you want to introduce some functionality for highlighting every row whose third-column value is greater than 10: 
 
-    table.eqnarray
+    table
       tr
         td: .pill.grey 20
         td: .pill.grey 16
@@ -1102,7 +1108,7 @@ Negative indices can be used to count from the end:
 
 <p></p>
   
-If we set _{code.language-python}i =_ [[-3]], then _{code.language-python}myList[i]_ would return _{code.language-python}"flower"_. 
+If we set _{code.language-python}i =_ [[-3]], then _{code.language-python}myList[i]_ would return _{code.language-python}"flower"_ (answer with a negative number).
       
 ---
 
@@ -1146,7 +1152,7 @@ Like strings, lists can be concatenated with the _{code.language-python}+_ opera
 
 ::: .exercise
 **Exercise**  
-Write a function which takes as arguments a list _{code.language-python}L_ and a positive integer _{code.language-python}n_ and rotates _{code.language-python}L_ by _{code.language-python}n_ positions. In other words, every element of the list should move forward _{code.language-python}n_ positions, wrapping around to the beginning if it goes off the end of the list. 
+Write a [function](gloss:function) which takes as arguments a list _{code.language-python}L_ and a positive integer _{code.language-python}n_ and rotates _{code.language-python}L_ by _{code.language-python}n_ positions. In other words, every element of the list should move forward _{code.language-python}n_ positions, wrapping around to the beginning if it goes off the end of the list. 
 :::
 
     pre(data-executable)
@@ -1210,7 +1216,7 @@ _{button.next-step} Continue_
 
 ---
 
-The _{code.language-python}list_ class has 11 ordinary methods (that is, methods that don't have the double underscores in the name):
+The _{code.language-python}list_ class has 11 ordinary [methods](gloss:method) (that is, methods that don't have the double underscores in the name):
 
     pre(data-executable)
       | L = [1,2,3]
@@ -1395,7 +1401,7 @@ _{button.next-step} Continue_
 
 ---
 
-A common pattern for generating new arrays combines list comprehensions, tuple unpacking, and the function _{code.language-python}zip_. The _{code.language-python}zip_ function takes two arrays and returns a single array of pairs of corresponding entries (or three arrays, in which case it returns an array of triples, etc.). For example, 
+A common pattern for generating new arrays combines [list comprehension](gloss:listcomps, tuple unpacking, and the function _{code.language-python}zip_. The _{code.language-python}zip_ function takes two arrays and returns a single array of pairs of corresponding entries (or three arrays, in which case it returns an array of triples, etc.). For example, 
 
     pre: code.language-python
       | 
@@ -1408,7 +1414,7 @@ If we have three vectors $A$, $B$, and $C$ of equal length, then the vector sum 
 
 ::: .exercise
 **Exercise**  
-Suppose that $H$ is a list which stores the heights of 100 cylinders and $R$ is a list which stores their radii (in the same order). Write a list comprehension which returns a list containing the volumes of these cylinders. 
+Suppose that $H$ is a list which stores the heights of 100 cylinders and $R$ is a list which stores their radii (in the same order). Write a [list comprehension](gloss:listcomp) which returns a list containing the volumes of these cylinders. 
 :::
 
 _{button.next-step} Continue_
@@ -1533,7 +1539,7 @@ We can perform a dictionary lookup using indexing syntax: _{code.language-python
 
 <p></p>
 
-The _{code.language-python}dict_ methods _{code.language-python}keys_ and _{code.language-python}values_ may be used to access the keys and values of a dictionary. 
+The _{code.language-python}dict_ [methods](gloss:method) _{code.language-python}keys_ and _{code.language-python}values_ may be used to access the keys and values of a dictionary. 
 
     pre(data-executable)
       | rgb = {"fuchsia": (256, 0, 256),
@@ -1547,7 +1553,7 @@ The _{code.language-python}dict_ methods _{code.language-python}keys_ and _{code
 
 ::: .exercise
 **Exercise**  
-Consider a dictionary which encodes flight arrival times: 
+Consider a [dictionary](gloss:dictionary) which encodes flight arrival times: 
 
     pre: code.language-python
       | import datetime
@@ -1583,7 +1589,7 @@ _{button.next-step} Continue_
 > id: iteration
 ## Iteration
 
-We have already seen one way of doing something to each element in a collection: the *list comprehension*.
+We have already seen one way of doing something to each element in a collection: the [*list comprehension*](gloss:listcomp).
 
     pre(data-executable)
       | smallestFactor = {2: 2, 3: 3, 4: 2, 5: 5, 
@@ -1592,7 +1598,7 @@ We have already seen one way of doing something to each element in a collection:
 
 <p></p>
 
-In this list comprehension, we **iterate** over the pairs of the dictionary to produce a new list. Although list comprehensions are very useful, they are not flexible enough to cover all our iteration needs. A much more flexible tool is the **for loop**. 
+In this list comprehension, we **iterate** over the pairs of the [dictionary](gloss:dictionary) to produce a new list. Although list comprehensions are very useful, they are not flexible enough to cover all our iteration needs. A much more flexible tool is the **for loop**.
 
 ### For statements
 
@@ -1612,10 +1618,10 @@ _{button.next-step} Continue_
 
 ---
 
-We can nest _{code.language-python}for_ statements. For example, suppose we have a matrix represented as a list of lists, and we want to sum all of the matrix entries. We can do that by iterating over the rows and then iterating over each row: 
+We can nest _{code.language-python}for_ statements. For example, suppose we have a matrix represented as a [list](gloss:list) of lists, and we want to sum all of the matrix entries. We can do that by iterating over the rows and then iterating over each row: 
 
     pre(data-executable)
-      |
+      | 
       | def sumMatrixEntries(M):
       |     """
       |     Return the sum of the entries of M
@@ -1625,11 +1631,13 @@ We can nest _{code.language-python}for_ statements. For example, suppose we have
       |         for entry in row:
       |             s = s + entry
       |     return s
-      |
+      | 
       | 
       | def test_sum():
       |     M = [[1,2,3],[4,5,6],[7,8,9]]
       |     assert sumMatrixEntries(M) == 45
+
+<p></p>
 
 ::: .exercise
 **Exercise**  
@@ -1651,7 +1659,7 @@ _{button.next-step} Continue_
 
 ::: .exercise
 **Exercise**  
-Write a function called _{code.language-python}factorial_ which takes a positive integer _{code.language-python}n_ as an argument and returns its factorial. 
+Write a [function](gloss:function) called _{code.language-python}factorial_ which takes a positive integer _{code.language-python}n_ as an argument and returns its factorial. 
 :::
 
 _{button.next-step} Continue_
@@ -1712,10 +1720,10 @@ If we want to write a Python function which returns the Collatz sequence for any
       | 
       | def test_collatz():
       |     assert collatzSequence(17) == [17, 52, 26, 13, 
-      |                                    40, 20, 10, 5, 
-      |                                    16, 8, 4, 2, 1]
+      |                                 40, 20, 10, 5, 
+      |                                 16, 8, 4, 2, 1]
       
-<p></p>      
+<p></p>
 
 The expression which appears immediately following the _{code.language-python}while_ keyword is called the **condition**, and the block indented below the _{code.language-python}while_ statement is the **body** of the loop. The rules of the language stipulate the following execution sequence for a _{code.language-python}while_ statement: the condition is evaluated, and if it's true, then the body is executed, then condition is evaluated again, and so on. When the condition returns _{code.language-python}False_, the loop is exited. An exit can also be forced from within the body of the while loop with the keyword _{code.language-python}break_. 
 
@@ -1796,7 +1804,7 @@ _{button.next-step} Continue_
 
 ---
 
-Turns out, you were right. The first few hits pertain to a package called _{code.language-python}spotipy_. You check out [the docs](https://spotipy.readthedocs.io/en/latest/) and find that you can install the package by running _pip install spotipy_. Since _{code}pip_ is a command line tool, this is something we should run from the terminal. We can send code to the command line in Jupyter by prepending an exclamation point: 
+Turns out, you were right. The first few hits pertain to a package called _{code.language-python}spotipy_. You check out [the docs](https://spotipy.readthedocs.io/en/latest/) and find that you can install the package by running _pip install spotipy_. Since _{code}pip_ is a command line tool, this is something you should run from the terminal. Note: if you're working in a Jupyter notebook, you can send code from a cell to the command line by prepending an exclamation point: 
 
     pre: code.language-python
       | !pip install spotipy
@@ -1901,7 +1909,7 @@ Without looking to carefully at the other items, it's a good guess that _{code.l
 
 ::: .exercise
 **Exercise**  
-Use a list comprehension to calculate the list of all of the tracks' playlist ids. 
+Use a [list comprehension](gloss:listcomp) to calculate the list of all of the tracks' playlist ids. 
 :::
 
 _{button.next-step} Continue_

@@ -13,4 +13,82 @@ receptive-field:
     For example, the receptive field of a neuron in a dense layer includes the entire
     preceding layer, while the receptive field of a neuron in a convolutional
     or subsampling layer is typically much smaller. 
+    
+int:
+  title: int
+  text: the standard integer type in Python
+  
+float:
+  title: float
+  text: the standard Python type for floating point numbers
 
+str:
+  title: str
+  text: | 
+    The standard Python type for textual data
+    
+    _{pre}myString = "Hello world!"
+    myString[0] # returns "H"
+    myString[3:] # returns "lo world!"
+    dir(str) # to see all of the string methods_
+
+list:
+  title: List
+  text: |
+    A mutable data type for storing an ordered sequence of objects. 
+    
+    _{pre}L = [5, "Hello", "world", 
+         6, [1,2,3]]
+    L[0] # returns 5
+    L[4][1] # returns 2_
+
+listcomp:
+  title: List Comprehension
+  text: |
+    Special syntax for generating lists by mapping and filtering. To remove the elements of _{code}L_ not satisfying a condition _{code}cond_ and apply a function _{code}f_ to the remaining elements:
+    
+    _{pre}[f(x) for x in L if cond(x)]_
+    
+    The _{code}if_ clause may be omitted.
+    
+    _{pre}[x**2 for x in range(5) 
+            if x % 2 == 0] # returns [0, 4, 16]_
+
+tuple:
+  title: tuple
+  text: |
+    An immutable data type for storing an ordered sequence of objects. 
+    
+    _{pre}T = (5, "Hello", "world", 
+         6, (1,2,3))
+    T[0] # returns 5
+    T[4][1] # returns 2_
+
+function:
+  title: function
+  text: | 
+    A packaged block of related code for performing a specific computation or action. Values to be input are called **parameters**, and they can be given default values:
+    
+    _{pre}def add(x, y, z=0):
+        return x + y + z_
+
+    _{pre}add(3,2) # returns 5
+    add(3,2,z=7) # returns 12_
+
+dictionary:
+  title: Dictionary
+  text: | 
+    An unordered, mutable data type used for encoding a function whose domain is a finite set
+  
+    For example, if we set 
+    
+    _{code}D = {'a': 1, 'b': 2, 'c': 3}_, 
+    
+    then the expression _{code}D['b']_ returns _{code}2_. 
+    
+method:
+  title: method
+  text: |
+    A function associated with a specific class and called using dot syntax from an instance of that class
+    
+    For exapmle, in _{code}",".join([1,2,3])_, _{code}","_ is a string and _{code}join_ is a method of the string class.
