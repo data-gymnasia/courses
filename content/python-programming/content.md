@@ -118,7 +118,7 @@ Use the code block below to find the type of _{code.language-python}1.0_. Does _
 
 ---
 
-(Note: you probably noticed the _{code}Loading or None returned_ message that appeared briefly when you executed the cell. If that message appears for more than 10 seconds or so, it's likely that the cell has executed properly but doesn't have anything to show as a result. We will discuss this in more detail soon.)
+(Note: you probably noticed the _{code.language-markup}Loading or None returned_ message that appeared briefly when you executed the cell. If that message appears for more than 10 seconds or so, it's likely that the cell has run successfully but doesn't have anything to show as a result. We will discuss this in more detail soon.)
 
 _{button.next-step} Continue_
       
@@ -225,7 +225,7 @@ A function may perform an action, like _{code.language-python}printtwice_, or it
       | y = 20 + add_one(7)
       | y
 
-(Note: we put _{code.language-python}y_ by itself on the last line so that we can see the value of _{code.language-python}y_ in the output area. If an assignment (like **y = 20 + add_one(7)**) is the last line in the cell, then no value will be printed, and we will get the _{code}Loading or None returned_ message.)
+(Note: we put _{code.language-python}y_ by itself on the last line so that we can see the value of _{code.language-python}y_ in the output area. If an assignment (like **{code.language-python}y = 20 + add_one(7)**) is the last line in the cell, then no value will be printed, and we will get the _{code.language-markup}Loading or None returned_ message.)
       
 _{button.next-step} Continue_
 
@@ -248,11 +248,11 @@ _{button.next-step} Continue_
 Arrange the operation descriptions below in order, according the corresponding Python operator in the list _{code.language-python}+, **, *, //, /_. You might need to experiment using the code block below. 
 
     x-sortable
-      .item.pill.bblue.md(data-index="3") integer division (quotient only; no remainder)
-      .item.pill.bblue.md(data-index="0") addition      
-      .item.pill.bblue.md(data-index="2") multiplication
-      .item.pill.bblue.md(data-index="1") exponentiation
-      .item.pill.bblue.md(data-index="4") division (ordinary real-number division)
+      .item.md(data-index="3") integer division (quotient only; no remainder)
+      .item.md(data-index="0") addition      
+      .item.md(data-index="2") multiplication
+      .item.md(data-index="1") exponentiation
+      .item.md(data-index="4") division (ordinary real-number division)
       
 :::
 
