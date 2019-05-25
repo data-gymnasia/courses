@@ -75,9 +75,9 @@ Sort the following Python interaction modes in the order in which they appear in
     center: video(src="images/jupyter-script-repl.mp4" width="75%" controls)
     
     x-sortable
-      .item.md(data-index="2") REPL
-      .item.md(data-index="1") script
-      .item.md(data-index="0") Jupyter
+      .item.pill.bblue.md(data-index="2") REPL
+      .item.pill.bblue.md(data-index="1") script
+      .item.pill.bblue.md(data-index="0") Jupyter
 
 :::
 
@@ -120,10 +120,12 @@ Use the code block below to find the type of _{code.language-python}1.0_. Does _
 
 ### Variables
 
-A **variable** is a name used to refer to an object. We can **assign** a value (say _{code.language-python}41_) to a variable (say _{code.language-python}age_) as follows: 
+A **variable** is a name used to refer to an object. We can **assign** an object (say _{code.language-python}41_) to a variable (say _{code.language-python}age_) as follows: 
 
     pre: code.language-python
       | age = 41
+
+We say that _{code.language-python}41_ is the **value** of the variable _{code.language-python}age_. 
 
 _{button.next-step} Continue_
 
@@ -151,7 +153,7 @@ Find the value of _{code.language-python}x_ at the end of the following block of
 
 ---
 
-*Solution*. The value 3 is assigned to _{code.language-python}x_ and then also to _{code.language-python}y_ on the second line. After the third line, the value assigned to _{code.language-python}x_ is 4, since the right-hand side works out to 4 an is *then* assigned to the variable _{code.language-python}x_. After the fourth line _{code.language-python}3_ is assigned to _{code.language-python}x_ again, since the value assigned to _{code.language-python}y_ is still 3 when the fourth line is executed. 
+*Solution*. The value 3 is assigned to _{code.language-python}x_ and then also to _{code.language-python}y_ on the second line. After the third line, the value of _{code.language-python}x_ is 4, since the right-hand side works out to 4 an is *then* assigned to the variable _{code.language-python}x_. After the fourth line _{code.language-python}3_ is of _{code.language-python}x_ again, since the value of _{code.language-python}y_ is still 3 when the fourth line is executed. 
 
 _{button.next-step} Continue_
 
@@ -215,6 +217,9 @@ A function may perform an action, like _{code.language-python}printtwice_, or it
       | 
       | 
       | y = 20 + add_one(7)
+      | y
+
+(Note: we put _{code.language-python}y_ by itself on the last line so that we can see the value of _{code.language-python}y_ in the output area. If an assignment (like **y = 20 + add_one(7)**) is the last line in the cell, then no value will be printed in the output area.)
       
 _{button.next-step} Continue_
 
@@ -237,11 +242,11 @@ _{button.next-step} Continue_
 Arrange the operation descriptions below in order, according the corresponding Python operator in the list _{code.language-python}+, **, *, //, /_. You might need to experiment using the code block below. 
 
     x-sortable
-      .item.md(data-index="3") integer division (quotient only; no remainder)
-      .item.md(data-index="0") addition      
-      .item.md(data-index="2") multiplication
-      .item.md(data-index="1") exponentiation
-      .item.md(data-index="4") division (ordinary real-number division)
+      .item.pill.bblue.md(data-index="3") integer division (quotient only; no remainder)
+      .item.pill.bblue.md(data-index="0") addition      
+      .item.pill.bblue.md(data-index="2") multiplication
+      .item.pill.bblue.md(data-index="1") exponentiation
+      .item.pill.bblue.md(data-index="4") division (ordinary real-number division)
       
 :::
 
@@ -258,7 +263,7 @@ Arrange the operation descriptions below in order, according the corresponding P
 
 ### Statements and expressions
 
-An individual executable unit of code in Python is called a **statement**. For example, the assignment _{code.language-python}age = 41_ is a statement. Statements may include **expressions**, which are a combination of values, variables, operators, and function calls that a language interprets and **evaluates** to a value. For example, _{code.language-python}1 + age + abs(3*-4)_ is an expression which evaluates to [[54]].
+An individual executable unit of code in Python is called a **statement**. For example, the assignment _{code.language-python}age = 41_ is a statement. Statements may include **expressions**, which are combinations of values, variables, operators, and function calls that a language interprets and **evaluates** to a value. For example, _{code.language-python}1 + age + abs(3*-4)_ is an expression which evaluates to [[54]]. 
 
 _{button.next-step} Continue_
 
@@ -275,8 +280,8 @@ _{code.language-python}y = 13_ is [[a statement|an expression]]
 _{code.language-python}myName = "John" + "Doe"_ is
 
     x-picker.list
-      .item(data-error="expression-1") an expression
-      .item a statement whose execution involves evaluating an expression
+      .item.pill.bblue(data-error="expression-1") an expression
+      .item.pill.bblue a statement whose execution involves evaluating an expression
 
 :::
 
@@ -1486,9 +1491,9 @@ _{button.next-step} Continue_
 Put the three methods in order from fastest to slowest: 
 
     x-sortable
-      .item.md(data-index="2") List membership checking
-      .item.md(data-index="0") Set membership checking
-      .item.md(data-index="1") Computing from scratch
+      .item.pill.bblue.md(data-index="2") List membership checking
+      .item.pill.bblue.md(data-index="0") Set membership checking
+      .item.pill.bblue.md(data-index="1") Computing from scratch
 
 ### Dictionaries
 
