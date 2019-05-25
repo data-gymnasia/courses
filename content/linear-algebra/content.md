@@ -1757,17 +1757,17 @@ In general, if $\mathbf{v}\_1, \dots, \mathbf{v}\_n$ are eigenvectors of $A$ wit
 
     p
       | \begin{align*}
-      | 		A\mathbf{v} &= A(c_1\mathbf{v}_1 + \cdots + c_n\mathbf{v}_n) \\\\
-      | 		&= c_1A\mathbf{v}_1 + \cdots + c_nA\mathbf{v}_n \\\\
-      | 		&= c_1 \lambda \mathbf{v}_1 + \cdots c_n \lambda \mathbf{v}_n \\\\
-      | 		&= \lambda (c_1\mathbf{v}_1 + \cdots c_n\mathbf{v}_n) \\\\
+      | 		A\mathbf{v} &= A(c_1\mathbf{v}_1 + \cdots + c_n\mathbf{v}_n) \\\\ 
+      | 		&= c_1A\mathbf{v}_1 + \cdots + c_nA\mathbf{v}_n \\\\ 
+      | 		&= c_1 \lambda \mathbf{v}_1 + \cdots c_n \lambda \mathbf{v}_n \\\\ 
+      | 		&= \lambda (c_1\mathbf{v}_1 + \cdots c_n\mathbf{v}_n) \\\\ 
       | 		&= \lambda \mathbf{v}.
-      | 	\end{align*}
+      | \end{align*}
       
  Let $A$ be a $4 \times 4$ matrix, with eigenvectors $\begin{bmatrix} 1
-  \\ 1 \\ 0 \\ 0 \end{bmatrix}$ and $\begin{bmatrix} 0 \\ 0 \\ 2 \\
+  \\\\\\\\ 1 \\\\\\\\ 0 \\\\\\\\ 0 \end{bmatrix}$ and $\begin{bmatrix} 0 \\\\\\\\ 0 \\\\\\\\ 2 \\\\\\\\
   -3\end{bmatrix}$, both with eigenvalue $3$. Find $A\left(\begin{bmatrix}
-5 \\ 5 \\ 8 \\ -12
+5 \\\\\\\\ 5 \\\\\\\\ 8 \\\\\\\\ -12
 \end{bmatrix}\right)$. 
 
 :::
@@ -1927,7 +1927,7 @@ Some matrices are not diagonalizable, because they correspond to geometric trans
     p
       | \begin{equation}
       |     A = \begin{bmatrix}
-      |       0 & -1\\
+      |       0 & -1\\\\\\\\
       |       1 & 0
       |     \end{bmatrix}
       |   \end{equation}

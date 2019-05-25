@@ -78,6 +78,11 @@ app.get('/', function(req, res) {
   res.render('index');
 });
 
+app.get('/about', function(req, res) {
+  res.render('about');
+});
+
+
 app.get('/course/:course', function(req, res, next) {
   const course = Courses[req.params.course];
   if (!course) return next();

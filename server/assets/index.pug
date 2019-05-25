@@ -10,16 +10,21 @@ html
       html, body { margin: 0; height: 100%; width: 100%; display: flex; background: #242436; justify-content: center; align-items: center; font-family: "Source Sans Pro", sans-serif; color: white; text-align: center; }
       svg { margin: 0 auto; display: block; }
       h1 { font-size: 44px; }
-      h2 { font-size: 32px; margin-top: -24px; font-weight: 400; opacity: 0.6; }
-      a { display: inline-block; background: #ccc; border-radius: 4px; padding: 8px 12px; color: #242436; }
+      p.subtext {margin-top: -20px; }
+      p.about {margin-top: 80px; }
+      h2 { font-size: 32px; font-weight: 400; opacity: 0.6; }
+      a.course { display: inline-block; background: #ccc; border-radius: 4px; padding: 8px 12px; color: #242436; }
+      a {color: #eee}
       a:hover { background: #aaa; }
 
   body
+    
     #body
-      svg(viewBox="-20 -100 156 256" , class="icon", width=200)
+      svg(viewBox="-12 -100 156 256" , class="icon", width=200)
         use(xlink:href="/icons.svg#datalogo")
       h1 Data Gymnasia
+      p.subtext: em powered by <a href="https://mathigon.io">Mathigon</a>
       h2 Lessons
-      p: a(href="course/sets-and-functions" target="_blank") Sets and Functions
-      p: a(href="course/python-programming" target="_blank") Programming in Python
-      p: em This website is powered by Mathigon
+      p: a.course(href="course/sets-and-functions" target="_blank") Sets and Functions
+      p: a.course(href="course/python-programming" target="_blank") Programming in Python
+      p.about: a(href="about") About      
