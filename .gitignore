@@ -27,8 +27,13 @@ nbproject
 # Folders to ignore
 node_modules
 server/assets/resources
+content/scratch
+content/conv-architectures/julia
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+tmp.csv
+tmp.jl
