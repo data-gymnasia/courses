@@ -1190,7 +1190,7 @@ _{button.next-step} Continue_
       |     "Cyclically shift the elements of L by n positions"
       |     k = len(L) - n % len(L)
       |     return L[k:] + L[:k]
-      | 
+      |
       | def test_rotate():
       |     assert rotate([1,2,3],1) == [3,1,2]
       |     assert rotate([1,2,3],2) == [2,3,1]      
@@ -1325,9 +1325,18 @@ Tuples are very similar to lists, except that tuples are [immutable](gloss:immut
 
     pre(data-executable)
       | 
-      | t = (-4,2.0,"green")
-      | t[2] # returns "green"
+      | row = (22,2.0,"tomato")
+      | row[2] # returns "tomato"
+      | row[2] = "squash" # throws TypeError
       |   
+
+<p></p>
+
+Programmers tend to use tuples instead of lists in situations where **position** in the tuple carries more meaning than **order**. For example, perhaps the tuple assigned to _{code.language-python}row_ above describes a row of plants in a garden, with the three numbers indicating the number of plants, the number of weeks since they were planted, and the type of plant. We could have chosen some other order for those three values, as long as we're consistent about which position corresponds to which value. By contrast, the 22 heights of the plants on that row would typically be stored in a *list*, since the list order corresponds to something meaningful in that case (namely, the order of the plants in the row).
+
+_{button.next-step} Continue_
+
+---
 
 Functions often return multiple values by returning a tuple containing those values. You can access individual elements of a tuple without having to index the tuple using *tuple unpacking*: 
 
