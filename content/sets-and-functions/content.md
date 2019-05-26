@@ -5,8 +5,8 @@
 
 Sets and functions are foundational to the study of mathematics and
 ubiquitous in quantitative disciplines, including statistics and data
-science. In this chapter we review the basics of sets, lists, and
-functions from a data perspective. These ideas will be useful for developing rigorous mathematical language for discussing randomness, and they will also be helpful precursors to several important data structures we'll develop in the programming chapter.
+science. In this course we review the basics of sets, lists, and
+functions from a data perspective. These ideas will be useful for developing rigorous mathematical language for discussing randomness, and they will also be helpful precursors to several important data structures we'll develop in the programming course.
 
 _{button.next-step} Continue_
 
@@ -964,4 +964,4 @@ _{button.next-step} Continue_
 
 ---
 
-**Congratulations!** You've completed the chapter on sets and functions.
+**Congratulations!** You've completed the Data Gymnasia *Sets and Functions* course. 

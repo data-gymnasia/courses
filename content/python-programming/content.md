@@ -22,12 +22,6 @@ _{button.next-step} Continue_
 
 ---
 
-**CoCalc**. If you want a complete environment without having to install anything locally, [CoCalc](https://cocalc.com) is a batteries-included, community-oriented platform for open-source mathematical and scientific computing. You can use it for free with limited functionality, and it's $14 per month to support the project and get paid account features.
-
-_{button.next-step} Continue_
-
----
-
 **Binder**. You can also run Python code in the cloud on the Binder website. To launch with a set of packages tailored to this course, [click here](https://mybinder.org/v2/gh/sswatson/simple-python-stack/master). Then select *New* (top right corner and *Python 3*).
 
 _{button.next-step} Continue_
@@ -39,6 +33,13 @@ _{button.next-step} Continue_
 _{button.next-step} Continue_
 
 ---
+
+**CoCalc**. If you want a complete environment without having to install anything locally, [CoCalc](https://cocalc.com) is a batteries-included, community-oriented platform for open-source mathematical and scientific computing. You can use it for free with limited functionality, and it's $14 per month to support the project and get paid account features.
+
+_{button.next-step} Continue_
+
+---
+
 
 ### Usage
 
@@ -75,9 +76,9 @@ Sort the following Python interaction modes in the order in which they appear in
     center: video(src="images/jupyter-script-repl.mp4" width="75%" controls)
     
     x-sortable
-      .item.pill.bblue.md(data-index="2") REPL
-      .item.pill.bblue.md(data-index="1") script
-      .item.pill.bblue.md(data-index="0") Jupyter
+      .item.md(data-index="2") REPL
+      .item.md(data-index="1") script
+      .item.md(data-index="0") Jupyter
 
 :::
 
@@ -118,7 +119,7 @@ Use the code block below to find the type of _{code.language-python}1.0_. Does _
 
 ---
 
-(Note: you probably noticed the _{code.language-markup}Loading or None returned_ message that appeared briefly when you executed the cell. If that message appears for more than 10 seconds or so, it's likely that the cell has run successfully but doesn't have anything to show as a result. We will discuss this in more detail soon.)
+(Note: you probably noticed the _{code.language-markup}Loading or None returned_ message that appeared briefly when you ran the cell. If that message appears for more than 10 seconds or so, it's likely that the cell has run successfully but doesn't have anything to show as a result. We will discuss this in more detail soon.)
 
 _{button.next-step} Continue_
       
@@ -131,7 +132,7 @@ A **variable** is a name used to refer to an object. We can **assign** an object
     pre: code.language-python
       | age = 41
 
-We say that _{code.language-python}41_ is the **value** of the variable _{code.language-python}age_. 
+We say that _{code.language-python}41_ is the **value** of the variable _{code.language-python}age_.
 
 _{button.next-step} Continue_
 
@@ -271,8 +272,6 @@ Arrange the operation descriptions below in order, according the corresponding P
 
 An individual executable unit of code in Python is called a **statement**. For example, the assignment _{code.language-python}age = 41_ is a statement. Statements may include **expressions**, which are combinations of values, variables, operators, and function calls that a language interprets and **evaluates** to a value. For example, _{code.language-python}1 + age + abs(3*-4)_ is an expression which evaluates to [[54]]. 
 
-_{button.next-step} Continue_
-
 ---
 
 ::: .exercise
@@ -308,7 +307,7 @@ _{button.next-step} Continue_
 
 ### Numbers
 
-As discussed in the previous section, a numerical value can be either an _{code.language-python}int_ or a _{code.language-python}float_. We can represent integers exactly, while storing a real number as a float often requires rounding slightly (typically around $10^{-15}$ times the absolute value of the number, unless the number is rational with a power of 2 in the denominator—such numbers can typically be represented exactly).
+As discussed in the previous section, a numerical value can be either an _{code.language-python}int_ or a _{code.language-python}float_. We can represent integers exactly, while storing a real number as a float [often requires rounding slightly](gloss:rounding).
 
 _{button.next-step} Continue_
 
@@ -357,13 +356,13 @@ We can find the number of characters in a string with the _{code.language-python
 
 ---
  
-We can concatenate two strings with the addition operator (_{code.language-python}*_): _{code.language-python}"Hello " + "World"_. 
+We can concatenate two strings with the addition operator (_{code.language-python}+_): _{code.language-python}"Hello " + "World"_. 
 
 _{button.next-step} Continue_
 
 ---
 
-We can return the first character in a string _{code.language-python}s_ using the expression _{code.language-python}s[0]_, the second element using _{code.language-python}s[1]_, and so on. We can get the substring from the third to the eight character using _{code.language-python}s[3:9]_. Note that the 9 is one past the index where we want to stop. 
+We can return the first character in a string _{code.language-python}s_ using the expression _{code.language-python}s[0]_, the second element using _{code.language-python}s[1]_, and so on. We can get the substring from the third to the eighth character using _{code.language-python}s[3:9]_. Note that the 9 is one **past** the index where we want to stop. 
 
 _{button.next-step} Continue_
 
@@ -371,11 +370,11 @@ _{button.next-step} Continue_
 
 ::: .exercise
 **Exercise**  
-For which values of _{code.language-python}a_ and _{code.language-python}b_ does the expression _{code.language-python}"Hello World"[a:b] == "o Wo"_ return _{code.language-python}True_? a = [[4]] and b = [[8]]
+For which values of _{code.language-python}a_ and _{code.language-python}b_ does the expression _{code.language-python}"Hello World"[i:j] == "o Wo"_ return _{code.language-python}True_? i = [[4]] and j = [[8]]
 :::
 
     pre(data-executable)
-      | "Hello World"[a:b]
+      | "Hello World"[i:j]
 
 ---
 
@@ -383,14 +382,14 @@ For which values of _{code.language-python}a_ and _{code.language-python}b_ does
       
 ::: .exercise
 **Exercise**  
-If either _{code.language-python}a_ or _{code.language-python}b_ is omitted in the expression _{code.language-python}s[a:b]_ (where _{code.language-python}s_ is a string), what happens? Experiment using the code block above. 
+If either _{code.language-python}i_ or _{code.language-python}j_ is omitted in the expression _{code.language-python}s[i:j]_ (where _{code.language-python}s_ is a string), what happens? Experiment using the code block above. 
 :::
 
 _{button.next-step} Continue_
 
 ---
 
-*Solution*. Omitting _{code.language-python}a_ or _{code.language-python}b_ has the effect of setting _{code.language-python}a = 0_ or _{code.language-python}b = len(s)_. 
+*Solution*. Omitting _{code.language-python}i_ or _{code.language-python}j_ has the effect of setting _{code.language-python}i = 0_ or _{code.language-python}j = len(s)_. 
 
 _{button.next-step} Continue_
 
@@ -401,9 +400,11 @@ _{button.next-step} Continue_
 We can insert the value of a variable into a string using *string interpolation*. There are several ways to do this in Python, but perhaps the simplest is to place an _{code.language-python}f_ character immediately before the opening quotation mark. A string literal modified in this way is called an *f-string*, or *formatted string literal*. Any parts of an f-string between curly braces are evaluated, and their string representations are inserted into the string at that point. 
 
     pre(data-executable)
-      | x = 11
-      | print(f"The quotient when x is divided by 3 
-      |         is {x//3} and the remainder is {x % 3}")
+      | x = 19
+      | print(f"The quotient when x is divided by 3 \
+      | is {x//3} and the remainder is {x % 3}.")
+
+Note the **line continuation** backslash at the end of the second line. This tells the interpreter to keep reading the next line as though it were on the current line. This technique is useful for avoiding very long lines of code.
       
 ::: .exercise
 **Exercise**  
@@ -427,7 +428,7 @@ A **bool** is a special type whose only values are _{code.language-python}True_ 
 _{button.next-step} Continue_
 
 ---
-
+      
 ::: .exercise
 **Exercise**  
 Does Python convert types when doing equality comparison? In other words, does _{code.language-python}1 == 1.0_ return _{code.language-python}True_ or _{code.language-python}False_? 
@@ -510,6 +511,8 @@ We can use an _{code.language-python}if_ statement to specify different blocks t
       |         return 0
       |     else:
       |         return -1
+      | 
+      | sgn(-5)
 
 _{button.next-step} Continue_
 
@@ -520,6 +523,8 @@ Conditional expressions can be written using *ternary conditional* _{code.langua
     pre(data-executable)
       | def sgn(x): 
       |     return +1 if x > 0 else -1
+      | 
+      | sgn(-5)
 
 _{button.next-step} Continue_
 
@@ -635,8 +640,7 @@ We can give parameters **default values** and supply arguments for those paramet
     pre: code.language-python
       | 
       | def threesum(x,y,z,shift=0):
-      |     x + y + z + shift
-      | 
+      |     return x + y + z + shift 
       | 
       | threesum(1,2,3) # returns 6
       | threesum(1,2,3,shift=5) # returns 11
@@ -660,18 +664,17 @@ _{button.next-step} Continue_
 
 ### Anonymous functions
 
-A function may be defined without assigning a name to it. Such a function is said to be *anonymous*. Python's anonymous function syntax uses the keyword _{code.language-python}lambda_. A common situation where anonymous functions can be useful is when supplying one function to another as an argument. For example:
+A function may be defined without assigning a name to it. Such a function is said to be *anonymous*. Python's anonymous function [syntax](gloss:syntax) uses the keyword _{code.language-python}lambda_. A common situation where anonymous functions can be useful is when supplying one function to another as an argument. For example:
 
     pre(data-executable)
       | def apply_three_times(f, x):
       |     return f(f(f(x)))
-      | 
-      | 
+      |
       | apply_three_times(lambda x: x*x, 5)
 
 <p></p>
       
-A multi-argument function works similarly, with the parameters separated by commas: the addition operator can be writte as _{code.language-python}lambda x,y: x + y_. 
+A multi-argument function works similarly, with the parameters separated by commas: the addition operator can be written as _{code.language-python}lambda x,y: x + y_. 
 
 _{button.next-step} Continue_
 
@@ -700,7 +703,6 @@ _{button.next-step} Continue_
       |     else:
       |         return b
       | 
-      | 
       | whichsmaller(4,6, lambda x: -x)
 
 _{button.next-step} Continue_
@@ -716,14 +718,12 @@ A variable defined in the main body of a file has **global scope**, meaning that
 A variable defined in the body of a function is in that function's **local scope**. For example: 
 
     pre(data-executable)
-      | 
       | def f(x):
       |     y = 2
       |     return x + y
-      | 
-      | 
+      |
       | y
-      | 
+
     
 ---
 
@@ -744,11 +744,13 @@ One common way to do this is to write functions whose names begin with **{code.l
       |         return s + t
       |     else:
       |         return s + " " + t
-      | 
-      | 
+      |
       | def test_spaceconcat():
       |     assert spaceconcat("foo", "bar") == "foo bar"
       |     assert spaceconcat("foo ", "bar") == "foo bar"
+      |
+      | test_spaceconcat()
+      | spaceconcat("foo", "bar")
       
 ::: .exercise
 **Exercise**  
@@ -772,8 +774,7 @@ _{button.next-step} Continue_
       |         return s + t
       |     else:
       |         return s + " " + t
-      | 
-      | 
+      |
       | def test_spaceconcat():
       |     assert spaceconcat("foo", "bar") == "foo bar"
       |     assert spaceconcat("foo ", "bar") == "foo bar"
@@ -789,7 +790,7 @@ _{button.next-step} Continue_
 > id: packages
 ## Packages
 
-A **package** is a collection of code that provides functionality beyond the core functionality available in every Python program. Packages achieve separation of concerns at the community level: someone else solves a problem of general interest, and then you can leverage their work and focus on applying it to the problem at hand. 
+A **package** is a collection of Python files that provide functionality beyond the core functionality available in every Python program. Packages achieve separation of concerns at the community level: someone else solves a problem of general interest, and then you can leverage their work and focus on applying it to the problem at hand.
 
 Many Python packages are available in every standard distribution of Python and can be used without having to worry about whether they're installed. These packages make up the **standard library**. To see a list of standard library packages, visit the standard library page of the [Python documentation](https://docs.python.org/3/library/). Here's an example showing how to import the  _{code.language-python}math_ package and use the _{code.language-python}sqrt_ function it contains: 
 
@@ -799,7 +800,7 @@ Many Python packages are available in every standard distribution of Python and 
       
 <p></p>
 
-Note that we access names like _{code.language-python}sqrt_ provided by the package using the dot syntax _{code.language-python}math.sqrt_. This is common practice, and it's a good idea because if functions are called in a way that makes it clear what package they came from, then (1) you can use the same name in multiple packages, and (2) you can easily identify which package that is supplying each function. We can also import individual functions and skip the dot syntax:
+Note that we access names like _{code.language-python}sqrt_ provided by the package using the dot [syntax](gloss:syntax) _{code.language-python}math.sqrt_. This is common practice, and it's a good idea because if functions are called in a way that makes it clear what package they came from, then (1) you can use the same name in multiple packages, and (2) you can easily identify which package that is supplying each function. We can also import individual functions and skip the dot syntax:
 
     pre(data-executable)
       | from math import sqrt
@@ -807,7 +808,7 @@ Note that we access names like _{code.language-python}sqrt_ provided by the pack
       
 <p></p>      
 
-Sometimes a package contains a **submodule** which must itself be accessed with dot syntax:
+Sometimes a package contains a **subpackage** which must itself be accessed with dot syntax:
 
     pre(data-executable)
       | from numpy.random import standard_normal
@@ -848,7 +849,7 @@ Here are some of the most important scientific computing packages (along with ve
     pre(data-executable)
       | import matplotlib.pyplot as plt
       | import numpy as np
-      | plt.ion() # (turn on interactive plots, so results show below)
+      | plt.ion() # interactive plotting; have to run cell twice!
       | plt.plot(np.cumsum(np.random.standard_normal(1000)))
       | plt.show()
 
@@ -871,7 +872,7 @@ Here are some of the most important scientific computing packages (along with ve
 > id: classes
 ## Classes
 
-Many Python functions use the usual function syntax, like _{code.language-python}len("hello")_. However, many other functions are called using a different syntax where an *object* comes first: 
+Many Python functions use the usual function [syntax](gloss:syntax), like _{code.language-python}len("hello")_. However, many other functions are called using a different syntax where an *object* comes first: 
 
     pre(data-executable)
       | "hello".capitalize()
@@ -894,7 +895,7 @@ What you want is to be able to treat each album as its own Python object, with a
 
     pre(data-executable)
       | class Album(object):
-      |     def __init__(self,name,artist,year,songs): 
+      |     def __init__(self, name, artist, year, length): 
       |         self.name = name
       |         self.artist = artist
       |         self.year = year
@@ -913,7 +914,7 @@ A function defined in the block indented below _{code.language-python}class Albu
     pre: code.language-python
       | A = Album("Abbey Road", "The Beatles", 1969, "47:23")
 
-The first parameter, customarily called _{code.language-python}self_, refers to the object being created. The four lines in the init method above assign values to **attributes** which may be accessed later using the dot syntax _{code.language-python}A.name_. 
+The first parameter, customarily called _{code.language-python}self_, refers to the object being created. The four lines in the init method above assign values to **attributes** which may be accessed later using the dot [syntax](gloss:syntax) _{code.language-python}A.name_. 
 
 Dot syntax is also used to access other methods like _{code.language-python}numYearsAgo_.
 
@@ -1123,7 +1124,7 @@ If we set _{code.language-python}i =_ [[-3]], then _{code.language-python}myList
       
 ---
 
-Sublists can be extracted by **slicing**. Indexing a list with _{code.language-python}[i:j]_ returns the portion of the list `i`th element to the `(j-1)`st element. 
+Sublists can be extracted by **slicing**. Indexing a list with _{code.language-markup}[i:j]_ returns the portion of the list from the `i`th element to the `(j-1)`st element. 
 
     pre(data-executable)
       | myList = [1, "flower", True, 7]
@@ -1169,8 +1170,7 @@ Write a [function](gloss:function) which takes as arguments a list _{code.langua
     pre(data-executable)
       | def rotate(L, n):
       |     "Cyclically shift the elements of L by n positions"
-      | 
-      | 
+      |
       | def test_rotate():
       |     assert rotate([1,2,3],1) == [3,1,2]
       |     assert rotate([1,2,3],2) == [2,3,1]      
@@ -1185,16 +1185,16 @@ _{button.next-step} Continue_
 
 *Solution*. We figure out where the list needs to be split and concatenate the two resulting sublists in the opposite order:
 
-pre(data-executable)
-  | def rotate(L, n):
-  |     "Cyclically shift the elements of L by n positions"
-  |     k = len(L) - n % len(L)
-  |     return L[k:] + L[:k]
-  | 
-  | def test_rotate():
-  |     assert rotate([1,2,3],1) == [3,1,2]
-  |     assert rotate([1,2,3],2) == [2,3,1]      
-  |     assert rotate([1,2,3,4,5],8) == [3,4,5,1,2]
+    pre(data-executable)
+      | def rotate(L, n):
+      |     "Cyclically shift the elements of L by n positions"
+      |     k = len(L) - n % len(L)
+      |     return L[k:] + L[:k]
+      | 
+      | def test_rotate():
+      |     assert rotate([1,2,3],1) == [3,1,2]
+      |     assert rotate([1,2,3],2) == [2,3,1]      
+      |     assert rotate([1,2,3,4,5],8) == [3,4,5,1,2]
   
 <p></p>
 
@@ -1265,7 +1265,7 @@ Two of the most common ways of generating one list from another are (1) applying
 
 The extra calls to _{code.language-python}list_ in the examples above are required to see the result because _{code.language-python}map_ and _{code.language-python}filter_ are *lazy*: they return objects which *promise* to perform the specified calculation when it's needed. 
 
-Python provides a convenient syntax for both mapping *and* filtering: the **list comprehension**. It's essentially a programming version of set builder notation. For example, to square the even numbers from 0 to 4, we can use the following expression: 
+Python provides a convenient [syntax](gloss:syntax) for both mapping *and* filtering: the **list comprehension**. It's essentially a programming version of set builder notation. For example, to square the even numbers from 0 to 4, we can use the following expression: 
 
     pre(data-executable)
       | [x**2 for x in range(5) if x % 2 == 0]
@@ -1321,9 +1321,9 @@ _{button.next-step} Continue_
 
 ### Tuples
 
-Tuples are very similar to lists, except that a tuple value cannot be changed.
+Tuples are very similar to lists, except that tuples are [immutable](gloss:immutable).
 
-    pre: code.language-python
+    pre(data-executable)
       | 
       | t = (-4,2.0,"green")
       | t[2] # returns "green"
@@ -1331,12 +1331,14 @@ Tuples are very similar to lists, except that a tuple value cannot be changed.
 
 Functions often return multiple values by returning a tuple containing those values. You can access individual elements of a tuple without having to index the tuple using *tuple unpacking*: 
 
-    pre: code.language-python
+    pre(data-executable)
       | 
-      |     mycolor = (1.0,1.0,0.44)
-      |     r, g, b = mycolor
-      |     b 
+      | mycolor = (1.0,1.0,0.44)
+      | r, g, b = mycolor
+      | b 
       |   
+
+<p></p>
 
 The convention in Python for values you don't want to store is to assign them to the variable whose name is just an underscore. That way you don't have to think of names for those variables, and you signal to anyone reading your code that you are not using those values.
 
@@ -1349,6 +1351,8 @@ Tuple unpacking can be combined with list comprehension syntax. If we want to ex
     pre(data-executable)
       | L = [(1,2,3),(4,5,6),(7,8,9)]
       | [a for (a,_,_) in L]
+
+<p></p>
 
 The value 1 is assigned to _{code.language-python}a_, the value 2 is assigned to the underscore variable, and then the value 3 is also assigned to the underscore variable (this overwrite is no problem since we aren't using that value anyway). Then _{code.language-python}a_ is evaluated as the first element in the new list, and the process repeats for the remaining triples in the list.
 
@@ -1412,11 +1416,11 @@ _{button.next-step} Continue_
 
 ---
 
-A common pattern for generating new arrays combines [list comprehension](gloss:listcomps, tuple unpacking, and the function _{code.language-python}zip_. The _{code.language-python}zip_ function takes two arrays and returns a single array of pairs of corresponding entries (or three arrays, in which case it returns an array of triples, etc.). For example, 
+A common pattern for generating new arrays combines list comprehension, tuple unpacking, and the function _{code.language-python}zip_. The _{code.language-python}zip_ function takes two arrays and returns a single array of pairs of corresponding entries (or three arrays, in which case it returns an array of triples, etc.). For example, 
 
-    pre: code.language-python
+    pre: code.language-python 
       | 
-      | zip(["a","b","c"],[1,2,3])
+      | zip(["a", "b", "c"], [1, 2, 3])
       |   
       
 returns an object which is equivalent to _{code.language-python}[("a", 1), ("b", 2), ("c", 3)]_. 
@@ -1440,7 +1444,7 @@ _{button.next-step} Continue_
 
 ### Sets
 
-**Sets** are unordered collections of unique values. The point of having a special type for sets is to prioritize membership checking. Figuring out whether a given value is in a list requires traversing the list, so the amount of time it takes increases with the length of the list. By contrast, checking membership in a set can be done very fast even if the set is large. 
+**Sets** are unordered collections of unique values. The main advantage of having a special type for sets is that the design of the data structure can be optimized for membership checking. Figuring out whether a given value is in a list requires going through each element in the list, so the amount of time it takes increases with the length of the list. By contrast, checking membership in a set can be done very quickly even if the set is large. 
 
     pre: code.language-python
       | 
@@ -1497,13 +1501,13 @@ _{button.next-step} Continue_
 Put the three methods in order from fastest to slowest: 
 
     x-sortable
-      .item.pill.bblue.md(data-index="2") List membership checking
-      .item.pill.bblue.md(data-index="0") Set membership checking
-      .item.pill.bblue.md(data-index="1") Computing from scratch
+      .item.md(data-index="2") List membership checking
+      .item.md(data-index="0") Set membership checking
+      .item.md(data-index="1") Computing from scratch
 
 ### Dictionaries
 
-The internal mechanism that sets use to check membership extremely fast is also useful when the information you want to retrieve is more complex than just _{code.language-python}True_ _{code.language-python}False_. 
+The internal mechanism that sets use to check membership extremely fast is also useful when the information you want to retrieve is more complex than just _{code.language-python}True_ or _{code.language-python}False_. 
 
 For example, suppose you want to store a collection of color names together with the [RGB values](https://en.wikipedia.org/wiki/RGB_color_model) for each one. We'll store the names as [[strings|floats|ints]] and the RGB triples as [[tuples|strings|floats]]. 
 
@@ -1526,7 +1530,7 @@ The Python data structured tailored to the problem of encoding a map from one fi
 
 <p></p>
 
-The domain elements _{code.language-python}fuchsia_, _{code.language-python}"firebrick"_ and _{code.language-python}"goldenrod"_ are called the **keys** of the dictionary, and the codomain elements _{code.language-python}(256,0,256)_, _{code.language-python}(178,34,34)_, and _{code.language-python}(218,165,32)_ are called the **values**. 
+The domain elements _{code.language-python}"fuchsia"_, _{code.language-python}"firebrick"_ and _{code.language-python}"goldenrod"_ are called the **keys** of the dictionary, and the codomain elements _{code.language-python}(256,0,256)_, _{code.language-python}(178,34,34)_, and _{code.language-python}(218,165,32)_ are called the **values**. 
 
 We can also form new dictionaries from lists of pairs using the _{code.language-python}dict_ function:
 
@@ -1539,7 +1543,7 @@ _{button.next-step} Continue_
 
 ---
 
-We can perform a dictionary lookup using indexing syntax: _{code.language-python}rgb["fuchsia"]_ returns _{code.language-python}(256,0,256)_. We can also change the value associated with a given key or introduce a new key-value pair using indexing and assignment: 
+We can perform a dictionary lookup using indexing [syntax](gloss:syntax): _{code.language-python}rgb["fuchsia"]_ returns _{code.language-python}(256,0,256)_. We can also change the value associated with a given key or introduce a new key-value pair using indexing and assignment: 
 
     pre(data-executable)
       | rgb = {"fuchsia": (256, 0, 256),
@@ -1556,15 +1560,13 @@ The _{code.language-python}dict_ [methods](gloss:method) _{code.language-python}
       | rgb = {"fuchsia": (256, 0, 256),
       |        "firebrick": (178, 34, 34),
       |        "goldenrod": (218, 165, 32)}
-      | list(rgb.keys())
+      | rgb.keys()
 
 <p></p>
 
-(Once again, we have to use _{code.language-python}list_ to see the result, because the object returned by the _{code.language-python}keys_ method is lazy.)
-
 ::: .exercise
 **Exercise**  
-Consider a [dictionary](gloss:dictionary) which encodes flight arrival times: 
+Consider a dictionary which encodes flight arrival times: 
 
     pre: code.language-python
       | import datetime
@@ -1653,19 +1655,24 @@ We can nest _{code.language-python}for_ statements. For example, suppose we have
 
 ::: .exercise
 **Exercise**  
-Suppose you have imported a function _{code.language-python}sendEmail_ with two parameters: _{code.language-python}address_ and _{code.language-python}message_. Suppose also that you have a _{code.language-python}dict_ called _{code.language-python}messages_ whose keys are email addresses and whose values are strings representing messages. Write a loop which performs the action of sending each email in the dictionary _{code.language-python}messages_. 
+Suppose you have imported a function _{code.language-python}fileBugReport_ with two parameters: _{code.language-python}id_ and _{code.language-python}description_. Suppose also that you have a _{code.language-python}dict_ called _{code.language-python}bugs_ whose keys are ids and whose values are strings representing descriptions. Write a loop which performs the action of filing each bug report in the dictionary.  
 :::
 
     pre(data-executable)
-      | def sendEmail(address, message):
-      |     "A dummy function which represents sending an email"
-      |     print(f"Message {message} successfully sent to {address}")
+      | def fileBugReport(id, description):
+      |     "A dummy function which represents filing a bug report"
+      |     print(f"bug {id} ({description}) successfully filed")
       | 
       | 
-      | messages =  {"ava@mycompany.com": "Can you send me his file?",
-      |              "fiona@mycompany.com": "Call me about the party Wednesday.",
-      |              "chloe@theircompany.com": "I'd like to know the total before proceeding."}
-                      
+      | bugs = {"07cc242a": 
+      |           "`trackShipment` hangs if `trackingNumber` is missing", 
+      |         "100b359a": 
+      |           "customers not receiving text alerts"}
+
+
+---
+
+
 
 _{button.next-step} Continue_
 
@@ -1693,17 +1700,6 @@ _{button.next-step} Continue_
       |     assert factorial(3) == 6
       |     assert factorial(0) == 1
       |     assert factorial(20) == 2432902008176640000
-
----
-
-<p></p>
-
-*Solution.* We loop over the pairs in the dictionary: 
-
-    pre: code.language-python
-      | for address, message in messages.items():
-      |     sendEmail(address, message)
-      
       
 _{button.next-step} Continue_
 
@@ -1756,7 +1752,7 @@ Note that $10^{-8}$ can be represented in Python using scientific notation _{cod
       | def newtonsqrt(n):
       |     """Use Newton's algorithm to approximate √n"""
       | 
-      |
+      | 
       | def test_newton():
       |     assert abs(newtonsqrt(2) - 1.4142135623730951) < 1e-6
       |     assert abs(newtonsqrt(9) - 3) < 1e-6
@@ -1789,8 +1785,8 @@ _{button.next-step} Continue_
 
 ---
 
-> id: a-project
-## A project
+> id: project-1˘
+## Project 1: Spotify
 
 One of the most challenging aspects of learning to program is the difficulty of synthesizing individual skills in the service of a larger project. This section provides a stepping stone on that path by progressively solving a real-world problem. 
 
@@ -1964,7 +1960,127 @@ _{button.next-step} Continue_
 
 ---
 
-Congratulations! You have finished the Programming with Python chapter.
+> id: project-2
+## Project 2: Mail Merge
+
+Suppose you want to send an email to dozens of people, with some elements of the message varying by recipient. For example, you'd like to insert the recipient's first name in the salutation, and you might also need to insert a personal URL or passcode, information on the recipient's status, etc. 
+
+This problem is called *mail merge*, and there are many commercial software solutions available. However, in this section we'll implement a simple and flexible mail merge in Python. 
+
+_{button.next-step} Continue_
+
+---
+
+### yagmail
+
+The first hurdle is to securely authorize your Python program to access your email account. We'll do this for Gmail accounts using a package called [yagmail](https://github.com/kootenpv/yagmail). You will want to do this on your computer, because the authorization step involves using your operating system keychain. 
+
+Following the installation instructions, we run _{code.language-python}pip3 install yagmail[all]_ from the command line to install _{code.language-python}yagmail_. 
+
+_{button.next-step} Continue_
+
+---
+
+Continuing to follow the instructions, we run
+
+    pre: code.language-python
+      | import yagmail
+      | yagmail.register('mygmailusername')
+
+and enter the password for the Gmail account in the resulting password prompt. This stores the password in the operating system keychain so we don't have to keep entering it. 
+
+_{button.next-step} Continue_
+
+---
+
+Now we can set up an _{code.language-python}SMTP_ object for sending messages. 
+
+    pre: code.language-python
+      | yag = yagmail.SMTP("mygmailusername@gmail.com")
+
+In the documentation, we read that this object has a _{code.language-python}send_ method whose parameter list includes _{code.language-python}to_, _{code.language-python}subject_, and _{code.language-python}contents_. We want to call this method once for each recipient, and for that we will use a [[for loop|while loop|if statement]]. 
+
+---
+
+### CSV
+
+Before sending the message, we have to figure out to store the data for each recipient and how to insert that data into the message. One easy solution to the former problem is to store the data in a spreadsheet. We don't even need spreadsheet software if our data is straightforward enough. We make a file called _{code.language-markup}mail-merge-data.csv_, open it in a text editor, and insert the contents
+
+    pre
+      | Name,Email,Status
+      | Viorica,virica@example.com,pending
+      | Sidra,sidra_tiwana@example.com,completed
+      | Alfonso,alfonso.serrano@example.com,pending
+
+We save the file and proceed to figuring out how to load it into Python. 
+
+_{button.next-step} Continue_
+
+---
+
+### Pandas
+
+We google "enter CSV in Python", and we scan the first several search results. The first couple show examples with a dozen or so lines of code, which seems more complicated than necessary. Going back to the search results, we see a function called **{code.language-python}pandas.read_csv**, and we remember that Pandas is the recommended package for handling spreadsheet data in Python. So we do 
+
+    pre: code.language-python
+      | import pandas as pd
+      | mailData = pd.read_csv("mail-merge-data.csv")
+      
+We check _{code.language-python}type(mailData)_ and see that _{code.language-python}mailData_ is a _{code.language-python}DataFrame_, which is the general Pandas type for tabular data. 
+      
+_{button.next-step} Continue_
+
+---
+
+Now we have to figure out how to loop over the rows of a _{code.language-python}DataFrame_. We search the web for "how to loop over rows of pandas dataframe" and discover the method [[**itertuples** | **iteritems** | **items**]] (look it up!). 
+
+---
+
+We do _{code.language-python}list(mailData.itertuples())[0]_ to get an example row from the _{code.language-python}DataFrame_, and we call _{code.language-python}dir_ on it to look for the right method for extracting each column value. We see that _{code.language-python}Name_, _{code.language-python}Email_, and _{code.language-python}Status_ are attributes of the row, so you can access them using dot syntax (like _{code.language-python}row.Email_). 
+
+_{button.next-step} Continue_
+
+---
+
+Finally, we need to insert information from each _{code.language-python}DataFrame_ row into the message. Fortunately, we've already learned a great way to do this: [[f-strings|dictionaries|lists]]! 
+
+---
+
+It will be a bit awkward to type the whole message into the line where we call _{code.language-python}yag.send_, so instead we write a function that takes _{code.language-python}row_ as a parameter and returns the message. 
+
+    pre: code.language-python
+      | def message(row):
+      |     return f"""
+      |     Dear {row.Name},
+      |     
+      |     Thanks for participating! Your status is {row.Status}. 
+      |     
+      |     Yours,
+      |     Roza
+      |     """
+
+::: .exercise
+**Exercise**  
+Tie all of the above together to write a couple more lines of code that will actually send the messages. 
+:::
+
+_{button.next-step} Continue_
+
+---
+
+*Solution*. We supply the _{code.language-python}Email_ attribute of _{code.language-python}row_ to the _{code.language-python}to_ argument, and  _{code.language-python}message(row)_ to _{code.language-python}contents_:
+
+    pre: code.language-python
+      | for row in mailData.itertuples():
+      |     yag.send(to=row.Email, 
+      |              subject="Your status",
+      |              contents = message(row))
+      
+_{button.next-step} Continue_
+
+---
+
+Congratulations! You have finished the Data Gymnasia *Programming with Python* course.
 
     script(src='/juniper.min.js')
     script

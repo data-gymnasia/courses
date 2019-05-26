@@ -94,3 +94,44 @@ method:
     A function associated with a specific class and called using dot syntax from an instance of that class
     
     For exapmle, in _{code}",".join([1,2,3])_, _{code}","_ is a string and _{code}join_ is a method of the string class.
+    
+rounding:
+  title: Floating point representation
+  text: |
+    A real number typically has to be rounded about $10^{-15}$ times the absolute value of the number to be represented as a float. 
+    
+    However, numbers which are rational with a power of 2 in the denominator (including integers) can typically be represented exactly. Exceptions are when the number itself is very large or when the power of 2 in the denominator is very large.
+    
+syntax:
+  title: Syntax
+  text: |
+    Syntax refers to the textual **form** of a given construct in a programming language. Examples:
+
+    Indexing: _{code}myList[0], myDict["green"]_
+    
+    Named functions: _{code}myFunction(x)_
+    
+    Anonymous functions: _{code}lambda x,y: x**y_
+    
+    Lists: _{code}[1, 2, 3]_
+    
+    Tuples: _{code}(1, 2, 3)_
+    
+    Dictionaries: _{code}{"a": 1, "b": 2}_
+    
+    Dot syntax: _{code}module.function, object.attribute, object.method()_
+    
+immutable:
+  title: Immutable
+  text: |
+    A type is immutable if the values it stores cannot be changed. For example, 
+    
+    _{pre}T = (1, 2, 3)
+    T[1] = 4_
+    
+    throws an error, because tuples are immutable. Changes in mutable data structures can be handled by assigning **new** instances of the type to the variable:
+    
+    _{pre}T = (1, 2, 3)
+    T = (T[0], 4, T[2])_
+
+    Dictionaries, lists, and sets are mutable.
