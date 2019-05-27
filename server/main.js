@@ -82,6 +82,9 @@ app.get('/about', function(req, res) {
   res.render('about');
 });
 
+app.get('/course/python-programming', function(req, res) {
+  res.redirect('/course/programming-in-python');
+});
 
 app.get('/course/:course', function(req, res, next) {
   const course = Courses[req.params.course];
