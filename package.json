@@ -1,16 +1,8 @@
 {
-<<<<<<< HEAD
   "name": "sswatsontextbooks",
   "version": "0.0.1",
-  "description": "Neural networks textbook",
+  "description": "Data Gymnasia",
   "repository": "sswatson/mathigon-textbooks",
-=======
-  "name": "@mathigon/textbooks",
-  "version": "0.2.6",
-  "description": "Mathigon Textbooks",
-  "homepage": "https://mathigon.org/",
-  "repository": "mathigon/textbooks",
->>>>>>> upstream/master
   "license": "UNLICENSED",
   "scripts": {
     "server": "node server/main.js --use-strict & grunt concurrent",
@@ -23,10 +15,6 @@
   "dependencies": {
     "@mathigon/boost": "^0.2.8",
     "@mathigon/core": "^0.2.5",
-<<<<<<< HEAD
-    "@mathigon/fermat": "^0.2.6",
-    "@mathigon/hilbert": "^0.2.1",
-=======
     "@mathigon/fermat": "^0.2.7",
     "@mathigon/hilbert": "^0.2.2"
   },
@@ -36,7 +24,6 @@
     "eslint": "^5.12.1",
     "express": "^4.16.4",
     "express-validator": "^5.3.1",
->>>>>>> upstream/master
     "grunt": "^1.0.3",
     "grunt-autoprefixer": "^3.0.4",
     "grunt-concurrent": "^2.3.1",
