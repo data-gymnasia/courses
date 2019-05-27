@@ -140,10 +140,16 @@ Let $\Omega = \\{0, 1, 2, \cdots, 100\\}$ be the set of natural numbers up to an
 * Explain why $|A \cup B| = |A| + |B| - |A \cap B|$. 
 * Use the prior steps to find $|A \cup B|$. 
 
-
 :::
 
- 
+    div(id="editor")
+      p
+        = 'Use [...document.querySelector(".ql-editor").querySelectorAll("p")].map(p => p.textContent) to pull out each paragraph on a different line'
+    
+    link(href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet")
+    script(src='https://cdn.quilljs.com/1.3.6/quill.js')
+    script
+      include quill-setup.js
 
 *Solution*.  
 * There are $33$ multiples of $3$ between $1$ and $100.$ Including zero in the count as well, we get $|A| = 34.$ 
