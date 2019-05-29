@@ -1,13 +1,13 @@
 {
-  "name": "@mathigon/textbooks",
-  "version": "0.2.6",
-  "description": "Mathigon Textbooks",
-  "homepage": "https://mathigon.org/",
-  "repository": "mathigon/textbooks",
+  "name": "data-gymnasia",
+  "version": "0.1.0",
+  "description": "Data Gymnasia courses",
+  "homepage": "http://datagymnasia.com",
+  "repository": "sswatson/data-gymnasia",
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
-    "server": "node server/app.js --use-strict & grunt concurrent",
+    "server": "node server/main.js --use-strict & grunt concurrent",
     "start": "grunt && npm run server",
     "test": "eslint */*.js"
   },
