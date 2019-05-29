@@ -5,7 +5,6 @@
   "homepage": "http://datagymnasia.com",
   "repository": "sswatson/data-gymnasia",
   "license": "UNLICENSED",
-  "private": true,
   "scripts": {
     "server": "node server/main.js --use-strict & grunt concurrent",
     "start": "grunt && npm run server",
