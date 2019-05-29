@@ -95,7 +95,7 @@ _{button.next-step} Continue_
 
 ### Objects
 
-A **object** is a fundamental entity that may be manipulated by a program. Objects have **types**; for example, _{code.language-python}5_ is an _{code.language-python}int_ and _{code.language-python}"Hello world!"_ is a _{code.language-python}str_ (short for "string"). Types are important for the computer to keep track of, since objects are stored differently depending on their type. 
+A **object** is a fundamental entity that may be manipulated by a program. Objects have **types**; for example, _{code.language-python}5_ is an _{code.language-python}int_ (short for "integer") and _{code.language-python}"Hello world!"_ is a _{code.language-python}str_ (short for "string"). Types are important for the computer to keep track of, since objects are stored differently depending on their type. 
 
 _{button.next-step} Continue_
 
@@ -196,8 +196,7 @@ Some functions, like _{code.language-python}print_ are built into the language a
       | def printtwice(x):
       |     print(x)
       |     print(x)
-      | 
-      | 
+      |
       | printtwice("hey")
       
 <p></p>
@@ -218,7 +217,7 @@ Note that the lines of code to be executed when the function is called **must** 
 
 A function may perform an action, like _{code.language-python}printtwice_, or it may **return** an object. For example, after the following code block is run, the object _{code.language-python}28_ will be assigned to the variable _{code.language-python}y_. 
 
-    pre: code.language-python
+    pre(data-executable)
       | def add_one(x):
       |     return x + 1
       | 
@@ -290,10 +289,81 @@ _{code.language-python}myName = "John" + "Doe"_ is
 
 :::
 
+### Exercises
+
+::: .exercise
+**Exercise**  
+(Try doing this without executing the code.) The expression _{code.language-python}_1 + 5//3 + 2**3_ evaluates to [[9]].
+:::
+
+---
+
+::: .exercise
+**Exercise**  
+(Try doing this without executing the code.) The expression _{code.language-python}_11/2-11//2-3_ evaluates to [[-2.5]].
+:::
+
+---
+
+::: .exercise
+**Exercise**  
+Find the value of _{code.language-python}x_ at the end of the following block of code. [[121]]
+
+    pre: code.language-python
+      | x = 3**2
+      | x = x + 1
+      | x = x + 1
+      | y = 2 * x
+      | x = y*y
+      | z = 2*x
+      
+:::
+
+_{button.next-step} Continue_
+
+---
+
+::: .exercise
+**Exercise**  
+Write a function _{code.language-python}f_ which takes a positive integer _{code.language-python}n_ as input and returns the $n$th positive odd integer. You should replace the keyword _{code.language-python}pass_ in the code block below (the rest of the code, starting from the fourth line, checks that your function works; you shouldn't change it.)
+:::
+
+    pre(data-executable)
+      | def f(n):
+      |     pass
+      |
+      | def test_f():
+      |     assert f(3) == 5
+      |     assert f(1) == 1
+      |     assert f(100) == 199
+      |     return "Test passed!"
+      |
+      | test_f()
+
+
+_{button.next-step} Continue_
+
+---
+
+::: .exercise
+**Exercise**  
+Select the true statements.
+
+    x-picker.list
+      .item.pill.bblue The statement balance = 46.04 assigns the value 46.04 to the variable balance. 
+      .item.pill.bblue(data-error="not-a-variable") The object 33 is a variable.
+      .item.pill.bblue(data-error="mutable") The value of a variable cannot be changed. 
+      .item.pill.bblue Variables in Python are case-sensitive.
+      
+      
+:::
+
     script(src='/juniper.min.js')
     script
       include juniper-setup.js
       
+_{button.next-step} Continue_
+          
 ---
 
 > id: types
@@ -401,10 +471,12 @@ We can insert the value of a variable into a string using *string interpolation*
 
     pre(data-executable)
       | x = 19
-      | print(f"The quotient when x is divided by 3 \
-      | is {x//3} and the remainder is {x % 3}.")
-
-Note the **line continuation** backslash at the end of the second line. This tells the interpreter to keep reading the next line as though it were on the current line. This technique is useful for avoiding very long lines of code.
+      | print(f"""
+      | The quotient when x is divided by 3 
+      | is {x//3}, and the remainder is {x % 3}.
+      | """)
+      
+<p></p>
       
 ::: .exercise
 **Exercise**  
@@ -485,7 +557,24 @@ _{button.next-step} Continue_
     pre: code.language-python
       | a = length("The quick brown fox jumped over the lazy dog")
       | 1/(a+2/3)
+      
+_{button.next-step} Continue_
 
+---
+
+::: .exercise
+**Exercise**  
+The expression _{code.language-python} 1 < 3_ returns [[True]], which is an object of type [[bool]]. 
+:::
+
+_{button.next-step} Continue_
+
+---
+
+::: .exercise
+**Exercise**  
+If we set _{code.language-python}s = "Bruno"_, then _{code.language-python}s[:j] == "Bru"_ when _{code.language-python}j =_ [[3]]. 
+:::
 
     script(src='/juniper.min.js')
     script
@@ -523,8 +612,47 @@ Conditional expressions can be written using *ternary conditional* _{code.langua
     pre(data-executable)
       | def sgn(x): 
       |     return +1 if x > 0 else -1
-      | 
+      |
       | sgn(-5)
+
+_{button.next-step} Continue_
+
+---
+
+### Exercises
+
+::: .exercise
+**Exercise**  
+Can the _{code.language-python}else_ part of an _{code.language-python}if_ statement be omitted? [[Yes|No]] Experiment with the example below. 
+:::
+
+    pre(data-executable)
+      | x = 1
+      | if x < 0: 
+      |     print("x is negative")
+      | elif x < 1: 
+      |     print("x is between 0 and 1")
+      
+_{button.next-step} Continue_
+
+---
+
+::: .exercise
+**Exercise**  
+Write a function called _{code.language-python}myAbs_ which computes the absolute value of its input. Replace the keyword _{code.language-python}pass_ below with an appropriate block of code.
+:::
+
+    pre(data-executable)
+      | def myAbs(x):
+      |     pass
+      |
+      | def test_abs():
+      |     assert myAbs(-3) == 3
+      |     assert myAbs(5.0) == 5.0
+      |     assert myAbs(0.0) == 0.0
+      |     return "Tests passed!"
+      |
+      | test_abs()
 
 _{button.next-step} Continue_
 
@@ -781,10 +909,49 @@ _{button.next-step} Continue_
       |     assert spaceconcat("foo", "") == "foo"
       |     assert spaceconcat("", "bar") == "bar"
       
+      
+### Exercises
+
+::: .exercise
+**Exercise**  
+Write a function which accepts two strings as input and returns the concatenation of those two strings in alphabetical order. Replace the keyword _{code.language-python}pass_ in the code block below.
+:::
+
+    pre(data-executable)
+      | def alphabetical_concat(s,t):
+      |     pass
+      |
+      | test_concat(): 
+      |     alphabetical_concat("alphabet", "soup") == "alphabetsoup"
+      |     alphabetical_concat("food", "brain") == "brainfood"
+      |     return "Tests passed!"
+      |
+      | test_concat()
+
+_{button.next-step} Continue_
+
+---
+
+*Solution*. 
+
+    pre(data-executable)
+      | def alphabetical_concat(s,t):
+      |     if s < t:
+      |         return s + t
+      |     else:
+      |         return t + s
+      |
+      | test_concat(): 
+      |     alphabetical_concat("alphabet", "soup") == "alphabetsoup"
+      |     alphabetical_concat("food", "brain") == "brainfood"
+      |     return "Tests passed!"
+      |
+      | test_concat()
+      
     script(src='/juniper.min.js')
     script
       include juniper-setup.js      
-            
+
 ---
 
 > id: packages
@@ -818,7 +985,7 @@ Sometimes a package contains a **subpackage** which must itself be accessed with
 
 Here are some of the most important scientific computing packages (along with very brief code snippets to give you a sense of what calling the packages looks like in practice): 
 
-**NumPy**. Multi-dimensional arrays (like vectors, matrices, and higher-order arrays). 
+**NumPy**. Provides multi-dimensional arrays (like vectors, matrices, and higher-order arrays). 
 
     pre(data-executable)
       | import numpy as np
@@ -826,6 +993,8 @@ Here are some of the most important scientific computing packages (along with ve
       | np.full((3,3),7) # make a 3 × 3 matrix full of 7's
       
 <p></p>
+
+Note that we import _{code.language-python}numpy_ with the alias _{code.language-python}np_ for breviy. 
 
 **Pandas**. Provides support for tabular data. 
 
@@ -862,6 +1031,27 @@ Here are some of the most important scientific computing packages (along with ve
       | x = symbols("x")
       | y = symbols("y")
       | solve([Eq(x + 5*y, 2), Eq(-3*x + 6*y, 15)], [x, y])
+
+### Exercises 
+
+::: .exercise
+**Exercise**  
+ To import just the _{code.language-python}arcsin_ function from _{code.language-python}numpy_, we would use the statement [[from numpy import arcsin]]
+:::
+
+---
+
+::: .exercise
+**Exercise**  
+ To import _{code.language-python}scipy_ with alias _{code.language-python}sp_, we use the statement [[import scipy as sp]].
+:::
+
+---
+
+::: .exercise
+**Exercise**  
+To import the standard library package _{code.language-python}itertools_ (with no alias), we would use the statement _{code.language-python}import itertools_. 
+:::
 
     script(src='/juniper.min.js')
     script
@@ -940,11 +1130,60 @@ In the expression _{code.language-python}"".join("hello")_, the method _{code.la
 ---
 
 *Solution*. There are two arguments: the first is the empty string, and the second is _{code.language-python}"hello"_. 
+      
+---
 
+_{button.next-step} Continue_
+
+::: .exercise
+**Exercise**  
+Implement a class called _{code.language-python}Fraction_ which represents a ratio of two positive integers. You should reduce the fraction in your **{code.language-python}\_\_init\_\_** method. Your _{code.language-python}Fraction_ type should include a method called *{code.language-python}\_\_add\_\_* which adds two fractions and an *{code.language-python}\_\_eq\_\_* which checks whether two fractions are equal. (These methods will be automatically used by the addition and equality operators.)
+:::
+
+    pre(data-executable)
+      | from  math import gcd
+      | # add your code here
+      | 
+      | def test_Fraction():
+      |     assert Fraction(1,2) + Fraction(1,3) == Fraction(5,6)
+      |     assert Fraction(2,4) + Fraction(4,8) == Fraction(3,3)
+      |     return "Test passed!"
+      |
+      | test_Fraction()
+
+_{button.next-step} Continue_
+
+---
+
+*Solution*. We divide by the gcd in the init method, and we define the other two methods according to the rules of arithmetic:
+
+    pre(data-executable)
+      | from math import gcd
+      |
+      | class Fraction(object):
+      |     def __init__(self, num, denom):
+      |         d = gcd(num, denom)
+      |         self.num = num//d
+      |         self.denom = denom//d
+      |   
+      |     def __add__(self, other):
+      |         return Fraction(self.num * other.denom + self.denom * other.num, 
+      |                        self.denom * other.denom)
+      |      
+      |     def __eq__(self, other):
+      |         return self.num == other.num and self.denom == other.denom
+      |
+      | def test_Fraction():
+      |     assert Fraction(1,2) + Fraction(1,3) == Fraction(5,6)
+      |     assert Fraction(2,4) + Fraction(4,8) == Fraction(3,3)
+      |     return "Test passed!"
+      |
+      | test_Fraction()
+    
     script(src='/juniper.min.js')
     script
       include juniper-setup.js
-      
+        
 ---
 
 > id: compound-data
@@ -1607,6 +1846,65 @@ _{button.next-step} Continue_
       include juniper-setup.js
 
 ---
+
+### Exercises 
+
+::: .exercise
+**Exercise**  
+You can create a _{code.language-python}dict_ comprehension in a similar way to a dict comprehension. Here's a dictionary that maps each one-digit positive integer to its square: 
+
+    pre: code.language-python
+      | {k:k*k for k in range(1, 10)}
+
+Make a dictionary that maps each of the first 100 powers of 2 to its units digit. (Note: you can get the units digit of a number by converting it to a string using the _{code.language-python}str_ function, indexing to get the last character, and converting back to an integer with _{code.language-python}int_.)
+:::
+
+    pre(data-executable)
+      | 
+
+_{button.next-step} Continue_
+
+---
+
+*Solution*. We use the technique suggested in the problem statement: 
+
+    pre(data-executable)
+      | {2**k: int(str(2**k)[-1]) for k in range(100)}
+
+_{button.next-step} Continue_
+
+---
+
+::: .exercise
+**Exercise**  
+(Try doing this one without executing any code.) What will the value of _{code.language-python}L_ be after the following block is executed?  [[ [4,1,2,7,3,-1,8] | [4,1,2,7,3,-1] | [4,2,1,7,3,-1,8] ]]
+
+    pre: code.language-python
+      | L = [4, 8, 2]
+      | L.append(7)
+      | L.extend([3,-1,8])
+      | L.insert(2, 1)
+      | L.remove(8)
+
+:::
+
+_{button.next-step} Continue_
+
+---
+
+::: .exercise
+**Exercise**  
+Suppose you want to store student IDs in a part of a web application where the main thing you need to do is check whether an ID input by a student is a valid student ID (so you can flag it if they mistyped something). The best data structure for this purpose would be a [[set|list|tuple|dictionary]]. 
+:::
+
+_{button.next-step} Continue_
+
+---
+
+*Solution*. This is ideal use case for sets. Lists and tuples will be slower for checking membership, and dictionaries aren't quite appropriate because it isn't clear what the values would be.
+
+---
+
 
 > id: iteration
 ## Iteration
