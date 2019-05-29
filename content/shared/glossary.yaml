@@ -98,7 +98,7 @@ method:
 rounding:
   title: Floating point representation
   text: |
-    A real number typically has to be rounded about $10^{-15}$ times the absolute value of the number to be represented as a float. 
+    A real number typically has to be rounded by about $10^{-16}$ times its absolute value to be represented as a float. For example, the difference between $\sqrt{2}$ and the float which is closest to $\sqrt{2}$ is about $9.66 \times 10^{-17}$.
     
     However, numbers which are rational with a power of 2 in the denominator (including integers) can typically be represented exactly. Exceptions are when the number itself is very large or when the power of 2 in the denominator is very large.
     

@@ -4,9 +4,15 @@
 > id: intro
 ## Introduction
 
-This chapter is an introduction to programming in **Python**, which is a general-purpose language with a large user base in the software engineering world. With the emergence of a powerful stack of scientific computing packages since the early 2000s, it has emerged as one of the two dominant languages in data science.
+This chapter is an introduction to programming in **Python**, which is a general-purpose language with a large user base in the software engineering world. With the emergence of a powerful stack of scientific computing packages since the early 2000s, it has emerged as the most popular language for data science.
 
 Although programming is a powerful tool, learning to program is also about honing your problem solving skills and thinking in an organized way about structure and computation. You are likely to find that computer science ideas support your ability to reason about complex systems, even in situations where you won't be programming anything. This is a useful frame of mind to bring to the learning process.
+
+_{button.next-step} Continue_
+
+---
+
+This course contains many exercises. Doing them in earnest is essential for knowledge and skill retention. You should solve each exercise prior to clicking the "Continue" button to see an example solution.
 
 _{button.next-step} Continue_
 
@@ -22,7 +28,7 @@ _{button.next-step} Continue_
 
 ---
 
-**Binder**. You can also run Python code in the cloud on the Binder website. To launch with a set of packages tailored to this course, [click here](https://mybinder.org/v2/gh/sswatson/simple-python-stack/master). Then select *New* (top right corner and *Python 3*).
+**Binder**. You can also run Python code in the cloud on the Binder website. To launch with a set of packages tailored to this course, [click here](https://mybinder.org/v2/gh/sswatson/simple-python-stack/master). Then select *New* (top right corner and *Python 3*). It is highly recommended that you keep a tab with a Binder notebook open while working through this course, because it can serve as a space for scratch work, and it provides more features than the blocks which appear in-page. 
 
 _{button.next-step} Continue_
 
@@ -224,6 +230,8 @@ A function may perform an action, like _{code.language-python}printtwice_, or it
       | 
       | y = 20 + add_one(7)
       | y
+      
+<p></p>
 
 (Note: we put _{code.language-python}y_ by itself on the last line so that we can see the value of _{code.language-python}y_ in the output area. If an assignment (like **{code.language-python}y = 20 + add_one(7)**) is the last line in the cell, then no value will be printed, and we will get the _{code.language-markup}Loading or None returned_ message.)
       
@@ -248,20 +256,20 @@ _{button.next-step} Continue_
 Arrange the operation descriptions below in order, according the corresponding Python operator in the list _{code.language-python}+, **, *, //, /_. You might need to experiment using the code block below. 
 
     x-sortable
+      .item.md(data-index="4") division (ordinary real-number division)
       .item.md(data-index="3") integer division (quotient only; no remainder)
       .item.md(data-index="0") addition      
       .item.md(data-index="2") multiplication
       .item.md(data-index="1") exponentiation
-      .item.md(data-index="4") division (ordinary real-number division)
       
 :::
 
     pre(data-executable)
-      | 6 + 11
-      | 2**5
-      | 3 * 4
-      | 7//2
-      | 7/2
+      | print(6 + 11)
+      | print(2**5)
+      | print(3 * 4)
+      | print(7//2)
+      | print(7/2)
 
 ---
 
@@ -269,7 +277,7 @@ Arrange the operation descriptions below in order, according the corresponding P
 
 ### Statements and expressions
 
-An individual executable unit of code in Python is called a **statement**. For example, the assignment _{code.language-python}age = 41_ is a statement. Statements may include **expressions**, which are combinations of values, variables, operators, and function calls that a language interprets and **evaluates** to a value. For example, _{code.language-python}1 + age + abs(3*-4)_ is an expression which evaluates to [[54]]. 
+An individual executable unit of code in Python is called a **statement**. For example, the assignment _{code.language-python}age = 41_ is a statement. Statements may include **expressions**, which are combinations of values, variables, operators, and function calls that a language interprets and **evaluates** to a value. For example, _{code.language-python}1 + age + abs(3*-4)_ is an expression which evaluates to [[54]] (note that _{code.language-python}abs_ is the absolute value function, and assume _{code.language-python}age_ is set to the value specified earlier in the paragraph). 
 
 ---
 
@@ -293,27 +301,27 @@ _{code.language-python}myName = "John" + "Doe"_ is
 
 ::: .exercise
 **Exercise**  
-(Try doing this without executing the code.) The expression _{code.language-python}_1 + 5//3 + 2**3_ evaluates to [[9]].
+(Try doing this without executing the code.) The expression _{code.language-python}1 + 5//3 + 2**3_ evaluates to [[10]].
 :::
 
 ---
 
 ::: .exercise
 **Exercise**  
-(Try doing this without executing the code.) The expression _{code.language-python}_11/2-11//2-3_ evaluates to [[-2.5]].
+(Try doing this without executing the code.) The expression _{code.language-python}11/2-11//2-3_ evaluates to [[-2.5]], expressed as a decimal.
 :::
 
 ---
 
 ::: .exercise
 **Exercise**  
-Find the value of _{code.language-python}x_ at the end of the following block of code. [[121]]
+Find the value of _{code.language-python}x_ at the end of the following block of code. [[25]]
 
     pre: code.language-python
       | x = 3**2
       | x = x + 1
       | x = x + 1
-      | y = 2 * x
+      | y = x//2
       | x = y*y
       | z = 2*x
       
@@ -350,15 +358,17 @@ _{button.next-step} Continue_
 Select the true statements.
 
     x-picker.list
-      .item.pill.bblue The statement balance = 46.04 assigns the value 46.04 to the variable balance. 
-      .item.pill.bblue(data-error="not-a-variable") The object 33 is a variable.
+      .item.pill.bblue.md The statement `[balance = 46.04]` assigns the value `[46.04]` to the variable `[balance]`. 
+      
+      .item.pill.bblue.md(data-error="not-a-variable") The object `[33]` is a variable. 
+      
       .item.pill.bblue(data-error="mutable") The value of a variable cannot be changed. 
+      
       .item.pill.bblue Variables in Python are case-sensitive.
       
       
 :::
 
-    script(src='/juniper.min.js')
     script
       include juniper-setup.js
       
@@ -384,6 +394,10 @@ _{button.next-step} Continue_
 ---
 
 A number is stored as a float or integer according to whether it contains a decimal point, so if you want the value 6 to be stored as a _{code.language-python}float_, you should write it as _{code.language-python}6.0_. 
+
+_{button.next-step} Continue_
+
+---
 
 Numbers can be compared using the operators _{code.language-python}==,>,<,<=,>=_. 
 
@@ -503,8 +517,15 @@ _{button.next-step} Continue_
       
 ::: .exercise
 **Exercise**  
-Does Python convert types when doing equality comparison? In other words, does _{code.language-python}1 == 1.0_ return _{code.language-python}True_ or _{code.language-python}False_? 
+Does Python convert types when doing equality comparison? In other words, does _{code.language-python}1 == 1.0_ return _{code.language-python}True_ or _{code.language-python}False_? [[True|False]]
 :::
+
+    pre(data-executable)
+      | 1 == 1.0
+
+<p></p>
+
+---
 
 *Solution*. Yes, Python does convert types for equality comparison. So _{code.language-python}1 == 1.0_ returns _{code.language-python}True_. 
 
@@ -519,6 +540,18 @@ Write a one-line [function](gloss:function) which takes 3 bools as arguments and
 1. Both of the first two arguments are _{code.language-python}True_ , or 
 2. The third argument is _{code.language-python}False_
 :::
+
+    pre(data-executable)
+      | def f(a,b,c):
+      |     pass
+      |
+      | def test_f():
+      |     assert f(True, True, True)
+      |     assert f(False, True, False)
+      |     assert not f(False, True, True)
+      |     return "Tests passed!"
+      |
+      | test_f()
 
 _{button.next-step} Continue_
   
@@ -541,7 +574,7 @@ _{button.next-step} Continue_
 ::: .exercise
 **Exercise**  
 
-Write a Python expression which computes $\frac{1}{a+\frac{2}{3}}$ where $a$ is equal to the number of characters in the string _{code.language-python}"The quick brown fox jumped over the lazy dog"_
+Write some code for computing $\frac{1}{a+\frac{2}{3}}$ where $a$ is equal to the number of characters in the string _{code.language-python}"The quick brown fox jumped over the lazy dog"_
 
 :::
 
@@ -555,7 +588,7 @@ _{button.next-step} Continue_
 *Solution*. We store the length of the given string in a variable _{code.language-python}a_ and evaluate the given expression as follows: 
 
     pre: code.language-python
-      | a = length("The quick brown fox jumped over the lazy dog")
+      | a = len("The quick brown fox jumped over the lazy dog")
       | 1/(a+2/3)
       
 _{button.next-step} Continue_
@@ -564,7 +597,7 @@ _{button.next-step} Continue_
 
 ::: .exercise
 **Exercise**  
-The expression _{code.language-python} 1 < 3_ returns [[True]], which is an object of type [[bool]]. 
+The expression _{code.language-python}1 < 3_ returns [[True]], which is an object of type [[bool]]. 
 :::
 
 _{button.next-step} Continue_
@@ -576,7 +609,7 @@ _{button.next-step} Continue_
 If we set _{code.language-python}s = "Bruno"_, then _{code.language-python}s[:j] == "Bru"_ when _{code.language-python}j =_ [[3]]. 
 :::
 
-    script(src='/juniper.min.js')
+
     script
       include juniper-setup.js
 
@@ -592,7 +625,7 @@ Consider a simple computational task performed by commonplace software, like hig
 
 We can use an _{code.language-python}if_ statement to specify different blocks to be executed depending on the value of a boolean expression. For example, the following function calculates the sign of the input value _{code.language-python}x_.
 
-    pre: code.language-python
+    pre(data-executable)
       | def sgn(x):
       |     if x > 0:
       |         return +1
@@ -600,7 +633,7 @@ We can use an _{code.language-python}if_ statement to specify different blocks t
       |         return 0
       |     else:
       |         return -1
-      | 
+      |
       | sgn(-5)
 
 _{button.next-step} Continue_
@@ -627,7 +660,7 @@ Can the _{code.language-python}else_ part of an _{code.language-python}if_ state
 :::
 
     pre(data-executable)
-      | x = 1
+      | x = 0.5
       | if x < 0: 
       |     print("x is negative")
       | elif x < 1: 
@@ -666,7 +699,17 @@ Consider nesting _{code.language-python}if...else_ blocks inside of an _{code.la
 :::
 
     pre(data-executable)
-      | 
+      | def quadrant(x,y):
+      |     pass
+      |
+      | def test_quadrant():
+      |     assert quadrant(1.0, 2.0) == 1
+      |     assert quadrant(-13.0, -2) == 3
+      |     assert quadrant(4, -3) == 4
+      |     assert quadrant(-2, 6) == 2
+      |     return "Tests passed!"
+      |
+      | test_quadrant()
 
 _{button.next-step} Continue_
 
@@ -674,7 +717,7 @@ _{button.next-step} Continue_
 
 *Solution*. Here's an example solution: 
 
-    pre: code.language-python
+    pre(data-executable)
       | 
       | def quadrant(x,y):
       |     if x > 0:
@@ -689,7 +732,8 @@ _{button.next-step} Continue_
       |             return 3
       | 
 
-    script(src='/juniper.min.js')
+
+    script(src='/codemirror-options.js')
     script
       include juniper-setup.js
 
@@ -765,20 +809,20 @@ In the following block of code, _{code.language-python}s_ is [[a parameter|an ar
 
 We can give parameters **default values** and supply arguments for those parameters optionally when calling the function.
 
-    pre: code.language-python
+    pre(data-executable)
       | 
-      | def threesum(x,y,z,shift=0):
-      |     return x + y + z + shift 
+      | def line(m, x, b=0)
+      |     return m * x + b
       | 
-      | threesum(1,2,3) # returns 6
-      | threesum(1,2,3,shift=5) # returns 11
+      | line(2,3) # returns 6
+      | line(5,4,b=2) # returns 22
       |   
 
 _{button.next-step} Continue_
 
 ---
 
-The arguments 1, 2, and 3 in this example are called **positional** arguments, and _{code.language-python}5_ is a **keyword** argument (note that this usage of the term *keyword* is unrelated to the usage of the term in reference to language keywords like _{code.language-python}def_ or _{code.language-python}if_). 
+The arguments 1, 2, and 3 in this example are called **positional** arguments, and _{code.language-python}5_ is a **keyword argument**. 
 
 _{button.next-step} Continue_
 
@@ -857,9 +901,9 @@ A variable defined in the body of a function is in that function's **local scope
 
 ### Testing
 
-It's good practice to write tests to accompany your functions, so you can confirm that the functions work. This is especially important as your codebase grows, because upstream changes can break functions that worked when they were originally written.
+It's highly recommended to write tests to accompany your functions, so you can confirm that each function behaves as expected. This is especially important as your codebase grows, because changes in one function can lead to problems in other functions that use it. Having a way to test functions throughout your codebase helps you discover these breakages quickly, before they cause harm.
 
-One common way to do this is to write functions whose names begin with **{code.language-python}test_** and which contain _{code.language-python}assert_ statements. An _{code.language-python}assert_ statement throws an error if the following expression evaluates to false. You can run the test functions directly, or you can use a tool like [pytest](https://pytest.org) to find and run all of the test functions in your codebase. 
+One common way to do this (which you have already seen several times in this course) is to write functions whose names begin with **{code.language-python}test_** and which contain _{code.language-python}assert_ statements. An _{code.language-python}assert_ statement throws an error if the following expression evaluates to _{code.language-python}False_. You can run the test functions directly, or you can use a tool like [pytest](https://pytest.org) to find and run all of the test functions in your codebase. 
 
     pre(data-executable)
       | def spaceconcat(s,t):
@@ -914,16 +958,18 @@ _{button.next-step} Continue_
 
 ::: .exercise
 **Exercise**  
-Write a function which accepts two strings as input and returns the concatenation of those two strings in alphabetical order. Replace the keyword _{code.language-python}pass_ in the code block below.
+Write a function which accepts two strings as input and returns the concatenation of those two strings in alphabetical order.
+
+Hint: Make a guess about which operator can be used to compare strings alphabetically.
 :::
 
     pre(data-executable)
       | def alphabetical_concat(s,t):
       |     pass
       |
-      | test_concat(): 
+      | def test_concat(): 
       |     alphabetical_concat("alphabet", "soup") == "alphabetsoup"
-      |     alphabetical_concat("food", "brain") == "brainfood"
+      |     alphabetical_concat("socks", "red") == "redsocks"
       |     return "Tests passed!"
       |
       | test_concat()
@@ -941,14 +987,14 @@ _{button.next-step} Continue_
       |     else:
       |         return t + s
       |
-      | test_concat(): 
+      | def test_concat(): 
       |     alphabetical_concat("alphabet", "soup") == "alphabetsoup"
       |     alphabetical_concat("food", "brain") == "brainfood"
       |     return "Tests passed!"
       |
       | test_concat()
       
-    script(src='/juniper.min.js')
+
     script
       include juniper-setup.js      
 
@@ -1018,13 +1064,13 @@ Note that we import _{code.language-python}numpy_ with the alias _{code.language
     pre(data-executable)
       | import matplotlib.pyplot as plt
       | import numpy as np
-      | plt.ion() # interactive plotting; have to run cell twice!
+      | plt.ion() # interactive plotting; have to run this cell twice!
       | plt.plot(np.cumsum(np.random.standard_normal(1000)))
       | plt.show()
 
 <p></p>
 
-**SymPy**. Math stuff like symbolic integration/differentiation, number theory, etc.
+**SymPy**. Pure math tools like symbolic integration/differentiation, number theory, etc.
 
     pre(data-executable)
       | from sympy import symbols, Eq, solve
@@ -1036,24 +1082,49 @@ Note that we import _{code.language-python}numpy_ with the alias _{code.language
 
 ::: .exercise
 **Exercise**  
- To import just the _{code.language-python}arcsin_ function from _{code.language-python}numpy_, we would use the statement [[from numpy import arcsin]]
+ To import just the _{code.language-python}arcsin_ function from _{code.language-python}numpy_, we would use what statement? 
 :::
+
+_{button.next-step} Continue_
+
+---
+
+*Solution.* _{code.language-python}from numpy import arcsin_
+
+_{button.next-step} Continue_
 
 ---
 
 ::: .exercise
 **Exercise**  
- To import _{code.language-python}scipy_ with alias _{code.language-python}sp_, we use the statement [[import scipy as sp]].
+ To import _{code.language-python}scipy_ with alias _{code.language-python}sp_, we would use what statement?
 :::
+
+_{button.next-step} Continue_
+
+---
+
+*Solution* _{code.language-python}import scipy as sp_
+
+_{button.next-step} Continue_
 
 ---
 
 ::: .exercise
 **Exercise**  
-To import the standard library package _{code.language-python}itertools_ (with no alias), we would use the statement _{code.language-python}import itertools_. 
+To import the standard library package _{code.language-python}itertools_ (with no alias), we would use what statement?
 :::
 
-    script(src='/juniper.min.js')
+_{button.next-step} Continue_
+
+---
+
+*Solution* _{code.language-python}import itertools_
+
+_{button.next-step} Continue_
+
+---
+
     script
       include juniper-setup.js
 
@@ -1099,12 +1170,12 @@ _{button.next-step} Continue_
 
 ---
 
-A function defined in the block indented below _{code.language-python}class Album(object):_ is called a **method** of the class _{code.language-python}Album_. The **{code.language-python}__init__** method has a special role: Python calls it whenever _{code.language-python}Album_ is called as a function to create a new **instance** of the class _{code.language-python}Album_. 
+A function defined in the block indented below _{code.language-python}class Album(object):_ is called a **method** of the class _{code.language-python}Album_. The **{code.language-python}__init__** method has a special role: Python calls it whenever _{code.language-python}Album_ is called as a function to create a ance** of the class _{code.language-python}Album_. 
 
-    pre: code.language-python
+    pre(data-executable)
       | A = Album("Abbey Road", "The Beatles", 1969, "47:23")
 
-The first parameter, customarily called _{code.language-python}self_, refers to the object being created. The four lines in the init method above assign values to **attributes** which may be accessed later using the dot [syntax](gloss:syntax) _{code.language-python}A.name_. 
+The first parameter, customarily called _{code.language-python}self_, refers to the object being created. The four lines in the init method above assign values to **attributes** which may be accessed later using the dot [syntax](gloss:syntax), like _{code.language-python}A.name_ or _{code.language-python}A.artist_. 
 
 Dot syntax is also used to access other methods like _{code.language-python}numYearsAgo_.
 
@@ -1180,14 +1251,14 @@ _{button.next-step} Continue_
       |
       | test_Fraction()
     
-    script(src='/juniper.min.js')
+
     script
       include juniper-setup.js
         
 ---
 
-> id: compound-data
-## Compound data
+> id: lists-and-tuples
+## Lists and Tuples
 
 Let's revisit the spreadsheet example we discussed earlier: suppose you're writing a spreadsheet application and you want to introduce some functionality for highlighting every row whose third-column value is greater than 10: 
 
@@ -1313,7 +1384,7 @@ Let's revisit the spreadsheet example we discussed earlier: suppose you're writi
         td: .pill.blue 19
         td: .pill.blue 7
 
-We definitely don't want to think of 100 variable names for the 100 values in the table, and we don't want to write a line of code for each row. What we need is a way to store all of the rows (or columns) in an object capable of containing many other objects. Python provides several such **compound data structures**, and in this section we will learn about the most prominent examples. 
+We definitely don't want to think of 100 variable names for the 100 values in the table, and we don't want to write a line of code for each row. What we need is a way to store all of the rows (or columns) in an object designed to contain many objects. Python provides several such **compound data structures**, and in this section we will learn about two: **lists** and **tuples**. 
 
 ### Lists
 
@@ -1339,7 +1410,7 @@ _{button.next-step} Continue_
 
 ---
 
-Like strings, lists can be **indexed** to retrieve their elements. Indexes in Python begin at 0: 
+Like strings, lists can be **indexed** to obtain their elements. Indexes in Python begin at 0: 
 
     pre(data-executable)
       | myList = [1, "flower", True, 7]
@@ -1359,7 +1430,7 @@ Negative indices can be used to count from the end:
 
 <p></p>
   
-If we set _{code.language-python}i =_ [[-3]], then _{code.language-python}myList[i]_ would return _{code.language-python}"flower"_ (answer with a negative number).
+If we set _{code.language-python}i_ to the negative number [[-3]], then _{code.language-python}myList[i]_ would return _{code.language-python}"flower"_. 
       
 ---
 
@@ -1394,6 +1465,24 @@ _{button.next-step} Continue_
 
 ---
 
+::: .exercise
+**Exercise**  
+What step value can be used to *reverse* a list? [[-1]] (Hint: reason it out and experiment below; don't look it up!)
+:::
+
+    pre(data-executable)
+      | [2,4,6,8][::k]
+
+_{button.next-step} Continue_
+
+---
+
+*Solution*. Going in reverse order through a list corresponds to stepping by $-1$ each time. Setting _{code.language-python}k = -1_ in the code block above, we see that _{code.language-python}[::-1]_ does indeed reverse the list. Apparently the start and stop values for a list _{code.language-python}L_ implicitly are implicitly set to _{code.language-python}-1_ and _{code.language-python}-len(L)_ when a negative step value is used. 
+
+_{button.next-step} Continue_
+
+---
+
 Like strings, lists can be concatenated with the _{code.language-python}+_ operator. 
 
     pre(data-executable)
@@ -1414,9 +1503,13 @@ Write a [function](gloss:function) which takes as arguments a list _{code.langua
       |     assert rotate([1,2,3],1) == [3,1,2]
       |     assert rotate([1,2,3],2) == [2,3,1]      
       |     assert rotate([1,2,3,4,5],8) == [3,4,5,1,2]
+      |     return "Tests passed!"
+      |
+      | test_rotate()
       
       
 <p></p> 
+
 
 _{button.next-step} Continue_
 
@@ -1430,10 +1523,6 @@ _{button.next-step} Continue_
       |     k = len(L) - n % len(L)
       |     return L[k:] + L[:k]
       |
-      | def test_rotate():
-      |     assert rotate([1,2,3],1) == [3,1,2]
-      |     assert rotate([1,2,3],2) == [2,3,1]      
-      |     assert rotate([1,2,3,4,5],8) == [3,4,5,1,2]
   
 <p></p>
 
@@ -1485,6 +1574,34 @@ The _{code.language-python}list_ class has 11 ordinary [methods](gloss:method) (
 
 If you forget these methods, you can access them in an interactive session by running _{code.language-python}dir(list)_. 
 
+Note that each of these methods changes the list _{code.language-python}L_. They do not return a new list: 
+
+    pre(data-executable)
+      | L = [1,2,3]
+      | returnval = L.reverse()
+      | print(type(returnval))
+      | print(L)
+
+::: .exercise
+**Exercise**  
+Explain the errors in the code below (there are two). 
+
+    pre: code.language-python
+      | def remove_fives(L):
+      |     "Removes instances of 5 from a list"
+      |   	return L.remove("5")
+      | 
+      | print(remove_fives(["1", "5", "5", "10"]))    
+
+:::
+
+_{button.next-step} Continue_
+
+---
+
+*Solution*. The _{code.language-python}remove_ method only removes one instances of _{code.language-python}"5"_ (the first one). Also, this method modifies the argument supplied to the function; it does not return new list with the _{code.language-python}"5"_ removed.
+
+
 ### List comprehensions
 
 Two of the most common ways of generating one list from another are (1) applying a given function to every element of the original list, and (2) retaining only those elements of the original list which satisfy a given criterion. These two operations are called **map** and **filter**, respectively. 
@@ -1492,14 +1609,12 @@ Two of the most common ways of generating one list from another are (1) applying
     pre: code.language-python
       | def square(x):
       |     return x*x
-      | 
-      | 
+      |
       | list(map(square, range(5))) # returns [0, 1, 4, 9, 16]
-      | 
+      |
       | def iseven(x):
-      |     return x % 2 == 0
-      | 
-      | 
+      |     return x % 2 == 0      
+      |
       | list(filter(iseven, range(5))) # returns [0,2,4]
 
 The extra calls to _{code.language-python}list_ in the examples above are required to see the result because _{code.language-python}map_ and _{code.language-python}filter_ are *lazy*: they return objects which *promise* to perform the specified calculation when it's needed. 
@@ -1680,15 +1795,117 @@ If we have three vectors $A$, $B$, and $C$ of equal length, then the vector sum 
 Suppose that $H$ is a list which stores the heights of 100 cylinders and $R$ is a list which stores their radii (in the same order). Write a [list comprehension](gloss:listcomp) which returns a list containing the volumes of these cylinders. 
 :::
 
+    pre(data-executable)
+      | H = [1, 2, 3]
+      | R = [0.8, 1.0, 1.2]
+      | 
+
 _{button.next-step} Continue_
 
 ---
 
-*Solution*. We zip $H$ and $R$ and use the volume formula $\pi r^2 h$: 
+*Solution*. We zip _{code.language-python}H_ and _{code.language-python}R_ and use the volume formula $\pi r^2 h$: 
+
+    pre(data-executable)
+      | from numpy import pi
+      | H = [1, 2, 3]
+      | R = [0.8, 1.0, 1.2]
+      | [pi*r*r*h for (h,r) in zip(H,R)]
+      
+### Exercises 
+
+::: .exercise
+**Exercise**  
+(Try doing this one without executing any code.) What will the value of _{code.language-python}L_ be after the following block is executed?  [[(4,1,2,7,3,-1,8) | (4,1,2,7,3,-1) | (4,2,1,7,3,-1,8)]]
 
     pre: code.language-python
-      | from numpy import pi
-      | [pi*r*r*h for (h,r) in zip(H,R)]
+      | L = [4, 8, 2]
+      | L.append(7)
+      | L.extend([3,-1,8])
+      | L.insert(2, 1)
+      | L.remove(8)
+      | L = tuple(L)
+
+:::
+
+_{button.next-step} Continue_
+
+---
+
+::: .exercise
+**Exercise**  
+Write a function which takes a matrix _{code.language-python}M_ and an index _{code.language-python}i_ and returns the $i$th column of _{code.language-python}M_. Assume that _{code.language-python}M_ is represented as a list of lists, where each list represents a row. 
+:::
+
+    pre(data-executable)
+      | def selectCol(M, i):
+      |     pass
+      |
+      | test_selectCol():
+      |     assert selectCol([[1,2],[3,4]],1) == [1,3]
+      |     assert selectCol([[7,8],[8,-2],[3,4]],1) == [8,-2,4]
+      |     return "Test passed!"
+      |
+      | test_selectCol()
+
+_{button.next-step} Continue_
+
+---
+
+*Solution*. We use a list comprehension to select the appropriate entry from each row. 
+
+    pre(data-executable)
+      | def selectCol(M, i):
+      |     return [row[i] for row in M]
+      | 
+      | test_selectCol():
+      |     assert selectCol([[1,2],[3,4]],1) == [1,3]
+      |     assert selectCol([[7,8],[8,-2],[3,4]],1) == [8,-2,4]
+      |     return "Test passed!"
+      | 
+      | test_selectCol()
+      
+<p></p>
+
+_{button.next-step} Continue_
+
+---      
+
+::: .exercise
+**Exercise**  
+Write a function which reverses the words in a sentence. For simplicity, you may assume that the sentence does not contain punctuation.
+
+Hint: the string methods _{code.language-python}join_ and _{code.language-python}split_ might be helpful. You can see the documentation for these methods with _{code.language-python}help(str.join)_ and _{code.language-python}help(str.split)_. 
+:::
+
+    pre(data-executable)
+      | def reversewords(sentence):
+      |     pass
+      |
+      | def test_reversewords():
+      |     assert reversewords("The quick brown fox") == "fox brown quick The"
+      |     assert reversewords("") == ""
+      |     return "Tests passed!"
+      |
+      | test_reversewords()
+
+_{button.next-step} Continue_
+
+---
+
+*Solution*. We use the string method _{code.language-python}split_, which splits a string on a given character. This gives us a list of the words in the sentence, which we can reverse by indexing with a negative step and rejoin with the _{code.language-python}join_ method.
+
+    pre(data-executable)
+      | def reversewords(sentence):
+      |     return " ".join(sentence.split(" ")[::-1])
+
+
+    script
+      include juniper-setup.js
+
+---
+> id: sets-and-dictionaries
+## Sets and Dictionaries
 
 ### Sets
 
@@ -1708,8 +1925,9 @@ _{button.next-step} Continue_
 **Exercise**  
 Make a set which contains the first 10,000 prime numbers. Hint: it suffices to look for primes among the first 110,000 integers. Compare how long it takes to check whether a given number is in that set to the time it takes to compute whether the number is prime using _{code.language-python}sympy.isprime_. 
 
-Note: the most reliable and efficient way to figure out how the _{code.language-python}timeit_ function works is to [[run help(timeit)|try it on different examples and guess|ask on StackOverflow]]. 
+Note 1: the most reliable and efficient way to figure out how the _{code.language-python}timeit_ function works is to [[run help(timeit)|try it on different examples and guess|ask on StackOverflow]]. 
 
+Note 2: the computation below takes some time to run (20 seconds, say). It returns a tuple when it's done. 
 ::: 
 
     pre(data-executable)
@@ -1768,6 +1986,8 @@ It's possible to do this by putting the names in a list and the values in a list
       | rgbs = [(256, 0, 256), (178, 34, 34), (218, 165, 32)]
       
 However, this solution gets very tedious quickly. For example, modifying this structure requires [[modifying both lists|modifying at least one of the lists]]. 
+
+---
 
 The Python data structured tailored to the problem of encoding a map from one finite set to another is called a **dictionary**. Dictionary literals consist of a comma separated list of the desired input-output pairs (with each input and output separated by a colon) delimited by curly braces. For example, the dictionary encoding the map described above looks like this:
 
@@ -1833,7 +2053,12 @@ Implement this idea in the block below. Check that your dictionary works by inde
 :::
 
     pre(data-executable)
+      | import datetime
+      | arrivalTimes = {"JetBlue 924": datetime.time(7,9),
+      |                 "United 1282": datetime.time(7,42),
+      |                 "Southwest 196": datetime.time(7,3)}
       | 
+
 
 _{button.next-step} Continue_
 
@@ -1841,22 +2066,18 @@ _{button.next-step} Continue_
 
 *Solution*. We use the _{code.language-python}dict_ function to convert the list of pairs back into a dictionary: _{code.language-python}dict(map(reversed,arrivalTimes.items()))_. 
 
-    script(src='/juniper.min.js')
-    script
-      include juniper-setup.js
-
 ---
 
 ### Exercises 
 
 ::: .exercise
 **Exercise**  
-You can create a _{code.language-python}dict_ comprehension in a similar way to a dict comprehension. Here's a dictionary that maps each one-digit positive integer to its square: 
+Python supports a _{code.language-python}dict_ comprehension construct which is very similar to a list comprehension. Here's a dictionary that maps each one-digit positive integer to its square: 
 
     pre: code.language-python
-      | {k:k*k for k in range(1, 10)}
+      | squareDict = {k : k*k for k in range(1, 10)}
 
-Make a dictionary that maps each of the first 100 powers of 2 to its units digit. (Note: you can get the units digit of a number by converting it to a string using the _{code.language-python}str_ function, indexing to get the last character, and converting back to an integer with _{code.language-python}int_.)
+Use a dict comprehension to make a dictionary which maps each of the first 100 powers of 2 to its units digit.
 :::
 
     pre(data-executable)
@@ -1866,10 +2087,10 @@ _{button.next-step} Continue_
 
 ---
 
-*Solution*. We use the technique suggested in the problem statement: 
+*Solution*. We convert to a string, get the last character, and convert back to an integer: 
 
     pre(data-executable)
-      | {2**k: int(str(2**k)[-1]) for k in range(100)}
+      | unitsDigits = {2**k : int(str(2**k)[-1]) for k in range(100)}
 
 _{button.next-step} Continue_
 
@@ -1877,34 +2098,20 @@ _{button.next-step} Continue_
 
 ::: .exercise
 **Exercise**  
-(Try doing this one without executing any code.) What will the value of _{code.language-python}L_ be after the following block is executed?  [[ [4,1,2,7,3,-1,8] | [4,1,2,7,3,-1] | [4,2,1,7,3,-1,8] ]]
-
-    pre: code.language-python
-      | L = [4, 8, 2]
-      | L.append(7)
-      | L.extend([3,-1,8])
-      | L.insert(2, 1)
-      | L.remove(8)
-
+Suppose you want to store student IDs in a part of a web application where the main thing you need to do is check whether an ID input by a student is a valid student ID (so you can flag it if it has been mistyped). Among the given options, the best data structure for this purpose would be a [[set|list|tuple|dictionary]]. 
 :::
 
 _{button.next-step} Continue_
 
 ---
 
-::: .exercise
-**Exercise**  
-Suppose you want to store student IDs in a part of a web application where the main thing you need to do is check whether an ID input by a student is a valid student ID (so you can flag it if they mistyped something). The best data structure for this purpose would be a [[set|list|tuple|dictionary]]. 
-:::
+*Solution*. This is an ideal use case for sets. Lists and tuples will be slower for checking membership, and dictionaries aren't quite appropriate because it isn't clear what the values would be.
 
-_{button.next-step} Continue_
 
----
-
-*Solution*. This is ideal use case for sets. Lists and tuples will be slower for checking membership, and dictionaries aren't quite appropriate because it isn't clear what the values would be.
+    script
+      include juniper-setup.js
 
 ---
-
 
 > id: iteration
 ## Iteration
@@ -1913,20 +2120,20 @@ We have already seen one way of doing something to each element in a collection:
 
     pre(data-executable)
       | smallestFactor = {2: 2, 3: 3, 4: 2, 5: 5, 
-      |                 6: 2, 7: 7, 8: 2, 9: 3}
+      |                  6: 2, 7: 7, 8: 2, 9: 3}
       | vals = [v for (k,v) in smallestFactor.items()]
 
 <p></p>
 
 In this list comprehension, we **iterate** over the pairs of the [dictionary](gloss:dictionary) to produce a new list. Although list comprehensions are very useful, they are not flexible enough to cover all our iteration needs. A much more flexible tool is the **for loop**.
 
-### For statements
+### *For* statements
 
 The code above could also be rewritten as follows:
 
     pre(data-executable)
       | smallestFactor = {2: 2, 3: 3, 4: 2, 5: 5, 
-      |                 6: 2, 7: 7, 8: 2, 9: 3}
+      |                  6: 2, 7: 7, 8: 2, 9: 3}
       | vals = []
       | for (k,v) in smallestFactor.items():
       |     vals.append(v)
@@ -1952,8 +2159,7 @@ We can nest _{code.language-python}for_ statements. For example, suppose we have
       |         for entry in row:
       |             s = s + entry
       |     return s
-      | 
-      | 
+      |
       | def test_sum():
       |     M = [[1,2,3],[4,5,6],[7,8,9]]
       |     assert sumMatrixEntries(M) == 45
@@ -1975,10 +2181,17 @@ Suppose you have imported a function _{code.language-python}fileBugReport_ with 
       |           "`trackShipment` hangs if `trackingNumber` is missing", 
       |         "100b359a": 
       |           "customers not receiving text alerts"}
+---
 
+_{button.next-step} Continue_
 
 ---
 
+*Solution*. We loop over the items: 
+
+    pre(data-executable)
+      | for id, desc in bugs.items():
+      |     fileBugReport(id, desc)
 
 
 _{button.next-step} Continue_
@@ -1987,6 +2200,23 @@ _{button.next-step} Continue_
 **Exercise**  
 Write a [function](gloss:function) called _{code.language-python}factorial_ which takes a positive integer _{code.language-python}n_ as an argument and returns its factorial. 
 :::
+
+    pre(data-executable)
+      | def factorial(n):
+      |     "Return n!"
+      |     product = 1
+      |     for k in range(1, n+1):
+      |         product = k * product 
+      |     return product
+      |
+      | def test_factorial():
+      |     assert factorial(3) == 6
+      |     assert factorial(0) == 1
+      |     assert factorial(20) == 2432902008176640000
+      |     return "Tests passed!"
+      |
+      | test_factorial()
+
 
 _{button.next-step} Continue_
 
@@ -2001,18 +2231,13 @@ _{button.next-step} Continue_
       |     for k in range(1, n+1):
       |         product = k * product 
       |     return product
-      | 
-      | 
-      | def test_factorial():
-      |     assert factorial(3) == 6
-      |     assert factorial(0) == 1
-      |     assert factorial(20) == 2432902008176640000
+      |
       
 _{button.next-step} Continue_
 
 ---
 
-### While statements
+### *While* statements
 
 The **Collatz conjecture** is one of the easiest-to-state unsolved problems in mathematics. Starting from any given positive integer, we halve it if it's even and triple it and add one if it's odd. The Collatz conjecture states that repeatedly applying this rule always gets us to the number 1 eventually. For example, the *Collatz sequence* starting from 17 is
 
@@ -2031,8 +2256,7 @@ If we want to write a Python function which returns the Collatz sequence for any
       |             n = 3*n + 1
       |         sequence.append(n)
       |     return sequence
-      | 
-      | 
+      |
       | def test_collatz():
       |     assert collatzSequence(17) == [17, 52, 26, 13, 
       |                                 40, 20, 10, 5, 
@@ -2058,14 +2282,16 @@ Note that $10^{-8}$ can be represented in Python using scientific notation _{cod
     pre(data-executable)
       | def newtonsqrt(n):
       |     """Use Newton's algorithm to approximate √n"""
-      | 
-      | 
+      |
       | def test_newton():
       |     assert abs(newtonsqrt(2) - 1.4142135623730951) < 1e-6
       |     assert abs(newtonsqrt(9) - 3) < 1e-6
+      |     return "Tests passed!"
+      |
+      | test_newton()
 
       
-_{button.next-step} Continue_
+|_{button.next-step} Continue_
 
 ---
 
@@ -2081,23 +2307,100 @@ _{button.next-step} Continue_
       |         if abs(x - old_x)/old_x < 1e-8:
       |             return x
       | 
-      | 
-      | def test_newton():
-      |     assert abs(newtonsqrt(2) - 1.4142135623730951) < 1e-6
-      |     assert abs(newtonsqrt(9) - 3) < 1e-6
 
-    script(src='/juniper.min.js')
+
+_{button.next-step} Continue_
+
+---
+
+### Exercises 
+
+::: .exercise
+**Exercise**  
+Write a function which prints an $n \times n$ checkerboard pattern of _{code.language-python}x_'s and _{code.language-python}o_'s. 
+
+Note: _{code.language-python}\\n_ represents the "newline" character. 
+:::
+
+    pre(data-executable)
+      | def checkerboard(n):
+      |     """
+      |     Prints an n × n checkerboard, like:
+      |       
+      |     xoxo
+      |     oxox
+      |     xoxo
+      |     oxox
+      |     """
+      |     
+      |      
+      |
+
+_{button.next-step} Continue_
+
+---
+
+*Solution*. We loop through the rows and use an _{code.language-python}if_ statement to print a different output depending on whether the row is even-numbered or odd-numbered.
+
+    pre(data-executable)
+      | def checkerboard(n):
+      |     "Prints an n × n checkerboard"
+      |     for i in range(n):
+      |         if i % 2 == 0:
+      |             print("xo" * (n//2))
+      |         else:
+      |             print("ox" * (n//2))
+      |         print("\n")
+      |
+      
+
+
+::: .exercise
+**Exercise**  
+Write a function which prints [Pascal's triangle](https://en.wikipedia.org/wiki/Pascal%27s_triangle) up to the $n$th row, where the top row counts as row zero. You might want to use a helper function _{code.language-python}printrow(n,row)_ to manage the responsibility of printing each row, as well as a helper function _{code.language-python}nextrow(row)_ to calculate each row from the previous one. 
+
+Example output, for _{code.language-python}n = 4_: 
+
+``` code
+        1
+      1   1
+    1   2   1
+  1   3   3   1
+1   4   6   4   1
+```
+
+Note: there's no solution to this one, but you can do it on your own!
+:::
+
+    pre(data-executable)
+      | def printrow(n,row):
+      |     """
+      |     Prints the nth row (`row`) of Pascal's triangle
+      |     with appropriate spacing.
+      |     """
+      |
+      | def nextrow(row):
+      |     """
+      |     Returns the next row in Pascal's triangle.
+      |     Example: nextrow([1,3,3,1]) == [1,4,6,4,1]
+      |     """
+      |
+      | def pascals_triangle(n):
+      |     """
+      |     Print the first n rows of Pascal's triangle
+      |     """
+
     script
       include juniper-setup.js
 
 ---
 
-> id: project-1˘
+> id: project-1
 ## Project 1: Spotify
 
 One of the most challenging aspects of learning to program is the difficulty of synthesizing individual skills in the service of a larger project. This section provides a stepping stone on that path by progressively solving a real-world problem. 
 
-You'll want to follow along either on your own machine or in [Binder](https://mybinder.org/v2/gh/sswatson/simple-python-stack/master). You can't use code blocks in this page, because there's an authentication step which requires a feature which isn't supported here. However, it's good practice to begin moving away from doing your programming in the tutorial web app!
+You'll want to follow along either on your own machine or in [Binder](https://mybinder.org/v2/gh/sswatson/simple-python-stack/master). You can't use code blocks in this page, because there's an authentication step which requires a feature which isn't supported here. Anyway, now's a good time to begin moving away from doing all of your programming in the tutorial web app!
 
 _{button.next-step} Continue_
 
@@ -2224,8 +2527,11 @@ Without looking to carefully at the other items, it's a good guess that _{code.l
 
 ::: .exercise
 **Exercise**  
-Use a [list comprehension](gloss:listcomp) to calculate the list of all of the tracks' playlist ids. 
+Write a [list comprehension](gloss:listcomp) to calculate the list of all of the tracks' playlist ids. 
 :::
+
+    pre(data-executable)
+      | 
 
 _{button.next-step} Continue_
 
@@ -2371,6 +2677,9 @@ It will be a bit awkward to type the whole message into the line where we call _
 Tie all of the above together to write a couple more lines of code that will actually send the messages. 
 :::
 
+    pre(data-executable)
+      | 
+
 _{button.next-step} Continue_
 
 ---
@@ -2389,7 +2698,7 @@ _{button.next-step} Continue_
 
 Congratulations! You have finished the Data Gymnasia *Programming with Python* course.
 
-    script(src='/juniper.min.js')
+
     script
       include juniper-setup.js
 

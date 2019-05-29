@@ -16,10 +16,13 @@ html
     script(type='text/javascript', async, src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML")
     script(type="text/x-mathjax-config")
       include mathjax-config.js
+    script(src='/juniper.min.js')
+    script(src='/codemirror-options.js')
+
 
   body
     include components.html
-
+    
     header
       a(href="/" id="logo")
         +icon('datalogo', 36, 72)
