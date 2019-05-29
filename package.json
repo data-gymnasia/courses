@@ -17,9 +17,7 @@
     "@mathigon/boost": "^0.2.8",
     "@mathigon/core": "^0.2.5",
     "@mathigon/fermat": "^0.2.7",
-    "@mathigon/hilbert": "^0.2.2"
-  },
-  "devDependencies": {
+    "@mathigon/hilbert": "^0.2.2",
     "@mathigon/parser": "^0.2.16",
     "emojione-assets": "^3.1.1",
     "eslint": "^5.12.1",
