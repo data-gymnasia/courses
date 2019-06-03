@@ -369,9 +369,6 @@ Select the true statements.
       
 :::
 
-    script
-      include juniper-setup.js
-      
 _{button.next-step} Continue_
           
 ---
@@ -610,8 +607,7 @@ If we set _{code.language-python}s = "Bruno"_, then _{code.language-python}s[:j]
 :::
 
 
-    script
-      include juniper-setup.js
+
 
 ---
 > id: conditionals
@@ -734,8 +730,7 @@ _{button.next-step} Continue_
 
 
     script(src='/codemirror-options.js')
-    script
-      include juniper-setup.js
+
 
 ---
 
@@ -995,8 +990,7 @@ _{button.next-step} Continue_
       | test_concat()
       
 
-    script
-      include juniper-setup.js      
+      
 
 ---
 
@@ -1040,7 +1034,7 @@ Here are some of the most important scientific computing packages (along with ve
       
 <p></p>
 
-Note that we import _{code.language-python}numpy_ with the alias _{code.language-python}np_ for breviy. 
+Note that we import _{code.language-python}numpy_ with the alias _{code.language-python}np_ for brevity. 
 
 **Pandas**. Provides support for tabular data. 
 
@@ -1125,8 +1119,7 @@ _{button.next-step} Continue_
 
 ---
 
-    script
-      include juniper-setup.js
+
 
 ---
       
@@ -1252,8 +1245,7 @@ _{button.next-step} Continue_
       | test_Fraction()
     
 
-    script
-      include juniper-setup.js
+
         
 ---
 
@@ -1900,8 +1892,7 @@ _{button.next-step} Continue_
       |     return " ".join(sentence.split(" ")[::-1])
 
 
-    script
-      include juniper-setup.js
+
 
 ---
 > id: sets-and-dictionaries
@@ -2108,8 +2099,7 @@ _{button.next-step} Continue_
 *Solution*. This is an ideal use case for sets. Lists and tuples will be slower for checking membership, and dictionaries aren't quite appropriate because it isn't clear what the values would be.
 
 
-    script
-      include juniper-setup.js
+
 
 ---
 
@@ -2319,7 +2309,7 @@ _{button.next-step} Continue_
 **Exercise**  
 Write a function which prints an $n \times n$ checkerboard pattern of _{code.language-python}x_'s and _{code.language-python}o_'s. 
 
-Note: _{code.language-python}\\n_ represents the "newline" character. 
+Note: _{code.language-python}\\n_ in a string literal represents the "newline" character. You'll need to print this character after each row you've printed.
 :::
 
     pre(data-executable)
@@ -2390,8 +2380,7 @@ Note: there's no solution to this one, but you can do it on your own!
       |     Print the first n rows of Pascal's triangle
       |     """
 
-    script
-      include juniper-setup.js
+
 
 ---
 
@@ -2699,6 +2688,5 @@ _{button.next-step} Continue_
 Congratulations! You have finished the Data Gymnasia *Programming with Python* course.
 
 
-    script
-      include juniper-setup.js
+
 

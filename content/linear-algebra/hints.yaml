@@ -7,3 +7,8 @@ too-few: Can the intersection have such a small dimension? Consider two planes i
 too-many: Can the intersection have a larger dimension than the larger-dimensional space being intersected?
 less-five: Did you really get results less than five?
 all-fives: Try running it more times.
+parallel-span: If two vectors are parallel, can they span the plane?
+two-span-space: What is the largest geometric shape that two vectors can span?
+mat-inv-order: Try making a little sketch and applying the transformations in that order
+orthogonal-every: What if v is an eigenvector of A?
+always-lin-dep: Consider the vector [0,1] in the butterfly figure above.

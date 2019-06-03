@@ -105,6 +105,18 @@ _{button.next-step} Continue_
 
 ---
 
+If we visualize a set as a blob and its elements as dots in the blob, then the subset relationship looks like this: 
+
+    center: img(src="images/subset.svg")
+    
+<p></p>    
+    
+Here $S$ has [[7]] elements, and $T$ has [[4]] elements.
+
+_{button.next-step} Continue_
+
+---
+
 Two sets are equal if [[each is a subset of the other|there is a set that each is a subset of]].
 
 ---
@@ -170,9 +182,9 @@ If $S$ is a set and $P$ is a property which each element of $S$
 either satisfies or does not satisfy, then 
 
     p 
-      | \begin{equation}
+      | \begin{equation*}
       | \{s \in S : s \textrm{ satisfies } P\}
-      | \end{equation}
+      | \end{equation*}
 
 denotes the set of all elements in $S$ which have the property
 $P$. This is called *set builder notation*. The colon is read as "such that".
@@ -188,9 +200,9 @@ Suppose the set $S$ denotes the set of all real numbers between 0
 and 1. Then $S$ can be expressed as
 
     p
-      | \begin{equation}
+      | \begin{equation*}
       |     S = \{s \in \mathbb{R} : 0 < s < 1\}.
-      | \end{equation}
+      | \end{equation*}
       
 :::
 
@@ -292,7 +304,25 @@ _{button.next-step} Continue_
 
 ---
 
+With the blob-and-point visualization:
+
+    center: img(src="images/complement.svg")
+
+_{button.next-step} Continue_
+
+---
+
 Since $S$ is not part of the notation $A^\mathsf{c}$, we will usually only use that notation when the intended containing set $S$ is clear from context.
+
+_{button.next-step} Continue_
+
+---
+
+The notation $S \setminus A$ may be used regardless of whether $A$ is a subset of $S$. We use a different term to refer to this more general operation: the **set difference** $S \setminus A$ is defined to be the set of elements which are in $S$ which are not in $A$. 
+
+_{button.next-step} Continue_
+
+---
 
 ::: .exercise
 **Exercise**  
@@ -311,7 +341,7 @@ _{button.next-step} Continue_
 
 ::: .exercise
 **Exercise**  
-Suppose $A\subset S$, $|S| = 55$, and $|A| = 13$.   Find $|S \setminus A|$ = [[42]]. 
+Suppose $A\subset S$, $|S| = 55$, and $|A| = 13$. Then $|S \setminus A|$ = [[42]]. 
 
 Is the assumption that $A \subset S$ necessary for the problem to be well-specified?
 :::
@@ -337,13 +367,15 @@ If two members of your household supplied you with grocery lists as you were abo
 The **union** of two sets $S$ and $T$, denoted $S \cup T$, is the set containing all the elements of $S$ and all the elements of $T$ and no other elements. In other words, $s \in S \cup T$ if and only if either $s\in S$ or $s \in T$. 
 :::
 
+    center: img(src="images/union.svg")
+
 _{button.next-step} Continue_
 
 ---
 
 ::: .exercise
 **Exercise**  
-Let `S = \{1,2,4,5\}` and `T = \{1,5,6,7,8\}`. Find $S \cup T$.   
+Let `S = \{1,2,4,5\}` and `T = \{1,5,6,7,8\}`. Find $S \cup T$. It has [[7]] elements. 
 :::
 
 _{button.next-step} Continue_
@@ -374,13 +406,15 @@ The set of viable loaves is the *intersection* of these two sets.
 The **intersection** of two sets $S$ and $T$, denoted $S \cap T$, is the set consisting of elements that are in both $S$ and $T$. In other words, $s \in S \cap T$ if and only if $s\in S$ and $s \in T$. 
 :::
 
+    center: img(src="images/intersection.svg")
+
 _{button.next-step} Continue_
 
 ---
 
 ::: .exercise
 **Exercise**
-Let `S = \{1,2,3,4,5\}` and `T = \{1,5,6,7,8\}`. Then $S \cap T$ = [[2]]. 
+Let `S = \{1,2,3,4,5\}` and `T = \{1,5,6,7,8\}`. Then $S \cap T$ has [[2]] elements.
 :::
 
 ---
@@ -388,18 +422,18 @@ Let `S = \{1,2,3,4,5\}` and `T = \{1,5,6,7,8\}`. Then $S \cap T$ = [[2]].
 The union and intersection operations may be applied to any number of sets. Suppose $S_1, S_2, \ldots, S_n$ are sets---the union of these sets can be expressed as $S_1 \cup S_2 \cup \cdots \cup S_n$. More compactly, 
 
     p
-      | \begin{equation}
+      | \begin{equation*}
       |   \bigcup_{i=1}^n S_i = S_1 \cup S_2 \cdots \cup S_n = \{s : s
       |   \in S_i\text{ for some }1 \leq i \leq n\}.
-      | \end{equation}
+      | \end{equation*}
 
 Similarly, we can take the intersection of an arbitrary number of sets:
 
     p
-      | \begin{equation}
+      | \begin{equation*}
       |   \bigcap_{i=1}^n S_i = S_1 \cap S_2 \cap \cdots  \cap S_n = \{s : s
       | \in S_i\text{ for all }1 \leq i \leq n\}.
-      | \end{equation}
+      | \end{equation*}
 
 _{button.next-step} Continue_
 
@@ -433,11 +467,13 @@ _{button.next-step} Continue_
 
 ---
 
-*Solution*. We can take `A = {1,2}`, `B = {1,3}`, and `C = {2,3}`. These sets are pairwise *non*-disjoint, but there are no elements common to all three sets. 
+*Solution*. We can take $A = \\{1,2\\}$, $B = \\{1,3\\}$, and $C = \\{2,3\\}$. These sets are pairwise *non*-disjoint, but there are no elements common to all three sets. 
 
 _{button.next-step} Continue_
 
 ---
+
+### Partitions
 
 Suppose you're part of a group of $n$ shoppers working together to purchase the items on a single grocery list. A good idea is to *partition* the set of items you want to purchase into $n$ smaller sets so that each person can purchase only the items on their own set.
 
@@ -446,12 +482,14 @@ Suppose you're part of a group of $n$ shoppers working together to purchase the 
 A **partition** of a set $S$ is a collection of non-empty sets   $S_1, S_2, \ldots, S_n$ such that   
 
     p
-      | \begin{equation}
+      | \begin{equation*}
       |     S = \bigcup_{i=1}^n S_i
-      |   \end{equation}
+      |   \end{equation*}
       
 and $S_1, S_2, \ldots, S_n$ are disjoint. 
 :::
+
+    center: img(src="images/partition.svg")
 
 _{button.next-step} Continue_
 
@@ -465,12 +503,97 @@ Find a partition of `\{1,2,3,4,5\}` into three sets. Is there a partition of `\{
 *Solution*. There are many partitions of `\{1,2,3,4,5\}` into three sets. For example,
 
     p
-      | \begin{equation}
+      | \begin{equation*}
       |     \{\{1,2\},\{3,4\},\{5\}\} \text{ or }
       |     \{\{1,2,5\},\{3\},\{4\}\}.
-      | \end{equation}
+      | \end{equation*}
 
 It is not possible to partition `\{1,2,3,4,5\}`into six sets, because each set must have at least one element, and no pair of the sets can have any element in common. 
+
+_{button.next-step} Continue_
+
+---
+### Cartesian Products
+
+Suppose we perform an experiment which consists of flipping a coin and rolling a standard six-sided die. The outcome of the coin flip is an element of the set `S_1 = \{H, T\}`, and the outcome of the die roll is an element of the set `S_2 = \{1,2,3,4,5,6\}`. The set of all possible outcomes of the experiment is the set with the following elements.
+
+    table.eqnarray
+      tr
+        td: .pill.red (H,1)
+        td: .pill.red (H,2)
+        td: .pill.red (H,3)
+        td: .pill.red (H,4)
+        td: .pill.red (H,5)        
+        td: .pill.red (H,6)
+      tr
+        td: .pill.yellow (T,1)
+        td: .pill.yellow (T,2)
+        td: .pill.yellow (T,3)
+        td: .pill.yellow (T,4)
+        td: .pill.yellow (T,5)        
+        td: .pill.yellow (T,6)
+        
+_{button.next-step} Continue_
+
+---
+        
+We call this 12-element set the **Cartesian product** of `S_1` and `S_2`. 
+        
+::: .definition
+**Definition** (Cartesian Product)  
+If $S_1$ and $S_2$ are sets, then the **Cartesian product** of $S_1$ and $S_2$ is defined by  
+ 
+    p
+      | \begin{equation*}
+      |     S_1 \times S_2 = \{(s_1, s_2) : s_1 \in S_1 \text{ and } s_2 \in
+      |     S_2\}.
+      |   \end{equation*}
+      
+Likewise, if $S_1,S_2, \ldots, S_n$ are sets, then   
+
+    p
+      | \begin{equation*}
+      |     S_1 \times S_2 \times \cdots \times S_n  = \{(s_1, s_2, \ldots, s_n) : s_1 \in S_1 \text{ and } s_2 \in
+      |     S_2 \text{ and } \cdots \text{ and } s_n \in S_n\}.
+      |   \end{equation*}
+
+:::
+
+_{button.next-step} Continue_
+
+---
+
+This set operation is ubiquitous in probability and data science applications, since it corresponds to the common act of combining multiple pieces of information into an ordered pair, an ordered triple, or a higher-order tuple.
+
+For example, a patient data record might be an ordered quintuple of the form (first name, last name, date of birth, height, blood pressure reading). This record is in $S \times S \times D \times H \times B$, where `S` is the set of all *strings* (sequences of characters), `D` is the set of all dates, `H` is the set of positive length measures, and `B` is the set of possible blood pressure readings.
+
+_{button.next-step} Continue_
+
+---
+
+::: .exercise
+**Exercise**  
+Find $|S\times T|$ if $|S| = 4$ and $|T| = 100$.   
+:::
+
+*Solution*. In the coin-and-die example, the cardinality of the Cartesian product was 12, which is equal to the product of the cardinalities of the original sets. We listed the elements of $S$ in a way which suggests why this is the case: the elements of $S \times T$ can always be arranged in a $|S|$ by $|T|$ grid.
+
+Therefore, $|S \times T| = 400$. 
+
+
+### Exercises
+
+::: .exercise
+**Exercise**  
+Select most appropriate set theory term for each of the following real-world scenarios.
+
+    ul
+      li.md You have a list of patients which have a particular risk factor and a second list of patients who have another risk factor. You want to identify the patients with both risk factors. [[intersection|union|complement]]
+      li.md Your company is merging with another company and you want to combine your customer database with their customer database to get a collection of all of the customer records. [[union|intersection|complement]]
+      li.md You have a table containing information about all of the Champions League goals this year, and you want to look at the ones which were not scored by Ronaldo. [[complement|intersection|union]]
+      li.md You have 68 clients to call, and you want to split them among your four salespeople. [[partition|union|intersection]]
+
+:::
 
 _{button.next-step} Continue_
 
@@ -526,71 +649,6 @@ Similarly, if
 
 then $s$ is in none of the $S_i$'s, which in turn means that it is not in the union of the $S_i$'s. Thus $s$is in the complement of the union of the $S_i$'s. 
 
----
-
-> id: Cartesian Products
-## Cartesian Products
-
-Suppose we perform an experiment which consists of flipping a coin and rolling a standard six-sided die. The outcome of the coin flip is an element of the set `S_1 = \{H, T\}`, and the outcome of the die roll is an element of the set `S_2 = \{1,2,3,4,5,6\}`. The set of all possible outcomes of the experiment is the set with the following elements.
-
-    table.eqnarray
-      tr
-        td: .pill.red (H,1)
-        td: .pill.red (H,2)
-        td: .pill.red (H,3)
-        td: .pill.red (H,4)
-        td: .pill.red (H,5)        
-        td: .pill.red (H,6)
-      tr
-        td: .pill.yellow (T,1)
-        td: .pill.yellow (T,2)
-        td: .pill.yellow (T,3)
-        td: .pill.yellow (T,4)
-        td: .pill.yellow (T,5)        
-        td: .pill.yellow (T,6)
-        
-_{button.next-step} Continue_
-
----
-        
-We call this 12-element set the **Cartesian product** of `S_1` and `S_2`. 
-        
-::: .definition
-**Definition** (Cartesian Product)  
-If $S_1$ and $S_2$ are sets, then the **Cartesian product** of $S_1$ and $S_2$ is defined by  
- 
-    p
-      | \begin{equation*}
-      |     S_1 \times S_2 = \{(s_1, s_2) : s_1 \in S_1 \text{ and } s_2 \in
-      |     S_2\}.
-      |   \end{equation*}
-      
-Likewise, if $S_1,S_2, \ldots, S_n$ are sets, then   
-
-    p
-      | \begin{equation*}
-      |     S_1 \times S_2 \times \cdots \times S_n  = \{(s_1, s_2, \ldots, s_n) : s_1 \in S_1 \text{ and } s_2 \in
-      |     S_2 \text{ and } \cdots \text{ and } s_n \in S_n\}.
-      |   \end{equation*}
-
-:::
-
-_{button.next-step} Continue_
-
----
-
-This set operation is ubiquitous in probability and data science applications, since it corresponds to the common act of combining multiple pieces of information into an ordered pair, an ordered triple, or a higher-order tuple.
-
-For example, a patient data record might be an ordered quintuple of the form (first name, last name, date of birth, height, blood pressure reading). This record is in $S \times S \times D \times H \times B$, where `S` is the set of all *strings* (sequences of characters), `D` is the set of all dates, `H` is the set of positive length measures, and `B` is the set of possible blood pressure readings.
-
-::: .exercise
-**Exercise**  
-Find $|S\times T|$ if $|S| = 4$ and $|T| = 100$.   
-:::
-
-*Solution*. In the coin-and-die example, the cardinality of the Cartesian product was 12, which is equal to the product of the cardinalities of the original sets. We listed the elements of $S$ in a way which suggests why this is the case: the elements of $S \times T$ can always be arranged in a $|S|$ by $|T|$ grid.
-
-Therefore, $|S \times T| = 400$. 
 
 ---
 > id: lists
@@ -629,10 +687,10 @@ How many *lists* of length 4 have all of their elements in `\{1,2,3\}`? [[81]]
 *Solution*. There are 8 subsets of `\{1,2,3\}`:
 
     p
-      | \begin{equation}
+      | \begin{equation*}
       |     \emptyset, \{1\}, \{2\}, \{3\}, \{1,2\}, \{1,3\}, \{2,3\},
       |     \{1,2,3\}.
-      |   \end{equation}
+      |   \end{equation*}
 
 There are $3^4 = 81$ length-4 lists with elements in `\{1,2,3\}`, because the set of such lists is equal to `\{1,2,3\} ×
 \{1,2,3\} × \{1,2,3\} × \{1,2,3\}`, and the cardinality of a Cartesian product of sets is the product of the cardinalities of the sets. 
@@ -684,6 +742,8 @@ If $A$ and $B$ are sets, then a **function** $f:A \to B$ is an assignment to eac
 The set $A$ is called the **domain** of $f$ and $B$ is called the **codomain** of $f$. 
 :::
 
+    center: img(src="images/function.svg")
+
 _{button.next-step} Continue_
 
 ---
@@ -710,9 +770,9 @@ _{button.next-step} Continue_
 Given a subset $A'$ of $A$, we define the **image** of $f$—denoted $f(A')$—to be the set of elements which are mapped to from some element in $A'$: 
 
     p
-      | \begin{equation}  f(A') = \{b \in B \, : \,
+      | \begin{equation*}  f(A') = \{b \in B \, : \,
       |   \text{there exists }a \in A' \text{ so that } f(a) = b\}.
-      | \end{equation}
+      | \end{equation*}
 
 _{button.next-step} Continue_
 
@@ -781,12 +841,35 @@ _{button.next-step} Continue_
 If $B'\subset B$, then the **preimage** $f^{-1}(B')$ of $B'$ is defined by
 
     p
-      | \begin{equation}
+      | \begin{equation*}
       |   f^{-1}(B') = \{a \in A \, : f(a) \in B'\}.
-      | \end{equation}
+      | \end{equation*}
 
 This is the subset of $A$ consisting of every element of $A$ that maps to some element of $B'$. 
 :::
+
+    center: img(src="images/preimage.svg")
+    
+::: .exercise
+**Exercise**  
+
+    ol
+      li.md The statement "the preimage of a nonempty subset of the codomain of a function may be empty" is [[true|false]]. 
+      li.md The statement "the preimage of $B'$ have more elements than $B'$" is [[true|false]].
+      
+:::
+
+_{button.next-step} Continue_
+
+---
+
+*Solution*. The first statement is true; for example, consider the squaring function from the real number line to itself. The preimage of any set of negative numbers is empty.
+
+The second statement is also true, since multiple input elements may map to the same codomain values. 
+
+_{button.next-step} Continue_
+
+---
 
 ::: .exercise
 **Exercise**  
@@ -920,6 +1003,8 @@ For example, consider the *album* function from the set of songs to the set of a
 If $f: A \to B$ and $g:B \to C$, then the function $g\circ f$ which maps $x \in A$ to $g(f(x))\in C$ is called the **composition** of $g$ and $f$. 
 :::
 
+    center: img(src="images/composition.svg")
+
 _{button.next-step} Continue_ 
 
 ---
@@ -944,6 +1029,8 @@ _{button.next-step} Continue_
 
 ---
 
+### Anonymous functions
+
 If the rule defining a function is sufficiently simple, we can describe the function using **anonymous function notation**.  For example, $x \in \mathbb{R}\mapsto x^2 \in \mathbb{R}$, or $x\mapsto x^2$ for short, is the squaring function from $\mathbb{R}$ to $\mathbb{R}$. Note that bar on the left edge of the arrow, which distinguishes the arrow in anonymous function notation from the arrow between the domain and codomain of a named function.
 
 ::: .exercise
@@ -958,9 +1045,62 @@ _{button.next-step} Continue_
 
 ---
 
-*Solution*. We first substitute $\frac{1}{12}$ into the tripling function to get   $\frac{1}{4}$, and then we substitute that value into the square root function to get   $f\left(\frac{1}{12}\right) = \boxed{\tfrac{1}{2}}$. 
+*Solution*. We first substitute $\frac{1}{12}$ into the tripling function to get $\frac{1}{4}$, and then we substitute that value into the square root function to get $f\left(\frac{1}{12}\right) = \boxed{\tfrac{1}{2}}$. 
 
 _{button.next-step} Continue_
+
+---
+
+### Inverses
+
+Suppose that $f: A \to B$ is a function from the set $A$ of names of customers at a bank to the set $B$ of their primary checking account numbers. Specifically, suppose $f$ maps each customer name to that customer's primary checking account.
+
+Since $f$ is bijective, we can ask to *reverse* the lookup that $f$ performs: given a primary checking account number, what is the corresponding customer name? This function from $B$ to $A$ is called the *inverse* of $f$. 
+
+::: .exercise
+**Exercise**  
+Find the inverse of the function $f(x) = x^2 + 1$ from the interval $[0,\infty)$ to the interval $[1,\infty)$. 
+:::
+
+_{button.next-step} Continue_
+
+---
+
+*Solution*. Given $y \in [1,\infty)$, we want to find the value of $x$ that $f$ maps to it. In other words, we want to solve $x^2 + 1 = y$ for [[`x`|`y`]]. Doing so, we get $x = \sqrt{y-1}$. Therefore, $f^{-1}(y) = \sqrt{y-1}$. 
+
+_{button.next-step} Continue_
+
+---
+
+::: .exercise
+**Exercise**  
+Select the functions which have inverses.
+
+    x-picker.list
+      .item.pill.bblue.md(data-error="plane-dist-origin") The function which maps each point $(x,y) \in \mathbb{R}^2$ to its distance from the origin.
+      .item.pill.bblue.md The function which maps each automobile to its VIN (vehicle identification number). 
+      .item.pill.bblue.md The function which maps each negative real number to its distance from the origin. 
+      .item.pill.bblue.md The function which maps each real number to its cube. 
+      
+:::
+
+---
+
+::: .exercise
+**Exercise**  
+Which of the following is equal to $(g\circ f)^{-1}$, if $f$ and $g$ are invertible functions for which the codomain of $f$ and the domain of $g$ are equal?
+
+    x-picker.list
+      .item.pill.bblue.md(data-error="inverse") $g^{-1} \circ f^{-1}$
+      .item.pill.bblue.md $f^{-1} \circ g^{-1}$
+      
+:::
+
+_{button.next-step} Continue_
+
+---
+
+*Solution*. We have $f^{-1} \circ g^{-1} (\circ g \circ f(x)) = f^{-1}(f(x)) = x$, so $f^{-1} \circ g^{-1}$ is the inverse of $f\circ g$.
 
 ---
 
