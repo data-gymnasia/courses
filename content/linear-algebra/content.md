@@ -3094,7 +3094,7 @@ We close this section with a computational exercise illustrating another widely 
           |         return 0
           |     return 1
           | 
-          | A = np.array([pixel(i,j) for i in range(1,m+1) for j in range(1,n+1)]).reshape((m,n)).T
+          | A = np.array([[pixel(i,j) for i in range(1,m+1)] for j in range(1,n+1)])
           | 
           | U, Σ, V = np.linalg.svd(A)
           | 
