@@ -211,10 +211,10 @@ productcolumnrule:
     Given matrices $A$ and $B$, the $k$th column of $AB$ is the product of $A$ and the $k$th column of $B$: 
 
         p
-          | \begin{equation*}
-          | AB = A[\begin{array}{cccc}\mathbf{b}_1 & \mathbf{b}_2 & \cdots & \mathbf{b}_n\end{array}] = 
+          | \begin{align*}
+          | AB &= A[\begin{array}{cccc}\mathbf{b}_1 & \mathbf{b}_2 & \cdots & \mathbf{b}_n\end{array}] \\\\ &= 
           | [\begin{array}{cccc} A\mathbf{b}_1 & A\mathbf{b_2} & \cdots & A\mathbf{b}_n\end{array}],
-          | \end{equation*}
+          | \end{align*}
           
 transpose:
   title: Transpose
@@ -286,3 +286,7 @@ norm:
 rankdeficient:
   title: Rank deficient
   text: A matrix is rank deficient if it is not full rank. Rank deficiency implies linearly dependent columns and linearly dependent rows.
+  
+multiple-extension:
+  title: Multiple extension principle
+  text: If a basis of the intersection of two vector spaces is extended separately to bases of the two vector spaces, then the resulting compiled list of basis vectors is linearly independent.

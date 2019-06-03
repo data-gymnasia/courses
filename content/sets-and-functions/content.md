@@ -113,8 +113,6 @@ If we visualize a set as a blob and its elements as dots in the blob, then the s
     
 Here $S$ has [[7]] elements, and $T$ has [[4]] elements.
 
-_{button.next-step} Continue_
-
 ---
 
 Two sets are equal if [[each is a subset of the other|there is a set that each is a subset of]].
@@ -130,12 +128,14 @@ The relationship between "`sub`" and "`=`" has a real-number analogue: we can sa
 Think of four pairs of real-world sets which satisfy a subset relationship. For example, the set of cars is a subset of the set of vehicles.
 :::
 
-_{button.next-step} Continue_
+    div(id="editor1")
+
+_{button.next-step} Submit_
 
 ---
 
 ::: .exercise
-**Exercise** (multiple choice)  
+**Exercise**  
 Suppose that $E$ is the set of even positive integers and that $F$
 is the set of positive integers which are one more than an odd
 integer. Then [[all of the above | `E sub F`| `F sub E` | `E = F`]]
@@ -149,12 +149,14 @@ _{button.next-step} Continue_
 integer" [[implies|is implied by]] the statement "$n$ is one more than an odd
 number". In other words, $n \in E$ implies that $n \in F$.
 
+---
+
 Likewise, we have $F \subset E$, because "$n$ is one more than an
 positive odd integer" [[implies|is implied by]] "$n$ is a positive even integer".
 
-Finally, we have $E = F$, since [[`F sub E` and `E sub F` | `E sub F`| `F sub E`]]. 
+---
 
-_{button.next-step} Continue_
+Finally, we have $E = F$, since [[`F sub E` and `E sub F` | `E sub F`| `F sub E`]]. 
 
 ---
 
@@ -270,7 +272,9 @@ _{button.next-step} Continue_
 Show that the set of all ordered pairs of positive integers is countably infinite.   
 :::
 
-_{button.next-step} Continue_
+    div(id="editor2")
+
+_{button.next-step} Submit_
 
 ---
 
@@ -284,6 +288,10 @@ _{button.next-step} Continue_
 ### Complement
 
 Given a set $S$ describing a grocery list and a subset $A \subset S$ describing the set of items we've already purchased, the set we might be most interested in constructing from $S$ and $A$ is the set of items which are in $S$ but not in $A$. This is called the **complement** of $A$ with respect to $S$. 
+
+_{button.next-step} Continue_
+
+---
 
 The complement of the set of groceries in the cart with respect to the set of groceries on the list is a meaningful set because those are the items [[we still need to pick up|most important to our recipe]]. 
 
@@ -346,7 +354,9 @@ Suppose $A\subset S$, $|S| = 55$, and $|A| = 13$. Then $|S \setminus A|$ = [[42]
 Is the assumption that $A \subset S$ necessary for the problem to be well-specified?
 :::
 
-_{button.next-step} Continue_
+    div(id="editor3")
+
+_{button.next-step} Submit_
 
 ---
 
@@ -419,7 +429,7 @@ Let `S = \{1,2,3,4,5\}` and `T = \{1,5,6,7,8\}`. Then $S \cap T$ has [[2]] eleme
 
 ---
 
-The union and intersection operations may be applied to any number of sets. Suppose $S_1, S_2, \ldots, S_n$ are sets---the union of these sets can be expressed as $S_1 \cup S_2 \cup \cdots \cup S_n$. More compactly, 
+The union and intersection operations may be applied to any number of sets. Suppose $S_1, S_2, \ldots, S_n$ are sets—the union of these sets can be expressed as $S_1 \cup S_2 \cup \cdots \cup S_n$. More compactly, 
 
     p
       | \begin{equation*}
@@ -463,7 +473,9 @@ This definition extends to an arbitrary number of sets. We say that the sets $S_
 Find three sets $A$, $B$, and $C$ which have $A \cap B \cap C = \emptyset$, but for which all of the intersections $A \cap B$, $B\cap C$, and $A \cap C$ are nonempty.   
 :::
 
-_{button.next-step} Continue_
+    div(id="editor1")
+
+_{button.next-step} Submit_
 
 ---
 
@@ -499,6 +511,12 @@ _{button.next-step} Continue_
 **Exercise**  
 Find a partition of `\{1,2,3,4,5\}` into three sets. Is there a partition of `\{1,2,3,4,5\}` into *six* sets?   
 :::
+
+    div(id="editor2")
+
+_{button.next-step} Submit_
+
+---
 
 *Solution*. There are many partitions of `\{1,2,3,4,5\}` into three sets. For example,
 
@@ -573,13 +591,18 @@ _{button.next-step} Continue_
 
 ::: .exercise
 **Exercise**  
-Find $|S\times T|$ if $|S| = 4$ and $|T| = 100$.   
+If $|S| = 4$ and $|T| = 100$, then $|S \times T| = $ [[400]].
 :::
+
+---
 
 *Solution*. In the coin-and-die example, the cardinality of the Cartesian product was 12, which is equal to the product of the cardinalities of the original sets. We listed the elements of $S$ in a way which suggests why this is the case: the elements of $S \times T$ can always be arranged in a $|S|$ by $|T|$ grid.
 
 Therefore, $|S \times T| = 400$. 
 
+_{button.next-step} Continue_
+
+---
 
 ### Exercises
 
@@ -594,8 +617,6 @@ Select most appropriate set theory term for each of the following real-world sce
       li.md You have 68 clients to call, and you want to split them among your four salespeople. [[partition|union|intersection]]
 
 :::
-
-_{button.next-step} Continue_
 
 ---
 
@@ -613,18 +634,24 @@ Establish the first and third of the following four identities. Use the followin
 
 :::
 
-_{button.next-step} Continue_
+    div(id="editor4")
+
+_{button.next-step} Submit_
 
 ---
 
 *Solution*. If an element $s$ is in $S \cap (R \cup T)$, then it is in $S$ and it is either in $R$ or $T$. This implies that either (i) $s\in S$ and $s\in
 R$, or (ii) $s\in S$ and $s\in T$. In other words, either $s\in S
 \cap R$ or $s \in S \cap T$. In other words, $s \in (S \cap R) \cup
-(S \cap T)$. Therefore, the left-hand side is a subset of the right-hand side.
+(S \cap T)$. Therefore, the left-hand side is a [[subset]] of the right-hand side.
+
+---
 
 Conversely, if $s \in (S \cap R) \cup (S \cap T)$, then either $s
 \in S \cap R$ or $s \in S \cap T$. In the former case, it is true that $s \in S$ and that $s \in R \cup T$. Therefore, $s \in S \cap
-(R \cup T)$ in this case. Similarly, in the latter case, we have $s\in S$ and $s \in R \cup T$. Therefore, $s \in S \cap (R \cup T)$ in this case as well. So the right-hand side is also a subset of the left-hand side.
+(R \cup T)$ in this case. Similarly, in the latter case, we have $s\in S$ and $s \in R \cup T$. Therefore, $s \in S \cap (R \cup T)$ in this case as well. So the right-hand side is also a [[subset]] of the left-hand side.
+
+---
 
 For the third identity, note that if 
 
@@ -633,12 +660,16 @@ For the third identity, note that if
       | s\in \left( \bigcup_{i=1}^n S_i \right)^{\mathsf{c}}, 
       | \end{equation*}
 
-then it is not true that $s$ is in the union of the $S_i$'s. In other words, $s$ must be in *none* of the $S_i$'s. This means that for each $S_i$, the element $s$ is in its complement. It follows by the  definition of intersection that 
+then it is not true that $s$ is in the union of the $S_i$'s. In other words, $s$ must be in *none* of the $S_i$'s. This means that for each $S_i$, the element $s$ is in its complement. It follows by the definition of intersection that 
 
     p
       | \begin{equation*}
       |   s \in \bigcap_{i=1}^n S_i^{\mathsf{c}}
       | \end{equation*}
+
+_{button.next-step} Continue_
+
+---
 
 Similarly, if 
 
@@ -647,7 +678,7 @@ Similarly, if
       | s \in \bigcap_{i=1}^n S_i^{\mathsf{c}}, 
       | \end{equation*}
 
-then $s$ is in none of the $S_i$'s, which in turn means that it is not in the union of the $S_i$'s. Thus $s$is in the complement of the union of the $S_i$'s. 
+then $s$ is in none of the $S_i$'s, which in turn means that it is not in the union of the $S_i$'s. Thus $s$ is in the complement of the union of the $S_i$'s. 
 
 
 ---
@@ -698,7 +729,7 @@ There are $3^4 = 81$ length-4 lists with elements in `\{1,2,3\}`, because the se
 
 ---
 
-> id: 
+> id: functions
 ## Functions
 
 The grocery lists you make for yourself probably don't look quite like a set *or* a list, because the quickest way to indicate how many of each item to purchase is to make a separate column: 
@@ -780,6 +811,8 @@ _{button.next-step} Continue_
 
 The **range** of $f$ is defined to be the image of the domain of $f$. Thus the range may be obtained from the codomain by removing all the elements that don't get mapped to.
 
+    center: img(src="images/range.svg")
+
 _{button.next-step} Continue_
 
 ---
@@ -805,10 +838,6 @@ Find the range of the function from {apple, bread, squash} to $\mathbb{N}$ repre
 
 ---
 
-_{button.next-step} Continue_
-
----
-
 *Solution*. The range is the set of quantity counts which get mapped to from some grocery item, so the range is the two-element set `\{1,3\}`.
 
 _{button.next-step} Continue_
@@ -819,12 +848,14 @@ _{button.next-step} Continue_
 **Exercise**  
 Consider the *social-security-number function* $f$ from the set of US citizens and permanent residents to the set of integers   `\{000000000,000000001,ldots,999999999\}`. For each person $x$, $f(x)$ is defined to be the social security number of person $x$.
 
-* What are the largest and smallest possible values of the ratio     $\frac{|f(A)|}{|A|}$ for any subset $A$ of the domain of $f$? Largest: [[1]] Smallest: [[1]]
+* What are the largest and smallest possible values of the ratio     $\frac{|f(A)|}{|A|}$ for any nonempty subset $A$ of the domain of $f$? Largest: [[1]] Smallest: [[1]]
 * Estimate the ratio of the cardinality of the range of $f$ to the cardinality of the codomain of $f$. (You can estimate the number of social security numbers issued to be about 40% more than the current US population). [[0.45±0.2]] What implications does this have for the Social Security Administration?
 
 :::
 
-_{button.next-step} Continue_
+    div(id="editor1")
+
+_{button.next-step} Submit_
 
 ---
 
@@ -874,20 +905,31 @@ _{button.next-step} Continue_
 ::: .exercise
 **Exercise**  
 Consider the following purported equalities.   
-* $f(A \cap B) \stackrel{?}{=} f(A) \cap f(B)$
-* $f(A \cup B) \stackrel{?}{=} f(A) \cup f(B)$
-* $f^{-1}(C \cap D) \stackrel{?}{=} f^{-1}(C) \cap f^{-1}(D)$
-* $f^{-1}(C \cup D) \stackrel{?}{=} f^{-1}(C) \cup f^{-1}(D)$
 
-Which of the are true for all functions $f$and all subsets $A$ and $B$ of the domain of $F$ and subsets $C$ and $D$ of the codomain of $f$?   
-* all of them   
-* none of them   
-* (i) and (ii) only   
-* (iii) and (iv) only   
-* (i), (iii), and (iv) only
+(i) $f(A \cap B) \stackrel{?}{=} f(A) \cap f(B)$
+
+(ii) $f(A \cup B) \stackrel{?}{=} f(A) \cup f(B)$
+
+(iii) $f^{-1}(C \cap D) \stackrel{?}{=} f^{-1}(C) \cap f^{-1}(D)$
+
+(iv) $f^{-1}(C \cup D) \stackrel{?}{=} f^{-1}(C) \cup f^{-1}(D)$
+
+Which of the are true for all functions $f$ and all subsets $A$ and $B$ of the domain of $F$ and subsets $C$ and $D$ of the codomain of $f$? 
+
+(a) all of them   
+
+(b) none of them   
+
+(c) (i) and (ii) only   
+
+(d) (iii) and (iv) only   
+
+(e) (i), (iii), and (iv) only
 :::
 
-_{button.next-step} Continue_
+    div(id="editor2")
+
+_{button.next-step} Submit_
 
 ---
 
@@ -900,7 +942,7 @@ _{button.next-step} Continue_
 
 ---
 
-> id:function-properties
+> id: function-properties
 ## Function Properties
 
 According to the definition, a function may map several elements of the domain to the same element of the codomain, and it may also miss elements in the codomain (in other words, fail to map any domain element to them). However, these behaviors can be undesirable in some situations, and we'll want terminology to refer to whether a given function exhibits them.
@@ -937,7 +979,9 @@ For each of the four combinations of injectivity and surjectivity, come up with 
 For example, the function from the set of ticket numbers for a commercial airplane flight to the set of passengers on the plane (the one which associates each ticket number with the passenger named on that ticket) is bijective.
 :::
 
-_{button.next-step} Continue_
+    div(id="editor1")
+
+_{button.next-step} Submit_
 
 ---
 
@@ -975,7 +1019,9 @@ _{button.next-step} Continue_
 State a general relationship involving the terms *restriction*, *image*, and *range*.   
 :::
 
-_{button.next-step} Continue_
+    div(id="editor1")
+
+_{button.next-step} Submit_
 
 ---
 
@@ -1015,7 +1061,9 @@ Show that composition is associative: $(f\circ g)\circ h = f \circ
 (g \circ h)$ for all functions $f$, $g$, and $h$ with the property that the codomain of $h$ is equal to the domain of $g$ and the codomain of $g$ is equal to the domain of $f$.   
 :::
 
-_{button.next-step} Continue_
+    div(id="editor2")
+
+_{button.next-step} Submit_
 
 ---
 
@@ -1055,14 +1103,24 @@ _{button.next-step} Continue_
 
 Suppose that $f: A \to B$ is a function from the set $A$ of names of customers at a bank to the set $B$ of their primary checking account numbers. Specifically, suppose $f$ maps each customer name to that customer's primary checking account.
 
+_{button.next-step} Continue_
+
+---
+
 Since $f$ is bijective, we can ask to *reverse* the lookup that $f$ performs: given a primary checking account number, what is the corresponding customer name? This function from $B$ to $A$ is called the *inverse* of $f$. 
+
+_{button.next-step} Continue_
+
+---
 
 ::: .exercise
 **Exercise**  
 Find the inverse of the function $f(x) = x^2 + 1$ from the interval $[0,\infty)$ to the interval $[1,\infty)$. 
 :::
 
-_{button.next-step} Continue_
+    div(id="editor3")
+
+_{button.next-step} Submit_
 
 ---
 
@@ -1096,11 +1154,9 @@ Which of the following is equal to $(g\circ f)^{-1}$, if $f$ and $g$ are inverti
       
 :::
 
-_{button.next-step} Continue_
-
 ---
 
-*Solution*. We have $f^{-1} \circ g^{-1} (\circ g \circ f(x)) = f^{-1}(f(x)) = x$, so $f^{-1} \circ g^{-1}$ is the inverse of $f\circ g$.
+*Solution*. We have $(f^{-1} \circ g^{-1}) \circ (g \circ f(x)) = f^{-1}(f(x)) = x$, so $f^{-1} \circ g^{-1}$ is the inverse of $f\circ g$.
 
 ---
 

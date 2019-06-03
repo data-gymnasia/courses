@@ -30,7 +30,10 @@ _{button.next-step} Continue_
 Is it possible to have numbers populating three columns in a spreadsheet such that any one of the three columns can be recovered from the other two, yet no column can be recovered from any other single column?
 :::
 
-_{button.next-step} Continue_
+    div(id="editor1")
+
+
+_{button.next-step} Submit_
 
 ---
 
@@ -59,6 +62,12 @@ _{button.next-step} Continue_
 
 ---
 
+For typographical convenience, and for consistency with Python, we will often write vectors horizontally, like $[-2,0,1]$. This notation means the same thing as $\begin{bmatrix} -2 \\\\\\ 0 \\\\\\ 1 \end{bmatrix}$. 
+
+_{button.next-step} Continue_
+
+---
+
 We draw a vector in $\mathbb{R}^2$ as an arrow from one point to another so that the horizontal separation between the points is equal to the first component of the vector and the vertical separation between the points is equal to the second component. 
 
 _{button.next-step} Continue_
@@ -71,21 +80,19 @@ We define the **norm** $|\mathbf{v}|$ of a vector $\mathbf{v} \in \mathbb{R}^n$ 
 
 The fundamental vector operations are 
 
-<ol>
-<li> **Vector addition** (addition of two vectors), and 
-<li> **Scalar multiplication** (multiplication of a real number and a vector). 
-</ol>
-
-These operations are defined componentwise, and they have natural geometric interpretations: 
-
-<ol>
-<li> Summing vectors concatenates them tail-to-head, and 
-<li> Multiplying a vector by a positive real number $k$ preserves its direction and multiplies its norm by $k$. 
-</ol>
+    ol
+      li.md **Vector addition** (addition of two vectors), and 
+      li.md **Scalar multiplication** (multiplication of a real number and a vector). 
 
 _{button.next-step} Continue_
 
 ---
+
+These operations are defined componentwise, and they have simple geometric interpretations: 
+
+    ol
+      li.md Summing vectors concatenates them tail-to-head, and 
+      li.md Multiplying a vector by a positive real number $k$ preserves its direction and multiplies its norm by $k$. 
 
     .row.padded
       .grow
@@ -98,6 +105,10 @@ _{button.next-step} Continue_
           p.caption Scalar multiplication: $2[2,1] = [4,2]$
 
 <p></p>
+
+_{button.next-step} Continue_
+
+---
 
 Scalar multiplication is denoted symbolically by placing the scalar adjacent to the vector, and vector addition is denoted with "+" between two vectors. We use the usual notational conveniences from ordinary arithmetic, like writing $\mathbf{w}-\mathbf{v}$ as an abbreviation of $\mathbf{w}+(-1)\mathbf{v}$. 
 
@@ -144,7 +155,10 @@ Determine whether there exists a real number $r$ satisfying the vector equation
 
 :::
 
-_{button.next-step} Continue_
+    div(id="editor1")
+
+
+_{button.next-step} Submit_
 
 ---
 
@@ -160,7 +174,10 @@ _{button.next-step} Continue_
 Show that every nonzero vector $\mathbf{v}$ can be written as the product of a nonnegative real number $c$ and a unit vector $\mathbf{u}$. 
 :::
 
-_{button.next-step} Continue_
+    div(id="editor2")
+
+
+_{button.next-step} Submit_
 
 ---
 
@@ -177,7 +194,10 @@ _{button.next-step} Continue_
 Find a formula in terms of $\mathbf{u}$ and $\mathbf{v}$ which represents the vector from the head of $\mathbf{v}$ to the head of $\mathbf{u}$ when $\mathbf{u}$ and $\mathbf{v}$ are situated so that their tails coincide. 
 :::
 
-_{button.next-step} Continue_
+    div(id="editor3")
+
+
+_{button.next-step} Submit_
 
 ---
 
@@ -194,7 +214,10 @@ _{button.next-step} Continue_
 Solve for $\mathbf{u}$ in terms of $c$ and $\mathbf{v}$ in the equation $c \mathbf{u} + \mathbf{v} = \boldsymbol{0}$, assuming that $\mathbf{u}$ and $\mathbf{v}$ are vectors in $\mathbb{R}^n$ and $c$ is a nonzero real number. 
 :::
 
-_{button.next-step} Continue_
+    div(id="editor4")
+
+
+_{button.next-step} Submit_
 
 ---
 
@@ -225,13 +248,18 @@ A [**linear combination**](gloss:linearcombination) of a list of vectors $\mathb
 ::: .exercise
 **Exercise**  
 Suppose that $\mathbf{u} = [2,0]$ and $\mathbf{v} = [1,2]$. Draw the set of all points $(a,b)$ in $\mathbb{R}^2$ for which the vector $[a,b]$ can be written as an *integer* linear combination of $\mathbf{u}$ and $\mathbf{v}$. 
+
+Note: an integer linear combination is a linear combination where the weights are integers.
 :::
 
- _{button.next-step} Continue_
+    div(id="editor1")
+
+
+_{button.next-step} Submit_
  
  ---
 
-*Solution*.  The integer linear combinations of the two vectors form a lattice as shown. 
+*Solution*.  A bit of experimentation reveals that the integer linear combinations of these two vectors form a lattice as shown. 
 
     center: img(src="images/lattice.svg" width="400px")
  
@@ -273,20 +301,23 @@ The span of two vectors in $\mathbb{R}^2$
       .item.pill.bblue(data-error="plane") must be a plane, a line, or a point 
 
 :::
-
-_{button.next-step} Continue_
  
 ---
 
 *Solution*. The span of a list containing only the zero vector is just the origin. The span of a list containing a single vector $\mathbf{v}$ is a line through the origin, since $\alpha \mathbf{v}$ points in the same direction as $\mathbf{v}$ for any $\alpha \in \mathbb{R}$. The span of a list containing two non-parallel vectors $\mathbf{u}$ and $\mathbf{v}$ is all of $\mathbb{R}^2$, since the span consists of the union of all lines which run in the $\mathbf{u}$ direction and pass through any point in the span of $\{\mathbf{v}\}$. Including more vectors can't increase the span further, so these are the only possibilities. So the correct answer is (e). 
 
-The same reasoning implies that the span of a list of vectors in $\mathbb{R}^3$ must be either the origin, or a line or plane through the origin, or all of $\mathbb{R}^3$. So the answer is (d). 
+The same reasoning implies that the span of a list of vectors in $\mathbb{R}^3$ must be either the origin, or a line or plane through the origin, or all of $\mathbb{R}^3$. So the correct answer choice is the fourth one. 
+
+Check out the 3Blue1Brown video segment below for some helpful visualizations for spans of vectors in three-dimensional space.
+
+    center
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/k7RM-ot2NWY?start=358&end=495" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 _{button.next-step} Continue_
 
 ---
 
-The term [*span*](gloss:span) is closely related to *linear dependence*, which we will learn about in the next unit.
+[Span](gloss:span) is closely related to *linear dependence*, which we will discuss in the next unit.
 
 ---
 
@@ -299,7 +330,9 @@ _{button.next-step} Continue_
 
 ---
 
-A list of vectors which is not linearly independent is said to be **linearly independent**. In other words, a list of vectors is linearly independent if none of the vectors in the list can be written as a linear combination of the others. 
+A list of vectors which is not linearly dependent is said to be **linearly independent**. In other words, a list of vectors is linearly independent if [[none|at least one]] of the vectors in the list can be written as a linear combination of the others. 
+
+---
 
 ::: .example
 **Example**  
@@ -349,7 +382,10 @@ _{button.next-step} Continue_
 Explain geometrically why a list of three vectors in $\mathbb{R}^2$ is necessarily linearly dependent. 
 :::
 
-_{button.next-step} Continue_
+    div(id="editor1")
+
+
+_{button.next-step} Submit_
 
 ---
 
@@ -357,11 +393,11 @@ _{button.next-step} Continue_
 
 ---
 
-If the first two vectors point in the same direction, then the list is linearly dependent, since the second vector can be written as a constant multiple of the first vector plus zero times the third vector. If the first two vectors do not point in the same direction, then they span the whole plane. Therefore, the third vector must be in the span of the first two. 
-
-_{button.next-step} Continue_
+If the first two vectors point in the same direction, then the list is linearly [[dependent|independent]], since the second vector can be written as a constant multiple of the first vector plus zero times the third vector. If the first two vectors do not point in the same direction, then they span the whole plane. Therefore, the third vector must be in the span of the first two. 
 
 ---
+
+### Linear dependence lemma
 
 The definition of linear independence makes it seem as though there's quite a lot to check: if there *is* a vector in the list which can be written as a linear combination of some of the other ones, which one is it, and which other vectors are involved? In fact, the symmetry involved in linear relationships implies that we can put the vectors in any order we want and check progressively. Furthermore, for each vector, we only have to check for linear relationships involving vectors *earlier* in the list:
 
@@ -381,7 +417,7 @@ For the other direction, suppose that the list $\mathbf{v}\_1, \ldots, \mathbf{v
       |   \mathbf{v}_1 = c_2\mathbf{v}_2 + \cdots + c_n\mathbf{v}_n
       | \end{equation*}
       
-for some $c_2, \ldots, c_n$. If all of the weights are zero, then $\mathbf{v}_1$ is in the span of the preceding vectors. If at least one is nonzero, then let's define $k$ so that $c_k$ is the [[*last*|*first*]] of the nonzero $c$'s. Then we can rearrange the equation above to find that
+for some $c\_2, \ldots, c\_n$. If all of the weights are zero, then $\mathbf{v}\_1$ is zero and is therefore in the span of the empty list of vectors which precede it. If at least one is nonzero, then let's define $k$ so that $c\_k$ is the [[*last*|*first*]] of the nonzero $c$'s. Then we can rearrange the equation above to find that
  
     p
       | \begin{equation*}
@@ -403,31 +439,39 @@ Let's say that a linear combination of a list of vectors is **trivial** if all o
 Show that a list of vectors is linearly independent if and only if every nontrivial linear combination of the vectors is not equal to the zero vector.
 :::
 
+    div(id="editor2")
+    
+_{button.next-step} Submit_
+
+---
+
 *Solution*. Suppose that a list of vectors $\\{\mathbf{v}\_1, \ldots, \mathbf{v}\_n\\}$ is not linearly independent. Then one of the vectors, say the first one, is equal to some linear combination of the others: 
 
     p
       | \begin{equation*}
       |       \mathbf{v}_1 = c_2\mathbf{v}_2 + \cdots + c_n \mathbf{v}_n
-      |     \end{equation*}
+      | \end{equation*}
      
-Subtracting $\mathbf{v}\_1$ from both sides of this equation, we obtain a vanishing nontrivial linear combination of the $\mathbf{v}$'s. (If the vector known to be a linear combination of the others isn't $\mathbf{v}\_1$, we could have done the same thing with that one instead.) 
+Subtracting $\mathbf{v}\_1$ from both sides of this equation, we obtain a nontrivial linear combination of the $\mathbf{v}$'s which is equal to [[the zero vector|`v_1`]]. (If the vector known to be a linear combination of the others isn't $\mathbf{v}\_1$, we could have done the same thing with that one instead.) 
+
+---
 
 Conversely, suppose that there is a nontrivial linear combination of the $\mathbf{v}$'s which is equal to the zero vector: 
 
     p
       | \begin{equation*}
-      |       c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 +  \cdots c_n \mathbf{v}_n =
+      |  c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 +  \cdots c_n \mathbf{v}_n =
       |       \boldsymbol{0}.
-      |     \end{equation*}
+      | \end{equation*}
       
-At least one of the weights must be nonzero, so we can solve this equation for a least one of the vectors and thereby represent it as a linear combination of the other vectors. 
+At least one of the weights must be nonzero, so we can solve this equation for a least one of the vectors and thereby represent it as [[a linear combination|the span|linearly independent]] of the other vectors. 
 
 --- 
  
 > id: vector-spaces
 ## Vector Spaces
- 
-Spans of lists of vectors are so important that we give them a special name: a **vector space** is a nonempty set of vectors which is closed under the vector space operations. *Closed* in this context means that if two vectors in the set, the any linear combination of those vectors is also in the set. 
+
+Spans of lists of vectors are so important that we give them a special name: a **vector space** in $\mathbf{R}^n$ is a nonempty set of vectors in $\mathbb{R}^n$ which is closed under the vector space operations. *Closed* in this context means that if two vectors in the set, the any linear combination of those vectors is also in the set. 
 
 If $V$ and $W$ are vector spaces and $V \subset W$, then $V$ is called a **subspace** of $W$. 
 
@@ -447,9 +491,14 @@ _{button.next-step} Continue_
 ::: .exercise
 **Exercise**  
 Show that if $V$ and $W$ are vector spaces in $\mathbf{R}^n$, then $V \cap W$ is also a vector space.
+
+Hint: start by assuming that $\mathbf{x} \in V \cap W$ and $\mathbf{y} \in V \cap W$, and reason your way to the conclusion that $\mathbf{x} + \mathbf{y}$ is also in $V$. 
 :::
 
-_{button.next-step} Continue_
+    div(id="editor1")
+
+
+_{button.next-step} Submit_
 
 ---
 
@@ -460,6 +509,8 @@ _{button.next-step} Continue_
 If $\mathbf{x} \in V \cap W$ and $\mathbf{y} \in V \cap W$, then $\mathbf{x}$ and $\mathbf{y}$ are [[both|not]] in $V$. Since $V$ is a vector space, this means that $\mathbf{x} + \mathbf{y}$ [[is|is not]] in $V$. Similarly, $\mathbf{x} + \mathbf{y}$ is also in $W$. Therefore, $\mathbf{x} + \mathbf{y} \in V \cap W$, as desired. Similar reasoning applies to show closure with respect to [[multiplication by a scalar|subtraction]], concluding the proof.
 
 ---
+
+### Spanning lists
 
 A **spanning list** of a vector space $V$ is a list of vectors in $V$ whose span is equal to $V$. 
 
@@ -487,7 +538,7 @@ The list $\left\\{\begin{bmatrix}
       |   	\end{bmatrix} + (2y - x)\begin{bmatrix}
       |   	1 \\\ 
       |   	1
-      |   	\end{bmatrix} + 0 \begin{bmatrix} 7 \\\ 11 \end{bmatrix}
+      |   	\end{bmatrix} + 0 \begin{bmatrix} 7 \\\ 11 \end{bmatrix}.
       | \end{equation*}
 
 :::
@@ -510,6 +561,8 @@ Select the true statements.
 
 ---
 
+### Bases
+
 A linearly independent spanning list for a vector space $V$ is called a **basis** for $V$. 
 
 ::: .example
@@ -529,7 +582,11 @@ The list $\left\\{\begin{bmatrix}
   	\end{bmatrix} \right\\}$ is also a basis for $\mathbb{R}^2$. 
 :::
 
-A basis must balance two constraints: it must be long enough to span the space, and it must be short enough to avoid being linearly depndent. Reason geometrically to solve the following exercises.
+_{button.next-step} Continue_
+
+---
+
+A basis must balance two constraints: it must be long enough to span the space, and it must be short enough to avoid being linearly dependent. Reason geometrically to solve the following exercises.
 
 ::: .exercise
 **Exercise**  
@@ -550,9 +607,11 @@ As we will show later in this unit, the situation explored in the exercise above
       li.md The set containing only the zero vector has dimension [[0]]
 :::
 
+---
+
 ### Coordinates
 
-Bases provide a concrete and useful way to represent the vectors in a vector space. For example, consider a two-dimensional subspace $V$ of $\mathbf{R}^3$. Vectors in $V$ can be represented using their three components, but that representation does not capture any information about $V$. For example, perturbing the three components of a vector in $V$ may yield a vector which [[is not|is] in $V$.
+Bases provide a concrete and useful way to represent the vectors in a vector space. For example, consider a two-dimensional subspace $V$ of $\mathbf{R}^3$. Vectors in $V$ can be represented using their three components, but that representation does not capture any information about $V$. For example, perturbing the three components of a vector in $V$ may yield a vector which [[is not|is]] in $V$.
 
 ---
 
@@ -574,18 +633,26 @@ Consider the line in the plane which passes through $(0,0)$ and $(1,1)$. This ve
 For $1 \leq i \leq n$, let $\mathbf{e}\_i \in \mathbb{R}^n$ be a vector with $1$ in the $i$ th position and zeros elsewhere. Then $\\{\mathbf{e}\_1, \dots, \mathbf{e}\_n\\}$ is called the **standard basis** for $\mathbb{R}^n.$ The components of a vector in $\mathbb{R}^n$ coincide with its coordinates with respect to this basis. 
 :::
 
+_{button.next-step} Continue_
+
 ---
 
-The idea of vector space coordinates is fully general: Given a vector space $V$ and a basis of $V$, we can represent each vector in $V$ uniquely as a linear combination of the vectors in the basis. In other words, if a vector space $V$ has a basis $\mathcal{B} = \\{\mathbf{b}\_1, \dots \mathbf{b}\_n\\}$ and $\mathbf{v} \in V$, then there exists a unique $n$-tuple of real numbers $(v\_1, \dots, v\_n)$ such that 
+The idea of vector space coordinates is fully general: given a vector space $V$ and a basis of $V$, we can represent each vector in $V$ uniquely as a linear combination of the vectors in the basis. In other words, if a vector space $V$ has a basis $\mathcal{B} = \\{\mathbf{b}\_1, \dots \mathbf{b}\_n\\}$ and $\mathbf{v} \in V$, then there exists a unique $n$-tuple of real numbers $(v\_1, \dots, v\_n)$ such that 
 
     p
       | \begin{equation*}
       |     \mathbf{v} = v_1\mathbf{b}_1 + \cdots + v_n\mathbf{b}_n.
       |   \end{equation*}
       
- We call $(v\_1, \dots, v\_n)$ the **coordinates** of $\mathbf{v}$ with respect to $\mathcal{B}.$ 
+We call $(v\_1, \dots, v\_n)$ the **coordinates** of $\mathbf{v}$ with respect to $\mathcal{B}.$ 
  
- We need the assumption of [[the spanning property|linear independence]] to ensure that the desired linear combination exists, and we need the [[linear independence|spanning property]] assumption to ensure that the representation is unique. 
+_{button.next-step} Continue_
+ 
+---
+ 
+We need the assumption of [[the spanning property|linear independence]] to ensure that the desired linear combination exists, and we need the [[linear independence|spanning property]] assumption to ensure that the representation is unique. 
+
+---
 
 ::: .exercise
 **Exercise**  
@@ -614,6 +681,11 @@ The three coordinates are [[2]], [[2]], [[0]].
 
 :::
 
+    pre(data-executable)
+      | import numpy as np
+
+<p></p>
+
 ---
 
 *Solution*. We can calculate using NumPy as suggested: 
@@ -625,6 +697,8 @@ The three coordinates are [[2]], [[2]], [[0]].
       |               [1,-1,0]])
       | b = np.array([4,4,0])
       | np.linalg.solve(A,b)
+      
+<p></p>
 
 However, we can obtain the same result by inspection, noticing the relationship between the $[1,1]$ values at the beginning of the first two basis vectors and the $[4,4]$ result. 
 
@@ -634,10 +708,8 @@ _{button.next-step} Continue_
 
 ::: .exercise
 **Exercise**  
-Consider a basis $\mathcal{B} = \\{\mathbf{v}\_1, \ldots, \mathbf{v}\_5\\}$ of a five-dimensional vector space $V$. Suppose that $\mathbf{w}$ is in the span of $\\{$\mathbf{v}\_1, \ldots, \mathbf{v}\_4$\\}$. What is the fifth coordinate of $\mathbf{w}$ with respect to the basis $\mathcal{B}$? [[0]]
+Consider a basis $\mathcal{B} = \\{\mathbf{v}\_1, \ldots, \mathbf{v}\_5\\}$ of a five-dimensional vector space $V$. Suppose that $\mathbf{w}$ is in the span of $\\{\mathbf{v}\_1, \ldots, \mathbf{v}\_4\\}$. What is the fifth coordinate of $\mathbf{w}$ with respect to the basis $\mathcal{B}$? [[0]]
 :::
-
-_{button.next-step} Continue_
 
 ---
 
@@ -652,7 +724,10 @@ _{button.next-step} Continue_
 Consider a three-column spreadsheet of numerical data, with each entry in the third column computed to be the sum of the corresponding entries in the first two columns. Find a basis for the span of the three columns (assuming the first two columns are not multiples of one another), and find the coefficients all three columns with respect to this basis.
 :::
 
-_{button.next-step} Continue_
+    div(id="editor3")
+
+
+_{button.next-step} Submit_
 
 ---
 
@@ -664,7 +739,7 @@ _{button.next-step} Continue_
 
 ### Proof of the dimension theorem
 
-The **dimension theorem** says that every basis of a given vector space has the same length. The key step to showing the dimension theorem is the dimension lemma: 
+The **dimension theorem** says that every basis of a given vector space has the same length. The key step to establishing the dimension theorem is the dimension lemma: 
 
 ::: .theorem
 **Theorem** (dimension lemma)  
@@ -680,6 +755,8 @@ _{button.next-step} Continue_
 *Proof*. The following beautiful idea is presented in Sheldon Axler's book *Linear Algebra Done Right*. 
 
 Consider a linearly independent list $\mathbf{l}\_1, \ldots, \mathbf{l}\_m$ of vectors in $V$ and a spanning list $\mathbf{s}\_1, \ldots, \mathbf{s}\_n$ of $V$. Our goal is to show that there are [[at least|at most]] as many $\mathbf{s}$'s as $\mathbf{l}$'s. 
+
+---
 
 Starting from the spanning list 
 
@@ -713,7 +790,10 @@ We can continue in this way, adding the next $\mathbf{l}$ at the beginning of th
 Use the dimension lemma to show that all bases of a vector space $V$ have the same length. In other words, if $B\_1$ is a basis for $V$, and $B\_2$ is a basis for $V$, then the lengths of $B\_1$ and $B\_2$ are equal. 
 :::
 
-_{button.next-step} Continue_
+    div(id="editor4")
+
+
+_{button.next-step} Submit_
 
 ---
 
@@ -732,11 +812,16 @@ The following two exercises provide simple yet powerful tools for reasoning abou
 Show that any linearly independent list of vectors in a vector space $V\subset \mathbb{R}^n$ can be extended to form a basis of $V$, and show that any spanning list of $V$ can be trimmed to form a basis of $V$. 
 :::
 
-_{button.next-step} Continue_
+    div(id="editor5")
+
+
+_{button.next-step} Submit_
 
 ---
 
 *Solution*. Consider a linearly independent list $L$ of vectors in $V$. If it spans $V$, then it is already a [[basis|linearly independent list]]. If not, then there is a vector in $V$ which is not in the span of $L$. Appending this vector to our list, we obtain a list which is still [[linearly independent|spanning]] by the [linear dependence lemma](gloss:LDL). Continuing in this way, we will eventually get a linearly independent list which spans $V$ (the process can't go on forever since by the time the list has $n$ linearly independent vectors in it, it spans $\mathbb{R}^n$ and therefore also $V$). 
+
+---
 
 We can trim a list without changing its span by working through the list progressively and removing any vector which is in the [[span|list]] of the vectors preceding it. By the [linear dependence lemma](gloss:LDL), applying this procedure to a spanning list results in a linearly independent spanning list.
 
@@ -744,10 +829,10 @@ _{button.next-step} Continue_
 
 ---
 
-The following exercise tell us that if we start with a basis for the intersection of two vector spaces, and extend it separately to a basis for each of the vector spaces, then the compiled list of all of those basis vectors is still linearly independent.
+The following exercise tells us that if we start with a basis for the intersection of two vector spaces, and extend it separately to a basis for each of the vector spaces, then the compiled list of all of those basis vectors is still linearly independent.
 
 ::: .exercise
-**Exercise**  
+**Exercise**  (multiple extension principle)
 Suppose that $U$ and $V$ are vector spaces in $\mathbb{R}^n$. Suppose that $\\{\mathbf{u}\_1, \ldots, \mathbf{u}\_j\\}$ is a basis for $U \cap V$, that $\\{\mathbf{u}\_1, \ldots, \mathbf{u}\_k\\}$ is a basis for $U$, and that $\\{\mathbf{u}\_1, \ldots, \mathbf{u}\_j, \mathbf{v}\_1, \ldots,
   \mathbf{v}\_\ell\\}$ is a basis for $V$. Show that 
 
@@ -759,8 +844,17 @@ Suppose that $U$ and $V$ are vector spaces in $\mathbb{R}^n$. Suppose that $\\{\
  is a linearly independent list. 
 :::
 
+    div(id="editor6")
+    
+_{button.next-step} Submit_
 
-*Solution*. By the [linear dependence lemma](gloss:LDL), it suffices to check that no vector in the list is in the span of the vectors before it in the list. Since the first $k$ vectors form a basis for $U$, they are linearly independent, so none of these is in the span of the preceding vectors. Suppose that one of the $\mathbf{v}$'s is in the span of the preceding vectors, say 
+---
+
+*Solution*. By the [linear dependence lemma](gloss:LDL), it suffices to check that no vector in the list is in the span of the vectors before it in the list. Since the first $k$ vectors form a basis for $U$, they are linearly [[independent|dependent]]. Therefore, none of these is in the span of the preceding vectors.
+
+---
+
+Suppose that one of the $\mathbf{v}$'s is in the span of the preceding vectors, say 
 
     p
       | \begin{equation*}
@@ -768,15 +862,29 @@ Suppose that $U$ and $V$ are vector spaces in $\mathbb{R}^n$. Suppose that $\\{\
       |     c_k\mathbf{u}_k+ d_{1}\mathbf{v}_1 + d_{m-1} \mathbf{v}_{m-1}.
       |   \end{equation*}
       
-Consider the vector $\mathbf{v} = \mathbf{v}\_m - ( d\_{1}\mathbf{v}\_1 + d\_{m-1} \mathbf{v}\_{m-1}) = c\_{1}\mathbf{u}\_1 + c\_{2}\mathbf{u}\_{2} + \cdots + c\_k\mathbf{u}\_k$. This vector is in $V$, since $\mathbf{v}\_m - ( d\_{1}\mathbf{v}\_1 + d\_{m-1} \mathbf{v}\_{m-1})$ is a linear combination of vectors in $V$. But $\mathbf{v}$ is also in $U$ since $c\_{1}\mathbf{u}\_1 + c\_{2}\mathbf{u}\_{2} + \cdots + c\_k\mathbf{u}\_k$ is a linear combination of vectors in $U$. Therefore, $\mathbf{v} \in U \cap V$. But in that case, $\mathbf{v}$ would be in the span of $\\{\mathbf{u}\_1, \ldots \mathbf{u}\_j\\}$, which would mean that $\\{\mathbf{u}\_1, \ldots, \mathbf{u}\_j, \mathbf{v}\_1, \ldots, \mathbf{v}\_\ell\\}$ is not linearly independent. Since $\\{\mathbf{u}\_1, \ldots, \mathbf{u}\_j, \mathbf{v}\_1, \ldots, \mathbf{v}\_\ell\\}$ is a basis for $V$, we have reached a contradiction. Therefore, 
+Consider the vector $\mathbf{v} = \mathbf{v}\_m - ( d\_{1}\mathbf{v}\_1 + d\_{m-1} \mathbf{v}\_{m-1}) = c\_{1}\mathbf{u}\_1 + c\_{2}\mathbf{u}\_{2} + \cdots + c\_k\mathbf{u}\_k$. This vector is in $V$, since $\mathbf{v}\_m - ( d\_{1}\mathbf{v}\_1 + d\_{m-1} \mathbf{v}\_{m-1})$ is a linear combination of vectors in $V$. 
+
+_{button.next-step} Continue_
+
+---
+
+But $\mathbf{v}$ is also in $U$ since $c\_{1}\mathbf{u}\_1 + c\_{2}\mathbf{u}\_{2} + \cdots + c\_k\mathbf{u}\_k$ is a linear combination of vectors in $U$. Therefore, $\mathbf{v} \in U \cap V$. But in that case, $\mathbf{v}$ would be in the span of $\\{\mathbf{u}\_1, \ldots \mathbf{u}\_j\\}$, which would mean that $\\{\mathbf{u}\_1, \ldots, \mathbf{u}\_j, \mathbf{v}\_1, \ldots, \mathbf{v}\_\ell\\}$ [[is not|is]] linearly independent. 
+
+_{button.next-step} Continue_
+
+---
+
+Since $\\{\mathbf{u}\_1, \ldots, \mathbf{u}\_j, \mathbf{v}\_1, \ldots, \mathbf{v}\_\ell\\}$ is a basis for $V$, we have reached a contradiction. Therefore, we may conclude that
 
     p
       | \begin{equation*}
-      |     \{\mathbf{u}_1, \ldots, \mathbf{u}_k, \mathbf{v}_1, \ldots,
-      |     \mathbf{v}_\ell\}
-      |   \end{equation*}
+      |   \{\mathbf{u}_1, \ldots, \mathbf{u}_k, \mathbf{v}_1, \ldots,
+      |   \mathbf{v}_\ell\}
+      | \end{equation*}
 
-is linearly independent. 
+is linearly [[independent|dependent]]. 
+
+---
 
 ### Exercises
 
@@ -798,12 +906,21 @@ Hint: consider two two-dimensional spaces in $\mathbb{R}^3$: what are the possib
 
 :::
 
-*Solution*. Since $V \cap W\subset V$, the dimension of $V\cap W$ is no larger than 4. If $V \subset W$, then $V \cap W = V$, so the dimension of $V$ could be as large as 4. If $\\{\mathbf{v}\_1, \ldots, \mathbf{v}\_{10}\\}$ is a basis of $\mathbb{R}^{10}$, and $W$ is the span of $\\{\mathbf{v}\_1, \ldots, \mathbf{v}\_{8}\\}$ and $V$ is the span of $\\{\mathbf{v}\_1, \mathbf{v}\_2, \mathbf{v}\_3, \mathbf{v}\_9\\}$, then $V \cap W$ would be the span of $\\{\mathbf{v}\_1, \mathbf{v}\_2, \mathbf{v}\_3\\}$, so the dimension could also be 3. Likewise, the dimension of $V\cap W$ could be 2. 
+---
 
-However, the dimension of $V \cap W$ cannot be 1. To see this, assume that the dimension of $V \cap W$ is 1 and fix a basis $\\{\mathbf{v}\_1\\}$ for $V \cap W$ and extend it to a basis for $V$, and (separately) also extend it to a basis for $W$. By the [Extension Theorem](gloss:extensiontheorem), this would give us a total of $1 + 8 + 3 = 12$ linearly independent vectors in $\mathbb{R}^{10}$, which is impossible. Likewise, the dimension of $V \cap W$ cannot be zero. 
+*Solution*. Since $V \cap W\subset V$, the dimension of $V\cap W$ is no larger than [[4]]. If $V \subset W$, then $V \cap W = V$, so the dimension of $V$ could be as large as 4. If $\\{\mathbf{v}\_1, \ldots, \mathbf{v}\_{10}\\}$ is a basis of $\mathbb{R}^{10}$, and $W$ is the span of $\\{\mathbf{v}\_1, \ldots, \mathbf{v}\_{8}\\}$ and $V$ is the span of $\\{\mathbf{v}\_1, \mathbf{v}\_2, \mathbf{v}\_3, \mathbf{v}\_9\\}$, then $V \cap W$ would be the span of $\\{\mathbf{v}\_1, \mathbf{v}\_2, \mathbf{v}\_3\\}$, so the dimension could also be 3. Likewise, the dimension of $V\cap W$ could be 2. 
+
+---
+
+However, the dimension of $V \cap W$ cannot be 1. To see this, assume that the dimension of $V \cap W$ is 1 and fix a basis $\\{\mathbf{v}\_1\\}$ for $V \cap W$ and extend it to a basis for $V$, and (separately) also extend it to a basis for $W$. By the [multiple extension principle](gloss:multiple-extension), this would give us a total of $1 + 8 + 3 = 12$ linearly independent vectors in $\mathbb{R}^{10}$, which is impossible. Likewise, the dimension of $V \cap W$ cannot be zero. 
+
+---
 
 So, the possible values for the dimension of $V \cap W$ are 2, 3, and 4. 
 
+_{button.next-step} Continue_
+
+---
 
 ::: .exercise
 **Exercise**  
@@ -829,7 +946,7 @@ Hint: for part (b): _{code.language-python}np.random.randint(0,2,(5,7))_ generat
     pre(data-executable)
       | import numpy as np
       
-_{button.next-step} Continue_
+<p></p>
 
 ---
 
@@ -845,6 +962,10 @@ _{button.next-step} Continue_
 <p></p>
 
 we get a set containing only _{code.language-python}5_. Therefore, five random vectors in $\mathbb{R}^7$ with entries selected uniformly from $[0,1]$ are always or nearly always linearly independent. So the first answer is correct. 
+
+_{button.next-step} Continue_
+
+---
 
 If we run
 
@@ -868,6 +989,10 @@ _{button.next-step} Continue_
 ---
 
 A **linear transformation** $L$ is a function from one vector space to another which satisfies $L(\alpha \mathbf{v} + \beta \mathbf{w}) = \alpha L(\mathbf{v}) + \beta L(\mathbf{w})$. Geometrically, these are "flat maps": a function is linear if and only if it maps equally spaced lines to equally spaced lines or points. 
+
+_{button.next-step} Continue_
+
+---
 
 ::: .example
 **Example**  
@@ -913,9 +1038,21 @@ _{button.next-step} Continue_
 
 ---
 
-Many fundamental geometric transformations are linear. The figure below illustrates several linear transformations (as well as one nonlinear one) from the plane to the plane. The leftmost column shows a square grid of points, and the rightmost column shows the images of those points. The columns in between show each point somewhere along the path from its original location in the domain to its final location in the codomain, to help you get a feel for which points go where.
+Many fundamental geometric transformations are linear. The figure below illustrates several linear transformations (as well as one nonlinear one, for comparison) from the plane to the plane. The leftmost column shows a square grid of points, and the rightmost column shows the images of those points. The other columns show each point somewhere along the path from its original location in the domain to its final location in the codomain, to help you get a sense of which points go where.
 
     center: img(src="images/transformations.svg")
+
+_{button.next-step} Continue_
+
+---
+
+This 3Blue1Brown video provides some helpful animated illustrations of linear transformations: 
+
+    center: <iframe width="560" height="315" src="https://www.youtube.com/embed/kYB8IZa5AuE?start=159&end=211" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+_{button.next-step} Continue_
+
+---
 
 ### Rank
 
@@ -926,10 +1063,16 @@ The **rank** of a linear transformation from one vector space to another is the 
 If $L\left(\begin{bmatrix} x \\\\\\ y \\\\\\ z \end{bmatrix}\right) = \begin{bmatrix} z+y \\\\\\ z-y \\\\\\ 0 \end{bmatrix}$, then the rank of $L$ is 2, since its range is the $xy$-plane in $\mathbb{R}^3$. 
 :::
 
+_{button.next-step} Continue_
+
+---
+
 ::: .exercise
 **Exercise**  
 Find the rank of the linear transformation $L$ which maps each vector $[x,y]$ to the closest point $[a,2a]$ on the line $y = 2x$. The rank is [[1]]
 :::
+
+---
 
 *Solution*. The range of $L$ is clearly the line $y = 2x$, since every point in the plane maps to a point on this line, and every point on the line is the image under $L$ of infinitely many points in the plane (all of the points on the line [[orthogonal|parallel]] to $y=2x$ through that point). Since a line is a one-dimensional vector space, the rank is $\boxed{1}$.
 
@@ -949,6 +1092,8 @@ What are the ranks of the five transformations illustrated above?
       li.md: The rank of the projection is [[1]].
       
 :::
+
+---
 
 ### Null space
 
@@ -975,6 +1120,12 @@ Suppose that $V$ and $W$ are vector spaces and that $L\_1$ and $L\_2$ are linear
   L\_2(\mathbf{b})$ for all $\mathbf{b}\in \mathcal{B}$. Show that $L\_1(\mathbf{v}) = L\_2(\mathbf{v})$ for all $\mathbf{v} \in V$. 
 :::
 
+    div(id="editor1")
+
+_{button.next-step} Submit_
+
+---
+
 *Solution*. Let $\mathbf{v} \in V$ be an arbitrary vector. Since $\mathcal{B}$ is a basis, we can find coefficients $c\_1, \cdots, c\_{n} \in \mathbb{R}$ such that $\mathbf{v} = c\_{1}\mathbf{b}\_1 + \cdots + c\_{n}\mathbf{b}\_n$. Since $L\_1$ and $L\_2$ are linear, we have
 
     p
@@ -986,6 +1137,9 @@ Suppose that $V$ and $W$ are vector spaces and that $L\_1$ and $L\_2$ are linear
       |  &= L_{2}(\mathbf{v})
       | \end{align*}
 
+_{button.next-step} Continue_
+
+---
 
 ::: .exercise
 **Exercise**  
@@ -994,13 +1148,21 @@ What is the dimension of the null space of the linear transformation $L([x,y,z])
 The dimension of the null space is [[1]] and the rank is [[2]].
 :::
 
+    div(id="editor2")
+
+_{button.next-step} Submit_
+
 *Solution*. To find the dimension of the nullspace, let us first describe it explicitly. $L(x,y,z) = (y,z,0) = 0$ when $y = z= 0$, regardless of what $x$ is. Thus the nullspace is $\\{[x,0,0] \mid x \in \mathbb{R}\\}$, which is just a line with basis vector $[1,0,0]$. Thus, the dimension of the nullspace is $1$. The range of $L$ is the $xy$ plane, which has dimension $\boxed{2}$. 
 
 _{button.next-step} Continue_
 
 ---
 
-We call the dimension of the null space of a linear transformation the **nullity** of the transformation. In the previous exercise, the rank and the nullity of $L$ add to [[3]], which is the dimension of the codomain of the transformation. This is true in general: if you want a transformation to map an extra dimension's worth of vectors to the zero vector, you also have to decrease the rank by 1. 
+We call the dimension of the null space of a linear transformation the **nullity** of the transformation. In the previous exercise, the rank and the nullity of $L$ add to [[3]], which is the dimension of the domain of the transformation. This is true in general: the rank plus the nullity of the zero transformation from $V$ to $W$ sum to the dimension of $V$. From there, if you modify the transformation so that it maps one fewer dimension's worth of vectors fewer to the zero vector, its rank goes up by 1 as well. 
+
+_{button.next-step} Continue_
+
+---
 
 ::: .theo
 **Theorem** (Rank-nullity theorem) 
@@ -1053,9 +1215,9 @@ To see that $\\{L(\mathbf{v}\_{k+1}), \ldots, L(\mathbf{v}\_n)\\}$ [[spans|is sp
       |     L(c_{k+1}\mathbf{v}_{k+1} + \cdots + c_n \mathbf{v}_n),
       | \end{equation*}
       
- by linearity of $L$. This shows that $\mathbf{w}$ is in the [[span|range]] of the vectors $\\{L(\mathbf{v}\_{k+1}), \ldots, L(\mathbf{v}\_n)\\}$. 
+by linearity of $L$. This shows that $\mathbf{w}$ is in the [[span|range]] of the vectors $\\{L(\mathbf{v}\_{k+1}), \ldots, L(\mathbf{v}\_n)\\}$. 
  
- Since the list $\\{L(\mathbf{v}\_{k+1}), \ldots, L(\mathbf{v}\_n)\\}$ spans the range of $L$ and is linearly independent, it is a [[basis]] of the range of $L$. Therefore, the dimension of the range of $L$ is $n-k$, and the rank of $L$ plus the nullity of $L$ is $(n-k)+k = n$. 
+Since the list $\\{L(\mathbf{v}\_{k+1}), \ldots, L(\mathbf{v}\_n)\\}$ spans the range of $L$ and is linearly independent, it is a [[basis]] of the range of $L$. Therefore, the dimension of the range of $L$ is $n-k$, and the rank of $L$ plus the nullity of $L$ is $(n-k)+k = n$. 
   
 --- 
 
@@ -1065,6 +1227,10 @@ Suppose you're designing an app that recommends cars. For every person in your d
 
 After some time, you find that storing all twenty variables takes up too much space in your database. Instead, you decide to take those twenty variables and apply a linear aggregate score function $S: \mathbb{R}^{20} \to \mathbb{R}^{3}$, with the three output components corresponding to health, personality, and finances. You also compute a linear map $R: \mathbb{R}^{3} \to \mathbb{R}^{10}$ that takes in these three aggregate scores and returns a vector of recommendation values. The total recommendation system is the composition $R \circ S: \mathbb{R}^{20} \to \mathbb{R}^{10}$. What is the maximum possible rank of $R \circ S$? What does this mean for the complexity of this recommendation system? 
 :::
+
+    div(id="editor3")
+
+_{button.next-step} Submit_
 
 *Solution*. The image of the transformation $R \circ S: \mathbb{R}^{20} \to \mathbb{R}^{10}$ is contained in the image of the transformation $R:\mathbb{R}^{3} \to \mathbb{R}^{10}$. As a result, the rank of $R \circ S$ is at most the rank of $S$, which is at most three. By reducing your twenty basic variables to three combined scores, your recommendation system only has three degrees of freedom, and can therefore only distinguish customers along three axes. 
 
@@ -1115,7 +1281,9 @@ We define **matrix addition** for two $m\times n$ matrices $A$ and $B$ entrywise
 Likewise, the product of a number $c$ and an $m\times n$ matrix $A$ is defined to be the $m\times n$ matrix each of whose entries is $c$ times the corresponding entry of $A$. 
 :::
 
- 
+_{button.next-step} Continue_
+
+---
 
 ::: .exercise
 **Exercise**  
@@ -1199,7 +1367,7 @@ If $A = \begin{bmatrix}
   = \begin{bmatrix}
     c \\\\\\
     d
-  \end{bmatrix}$ where $a =$ [[2]], $b = $ [[3]], $c = $ [[5]], and $d = $ [[2]]. 
+  \end{bmatrix}$ where $a =$ [[2]], $b = $ [[3]], $c = $ [[5]], and $d = $ [[3]]. 
 :::
 
 ---
@@ -1252,7 +1420,10 @@ With this definition of $A$, we have that $A\mathbf{e}\_1$ [[is equal to|is not 
 Find the matrix corresponding to the linear transformation $T([x,y,z]) = [z,x,y]$. 
 :::
 
-_{button.next-step} Continue_
+    div(id="editor1")
+
+
+_{button.next-step} Submit_
 
 ---
 
@@ -1276,9 +1447,11 @@ _{button.next-step} Continue_
 Suppose that $A$ is an $m\times n$ matrix and $\mathbf{b}$ is a vector in $\mathbb{R}^m$ with the property that the equation $A\mathbf{x} = \mathbf{b}$ has at least one solution $\mathbf{x} \in \mathbb{R}^n$. Show that the solution is unique if and only the columns of $A$ are linearly independent. 
 :::
 
-The intuition is that $\mathbf{x}$ provides a recipe for how much of each column of $A$ to use to get $\mathbf{b}$. If the columns of $A$ are linearly dependent, then we can swap out a unit of one of the vectors for some combination of others, making the solution nonunique. 
+The intuition is that $\mathbf{x}$ provides a recipe for how much of each column of $A$ to use to get $\mathbf{b}$. If the columns of $A$ are linearly dependent, then we can swap out a unit of one of the vectors for some combination of others. This swappability shows that the solution is nonunique. 
 
-_{button.next-step} Continue_
+    div(id="editor2")
+
+_{button.next-step} Submit_
 
 ---
 
@@ -1294,9 +1467,11 @@ _{button.next-step} Continue_
  
  _{button.next-step} Continue_
  
- ---
+---
 
 Conversely, if there are distinct solutions $\mathbf{x}\_1$ and $\mathbf{x}\_2$, then $A(\mathbf{x}\_2 - \mathbf{x}\_1) = $ [[0]]. Therefore, the components of $\mathbf{x}\_2 - \mathbf{x}\_1$ provide the weights for a linear combination of the [[columns|rows]] of $A$ which is equal to the zero vector.
+
+---
 
 ### Matrix multiplication
 
@@ -1306,6 +1481,10 @@ With the perspective that matrices should represent linear transformations, it m
 **Definition** (matrix multiplication)  
 If $A$ is an $m\times n$ matrix and $B$ is an $n\times p$ matrix, then $AB$ is defined to be the matrix for which $(AB)(\mathbf{x}) = A(B\mathbf{x})$ for all $\mathbf{x} \in \mathbb{R}^p$. 
 :::
+
+_{button.next-step} Continue_
+
+---
 
 This definition specifies the matrix product of two matrices, but it doesn't give us an algorithm for calculating it. Let's work that out in the context of a specific example:
 
@@ -1368,7 +1547,7 @@ Then, by linearity, we have
       | & = C\mathbf{x}
       | \end{align*}
  
-This demonstrates that $(AB)\mathbf{x}$ is equal to $C\mathbf{x}$ for the matrix $C$ as described in the problem. 
+This demonstrates that $(AB)\mathbf{x}$ is equal to $C\mathbf{x}$ for the matrix $C$ described in the problem. 
 
 _{button.next-step} Continue_
 
@@ -1388,7 +1567,7 @@ _{button.next-step} Continue_
 
 ---
 
-### Invertible matrix theorem
+### The invertible matrix theorem
 
 The range or null space of a matrix $A$ is defined to be the range or null space of the corresponding linear transformation $\mathbf{x}\mapsto A\mathbf{x}$. 
 
@@ -1397,7 +1576,10 @@ The range or null space of a matrix $A$ is defined to be the range or null space
 Show that a matrix represents an injective transformation if and only if its null space is $\\{\boldsymbol{0}\\}$. 
 :::
 
-_{button.next-step} Continue_
+    div(id="editor3")
+
+
+_{button.next-step} Submit_
 
 ---
 
@@ -1428,9 +1610,11 @@ For a matrix which is **square** (meaning that it represents a transformation fr
 ::: .theorem
 **Theorem** (Invertible matrix theorem)  
 Suppose that $A$ is an $n\times n$ matrix. Then the following are equivalent (that is, for a given matrix they are either all true or all false). 
-* The transformation $\mathbf{x}\mapsto A\mathbf{x}$ from $\mathbb{R}^n$ to $\mathbb{R}^n$ is bijective. 
-* The range of $A$ is $\mathbb{R}^n$. 
-* The null space of $A$ is $\\{\boldsymbol{0}\\}$.
+
+    ol
+      li.md The transformation $\mathbf{x}\mapsto A\mathbf{x}$ from $\mathbb{R}^n$ to $\mathbb{R}^n$ is bijective. 
+      li.md The range of $A$ is $\mathbb{R}^n$. 
+      li.md The null space of $A$ is $\\{\boldsymbol{0}\\}$.
 
 :::
 
@@ -1438,9 +1622,23 @@ In other words, for a linear transformation from $\mathbb{R}^n$ to $\mathbb{R}^n
 
 *Proof*. We begin by showing that (ii) and (iii) are equivalent. If the columns of $A$ are linearly dependent, then the range of $A$ is spanned by fewer than $n$ vectors. Therefore, if the rank of $A$ is equal to $n$, then the columns of $A$ are linearly independent. This implies that a linear combination of the columns is equal to the zero vector only if the weights are all zero. In other words, the only solution of the equation $A\mathbf{x} = \boldsymbol{0}$ is the zero vector. In other words, the null space of $A$ is $\\{\boldsymbol{0}\\}$. 
 
-Conversely, if the null space of $A$ is $\\{\boldsymbol{0}\\}$, then the columns of $A$ are linearly independent, and the rank of $A$ is therefore equal to $n$. 
+_{button.next-step} Continue_
+
+---
+
+Conversely, if the null space of $A$ is $\\{\boldsymbol{0}\\}$, then the columns of $A$ are linearly [[independent|dependent]], and the rank of $A$ is therefore equal to $n$. 
+
+_{button.next-step} Continue_
+
+---
 
 By definition of bijectivity, (ii) and (iii) together imply (i), and (i) implies (ii) and (iii). Therefore, the three statements are equivalent. 
+
+_{button.next-step} Continue_
+
+---
+
+### The inverse matrix
 
 If $A$ is invertible, then the inverse function is also a linear transformation: 
 
@@ -1449,7 +1647,9 @@ If $A$ is invertible, then the inverse function is also a linear transformation:
 Show that if $L$ is a bijective linear transformation, then the inverse function $L^{-1}$ is also linear. 
 :::
 
- 
+    div(id="editor4")
+
+_{button.next-step} Submit_
 
 *Solution*. Consider the linearity equation $L(a\mathbf{x} + b\mathbf{y}) = aL(\mathbf{x}) + bL(\mathbf{y})$ and two vectors $\mathbf{v} = L(\mathbf{x})$ and $\mathbf{w} = L(\mathbf{y})$ in the range of $L$. Substitute $\mathbf{x} = L^{-1}(\mathbf{v})$ and $\mathbf{x} = L^{-1}(\mathbf{v})$ into the linearity equation for $L$ to obtain 
 
@@ -1467,7 +1667,10 @@ which implies that
       |   b L^{-1}(\mathbf{w}) = L^{-1}(a\mathbf{v} + b\mathbf{w}).
       | \end{equation*}
 
-_{button.next-step} Continue_
+    div(id="editor5")
+
+
+_{button.next-step} Submit_
 
 ---
 
@@ -1487,7 +1690,7 @@ then
 
     p
       | \begin{equation*}
-      |   	BA &= \begin{bmatrix}
+      |   	BA = \begin{bmatrix}
       |   	1 & -1 \\\ 
       |   	-1 & 2
       |   	\end{bmatrix}
@@ -1505,7 +1708,9 @@ Therefore $B(A\mathbf{x}) = (BA)\mathbf{x} = \mathbf{x}$ for all $\mathbf{x} \in
  
 :::
 
- 
+_{button.next-step} Continue_
+
+---
 
 ::: .exercise
 **Exercise**  
@@ -1525,7 +1730,7 @@ Use the above example to write $(AB)^{-1}$ in terms of $A$ and $B$, when $A$ and
 
 :::
 
- 
+---
 
 *Solution*. The correct answer is (b). The transformation in (a) maps $
 T\left(
@@ -1555,7 +1760,9 @@ Based on the above observations, can the equation $A\mathbf{x} = \mathbf{b}$ hav
 
 :::
 
- 
+    div(id="editor6")
+
+_{button.next-step} Submit_
 
 *Solution*.  
 
@@ -1658,6 +1865,11 @@ Show that $|\mathbf{a} +\mathbf{b}|^2 =
     ^2$ for all vectors $\mathbf{a}$ and $\mathbf{b}$ in $\mathbb{R}^n$. 
 :::
 
+    div(id="editor1")
+
+_{button.next-step} Submit_
+
+---
 
 *Solution*. Using linearity of the dot product, we get 
 
@@ -1668,7 +1880,11 @@ Show that $|\mathbf{a} +\mathbf{b}|^2 =
       | 	&= |\mathbf{a}|^2 + 2\mathbf{a}\cdot\mathbf{b} + |\mathbf{b}|^2
       | \end{align*}
       
- as required. 
+as required. 
+
+_{button.next-step} Continue_
+
+---
 
 The second connection between geometry and the dot product pertains to *angle*. If $\theta$ is the angle between two vectors $\mathbf{x}$ and $\mathbf{y}$ (when they are situated so that their tails coincide), then 
 
@@ -1679,6 +1895,8 @@ The second connection between geometry and the dot product pertains to *angle*. 
       | \end{equation*}
  
 It follows that $\mathbf{x} \cdot \mathbf{y}  = 0$ if and only if $\mathbf{x}$ and $\mathbf{y}$ meet at a [[right|acute|obtuse|zero]] angle. We say that two vectors $\mathbf{x}$ and $\mathbf{y}$ which satisfy $\mathbf{x} \cdot \mathbf{y}  = 0$ are **orthogonal**. 
+
+---
 
 ::: .exercise
 **Exercise**  
@@ -1705,13 +1923,19 @@ is [[0.647±0.02]].
 
 *Solution*. Listing the words in the order *the, in, rain, Spain, falls, mainly, plain, lane, pain, is, a*, the two vectorized word counts are $[2,2,1,1,1,1,1,0,0,0,0]$ and $[1,1,0,1,0,1,1,1,1,1,1]$. Substituting into the definition of $S$, we get a similarity of approximately 0.647. 
 
+_{button.next-step} Continue_
+
+---
 
 ::: .exercise
 **Exercise**  
 Let $\mathbf{v}\_1, \dots, \mathbf{v}\_n$ be a list of orthogonal non-zero vectors, that is, for all $i, j \in \\{1, \dots, n\\},$ suppose that $\mathbf{v}\_i \cdot \mathbf{v}\_j = 0$ whenever $i \neq j$. Show that this list is linearly independent. 
 :::
 
-_{button.next-step} Continue_
+    div(id="editor2")
+
+
+_{button.next-step} Submit_
 
 ---
 
@@ -1721,6 +1945,8 @@ _{button.next-step} Continue_
       | \begin{equation*}
       |     \mathbf{v}_1 = c_2\mathbf{v}_2 + \cdots + c_n\mathbf{v}_n.
       | \end{equation*}
+
+---
       
 Then
 
@@ -1731,11 +1957,9 @@ Then
       | 	& = c_2|\mathbf{v}_2|^2.
       | \end{align*}
       
-Since $|\mathbf{v}\_2|^2 = 1$, this implies that $c\_2$ is zero. Repeating this for all vectors $\mathbf{v}\_3, \dots, \mathbf{v}\_n$ we see that $c\_2=c\_3 = \cdots = c\_n = 0$. Thus $\mathbf{v}\_1$ is also zero (since it's a linear combination of the other vectors, with all zero weights), and that contradicts $|\mathbf{v}\_1|^2 = 1$. 
+Since $|\mathbf{v}\_2|^2 = 1$, this implies that $c\_2$ is zero. Repeating this for all vectors $\mathbf{v}\_3, \dots, \mathbf{v}\_n$ we see that $c\_2=c\_3 = \cdots = c\_n = 0$. Thus $\mathbf{v}\_1$ is also zero (since it's a linear combination of the other vectors, with all zero weights), and that contradicts the fact that $|\mathbf{v}\_1|^2 = $ [[1]]. 
 
 The same reasoning tells us that none of the vectors in the list can be equal to a linear combination of the others. Therefore the vectors must be linearly [[independent|dependent]]. 
-
-_{button.next-step} Continue_
 
 ---
 
@@ -1783,18 +2007,22 @@ A **block matrix** is a matrix defined using smaller matrices which are called *
       |   A &= \begin{bmatrix}
       |     2 & 4 & 7 & 6 \\\ 
       |     5 & 2 & 4 & 5
-      |   \end{bmatrix}
+      |   \end{bmatrix} \\\\ 
       |   B = \begin{bmatrix}
       |     1 & 3 \\\ 
       |     0 & 2
-      |   \end{bmatrix}
+      |   \end{bmatrix} \\\\ 
       |   C = \begin{bmatrix}
       |     3 & 0 & 1 & 7 
-      |   \end{bmatrix}
+      |   \end{bmatrix} \\\\ 
       |   B = \begin{bmatrix}
       |     6 & 4
       |   \end{bmatrix}
       | \end{align*}
+
+_{button.next-step} Continue_
+
+---
 
 Then the block matrix $\begin{bmatrix} A & B \\\\\\ C & D \end{bmatrix}$ defined in terms of the blocks $A$, $B$, $C$, and $D$ is
 
@@ -1810,6 +2038,10 @@ Then the block matrix $\begin{bmatrix} A & B \\\\\\ C & D \end{bmatrix}$ defined
       |   \end{bmatrix}.
       | \end{equation*}
 
+_{button.next-step} Continue_
+
+---
+
 The advantage of writing a matrix in block form is that we can formally carry out the matrix multiplication dot formula, treating the blocks as matrix entries, and we get the correct result (in block form). For example, 
 
     p
@@ -1822,6 +2054,10 @@ The advantage of writing a matrix in block form is that we can formally carry ou
       |   \end{bmatrix}, 
 
 if $\begin{bmatrix} A & B \\\\\\ C & D \end{bmatrix}$ and $\begin{bmatrix} E & F \\\\\\ G & H \end{bmatrix}$ are block matrices with blocks $A$, $B$, $C$, $D$, $E$, $F$, $G$, blocks $H$. We call this the **block matrix product formula**.
+
+_{button.next-step} Continue_
+
+---
 
 ::: .exercise
 **Exercise**  
@@ -1843,6 +2079,11 @@ Verify the matrix product block formula above with
       |   \end{bmatrix}
       | \end{align*}
 :::
+
+    pre(data-executable)
+      | 
+
+<p></p>
 
 _{button.next-step} Continue_
 
@@ -1872,12 +2113,20 @@ while
       |     91 & 41 & 30 
       |   \end{bmatrix}. 
       
-So the block matrix product formula checks out for this example. 
+So the block matrix product formula checks out. 
+
+_{button.next-step} Continue_
+
+---
 
 ::: .exercise
 **Exercise**  
 Show that if $A$ is a matrix whose columns are $\mathbf{a}\_1, \ldots,  \mathbf{a}\_n$ and $B$ is a matrix whose rows are $\mathbf{b}\_1', \ldots, \mathbf{b}\_n'$, then $AB = \mathbf{a}\_1\mathbf{b}\_1' + \mathbf{a}\_2\mathbf{b}\_2' + \cdots + \mathbf{a}\_n\mathbf{b}\_n'$
 :::
+
+    div(id="editor3")
+
+_{button.next-step} Submit_
 
 ---
 
@@ -1889,6 +2138,10 @@ Show that if $A$ is a matrix whose columns are $\mathbf{a}\_1, \ldots,  \mathbf{
 The dot product gives us a compact way to express the formula for an entry of a matrix product: to obtain the $(i,j)$th entry of a matrix product $AB$, we dot the $i$th row of $A$ and the $j$th column of $B$. 
 
 However, the matrix product by itself is not quite flexible enough to handle a common use case: suppose we have two matrices $A$ and $B$ which contain tabular data stored in the same format. For example, suppose that the columns of $A$ store the vectorized word counts for a series of emails sent from Alice, while $B$ stores vectorized word counts for a series of emails sent from Bob. If we want to calculate the similarity of each of Alice's email to each of Bob's emails, then we want to dot the *columns* of $A$—not its rows—with the columns of $B$. 
+
+_{button.next-step} Continue_
+
+---
 
 So we define the **transpose** $A'$ of a matrix $A$ to be the matrix which results from switching the rows and columns of $A$. 
 
@@ -1910,7 +2163,15 @@ If $A = \begin{bmatrix}
   \end{bmatrix}.$
 :::
 
+_{button.next-step} Continue_
+
+---
+
 With this definition in hand, we can write the matrix whose entries are the dot products of columns of $A$ and $B$ as $A' B$. 
+
+_{button.next-step} Continue_
+
+---
 
 ### Transpose properties
 
@@ -1928,8 +2189,12 @@ Confirm your conjecture numerically in Python with some random matrices. You can
     pre(data-executable)
       | import numpy as np
       | 
-      
----      
+
+    div(id="editor5")
+
+_{button.next-step} Submit_
+
+---
 
 *Solution*. Since $AB$ is an $m \times p$ matrix, the matrix $(AB)'$ is $p \times m$. 
  
@@ -1942,7 +2207,7 @@ We see that the only matrix product that is always defined, and in fact gives th
     p
       | \begin{equation*}(AB)' = B' A'\end{equation*}
       
- in general. 
+in general. 
 
 The following block of code checks the equation for a particular random example. 
 
@@ -1969,11 +2234,13 @@ In some applications, a matrix will have the property that its $(i,j)$th entry i
 If $A$ is an $n\times n$ matrix satisfying the equation $A = A'$, we say that $A$ is **symmetric**. 
 :::
 
+_{button.next-step} Continue_
+
+---
 
 ::: .exercise
 **Exercise**  
-Suppose that $A$ is a symmetric matrix, $B$ is a matrix, and $c
-    \in  \mathbb{R}$. Which of the following is necessarily equal to $(c^2 (A+B)' + A)'$? 
+Suppose that $A$ is a symmetric matrix, $B$ is a matrix, and $c \in  \mathbb{R}$. Which of the following is necessarily equal to $(c^2 (A+B)' + A)'$? 
     
     x-picker.list
       .item.pill.bblue  $c^2 A' + B$
@@ -1982,9 +2249,7 @@ Suppose that $A$ is a symmetric matrix, $B$ is a matrix, and $c
       .item.pill.bblue  $(c^2 - 1) A + B'$
       .item.pill.bblue  $(c^2 + 1) A + c^2 B'$
 
-
 :::
-
 
 *Solution*.  We have
 
@@ -2005,6 +2270,10 @@ _{button.next-step} Continue_
 ---
 
 In the case where $A$ is a $n \times 1$ matrix and $B$ is an $n\times 1$ for some $n$, then $A' B$ is a $1 \times 1$ matrix, which we may think of as just a number. This means that if $\mathbf{x}$ and $\mathbf{y}$ are vectors in $\mathbb{R}^n$ then the dot product $\mathbf{x} \cdot \mathbf{y}$ may be written as $\mathbf{x}' \mathbf{y}$. This representation can be useful for manipulating expressions involving dot products. 
+
+_{button.next-step} Continue_
+
+---
  
 ::: .exercise
 **Exercise**  
@@ -2015,8 +2284,7 @@ Show that
       | 	\mathbf{u} \cdot (A\mathbf{v}) = (A'\mathbf{u})\cdot \mathbf{v}
       | \end{equation*}
       
-      
- for all $m\times n$ matrices $A$ and all vectors $\mathbf{u} \in
+for all $m\times n$ matrices $A$ and all vectors $\mathbf{u} \in
 	\mathbb{R}^m$ and $\mathbf{v} \in \mathbb{R}^n$. 
 :::
 
@@ -2031,7 +2299,6 @@ Show that
       | 		&= \mathbf{u} \cdot \left(A\mathbf{v}\right).
       | 	\end{align*}
 
-
 In other words, we may move a matrix which is pre-multiplying one of the vectors in a dot product to the other vector, at the cost of taking its transpose. Let's look at one application of this property whose importance will be explored in subsequent sections.
 
 ::: .exercise
@@ -2039,7 +2306,11 @@ In other words, we may move a matrix which is pre-multiplying one of the vectors
 Show that $\mathbf{x}\cdot (A' A\mathbf{x}) \geq 0$ for all $m\times n$ matrices $A$ and all $\mathbf{x} \in \mathbb{R}^n$. 
 :::
 
- 
+    div(id="editor6")
+
+_{button.next-step} Submit_
+
+---
 
 *Solution*. We have 
 
@@ -2057,16 +2328,18 @@ Show that $\mathbf{x}\cdot (A' A\mathbf{x}) \geq 0$ for all $m\times n$ matrices
 > id: orthogonality
 ## Orthogonality
 
-The **orthogonal complement** $V^\perp$ of a vector space $V\subset \mathbb{R}^n$ is the set of vectors in $\mathbb{R}^n$ which are orthogonal to every vector in $V$. For example, the orthogonal complement a two-dimensional subspace $V$ of $\mathbb{R}^3$ is the line through the origin perpendicular to the plane of vectors in $V$. 
+The **orthogonal complement** $V^\perp$ of a vector space $V\subset \mathbb{R}^n$ is the set of vectors in $\mathbb{R}^n$ which are orthogonal to every vector in $V$. For example, the orthogonal complement a two-dimensional subspace $V$ of $\mathbb{R}^3$ is the [[line|plane]] through the origin perpendicular to the plane of vectors in $V$. 
+
+---
 
 ::: .exercise
 **Exercise**  
 The orthogonal complement of the span of the columns of a matrix $A$ is equal to [[the null space of `A'`|the range of `A`|the null space of `A`|the range of `A'`]]. 
 :::
 
- 
+---
 
-*Solution*. The correct answer is the null space of `A'`, because for a vector $\mathbf{x}$ to be orthogonal to all of the columns of $A$, the equation $A' \mathbf{x} = \boldsymbol{0}$ must hold, by the dot product version of the matrix product formula. In other words, $\mathbf{x}$ must be in the null space of $A'$. 
+*Solution*. The correct answer is the null space of `A'`, because for a vector $\mathbf{x}$ to be orthogonal to all of the columns of $A$, the equation $A' \mathbf{x} = \boldsymbol{0}$ must hold, by the [matrix product dot formula](gloss:matrixproductdot). In other words, $\mathbf{x}$ must be in the null space of $A'$. 
 
 Furthermore, if $\mathbf{x}$ is in the null space of $A'$, then it is orthogonal to any linear combination of the columns of $A$, since 
 
@@ -2080,6 +2353,12 @@ Furthermore, if $\mathbf{x}$ is in the null space of $A'$, then it is orthogonal
       
 Therefore, orthogonal complement of the span of the columns of a matrix $A$ is equal to the null space of $A'$. 
 
+_{button.next-step} Continue_
+
+---
+
+### Orthogonal decomposition
+
 For any vectors $\mathbf{u}$ and $\mathbf{v}$ in $\mathbb{R}^n$, it is always possible to write $\mathbf{u}$ as the sum of a multiple of $\mathbf{v}$ and a vector which is perpendicular to $\mathbf{v}$: 
 
 ::: .exercise
@@ -2091,11 +2370,17 @@ For any vectors $\mathbf{u}$ and $\mathbf{v}$ in $\mathbb{R}^n$, it is always po
       |       k\mathbf{v} \cdot (\mathbf{u} - k\mathbf{v}) = 0
       |     \end{equation*}
       
- for $k$ to find the multiple of $\mathbf{v}$ which is perpendicular to its difference with $\mathbf{u}$. 
+for $k$ to find the multiple of $\mathbf{v}$ which is perpendicular to its difference with $\mathbf{u}$. 
  
     center: img(src="images/perp.svg")
 
 :::
+
+    div(id="editor1")
+
+_{button.next-step} Submit_
+
+---
 
 *Solution*. The equation gives $k\mathbf{u}\cdot \mathbf{v} - k^2 |\mathbf{v}|^2 = 0$, which implies that 
 
@@ -2107,10 +2392,18 @@ For any vectors $\mathbf{u}$ and $\mathbf{v}$ in $\mathbb{R}^n$, it is always po
 
 If $\mathbf{u}$ is equal to $k\mathbf{v} + \mathbf{w}$ where $\mathbf{w}$ is perpendicular to $\mathbf{v}$, then we call $k\mathbf{v}$ the **projection** of $\mathbf{u}$ onto $\mathbf{v}$. As the geometric intuition suggests, the projection of $\mathbf{u}$ onto $\mathbf{v}$ is the closest vector to $\mathbf{u}$ among all vectors parallel to $\mathbf{v}$. 
 
+_{button.next-step} Continue_
+
+---
+
 ::: .theorem
 **Theorem** (Gram-Schmidt)  
 Every vector space $V\subset \mathbb{R}^n$ has an orthogonal basis. 
 :::
+
+_{button.next-step} Continue_
+
+---
 
 *Proof*. Suppose that $\mathcal{V} = \{\mathbf{v}\_1, \ldots, \mathbf{v}\_k\}$ is a basis of $\mathbb{R}^n$. We will build our orthogonal basis by orthogonalizing $\mathcal{V}$ one vector at a time. 
 
@@ -2119,10 +2412,13 @@ Define $\mathbf{b}\_1 = \mathbf{v}\_1$, and then define $\mathbf{b}\_2$ to be th
     p
       | \begin{equation*}
       |     \mathbf{b}_2 = \mathbf{v}_2 - \frac{\mathbf{b}_1 \cdot
-      |       \mathbf{v}_2}{|\mathbf{b}_1|^2} \mathbf{b}_1.
-      |   \end{equation*}
+      |     \mathbf{v}_2}{|\mathbf{b}_1|^2} \mathbf{b}_1.
+      | \end{equation*}
 
-      
+_{button.next-step} Continue_
+
+---
+
 Similarly, we project $\mathbf{v}\_3$ onto $\mathbf{b}\_1$ and onto $\mathbf{b}\_2$ and subtract off both of these projections: 
 
     p
@@ -2134,10 +2430,18 @@ Similarly, we project $\mathbf{v}\_3$ onto $\mathbf{b}\_1$ and onto $\mathbf{b}\
       
 Then $\\{\mathbf{b}\_1, \mathbf{b}\_2, \mathbf{b}\_3\\}$ has the same span as $\\{\mathbf{v}\_1, \mathbf{v}\_2, \mathbf{v}\_3\\}$ and is pairwise orthogonal. We may continue this procedure (project each new $\mathbf{v}\_i$ onto each of the preceding $\mathbf{b}$'s and subtract off all of these projections) until we reach the end of the list, thereby obtaining an orthogonal basis of $V$. 
 
+_{button.next-step} Continue_
+
+---
+
 ::: .theorem
 **Theorem**  
 Suppose $V\subset \mathbb{R}^n$ is a vector space. Then every vector $\mathbf{u} \in \mathbb{R}^n$ can be written as the sum of a vector in $V$ and a vector in $V^\perp$. 
 :::
+
+_{button.next-step} Continue_
+
+---
 
 *Proof*. Consider an orthogonal basis $\\{\mathbf{v}\_1, \ldots, \mathbf{v}\_k\\}$ of $V$, and define 
 
@@ -2148,13 +2452,20 @@ Suppose $V\subset \mathbb{R}^n$ is a vector space. Then every vector $\mathbf{u}
       |   \frac{\mathbf{v}_k \cdot \mathbf{u}}{|\mathbf{v}_k|^2}\mathbf{v}_k
       | \end{equation*}
      
-Then $\mathbf{v}$ is in $V$ and $\mathbf{u} - \mathbf{v}$ is perpendicular to all of the $\mathbf{v}\_i$'s and therefore to every vector in $V$. 
+Then $\mathbf{v}$ is in $V$ and $\mathbf{u} - \mathbf{v}$ is [[perpendicular|parallel]] to all of the $\mathbf{v}\_i$'s and therefore to every vector in $V$. 
+
+---
 
 ::: .exercise
 **Exercise**  
 Suppose that $V$ is a $d$-dimensional vector space in $\mathbb{R}^n$. Show that there is a basis of $\mathbb{R}^n$ whose first $d$ vectors form a basis for $V$ and whose last $n-d$ vectors form a basis for $V^\perp$. 
 :::
 
+    div(id="editor2")
+
+_{button.next-step} Submit_
+
+---
 
 *Solution*. Suppose that $\\{\mathbf{v}\_{1},\mathbf{v}\_{2},\ldots,\mathbf{v}\_{d}\\}$ is a basis for $V$ and $\\{\mathbf{w}\_{1},\mathbf{w}\_{2},\ldots,\mathbf{w}\_{e}\\}$ is a basis for $W = V^\perp$. We claim that 
 
@@ -2164,21 +2475,44 @@ Suppose that $V$ is a $d$-dimensional vector space in $\mathbb{R}^n$. Show that 
       |     \mathbf{w}_{1},\mathbf{w}_{2},\ldots,\mathbf{w}_{e} \}
       | \end{equation*}
 
-      
- is a basis for $\mathbb{R}^n$. First, it's linearly independent because no vector is in the span of the preceding vectors: (1) the $\mathbf{v}\_i$'s are linearly independent, so none of them is in the span of the preceding vectors. And (2) if, for some $i$, the vector $\mathbf{w}\_i$ is in the span of the preceding vectors in the list, then it can be written as $\mathbf{v} + \mathbf{w}$ for some vector $\mathbf{v}$ in $V$ and some vector $\mathbf{w}$ in the span of $\mathbf{w}\_1, \ldots, \mathbf{w}\_{i-1}$. Dotting both sides of the equation 
+is a basis for $\mathbb{R}^n$. 
+
+_{button.next-step} Continue_
+
+---
+ 
+First, it's linearly independent because no vector is in the span of the preceding vectors: (1) the $\mathbf{v}\_i$'s are linearly independent, so none of them is in the span of the preceding vectors. And (2) if, for some $i$, the vector $\mathbf{w}\_i$ is in the span of the preceding vectors in the list, then it can be written as $\mathbf{v} + \mathbf{w}$ for some vector $\mathbf{v}$ in $V$ and some vector $\mathbf{w}$ in the span of $\mathbf{w}\_1, \ldots, \mathbf{w}\_{i-1}$. Dotting both sides of the equation 
 
     p
       | \begin{equation*}
       |     \mathbf{v} + \mathbf{w} = \mathbf{w}_i
       | \end{equation*}
 
-by $\mathbf{v}$, we find that $|\mathbf{v}|^2 = 0$, which implies that $\mathbf{v} = \boldsymbol{0}$. Thus $\mathbf{w} = \mathbf{w}\_i$, which is not compatible with the fact that the $\mathbf{w}\_i$'s form a basis. Therefore, we may conclude that $\\{\mathbf{v}\_{1},\mathbf{v}\_{2},\ldots,\mathbf{v}\_{d}, \mathbf{w}\_{1},\mathbf{w}\_{2},\ldots,\mathbf{w}\_{e}\\}$ is linearly independent.
+by $\mathbf{v}$, we find that $|\mathbf{v}|^2 = 0$, which implies that $\mathbf{v} = \boldsymbol{0}$. Thus $\mathbf{w} = \mathbf{w}\_i$, which is not compatible with the fact that the $\mathbf{w}\_i$'s form a basis. 
+
+_{button.next-step} Continue_
+
+---
+
+Therefore, we may conclude that $\\{\mathbf{v}\_{1},\mathbf{v}\_{2},\ldots,\mathbf{v}\_{d}, \mathbf{w}\_{1},\mathbf{w}\_{2},\ldots,\mathbf{w}\_{e}\\}$ is linearly independent.
+
+_{button.next-step} Continue_
+
+---
 
 Finally, the list $\\{\mathbf{v}\_{1},\mathbf{v}\_{2},\ldots,\mathbf{v}\_{d}, \mathbf{w}\_{1},\mathbf{w}\_{2},\ldots,\mathbf{w}\_{e} \\}$  spans $\mathbb{R}^n$ since every vector in $\mathbb{R}^n$ can be written as a sum of a vector in $V$ and a vector in $V^\perp$.
+
+_{button.next-step} Continue_
+
+---
 
 ### Orthogonal matrices
   
 Suppose we can write a given transformation $T$ as a composition involving (i) a single transformation $\Lambda$ which scales space along the coordinate axes, and (ii) some other transformations which preserve distances and angles—like rotations and reflections in $\mathbb{R}^2$ or $\mathbb{R}^3$. Such a decomposition of $T$ would be useful because it isolates the space-distorting behavior of $T$ in the simple transformation $\Lambda$. In preparation for developing such a decomposition, let's study transformations which are distance-preserving and angle-preserving. 
+
+_{button.next-step} Continue_
+
+---
 
 A transformation $x\mapsto U\mathbf{x}$ from $\mathbb{R}^n$ to $\mathbb{R}^n$ is distance-preserving if the norm of $\mathbf{x}$ is the same as the norm of $U\mathbf{x}$ for all $\mathbf{x} \in
 \mathbb{R}^n$. Using dot products, we can write the distance-preserving condition as 
@@ -2188,6 +2522,10 @@ A transformation $x\mapsto U\mathbf{x}$ from $\mathbb{R}^n$ to $\mathbb{R}^n$ is
       |   \mathbf{x} \cdot \mathbf{x} = (U\mathbf{x}) \cdot (U\mathbf{x})
       | \end{equation*}
       
+_{button.next-step} Continue_
+
+---
+
 If the transformation preserves angles as well as distances, then $(U\mathbf{x}) \cdot (U\mathbf{y})$ must also be equal to $\mathbf{x} \cdot \mathbf{y}$ for all $\mathbf{x}$ and $\mathbf{y}$ in $\mathbb{R}^n$. Rewriting this equation using transposes, we see that we want 
 
     p
@@ -2203,19 +2541,35 @@ for all $\mathbf{x}$ and $\mathbf{y}$ in $\mathbb{R}^n$. This identity only hold
 A square matrix $U$ is **orthogonal** if $U' U$ is equal to the identity matrix. 
 :::
 
+_{button.next-step} Continue_
+
+---
+
 Equivalently, we can say that a square matrix is orthogonal if and only if its columns are *orthonormal*, which means that they are orthogonal and have unit norm. If a non-square matrix $U$ satisfies $U' U = I$, then we refer to $U$ as a *matrix with orthonormal columns*. 
+
+_{button.next-step} Continue_
+
+---
 
 ::: .exercise
 **Exercise**  
 (i) Explain why, for an $m \times n$ matrix $U$ with orthonormal columns, we must have $m \geq n$. (ii) Explain why the rank of $U$ is $n$. 
 :::
 
- 
+    div(id="editor3")
+
+_{button.next-step} Submit_
+
+--- 
 
 *Solution*.  
 * We first recall that the number of linearly independent columns in $U$ cannot be greater than $m$ because the range of $U$ is a subspace of $\mathbb{R}^m.$ Now, by definition, the $n$ columns of $U$ are orthogonal and non-zero. These columns must be linearly independent, so $n \leq m.$ 
 
 * The rank of $U$ is equal to the number of linearly independent columns in $U,$ which is $n$ in this case. 
+
+_{button.next-step} Continue_
+
+---
 
 If $U$ is an $m\times n$ matrix with orthonormal columns and if $n < m$, then $U U'$ is an $m\times m$ matrix of rank $n$ and therefore cannot be the identity matrix. In fact, $U U'$ is a projection matrix: 
 
@@ -2223,6 +2577,12 @@ If $U$ is an $m\times n$ matrix with orthonormal columns and if $n < m$, then $U
 **Exercise**  
 Show that if $U$ is an $m \times n$ matrix with orthonormal columns, then $UU'$ is the matrix of the transformation which projects each vector in $\mathbb{R}^m$ onto the $n$-dimensional subspace of $\mathbb{R}^m$ spanned by the columns of $U$. 
 :::
+
+    div(id="editor4")
+
+_{button.next-step} Submit_
+
+---
 
 *Solution*. The transformation which maps a vector $\mathbf{w}$ onto the span of the columns $\mathbf{u}\_1, \ldots \mathbf{u}\_n$ of $U$ is given by 
 
@@ -2232,7 +2592,7 @@ Show that if $U$ is an $m \times n$ matrix with orthonormal columns, then $UU'$ 
       |     \frac{\mathbf{u}_{1}\cdot\mathbf{w}}{|\mathbf{u}_{1}|^2}\mathbf{u}_{1}
       |     +\frac{\mathbf{u}_{2}\cdot\mathbf{w}}{|\mathbf{u}_{2}|^2}\mathbf{u}_{2}+
       |     \cdots+\frac{\mathbf{u}_{n}\cdot\mathbf{w}}{|\mathbf{u}_{n}|^2}\mathbf{u}_{n}.
-      |   \end{equation*}
+      | \end{equation*}
       
  All of the denominators in this formula are equal to 1 because the columns of $U$ are unit vectors. So 
 
@@ -2240,29 +2600,45 @@ Show that if $U$ is an $m \times n$ matrix with orthonormal columns, then $UU'$ 
       | \begin{equation*}  
       |     T(\mathbf{w}) = \mathbf{u}_1(\mathbf{u}_1\cdot \mathbf{w})+ \cdots +
       |     \mathbf{u}_n(\mathbf{u}_n\cdot \mathbf{w}).
-      |   \end{equation*}
+      | \end{equation*}
       
- The vector whose components are the expressions in parentheses, namely $[\mathbf{u}\_1\cdot \mathbf{w}, \ldots, \mathbf{u}\_n\cdot
-  \mathbf{w}]$, is equal to $U' \mathbf{w}$, by the definition of the matrix-vector product. Applying that definition a second time (interpreting <a name=eq:proj></a> as a linear combination of the $\mathbf{u}\_i$'s with weights given by the parenthetical dot products), we find that $T(\mathbf{w}) = UU' \mathbf{w}$. 
+ The vector whose components are the expressions in parentheses, namely $[\mathbf{u}\_1\cdot \mathbf{w}, \ldots, \mathbf{u}\_n\cdot \mathbf{w}]$, is equal to $U' \mathbf{w}$, by the definition of the matrix-vector product. Applying that definition a second time (interpreting $\mathbf{u}\_1(\mathbf{u}\_1\cdot \mathbf{w})+ \cdots + \mathbf{u}\_n(\mathbf{u}\_n\cdot \mathbf{w})$ as a linear combination of the $\mathbf{u}\_i$'s with weights given by the parenthetical dot products), we find that $T(\mathbf{w}) = UU' \mathbf{w}$. 
 
+_{button.next-step} Continue_
+
+---
 
 ::: .exercise
 **Exercise**  
 Let $\mathbf{v}$ be a vector in $\mathbb{R}^n$, and consider the linear transformation $T: \mathbb{R}^{n} \to \mathbb{R}$ defined as $T(\mathbf{x}) = \mathbf{v} \cdot \mathbf{x}$. What is the rank of $T$? Geometrically describe the null space of $T$. 
 :::
 
+    div(id="editor5")
+
+_{button.next-step} Submit_
+
+---
+
 *Solution*. The rank of $T$ is $1$ if $\mathbf{v} \neq \mathbf{0},$ otherwise the rank is $0.$ Geometrically, the null space of $T$ is the set of vectors in $\mathbb{R}^n$ that are orthogonal to $\mathbf{v}.$
+
+_{button.next-step} Continue_
+
+---
 
 ### An application: linear regression
 
 One of the most common methods in statistics is *linear regression*. Given $n$ columns of numerical data, we seek a linear combination of the first $n-1$ columns which gets as close as possible to the last column. This can be helpful if the last column contains values you want to predict and the other columns  contain data which is accessible at the time of prediction. For example, the last column might contain points scored by a given player in a Game 7 of a playoff series, while the previous $n-1 = 6$ columns contain the number of points scored by that player in the first 6 games of that series. 
 
-Suppose that the first $n-1$ columns are arranged into a matrix $A$ and the last column is called $\mathbf{b}$. Since [[`Ax`|`xA`|`x'A'`]] represents an arbitrary linear combination of the columns of $A$, we are looking for the value of $\mathbf{x}$ which minimizes the squared [norm](gloss:norm) $|A\mathbf{x} - \mathbf{b}|^2$. Geometrically, it's clear that if $\mathbf{x}$ is chosen minimally, then $A\mathbf{x} - \mathbf{b}$ will be orthogonal to every column of $A$. In other words, we will have 
+_{button.next-step} Continue_
+
+---
+
+Suppose that the first $n-1$ columns are arranged into a matrix $A$ and the last column is called $\mathbf{b}$. Since [[`Ax`|`xA`|`x'A'`]] represents an arbitrary linear combination of the columns of $A$, we are looking for the value of $\mathbf{x}$ which minimizes the squared [norm](gloss:norm) $|A\mathbf{x} - \mathbf{b}|^2$. Geometrically, it makes sense that if $\mathbf{x}$ is chosen minimally, then $A\mathbf{x} - \mathbf{b}$ will be orthogonal to every column of $A$. In other words, we will have 
 
     p
       | A'(A\mathbf{x} - \mathbf{b}) = 0, 
 
-which implies that $\mathbf{x} = (A'A)^{-1}(A'\mathbf{b})$, assuming $A'A$ is invertible. This is called the **normal equation**.
+which implies that $\mathbf{x} = (A'A)^{-1}(A'\mathbf{b})$, assuming $A'A$ is invertible. This intuition is accurate, and the equation we derived is called the **normal equation**.
 
 ::: .exercise
 **Exercise**  
@@ -2277,7 +2653,10 @@ Use the code below to build a random 100 × 6 matrix whose first five columns ar
 
 <p></p>
 
-_{button.next-step} Continue_
+    div(id="editor7")
+
+
+_{button.next-step} Submit_
 
 ---
 
@@ -2308,7 +2687,10 @@ Try the previous exercise again, but this time with the linear dependence relati
 
 <p></p>
 
-_{button.next-step} Continue_
+    div(id="editor8")
+
+
+_{button.next-step} Submit_
 
 ---
 
@@ -2363,10 +2745,13 @@ Every nonzero vector is an eigenvector (with eigenvalue [[1]]) of the identity m
 
 ::: .exercise
 **Exercise**  
-Find a matrix with eigenpairs $([1,0],2)$ and $([1,1],3)$. Sketch the images of some gridlines under multiplication by this matrix to show how it scales space along the lines through its eigenvectors. 
+Find a matrix with eigenpairs $([1,0],2)$ and $([1,1],3)$. Sketch the images of some gridlines under multiplication by this matrix to show how it scales space along the lines through its eigenvectors. Verbally describe your results below.
 :::
 
-_{button.next-step} Continue_
+    div(id="editor1")
+
+
+_{button.next-step} Submit_
 
 ---
 
@@ -2380,6 +2765,8 @@ _{button.next-step} Continue_
 
 ---
 
+### Eigenspaces
+
 If $\mathbf{v}\_1, \dots, \mathbf{v}\_n$ are eigenvectors of $A$ with the same eigenvalue $\lambda$ and $\mathbf{v} = c\_1\mathbf{v}\_1 + \cdots + c\_n\mathbf{v}\_n$ for some weights $c\_1, \dots, c\_n$ such that $c\_i \neq 0$ for at least one $i \in \\{1, \dots, n\\},$ then $\mathbf{v}$ is also an eigenvector of $A$ with eigenvalue $\lambda$ because 
 
     p
@@ -2391,6 +2778,12 @@ If $\mathbf{v}\_1, \dots, \mathbf{v}\_n$ are eigenvectors of $A$ with the same e
       | 		&= \lambda \mathbf{v}.
       | \end{align*}
 
+Therefore, the set of all eigenvectors corresponding to a particular eigenvalue form a [[vector space|linear dependence]]. Such a space is called an **eigenspace**. 
+
+_{button.next-step} Continue_
+
+---
+
 ::: .exercise
 **Exercise**  
 Let $A$ be a $4 \times 4$ matrix, with eigenvectors $\begin{bmatrix} 1
@@ -2401,7 +2794,10 @@ Let $A$ be a $4 \times 4$ matrix, with eigenvectors $\begin{bmatrix} 1
 
 :::
 
-_{button.next-step} Continue_
+    div(id="editor2")
+
+
+_{button.next-step} Submit_
 
 ---
 
@@ -2452,7 +2848,6 @@ _{button.next-step} Continue_
 ::: .exercise
 **Exercise**  
 
-
 Let $V \subset \mathbb{R}^n$ be a subspace spanned by the eigenvectors of a matrix $A.$ If $\mathbf{v} \in V,$ which of the following are necessarily true? 
 
     x-picker.list
@@ -2460,10 +2855,12 @@ Let $V \subset \mathbb{R}^n$ be a subspace spanned by the eigenvectors of a matr
       .item.pill.bblue(data-error="orthogonal-every") $A\mathbf{v}$ is orthogonal to every vector in $V.$
       .item.pill.bblue(data-error="always-lin-dep")  $A\mathbf{v}$ and $\mathbf{v}$ are always linearly dependent. 
 
-
 :::
 
-_{button.next-step} Continue_
+    div(id="editor3")
+
+
+_{button.next-step} Submit_
 
 ---
 
@@ -2475,9 +2872,7 @@ _{button.next-step} Continue_
       | 	&=  v_1 \lambda_1 \mathbf{a}_1 + \cdots + v_k \lambda_k \mathbf{a}_k,
       | \end{align*}
       
- we see that $A\mathbf{v}$ is also in $V.$ This means (2) is not true in general. Option $(3)$ need not always hold. For instance, it fails to hold if $\mathbf{v} = \mathbf{a}\_1 + \mathbf{a}\_2$ and $\lambda\_1$ and $\lambda\_2$ are both non-zero and not equal. Therefore the only true statement is (1) $A\mathbf{v} \in V.$
-
- 
+we see that $A\mathbf{v}$ is also in $V.$ This means (2) is not true in general. Option $(3)$ need not always hold. For instance, it fails to hold if $\mathbf{v} = \mathbf{a}\_1 + \mathbf{a}\_2$ and $\lambda\_1$ and $\lambda\_2$ are both non-zero and not equal. Therefore the only true statement is (1) $A\mathbf{v} \in V.$
 
 ::: .exercise
 **Exercise**  
@@ -2488,7 +2883,11 @@ Suppose $A$ is a matrix with a eigenvector $\mathbf{v}$ whose eigenvalue is 2 an
 
 :::
 
- 
+    div(id="editor4")
+
+_{button.next-step} Submit_
+
+---
 
 *Solution*. Let $n \geq 1$ be an integer. Then by the eigenvalue equation, we have 
 
@@ -2506,9 +2905,9 @@ When $n$ is large, the first term is much larger than the second. Writing the sq
       | 	|3^n\mathbf{u} + 2^n \mathbf{w}|^2
       |     = | 3^n\mathbf{v} |^2 +
       |     2 (3^n\mathbf{v}) \cdot (2^n\mathbf{w}) + |2^n\mathbf{w}|^2.
-      |   \end{equation*}
+      | \end{equation*}
       
- Therefore, 
+Therefore, 
 
     p
       | \begin{align*}
@@ -2545,6 +2944,12 @@ Some matrices are not diagonalizable, because they correspond to geometric trans
   \times 2$ matrix which is not diagonalizable. 
 :::
 
+    div(id="editor5")
+
+_{button.next-step} Submit_
+
+---
+
 *Solution*. Rotation matrices in $\mathbb{R}^2$(except for 0 degree rotations and 180-degree rotations) are not diagonalizable. For example, the 90-degree rotation matrix 
 
     p
@@ -2555,7 +2960,11 @@ Some matrices are not diagonalizable, because they correspond to geometric trans
       |     \end{bmatrix}
       |   \end{equation*}
       
- does not send any nonzero vector $\vec{v} \in \mathbb{R}^2$ to a multiple of itself. 
+does not send any nonzero vector $\vec{v} \in \mathbb{R}^2$ to a multiple of itself. 
+
+_{button.next-step} Continue_
+
+---
 
 ::: .exercise
 **Exercise**  
@@ -2571,7 +2980,7 @@ Let $B$ be another matrix, with eigenpairs $(\mathbf{v}\_1,3)$ and $(\mathbf{v}\
 
 :::
 
- 
+---
 
 *Solution*. We have 
 
@@ -2584,22 +2993,33 @@ Let $B$ be another matrix, with eigenpairs $(\mathbf{v}\_1,3)$ and $(\mathbf{v}\
 
  By linearity $B^n(\mathbf{u}) = 2B^n\mathbf{v}\_1 + B^n \mathbf{v}\_2.$ But $B^n(\mathbf{v}\_1) = 3^n\mathbf{v}\_1$ and $B^n(\mathbf{v}\_2) = (-2)^n\mathbf{v}\_2$ because $\mathbf{v}\_1$ and $\mathbf{v}\_2$ are eigenvectors of $B.$ Therefore $B^n(\mathbf{u}) = 2(3)^n\mathbf{v}\_1 + (-2)^n\mathbf{v}\_2.$
 
+_{button.next-step} Continue_
+
+---
  
-### Positive definiteness
+### Positive definite matrices
  
 A **positive definite** matrix $A$ is a symmetric matrix whose eigenvalues are all positive. A **positive semidefinite** matrix $A$ is a symmetric matrix whose eigenvalues are all nonnegative. Equivalently, a matrix $A$ is positive semidefinite if $\mathbf{x}' A \mathbf{x} \ge 0$ for all $\mathbf{x}$. 
 
+_{button.next-step} Continue_
+
+---
+
 *Negative definite* and *negative semidefinite* matrices are defined analogously. 
+
+_{button.next-step} Continue_
+
+---
 
 ::: .exercise
 **Exercise**  
-(i) Is the sum of two positive definite matrices necessarily positive definite? 
+(i) Is the sum of two positive definite matrices necessarily positive definite? [[Yes|No]]
 
-(ii) Is the product of two positive definite matrices necessarily positive definite? 
+(ii) Is the product of two positive definite matrices necessarily positive definite? [[No|Yes]]
 
 :::
 
- 
+--- 
 
 *Solution*. (i) If $A$ and $B$ are $ n \times n$ positive definite matrices, then $A + B$ is also positive definite because 
 
@@ -2645,7 +3065,12 @@ A **positive definite** matrix $A$ is a symmetric matrix whose eigenvalues are a
     \end{bmatrix}
     $ is the $90$-degree counterclockwise rotation matrix, meaning $A^2\mathbf{x}$ is orthogonal to $\mathbf{x}$ for all $\mathbf{x} \in \mathbb{R}^2$ and thus $A^2$ cannot be positive definite. 
 
- 
+_{button.next-step} Continue_
+
+---
+
+### The Gram matrix
+
 If $A$ is an $m\times n$ matrix, then $A' A$ is its *Gram matrix*. The Gram matrix of $A$ is always positive semidefinite: 
 
 ::: .exercise
@@ -2657,7 +3082,7 @@ Let $X = A' A$ be a Gram matrix, and let $\mathbf{v}$ be a vector. Which of the 
     .item.bblue.pill.md $A^{2}\mathbf{v}$. 
     .item.bblue.pill.md $\mathbf{v}' A^2\mathbf{v}$. 
 
- Using your answer above, explain why a Gram matrix is always positive semidefinite, but not necessarily positive definite. 
+Using your answer above, explain why a Gram matrix is always positive semidefinite, but not necessarily positive definite. 
 :::
 
 *Solution*. The correct answer is $| A\mathbf{v} |^2$ because 
@@ -2671,26 +3096,37 @@ Let $X = A' A$ be a Gram matrix, and let $\mathbf{v}$ be a vector. Which of the 
       
 From this we see that the Gram matrix is positive semidefinite because $|A\mathbf{v}|^2 \geq 0.$ Since it is possible to have $A\mathbf{v} = \mathbf{0}$ even if $\mathbf{v} \neq \mathbf{0}$ (for example when $A$ has linearly dependent columns), we see that the Gram matrix is not necessarily positive definite. 
 
+_{button.next-step} Continue_
+
+---
 
 ::: .exercise
 **Exercise**  
 Explain why the rank of $A$ is equal to the rank of $A'A$. (Hint: consider the null spaces of $A$ and $A'A$.)
 :::
 
- 
+    div(id="editor8")
+
+_{button.next-step} Submit_
+
+--- 
 
 *Solution*. If $A\mathbf{x} = \boldsymbol{0}$, then multiplying both sides by $A'$ gives $A' A \mathbf{x} = \boldsymbol{0}$. Therefore, the null space of $A$ is a subset of the null space of $A' A$. 
 
- Conversely, if $A' A \mathbf{x} = \boldsymbol{0}$, then we can multiply this equation on the left by $\mathbf{x}'$ to get 
+Conversely, if $A' A \mathbf{x} = \boldsymbol{0}$, then we can multiply this equation on the left by $\mathbf{x}'$ to get 
 
     p
       | \begin{equation*}
       |       \mathbf{x}' A' A \mathbf{x} = \boldsymbol{0},
       |     \end{equation*}
       
- which in turn implies that $|A\mathbf{x}|^2 = \boldsymbol{0}$. A vector has zero norm only if it's the zero vector, so we conclude that $A\mathbf{x} = \boldsymbol{0}$. 
+which in turn implies that $|A\mathbf{x}|^2 = \boldsymbol{0}$. A vector has zero norm only if it's the zero vector, so we conclude that $A\mathbf{x} = \boldsymbol{0}$. 
 
- Since $A$ and $A' A$ have the same null space dimension and have the same domain $(\mathbb{R}^n)$, they also have the same rank, by the rank-nullity theorem. 
+Since $A$ and $A' A$ have the same null space dimension and have the same domain $(\mathbb{R}^n)$, they also have the same rank, by the rank-nullity theorem. 
+
+_{button.next-step} Continue_
+
+---
 
 ### The Spectral Theorem
 
@@ -2707,8 +3143,8 @@ In other words, if $A$ is symmetric, then the one-dimensional subspaces along wh
 
     p
       | \begin{equation*}
-      |     A = V \Lambda V',
-      |   \end{equation*}
+      |   A = V \Lambda V',
+      | \end{equation*}
       
 for some orthogonal matrix $V$. 
 
@@ -2733,11 +3169,17 @@ To be concrete, let's say "nearly equal" means "having ratio between 0.99 and 1.
 
 :::
 
-_{button.next-step} Continue_
+    div(id="editor9")
+
+_{button.next-step} Submit_
 
 ---
 
 *Solution*. One simple way to do this is make $\mathbf{b}$ and $\widehat{\mathbf{b}}$ the columns of the matrix. For example, _{code.language-python}[1 1; 1 1.01]\[1,1]_ returns _{code.language-python}[1,0]_ while _{code.language-python}[1 1; 1 1.01]\[1,1.01]_ returns _{code.language-python}[0,1]_. 
+
+_{button.next-step} Continue_
+
+---
 
 The eigenvalues of this matrix are approximately 0.005 and 2.005. In particular, the ratio of the eigenvalues is very large. You will find that the ratio of eigenvalues for your matrix is also large, because a matrix $A$ with a modest maximum eigenvalue ratio is *backwards stable*, meaning that small changes in $\mathbf{b}$ do not lead to large changes in $A^{-1}\mathbf{b}$, 
 
@@ -2773,13 +3215,21 @@ as is befitting the notation $\sqrt{A'A}$. The matrix $\sqrt{A' A}$ is simpler t
       |     |\sqrt{A' A}\,\mathbf{x}|^2.
       |   \end{equation*}
       
- In other words, for all $\mathbf{x}$, the images of $\mathbf{x}$ under $A$ and under $\sqrt{A' A}$ have equal norm. This means that for each $\mathbf{x} \in \mathbb{R}^n$, there is an orthogonal transformation from the range of $\sqrt{A' A}$ to the range of $A$ which sends $A\mathbf{x}$ to $\sqrt{A' A}\mathbf{x}$. It turns out that this orthogonal transformation is the same for all $\mathbf{x}$. 
+_{button.next-step} Continue_
+
+---
+
+In other words, for all $\mathbf{x}$, the images of $\mathbf{x}$ under $A$ and under $\sqrt{A' A}$ have equal norm. This means that for each $\mathbf{x} \in \mathbb{R}^n$, there is an orthogonal transformation from the range of $\sqrt{A' A}$ to the range of $A$ which sends $A\mathbf{x}$ to $\sqrt{A' A}\mathbf{x}$. It turns out that this orthogonal transformation is the same for all $\mathbf{x}$. 
          
     center
       img(src="images/gram.svg")
       p.caption The grid-line images under $A$ and $\sqrt{A' A}$ have the same shape; they are related by an orthogonal transformation. 
 
 <p></p>
+
+_{button.next-step} Continue_
+
+---
 
 Even if the range of $\sqrt{A'A}$ is not all of $\mathbb{R}^n$, we can extend this orthogonal transformation to an orthogonal transformation on $\mathbb{R}^n$. Thus we arrive at the *polar decomposition*: 
 
@@ -2794,7 +3244,15 @@ For any $n \times n$ matrix $A$, there exists an orthogonal matrix $R$ such that
 
 :::
 
+_{button.next-step} Continue_
+
+---
+
 This representation is useful because it represents an arbitrary square matrix as a product of matrices whose properties are easier to understand (the orthogonal matrix because it is distance- and angle-preserving, and the positive-definite matrix $\sqrt{A' A}$ because it is orthogonally diagonalizable, by the [Spectral Theorem](gloss:spectraltheorem). 
+
+_{button.next-step} Continue_
+
+---
 
 ::: .exercise
 **Exercise**  
@@ -2832,7 +3290,13 @@ Let's see why this converges to $R$.
       | 
 
 <p></p>
- 
+
+
+    div(id="editor1")
+
+_{button.next-step} Submit_
+
+---
 
 *Solution*. Since both conjugation and inversion reverse the order of matrix products, we get 
 
@@ -2845,18 +3309,26 @@ Let's see why this converges to $R$.
     p
       | \begin{equation*}R_{1}  = \frac{RP + RP^{-1}}{2} =  R \left(\frac{P + P^{-1}}{2}\right)\end{equation*}
 
+_{button.next-step} Continue_
+
+---
+
 We see that the $R\_0 = A$ and $R\_1$ have the same orthogonal part, and repeating the calculation shows that all the $R\_{k}$ have the same orthogonal part. As for the symmetric parts $P\_{k}$, we see that 
 
     p
       | \begin{equation*}P_{k+1} = \frac{P_{k} + P_{k}^{-1}}{2}\end{equation*}
  
-Why does this averaging process converge to the identity matrix? Symmetric matrices are diagonalizable by the [Spectral Theorem](gloss:spectraltheorem), so suppose $P$ diagonalizes as $V \Lambda V^{-1}$. Then 
+Let's see why this averaging process converges to the identity matrix. Symmetric matrices are diagonalizable by the [Spectral Theorem](gloss:spectraltheorem), so suppose $P$ diagonalizes as $V \Lambda V^{-1}$. Then 
 
     p
       | \begin{equation*}\frac{1}{2}(P + P^{-1}) =
       |       V\left(\frac{1}{2}\Lambda + \frac{1}{2}\Lambda^{-1}\right)\mathbf{v}\end{equation*}
       
 Thus the $P\_{k}$'s converge to the matrix $V \Lambda\_\infty V^{-1}$, where $\Lambda\_\infty$ is the diagonal matrix whose $(i,i)$ th entry is the limit obtained when you start with $\Lambda\_{i,i}$ and repeatedly apply the function $x \mapsto \frac{1}{2}\left(x + \frac{1}{x}\right)$. By the fact about this iteration given in the problem statement, we conclude that $\Lambda\_\infty$ is the identity matrix. Therefore, the limit of $P\_k$ as $k\to\infty$ is equal to $V I V^{-1} = I$. 
+
+_{button.next-step} Continue_
+
+---
  
 For example: 
 
@@ -2888,12 +3360,26 @@ _{button.next-step} Continue_
 Show that the product of two matrices with orthonormal columns has orthonormal columns. 
 :::
 
+    div(id="editor2")
+
+_{button.next-step} Submit_
+
+---
+
 *Solution*. If $U' U = I$ and $V' V = I$, then $(UV)' UV = V' U' UV = V' V =
   I$. 
+
+_{button.next-step} Continue_
+
+---
 
 ### The singular value decomposition
  
 The polar decomposition tells us that any square matrix $A$ is almost the same as some symmetric matrix, and the spectral theorem tells us that a symmetric matrix is almost the same as a simple scaling along the coordinate axes. (In both cases, the phrase "almost the same" disguises a composition with an orthogonal transformation.) We should be able to combine these ideas to conclude that *any* square matrix is basically the same as a simple scaling along the coordinate axes! 
+
+_{button.next-step} Continue_
+
+---
 
 Let's be more precise. Suppose that $A$ is a square matrix. The polar decomposition tells us that 
 
@@ -2902,25 +3388,39 @@ Let's be more precise. Suppose that $A$ is a square matrix. The polar decomposit
       |     A = R \sqrt{A' A}
       | \end{equation*}
       
- for some orthogonal matrix $R$. The spectral theorem tells us that $\sqrt{A' A} = V \Sigma V'$ for some orthogonal matrix $V$ and a diagonal matrix $\Sigma$ with nonnegative diagonal entries. Combining these equations, we get 
+for some orthogonal matrix $R$. The spectral theorem tells us that $\sqrt{A' A} = V \Sigma V'$ for some orthogonal matrix $V$ and a diagonal matrix $\Sigma$ with nonnegative diagonal entries. 
+
+_{button.next-step} Continue_
+
+---
+
+Combining these equations, we get 
 
     p
       | \begin{equation*}
       |   A = R V \Sigma V'.
       | \end{equation*}
       
- Since a product of orthogonal matrices is orthogonal, we can define $U = RV$ and obtain the **singular value decomposition** (SVD) of $A$: 
+Since a product of orthogonal matrices is [[orthogonal|symmetric]], we can define $U = RV$ and obtain the **singular value decomposition** (SVD) of $A$: 
 
     p
       | \begin{equation*} 
       |     A = U \Sigma V'
       |  \end{equation*}
       
- where $U$ and $V$ are orthogonal matrices. 
+where $U$ and $V$ are orthogonal matrices. 
 
- We can visualize the decomposition $A = U \Sigma V'$ geometrically by making a figure like the one shown below, which illustrates the successive effects of each map in the composition $U \Sigma V'$. If we draw grid lines on the *second* plot (just before $\Sigma$ is applied) and propagate those grid lines to the other plots by applying the indicated maps, then we endow the domain and range of $A$ with orthogonal sets of gridlines with $A$ mapping one to the other. 
+_{button.next-step} Continue_
 
- We can extend the singular value decomposition to rectangular matrices $A$ (that is, matrices which are not necessarily square) by adding rows or columns of zeros to a rectangular matrix to get a square matrix, applying the SVD to that square matrix, and then 
+---
+
+We can visualize the decomposition $A = U \Sigma V'$ geometrically by making a figure like the one shown below, which illustrates the successive effects of each map in the composition $U \Sigma V'$. If we draw grid lines on the *second* plot (just before $\Sigma$ is applied) and propagate those grid lines to the other plots by applying the indicated maps, then we endow the domain and range of $A$ with orthogonal sets of gridlines with $A$ mapping one to the other. 
+
+_{button.next-step} Continue_
+
+---
+
+We can extend the singular value decomposition to rectangular matrices $A$ (that is, matrices which are not necessarily square) by adding rows or columns of zeros to a rectangular matrix to get a square matrix, applying the SVD to that square matrix, and then trimming the resulting $\Sigma$ matrix as well as either $U$ or $V'$ (depending on which dimension of $A$ is smaller). We get a decomposition of the form $A = U \Sigma V'$ where $U$ is an $m \times m$ orthogonal matrix, $V'$ is an $n \times n$ orthogonal matrix, and $\Sigma$ is a rectangular $m \times n$ diagonal matrix. 
  
     center
       img(src="images/svd.svg" width="100%")
@@ -2928,8 +3428,6 @@ Let's be more precise. Suppose that $A$ is a square matrix. The polar decomposit
       a(name="svdfig")
 
 <p></p>
-
-We can trim the resulting $\Sigma$ matrix as well as either $U$ or $V'$ (depending on which dimension of $A$ is smaller) and get a decomposition of the form $A = U \Sigma V'$ where $U$ is an $m \times m$ orthogonal matrix, $V'$ is an $n \times n$ orthogonal matrix, and $\Sigma$ is a rectangular $m \times n$ diagonal matrix. 
 
 ::: .theorem
 **Theorem** (Singular value decomposition)  
@@ -2944,7 +3442,15 @@ Suppose that $A$ is an $m \times n$ matrix. Then there exist orthogonal matrices
 We call $A = U \Sigma V'$ the a **singular value decomposition** (or SVD) of $A$. The diagonal entries of $\Sigma$ are called the **singular values** of $A$. 
 :::
 
+_{button.next-step} Continue_
+
+---
+
 The diagonal entries of $\Sigma$, which are the square roots of the eigenvalues of $A' A$, are called the **singular values** of $A$. The columns of $U$ are called *left* singular vectors, and the columns of $V$ are called *right* singular vectors. 
+
+_{button.next-step} Continue_
+
+---
 
 Looking at the bottom half of the [SVD figure](gloss:svdfigure), we see that the singular values of $A$ are the lengths of the semi-axes of the ellipsoid in $\mathbb{R}^m$ obtained as the image under $A$ of the unit ball in $\mathbb{R}^n$. Moreover, the directions of these axes are the columns of $U$, since they are the images under $U$ of the standard basis vectors. We will see an important application of this feature of the SVD in the probability chapter when we discuss *principal component analysis*. 
 
@@ -2974,7 +3480,16 @@ Show that $\left[\begin{smallmatrix}-160 & -120 \\\\\\ -12 & -134 \\\\\\
       \\\\\\ \end{smallmatrix}\right]$. Find its Moore-Penrose pseudoinverse. 
 :::
 
- 
+    pre(data-executable)
+      | 
+
+    div(id="editor4")
+
+_{button.next-step} Submit_
+
+---
+
+<p></p>
 
 *Solution*. Let 
 
@@ -3001,8 +3516,7 @@ Show that $\left[\begin{smallmatrix}-160 & -120 \\\\\\ -12 & -134 \\\\\\
       |   \end{bmatrix}.
       | \end{equation*}
  
-
- With a little calculation, we arrive at 
+With a little calculation, we arrive at 
 
     p
       | \begin{equation*}
@@ -3033,6 +3547,12 @@ Define a matrix with 100 rows and 5 columns, and do it in such a way that two of
       | import numpy as np
 
 <p></p>
+
+    div(id="editor5")
+
+_{button.next-step} Submit_
+
+---
 
 *Solution*. We see that two of the singular values are much smaller than the other three. 
 
@@ -3108,6 +3628,12 @@ Hint: you can achieve this computationally either by setting some singular value
 
 :::
 
+    div(id="editor6")
+
+_{button.next-step} Submit_
+
+---
+
 *Solution*.  
 * Let $M = \sigma\_1\mathbf{u}\_1\mathbf{v}\_1' + \cdots + \sigma\_n\mathbf{u}\_n\mathbf{v}\_n'.$ We need to show that $A = M.$ We will do this by first showing that $A\mathbf{x} =  M\mathbf{x}$ for all $\mathbf{x} \in \mathbb{R}^n.$ 
 
@@ -3115,12 +3641,18 @@ Now, $A\mathbf{x} =  U \Sigma V' \mathbf{x}$ for all $\mathbf{x} \in \mathbb{R}^
 
     p
       | \begin{align*}
-      | 		A\mathbf{x} = U \Sigma V' \mathbf{x} &{}= \left(V' \mathbf{x}\right)_1 \sigma_1\mathbf{u}_1 + \cdots + \left(V' \mathbf{x}\right)_n \sigma_n\mathbf{u}_n \\\\ 
-      | 		&{}= \left(\mathbf{v}_1\cdot \mathbf{x}\right) \sigma_1\mathbf{u}_1 + \cdots + \left(\mathbf{v}_n \cdot \mathbf{x}\right) \sigma_n\mathbf{u}_n \\\\ 
-      | 		&{}= \sigma_1\mathbf{u}_1\mathbf{v}_1' \mathbf{x} + \cdots + \sigma_n\mathbf{u}_n\mathbf{v}_n' \mathbf{x}
-      | 	\end{align*}
+      | 		A\mathbf{x} = U \Sigma V' \mathbf{x} &= \left(V' \mathbf{x}\right)_1 \sigma_1\mathbf{u}_1 + \cdots + \left(V' \mathbf{x}\right)_n \sigma_n\mathbf{u}_n \\\\ 
+      | 		&= \left(\mathbf{v}_1\cdot \mathbf{x}\right) \sigma_1\mathbf{u}_1 + \cdots + \left(\mathbf{v}_n \cdot \mathbf{x}\right) \sigma_n\mathbf{u}_n \\\\ 
+      | 		&= \sigma_1\mathbf{u}_1\mathbf{v}_1' \mathbf{x} + \cdots + \sigma_n\mathbf{u}_n\mathbf{v}_n' \mathbf{x}
+      | \end{align*}
       
-where $\mathbf{v}\_i' \mathbf{x}$ is being treated as a $1 \times 1$ matrix for all $1 \leq i \leq n.$ By linearity of matrix multiplication, 
+where $\mathbf{v}\_i' \mathbf{x}$ is being treated as a $1 \times 1$ matrix for all $1 \leq i \leq n.$ 
+
+_{button.next-step} Continue_
+
+---
+
+By linearity of matrix multiplication, 
 
     p
       | \begin{equation*}\sigma_1\mathbf{u}_1\mathbf{v}_1' \mathbf{x} + \cdots + \sigma_n\mathbf{u}_n\mathbf{v}_n' \mathbf{x} = \left(\sigma_1\mathbf{u}_1\mathbf{v}_1' + \cdots + \sigma_n\mathbf{u}_n\mathbf{v}_n'\right) \mathbf{x}\end{equation*}
@@ -3134,12 +3666,13 @@ and thus $A\mathbf{x} = M \mathbf{x}$ for all $\mathbf{x} \in \mathbb{R}^n.$ Sin
       
 as required. 
 
+_{button.next-step} Continue_
+
+---
 
 *  $A$ has $256 \times 128 = 32768$ entries and $\mathbf{u}\_1, \mathbf{u}\_2, \mathbf{u}\_3, \mathbf{v}\_1, \mathbf{v}\_2, \mathbf{v}\_3$ combined have $3(256 + 128) = 1152$ entries. 
 
-
 * It can be seen from the picture that $A$ has $3$ kinds of columns: one whose components are all dark, another whose components are light in the middle, and the other whose components are dark on the outside and in the middle with strips of light in between. These columns are clearly linearly independent, and thus $A$ has rank $3.$ Therefore $A$ has $3$ non-zero singular values. 
-
 
 * We can select only the first three terms by suitably indexing the vectors, as follows: 
 
@@ -3148,7 +3681,6 @@ as required.
       | U, Σ, V = np.linalg.svd(B)
       | plt.matshow(U[:,:3] * np.diag(Σ[:3]) * V.T[:3,:])
       |       
- 
 
 ---
 > id: determinants
@@ -3169,13 +3701,21 @@ Suppose that $R$ is a region in $\mathbb{R}^n$ and that $A$ is an $n
 
 :::
 
- 
+    div(id="editor1")
+
+_{button.next-step} Submit_
+
+---
 
 *Solution*. Since $U$ and $V$ are orthogonal, $L\_1$ and $L\_3$ both preserve volumes. So they multiply volumes by a factor of 1. Since $L\_2$ scales volumes by a factor of $\sigma\_1$ along the first axis, $\sigma\_2$ along the second, and so on, it scales volumes by a factor of $\sigma\_1 \sigma\_2 \ldots \sigma\_n$. 
 
- 
+_{button.next-step} Continue_
 
- From Exercise <a name=exer:detsvd></a>, we see that a linear transformation $T$ from $\mathbb{R}^n$ to $\mathbb{R}^n$ scales the volume of any $n$-dimensional region by the same factor: the *volume scale factor* of $T$. 
+---
+
+### Volume scale factor
+
+We see from this exercise that a linear transformation $T$ from $\mathbb{R}^n$ to $\mathbb{R}^n$ scales the volume of any $n$-dimensional region by the same factor: the *volume scale factor* of $T$. 
 
 ::: .exercise
 **Exercise**  
@@ -3186,7 +3726,15 @@ Find the volume scale factor of the matrix $A = \begin{bmatrix}
   \end{bmatrix}$ by describing how the matrix transforms a region in $\mathbb{R}^3$. 
 :::
 
+    div(id="editor2")
+
+_{button.next-step} Submit_
+
+---
+
 *Solution*. Since $A[x,y,z] = [x,z,ky]$, we see that $A$ stretches (or compresses) regions in $\mathbb{R}^3$ by a factor $k$ along the $y$-axis and then reflects across the plane $y = z$. For example, the unit cube is mapped to a $1 \times 1 \times k$ box Since such a box has volume $k,$ the volume scale factor of $S$ is $k.$
+
+### Orientation factor
 
 Another geometrically relevant piece of information about $T$ is whether it preserves or reverses orientations. For example, rotations in $\mathbb{R}^2$ are orientation preserving, while reflections are orientation reversing. Let's define the *orientation factor* of $T$ to be $+1$ if $T$ is orientation preserving and $-1$ if $T$ is orientation reversing. 
 
@@ -3198,7 +3746,9 @@ We define the **determinant** of a transformation $T$ to be the product of its o
   A\mathbf{x}$. 
 :::
 
+ _{button.next-step} Continue_
  
+ ---
 
 ::: .exercise
 **Exercise**  
@@ -3207,6 +3757,12 @@ Interpret $A = \begin{bmatrix}
     -1 & 0
   \end{bmatrix}$ geometrically and use this interpretation to find $\det A$, the determinant of $A$. 
 :::
+
+    div(id="editor3")
+
+_{button.next-step} Submit_
+
+---
 
 *Solution*. Since $A\begin{bmatrix} x \\\\\\ y \end{bmatrix} = \begin{bmatrix} -y \\\\\\ -x
   \end{bmatrix}$, $A$ reflects points in $\mathbb{R}^2$ across the line $y = -x$. Therefore, it preserves areas and reverses orientations. So its determinant is $-1$. 
@@ -3224,10 +3780,16 @@ Interpret $A = \begin{bmatrix}
 
 ::: .exercise
 **Exercise**  
-For various values of $n$, use the Julia expression _{code.language-python}det(rand(-9:9,n,n))_ to find the determinant of an $n\times n$ matrix filled with random single-digit numbers. How large does $n$ have to be for the determinant to be large enough to consistently overflow? 
+For various values of $n$, use the Python expression _{code.language-python}np.linalg.det(np.random.randint(-9,10,(n,n)))_ to find the determinant of an $n\times n$ matrix filled with random single-digit numbers. How large does $n$ have to be for the determinant to be large enough to consistently overflow? [[187±2]]
 :::
 
+---
+
 *Solution*. Trial and error reveals that this determinant starts to consistently return _{code.language-python}inf_ at $n = 187$. 
+
+_{button.next-step} Continue_
+
+---
 
 ::: .exercise
 **Exercise**  
@@ -3241,16 +3803,28 @@ Suppose that $A$ and $B$ are $3 \times 3$ matrices, with determinant $5$ and $\f
 
 :::
 
+---
+
 *Solution*. The volume of $A(R)$ is $5 \cdot 14 = 70$. The volume of $BA(R) = B(A(R))$ is $\tfrac{1}{2} \cdot 70 = 35$. 
+
+_{button.next-step} Continue_
+
+---
 
 ::: .exercise
 **Exercise**  
 Let $R \subset \mathbb{R}^3$ be 3D region modeling a fish, and suppose $A$ an invertible $3 \times 3$ matrix. If $R$ has volume $15$ and $A^{-1}(R)$ has volume $5$, then the determinant of $A$ is equal to [[3|5|10]]? 
 :::
 
- *Solution*. We can see that the matrix $A^{-1}$ scales volumes by $\frac{1}{3}$, and hence $\det A^{-1} = \frac{1}{3}$. This implies that $\det A = 3$. 
+---
+
+*Solution*. We can see that the matrix $A^{-1}$ scales volumes by $\frac{1}{3}$, and hence $\det A^{-1} = \frac{1}{3}$. This implies that $\det A = 3$. 
 
 Determinants can be used to check whether a matrix is invertible, since $A$ is noninvertible if and only if it maps $\mathbb{R}^n$ to a lower-dimensional subspace of $\mathbb{R}^n$, and in that case $A$ squishes positive-volume regions down to zero-volume regions. 
+
+_{button.next-step} Continue_
+
+---
 
 ::: .exercise
 **Exercise**  
@@ -3259,6 +3833,10 @@ Let $A =
     2 & -2 \\\\\\ -4 & 0
   \end{bmatrix}.$ Find the values of $\lambda \in \mathbb{R}$ for which the equation $A \mathbf{v} = \lambda \mathbf{v}$ has nonzero solutions for $\mathbf{v}$. 
 :::
+
+_{button.next-step} Continue_
+
+---
 
 *Solution*. We can rewrite $A\mathbf{v} = \lambda \mathbf{v}$ as $A\mathbf{v} = (\lambda I) \mathbf{v}$, where $I$ is the identity matrix. We can rearrange this to give the equation $(A - \lambda I)\mathbf{v} = 0$. This has a nontrivial solution if $(A - \lambda I)$ has a nonzero nullspace. Since $A - \lambda I$ is a square matrix, this is equivalent to it having determinant zero. 
 
@@ -3272,13 +3850,20 @@ Setting this equal to zero gives
     p
       | \begin{equation*}\lambda^2 - 2\lambda - 8 = 0\end{equation*}
  
+_{button.next-step} Continue_
+
+---
+
 The left-hand side can be factored 
 
     p
       | \begin{equation*}(\lambda - 4)(\lambda + 2) = 0\end{equation*}
  
 Thus our two solutions are $\lambda = 4,-2$. 
- 
+
+_{button.next-step} Continue_
+
+---
 
 ::: .exercise
 **Exercise**  
@@ -3289,23 +3874,32 @@ For an $n \times n$ square matrix, which of the following is the relationship be
       li.bblue.pill.md(data-error="incorrect") $\det(3A) = 3n \det (A)$. 
       li.bblue.pill.md(data-error="incorrect") $\det(3A) = n^{3} \det(A)$. 
       li.bblue.pill.md $\det(3A) = 3^{n} \det (A)$. 
-
-
 :::
 
-*Solution*. The answer is (4) $\det(3A) = 3^{n} \det (A)$. There are two ways to see this, algebraically and geometrically.\\ 
+---
 
-To check that this is the right answer using algebra, let $A = I\_{n}$ be the $n \times n$ identity matrix, with determinant $1$. The matrix $3A$ is diagonal, with threes on the diagonal. Its determinant is the product of the entries on its diagonal, $3 \times 3 \times \cdots \times 3 = 3^{n}$.\\ 
+*Solution*. The answer is (4) $\det(3A) = 3^{n} \det (A)$. There are two ways to see this, [algebraically](gloss:algebraically) and [geometrically](geometrically). 
+
+To check that this is the right answer using algebra, let $A = I\_{n}$ be the $n \times n$ identity matrix, with determinant $1$. The matrix $3A$ is diagonal, with threes on the diagonal. Its determinant is the product of the entries on its diagonal, $3 \times 3 \times \cdots \times 3 = 3^{n}$.
+
+_{button.next-step} Continue_
+
+---
 
 Geometrically, we know that the determinant of $A$ measures how much $A$ scales volume. The matrix $3A$ scales by a factor of three more in each dimension. Since there are $n$ dimensions, the total scaling of volume is multiplied by a factor $3^n$. 
 
+_{button.next-step} Continue_
+
+---
 
 ::: .exercise
 **Exercise**  
-Is every matrix with positive determinant positive definite? 
+Is every matrix with positive determinant positive definite? [[No|Yes]]
 :::
 
-*Solution*. Not necessarily. Consider the $180$-degree rotation matrix $ A =
+---
+
+*Solution*. No. Consider the $180$-degree rotation matrix $ A =
 \begin{bmatrix}
 	-1 & 0 \\\\\\
 	0 & -1
