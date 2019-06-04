@@ -30,7 +30,7 @@ _{button.next-step} Continue_
 Is it possible to have numbers populating three columns in a spreadsheet such that any one of the three columns can be recovered from the other two, yet no column can be recovered from any other single column?
 :::
 
-    div(id="editor1")
+    .quill#editor1
 
 
 _{button.next-step} Submit_
@@ -155,7 +155,7 @@ Determine whether there exists a real number $r$ satisfying the vector equation
 
 :::
 
-    div(id="editor1")
+    .quill#editor1
 
 
 _{button.next-step} Submit_
@@ -174,7 +174,7 @@ _{button.next-step} Continue_
 Show that every nonzero vector $\mathbf{v}$ can be written as the product of a nonnegative real number $c$ and a unit vector $\mathbf{u}$. 
 :::
 
-    div(id="editor2")
+    .quill#editor2
 
 
 _{button.next-step} Submit_
@@ -194,7 +194,7 @@ _{button.next-step} Continue_
 Find a formula in terms of $\mathbf{u}$ and $\mathbf{v}$ which represents the vector from the head of $\mathbf{v}$ to the head of $\mathbf{u}$ when $\mathbf{u}$ and $\mathbf{v}$ are situated so that their tails coincide. 
 :::
 
-    div(id="editor3")
+    .quill#editor3
 
 
 _{button.next-step} Submit_
@@ -214,7 +214,7 @@ _{button.next-step} Continue_
 Solve for $\mathbf{u}$ in terms of $c$ and $\mathbf{v}$ in the equation $c \mathbf{u} + \mathbf{v} = \boldsymbol{0}$, assuming that $\mathbf{u}$ and $\mathbf{v}$ are vectors in $\mathbb{R}^n$ and $c$ is a nonzero real number. 
 :::
 
-    div(id="editor4")
+    .quill#editor4
 
 
 _{button.next-step} Submit_
@@ -252,7 +252,7 @@ Suppose that $\mathbf{u} = [2,0]$ and $\mathbf{v} = [1,2]$. Draw the set of all 
 Note: an integer linear combination is a linear combination where the weights are integers.
 :::
 
-    div(id="editor1")
+    .quill#editor1
 
 
 _{button.next-step} Submit_
@@ -382,7 +382,7 @@ _{button.next-step} Continue_
 Explain geometrically why a list of three vectors in $\mathbb{R}^2$ is necessarily linearly dependent. 
 :::
 
-    div(id="editor1")
+    .quill#editor1
 
 
 _{button.next-step} Submit_
@@ -439,7 +439,7 @@ Let's say that a linear combination of a list of vectors is **trivial** if all o
 Show that a list of vectors is linearly independent if and only if every nontrivial linear combination of the vectors is not equal to the zero vector.
 :::
 
-    div(id="editor2")
+    .quill#editor2
     
 _{button.next-step} Submit_
 
@@ -495,7 +495,7 @@ Show that if $V$ and $W$ are vector spaces in $\mathbf{R}^n$, then $V \cap W$ is
 Hint: start by assuming that $\mathbf{x} \in V \cap W$ and $\mathbf{y} \in V \cap W$, and reason your way to the conclusion that $\mathbf{x} + \mathbf{y}$ is also in $V$. 
 :::
 
-    div(id="editor1")
+    .quill#editor1
 
 
 _{button.next-step} Submit_
@@ -724,7 +724,7 @@ _{button.next-step} Continue_
 Consider a three-column spreadsheet of numerical data, with each entry in the third column computed to be the sum of the corresponding entries in the first two columns. Find a basis for the span of the three columns (assuming the first two columns are not multiples of one another), and find the coefficients all three columns with respect to this basis.
 :::
 
-    div(id="editor3")
+    .quill#editor3
 
 
 _{button.next-step} Submit_
@@ -790,7 +790,7 @@ We can continue in this way, adding the next $\mathbf{l}$ at the beginning of th
 Use the dimension lemma to show that all bases of a vector space $V$ have the same length. In other words, if $B\_1$ is a basis for $V$, and $B\_2$ is a basis for $V$, then the lengths of $B\_1$ and $B\_2$ are equal. 
 :::
 
-    div(id="editor4")
+    .quill#editor4
 
 
 _{button.next-step} Submit_
@@ -812,7 +812,7 @@ The following two exercises provide simple yet powerful tools for reasoning abou
 Show that any linearly independent list of vectors in a vector space $V\subset \mathbb{R}^n$ can be extended to form a basis of $V$, and show that any spanning list of $V$ can be trimmed to form a basis of $V$. 
 :::
 
-    div(id="editor5")
+    .quill#editor5
 
 
 _{button.next-step} Submit_
@@ -844,7 +844,7 @@ Suppose that $U$ and $V$ are vector spaces in $\mathbb{R}^n$. Suppose that $\\{\
  is a linearly independent list. 
 :::
 
-    div(id="editor6")
+    .quill#editor6
     
 _{button.next-step} Submit_
 
@@ -1120,7 +1120,7 @@ Suppose that $V$ and $W$ are vector spaces and that $L\_1$ and $L\_2$ are linear
   L\_2(\mathbf{b})$ for all $\mathbf{b}\in \mathcal{B}$. Show that $L\_1(\mathbf{v}) = L\_2(\mathbf{v})$ for all $\mathbf{v} \in V$. 
 :::
 
-    div(id="editor1")
+    .quill#editor1
 
 _{button.next-step} Submit_
 
@@ -1148,7 +1148,7 @@ What is the dimension of the null space of the linear transformation $L([x,y,z])
 The dimension of the null space is [[1]] and the rank is [[2]].
 :::
 
-    div(id="editor2")
+    .quill#editor2
 
 _{button.next-step} Submit_
 
@@ -1228,7 +1228,7 @@ Suppose you're designing an app that recommends cars. For every person in your d
 After some time, you find that storing all twenty variables takes up too much space in your database. Instead, you decide to take those twenty variables and apply a linear aggregate score function $S: \mathbb{R}^{20} \to \mathbb{R}^{3}$, with the three output components corresponding to health, personality, and finances. You also compute a linear map $R: \mathbb{R}^{3} \to \mathbb{R}^{10}$ that takes in these three aggregate scores and returns a vector of recommendation values. The total recommendation system is the composition $R \circ S: \mathbb{R}^{20} \to \mathbb{R}^{10}$. What is the maximum possible rank of $R \circ S$? What does this mean for the complexity of this recommendation system? 
 :::
 
-    div(id="editor3")
+    .quill#editor3
 
 _{button.next-step} Submit_
 
@@ -1420,7 +1420,7 @@ With this definition of $A$, we have that $A\mathbf{e}\_1$ [[is equal to|is not 
 Find the matrix corresponding to the linear transformation $T([x,y,z]) = [z,x,y]$. 
 :::
 
-    div(id="editor1")
+    .quill#editor1
 
 
 _{button.next-step} Submit_
@@ -1449,7 +1449,7 @@ Suppose that $A$ is an $m\times n$ matrix and $\mathbf{b}$ is a vector in $\math
 
 The intuition is that $\mathbf{x}$ provides a recipe for how much of each column of $A$ to use to get $\mathbf{b}$. If the columns of $A$ are linearly dependent, then we can swap out a unit of one of the vectors for some combination of others. This swappability shows that the solution is nonunique. 
 
-    div(id="editor2")
+    .quill#editor2
 
 _{button.next-step} Submit_
 
@@ -1576,7 +1576,7 @@ The range or null space of a matrix $A$ is defined to be the range or null space
 Show that a matrix represents an injective transformation if and only if its null space is $\\{\boldsymbol{0}\\}$. 
 :::
 
-    div(id="editor3")
+    .quill#editor3
 
 
 _{button.next-step} Submit_
@@ -1647,7 +1647,7 @@ If $A$ is invertible, then the inverse function is also a linear transformation:
 Show that if $L$ is a bijective linear transformation, then the inverse function $L^{-1}$ is also linear. 
 :::
 
-    div(id="editor4")
+    .quill#editor4
 
 _{button.next-step} Submit_
 
@@ -1667,7 +1667,7 @@ which implies that
       |   b L^{-1}(\mathbf{w}) = L^{-1}(a\mathbf{v} + b\mathbf{w}).
       | \end{equation*}
 
-    div(id="editor5")
+    .quill#editor5
 
 
 _{button.next-step} Submit_
@@ -1760,7 +1760,7 @@ Based on the above observations, can the equation $A\mathbf{x} = \mathbf{b}$ hav
 
 :::
 
-    div(id="editor6")
+    .quill#editor6
 
 _{button.next-step} Submit_
 
@@ -1865,7 +1865,7 @@ Show that $|\mathbf{a} +\mathbf{b}|^2 =
     ^2$ for all vectors $\mathbf{a}$ and $\mathbf{b}$ in $\mathbb{R}^n$. 
 :::
 
-    div(id="editor1")
+    .quill#editor1
 
 _{button.next-step} Submit_
 
@@ -1932,7 +1932,7 @@ _{button.next-step} Continue_
 Let $\mathbf{v}\_1, \dots, \mathbf{v}\_n$ be a list of orthogonal non-zero vectors, that is, for all $i, j \in \\{1, \dots, n\\},$ suppose that $\mathbf{v}\_i \cdot \mathbf{v}\_j = 0$ whenever $i \neq j$. Show that this list is linearly independent. 
 :::
 
-    div(id="editor2")
+    .quill#editor2
 
 
 _{button.next-step} Submit_
@@ -2124,7 +2124,7 @@ _{button.next-step} Continue_
 Show that if $A$ is a matrix whose columns are $\mathbf{a}\_1, \ldots,  \mathbf{a}\_n$ and $B$ is a matrix whose rows are $\mathbf{b}\_1', \ldots, \mathbf{b}\_n'$, then $AB = \mathbf{a}\_1\mathbf{b}\_1' + \mathbf{a}\_2\mathbf{b}\_2' + \cdots + \mathbf{a}\_n\mathbf{b}\_n'$
 :::
 
-    div(id="editor3")
+    .quill#editor3
 
 _{button.next-step} Submit_
 
@@ -2190,7 +2190,7 @@ Confirm your conjecture numerically in Python with some random matrices. You can
       | import numpy as np
       | 
 
-    div(id="editor5")
+    .quill#editor5
 
 _{button.next-step} Submit_
 
@@ -2306,7 +2306,7 @@ In other words, we may move a matrix which is pre-multiplying one of the vectors
 Show that $\mathbf{x}\cdot (A' A\mathbf{x}) \geq 0$ for all $m\times n$ matrices $A$ and all $\mathbf{x} \in \mathbb{R}^n$. 
 :::
 
-    div(id="editor6")
+    .quill#editor6
 
 _{button.next-step} Submit_
 
@@ -2376,7 +2376,7 @@ for $k$ to find the multiple of $\mathbf{v}$ which is perpendicular to its diffe
 
 :::
 
-    div(id="editor1")
+    .quill#editor1
 
 _{button.next-step} Submit_
 
@@ -2461,7 +2461,7 @@ Then $\mathbf{v}$ is in $V$ and $\mathbf{u} - \mathbf{v}$ is [[perpendicular|par
 Suppose that $V$ is a $d$-dimensional vector space in $\mathbb{R}^n$. Show that there is a basis of $\mathbb{R}^n$ whose first $d$ vectors form a basis for $V$ and whose last $n-d$ vectors form a basis for $V^\perp$. 
 :::
 
-    div(id="editor2")
+    .quill#editor2
 
 _{button.next-step} Submit_
 
@@ -2556,7 +2556,7 @@ _{button.next-step} Continue_
 (i) Explain why, for an $m \times n$ matrix $U$ with orthonormal columns, we must have $m \geq n$. (ii) Explain why the rank of $U$ is $n$. 
 :::
 
-    div(id="editor3")
+    .quill#editor3
 
 _{button.next-step} Submit_
 
@@ -2578,7 +2578,7 @@ If $U$ is an $m\times n$ matrix with orthonormal columns and if $n < m$, then $U
 Show that if $U$ is an $m \times n$ matrix with orthonormal columns, then $UU'$ is the matrix of the transformation which projects each vector in $\mathbb{R}^m$ onto the $n$-dimensional subspace of $\mathbb{R}^m$ spanned by the columns of $U$. 
 :::
 
-    div(id="editor4")
+    .quill#editor4
 
 _{button.next-step} Submit_
 
@@ -2613,7 +2613,7 @@ _{button.next-step} Continue_
 Let $\mathbf{v}$ be a vector in $\mathbb{R}^n$, and consider the linear transformation $T: \mathbb{R}^{n} \to \mathbb{R}$ defined as $T(\mathbf{x}) = \mathbf{v} \cdot \mathbf{x}$. What is the rank of $T$? Geometrically describe the null space of $T$. 
 :::
 
-    div(id="editor5")
+    .quill#editor5
 
 _{button.next-step} Submit_
 
@@ -2653,7 +2653,7 @@ Use the code below to build a random 100 × 6 matrix whose first five columns ar
 
 <p></p>
 
-    div(id="editor7")
+    .quill#editor7
 
 
 _{button.next-step} Submit_
@@ -2687,7 +2687,7 @@ Try the previous exercise again, but this time with the linear dependence relati
 
 <p></p>
 
-    div(id="editor8")
+    .quill#editor8
 
 
 _{button.next-step} Submit_
@@ -2748,7 +2748,7 @@ Every nonzero vector is an eigenvector (with eigenvalue [[1]]) of the identity m
 Find a matrix with eigenpairs $([1,0],2)$ and $([1,1],3)$. Sketch the images of some gridlines under multiplication by this matrix to show how it scales space along the lines through its eigenvectors. Verbally describe your results below.
 :::
 
-    div(id="editor1")
+    .quill#editor1
 
 
 _{button.next-step} Submit_
@@ -2794,7 +2794,7 @@ Let $A$ be a $4 \times 4$ matrix, with eigenvectors $\begin{bmatrix} 1
 
 :::
 
-    div(id="editor2")
+    .quill#editor2
 
 
 _{button.next-step} Submit_
@@ -2857,7 +2857,7 @@ Let $V \subset \mathbb{R}^n$ be a subspace spanned by the eigenvectors of a matr
 
 :::
 
-    div(id="editor3")
+    .quill#editor3
 
 
 _{button.next-step} Submit_
@@ -2883,7 +2883,7 @@ Suppose $A$ is a matrix with a eigenvector $\mathbf{v}$ whose eigenvalue is 2 an
 
 :::
 
-    div(id="editor4")
+    .quill#editor4
 
 _{button.next-step} Submit_
 
@@ -2944,7 +2944,7 @@ Some matrices are not diagonalizable, because they correspond to geometric trans
   \times 2$ matrix which is not diagonalizable. 
 :::
 
-    div(id="editor5")
+    .quill#editor5
 
 _{button.next-step} Submit_
 
@@ -3105,7 +3105,7 @@ _{button.next-step} Continue_
 Explain why the rank of $A$ is equal to the rank of $A'A$. (Hint: consider the null spaces of $A$ and $A'A$.)
 :::
 
-    div(id="editor8")
+    .quill#editor8
 
 _{button.next-step} Submit_
 
@@ -3169,7 +3169,7 @@ To be concrete, let's say "nearly equal" means "having ratio between 0.99 and 1.
 
 :::
 
-    div(id="editor9")
+    .quill#editor9
 
 _{button.next-step} Submit_
 
@@ -3292,7 +3292,7 @@ Let's see why this converges to $R$.
 <p></p>
 
 
-    div(id="editor1")
+    .quill#editor1
 
 _{button.next-step} Submit_
 
@@ -3360,7 +3360,7 @@ _{button.next-step} Continue_
 Show that the product of two matrices with orthonormal columns has orthonormal columns. 
 :::
 
-    div(id="editor2")
+    .quill#editor2
 
 _{button.next-step} Submit_
 
@@ -3483,7 +3483,7 @@ Show that $\left[\begin{smallmatrix}-160 & -120 \\\\\\ -12 & -134 \\\\\\
     pre(data-executable)
       | 
 
-    div(id="editor4")
+    .quill#editor4
 
 _{button.next-step} Submit_
 
@@ -3548,7 +3548,7 @@ Define a matrix with 100 rows and 5 columns, and do it in such a way that two of
 
 <p></p>
 
-    div(id="editor5")
+    .quill#editor5
 
 _{button.next-step} Submit_
 
@@ -3628,7 +3628,7 @@ Hint: you can achieve this computationally either by setting some singular value
 
 :::
 
-    div(id="editor6")
+    .quill#editor6
 
 _{button.next-step} Submit_
 
@@ -3701,7 +3701,7 @@ Suppose that $R$ is a region in $\mathbb{R}^n$ and that $A$ is an $n
 
 :::
 
-    div(id="editor1")
+    .quill#editor1
 
 _{button.next-step} Submit_
 
@@ -3726,7 +3726,7 @@ Find the volume scale factor of the matrix $A = \begin{bmatrix}
   \end{bmatrix}$ by describing how the matrix transforms a region in $\mathbb{R}^3$. 
 :::
 
-    div(id="editor2")
+    .quill#editor2
 
 _{button.next-step} Submit_
 
@@ -3758,7 +3758,7 @@ Interpret $A = \begin{bmatrix}
   \end{bmatrix}$ geometrically and use this interpretation to find $\det A$, the determinant of $A$. 
 :::
 
-    div(id="editor3")
+    .quill#editor3
 
 _{button.next-step} Submit_
 

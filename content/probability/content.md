@@ -142,7 +142,7 @@ Let $\Omega = \\{0, 1, 2, \cdots, 100\\}$ be the set of natural numbers up to an
 
 :::
 
-    div(id="editor")
+    .quill#editor
       p
         = 'Use [...document.querySelector(".ql-editor").querySelectorAll("p")].map(p => p.textContent) to pull out each paragraph on a different line'
     
