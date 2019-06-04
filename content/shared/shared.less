@@ -1,0 +1,210 @@
+// -----------------------------------------------------------------------------
+// Shared Data Gym Styles
+
+.exercise, .example, .definition {
+  padding: .6em 1em;
+  color: rgba(0, 0, 0, .75);
+  margin: 1.5em 0;
+  border-radius: 2px 4px 4px 2px;
+
+  p:last-child, ul:last-child { margin-bottom: 0; }
+  &:first-child { margin-top: 0; }
+  .caption { color: rgba(0, 0, 0, .4); }
+}
+
+.exercise {
+  background: #bfefc1;
+  border-left: 6px solid #2a9659;
+}
+
+.example {
+  background: #efd8bf;
+  border-left: 6px solid #d8954b;
+}
+
+.definition {
+  background: #a7c3ef;
+  border-left: 6px solid #2667cc;
+  color: #053a8c;
+}
+
+p { hanging-punctuation: none; }
+
+
+// -----------------------------------------------------------------------------
+// Juniper Notebooks
+
+.juniper-cell {
+  font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 1em;
+  line-height: 2;
+  border: 1px solid #ccc;
+  position: relative;
+}
+
+.code {
+  font-family: Menlo, Monaco, Consolas, "Liberation Mono",    "Courier New", monospace;
+  font-size: 1em;
+  line-height: 2;
+  border: 1px solid #ccc;
+}
+
+.juniper-output {
+  background: #eee;
+  color: #222;
+  padding: 2em;
+  white-space: pre-wrap;
+}
+
+.juniper-button {
+  font-size: 1em;
+  position: absolute;
+  top: 20px;
+  border: 1px solid #ccc;
+  right: 25px;
+}
+
+.CodeMirror pre {
+  font-size: 11pt;
+}
+
+.bblue {
+  background:#1f7aff
+}
+
+
+// -----------------------------------------------------------------------------
+// Prism.css
+// VS theme by Andrew Lock (https://andrewlock.net)
+// Inspired by Visual Studio syntax coloring
+
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #393A34;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  font-size: 0.95em;
+  line-height: 1.2em;
+  tab-size: 4;
+  hyphens: none;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+  background: #C1DEF1;
+}
+
+pre[class*="language-"] {
+  padding: 1em;
+  margin: .5em 0;
+  overflow: auto;
+  border: 1px solid #dddddd;
+  background-color: white;
+  border-radius: 10px;
+}
+
+:not(pre) > code[class*="language-"] {
+  padding: .2em;
+  padding-top: 1px; padding-bottom: 1px;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #008000; font-style: italic;
+}
+
+.token.namespace {
+  opacity: .7;
+}
+
+.token.string {
+  color: #A31515;
+}
+
+.token.punctuation,
+.token.operator {
+  color: #393A34; /* no highlight */
+}
+
+.token.url,
+.token.symbol,
+.token.number,
+.token.boolean,
+.token.variable,
+.token.constant,
+.token.inserted {
+  color: #36acaa;
+}
+
+.token.atrule,
+.token.keyword,
+.token.attr-value,
+.language-autohotkey .token.selector,
+.language-json .token.boolean,
+.language-json .token.number,
+code[class*="language-css"]{
+  color: #0000ff;
+}
+
+.token.function {
+  color: #393A34;
+}
+.token.deleted,
+.language-autohotkey .token.tag {
+  color: #9a050f;
+}
+
+.token.selector,
+.language-autohotkey .token.keyword {
+  color: #00009f;
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.class-name,
+.language-json .token.property {
+  color: #2B91AF;
+}
+
+.token.tag,
+.token.selector {
+  color: #800000;
+}
+
+.token.attr-name,
+.token.property,
+.token.regex,
+.token.entity {
+  color: #ff0000;
+}
+
+.token.directive.tag  .tag {
+  background: #ffff00;
+  color: #393A34;
+}
+
+.line-numbers .line-numbers-rows {
+  border-right-color: #a5a5a5;
+}
+
+.line-numbers-rows > span:before {
+  color: #2B91AF;
+}
+
+.line-highlight {
+  background: rgba(193, 222, 241, 0.2);
+  background: linear-gradient(to right, rgba(193, 222, 241, 0.2) 70%, rgba(221, 222, 241, 0));
+}

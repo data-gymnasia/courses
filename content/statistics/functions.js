@@ -1,15 +1,4 @@
-
-
-import { list } from '@mathigon/core';
-import { nearlyEquals, Point } from '@mathigon/fermat';
-
-import '../shared/components/conic-section';
-
-import { $N, animate, thread, observable } from '@mathigon/boost';
-import { isPrime, lcm, goldbach, generatePrime, numberFormat, random } from '@mathigon/fermat';
-import { total, sortByFn, isOneOf, delay } from '@mathigon/core';
-
-import { isPalindrome, words, flatten } from '@mathigon/core';
+import '../shared/shared';
 import { Draggable } from '@mathigon/boost';
 
 // Geopad example
