@@ -1,17 +1,18 @@
 import {script, $N, $, $$} from '@mathigon/boost';
-import './libraries/juniper.min';
-import './libraries/prism';
 
 
 // -----------------------------------------------------------------------------
-// CodeMirror and Juniper Setup
+// CodeMirror, Prism and Juniper Setup
 
-window.CodeMirror.defaults.indentUnit = 4;
+script('/resources/shared/static/prism.1.js');
 
-new window.Juniper({
-  repo: 'sswatson/simple-python-stack',
-  isolateCells: false,
-  msgLoading: 'Loading or None returned'
+script('/resources/shared/static/juniper.min.1.js').then(() => {
+  new window.Juniper({
+    repo: 'sswatson/simple-python-stack',
+    isolateCells: false,
+    msgLoading: 'Loading or None returned'
+  });
+  if (window.CodeMirror) window.CodeMirror.defaults.indentUnit = 4;
 });
 
 
