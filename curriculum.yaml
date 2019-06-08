@@ -1,0 +1,25 @@
+# ==============================================================================
+# Data Gymnasia Curriculum Overview
+# ==============================================================================
+
+sets-and-functions:
+  name: Sets and Functions
+  topics: 
+    - Sets
+    - Functions
+
+programming-in-python:
+  name: Programming in Python
+  topics: 
+    - Programming
+    - Python
+
+linear-algebra:
+  name: Linear Algebra
+  topics: 
+    - Linear Algebra
+
+probability:
+  name: Probability
+  topics: 
+    - probability
