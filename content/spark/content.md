@@ -328,10 +328,6 @@ Here's an extra executable cell for experimentation:
 
     pre(data-executable)
       | 
-      
-    script(src='/juniper.min.js')
-    script
-      include juniper-setup.js
 
 ---
 > id: sparksession
@@ -426,7 +422,3 @@ _{button.next-step} Continue!_
 ---
 
 Congratulations! You've reached the end of this lesson. 
-
-    script(src='/juniper.min.js')
-    script
-      include juniper-setup.js

@@ -348,7 +348,7 @@ Write a function _{code.language-python}f_ which takes a positive integer _{code
       | test_f()
 
 
-    div(id="editor1")
+    .quill#editor1
 
 _{button.next-step} Submit_
 
@@ -466,7 +466,7 @@ For which values of _{code.language-python}a_ and _{code.language-python}b_ does
 If either _{code.language-python}i_ or _{code.language-python}j_ is omitted in the expression _{code.language-python}s[i:j]_ (where _{code.language-python}s_ is a string), what happens? Experiment using the code block above. 
 :::
 
-    div(id="editor2")
+    .quill#editor2
 
 _{button.next-step} Submit_
 
@@ -501,7 +501,7 @@ Use string interpolation to write a line of code which prints _{code.language-py
 
 <p></p>
 
-    div(id="editor3")
+    .quill#editor3
 
 _{button.next-step} Submit_
 
@@ -589,7 +589,7 @@ Write some code for computing $\frac{1}{a+\frac{2}{3}}$ where $a$ is equal to th
     pre(data-executable)
       | 
 
-    div(id="editor5")
+    .quill#editor5
 
 _{button.next-step} Submit_
 
@@ -696,7 +696,7 @@ Write a function called _{code.language-python}myAbs_ which computes the absolut
       |
       | test_abs()
 
-    div(id="editor6")
+    .quill#editor6
 
 _{button.next-step} Submit_
 
@@ -722,7 +722,7 @@ Consider nesting _{code.language-python}if...else_ blocks inside of an _{code.la
       |
       | test_quadrant()
 
-    div(id="editor7")
+    .quill#editor7
 
 _{button.next-step} Submit_
 
@@ -873,7 +873,7 @@ Write a function that takes two arguments _{code.language-python}a_ and _{code.l
 
 <p></p>
 
-    div(id="editor8")
+    .quill#editor8
 
 _{button.next-step} Submit_
 
@@ -942,7 +942,7 @@ One common way to do this (which you have already seen several times in this cou
 The test cases above don't cover the *degenerate* situation where one of the strings is empty. Does the function return correct values for these degenerate cases? [[No|Yes]] Add test cases for this, and fix the function so that they pass.
 :::
 
-    div(id="editor9")
+    .quill#editor9
 
 _{button.next-step} Submit_
 
@@ -989,7 +989,7 @@ Hint: Make a guess about which operator can be used to compare strings alphabeti
       |
       | test_concat()
 
-    div(id="editor9")
+    .quill#editor9
 
 _{button.next-step} Submit_
 
@@ -1239,7 +1239,7 @@ Implement a class called _{code.language-python}Fraction_ which represents a rat
       |
       | test_Fraction()
 
-    div(id="editor1")
+    .quill#editor1
 
 _{button.next-step} Submit_
 
@@ -1526,7 +1526,7 @@ Write a [function](gloss:function) which takes as arguments a list _{code.langua
 <p></p> 
 
 
-    div(id="editor2")
+    .quill#editor2
 
 _{button.next-step} Submit_
 
@@ -1562,7 +1562,7 @@ Write a line of code which sets every even-indexed entry of a list _{code.langua
     pre(data-executable)
       | L = list(range(100))
 
-    div(id="editor3")
+    .quill#editor3
 
 _{button.next-step} Submit_
 
@@ -1613,7 +1613,7 @@ Explain the errors in the code below (there are two).
 
 :::
 
-    div(id="editor4")
+    .quill#editor4
 
 _{button.next-step} Submit_
 
@@ -1658,7 +1658,7 @@ Write a list comprehension which returns a list whose kth entry is the the last 
       | from sympy import isprime
       | 
       
-    div(id="editor5")
+    .quill#editor5
 
 _{button.next-step} Submit_
 
@@ -1681,7 +1681,7 @@ Write a list comprehension which takes a list of lists and returns only those li
       | records = [[3, "flower", -1], [2, "rise", 3], [0, "basket", 0]]
       | 
       
-    div(id="editor6")
+    .quill#editor6
 
 _{button.next-step} Submit_
 
@@ -1752,7 +1752,7 @@ Write a list comprehension which adds the first two elements of each tuple in _{
 
 <p></p>
 
-    div(id="editor7")
+    .quill#editor7
 
 _{button.next-step} Submit_
 
@@ -1791,7 +1791,7 @@ Find the fractional parts of the first 100 positive integer multiples of $\pi$. 
 
 <p></p>
 
-    div(id="editor8")
+    .quill#editor8
 
 _{button.next-step} Submit_
 
@@ -1832,7 +1832,7 @@ Suppose that $H$ is a list which stores the heights of 100 cylinders and $R$ is 
       | R = [0.8, 1.0, 1.2]
       | 
 
-    div(id="editor9")
+    .quill#editor9
 
 _{button.next-step} Submit_
 
@@ -1882,7 +1882,7 @@ Write a function which takes a matrix _{code.language-python}M_ and an index _{c
       |
       | test_selectCol()
 
-    div(id="editor1")
+    .quill#editor1
 
 _{button.next-step} Submit_
 
@@ -1925,7 +1925,7 @@ Hint: the string methods _{code.language-python}join_ and _{code.language-python
       |
       | test_reversewords()
 
-    div(id="editor0")
+    .quill#editor0
 
 _{button.next-step} Submit_
 
@@ -1981,7 +1981,7 @@ Note 2: the computation below takes some time to run (20 seconds, say). It retur
       
 <p></p>      
 
-    div(id="editor3")
+    .quill#editor3
 
 _{button.next-step} Submit_
 
@@ -2099,7 +2099,7 @@ Implement this idea in the block below. Check that your dictionary works by inde
       | 
 
 
-    div(id="editor4")
+    .quill#editor4
 
 _{button.next-step} Submit_
 
@@ -2124,7 +2124,7 @@ Use a dict comprehension to make a dictionary which maps each of the first 100 p
     pre(data-executable)
       | 
 
-    div(id="editor5")
+    .quill#editor5
 
 _{button.next-step} Submit_
 
@@ -2222,7 +2222,7 @@ Suppose you have imported a function _{code.language-python}fileBugReport_ with 
       |           "customers not receiving text alerts"}
 ---
 
-    div(id="editor5")
+    .quill#editor5
 
 _{button.next-step} Submit_
 
@@ -2260,7 +2260,7 @@ Write a [function](gloss:function) called _{code.language-python}factorial_ whic
       | test_factorial()
 
 
-    div(id="editor6")
+    .quill#editor6
 
 _{button.next-step} Submit_
 
@@ -2335,7 +2335,7 @@ Note that $10^{-8}$ can be represented in Python using scientific notation _{cod
       | test_newton()
 
       
-    div(id="editor7")
+    .quill#editor7
 
 _{button.next-step} Submit_
 
@@ -2382,7 +2382,7 @@ Note: _{code.language-python}\\n_ in a string literal represents the "newline" c
       |      
       |
 
-    div(id="editor8")
+    .quill#editor8
 
 _{button.next-step} Submit_
 
@@ -2438,7 +2438,7 @@ Note: there's no solution to this one, but you can do it on your own!
       |     Print the first n rows of Pascal's triangle
       |     """
 
-    div(id="editor9")
+    .quill#editor9
 
 _{button.next-step} Submit_
 
@@ -2584,7 +2584,7 @@ Write a [list comprehension](gloss:listcomp) to calculate the list of all of the
     pre(data-executable)
       | 
 
-    div(id="editor1")
+    .quill#editor1
 
 _{button.next-step} Submit_
 
@@ -2622,7 +2622,7 @@ This works! You can check that the order of the playlist was reversed.
 Add more features to the function **{code.language-python}track_modifier** to modify playlists in ways that you find interesting or desirable. 
 :::
 
-    div(id="editor2")
+    .quill#editor2
 
 _{button.next-step} Submit_
 
@@ -2734,7 +2734,7 @@ Tie all of the above together to write a couple more lines of code that will act
     pre(data-executable)
       | 
 
-    div(id="editor3")
+    .quill#editor3
 
 _{button.next-step} Submit_
 

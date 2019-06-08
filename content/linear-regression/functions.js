@@ -4,6 +4,7 @@
 // =============================================================================
 
 import { Point } from "@mathigon/fermat";
+import '../shared/shared';
 
 /**
  * Returns a linear function mx+b.

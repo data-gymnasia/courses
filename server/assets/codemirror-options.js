@@ -1,1 +1,0 @@
-window.CodeMirror.defaults['indentUnit'] = 4
