@@ -253,7 +253,7 @@ Note: an integer linear combination is a linear combination where the weights ar
 :::
 
     .quill#editor1
-
+ 
 
 _{button.next-step} Submit_
  

@@ -332,3 +332,13 @@ bruno:
   title: Bruno
   text: |
     Bruno is the bear in the bottom right corner of your screen. 
+    
+model:
+  title: Model
+  text: A *model* is a mathematical object which describes relationships between random quantities in a data-generating process.
+  
+partial-sum:
+  title: Partial sum
+  text: |
+    The $n$th partial sum of the infinite series $x_1 + x_2 + \cdots$ is $S_n = x_1 + x_2 + \cdots + x_n$.
+   
