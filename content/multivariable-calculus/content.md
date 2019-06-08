@@ -164,13 +164,11 @@ Numerically examine the statement that $\sum\_{n=1}^\infty \frac{1}{n^2}$ conver
 
 <p></p>
 
-*Solution*. The expression _{code.language-python}sum(1/n**2 for n in range(1000)) - np.pi^2/6_ evaluates to _{code.language-python}-0.0009995001666649461_, while 
+*Solution*. The expression _{code.language-python}sum(1/n**2 for n in range(1,1001)) - np.pi*np.pi/6_ evaluates to _{code.language-python}-0.0009995001666649461_, while 
 
     pre(data-executable)
-      | 
-      |  import numpy as np
-      |  sum(1/n**2 for n in range(10_000_000)) - np.pi^2/6
-      |   
+      | import numpy as np
+      | sum(1/n**2 for n in range(1,10_000_001)) - np.pi*np.pi/6
       
 evaluates to _{code.language-python}-9.999994563525405e-7_. This is consistent with the proposition that $\sum\_{n=1}^N \frac{1}{n^2}$ gets arbitrarily close to $\pi^2/6$ for large enough $N$. 
  
@@ -213,9 +211,8 @@ For $a\_2$, we calculate $P\_2''(x) = (a\_1 + 2a\_2x)' = 2a\_2$, so to get $P\_2
 is the best we can do. Looking at the figure, we set that $P\_2$ does indeed do a better job of 'hugging' the graph of $f$ near $x=0$ than the best linear approximation ($L(x) = 1 + x$) does. 
  
     center
-      grow
-        img(src="images/taylor.svg")
-        p.caption The best constant, linear, and quadratic approximations of $\exp(x) = \mathrm{e}^x$ near the origin 
+      img(src="images/taylor.svg" width="350px")
+      p.caption The best constant, linear, and quadratic approximations of $\exp(x) = \mathrm{e}^x$ near the origin 
 
 _{button.next-step} Continue_
 
@@ -253,6 +250,10 @@ Find the Taylor series centered at the origin for the exponential function.
 
 It turns out that this series does in fact converge to $\mathrm{e}^x$, for all $x \in \mathbb{R}$. 
 
+_{button.next-step} Continue_
+
+---
+
 ### Taylor series properties
 
 If the Taylor series for a function converges, then it does so in an interval centered around $c$. Furthermore, inside the interval of convergence, it is valid to perform term-by-term operations with the Taylor series as though it were a polynomial: 
@@ -281,7 +282,7 @@ Find the Taylor series for $f(x) = \cos x + x \mathrm{e}^{x^2}$ centered at $c =
 
     p
       | \begin{align*}
-      |   \left(1 &- \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots\right) + x\left(1 + x^2 +
+      |   &\left(1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots\right) + x\left(1 + x^2 +
       |   \frac{(x^2)^2}{2!} + \frac{(x^2)^3}{3!} + \cdots\right) \\\ &=
       |   1 + x - \frac{x^2}{2!} + x^3  + \frac{x^4}{4!}  + \frac{x^5}{2!} +
       |   \cdots.
@@ -635,7 +636,9 @@ Suppose $\mathbf{f}$ is a function from $\mathbb{R}^n$ to $\mathbb{R}^m$. Writin
       |       \end{array}\right]
       | \end{equation*}
 
-Note that if $m=1$, then differentiating $f$ with respect to $\mathbf{x}$ is the same as taking the gradient of $f$. With this definition, we obtain the following analogues to some basic single-variable differentiation results: if $A$ is a constant matrix, then 
+Note that if $m=1$, then differentiating $f$ with respect to $\mathbf{x}$ is the same as taking the gradient of $f$. 
+
+With this definition, we obtain the following analogues to some basic single-variable differentiation results: if $A$ is a constant matrix, then 
 
     p
       | \begin{align*}
@@ -646,6 +649,10 @@ Note that if $m=1$, then differentiating $f$ with respect to $\mathbf{x}$ is the
       |              &= \mathbf{u}'\frac{\partial \mathbf{v}}{\partial \mathbf{x}} + \mathbf{v}'\frac{\partial \mathbf{u}}{\partial \mathbf{x}}
       |   \end{align*}
  
+The third of these equations is the [[product]] rule. 
+
+---
+
 The Hessian of a function $f:\mathbb{R}^n \to \mathbb{R}$ may be written in terms of the matrix differentiation operator as follows: 
 
     p
