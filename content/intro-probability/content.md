@@ -214,7 +214,7 @@ Let $\Omega = \\{0, 1, 2, \cdots, 100\\}$ be the set of natural numbers up to an
 
 :::
 
-    div(id="editor1")
+    .quill#editor1
 
 _{button.next-step} Submit_
 
@@ -270,7 +270,7 @@ Expand the algebraic expression $(x+y)^3$. Show that the coefficients of this ex
 Write an analogous expansion for $(x+y)^4$. 
 :::
 
-    div(id="editor2")
+    .quill#editor2
 
 _{button.next-step} Submit_
 
@@ -378,7 +378,7 @@ Explain how to obtain the probability of an event from the probability mass func
 For concreteness, consider $\Omega = \\{(\texttt{H},\texttt{H}), (\texttt{H},\texttt{T}), (\texttt{T},\texttt{H}), (\texttt{T},\texttt{T})\\}$, a probability mass function which assigns mass $\frac{1}{4}$ to each outcome, and the event $\\{(\texttt{H},\texttt{H}), (\texttt{H},\texttt{T})\\}$. 
 :::
 
-    div(id="editor2")
+    .quill#editor2
 
 _{button.next-step} Submit_
 
@@ -429,7 +429,7 @@ Suppose a group of $n$ friends enter the lottery. For $i \in \\{1, \dots , n\\}$
 * At least one friend wins. 
 :::
 
-    div(id="editor3")
+    .quill#editor3
 
 _{button.next-step} Submit_
 
@@ -507,7 +507,7 @@ One further important property is a consequence of the fundamental ones. It says
 Use the additivity property and the fact that $A = (A \cap B) \cup (A \cap B^{\mathsf{c}})$ to show that if $B \subset A \subset \Omega,$ then $\mathbb{P}(B) \leq \mathbb{P}(A).$
 :::
 
-    div(id="editor4")
+    .quill#editor4
 
 _{button.next-step} Submit_
 
@@ -531,7 +531,7 @@ Show that $\mathbb{P}(A \cup B) \leq \mathbb{P}(A) + \mathbb{P}(B)$ for all even
 Use this property to show that if $A$ occurs with probability zero and $B$ occurs with probability zero, then the probability that $A$ *or* $B$ occurs is also zero. 
 :::
 
-    div(id="editor5")
+    .quill#editor5
 
 _{button.next-step} Submit_
 
@@ -571,7 +571,7 @@ If $\Omega$ is countably infinite, then the additivity property extends to *coun
 Suppose that $\Omega$ is the set of ordered pairs of positive integers, with probability mass $m((i,j)) = 2^{-i-j}$ at each pair $(i,j)$. Show that the probability of the event $\\{(i,j) \in \Omega : i > 2\\}$ is equal to the sum of the probabilities of the events $\\{(i,j) \in \Omega : i = t\\}$ as $t$ ranges over $\\{3, 4, 5, \ldots\\}$
 :::
 
-    div(id="editor6")
+    .quill#editor6
 
 _{button.next-step} Submit_
 
@@ -588,7 +588,7 @@ _{button.next-step} Continue_
 Show that the function $m((i,j)) = 2^{-i-j}$ sums to 1 as $(i,j)$ ranges over the set of ordered pairs of positive integers. 
 :::
 
-    div(id="editor7")
+    .quill#editor7
 
 _{button.next-step} Submit_
 
@@ -655,7 +655,7 @@ Suppose that the random variable $X$ represents a fair die roll and $Y$ is defin
 Define a six-element probability space $\Omega$ on which $X$ and $Y$ may be defined, and find $\mathbb{P}(X - Y = k)$ for every integer value of $k$. 
 :::
 
-    div(id="editor1")
+    .quill#editor1
 
 _{button.next-step} Submit_
 
@@ -749,7 +749,7 @@ _{button.next-step} Continue_
 A problem on a test requires students to match molecule diagrams to their appropriate labels. Suppose there are three labels and three diagrams and that a student guesses a matching uniformly at random. Let $X$ denote the number of diagrams the student correctly labels. What is the probability mass function of the distribution of $X$? 
 :::
 
-    div(id="editor4")
+    .quill#editor4
 
 _{button.next-step} Submit_
 
@@ -849,7 +849,7 @@ _{button.next-step} Continue_
 Suppose that $X$ is a random variable with CDF $F\_X$ and that $Y = X^2$. Express $\mathbb{P}(Y > 9)$ in terms of the function $F\_X$. For simplicity, assume that $\mathbb{P}(X = -3) = 0$. 
 :::
 
-    div(id="editor9")
+    .quill#editor9
 
 _{button.next-step} Submit_
 
@@ -912,7 +912,7 @@ Show that $X\_1$, $X\_2$, and $Y\_1$ all have the same marginal distributions an
 
 :::
 
-    div(id="editor1")
+    .quill#editor1
 
 _{button.next-step} Submit_
 
@@ -1072,7 +1072,7 @@ Consider the following experiment: we roll a die, and if it shows 2 or less we s
 Find a probability space $\Omega$ which models this experiment, find a pair of events $E$ and $F$ such that $\mathbb{P}(E | F) = \frac{3}{4}$. 
 :::
 
-    div(id="editor3")
+    .quill#editor3
 
 _{button.next-step} Submit_
 
@@ -1106,7 +1106,7 @@ Consider three random variables $X\_1$, $X\_2$, and $X\_3$, each of which is equ
 * Find the least possible value of the event $X\_1 + X\_2 + X\_3 = 0$. 
 :::
 
-    div(id="editor3")
+    .quill#editor3
 
 _{button.next-step} Submit_
 
@@ -1151,7 +1151,7 @@ Bayes' theorem has many applications to everyday life, some intuitive and others
 Suppose you're 90% sure that your package was delivered today and 75% sure that if it was delivered it would be on your door step rather than tucked away in your mailbox. When you arrive at home and do not see your package right away, what is the conditional probability—given the observed information—that you'll find it in your mailbox? 
 :::
 
-    div(id="editor3")
+    .quill#editor3
 
 _{button.next-step} Submit_
 
@@ -1271,7 +1271,7 @@ We say that two random variables $X$ and $Y$ are independent if the every pair o
 Suppose that $\Omega = \\{(\texttt{H},\texttt{H}),   (\texttt{H},\texttt{T}), (\texttt{T},\texttt{H}),(\texttt{T},\texttt{T})\\}$ and $\mathbb{P}$ is the uniform probability measure on $\Omega$. Let $X\_1$ be the number of heads in the first flip and let $X\_2$ be the number of heads in the second flip. Show that $X\_1$ and $X\_2$ are independent. 
 :::
 
-    div(id="editor1")
+    .quill#editor1
 
 _{button.next-step} Submit_
 
@@ -1331,7 +1331,7 @@ We may extend the product measure construction to achieve as many independent ra
 Define a probability space $\Omega$ and 10 independent random variables which are uniformly distributed on $\\{1,2,3,4,5,6\\}$. 
 :::
 
-    div(id="editor3")
+    .quill#editor3
 
 _{button.next-step} Submit_
 
@@ -1396,7 +1396,7 @@ Three events can be *pairwise* independent without being independent: Suppose th
  Show that the equation $\mathbb{P}(A \cap B \cap C) = \mathbb{P}(A) \mathbb{P}(B) \mathbb{P}(C)$ does **not** hold and that the triple of events is therefore not independent. 
 :::
 
-    div(id="editor4")
+    .quill#editor4
 
 _{button.next-step} Submit_
 
@@ -1465,7 +1465,7 @@ _{button.next-step} Continue_
 Consider as sequence of 8 independent coin flips. Show that the probability of getting at least one pair of consecutive heads is at least $1-(3/4)^4$. 
 :::
 
-    div(id="editor5")
+    .quill#editor5
 
 _{button.next-step} Submit_
 
@@ -1561,7 +1561,7 @@ Use a Monte Carlo simulation to estimate the expectation of $X/Y$, where $X$ and
 
 <p></p>
 
-    div(id="editor3")
+    .quill#editor3
 
 _{button.next-step} Submit_
 
@@ -1580,7 +1580,7 @@ The following exercise confirms an intuitive fact about expectation: a random va
 Explain why $\mathbb{E}[X] \leq \mathbb{E}[Y]$ if $X(\omega) \leq Y(\omega)$ for all $\omega \in \Omega$. 
 :::
 
-    div(id="editor2")
+    .quill#editor2
 
 _{button.next-step} Submit_
 
@@ -1671,7 +1671,7 @@ The expectation of a random variable need not be finite or even well-defined. Sh
 Consider a random variable $X$ whose distribution assigns a probability mass of $2^{-|n|-1}$ to each point $2^n$ for $n \geq1$ and a probability mass of $2^{-|n|-1}$ to $-2^n$ for each $n \leq -1$. Show that $\mathbb{E}[X]$ is not well-defined. (Note: a sum $\sum\_{x \in \mathbb{R}} f(x)$ is not defined if $\sum\_{x \in \mathbb{R} : f(x) > 0} f(x)$ and $\sum\_{x \in \mathbb{R} : f(x) < 0} f(x)$ are equal to $\infty$ and $-\infty$, [respectively](gloss:respectively).) 
 :::
 
-    div(id="editor3")
+    .quill#editor3
 
 _{button.next-step} Submit_
 
@@ -1722,7 +1722,7 @@ We can use this theorem to show that expectation distributes across multiplicati
 Show that $\mathbb{E}[XY] = \mathbb{E}[X]\mathbb{E}[Y]$ if $X$ and $Y$ are independent random variables. 
 :::
 
-    div(id="editor7")
+    .quill#editor7
 
 _{button.next-step} Submit_
 
@@ -1789,7 +1789,7 @@ uniformly at random. Make a rough estimate of the mean and variance of this rand
       | import numpy as np
       | 
       
-    div(id="editor4")
+    .quill#editor4
 
 _{button.next-step} Submit_
 
@@ -1818,7 +1818,7 @@ Tips: _{code.language-python}np.random.randint(0,1001)/1000_ returns a sample fr
 
 <p></p>
  
-    div(id="editor4")
+    .quill#editor4
 
 _{button.next-step} Submit_
 
@@ -1877,7 +1877,7 @@ if $a$ is a real number and $X$ is a random variable, and if $X$ and $Y$ are **i
 
 :::
 
-    div(id="editor5")
+    .quill#editor5
 
 _{button.next-step} Submit_
 
@@ -1922,7 +1922,7 @@ Consider the distribution which assigns a probability mass of $\frac{c}{n^3}$ to
 Show that this distribution has a finite mean but not a finite variance. 
 ::: 
 
-    div(id="editor6")
+    .quill#editor6
 
 _{button.next-step} Submit_
 
@@ -1966,7 +1966,7 @@ _{button.next-step} Continue_
 
 ---
 
-The covariance of two independent random variables is zero, because the expectation [distributes](gloss:independenceproductformula) across the product on the right-hand side in that case. Roughly speaking, $X$ and $Y$ tend to deviate from their means positively or negatively together, then their covariance is positive. If they tend to deviate oppositely (that is, $X$ is above its mean and $Y$ is below, or vice versa), then their covariance is negative. 
+The covariance of two independent random variables is zero, because the expectation [distributes](gloss:independence-product) across the product on the right-hand side in that case. Roughly speaking, $X$ and $Y$ tend to deviate from their means positively or negatively together, then their covariance is positive. If they tend to deviate oppositely (that is, $X$ is above its mean and $Y$ is below, or vice versa), then their covariance is negative. 
 
 ::: .exercise
 **Exercise**  
@@ -1976,7 +1976,7 @@ Identify each of the following joint distributions as representing positive cova
 
 :::
 
-    div(id="editor7")
+    .quill#editor7
  
 _{button.next-step} Submit_
  
@@ -2037,7 +2037,7 @@ In this problem, we will show that the correlation of two random variables is al
 
 :::
 
-    div(id="editor8")
+    .quill#editor8
 
 _{button.next-step} Submit_
 
@@ -2070,7 +2070,7 @@ if $X\_1, \ldots, X_n$ are independent random variables.
 
 :::
 
-    div(id="editor8")
+    .quill#editor8
 
 _{button.next-step} Submit_
 
@@ -2124,7 +2124,7 @@ The square of the expectation of $X\_1+\cdots+X\_n$ is the sum of the values in 
         td $\cdots$
         td $\mathbb{E}[X_n]^2$
 
-Subtracting these two tables entry-by-entry, we get the variances on the right-hand side from the diagonal terms, and all of the off-diagonal terms cancel, by the [independence product formula](gloss:independenceproductformula). 
+Subtracting these two tables entry-by-entry, we get the variances on the right-hand side from the diagonal terms, and all of the off-diagonal terms cancel, by the [independence product formula](gloss:independence-product). 
 
 _{button.next-step} Continue_
 
@@ -2173,7 +2173,7 @@ The **covariance matrix** of a vector $\mathbf{X} = [X\_1, \ldots, X\_n]$ of ran
 Show that $\Sigma = \mathbb{E}[\mathbf{X} \mathbf{X}']$ if all of the random variables $X\_1, \ldots, X\_n$ have mean zero. (Note: expectation operates on a matrix or vector of random variables entry-by-entry.) 
 :::
 
-    div(id="editor8")
+    .quill#editor8
 
 _{button.next-step} Submit_
 
@@ -2237,7 +2237,7 @@ Consider the probability space with $\Omega = [0,1]$ and probability measure giv
     [0,1]$. Find $\mathbb{P}([\frac{1}{2},1])$. 
 :::
 
-    div(id="editor1")
+    .quill#editor1
 
 _{button.next-step} Submit_
 
@@ -2287,7 +2287,7 @@ _{button.next-step} Continue_
 Suppose that $f$ is the function which returns $2$ for any point in the triangle $\Omega$ with vertices $(0,0)$, $(1,0)$, and $(0,1)$ and otherwise returns 0. Suppose that $(X,Y)$ has density $f$. Find the conditional density of $X$ given $\\{Y = y\\}$, where $y$ is a number between and 0 and 1. 
 :::
 
-    div(id="editor2")
+    .quill#editor2
  
 _{button.next-step} Submit_
  
@@ -2305,7 +2305,7 @@ _{button.next-step} Continue_
 Find the expectation of a random variable whose density is $f(x) = \mathrm{e}^{-x}\boldsymbol{1}\_{x \in [0,\infty)}$. 
 :::
 
-    div(id="editor2")
+    .quill#editor2
 
 _{button.next-step} Submit_
 
@@ -2326,7 +2326,7 @@ Show that the cumulative distribution function of a continuous random variable i
 (Note: if $f$ is a nonnegative-valued function on $\mathbb{R}$ satisfying $\int\_\mathbb{R} f = 1$, then $\lim\_{\epsilon \to 0}\int\_{x}^{x+\epsilon}f(t) \mathrm{d} t = 0$ for all $x \in R$.) 
 :::
 
-    div(id="editor3")
+    .quill#editor3
 
 _{button.next-step} Submit_
 
@@ -2347,7 +2347,7 @@ Suppose that $f$ is a density function on $\mathbb{R}$ and that $F$ is the cumul
 Use this result to show that if $U$ is uniformly distributed on $[0,1]$, then $U^2$ has density function $f(x) = \frac{1}{2\sqrt{x}}$ on $(0,1]$. 
 :::
 
-    div(id="editor4")
+    .quill#editor4
 
 _{button.next-step} Submit_
 
@@ -2381,7 +2381,7 @@ The remarkably useful **inverse CDF trick** gives us a way of sampling from any 
 * Write a Python function which samples from the distribution whose density function is $2x\boldsymbol{1}\_{0 \leq x \leq 1}$. 
 :::
 
-    div(id="editor8")
+    .quill#editor8
 
 _{button.next-step} Submit_
 
@@ -2492,7 +2492,7 @@ _{button.next-step} Continue_
 Find the conditional expectation of $X$ given $Y$ where the pair $(X,Y)$ has density $x + y$ on $[0,1]^2$. 
 :::
 
-    div(id="editor1")
+    .quill#editor1
 
 _{button.next-step} Submit_
 
@@ -2537,7 +2537,7 @@ Consider a particle which splits into two particles with probability $p \in (0,1
 Find the expected number of particles extant just after time $t = 2$. Hint: define $Y$ to be $1$ or $0$ depending on whether the particle splits at time $t = 1$, and use the tower law with $Y$. 
 :::
 
-    div(id="editor2")
+    .quill#editor2
 
 _{button.next-step} Submit_
 
@@ -2612,7 +2612,7 @@ _{button.next-step} Continue_
 Define $f\_n(x)$ to be $n$ when $0 \leq x \leq 1/n$ and 0 otherwise, and let $\nu\_n$ be the probability measure with density $f\_n$. Show that $\nu\_n$ converges to the probability measure $\nu$ which puts of all its mass at the origin. 
 :::
 
-    div(id="editor1")
+    .quill#editor1
 
 _{button.next-step} Submit_
 
@@ -2707,7 +2707,7 @@ The **normal approximation** is the technique of approximating the distribution 
 Suppose we flip a coin which has probability 60% of turning up heads $n$ times. Use the normal approximation to estimate the value of $n$ such that the proportion of heads is between 59% and 61% with probability approximately 99%. 
 ::: 
 
-    div(id="editor5")
+    .quill#editor5
 
 _{button.next-step} Submit_
 
@@ -2759,7 +2759,7 @@ Consider a random variable $S_n$ which is defined to be the sum of $n$ independe
 For simplicity, you may assume that $n$ is even. 
 :::
 
-    div(id="editor3")
+    .quill#editor3
 
 _{button.next-step} Submit_
 
@@ -2802,7 +2802,7 @@ Suppose that the percentage of residents in favor of a particular policy is 64%.
 * How many residents must be polled for the proportion of poll participants who are in favor of the policy to be between 62% and 66% with probability at least 95%? 
 :::
 
-    div(id="editor4")
+    .quill#editor4
 
 _{button.next-step} Submit_
 
@@ -2839,7 +2839,7 @@ Suppose that $X\_1, X\_2, \ldots$ is a sequence of independent, identically dist
 *  $\mathbb{P}(6n < X\_1 + \cdots + X\_{n} < 7n + 3\sqrt{n})$
 :::
 
-    div(id="editor3")
+    .quill#editor3
 
 _{button.next-step} Submit_
 
