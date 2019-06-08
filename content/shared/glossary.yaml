@@ -290,3 +290,45 @@ rankdeficient:
 multiple-extension:
   title: Multiple extension principle
   text: If a basis of the intersection of two vector spaces is extended separately to bases of the two vector spaces, then the resulting compiled list of basis vectors is linearly independent.
+  
+predicate:
+  title: Predicate
+  text: An true/false assertion about the state of the world.
+
+discreteRV:
+  title: Discrete random variable
+  text: A random variable is **discrete** if its range is finite or countably infinite. 
+  
+positivelybuoyant:
+  title: Positively buoyant
+  text: An object is positively buoyant if it is lighter than the fluid it's in. If a positively buoyant object is submerged and released, it will rise to the surface. A negatively buoyant object will sink.
+  
+respectively:
+  title: Respectively
+  text: |
+    *Respectively* means *in the given order*. For example, the sentence "Alice and Bob wore a green and a blue shirt, respectively." means that Alice wore a green shirt and Bob wore a blue shirt.
+  
+indicator:
+  title: Indicator random variable
+  text: |
+    The **indicator** of an event $E$ is the random variable which returns 1 for each $\omega$ in $E$ and returns 0 for every other $\omega$.
+  
+independence-product:
+  title: Independence product formula
+  text: |
+    If $X$ and $Y$ are independent random variables, then $\mathbb{E}[XY] = \mathbb{E}[X]\mathbb{E}[Y]$. If $A$ and $B$ are independent events, then $\mathbb{P}(A \cap B) = \mathbb{P}(A)\mathbb{P}(B)$. 
+    
+bernoulli:
+  title: Bernoulli
+  text: |
+    The Bernoulli distribution with parameter $p \in [0,1]$ is the distribution which assigns mass $p$ to 1 and mass $1-p$ to 0. When $p = 1/2$, we call this distribution the *fair coin flip distribution*.
+    
+traverse:
+  title: Traverse
+  text: |
+    To **traverse** a set is to visit each of its elements once. 
+    
+bruno:
+  title: Bruno
+  text: |
+    Bruno is the bear in the bottom right corner of your screen. 
