@@ -33,7 +33,7 @@ script('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=T
 $N('link', {rel: 'stylesheet', type: 'text/css', href: 'https://cdn.quilljs.com/1.3.6/quill.snow.css'}, $(document.head));
 
 script('https://cdn.quilljs.com/1.3.6/quill.js').then(() => {
-  for (const $quill of document.getElementsByClassName('quill')) {
+  for (const $quill of $$('.quill')) {
     new window.Quill('#' + $quill.id, {
       modules: {
         toolbar: [
