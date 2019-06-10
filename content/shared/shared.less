@@ -49,10 +49,11 @@ p { hanging-punctuation: none; }
   line-height: 2;
   border: 1px solid #ccc;
   position: relative;
+  border-radius: 4px 4px 4px 4px;
 }
 
 .code {
-  font-family: Menlo, Monaco, Consolas, "Liberation Mono",    "Courier New", monospace;
+  font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 1em;
   line-height: 2;
   border: 1px solid #ccc;
@@ -63,6 +64,7 @@ p { hanging-punctuation: none; }
   color: #222;
   padding: 2em;
   white-space: pre-wrap;
+  border-radius: 0px 0px 4px 4px;
 }
 
 .juniper-button {
@@ -71,16 +73,34 @@ p { hanging-punctuation: none; }
   top: 20px;
   border: 1px solid #ccc;
   right: 25px;
+  border-radius: 4px 4px 4px 4px;
+  padding: 2px;
+}
+
+.ql-toolbar {
+  border-radius: 4px 4px 0px 0px;
+}
+
+.quill {
+  border-radius: 0px 0px 4px 4px;
 }
 
 .CodeMirror pre {
   font-size: 11pt;
 }
 
+.CodeMirror {
+  padding: 3em 12px 12px 18px;
+}
+
 .bblue {
   background:#1f7aff
 }
 
+x-step code {
+  background: transparent; 
+  border: none;
+}
 
 // -----------------------------------------------------------------------------
 // Prism.css

@@ -51,19 +51,19 @@ _{button.next-step} Continue_
 
 Once you have Python installed, there are several ways to interact with it. 
 
-**REPL**. Launch a read-eval-print loop from the command line. Any code you enter will be executed immediately, and any values returned by your code will be displayed. To start a session, open your operating system's Terminal and run _{code.language-python}python_ or _{code.language-python}ipython_ (the latter being more colorful and having more features). You can do this in Binder by selecting *New > Terminal*. 
+**REPL**. Launch a read-eval-print loop from the [command line](gloss:command-line). Any code you enter will be executed immediately, and any values returned by your code will be displayed. To start a session, open your operating system's Terminal and run _{code.language-python}python_ or _{code.language-python}ipython_ (the latter being more colorful and having more features). You can do this in Binder by selecting *New > Terminal*. 
 
 _{button.next-step} Continue_
 
 ---
 
-**Script**. Save a file called _{code}example.py_ and run _{code}python example.py_ from the command line (in the same directory as the file) to execute all the code in the script. You can do this in Binder by selecting *New > Text File* and then changing the name of the text file to something that ends in _{code}.py_. 
+**Script**. Save a file called _{code}example.py_ and run _{code}python example.py_ from the [command line](gloss:command-line) (in the same directory as the file) to execute all the code in the script. You can do this in Binder by selecting *New > Text File* and then changing the name of the text file to something that ends in _{code}.py_. 
 
 _{button.next-step} Continue_
 
 ---
 
-**Jupyter**. Like a REPL, but allows inserting text and math expressions, grouping code into blocks, etc. This is the interface provided by default in [Binder](https://mybinder.org/v2/gh/sswatson/simple-python-stack/master), and you can launch a notebook locally by running _{code.language-python}jupyter notebook_ from the command line (assuming you have Anaconda installed). 
+**Jupyter**. Like a REPL, but allows inserting text and math expressions, grouping code into blocks, etc. This is the interface provided by default in [Binder](https://mybinder.org/v2/gh/sswatson/simple-python-stack/master), and you can launch a notebook locally by running _{code.language-python}jupyter notebook_ from the [command line](gloss:command-line) (assuming you have Anaconda installed). 
 
 _{button.next-step} Continue_
 
@@ -665,7 +665,7 @@ _{button.next-step} Continue_
 
 ::: .exercise
 **Exercise**  
-Can the _{code.language-python}else_ part of an _{code.language-python}if_ statement be omitted? [[Yes|No]] Experiment with the example below. 
+Can the _{code.language-python}else_ part of an _{code.language-python}if_ statement be omitted? [[Yes|No]] Try running the example below. 
 :::
 
     pre(data-executable)
@@ -696,6 +696,8 @@ Write a function called _{code.language-python}myAbs_ which computes the absolut
       |
       | test_abs()
 
+<p></p>
+
     .quill#editor6
 
 _{button.next-step} Submit_
@@ -722,6 +724,8 @@ Consider nesting _{code.language-python}if...else_ blocks inside of an _{code.la
       |
       | test_quadrant()
 
+<p></p>
+
     .quill#editor7
 
 _{button.next-step} Submit_
@@ -743,10 +747,6 @@ _{button.next-step} Submit_
       |         else:
       |             return 3
       | 
-
-
-    script(src='/codemirror-options.js')
-
 
 ---
 
@@ -1073,12 +1073,11 @@ Note that we import _{code.language-python}numpy_ with the alias _{code.language
 
 <p></p>
 
-**Matplotlib**. Standard plotting package in Python.
+**Matplotlib**. Standard plotting package in Python. (Note: run the cell below twice to get the graph to display.)
 
     pre(data-executable)
       | import matplotlib.pyplot as plt
       | import numpy as np
-      | plt.ion() # interactive plotting; have to run this cell twice!
       | plt.plot(np.cumsum(np.random.standard_normal(1000)))
       | plt.show()
 
@@ -2473,7 +2472,7 @@ _{button.next-step} Continue_
 
 ---
 
-Turns out, you were right. The first few hits pertain to a package called _{code.language-python}spotipy_. You check out [the docs](https://spotipy.readthedocs.io/en/latest/) and find that you can install the package by running _pip install spotipy_. Since _{code}pip_ is a command line tool, this is something you should run from the terminal. Note: if you're working in a Jupyter notebook, you can send code from a cell to the command line by prepending an exclamation point: 
+Turns out, you were right. The first few hits pertain to a package called _{code.language-python}spotipy_. You check out [the docs](https://spotipy.readthedocs.io/en/latest/) and find that you can install the package by running _pip install spotipy_. Since _{code}pip_ is a [command line](gloss:command-line) tool, this is something you should run from the terminal. Note: if you're working in a Jupyter notebook, you can send code from a cell to the command line by prepending an exclamation point:
 
     pre: code.language-python
       | !pip install spotipy
@@ -2642,7 +2641,7 @@ _{button.next-step} Continue_
 
 The first hurdle is to securely authorize your Python program to access your email account. We'll do this for Gmail accounts using a package called [yagmail](https://github.com/kootenpv/yagmail). You will want to do this on your computer, because the authorization step involves using your operating system keychain. 
 
-Following the installation instructions, we run _{code.language-python}pip3 install yagmail[all]_ from the command line to install _{code.language-python}yagmail_. 
+Following the installation instructions, we run _{code.language-python}pip3 install yagmail[all]_ from the [command line](gloss:command-line) to install _{code.language-python}yagmail_. 
 
 _{button.next-step} Continue_
 

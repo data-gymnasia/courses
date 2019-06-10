@@ -2698,7 +2698,7 @@ _{button.next-step} Submit_
 
     pre(data-executable)
       | 
-      | from matplotlib.pyplot import plt
+      | import matplotlib.pyplot as plt
       | plt.bar(range(5),np.linalg.solve(A.T @ A, A.T @ b))
       | 
 

@@ -14,6 +14,16 @@ receptive-field:
     preceding layer, while the receptive field of a neuron in a convolutional
     or subsampling layer is typically much smaller. 
     
+command-line:
+  title: Command line
+  text: |
+    A **command-line interface** (CLI) is a way of interacting with a computer using a sequence of commands entered as lines of text. Each typed command is submitted to the command line application by pressing "enter" and is run by the computer.
+    
+    On macOS, the command-line application is called *Terminal* and may be opened by spotlighting "Terminal" (do ⌘-spacebar and start typing "Terminal").
+    
+    The language for the Windows CLI is quite different from the standard one for macOS/Linux. We recommend ins
+    talling the [Git Bash](https://gitforwindows.org) emulator so that you can learn to operate the command line in a cross-platform way.
+
 int:
   title: int
   text: the standard integer type in Python
@@ -252,6 +262,10 @@ blockmatrixproduct:
 gram:
   title: Gram matrix
   text: The **Gram matrix** of a matrix $A$ is $A'A$
+
+diagonalize:
+  title: Diagonalize
+  text: To *diagonalize* a matrix $A$ is to represent it in the form $PDP^{-1}$, where $D$ is a diagonal matrix. A diagonalizable matrix scales space along the directions represented by the columns of $P$, with scale factors given by the diagonal entries of $D$. 
   
 spectraltheorem:
   title: Spectral Theorem
@@ -341,4 +355,18 @@ partial-sum:
   title: Partial sum
   text: |
     The $n$th partial sum of the infinite series $x_1 + x_2 + \cdots$ is $S_n = x_1 + x_2 + \cdots + x_n$.
-   
+  
+linearize:
+  title: Linearize
+  text: To **linearize** a differentiable function at a point is to treat it as though it were a linear function (specifically, the best linear approximation) near that point. 
+  
+clairaut:
+  title: Clairaut's theorem
+  text: Suppose $f:D \to \mathbb{R}$, where $D$ is a disk in $\mathbb{R}^2$. If $\partial_x \partial_y f$ and $\partial_y \partial_x f$ exist and are continuous, then $\partial_x \partial_y f = \partial_y \partial_x f$ throughout $D$. 
+  
+directional-derivative:
+  title: Directional derivative
+  text: |
+    The derivative of a funtion $f$ in the $\mathbb{u}$ direction is given by $\nabla f\cdot \mathbf{u}$. 
+    
+    There is therefore one direction in which $f$ increases most rapidly (the direction of $\nabla f$), and it increases in every direction which makes an acute angle with $\nabla f$. 
