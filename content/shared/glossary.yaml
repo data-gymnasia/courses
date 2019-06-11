@@ -41,6 +41,10 @@ str:
     myString[0] # returns "H"
     myString[3:] # returns "lo world!"
     dir(str) # to see all of the string methods_
+    
+list-math:
+  title: List
+  text: A list is a finite, ordered collection of items. Lists are different from sets because they are ordered and allow elements to be repeated.
 
 list:
   title: List
@@ -210,7 +214,19 @@ matrixvectormultiplication:
     
 algebraically:
   title: algebraically
-  text: Mathematical reasoning is *algebraic* if it involves the manipulation of symbols representing mathematical objects. Algebraic reasoning complements geometric reasoning, which involves figures or other non-symbolic visualizations.
+  text: |
+    Mathematical reasoning is *algebraic* if it involves the manipulation of symbols representing mathematical objects. Algebraic reasoning complements geometric reasoning, which involves figures or other non-symbolic visualizations.
+    
+    For example, $(a+b)^2 = a^2 + 2ab + b^2$ may be proved algebraically using the distributive property or geometrically by representing the left side as the area of an $(a+b) \times (a+b)$ square and the right side as the sum of the areas of four rectangles into which the square is divided.
+  image: square-area.svg
+
+geometrically:
+  title: geometrically
+  text: |
+    Mathematical reasoning is *geometric* if it involves spatial representations of the mathematical objects under consideration. Geometric reasoning complements algebraic reasoning, which involves symbolic manipulations. 
+    
+    For example, $(a+b)^2 = a^2 + 2ab + b^2$ may be proved algebraically using the distributive property or geometrically by representing the left side as the area of an $(a+b) \times (a+b)$ square and the right side as the sum of the areas of four rectangles into which the square is divided.
+  image: square-area.svg
   
 dotproduct:
   title: Dot Product
@@ -291,6 +307,10 @@ diagonalize:
 spectraltheorem:
   title: Spectral Theorem
   text: A matrix is orthogonally diagonalizable if and only if it's symmetric
+  
+orthogonal-complement:
+  title: Orthogonal Complement
+  text: The **orthogonal complement** $V^\perp$ of a vector space $V\subset \mathbb{R}^n$ is the set of vectors in $\mathbb{R}^n$ which are orthogonal to every vector in $V$.
   
 extensiontheorem:
   title: Extension Theorem
@@ -391,3 +411,7 @@ directional-derivative:
     The derivative of a funtion $f$ in the $\mathbb{u}$ direction is given by $\nabla f\cdot \mathbf{u}$. 
     
     There is therefore one direction in which $f$ increases most rapidly (the direction of $\nabla f$), and it increases in every direction which makes an acute angle with $\nabla f$. 
+    
+positive-definite:
+  title: Positive definite
+  text: A **positive definite** matrix $A$ is a symmetric matrix whose eigenvalues are all positive. A **positive semidefinite** matrix $A$ is a symmetric matrix whose eigenvalues are all nonnegative. Equivalently, a matrix $A$ is positive semidefinite if $\mathbf{x}' A \mathbf{x} \ge 0$ for all $\mathbf{x}$. 

@@ -11,6 +11,7 @@ functions from a data perspective. These ideas will be useful for developing rig
 _{button.next-step} Continue_
 
 ---
+> id: step-1
 
 ### Sets
 
@@ -24,6 +25,7 @@ single instance of that entry. This leads us to the definition of the term *set*
 _{button.next-step} Continue_
 
 ---
+> id: step-2
 
 ::: .definition
 **Definition**  
@@ -34,6 +36,7 @@ a set are called *elements*.
 _{button.next-step} Continue_
 
 ---
+> id: step-3
 
 The term *object* in this definition is deliberately vague.
 Sets may contain any kind of data: numbers, words, symbols, circles,
@@ -42,6 +45,7 @@ squares, other sets, and many others.
 _{button.next-step} Continue_
 
 ---
+> id: step-4
 
 If a set $S$ contains a finite number of elements
 $s_1, s_2, \ldots, s_n$, we can write 
@@ -51,15 +55,17 @@ $s_1, s_2, \ldots, s_n$, we can write
       | S = \{s_1, s_2, \ldots, s_n\}.
       | \end{equation*}
       
-For example `\{2,3,5,7\}` is the set of [[single-digit primes|single-digit odd numbers|digits you can write without making a loop]]
+For example $\\\{2,3,5,7\\\}$ is the set of [[single-digit primes|single-digit odd numbers|digits you can write without making a loop]]
 
 ---
+> id: step-5
       
 The fundamental operation provided by a set is [[**checking membership** | **counting** | **arithmetic** ]]:
 we write $s \in S$ to indicate that $s$ is an element of the set
 $S$. If $s$ is not an element of $S$, we write $s \notin S$. 
 
 ---
+> id: step-6
 
 If two sets have the same elements, then they are considered [[equal|parallel|reflexive]]. For example, 
 
@@ -73,10 +79,12 @@ For this reason, we typically list the elements of a set without duplication.
 _{button.next-step} Continue_
 
 ---
+> id: step-7
 
 The set containing no elements is called the [[**empty set**|**full set**|**small set**]] and is denoted $\emptyset$ or {}. 
   
 ---
+> id: step-8
 
 Some sets with standard and specially typeset names include
 
@@ -86,13 +94,13 @@ Some sets with standard and specially typeset names include
 *  $\mathbb{N}$, the set of natural numbers.
 
 ---
-
 > id: subsets
 ## Subsets
 
 The idea of set equality can be broken down into two separate relations: two sets are equal if the first set contains all the elements of [[the second set | itself]], and [[vice versa | the sets' elements are listed in the same order]]. 
 
 ---
+> id: step-9
 
 ::: .definition
 **Definition** (Subset)  
@@ -104,6 +112,7 @@ $T \subset S$.
 _{button.next-step} Continue_
 
 ---
+> id: step-10
 
 If we visualize a set as a [**potato**](gloss:potato) and its elements as dots in the blob, then the subset relationship looks like this: 
 
@@ -114,14 +123,17 @@ If we visualize a set as a [**potato**](gloss:potato) and its elements as dots i
 Here $S$ has [[7]] elements, and $T$ has [[4]] elements.
 
 ---
+> id: step-11
 
 Two sets are equal if [[each is a subset of the other|there is a set that each is a subset of]].
 
 ---
+> id: step-12
 
 The relationship between "`sub`" and "`=`" has a real-number analogue: we can say that `x = y` if and only if [[`x ≤ y` and `x ≤ y`|`y ≤ x`|`x ≤ y`]].
 
 ---
+> id: step-13
 
 ::: .exercise
 **Exercise**  
@@ -133,6 +145,7 @@ Think of four pairs of real-world sets which satisfy a subset relationship. For 
 _{button.next-step} Submit_
 
 ---
+> id: step-14
 
 ::: .exercise
 **Exercise**  
@@ -142,21 +155,25 @@ Suppose that $E$ is the set of even positive integers and that $F$ is the set of
 _{button.next-step} Continue_
 
 ---
+> id: step-15
 
 *Solution*. We have $E\subset F$, since the statement "$n$ is a positive even
 integer" [[implies|is implied by]] the statement "$n$ is one more than an odd
 number". In other words, $n \in E$ implies that $n \in F$.
 
 ---
+> id: step-16
 
 Likewise, we have $F \subset E$, because "$n$ is one more than an
 positive odd integer" [[implies|is implied by]] "$n$ is a positive even integer".
 
 ---
+> id: step-17
 
 Finally, we have $E = F$, since [[`F sub E` and `E sub F` | `E sub F`| `F sub E`]]. 
 
 ---
+> id: step-18
 
 ::: .exercise
 **Exercise**  
@@ -170,7 +187,6 @@ Drag the items below to put the sets in order so that each set is a subset of th
       .item.md(data-index="1") $\mathbb{Z}$
 
 ---
-
 > id: set-builder
 ## Set Builder Notation 
 
@@ -193,6 +209,7 @@ $P$. This is called *set builder notation*. The colon is read as "such that".
 _{button.next-step} Continue_
 
 ---
+> id: step-19
 
 ::: .example
 **Example**  
@@ -209,6 +226,7 @@ and 1. Then $S$ can be expressed as
 _{button.next-step} Continue_
 
 ---
+> id: step-20
 
 Counting the number of elements in a set is also an important operation:
 
@@ -220,23 +238,27 @@ Given a set $S$, the cardinality of $S$, denoted $|S|$, denotes the number of el
 _{button.next-step} Continue_
 
 ---
+> id: step-21
 
 ::: .exercise
 **Exercise**  
-Let `S = \{4,3,4,1\}`. Then $|S|$ = [[3|4|2|`oo`]].
+Let $S = \\\{4,3,4,1\\\}$. Then $|S|$ = [[3|4|2|`oo`]].
 :::
 
 ---
+> id: step-22
 
 *Solution*. There are three values $s$ with the property that $s \in S$. Therefore, $|S| = 3$.
 
 _{button.next-step} Continue_
 
 ---
+> id: step-23
 
-Not every set has an integer number of elements. Some sets have more elements than any set of the form `\{1,2,...,n\}`. These sets are said to be [[infinite|unbounded]]. 
+Not every set has an integer number of elements. Some sets have more elements than any set of the form $\\\{1,2,...,n\\\}$. These sets are said to be [[infinite|unbounded]]. 
 
 ---
+> id: step-24
 
 ::: .definition
 **Definition** (Countably infinite)  
@@ -246,7 +268,7 @@ in a sequence.
 
 ::: .example
 **Example**  
-The set `\{1,2,3,4,...\}` is [[countably infinite|finite|not countably infinite]]. The set of integers is [[countably infinite|finite|not countably infinite]], since they can be arranged sequentially: `\{0, 1, -1, 2, -2, 3, -3, ...\}`
+The set $\\\{1,2,3,4,...\\\}$ is [[countably infinite|finite|not countably infinite]]. The set of integers is [[countably infinite|finite|not countably infinite]], since they can be arranged sequentially: $\\\{0, 1, -1, 2, -2, 3, -3, ...\\\}$.
 
 The set of rational numbers between 0 and 1 is countably infinite,
 since they all appear in the sequence
@@ -264,6 +286,7 @@ infinite|countably infinite|finite]], because any infinite sequence of real numb
 _{button.next-step} Continue_
 
 ---
+> id: step-25
 
 ::: .exercise
 **Exercise**  
@@ -275,13 +298,13 @@ Show that the set of all ordered pairs of positive integers is countably infinit
 _{button.next-step} Submit_
 
 ---
+> id: step-26
 
 *Solution*. We visualize the pairs as a grid of points in the first quadrant. We arrange the points in a sequence by beginning in the lower left corner at $(1,1)$ and snake through the grid: we go right to $(2,1)$, then diagonally northwest to $(1,2)$, then up to $(1,3)$, then diagonally southeast to $(2,2)$ and through to $(3,2)$, and so on. 
 
     center: img(src="images/snake.svg")
 
 ---
-
 > id: set-operations
 ## Set Operations
 
@@ -292,10 +315,12 @@ Given a set $S$ describing a grocery list and a subset $A \subset S$ describing 
 _{button.next-step} Continue_
 
 ---
+> id: step-27
 
 The complement of the set of groceries in the cart with respect to the set of groceries on the list is a meaningful set because those are the items [[we still need to pick up|most important to our recipe]]. 
 
 ---
+> id: step-28
 
 ::: .definition
 **Definition** (Complement)  
@@ -311,6 +336,7 @@ If $A$ and $S$ are sets and $A \subset S$, then the complement of $A$ with respe
 _{button.next-step} Continue_
 
 ---
+> id: step-29
 
 With the blob-and-point visualization:
 
@@ -319,33 +345,38 @@ With the blob-and-point visualization:
 _{button.next-step} Continue_
 
 ---
+> id: step-30
 
 Since $S$ is not part of the notation $A^\mathsf{c}$, we will usually only use that notation when the intended containing set $S$ is clear from context.
 
 _{button.next-step} Continue_
 
 ---
+> id: step-31
 
 Sometimes you grab some items at the grocery store which were not on your list. Likewise, the notation $S \setminus A$ may be used regardless of whether $A$ is a subset of $S$. In this case, we use a different term: the **set difference** $S \setminus A$ is defined to be the set of elements which are in $S$ which are not in $A$.
 
 _{button.next-step} Continue_
 
 ---
+> id: step-32
 
 ::: .exercise
 **Exercise**  
-Suppose `S = \{1,2,3,4,5\}`and `A = \{4,2\}`. Find the complement   $A^{\mathsf{c}}$ of $A$ with respect to $S$. It has [[3]] elements.
+Suppose $S = \\\{1,2,3,4,5\\\}$ and $A = \\\{4,2\\\}$. Find the complement   $A^{\mathsf{c}}$ of $A$ with respect to $S$. It has [[3]] elements.
 :::
 
 _{button.next-step} Continue_
 
 ---
+> id: step-33
 
-*Solution*. The complement is $A^{\mathsf{c}}$ = `\{1,3,5\}`, since 1, 3, and 5 are the elements of $S$ which are not in $A$. 
+*Solution*. The complement is $A^{\mathsf{c}} = \\\{1,3,5\\\}$, since 1, 3, and 5 are the elements of $S$ which are not in $A$. 
 
 _{button.next-step} Continue_
 
 ---
+> id: step-34
 
 ::: .exercise
 **Exercise**  
@@ -359,6 +390,7 @@ Is the assumption that $A \subset S$ necessary for the problem to be well-specif
 _{button.next-step} Submit_
 
 ---
+> id: step-35
 
 *Solution*. Since $S$ has 55 elements and $A$ has 13, then there are   $\boxed{42}$ elements in $S$ which are not in $A$. 
 
@@ -367,6 +399,7 @@ The assumption is necessary, since if some of the elements of $A$ were not in $S
 _{button.next-step} Continue_
 
 ---
+> id: step-36
 
 ### Union
 
@@ -382,15 +415,17 @@ The **union** of two sets $S$ and $T$, denoted $S \cup T$, is the set containing
 _{button.next-step} Continue_
 
 ---
+> id: step-37
 
 ::: .exercise
 **Exercise**  
-Let `S = \{1,2,4,5\}` and `T = \{1,5,6,7,8\}`. Find $S \cup T$. It has [[7]] elements. 
+Let $S = \\\{1,2,4,5\\\}$ and $T = \\\{1,5,6,7,8\\\}$. Find $S \cup T$. It has [[7]] elements. 
 :::
 
 _{button.next-step} Continue_
 
 ---
+> id: step-38
 
 *Solution*. Listing all the elements of $S$ and all elements of $T$ and eliminating duplicates, we get 
 
@@ -402,14 +437,16 @@ _{button.next-step} Continue_
 _{button.next-step} Continue_
 
 ---
+> id: step-39
       
 ### Intersection
 
-When we're choosing which loaf of bread to purchase, we're interested in finding one which is in *both* of two sets: 
-* the set of loaves whose price falls in our range of acceptable prices, and 
-* the set of loaves whose taste we find satisfactory 
+You realize that you and your partner inadvertently *both* made grocery lists and went grocery shopping the same afternoon. You want to know the items on both lists, because [[you'll have extra of those items|you need to go back to the store for those]]. 
 
-The set of viable loaves is the *intersection* of these two sets.
+---
+> id: step-40
+
+The set of items which are in both sets is called the *intersection* of the two sets. 
 
 ::: .definition
 **Definition** (Intersection)  
@@ -421,13 +458,15 @@ The **intersection** of two sets $S$ and $T$, denoted $S \cap T$, is the set con
 _{button.next-step} Continue_
 
 ---
+> id: step-41
 
 ::: .exercise
 **Exercise**
-Let `S = \{1,2,3,4,5\}` and `T = \{1,5,6,7,8\}`. Then $S \cap T$ has [[2]] elements.
+Let $S = \\\{1,2,3,4,5\\\}$ and $T = \\\{1,5,6,7,8\\\}$. Then $S \cap T$ has [[2]] elements.
 :::
 
 ---
+> id: step-42
 
 ### Set operations with more sets
 
@@ -450,6 +489,7 @@ Similarly, we can take the intersection of an arbitrary number of sets:
 _{button.next-step} Continue_
 
 ---
+> id: step-43
 
 ### Disjoint sets
 
@@ -463,12 +503,14 @@ Two sets $S$ and $T$ are **disjoint** if they do not have any elements in common
 _{button.next-step} Continue_
 
 ---
+> id: step-44
 
 In other words, $S$ and $T$ are disjoint if $S \cap T = \emptyset$.
 
 _{button.next-step} Continue_
 
 ---
+> id: step-45
 
 This definition extends to an arbitrary number of sets. We say that the sets $S_1, S_2, \ldots, S_n$ are **pairwise disjoint** if any pair is disjoint (in other words, if $S_i \cap S_j = \emptyset$ whenever $i \neq j$). 
 
@@ -477,17 +519,19 @@ This definition extends to an arbitrary number of sets. We say that the sets $S_
 Find three sets $A$, $B$, and $C$ which have $A \cap B \cap C = \emptyset$, but for which all of the intersections $A \cap B$, $B\cap C$, and $A \cap C$ are nonempty.   
 :::
 
-    .quill#editor1
+    .quill#editor4
 
 _{button.next-step} Submit_
 
 ---
+> id: step-46
 
 *Solution*. We can take $A = \\{1,2\\}$, $B = \\{1,3\\}$, and $C = \\{2,3\\}$. These sets are pairwise *non*-disjoint, but there are no elements common to all three sets. 
 
 _{button.next-step} Continue_
 
 ---
+> id: step-47
 
 ### Partitions
 
@@ -510,19 +554,21 @@ and $S_1, S_2, \ldots, S_n$ are disjoint.
 _{button.next-step} Continue_
 
 ---
+> id: step-48
 
 ::: .exercise
 **Exercise**  
-Find a partition of `\{1,2,3,4,5\}` into three sets. Is there a partition of `\{1,2,3,4,5\}` into *six* sets?   
+Find a partition of $\\\{1,2,3,4,5\\\}$ into three sets. Is there a partition of $\\\{1,2,3,4,5\\\}$ into *six* sets?   
 :::
 
-    .quill#editor2
+    .quill#editor5
 
 _{button.next-step} Submit_
 
 ---
+> id: step-49
 
-*Solution*. There are many partitions of `\{1,2,3,4,5\}` into three sets. For example,
+*Solution*. There are many partitions of $\\\{1,2,3,4,5\\\}$ into three sets. For example,
 
     p
       | \begin{equation*}
@@ -530,14 +576,15 @@ _{button.next-step} Submit_
       |     \{\{1,2,5\},\{3\},\{4\}\}.
       | \end{equation*}
 
-It is not possible to partition `\{1,2,3,4,5\}`into six sets, because each set must have at least one element, and no pair of the sets can have any element in common. 
+It is not possible to partition $\\\{1,2,3,4,5\\\}$ into six sets, because each set must have at least one element, and no pair of the sets can have any element in common. 
 
 _{button.next-step} Continue_
 
 ---
+> id: step-50
 ### Cartesian Products
 
-Suppose we perform an experiment which consists of flipping a coin and rolling a standard six-sided die. The outcome of the coin flip is an element of the set `S_1 = \{H, T\}`, and the outcome of the die roll is an element of the set `S_2 = \{1,2,3,4,5,6\}`. The set of all possible outcomes of the experiment is the set with the following elements.
+Suppose we perform an experiment which consists of flipping a coin and rolling a standard six-sided die. The outcome of the coin flip is an element of the set $S\_1 = \\\{H, T\\\}$, and the outcome of the die roll is an element of the set $S\_2 = \\\{1,2,3,4,5,6\\\}$. The set of all possible outcomes of the experiment is the set with the following elements.
 
     table.eqnarray
       tr
@@ -558,8 +605,9 @@ Suppose we perform an experiment which consists of flipping a coin and rolling a
 _{button.next-step} Continue_
 
 ---
+> id: step-51
         
-We call this 12-element set the **Cartesian product** of `S_1` and `S_2`. 
+We call this 12-element set the **Cartesian product** of $S\_1$ and $S\_2$. 
         
 ::: .definition
 **Definition** (Cartesian Product)  
@@ -567,31 +615,33 @@ If $S_1$ and $S_2$ are sets, then the **Cartesian product** of $S_1$ and $S_2$ i
  
     p
       | \begin{equation*}
-      |     S_1 \times S_2 = \{(s_1, s_2) : s_1 \in S_1 \text{ and } s_2 \in
+      |     S_1 \times S_2 &= \{(s_1, s_2) : s_1 \in S_1 \text{ and } s_2 \in
       |     S_2\}.
-      |   \end{equation*}
+      | \end{equation*}
       
 Likewise, if $S_1,S_2, \ldots, S_n$ are sets, then   
 
     p
-      | \begin{equation*}
-      |     S_1 \times S_2 \times \cdots \times S_n  = \{(s_1, s_2, \ldots, s_n) : s_1 \in S_1 \text{ and } s_2 \in
+      | \begin{align*}
+      |     S_1 &\times S_2 \times \cdots \times S_n \\\  &= \{(s_1, s_2, \ldots, s_n) : s_1 \in S_1 \text{ and } s_2 \in
       |     S_2 \text{ and } \cdots \text{ and } s_n \in S_n\}.
-      |   \end{equation*}
+      | \end{align*}
 
 :::
 
 _{button.next-step} Continue_
 
 ---
+> id: step-52
 
 This set operation is ubiquitous in probability and data science applications, since it corresponds to the common act of combining multiple pieces of information into an ordered pair, an ordered triple, or a higher-order tuple.
 
-For example, a patient data record might be an ordered quintuple of the form (first name, last name, date of birth, height, blood pressure reading). This record is in $S \times S \times D \times H \times B$, where `S` is the set of all *strings* (sequences of characters), `D` is the set of all dates, `H` is the set of positive length measures, and `B` is the set of possible blood pressure readings.
+For example, a patient data record might be an ordered quintuple of the form (first name, last name, date of birth, height, blood pressure reading). This record is in $S \times S \times D \times H \times B$, where $S$ is the set of all *strings* (sequences of characters), $D$ is the set of all dates, $H$ is the set of positive length measures, and $B$ is the set of possible blood pressure readings.
 
 _{button.next-step} Continue_
 
 ---
+> id: step-53
 
 ::: .exercise
 **Exercise**  
@@ -599,6 +649,7 @@ If $|S| = 4$ and $|T| = 100$, then $|S \times T| = $ [[400]].
 :::
 
 ---
+> id: step-54
 
 *Solution*. In the coin-and-die example, the cardinality of the Cartesian product was 12, which is equal to the product of the cardinalities of the original sets. We listed the elements of $S$ in a way which suggests why this is the case: the elements of $S \times T$ can always be arranged in a $|S|$ by $|T|$ grid.
 
@@ -607,6 +658,7 @@ Therefore, $|S \times T| = 400$.
 _{button.next-step} Continue_
 
 ---
+> id: step-55
 
 ### Exercises
 
@@ -623,6 +675,7 @@ Select most appropriate set theory term for each of the following real-world sce
 :::
 
 ---
+> id: step-56
 
 ::: .exercise
 **Exercise**  
@@ -638,11 +691,12 @@ Establish the first and third of the following four identities. Use the followin
 
 :::
 
-    .quill#editor4
+    .quill#editor6
 
 _{button.next-step} Submit_
 
 ---
+> id: step-57
 
 *Solution*. If an element $s$ is in $S \cap (R \cup T)$, then it is in $S$ and it is either in $R$ or $T$. This implies that either (i) $s\in S$ and $s\in
 R$, or (ii) $s\in S$ and $s\in T$. In other words, either $s\in S
@@ -650,12 +704,14 @@ R$, or (ii) $s\in S$ and $s\in T$. In other words, either $s\in S
 (S \cap T)$. Therefore, the left-hand side is a [[subset]] of the right-hand side.
 
 ---
+> id: step-58
 
 Conversely, if $s \in (S \cap R) \cup (S \cap T)$, then either $s
 \in S \cap R$ or $s \in S \cap T$. In the former case, it is true that $s \in S$ and that $s \in R \cup T$. Therefore, $s \in S \cap
 (R \cup T)$ in this case. Similarly, in the latter case, we have $s\in S$ and $s \in R \cup T$. Therefore, $s \in S \cap (R \cup T)$ in this case as well. So the right-hand side is also a [[subset]] of the left-hand side.
 
 ---
+> id: step-59
 
 For the third identity, note that if 
 
@@ -674,6 +730,7 @@ then it is not true that $s$ is in the union of the $S_i$'s. In other words, $s$
 _{button.next-step} Continue_
 
 ---
+> id: step-60
 
 Similarly, if 
 
@@ -694,6 +751,7 @@ Sets are data containers with very little structure: you can check membership (a
 _{button.next-step} Continue_
 
 ---
+> id: step-61
 
 For example, suppose you *do* care about the order in which the items appear on your grocery list; perhaps because you want to be able pick the items up in a certain order as you move across the store. Also, you might want to list an item multiple times as a way of reminding yourself that you should pick up more than one. *Lists* can handle both of these extra requirements:
 
@@ -702,37 +760,37 @@ For example, suppose you *do* care about the order in which the items appear on 
 A **list** is an ordered collection of finitely many elements. 
 :::
 
-For example, if we regard `\{1,2,3\}` and `\{2,1,3\}` as lists, then they are unequal because the orders in which the elements appear are different. Also, the list `\{1,1,2\}` has three elements, since repeated elements are not considered redundant.
+For example, if we regard $\\\{1,2,3\\\}$ and $\\\{2,1,3\\\}$ as lists, then they are unequal because the orders in which the elements appear are different. Also, the list $\\\{1,1,2\\\}$ has three elements, since repeated elements are not considered redundant.
 
 _{button.next-step} Continue_
 
 ---
+> id: step-62
 
 We don't distinguish sets and lists notationally, so we will rely on context to make it clear whether order matters and repetitions count.
 
 ::: .exercise
 **Exercise**  
-How many sets $A$ have the property that `A sub \{1,2,3\}`? [[8]] 
+How many sets $A$ have the property that $A \subset \\\{1,2,3\\\}$? [[8]] 
 
-How many *lists* of length 4 have all of their elements in `\{1,2,3\}`? [[81]]
+How many *lists* of length 4 have all of their elements in $\\\{1,2,3\\\}$? [[81]]
 :::
 
 ---
+> id: step-63
 
-*Solution*. There are 8 subsets of `\{1,2,3\}`:
+*Solution*. There are 8 subsets of $\\\{1,2,3\\\}$:
 
     p
       | \begin{equation*}
       |     \emptyset, \{1\}, \{2\}, \{3\}, \{1,2\}, \{1,3\}, \{2,3\},
       |     \{1,2,3\}.
-      |   \end{equation*}
+      | \end{equation*}
 
-There are $3^4 = 81$ length-4 lists with elements in `\{1,2,3\}`, because the set of such lists is equal to `\{1,2,3\} ×
-\{1,2,3\} × \{1,2,3\} × \{1,2,3\}`, and the cardinality of a Cartesian product of sets is the product of the cardinalities of the sets. 
+There are $3^4 = 81$ length-4 lists with elements in $\\\{1,2,3\\\}$, because the set of such lists is equal to $\\\{1,2,3\\\} \times \\\{1,2,3\\\} \times \\\{1,2,3\\\} \times \\\{1,2,3\\\}$, and the cardinality of a Cartesian product of sets is the product of the cardinalities of the sets. 
 
 
 ---
-
 > id: functions
 ## Functions
 
@@ -755,18 +813,21 @@ The grocery lists you make for yourself probably don't look quite like a set *or
 _{button.next-step} Continue_
 
 ---
+> id: step-64
       
 We have two sets here: the set of grocery items and the set of positive integers. For each element in the former set, we want to associate with it some element of the latter set.
 
 _{button.next-step} Continue_
 
 ---
+> id: step-65
 
 Note that this construction is asymmetric in the two sets: every grocery item should have exactly one number associated with it, while some positive integers will be omitted and others may be associated with multiple grocery items.
 
 _{button.next-step} Continue_
 
 ---
+> id: step-66
 
 The idea of attaching a piece of data to each element of a set arises *very* often throughout the quantitative disciplines, and it deserves its own vocabulary:
 
@@ -784,6 +845,7 @@ The set $A$ is called the **domain** of $f$ and $B$ is called the **codomain** o
 _{button.next-step} Continue_
 
 ---
+> id: step-67
 
 The domain and codomain of a function should be considered part of the data of the function: to fully specify $f$, we must specify (i) the domain $A$, (ii) the codomain $B$, and (iii) the value of $f(x)$ for each $x \in A$. 
 
@@ -795,12 +857,14 @@ Consider the function $f$ from the set of real numbers to the set of real number
 :::
 
 ---
+> id: step-68
 
 *Solution.* The functions are unequal, since their codomains are not the same.
 
 _{button.next-step} Continue_
 
 ---
+> id: step-69
 
 ### Images
 
@@ -814,6 +878,7 @@ Given a subset $A'$ of $A$, we define the **image** of $f$—denoted $f(A')$—t
 _{button.next-step} Continue_
 
 ---
+> id: step-70
 
 The **range** of $f$ is defined to be the image of the domain of $f$. Thus the range may be obtained from the codomain by removing all the elements that don't get mapped to.
 
@@ -822,6 +887,7 @@ The **range** of $f$ is defined to be the image of the domain of $f$. Thus the r
 _{button.next-step} Continue_
 
 ---
+> id: step-71
 
 ::: .exercise
 **Exercise**  
@@ -843,12 +909,14 @@ Find the range of the function from {apple, bread, squash} to $\mathbb{N}$ repre
 :::
 
 ---
+> id: step-72
 
-*Solution*. The range is the set of quantity counts which get mapped to from some grocery item, so the range is the two-element set `\{1,3\}`.
+*Solution*. The range is the set of quantity counts which get mapped to from some grocery item, so the range is the two-element set $\\\{1,3\\\}$.
 
 _{button.next-step} Continue_
 
 ---
+> id: step-73
 
 ::: .exercise
 **Exercise**  
@@ -859,17 +927,19 @@ Consider the *social-security-number function* $f$ from the set of US citizens a
 
 :::
 
-    .quill#editor1
+    .quill#editor7
 
 _{button.next-step} Submit_
 
 ---
+> id: step-74
 
 *Solution*. (i) The value of $\frac{|f(A)|}{|A|}$ is 1 for any set $A$: since no two people are issued the same social security number, the number of elements in $f(A)$ is equal to the number of elements in $A$.
 
 (ii) There are $10^{9}$ elements in the codomain of $f$, and about 450 million numbers have been issued. Therefore, the ratio of the cardinality of the range to the cardinality of the codomain is about $0.45$. Since a macroscopic percentage of possible SSNs have been used, it's clear that eventually the SSA will eventually have to either issue duplicate SSNs or increase the number of digits they use for each one.
 
 ---
+> id: step-75
 
 ### Preimages
 
@@ -899,6 +969,7 @@ This is the subset of $A$ consisting of every element of $A$ that maps to some e
 _{button.next-step} Continue_
 
 ---
+> id: step-76
 
 *Solution*. The first statement is true; for example, consider the squaring function from the real number line to itself. The preimage of any set of negative numbers is empty.
 
@@ -907,6 +978,7 @@ The second statement is also true, since multiple input elements may map to the 
 _{button.next-step} Continue_
 
 ---
+> id: step-77
 
 ::: .exercise
 **Exercise**  
@@ -933,16 +1005,17 @@ Which of the are true for all functions $f$ and all subsets $A$ and $B$ of the d
 (e) (i), (iii), and (iv) only
 :::
 
-    .quill#editor2
+    .quill#editor8
 
 _{button.next-step} Submit_
 
 ---
+> id: step-78
 
 *Solution*. The correct answer is (e). To show that (ii)   $f(A \cup B) = f(A) \cup f(B)$, we note that if $y \in f(A \cup B)$,   then $y = f(x)$ for some $x \in A \cup B$. This element $x$ is in either $A$ or $B$, which means that $y = f(x)$ is in either $f(A)$ or $f(B)$. Thus $y \in f(A) \cup f(B)$. So $f(A \cup B) \subset f(A) \cup f(B)$. Similar reasoning shows that $f(A) \cup f(B) \subset f(A \cup B)$ as well. Statements (iii) and (iv) may likewise be confirmed.
 
-To see that (i) may fail, consider the function from `\{-1,0,1\}` to `\{0,1\}` which squares its input. Let `A =
-\{-1,0\}` and `B = \{0,1\}`. Then $f(A \cap B)$ = `\{0\}`, while $f(A) \cap f(B)$ = `\{0,1\}`.
+To see that (i) may fail, consider the function from $\\\{-1,0,1\\\}$ to $\\\{0,1\\\}$ which squares its input. Let $A =
+\\\{-1,0\\\}$ and $B = \\\{0,1\\\}$. Then $f(A \cap B) = \\\{0\\\}$, while $f(A) \cap f(B) = \\\{0,1\\\}$.
 
     center
       img(src="images/three-element-squaring.svg")
@@ -950,7 +1023,6 @@ To see that (i) may fail, consider the function from `\{-1,0,1\}` to `\{0,1\}` w
     
 
 ---
-
 > id: function-properties
 ## Function Properties
 
@@ -968,6 +1040,7 @@ A function $f$ is **bijective** if it is both injective and surjective. This mea
 _{button.next-step} Continue_
 
 ---
+> id: step-79
 
 ::: .exercise
 **Exercise**  
@@ -980,6 +1053,7 @@ Identify each of the following functions as injective or not injective, surjecti
 :::
 
 ---
+> id: step-80
 
 ::: .exercise
 **Exercise**  
@@ -988,12 +1062,11 @@ For each of the four combinations of injectivity and surjectivity, come up with 
 For example, the function from the set of ticket numbers for a commercial airplane flight to the set of passengers on the plane (the one which associates each ticket number with the passenger named on that ticket) is bijective.
 :::
 
-    .quill#editor1
+    .quill#editor9
 
 _{button.next-step} Submit_
 
 ---
-
 > id: operations
 ## Function Operations
 
@@ -1024,17 +1097,19 @@ defined by
 _{button.next-step} Continue_
 
 ---
+> id: step-81
 
 ::: .exercise
 **Exercise**  
 State a general relationship involving the terms *restriction*, *image*, and *range*.   
 :::
 
-    .quill#editor1
+    .quill#editor10
 
 _{button.next-step} Submit_
 
 ---
+> id: step-82
 
 *Solution*. If $f:A \to B$ and $A' \subset A$, then the range of the restriction
 
@@ -1048,6 +1123,7 @@ is equal to the image $f(A)$. These sets are equal because they are both equal t
 _{button.next-step} Continue_
 
 ---
+> id: step-83
 
 ### Composition
 
@@ -1065,6 +1141,7 @@ If $f: A \to B$ and $g:B \to C$, then the function $g\circ f$ which maps $x \in 
 _{button.next-step} Continue_ 
 
 ---
+> id: step-84
 
 ::: .exercise
 **Exercise**  
@@ -1072,11 +1149,12 @@ Show that composition is associative: $(f\circ g)\circ h = f \circ
 (g \circ h)$ for all functions $f$, $g$, and $h$ with the property that the codomain of $h$ is equal to the domain of $g$ and the codomain of $g$ is equal to the domain of $f$.   
 :::
 
-    .quill#editor2
+    .quill#editor11
 
 _{button.next-step} Submit_
 
 ---
+> id: step-85
 
 *Solution*. We check that two functions are equal by checking that they have the same domain and codomain and that they map all input values to the same output values.
 
@@ -1087,6 +1165,7 @@ Furthermore, $(f\circ g)\circ h$ maps $x$ to $(f\circ g)(h(x))$,   which by defi
 _{button.next-step} Continue_
 
 ---
+> id: step-86
 
 ### Anonymous functions
 
@@ -1099,12 +1178,14 @@ Suppose that $f$ is the function $(x\mapsto \sqrt{x}) \circ (y\mapsto
 :::
 
 ---
+> id: step-87
 
 *Solution*. We first substitute $\frac{1}{12}$ into the tripling function to get $\frac{1}{4}$, and then we substitute that value into the square root function to get $f\left(\frac{1}{12}\right) = \boxed{\tfrac{1}{2}}$. 
 
 _{button.next-step} Continue_
 
 ---
+> id: step-88
 
 ### Inverses
 
@@ -1113,29 +1194,33 @@ Suppose that $f: A \to B$ is a function from the set $A$ of names of customers a
 _{button.next-step} Continue_
 
 ---
+> id: step-89
 
 Since $f$ is bijective, we can ask to *reverse* the lookup that $f$ performs: given a primary checking account number, what is the corresponding customer name? This function from $B$ to $A$ is called the *inverse* of $f$. 
 
 _{button.next-step} Continue_
 
 ---
+> id: step-90
 
 ::: .exercise
 **Exercise**  
 Find the inverse of the function $f(x) = x^2 + 1$ from the interval $[0,\infty)$ to the interval $[1,\infty)$. 
 :::
 
-    .quill#editor3
+    .quill#editor12
 
 _{button.next-step} Submit_
 
 ---
+> id: step-91
 
 *Solution*. Given $y \in [1,\infty)$, we want to find the value of $x$ that $f$ maps to it. In other words, we want to solve $x^2 + 1 = y$ for [[`x`|`y`]]. Doing so, we get $x = \sqrt{y-1}$. Therefore, $f^{-1}(y) = \sqrt{y-1}$. 
 
 _{button.next-step} Continue_
 
 ---
+> id: step-92
 
 ::: .exercise
 **Exercise**  
@@ -1150,6 +1235,7 @@ Select the functions which have inverses.
 :::
 
 ---
+> id: step-93
 
 ::: .exercise
 **Exercise**  
@@ -1162,6 +1248,7 @@ Which of the following is equal to $(g\circ f)^{-1}$, if $f$ and $g$ are inverti
 :::
 
 ---
+> id: step-94
 
 *Solution*. We have $(f^{-1} \circ g^{-1}) \circ (g \circ f(x)) = f^{-1}(f(x)) = x$, so $f^{-1} \circ g^{-1}$ is the inverse of $f\circ g$.
 

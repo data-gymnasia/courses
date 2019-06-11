@@ -9,6 +9,7 @@ Calculus is the study of continuously varying functions. Specifically, we examin
 _{button.next-step} Continue_
 
 ---
+> id: step-1
 
 The ideas of multivariable calculus are useful for data science in at least a couple of ways: (i) when we [model](gloss:model) data, the functions we use to gauge the goodness of a model typically depend on many model variables. We optimize these functions by thinking about how they increase or decrease under small perturbations of the variables. And (ii) we will mathematically represent the idea of *probability* using functions on $\mathbb{R}^d$, and in that context probabilities will be recovered by integrating these functions. 
 
@@ -17,6 +18,7 @@ We will begin by studying sequences and series.
 _{button.next-step} Continue_
 
 ---
+> id: step-2
 
 ### Sequences and series
 
@@ -35,6 +37,7 @@ Convergence to zero is apparent visually if make a scatter plot of $a_n$ versus 
 _{button.next-step} Continue_
 
 ---
+> id: step-3
 
 ### Squeeze theorem
 
@@ -47,7 +50,8 @@ If $a\_n \leq b\_n \leq c\_n$ for all $n\geq 1$ and if $\lim\_{n\to\infty} a\_n 
 
 _{button.next-step} Continue_
 
---- 
+---
+> id: step-4 
 
 ::: .exercise
 **Exercise**  
@@ -59,12 +63,14 @@ Suppose that $|x\_n| \leq n^{-1/2}$ for all $n \geq 1$. Show that $x\_n \to 0$ a
 _{button.next-step} Submit_
 
 ---
+> id: step-5
 
 *Solution*. We have $-n^{-1/2} \leq x\_n \leq n^{-1/2}$ for all $n$, so we may apply the squeeze theorem to the sequences $-n^{-1/2}$ and $n^{-1/2}$ to conclude that $x\_n \to 0$ as $n\to\infty$. 
 
 _{button.next-step} Continue_
 
 ---
+> id: step-6
 
 ### Series
 
@@ -85,6 +91,7 @@ If $a\_n$ does not converge to zero, then the series $\displaystyle{\sum\_{n=1}^
 _{button.next-step} Continue_
 
 ---
+> id: step-7
 
 ::: .exercise
 **Exercise**  
@@ -104,12 +111,14 @@ Show that $\displaystyle{\sum\_{n=1}^\infty \frac{n}{n+1}}$ does not converge. P
 _{button.next-step} Submit_
 
 ---
+> id: step-8
 
 *Solution*. Since $n/(n+1)$ converges to 1 as $n\to\infty$, the sum of these terms does not converge to zero, by the term test. The graph of the sequence of partial sums shows how the partial sums increase (approximately linearly) without bound, illustrating the series' lack of convergence to a finite value.
 
 _{button.next-step} Continue_
 
 ---
+> id: step-9
 
 Another valid statement suggested by the "terms go to 0 fast enough" intuition is that convergence of one series implies convergence of any other series whose terms go to 0 at least as fast: 
 
@@ -124,6 +133,7 @@ a\_n$, then $\Sigma\_{n=1}^\infty a\_n$ also does not converge.
 _{button.next-step} Continue_
 
 ---
+> id: step-10
 
 The comparison test works well in conjunction with a list of basic series whose convergence is known.
 
@@ -146,12 +156,14 @@ Show that the series $\sum\_{n=1}^\infty \frac{1}{n^2 + n}$ converges.
 _{button.next-step} Submit_
 
 ---
+> id: step-11
 
 *Solution*. We know that $\frac{1}{n^2 + n} < \frac{1}{n^2}$ and that $\sum\_{n=1}^\infty \frac{1}{n^2}$ converges. Therefore, the comparison test implies that $\frac{1}{n^2 + n}$ converges. 
 
 _{button.next-step} Continue_
 
 ---
+> id: step-12
 
 ::: .exercise
 **Exercise**  
@@ -164,11 +176,12 @@ Numerically examine the statement that $\sum\_{n=1}^\infty \frac{1}{n^2}$ conver
 
 <p></p>
 
-    .quill#editor22
+    .quill#editor2
 
 _{button.next-step} Submit_
 
 ---
+> id: step-13
 
 *Solution*. The expression 
 
@@ -197,12 +210,14 @@ The utility of this simple idea emerges from the convenient simplicity of polyno
 _{button.next-step} Continue_
 
 ---
+> id: step-14
 
 First, a bit of review on the exponential function $x\mapsto \exp(x)$: we define $\exp$ to be the function which maps 0 to 1 and which is everywhere equal to its own derivative. It follows (nontrivially) from this definition that $\exp(x) = \exp(1)^x$, so may define $\mathrm{e} = \exp(1)$ and write the exponential function as $x\mapsto \mathrm{e}^x$. The value of $\mathrm{e}$ is approximately 2.718. 
 
 _{button.next-step} Continue_
 
 ---
+> id: step-15
 
 ::: .example
 **Example**  
@@ -219,6 +234,7 @@ Find the quadratic polynomial $P\_2$ whose zeroth, first, and second derivatives
 for some $a\_0, a\_1,$ and $a\_2$. To match the [[zeroth|first|second]] derivative, we check that $P\_2(0) = a\_0$ and $f(0) = 1$. So we must have $a\_0 =1$. Similarly, $P\_2'(0) = a\_1$, so if we want $P\_2'(0) = f'(0) = 1$, have to choose $a\_1  = 1$ as well. 
 
 ---
+> id: step-16
 
 For $a\_2$, we calculate $P\_2''(x) = (a\_1 + 2a\_2x)' = 2a\_2$, so to get $P\_2''(0) = f''(0) = 1$, we have to let $a\_2 = \tfrac{1}{2}$. So 
 
@@ -230,12 +246,13 @@ For $a\_2$, we calculate $P\_2''(x) = (a\_1 + 2a\_2x)' = 2a\_2$, so to get $P\_2
 is the best we can do. Looking at the figure, we set that $P\_2$ does indeed do a better job of 'hugging' the graph of $f$ near $x=0$ than the best linear approximation ($L(x) = 1 + x$) does. 
  
     center
-      img(src="images/taylor.svg" width="350px")
+      img(src="images/taylor.svg" width="300px")
       p.caption The best constant, linear, and quadratic approximations of $\exp(x) = \mathrm{e}^x$ near the origin 
 
 _{button.next-step} Continue_
 
 ---
+> id: step-17
 
 We can extend this idea to higher order polynomials, and we can even include terms for *all* powers of $x$, thereby obtaining an infinite series: 
 
@@ -254,6 +271,7 @@ The Taylor series, centered at $c$, of an infinitely differentiable function $f$
 _{button.next-step} Continue_
 
 ---
+> id: step-18
 
 ::: .example
 **Example**  
@@ -272,6 +290,7 @@ It turns out that this series does in fact converge to $\mathrm{e}^x$, for all $
 _{button.next-step} Continue_
 
 ---
+> id: step-19
 
 ### Taylor series properties
 
@@ -289,6 +308,7 @@ All the operations described above may be applied wherever all the series in que
 _{button.next-step} Continue_
 
 ---
+> id: step-20
 
 The following example shows how convenient this theorem can be for finding Taylor series. 
 
@@ -310,12 +330,14 @@ Find the Taylor series for $f(x) = \cos x + x \mathrm{e}^{x^2}$ centered at $c =
 _{button.next-step} Continue_
 
 ---
+> id: step-21
 
 In summation notation, we could write this series as $\sum\_{n=0}^\infty a\_n x^n$ where $a\_n$ is equal to $(-1)^{n/2}/n!$ if $n$ is even and $1/((n-1)/2)!$ if $n$ is odd. 
 
 _{button.next-step} Continue_
 
 ---
+> id: step-22
 
 ::: .exercise
 **Exercise**  
@@ -328,7 +350,8 @@ Use your result to find $x + 2x^2 + 3x^3 + 4x^4 + \cdots$. Hint: think about dif
 
 _{button.next-step} Submit_
 
---- 
+---
+> id: step-23 
 
 *Solution*. Calculating derivatives of $1/(1-x)$, we find that the Taylor series centered at the origin is $1 + x + x^2 + \cdots$. Furthermore, we know that 
 
@@ -356,17 +379,19 @@ We can use this result to find $\sum\_{k = 1}^\infty k x^k$ by differentiating b
 _{button.next-step} Continue_
 
 ---
+> id: step-24
 
 ::: .exercise
 **Exercise**  
 Show that $\lim\_{n\to\infty}(1+x/n)^n$ is equal to $\mathrm{e}^x$ by showing that $\lim\_{n\to\infty}\log (1+x/n)^n = x$. 
 :::
 
-    .quill#editor4531
+    .quill#editor4
 
 _{button.next-step} Submit_
 
 ---
+> id: step-25
 
 *Solution*. Integrating the equation 
 
@@ -398,10 +423,12 @@ Each of the terms other than the [[first|second|third]] converges to 0, and we c
 Differentiating a single-variable function involves answering the question *near a given point, how much does the value of the function change per unit change in the input*? In the higher-dimensional setting, the question must be made more specific, since the change in output depends not only on how much the input is changed but also on the [[direction|roll|yaw]] of the change in input. 
 
 ---
+> id: step-26
 
 Consider, for example, the function $f(x,y)$ which returns the altitude of the point on earth with latitude $x$ and longitude $y$. If the point $(x,y)$ identifies a point on a sloping hillside, then there are some directions in which $f$ increases, others in which $f$ decreases, and two directions in which $f$ neither increases nor decreases (these are the directions along the hill's *contour* lines, as you would see represented on a [[topographic|holographic]] map). 
 
 ---
+> id: step-27
 
 ### Partial derivatives
 
@@ -415,7 +442,8 @@ Consider the function $f$ whose graph is shown. Determine the sign of $f\_x(1,1)
 
 :::
 
---- 
+---
+> id: step-28 
 
 *Solution*. If we increase $x$ a little while holding $y$ constant, then $f$ decreases. Therefore, $f\_x(1,1) < 0$. If we increase $y$ a little while holding $x$ constant, then $f$ increases. Therefore, $f\_y(1,1) > 0$. 
 
@@ -424,6 +452,7 @@ Graphically, the partial derivative with respect to $x$ at a point is equal to t
 _{button.next-step} Continue_
 
 ---
+> id: step-29
 
 We can partial-differentiate multiple times, and it turns out that the order in which we apply these partial differentiation operations doesn't matter. This fact is called **Clairaut's theorem**.
 
@@ -432,17 +461,19 @@ We can partial-differentiate multiple times, and it turns out that the order in 
 Consider the function $f(x,y) = \mathrm{e}^{xy}\sin(y)$. Show that differentiating with respect to $x$ and then with respect to $y$ gives the same result as differentiating with respect to $y$ and then with respect to $x$. 
 :::
 
-    .quill#editor213
+    .quill#editor5
 
 _{button.next-step} Submit_
 
 ---
+> id: step-30
 
 *Solution*. The partial derivative of $f$ with respect to $x$ is $y\mathrm{e}^{xy}\sin(y)$, and the derivative of that with respect to $y$ is $\mathrm{e}^{xy} (x y \sin(y) + \sin(y) + y \cos(y))$. The partial derivative of $f$ with respect to $y$ is $e^{xy} (x sin(y) + cos(y))$, and the derivative of that with respect to $x$ is $\mathrm{e}^{xy} (x y \sin(y) + \sin(y) + y \cos(y))$. Therefore, the conclusion of Clairaut's theorem is satisfied in this case.
 
 _{button.next-step} Continue_
 
 ---
+> id: step-31
 
 ### Differentiability
 
@@ -451,6 +482,7 @@ A single-variable function is differentiable at a point if and only if its graph
 _{button.next-step} Continue_
 
 ---
+> id: step-32
 
 Likewise, a function of two variables is said to be **differentiable** at a point if its graph looks like a plane when you zoom in sufficiently around the point; that is, $f$ is differentiable at $(a,b)$ if 
 
@@ -469,6 +501,7 @@ for some real numbers $c\_0$, $c\_1$, and $c\_2$. If such a linear function $c\_
 _{button.next-step} Continue_
 
 ---
+> id: step-33
 
 So, the equation of the plane tangent to the graph of a differentiable function $f$ at the point $(a,b,f(a,b))$ is given by 
 
@@ -482,6 +515,7 @@ This equation says how $f$ behaves for values of $(x,y)$ very close to $(a,b)$: 
 _{button.next-step} Continue_
 
 ---
+> id: step-34
 
 ### Gradient
 
@@ -492,17 +526,19 @@ Once we know how a differentiable function $f: \mathbb{R}^d \to \mathbb{R}$ chan
 _{button.next-step} Continue_
 
 ---
+> id: step-35
 
 ::: .exercise
 **Exercise**  
 Suppose that $f:\mathbb{R}^2 \to \mathbb{R}$ is a differentiable function at the point $(a,b)\in \mathbb{R}^2$ and that its instantaneous rates of change in the directions $\mathbf{u}$ and $\mathbf{v}$ are known. Show that if $\mathbf{u}$ and $\mathbf{v}$ are not parallel, then it is always possible to infer $f$'s rates of change in the coordinate-axis directions. 
 ::: 
 
-    .quill#editor2
+    .quill#editor6
 
 _{button.next-step} Submit_
 
 ---
+> id: step-36
 
 *Solution*. The problem stipulates that we are given equations of the form 
 
@@ -526,6 +562,7 @@ Since $\mathbf{u}$ and $\mathbf{v}$ are not parallel, they span $\mathbb{R}^2$. 
 _{button.next-step} Continue_
 
 ---
+> id: step-37
 
 ::: .exercise
 **Exercise**  
@@ -533,12 +570,14 @@ Consider a differentiable function $f$ from $\mathbb{R}^2$ to $\mathbb{R}$ and a
 :::
 
 ---
+> id: step-38
 
 *Solution*. $f$ increases maximally in the direction of its gradient and decreases maximally in the opposite direction. It remains approximately constant in the two directions orthogonal to its gradient. 
 
 _{button.next-step} Continue_
 
 ---
+> id: step-39
 
 ::: .exercise
 **Exercise**  
@@ -546,12 +585,14 @@ Consider a differentiable function $f$ from $\mathbb{R}^3$ to $\mathbb{R}$ and a
 :::
 
 ---
+> id: step-40
 
 *Solution*. $f$ increases maximally in the direction of its gradient and decreases maximally in the opposite direction. It remains approximately constant in the plane of directions orthogonal to its gradient. Since a plane contains infinitely many directions, the number of directions in which $f$ remains approximately constant is infinite. 
 
 _{button.next-step} Continue_
 
 ---
+> id: step-41
 
 ### Second-order differentiation
 
@@ -587,17 +628,19 @@ The best quadratic approximation to the graph of a twice-differentiable function
 _{button.next-step} Continue_
 
 ---
+> id: step-42
 
 ::: .exercise
 **Exercise**  
 Suppose that $a,b,c,d,e$ and $f$ are real numbers and that $f(x,y) = a + bx + cy + dx^2 + exy + fy^2$. Show that the quadratic approximation of $f$ at the origin is equal to $f$. 
 :::
 
-    .quill#editor3
+    .quill#editor7
 
 _{button.next-step} Submit_
 
 ---
+> id: step-43
 
 *Solution*. The gradient of $f$ evaluated at the origin is $[b, c]$, so the linear approximation of $f$ is 
 
@@ -616,6 +659,7 @@ The Hessian is $\begin{bmatrix} 2d & e \\\\\\ e & 2f \end{bmatrix}$, so the quad
 as desired. 
 
 ---
+> id: step-44
 
 We can combine the ideas of quadratic approximation and [*diagonalization*](gloss:diagonalize) to gain sharp insight into the shape a function's graph at a point where the gradient is zero. Since the Hessian matrix $H$ is [[symmetric|diagonal]] by [Clairaut's theorem](gloss:clairaut), the [spectral theorem](gloss:spectraltheorem) implies that it is orthogonally diagonalizable. 
 
@@ -678,6 +722,7 @@ If $\lambda\_1$ is negative, then the graph of $f$ is shaped like an up-turned p
 _{button.next-step} Continue_
 
 ---
+> id: step-45
 
 In addition to helping distinguish local minima, local maxima, and saddle points, the diagonalized Hessian can also help us recognize ravines in the graph of $f$. This idea arises in the context of numerical optimization methods for deep learning. 
 
@@ -690,11 +735,12 @@ In addition to helping distinguish local minima, local maxima, and saddle points
 Suppose that $f:\mathbb{R}^2 \to \mathbb{R}$ has zero gradient at a given point, and suppose that its Hessian matrix at that point has eigenvalues $\lambda\_1$ and $\lambda\_2$. How can you recognize based on the values of $\lambda\_1$ and $\lambda\_2$ whether the graph of $f$ is ravine-shaped?
 :::
 
-    .quill#editor33
+    .quill#editor8
 
 _{button.next-step} Submit_
 
 ---
+> id: step-46
 
 *Solution*. If $\lambda_1$ and $\lambda_2$ are both positive, with one close to zero and the other very large, then the graph of $f$ will be ravine-shaped. That's because the steep increase in one direction corresponds to one of the eigenvalues being very large, and the shallow increase in the orthogonal direction is indicated by the other eigenvalue being very small. 
 
@@ -717,6 +763,7 @@ To identify which line which does the "best" job, we need to quantify how well a
 _{button.next-step} Continue_
 
 ---
+> id: step-47
 
 If the points are $(x\_1, y\_1), \ldots, (y\_n, y\_n)$, then the value we're trying to minimize is 
 
@@ -730,12 +777,14 @@ The letter $L$ is used in this context in reference to the word *loss*, which is
 _{button.next-step} Continue_
 
 ---
+> id: step-48
 
 Here's the key insight: at any point $(m,b)$ where $\nabla L(m,b)$ is a nonzero vector, there will be directions in which the pair $(m,b)$ may be perturbed to increase $L$'s value (specifically, any directions which make an [[acute|obtuse|right]] angle with $\nabla L(m,b)$) and perturbation directions which decrease the value of $L$ (specifically, any directions which make an [[obtuse|acute|right]] angle with $\nabla L(m,b)$). Therefore, at any point where $L$ has a minimum, we must have $\nabla L = 0$.
 
 _{button.next-step} Continue_
 
 ---
+> id: step-49
 
 Taking the partial derivatives of $L$ and setting them equal to zero, we get the system of equations 
 
@@ -764,6 +813,7 @@ We can substitute back into the equation for $b$ to find the only $(m,b)$ pair a
 _{button.next-step} Continue_
 
 ---
+> id: step-50
 
 ::: .exercise
 **Exercise**  
@@ -776,7 +826,8 @@ Run the code below to confirm visually that the formula we derived above fits th
       | n = 10
       | x = np.random.random_sample(n)
       | y = 2 * x + 3 + 0.2 * np.random.standard_normal(n)
-      | m = (np.sum(x*y) - np.sum(x)*np.sum(y)/n)/(np.sum(x**2) - np.sum(x)**2/n)
+      | m = ((np.sum(x*y) - np.sum(x)*np.sum(y)/n) / 
+      |      (np.sum(x**2) - np.sum(x)**2/n))
       | b = (np.sum(y) - m * np.sum(x))/n
       | yfit = m*x + b
       | plt.scatter(x,y)
@@ -787,6 +838,7 @@ Run the code below to confirm visually that the formula we derived above fits th
 _{button.next-step} Continue_
 
 ---
+> id: step-51
 
 ### Critical points
 
@@ -801,6 +853,7 @@ Let's consider the problem of optimizing a differentiable function $f$ from a su
 As we observed in the previous section, if $\nabla f$ is nonzero at a point away from the boundary of $D$, then there are directions in which $f$ decreases as you move away from that point and other directions where it increases. Therefore, any minima or maxima of $f$ away from the boundary of $D$ must occur at points where the gradient of $f$ is zero. We call points where the gradient of $f$ is zero or where $f$ is non-differentiable **critical points** of $f$. If a function has a minimum or a maximum at a point, then either that point is a critical point, or it is on the [[boundary|exterior|interior]] of the domain of the function. 
 
 ---
+> id: step-52
 
 Now let's consider the possibility that $f$ has a maximum or minimum on the boundary of its domain $D$. For simplicity, we'll assume that $D$ is a subset of the plane. Because of the [directional derivative formula](gloss:directional-derivative), if $\nabla f$ is nonzero, then there are 180 degrees worth of directions in which $(x,y)$ may be nudged to increase the value of $f(x,y)$. Therefore, if $f$ reaches its maximum value at a boundary point, then either the gradient of $f$ is zero at that point, or else all of the directions in which $f$ increases are excluded by the constraint that $(x,y)$ is in $D$. If $D$ has a tangent line at such a point, the latter possibility requires that the tangent line be [[perpendicular|parallel]] to the gradient of $f$. 
 
@@ -809,6 +862,7 @@ Now let's consider the possibility that $f$ has a maximum or minimum on the boun
       p.caption If the gradient of $f$ is not perpendicular to the tangent line at a boundary point, then there are permissible directions of increase and $f$ does not have a maximum there. 
 
 ---
+> id: step-53
 
 <p></p>
 
@@ -824,12 +878,14 @@ for some $\lambda \in \mathbb{R}$. The variable $\lambda$ is called a *Lagrange 
 _{button.next-step} Continue_
 
 ---
+> id: step-54
 
 Although we framed the discussion assuming that the domain $D$ is a subset of the plane, the same analysis works in any dimension, and the resulting equation is still $\nabla f = \lambda \nabla g$. 
 
 _{button.next-step} Continue_
 
 ---
+> id: step-55
 
 The *extreme value theorem* confirms the intuition that a continuous function defined on a closed and bounded subset $D$ of $\mathbb{R}^n$ must have a maximum somewhere and a minimum somewhere. Let's combine all of these points into a single theorem statement: 
 
@@ -852,6 +908,7 @@ The *extreme value theorem* confirms the intuition that a continuous function de
 _{button.next-step} Continue_
 
 ---
+> id: step-56
 
 This theorem suggests a program for optimizing a function $f$ on a domain $D$ whose boundary is a level set of a function $g$. 
 
@@ -869,11 +926,12 @@ This theorem suggests a program for optimizing a function $f$ on a domain $D$ wh
   Find the maximum and minimum values of $f(x,y) = x^4 + y^4 - 4xy$ on the rectangle $[0,3]\times [0,2]$.
 :::
 
-    .quill#editor413
+    .quill#editor9
 
 _{button.next-step} Submit_
 
 ---
+> id: step-57
 
 *Solution*.   The system of equations $\frac{\partial}{\partial x} f = \frac{\partial}{\partial y} f = 0$ tells us that $y = x^3$ and $x = y^3$. Substituting, we find $x = x^9$, which can be rearranged and factored (by repeated applications of difference of squares) to get
 
@@ -901,7 +959,7 @@ So all together, checking critical points and corners gives
       |     (3,2) & 73 \\\ 
       |     (3,\sqrt[3]{3}) & 81 - 9\sqrt[3]{3} \approx 68.02 \\\ 
       |     (\sqrt[3]{2},2) & 16 - 6\sqrt[3]{2} \approx 8.44
-      |   \end{tabular}
+      |   \end{array}
       | \end{equation*}
 
 Therefore, the absolute maximum is $\boxed{81}$ and the absolute minimum is $\boxed{-2}$. 
@@ -909,17 +967,19 @@ Therefore, the absolute maximum is $\boxed{81}$ and the absolute minimum is $\bo
 _{button.next-step} Continue_
 
 ---
+> id: step-58
 
 ::: .exercise
 **Exercise**  
 Find the point closest to the origin in the region $3x + 2y + z \geq 6$. 
 :::
 
-    .quill#editor4
+    .quill#editor10
 
 _{button.next-step} Submit_
 
 ---
+> id: step-59
 
 *Solution*. We can rule out the possibility that the point nearest the origin is in the interior of the region, on geometric grounds. To find the boundary critical points, we set the *objective* function 
 
@@ -940,12 +1000,14 @@ together with the constraint equation $3x + 2y + z = 6$, we get $\frac{\lambda}{
 _{button.next-step} Continue_
 
 ---
+> id: step-60
 
 We can also use the Lagrange multiplier idea in the reverse direction. Let's look at an example from statistics where Lagrange multipliers give rise to a meaningful insight. 
 
 _{button.next-step} Continue_
 
 ---
+> id: step-61
 
 ### Lasso and ridge regression
 
@@ -954,6 +1016,7 @@ Consider the problem of fitting a plane of the form $z = ax + by$ to a set of po
 _{button.next-step} Continue_
 
 ---
+> id: step-62
 
 Sometimes this approach gives undesirable results because the resulting values for $a$ and $b$ are considered too large for a given application. If we want to force them to be smaller, we can add a term to our objective function which penalizes largeness of $a$ and $b$. We choose some positive value $\lambda$ and propose the objective function  
 
@@ -974,6 +1037,7 @@ This is called the *lasso* objective function.
 _{button.next-step} Continue_
 
 ---
+> id: step-63
 
 It turns out in practice that the lasso minimizer frequently has either $a$ or $b$ equal to zero, while the ridge minimizer almost never does. Zero coefficients can be helpful, because if $a = 0$ then we are expressing a simpler relationship between just the $y$-value and $z$-value of each point (and similarly if $b$ is zero instead). Being able to ignore some of the coordinates is especially helpful if we have hundreds of coordinates rather than just two, as is often the case in statistical applications.
 
@@ -985,14 +1049,17 @@ Use the method of Lagrange multipliers to explain why the lasso minimizer tends 
 _{button.next-step} Continue_
 
 ---
+> id: step-64
 
 *Solution*. Let's define $f(a,b) = (ax\_1 + by\_1 - z\_1)^2 + \cdots + (ax\_n + by\_n - z\_n)^2$ and $g(a,b) = a^2 + b^2$. The function $f(a,b) + \lambda g(a,b)$ is minimized at a point where $\nabla f(a,b) + \lambda \nabla g(a,b) = 0$. In other words, the minimizer must be a point where $\nabla f$ and $\nabla g$ are [[parallel|perpendicular]] vectors. 
 
 ---
+> id: step-65
 
 By the method of Lagrange multipliers, this is the same equation we get if consider the optimization problem of minimizing $f(a,b)$ subject to the constraint that $g(a,b) \leq c$, where $c$ is any constant. Therefore, the ridge minimizer will occur at a point where $f$ has a minimum on some set of the form $g(a,b) \leq c$. Since $a^2 + b^2 \leq c$ is a disk in the $ab$-plane, we would expect the typical solution to be at a point on the boundary of the circle where neither $a$ nor $b$ is zero. 
 
 ---
+> id: step-66
 
 Applying the same analysis to the lasso minimizer, we get an optimization problem on the squared-shaped set $|a| + |b| \leq c$. Since the square has corners which always contribute candidate points for minimization of $f$ (since there is no tangent line at those points), it's reasonable to expect the lasso minimizer to occur at these points. 
 
@@ -1010,25 +1077,26 @@ Applying the same analysis to the lasso minimizer, we get an optimization proble
 
 ::: .exercise
 **Exercise**  
-Many airlines require that the sum of length, width and height of a checked baggage cannot exceed 62 inches. Find the dimensions of the rectangular baggage that has the greatest possible volume under this regulation.
+Many airlines require that the sum of the length, width and height of a checked baggage cannot exceed 62 inches. Find the dimensions of the rectangular baggage that has the greatest possible volume under this regulation.
 :::
 
-    .quill#editor133
+    .quill#editor11
 
 _{button.next-step} Submit_
 
 ---
+> id: step-67
 
 *Solution*. The objective function is the volume formula for a box, namely $f(l,w,h) = lwh$. The constraint equation is $g(l,w,h) = lw + wh + hl = 62$. The Lagrange equation tells us that 
 
     p
-      | \begin{equation*}
+      | \begin{align*}
       |   wh &= \lambda \\\ 
       |   lh &= \lambda \\\ 
       |   lw &= \lambda
-      | \end{equation*}
+      | \end{align*}
 
-Since we also have the equation $lw + wh + hl = 62$, we have four equations and four variables. Multiplying the three equations above, we get $(whl)^2=\lambda^3$, which means $whl = \lamdba^{3/2}$. Dividing this equation by each of the original three equations gives $w = h = l = \lambda^{1/2}$. Substituting into the last equation, we find $w = h = l = 62/3$. Thus the maximum-volume luggage shape is a cube.
+Since we also have the equation $lw + wh + hl = 62$, we have four equations and four variables. Multiplying the three equations above, we get $(whl)^2=\lambda^3$, which means $whl = \lambda^{3/2}$. Dividing this equation by each of the original three equations gives $w = h = l = \lambda^{1/2}$. Substituting into the last equation, we find $w = h = l = 62/3$. Thus the maximum-volume luggage shape is a cube.
 
 ---
 
@@ -1066,6 +1134,7 @@ With this definition, we obtain the following analogues to some basic single-var
 The third of these equations is the [[product]] rule. 
 
 ---
+> id: step-68
 
 The Hessian of a function $f:\mathbb{R}^n \to \mathbb{R}$ may be written in terms of the matrix differentiation operator as follows: 
 
@@ -1082,11 +1151,12 @@ Some authors define $\frac{\partial f}{\partial \mathbf{x}'}$ to be $\left(\frac
 Let $f: \mathbb{R}^n \to \mathbb{R}$ be defined by $f(\mathbf{x}) = \mathbf{x}' A \mathbf{x}$ where $A$ is a symmetric matrix. Find $\frac{\partial f}{\partial \mathbf{x}}.$
 :::
 
-    .quill#editor5
+    .quill#editor12
 
 _{button.next-step} Submit_
 
 ---
+> id: step-69
 
 *Solution*. We can apply the product rule to find that 
 
@@ -1102,7 +1172,8 @@ _{button.next-step} Submit_
 
 _{button.next-step} Continue_
 
---- 
+---
+> id: step-70 
 
 ::: .exercise
 **Exercise**  
@@ -1112,6 +1183,7 @@ Suppose $A$ is an $m\times n$ matrix and $\mathbf{b} \in \mathbb{R}^m$. Use matr
 _{button.next-step} Continue_
 
 ---
+> id: step-71
 
 *Solution*. We write 
 
@@ -1149,7 +1221,7 @@ and set it equal to $\boldsymbol{0}$ to get
 > id: multivariable-integration
 ## Multivariable integration 
  
-Integrating a function is a way of totaling up its values. For example, if $f$ is a function from a region $D$ in $\mathbb{R}^n$ to $\mathbb{R}$ which represents the mass density of a solid occupying the region $D$, we can find the total mass of the solid as follows: (i) split the region $D$ into many tiny pieces, (ii) multiply the volume of each piece by the value of the function at some point on that piece, (iii) and add up the results. If we take the number of pieces to $\infty$ and the piece size to zero, then this sum converges to the total mass of the solid. 
+Integrating a function is a way of totaling up its values. For example, if $f$ is a function from a region $D$ in $\mathbb{R}^n$ to $\mathbb{R}$ which represents the mass density of a solid occupying the region $D$, we can find the total mass of the solid as follows: (i) split the region $D$ into many tiny pieces, (ii) multiply the volume of each piece by the value of the function at some point on that piece, (iii) and add up the results. If we take the number of pieces to infinity and the piece size to zero, then this sum converges to the total mass of the solid. 
 
 We may apply this procedure to any function $f$ defined on $D$, and we call the result the integral of $f$ over $D$, denoted $\int\_D f$. 
 
@@ -1160,11 +1232,12 @@ To find the integral of a function $f$ defined on a 2D region $D$, we set up a d
 Find the integral over the triangle $T$ with vertices $(0,0)$, $(2,0)$, and $(0,3)$ of the function $f(x,y) = x^2y$. 
 :::
 
-    .quill#editor6
+    .quill#editor13
 
 _{button.next-step} Submit_
 
---- 
+---
+> id: step-72 
 
 *Solution*. The least and greatest values of $y$ for any point in the region are 0 and 3, while the least and greatest values of $x$ for each given $y$-slice are 0 and $2 - \frac{2}{3}y$. Therefore, the integral is 
 
@@ -1177,6 +1250,7 @@ _{button.next-step} Submit_
 _{button.next-step} Continue_
 
 ---
+> id: step-73
 
 ### 3D integration
 
@@ -1187,11 +1261,12 @@ To set up an integral of a function over a 3D region (for the order $\mathrm{d} 
 Integrate the function $f(x,y,z) = 1$ over the tetrahedron with vertices $(0,0,0)$, $(2,0,0)$, $(0,3,0)$, and $(0,0,4)$. 
 :::
 
-    .quill#editor7
+    .quill#editor14
 
 _{button.next-step} Submit_
 
 ---
+> id: step-74
 
 *Solution*.  The least and greatest values of $z$ are 0 and 4, so those are our outer limits (see the figure below). For a fixed value of $z$, the least and greatest values of $y$ for a point in $D$ are 0 and $3 - \tfrac{3}{4}z$, respectively. Finally, for fixed $y$ and $z$, the least and greatest values of $x$ for a point in $D$ are 0 and the point on the plane $6x + 4y + 3z = 12$ with the given values of $y$ and $z$. So we get 
 
@@ -1226,6 +1301,7 @@ We can see that this is the region under the graph of $y = x^3$ from $x = 0$ to 
       | \end{align*}
 
 ---
+> id: step-75
 
 ::: .exercise
 **Exercise**  
@@ -1235,11 +1311,12 @@ $y=x^2-7$. Find $\iint_R xy \\, \mathrm{d} A$.
     center: img(src="images/two-parabs.svg")
 :::
 
-    .quill#editor123
+    .quill#editor15
 
 _{button.next-step} Submit_
 
 ---
+> id: step-76
 
 *Solution*. We see that the curves intersect at $x = -2$ and $x =
 2$. So we get 
@@ -1267,7 +1344,7 @@ The chain rule in multivariable calculus works similarly. If we compose a differ
       |   \mathbf{r}'(t)
       | \end{equation*}
 
-Note that the right-hand side can also be written as $(\nabla f)(\mathbf{r}(t)) \cdot \mathbf{r}'(t)$, since $\frac{\partial f}{\partial \mathbf{x}}(\mathbf{r}(t))$ is a row vector. We can explain this formula geometrically: the change that results from making a small move from $\mathbf{r}(t)$ to $\mathbf{r}(t) + \mathbf{r}'(t) \Delta t$ is the dot product of the gradient of $f$ and the small step $\mathbf{r}'(t) \Delta t$. 
+Note that the right-hand side can also be written as $(\nabla f)(\mathbf{r}(t)) \cdot \mathbf{r}'(t)$, since $\frac{\partial f}{\partial \mathbf{x}}(\mathbf{r}(t))$ is a row vector, and the product of a row vector and a column vector is the same as the dot product of the [[transpose|unit vector|inverse]] of the row vector and the column vector. We can explain this formula geometrically: the change that results from making a small move from $\mathbf{r}(t)$ to $\mathbf{r}(t) + \mathbf{r}'(t) \Delta t$ is the dot product of the gradient of $f$ and the small step $\mathbf{r}'(t) \Delta t$. 
 
     center
       img(src="images/chain-rule.svg")
@@ -1276,6 +1353,7 @@ Note that the right-hand side can also be written as $(\nabla f)(\mathbf{r}(t)) 
 _{button.next-step} Continue_
 
 ---
+> id: step-77
 
 ::: .exercise
 **Exercise**  
@@ -1283,11 +1361,12 @@ Suppose that $\frac{\partial f}{\partial x}(3,2) = 4$, that $\frac{\partial f}{\
   1 + 2t$ and $y(t) = 4 - 2t^2$. Find the derivative of the function $f(x(t),y(t))$ at the point $t = 1$. 
 :::
 
-    .quill#editor8
+    .quill#editor16
 
 _{button.next-step} Submit_
 
 ---
+> id: step-78
 
 *Solution*. The chain rule implies that the derivative of $f(x(t),y(t))$ is 
 
@@ -1300,17 +1379,19 @@ _{button.next-step} Submit_
 _{button.next-step} Continue_
 
 ---
+> id: step-79
 
 ::: .exercise
 **Exercise**  
 Find the derivative with respect to $t$ of the function $g(t) = t^t$ by writing the function as $f(x(t),y(t))$ where $f(x,y) = x^y$ and $x(t) = t$ and $y(t)=t$.
 :::
 
-    .quill#editor111
+    .quill#editor17
 
 _{button.next-step} Submit_
 
 ---
+> id: step-80
 
 *Solution*. Let $f(x(t),y(t)) = x^y$ where $x(t) = t$ and $y(t) = t$.  We have that $\frac{\partial f}{\partial x} = yx^{y-1}$ and $\frac{\partial f}{\partial y} = x^{y} \ln{x}$.  Since both derivatives of $x$ and $y$ with respect to $t$ are 1, the chain rule implies that 
 
@@ -1329,11 +1410,12 @@ Suppose that $g(\mathbf{y}) = A\mathbf{x}$ for some matrix $A$, and suppose that
 Note: you might find it convenient to express your answer using the function diag which maps a vector to a matrix with that vector along the diagonal.
 :::
 
-    .quill#editor893
+    .quill#editor18
 
 _{button.next-step} Submit_
 
 ---
+> id: step-81
 
 *Solution*. The derivative matrix of $f$ is diagonal, since the derivative of $y_j^2$ with respect to $y_i$ is zero unless $i = j$. The diagonal entries are $2y_1, 2y_2, \ldots$. The derivative of $g$ is $A$, as we saw in the section on matrix differentiation. Therefore, the derivative of the composition is 
 
@@ -1355,7 +1437,7 @@ We can check this exercise numerically:
       | A = np.random.random_sample((5,5))
       | x = np.random.random_sample(5)
       | Δx = 1e-6 * np.random.random_sample(5)
-      | 
+      |
       | def f(y):
       |     "Componentwise square x"
       |     return y**2
@@ -1363,7 +1445,7 @@ We can check this exercise numerically:
       | def g(x): 
       |     "Multiply A by x"
       |     return A @ x
-      |     
+      |
       | derivative = 2 * np.diag(A @ x) @ A
       | np.allclose(f(g(x + Δx)) - f(g(x)), derivative @ Δx)
 
@@ -1386,8 +1468,9 @@ For example, consider integrating $f(x,y) = y^2$ over the region bounded by the 
 _{button.next-step} Continue_
 
 ---
+> id: step-82
 
-To integrate over the region in the $xy$-plane using this subdivision, we need to find the area of each small patch. Since the areas of the rectangles in the $uv$-plane are easier to deal with, we find the areas of the patches in the $xy$-plane by [[multiplying|dividing]] the area of the corresponding rectangle by the area distortion factor of the transformation $\mathbf{T}$. This local area distortion factor, or *Jacobian determinant* is the absolute value of the determinant of the Jacobian matrix $\frac{\partial \mathbf{T}(\mathbf{x})}{\partial \mathbf{x}}$. This is because the area distortion factor of a linear transformation is the absolute value of its determinant, and a differentiable function is essentially [linear](gloss:linearize) when zoomed far enough in. Thus we arrive at the formula 
+To integrate over the region in the $xy$-plane using this subdivision, we need to find the area of each small piece. Since the areas of the rectangles in the $uv$-plane are easier to deal with, we find the areas of the piece in the $xy$-plane by [[multiplying|dividing]] the area of the corresponding rectangle by the area distortion factor of the transformation $\mathbf{T}$. This local area distortion factor, or *Jacobian determinant* is the absolute value of the determinant of the Jacobian matrix $\frac{\partial \mathbf{T}(\mathbf{x})}{\partial \mathbf{x}}$. This is because the area distortion factor of a linear transformation is the absolute value of its determinant, and a differentiable function is essentially [linear](gloss:linearize) when zoomed far enough in. Thus we arrive at the formula 
 
     p
       | \begin{equation*}
@@ -1400,6 +1483,7 @@ where $\left|\frac{\partial \mathbf{T}(u,v)}{\partial (u,v)} \right|$ is notatio
 _{button.next-step} Continue_
 
 ---
+> id: step-83
 
 Since the area distortion factor of $\mathbf{T}$ is the [[reciprocal|negation]] of the area distortion factor of $\mathbf{T}^{-1}$, we can work out that $\left|\frac{\partial \mathbf{T}(u,v)}{\partial (u,v)} \right| = \left|\begin{array}{cc} x & y \\\\\\ 1/x & -y/x^2 \end{array} \right|^{-1} = (2y/x)^{-1} = \frac{1}{2v}$, which implies 
 
@@ -1411,6 +1495,7 @@ Since the area distortion factor of $\mathbf{T}$ is the [[reciprocal|negation]] 
 _{button.next-step} Continue_
 
 ---
+> id: step-84
 
 Let's apply the Jacobian transformation idea to a familiar problem: the area enclosed by a circle.
 
@@ -1419,11 +1504,12 @@ Let's apply the Jacobian transformation idea to a familiar problem: the area enc
 Use the map $(u,v) \mapsto (u \cos v, u \sin v)$ from the rectangle $[0,1] \times [0,2\pi]$ to the unit disk, and calculate the Jacobian for this transformation. Use your result to integrate 1 over the unit disk and confirm that the result is equal to the area of the unit disk. 
 :::
 
-    .quill#editor10
+    .quill#editor19
 
 _{button.next-step} Submit_
 
 ---
+> id: step-85
 
 *Solution*. The Jacobian of the given transformation is 
 
@@ -1446,5 +1532,6 @@ So the area of the disk is equal to
 _{button.next-step} Continue_
 
 ---
+> id: step-86
 
 Congratulations! You have finished the Data Gymnasia multivariable calculus course.
