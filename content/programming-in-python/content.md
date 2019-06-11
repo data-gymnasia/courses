@@ -4,7 +4,7 @@
 > id: intro
 ## Introduction
 
-This chapter is an introduction to programming in **Python**, which is a general-purpose language with a large user base in the software engineering world. With the emergence of a powerful stack of scientific computing packages since the early 2000s, it has emerged as the most popular language for data science.
+This chapter is an introduction to programming in **Python**, which is a general-purpose language with a very large user base in the software engineering world. With the emergence of a powerful stack of scientific computing [packages](gloss:package) since the early 2000s, it has emerged as the most popular language for data science.
 
 Although programming is a powerful tool, learning to program is also about honing your problem solving skills and thinking in an organized way about structure and computation. You are likely to find that computer science ideas support your ability to reason about complex systems, even in situations where you won't be programming anything. This is a useful frame of mind to bring to the learning process.
 
@@ -28,13 +28,13 @@ _{button.next-step} Continue_
 
 ---
 
-**Binder**. You can also run Python code in the cloud on the Binder website. To launch with a set of packages tailored to this course, [click here](https://mybinder.org/v2/gh/sswatson/simple-python-stack/master). Then select *New* (top right corner and *Python 3*). It is highly recommended that you keep a tab with a Binder notebook open while working through this course, because it can serve as a space for scratch work, and it provides more features than the blocks which appear in-page. 
+**Binder**. You can also run Python code in a notebook on the Binder website. To launch with a set of packages tailored to this course, [click here](https://mybinder.org/v2/gh/sswatson/simple-python-stack/master). Then select *New* (top right corner and *Python 3*). It is highly recommended that you keep a tab with a Binder notebook open while working through this course, because it can serve as a space for scratch work, and it provides more features than the blocks which appear in-page. 
 
 _{button.next-step} Continue_
 
 ---
 
-**Anaconda**. Python is bundled with its system of scientific computing packages and a system for managing your Python environment in a distribution called [Anaconda](https://www.anaconda.com/). This is the recommended way to install Python on your own machine. [Download](https://www.anaconda.com/distribution) and launch the installer to set it up on your machine. 
+**Anaconda**. Python is bundled with its system of scientific computing packages and a system for managing your Python environment in a distribution called [Anaconda](https://www.anaconda.com/). This is the recommended way to install Python on your own computer. [Download](https://www.anaconda.com/distribution) and launch the installer to set it up on your computer. 
 
 _{button.next-step} Continue_
 
@@ -186,6 +186,8 @@ Use the code block below to find out what happens when you try to use a variable
 
 <p></p>
 
+Note that when an error occurs in your code, you get a **traceback** which helps you identify the source of the error.
+
 ### Functions
 
 A **function** performs a particular task. For example, _{code.language-python}print(x)_ writes a string representation of the value of the variable _{code.language-python}x_ to the screen. 
@@ -326,8 +328,6 @@ Find the value of _{code.language-python}x_ at the end of the following block of
       
 :::
 
-_{button.next-step} Continue_
-
 ---
 
 ::: .exercise
@@ -347,6 +347,7 @@ Write a function _{code.language-python}f_ which takes a positive integer _{code
       |
       | test_f()
 
+<p></p>
 
     .quill#editor1
 
@@ -421,7 +422,7 @@ _{code.language-python}x == 1_ is [[an expression|a statement]] which returns _{
 
 Textual data is represented using a sequence of characters called a **string**. We can create a string object by enclosing the desired sequence of characters in quotation marks: _{code.language-python}a = "this is a string"_. Such a quote-enclosed string of characters in a Python file is called a **string literal**. String literals can also be delimited by triple quotes, which can be useful for multi-line strings and for strings containing quotes. 
 
-    pre: code.language-python
+    pre(data-executable)
       | """
       | This is a multiline string. 
       | It can have "quotes", no problem.
@@ -559,7 +560,7 @@ Write a one-line [function](gloss:function) which takes 3 bools as arguments and
       |
       | test_f()
 
-    div(id="editor4")
+    .quill#editor4
 
 _{button.next-step} Submit_
 
@@ -571,7 +572,7 @@ _{button.next-step} Submit_
       | def f(a,b,c):
       |     return a and b or not c
 
-Be wary of comparisons of the form _{code.language-python}a == True_ or _{code.language-python}b == False_. These are equivalent to _{code.language-python}a_ and _{code.language-python}not b_, respectively, assuming _{code.language-python}a_ and _{code.language-python}b_ are both bools. The more succinct versions are preferred. 
+Be wary of comparisons of the form _{code.language-python}a == True_ or _{code.language-python}b == False_. These are equivalent to _{code.language-python}a_ and _{code.language-python}not b_, [respectively](gloss:respectively), assuming _{code.language-python}a_ and _{code.language-python}b_ are both bools. The more succinct versions are preferred. 
 
 _{button.next-step} Continue_
 
@@ -588,6 +589,8 @@ Write some code for computing $\frac{1}{a+\frac{2}{3}}$ where $a$ is equal to th
 
     pre(data-executable)
       | 
+
+<p></p>
 
     .quill#editor5
 
@@ -822,9 +825,9 @@ We can give parameters **default values** and supply arguments for those paramet
 
     pre(data-executable)
       | 
-      | def line(m, x, b=0)
+      | def line(m, x, b=0):
       |     return m * x + b
-      | 
+      |
       | line(2,3) # returns 6
       | line(5,4,b=2) # returns 22
       |   
@@ -909,7 +912,35 @@ A variable defined in the body of a function is in that function's **local scope
       |
       | y
 
+
+::: .exercise
+**Exercise**  
+Try nesting one function definition inside another. Are variables in the enclosing function body available in the inner function. What about vice versa?
+:::
+
+    pre(data-executable)
+      | def f():
+      |     def g():
+      |         j = 2
+      |         return i
+      |     print(j)
+      |     i = 1
+      |     return g()
+      |
+      | f()
+
+<p></p>
+
+    .quill#editor444
+
+_{button.next-step} Submit_
+
+---
+
+*Solution*. The variable defined in the inner function is not in scope in the body of the outer function, but the variable defined in the body of the outer function is in scope in the body of the inner function.
     
+_{button.next-step} Continue_
+
 ---
 
 ### Testing
@@ -989,7 +1020,9 @@ Hint: Make a guess about which operator can be used to compare strings alphabeti
       |
       | test_concat()
 
-    .quill#editor9
+<p></p>
+
+    .quill#editor10
 
 _{button.next-step} Submit_
 
@@ -1040,6 +1073,10 @@ Sometimes a package contains a **subpackage** which must itself be accessed with
     pre(data-executable)
       | from numpy.random import standard_normal
       | standard_normal()
+      
+_{button.next-step} Continue_
+
+---
 
 ### Scientific computing packages in Python
 
@@ -1079,7 +1116,6 @@ Note that we import _{code.language-python}numpy_ with the alias _{code.language
       | import matplotlib.pyplot as plt
       | import numpy as np
       | plt.plot(np.cumsum(np.random.standard_normal(1000)))
-      | plt.show()
 
 <p></p>
 
@@ -1098,7 +1134,9 @@ Note that we import _{code.language-python}numpy_ with the alias _{code.language
  To import just the _{code.language-python}arcsin_ function from _{code.language-python}numpy_, we would use what statement? 
 :::
 
-_{button.next-step} Continue_
+    .quill#editor111
+
+_{button.next-step} Submit_
 
 ---
 
@@ -1110,10 +1148,12 @@ _{button.next-step} Continue_
 
 ::: .exercise
 **Exercise**  
- To import _{code.language-python}scipy_ with alias _{code.language-python}sp_, we would use what statement?
+ To import _{code.language-python}sympy with alias _{code.language-python}sp_, we would use what statement?
 :::
 
-_{button.next-step} Continue_
+    .quill#editor222
+
+_{button.next-step} Submit_
 
 ---
 
@@ -1128,7 +1168,9 @@ _{button.next-step} Continue_
 To import the standard library package _{code.language-python}itertools_ (with no alias), we would use what statement?
 :::
 
-_{button.next-step} Continue_
+    .quill#editor333
+
+_{button.next-step} Submit_
 
 ---
 
@@ -1164,7 +1206,7 @@ _{button.next-step} Continue_
 
 ---
 
-What you want is to be able to treat each album as its own Python object, with all its associated data stored inside. In other words, you want an _{code.language-python}Album_ type. You can do that with the _{code.language-python}class_ keyword: 
+What you want is to be able to treat each album as its own Python object, with all its associated data stored inside. In other words, you want an _{code.language-python}Album_ type. You can do that with the _{code.language-python}class_ keyword (this block won't return anything): 
 
     pre(data-executable)
       | class Album(object):
@@ -1186,6 +1228,9 @@ A function defined in the block indented below _{code.language-python}class Albu
 
     pre(data-executable)
       | A = Album("Abbey Road", "The Beatles", 1969, "47:23")
+      | A
+
+<p></p>
 
 The first parameter, customarily called _{code.language-python}self_, refers to the object being created. The four lines in the init method above assign values to **attributes** which may be accessed later using the dot [syntax](gloss:syntax), like _{code.language-python}A.name_ or _{code.language-python}A.artist_. 
 
@@ -1237,6 +1282,8 @@ Implement a class called _{code.language-python}Fraction_ which represents a rat
       |     return "Test passed!"
       |
       | test_Fraction()
+
+<p></p>
 
     .quill#editor1
 
@@ -1400,6 +1447,10 @@ Let's revisit the spreadsheet example we discussed earlier: suppose you're writi
 
 We definitely don't want to think of 100 variable names for the 100 values in the table, and we don't want to write a line of code for each row. What we need is a way to store all of the rows (or columns) in an object designed to contain many objects. Python provides several such **compound data structures**, and in this section we will learn about two: **lists** and **tuples**. 
 
+_{button.next-step} Continue_
+
+---
+
 ### Lists
 
 A _{code.language-python}list_ in Python is a compound data type for storing a finite ordered sequence of Python objects. Lists are **mutable**, meaning that they can be changed.
@@ -1410,6 +1461,7 @@ The simplest way to supply a list with a Python program is with a **list literal
       | myList = [1, "flower", True, 7]
       | x = 5
       | myOtherList = [1, x, x, 2]
+      | myOtherList
       
 ::: .exercise
 **Exercise**  
@@ -1459,6 +1511,8 @@ Sublists can be extracted by **slicing**. Indexing a list with _{code.language-m
 If _{code.language-python}i_ = [[1]] and _{code.language-python}j_ = [[3]], then _{code.language-python}myList[i:j]_ is equal to _{code.language-python}["flower", True]_. 
 ::: 
 
+---
+
 The start or stop value of a slice can be omitted, in which case it defaults to the beginning or end of the list, respectively. 
 
     pre(data-executable)
@@ -1481,7 +1535,7 @@ _{button.next-step} Continue_
 
 ::: .exercise
 **Exercise**  
-What step value can be used to *reverse* a list? [[-1]] (Hint: reason it out and experiment below; don't look it up!)
+What step value can be used to *reverse* a list? [[-1]] (Hint: you can reason it out!)
 :::
 
     pre(data-executable)
@@ -1552,6 +1606,7 @@ Lists may be modified by combining indexing with assignment:
       | L = [4,-3,2]
       | L[0] = 1
       | L[1:3] = [6,3]
+      | L
 
 ::: .exercise
 **Exercise**  
@@ -1560,6 +1615,8 @@ Write a line of code which sets every even-indexed entry of a list _{code.langua
 
     pre(data-executable)
       | L = list(range(100))
+
+<p></p>
 
     .quill#editor3
 
@@ -1619,6 +1676,9 @@ _{button.next-step} Submit_
 ---
 *Solution*. The _{code.language-python}remove_ method only removes one instances of _{code.language-python}"5"_ (the first one). Also, this method modifies the argument supplied to the function; it does not return new list with the _{code.language-python}"5"_ removed.
 
+_{button.next-step} Continue_
+
+---
 
 ### List comprehensions
 
@@ -1657,6 +1717,8 @@ Write a list comprehension which returns a list whose kth entry is the the last 
       | from sympy import isprime
       | 
       
+<p></p>
+      
     .quill#editor5
 
 _{button.next-step} Submit_
@@ -1668,8 +1730,10 @@ _{button.next-step} Submit_
     pre(data-executable)
       | from sympy import isprime
       | [str(p)[-1] for p in range(100,1000) if isprime(p)]
-      
-<p></p>
+
+_{button.next-step} Continue_
+
+---
 
 ::: .exercise
 **Exercise**  
@@ -1679,6 +1743,8 @@ Write a list comprehension which takes a list of lists and returns only those li
     pre(data-executable)
       | records = [[3, "flower", -1], [2, "rise", 3], [0, "basket", 0]]
       | 
+
+<p></p>
       
     .quill#editor6
 
@@ -1771,7 +1837,7 @@ _{button.next-step} Continue_
 **Exercise**  
 The fractional part of a positive real number $x$ is the part after the decimal point: it's defined to be the positive difference between $x$ and the greatest integer which is less than or equal to $x$. You can find the fractional part of _{code.language-python}x_ in Python with the expression _{code.language-python}x - int(x)_. 
 
-Find the fractional parts of the first 100 positive integer multiples of $\pi$. Use the function _{code.language-python}extrema_ on the resulting array to find its least and greatest values. Find the ratio of the greatest value to the least. 
+Find the fractional parts of the first 100 positive integer multiples of $\pi$. Use the function _{code.language-python}extrema_ (defined below) on the resulting array to find its least and greatest values. Find the ratio of the greatest value to the least. 
 :::
 
     pre(data-executable)
@@ -1831,6 +1897,8 @@ Suppose that $H$ is a list which stores the heights of 100 cylinders and $R$ is 
       | R = [0.8, 1.0, 1.2]
       | 
 
+<p></p>
+
     .quill#editor9
 
 _{button.next-step} Submit_
@@ -1844,6 +1912,11 @@ _{button.next-step} Submit_
       | H = [1, 2, 3]
       | R = [0.8, 1.0, 1.2]
       | [pi*r*r*h for (h,r) in zip(H,R)]
+
+
+_{button.next-step} Continue_
+
+---
       
 ### Exercises 
 
@@ -1881,6 +1954,8 @@ Write a function which takes a matrix _{code.language-python}M_ and an index _{c
       |
       | test_selectCol()
 
+<p></p>
+
     .quill#editor1
 
 _{button.next-step} Submit_
@@ -1892,12 +1967,12 @@ _{button.next-step} Submit_
     pre(data-executable)
       | def selectCol(M, i):
       |     return [row[i] for row in M]
-      | 
+      |
       | test_selectCol():
       |     assert selectCol([[1,2],[3,4]],1) == [1,3]
       |     assert selectCol([[7,8],[8,-2],[3,4]],1) == [8,-2,4]
       |     return "Test passed!"
-      | 
+      |
       | test_selectCol()
       
 <p></p>
@@ -1924,6 +1999,8 @@ Hint: the string methods _{code.language-python}join_ and _{code.language-python
       |
       | test_reversewords()
 
+<p></p>
+
     .quill#editor0
 
 _{button.next-step} Submit_
@@ -1947,14 +2024,14 @@ _{button.next-step} Submit_
 
 **Sets** are unordered collections of unique values. The main advantage of having a special type for sets is that the design of the data structure can be optimized for membership checking. Figuring out whether a given value is in a list requires going through each element in the list, so the amount of time it takes increases with the length of the list. By contrast, checking membership in a set can be done very quickly even if the set is large. 
 
-    pre: code.language-python
+    pre(data-executable)
       | 
-      |     A = [1,2,3]
-      |     S = set(A)
-      |     2 in S # evaluates to true
-      |     S.pop(2) # removes 2
-      |     S.add(11) # puts 11 in the set
-      |     2 in S # evaluates to false now
+      | A = [1,2,3]
+      | S = set(A)
+      | 2 in S # evaluates to true
+      | S.pop(2) # removes 2
+      | S.add(11) # puts 11 in the set
+      | 2 in S # evaluates to false now
       |   
  
 ::: .exercise
@@ -2008,6 +2085,8 @@ Put the three methods in order from fastest to slowest:
       .item.md(data-index="2") List membership checking
       .item.md(data-index="0") Set membership checking
       .item.md(data-index="1") Computing from scratch
+
+---
 
 ### Dictionaries
 
@@ -2070,6 +2149,10 @@ The _{code.language-python}dict_ [methods](gloss:method) _{code.language-python}
 
 <p></p>
 
+_{button.next-step} Continue_
+
+---
+
 ::: .exercise
 **Exercise**  
 Consider a dictionary which encodes flight arrival times: 
@@ -2097,6 +2180,7 @@ Implement this idea in the block below. Check that your dictionary works by inde
       |                 "Southwest 196": datetime.time(7,3)}
       | 
 
+<p></p>
 
     .quill#editor4
 
@@ -2105,6 +2189,8 @@ _{button.next-step} Submit_
 ---
 
 *Solution*. We use the _{code.language-python}dict_ function to convert the list of pairs back into a dictionary: _{code.language-python}dict(map(reversed,arrivalTimes.items()))_. 
+
+_{button.next-step} Continue_
 
 ---
 
@@ -2122,6 +2208,8 @@ Use a dict comprehension to make a dictionary which maps each of the first 100 p
 
     pre(data-executable)
       | 
+      
+<p></p>
 
     .quill#editor5
 
@@ -2165,6 +2253,10 @@ We have already seen one way of doing something to each element in a collection:
 
 In this list comprehension, we **iterate** over the pairs of the [dictionary](gloss:dictionary) to produce a new list. Although list comprehensions are very useful, they are not flexible enough to cover all our iteration needs. A much more flexible tool is the **for loop**.
 
+_{button.next-step} Continue_
+
+---
+
 ### *For* statements
 
 The code above could also be rewritten as follows:
@@ -2201,8 +2293,14 @@ We can nest _{code.language-python}for_ statements. For example, suppose we have
       | def test_sum():
       |     M = [[1,2,3],[4,5,6],[7,8,9]]
       |     assert sumMatrixEntries(M) == 45
+      |
+      | test_sum()
 
 <p></p>
+
+_{button.next-step} Continue_
+
+---
 
 ::: .exercise
 **Exercise**  
@@ -2219,23 +2317,24 @@ Suppose you have imported a function _{code.language-python}fileBugReport_ with 
       |           "`trackShipment` hangs if `trackingNumber` is missing", 
       |         "100b359a": 
       |           "customers not receiving text alerts"}
----
+
+<p></p>
 
     .quill#editor5
 
 _{button.next-step} Submit_
 
----
-
-<p></p>
 *Solution*. We loop over the items: 
 
     pre(data-executable)
       | for id, desc in bugs.items():
       |     fileBugReport(id, desc)
 
+<p></p>
 
 _{button.next-step} Continue_
+
+---
 
 ::: .exercise
 **Exercise**  
@@ -2258,6 +2357,7 @@ Write a [function](gloss:function) called _{code.language-python}factorial_ whic
       |
       | test_factorial()
 
+<p></p>
 
     .quill#editor6
 
@@ -2304,6 +2404,8 @@ If we want to write a Python function which returns the Collatz sequence for any
       |     assert collatzSequence(17) == [17, 52, 26, 13, 
       |                                 40, 20, 10, 5, 
       |                                 16, 8, 4, 2, 1]
+      |
+      | test_collatz()
       
 <p></p>
 
@@ -2333,6 +2435,7 @@ Note that $10^{-8}$ can be represented in Python using scientific notation _{cod
       |
       | test_newton()
 
+<p></p>
       
     .quill#editor7
 
@@ -2380,6 +2483,8 @@ Note: _{code.language-python}\\n_ in a string literal represents the "newline" c
       |     
       |      
       |
+      
+<p></p>      
 
     .quill#editor8
 
@@ -2437,11 +2542,11 @@ Note: there's no solution to this one, but you can do it on your own!
       |     Print the first n rows of Pascal's triangle
       |     """
 
+<p></p>
+
     .quill#editor9
 
 _{button.next-step} Submit_
-
----
 
 ---
 
@@ -2450,7 +2555,7 @@ _{button.next-step} Submit_
 
 One of the most challenging aspects of learning to program is the difficulty of synthesizing individual skills in the service of a larger project. This section provides a stepping stone on that path by progressively solving a real-world problem. 
 
-You'll want to follow along either on your own machine or in [Binder](https://mybinder.org/v2/gh/sswatson/simple-python-stack/master). You can't use code blocks in this page, because there's an authentication step which requires a feature which isn't supported here. Anyway, now's a good time to begin moving away from doing all of your programming in the tutorial web app!
+You'll want to follow along either on your own computer or in [Binder](https://mybinder.org/v2/gh/sswatson/simple-python-stack/master). You can't use code blocks in this page, because there's an authentication step which requires a feature which isn't supported here.
 
 _{button.next-step} Continue_
 
@@ -2491,7 +2596,8 @@ Looking around a bit more, you find **{code.language-python}user_playlist_remove
 
 Your plan is beginning to take shape. You decide to make sure everything works before getting into the details of how you're going to modify the playlist. You follow the instructions in the documentation for getting the appropriate authorization credentials for your Python program to access your Spotify account. That step is a bit tedious, but it's going to be worth it. Working from the example in the documentation, you eventually arrive at some code that looks like the following (note that your _{code.language-python}CLIENT_ variables and **{code.language-python}playlist_id** will necessarily be different). 
 
-    pre: code.language-python    
+    pre: code.language-python
+      | 
       | import spotipy
       | import spotipy.util as util
       | 
@@ -2583,6 +2689,8 @@ Write a [list comprehension](gloss:listcomp) to calculate the list of all of the
     pre(data-executable)
       | 
 
+<p></p>
+
     .quill#editor1
 
 _{button.next-step} Submit_
@@ -2618,7 +2726,7 @@ This works! You can check that the order of the playlist was reversed.
 
 ::: .exercise
 **Exercise**  
-Add more features to the function **{code.language-python}track_modifier** to modify playlists in ways that you find interesting or desirable. 
+Add more features to the function **{code.language-python}track_modifier** to modify playlists in ways that you find interesting or desirable. In the answer box below, describe what you did and add code snippets as you see fit.
 :::
 
     .quill#editor2
@@ -2626,6 +2734,7 @@ Add more features to the function **{code.language-python}track_modifier** to mo
 _{button.next-step} Submit_
 
 ---
+
 > id: project-2
 ## Project 2: Mail Merge
 
@@ -2732,6 +2841,8 @@ Tie all of the above together to write a couple more lines of code that will act
 
     pre(data-executable)
       | 
+
+<p></p>
 
     .quill#editor3
 

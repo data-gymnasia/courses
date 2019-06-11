@@ -75,9 +75,13 @@ tuple:
          6, (1,2,3))
     T[0] # returns 5
     T[4][1] # returns 2_
+    
+function-set:
+  title: Function
+  text: A function from a set $A$ to another set $B$ is an assignment of some element of $B$ to each element in $A$.
 
 function:
-  title: function
+  title: Function
   text: | 
     A packaged block of related code for performing a specific computation or action. Values to be input are called **parameters**, and they can be given default values:
     
@@ -104,6 +108,10 @@ method:
     A function associated with a specific class and called using dot syntax from an instance of that class
     
     For exapmle, in _{code}",".join([1,2,3])_, _{code}","_ is a string and _{code}join_ is a method of the string class.
+    
+package:
+  title: Package
+  text: A package is a collection of code that is distributed by the authors and may be loaded by a user to extend the functionality of the language.
     
 rounding:
   title: Floating point representation
@@ -214,6 +222,19 @@ dotproduct:
           |    \mathbf{x} \cdot \mathbf{y} = x_1y_1 + x_2y_2 + \cdots + x_n
           |     y_n.
           | \end{equation*}
+          
+potato:
+  title: Potato
+  text: In the context of set theory, a *potato* is a blob which is drawn to visually represent a set. Elements of the set are drawn as points inside the boundary of the blob, and non-elements are drawn outside the blob.
+    
+potato-and-arrow:
+  title: Potato-and-arrow Diagram
+  text: A figure which represents sets as blobs and functions as a collection of arrows between the blobs. Each arrow goes from a point in the domain to its image in the codomain.
+  
+codomain:
+  title: Codomain
+  text: The **codomain** of a function from one set $A$ to another set $B$ is the set $B$. The codomain must be specified as part of the function's definition, and there is no guarantee that every element of the codomain has any preimages in the domain. Codomain is similar to **range**, but the range of a function includes only those elements of the codomain which have preimages in the domain.
+  image: range.svg
 
 productcolumnrule:
   title: Product Column Rule

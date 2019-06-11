@@ -304,7 +304,7 @@ The span of two vectors in $\mathbb{R}^2$
  
 ---
 
-*Solution*. The span of a list containing only the zero vector is just the origin. The span of a list containing a single vector $\mathbf{v}$ is a line through the origin, since $\alpha \mathbf{v}$ points in the same direction as $\mathbf{v}$ for any $\alpha \in \mathbb{R}$. The span of a list containing two non-parallel vectors $\mathbf{u}$ and $\mathbf{v}$ is all of $\mathbb{R}^2$, since the span consists of the union of all lines which run in the $\mathbf{u}$ direction and pass through any point in the span of $\{\mathbf{v}\}$. Including more vectors can't increase the span further, so these are the only possibilities. So the correct answer is (e). 
+*Solution*. The span of a list containing only the zero vector is just the origin. The span of a list containing a single vector $\mathbf{v}$ is a line through the origin, since $\alpha \mathbf{v}$ points in the same direction as $\mathbf{v}$ for any $\alpha \in \mathbb{R}$. The span of a list containing two non-parallel vectors $\mathbf{u}$ and $\mathbf{v}$ is all of $\mathbb{R}^2$, since the span consists of the union of all lines which run in the $\mathbf{u}$ direction and pass through any point in the span of $\\\{\mathbf{v}\\\}$. Including more vectors can't increase the span further, so these are the only possibilities. So the correct answer is (e). 
 
 The same reasoning implies that the span of a list of vectors in $\mathbb{R}^3$ must be either the origin, or a line or plane through the origin, or all of $\mathbb{R}^3$. So the correct answer choice is the fourth one. 
 
@@ -317,7 +317,7 @@ _{button.next-step} Continue_
 
 ---
 
-[Span](gloss:span) is closely related to *linear dependence*, which we will discuss in the next unit.
+[Span](gloss:span) is closely related to *linear dependence*, which we will discuss in the next section.
 
 ---
 
@@ -405,6 +405,10 @@ The definition of linear independence makes it seem as though there's quite a lo
 **Theorem** (Linear dependence lemma)  
 A list of vectors is linearly independent if and only if there is no vector in the list which is in the span of the *preceding* vectors. 
 :::
+
+_{button.next-step} Continue_
+
+---
 
 For example, to check that $\\{\mathbf{v}\_1, \mathbf{v}\_2, \mathbf{v}\_3\\}$ is linear independent, it suffices to check that $\mathbf{v}\_1 \neq \boldsymbol{0}$, that $\mathbf{v}\_2$ is not a scalar multiple of $\mathbf{v}\_1$ and that $\mathbf{v}\_3$ is not in the span of $\\{\mathbf{v}\_1, \mathbf{v}_2\\}$. 
 
@@ -637,7 +641,7 @@ _{button.next-step} Continue_
 
 ---
 
-The idea of vector space coordinates is fully general: given a vector space $V$ and a basis of $V$, we can represent each vector in $V$ uniquely as a linear combination of the vectors in the basis. In other words, if a vector space $V$ has a basis $\mathcal{B} = \\{\mathbf{b}\_1, \dots \mathbf{b}\_n\\}$ and $\mathbf{v} \in V$, then there exists a unique $n$-tuple of real numbers $(v\_1, \dots, v\_n)$ such that 
+The idea of vector space coordinates with respect to a basis is fully general: given a vector space $V$ and a basis of $V$, we can represent each vector in $V$ uniquely as a linear combination of the vectors in the basis. In other words, if a vector space $V$ has a basis $\mathcal{B} = \\{\mathbf{b}\_1, \dots \mathbf{b}\_n\\}$ and $\mathbf{v} \in V$, then there exists a unique $n$-tuple of real numbers $(v\_1, \dots, v\_n)$ such that 
 
     p
       | \begin{equation*}
@@ -832,7 +836,7 @@ _{button.next-step} Continue_
 The following exercise tells us that if we start with a basis for the intersection of two vector spaces, and extend it separately to a basis for each of the vector spaces, then the compiled list of all of those basis vectors is still linearly independent.
 
 ::: .exercise
-**Exercise**  (multiple extension principle)
+**Exercise**  (multiple extension principle)  
 Suppose that $U$ and $V$ are vector spaces in $\mathbb{R}^n$. Suppose that $\\{\mathbf{u}\_1, \ldots, \mathbf{u}\_j\\}$ is a basis for $U \cap V$, that $\\{\mathbf{u}\_1, \ldots, \mathbf{u}\_k\\}$ is a basis for $U$, and that $\\{\mathbf{u}\_1, \ldots, \mathbf{u}\_j, \mathbf{v}\_1, \ldots,
   \mathbf{v}\_\ell\\}$ is a basis for $V$. Show that 
 
@@ -843,6 +847,8 @@ Suppose that $U$ and $V$ are vector spaces in $\mathbb{R}^n$. Suppose that $\\{\
       |   \end{equation*}
  is a linearly independent list. 
 :::
+
+Note: this exercise is on the challenging side. You might want to make your best effort over a reasonable period of time, submit what you've got, and then read the solution.
 
     .quill#editor6
     
@@ -883,6 +889,8 @@ Since $\\{\mathbf{u}\_1, \ldots, \mathbf{u}\_j, \mathbf{v}\_1, \ldots, \mathbf{v
       | \end{equation*}
 
 is linearly [[independent|dependent]]. 
+
+_{button.next-step} Continue_
 
 ---
 
@@ -956,7 +964,7 @@ Hint: for part (b): _{code.language-python}np.random.randint(0,2,(5,7))_ generat
       | rank = np.linalg.matrix_rank
       | def randmat():
       |     return np.random.random_sample((7,5))
-      | 
+      |
       | set([rank(randmat()) for _ in range(100_000)])
       
 <p></p>
@@ -1069,7 +1077,7 @@ _{button.next-step} Continue_
 
 ::: .exercise
 **Exercise**  
-Find the rank of the linear transformation $L$ which maps each vector $[x,y]$ to the closest point $[a,2a]$ on the line $y = 2x$. The rank is [[1]]
+Find the rank of the linear transformation $L$ which maps each vector $[x,y]$ to the closest point $[a,2a]$ on the line $y = 2x$. The rank is [[1]].
 :::
 
 ---
@@ -2008,14 +2016,14 @@ A **block matrix** is a matrix defined using smaller matrices which are called *
       |     2 & 4 & 7 & 6 \\\ 
       |     5 & 2 & 4 & 5
       |   \end{bmatrix} \\\\ 
-      |   B = \begin{bmatrix}
+      |   B &= \begin{bmatrix}
       |     1 & 3 \\\ 
       |     0 & 2
       |   \end{bmatrix} \\\\ 
-      |   C = \begin{bmatrix}
+      |   C &= \begin{bmatrix}
       |     3 & 0 & 1 & 7 
       |   \end{bmatrix} \\\\ 
-      |   B = \begin{bmatrix}
+      |   B &= \begin{bmatrix}
       |     6 & 4
       |   \end{bmatrix}
       | \end{align*}
@@ -2045,13 +2053,15 @@ _{button.next-step} Continue_
 The advantage of writing a matrix in block form is that we can formally carry out the matrix multiplication dot formula, treating the blocks as matrix entries, and we get the correct result (in block form). For example, 
 
     p
+      | \begin{equation*}
       |   \begin{bmatrix} 
       |     A & B \\\ C & D 
       |   \end{bmatrix}\begin{bmatrix} 
       |     E & F \\\ G & H
       |   \end{bmatrix} = \begin{bmatrix} 
       |     AE + BG & AF + BH \\\ CE + DG & CF + DH
-      |   \end{bmatrix}, 
+      |   \end{bmatrix}
+      | \end{equation*}
 
 if $\begin{bmatrix} A & B \\\\\\ C & D \end{bmatrix}$ and $\begin{bmatrix} E & F \\\\\\ G & H \end{bmatrix}$ are block matrices with blocks $A$, $B$, $C$, $D$, $E$, $F$, $G$, blocks $H$. We call this the **block matrix product formula**.
 
@@ -2093,15 +2103,16 @@ _{button.next-step} Continue_
 
     p
       | \begin{align*}
-      |   AE + BG &= \begin{bmatrix} 61 \\\ 65 \end{bmatrix}
-      |   CE + DG &= \begin{bmatrix} 91 \end{bmatrix}
-      |   AF + BH &= \begin{bmatrix} 36 & 68 \\\ 41 & 52 \end{bmatrix}
+      |   AE + BG &= \begin{bmatrix} 61 \\\ 65 \end{bmatrix} \\\\ 
+      |   CE + DG &= \begin{bmatrix} 91 \end{bmatrix} \\\\ 
+      |   AF + BH &= \begin{bmatrix} 36 & 68 \\\ 41 & 52 \end{bmatrix} \\\\ 
       |   CF + DH &= \begin{bmatrix} 41 & 30 \end{bmatrix}
       | \end{align*}
 
 while 
       
     p
+      | \begin{equation*}
       |   \begin{bmatrix} 
       |     A & B \\\ C & D 
       |   \end{bmatrix}\begin{bmatrix} 
@@ -2112,6 +2123,7 @@ while
       |     65 & 41 & 52 \\\ 
       |     91 & 41 & 30 
       |   \end{bmatrix}. 
+      | \end{equation*}
       
 So the block matrix product formula checks out. 
 
@@ -2131,6 +2143,10 @@ _{button.next-step} Submit_
 ---
 
 *Solution*. This follows directly from the block matrix product formula by writing $A$ is a block matrix with its columns as blocks and $B$ with its rows as blocks. 
+
+_{button.next-step} Continue_
+
+---
 
 > id: transposes
 ## Transposes

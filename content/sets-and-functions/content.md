@@ -105,7 +105,7 @@ _{button.next-step} Continue_
 
 ---
 
-If we visualize a set as a blob and its elements as dots in the blob, then the subset relationship looks like this: 
+If we visualize a set as a [**potato**](gloss:potato) and its elements as dots in the blob, then the subset relationship looks like this: 
 
     center: img(src="images/subset.svg")
     
@@ -136,9 +136,7 @@ _{button.next-step} Submit_
 
 ::: .exercise
 **Exercise**  
-Suppose that $E$ is the set of even positive integers and that $F$
-is the set of positive integers which are one more than an odd
-integer. Then [[all of the above | `E sub F`| `F sub E` | `E = F`]]
+Suppose that $E$ is the set of even positive integers and that $F$ is the set of positive integers which are one more than an odd integer. Then [[`E sub F` and `F sub E` and `E = F` | just `E sub F`| just `F sub E` | just `E = F`]].
 :::
 
 _{button.next-step} Continue_
@@ -225,7 +223,7 @@ _{button.next-step} Continue_
 
 ::: .exercise
 **Exercise**  
-Let `S = \{4,3,4,1\}`. Then $|S|$ = [[3|4|2|`oo`]]
+Let `S = \{4,3,4,1\}`. Then $|S|$ = [[3|4|2|`oo`]].
 :::
 
 ---
@@ -280,6 +278,8 @@ _{button.next-step} Submit_
 
 *Solution*. We visualize the pairs as a grid of points in the first quadrant. We arrange the points in a sequence by beginning in the lower left corner at $(1,1)$ and snake through the grid: we go right to $(2,1)$, then diagonally northwest to $(1,2)$, then up to $(1,3)$, then diagonally southeast to $(2,2)$ and through to $(3,2)$, and so on. 
 
+    center: img(src="images/snake.svg")
+
 ---
 
 > id: set-operations
@@ -326,7 +326,7 @@ _{button.next-step} Continue_
 
 ---
 
-The notation $S \setminus A$ may be used regardless of whether $A$ is a subset of $S$. We use a different term to refer to this more general operation: the **set difference** $S \setminus A$ is defined to be the set of elements which are in $S$ which are not in $A$. 
+Sometimes you grab some items at the grocery store which were not on your list. Likewise, the notation $S \setminus A$ may be used regardless of whether $A$ is a subset of $S$. In this case, we use a different term: the **set difference** $S \setminus A$ is defined to be the set of elements which are in $S$ which are not in $A$.
 
 _{button.next-step} Continue_
 
@@ -429,6 +429,8 @@ Let `S = \{1,2,3,4,5\}` and `T = \{1,5,6,7,8\}`. Then $S \cap T$ has [[2]] eleme
 
 ---
 
+### Set operations with more sets
+
 The union and intersection operations may be applied to any number of sets. Suppose $S_1, S_2, \ldots, S_n$ are sets—the union of these sets can be expressed as $S_1 \cup S_2 \cup \cdots \cup S_n$. More compactly, 
 
     p
@@ -449,7 +451,9 @@ _{button.next-step} Continue_
 
 ---
 
-Often we will want to specify whether two sets have any elements in common.
+### Disjoint sets
+
+Often we will want to specify whether two sets have any elements in common. For example, if $S$ is the set of vegetables you are interested in, and $T$ is the set of vegetables that your partner is interested in, then whether $S$ and $T$ have any overlap determines whether you will need to prepare separate vegetable dishes.
 
 ::: .definition
 **Definition** (Disjoint)  
@@ -758,13 +762,13 @@ _{button.next-step} Continue_
 
 ---
 
-Note that this construction is asymmetric in the two sets: every grocery item should have exactly one number associated with it, while some positive integers may be omitted and others may be associated with multiple grocery items.
+Note that this construction is asymmetric in the two sets: every grocery item should have exactly one number associated with it, while some positive integers will be omitted and others may be associated with multiple grocery items.
 
 _{button.next-step} Continue_
 
 ---
 
-The idea of attaching a piece of data to each element of a set arises *very* often in every quantitative discipline, and it deserves its own vocabulary:
+The idea of attaching a piece of data to each element of a set arises *very* often throughout the quantitative disciplines, and it deserves its own vocabulary:
 
 ::: .definition
 **Definition** (Function, domain, and codomain)  
@@ -772,6 +776,8 @@ If $A$ and $B$ are sets, then a **function** $f:A \to B$ is an assignment to eac
 
 The set $A$ is called the **domain** of $f$ and $B$ is called the **codomain** of $f$. 
 :::
+
+[**Potato-and-arrow**](gloss:potato-and-arrow) diagrams can be helpful for visualizing the relationship between a function, its domain, and its codomain.
 
     center: img(src="images/function.svg")
 
@@ -846,7 +852,7 @@ _{button.next-step} Continue_
 
 ::: .exercise
 **Exercise**  
-Consider the *social-security-number function* $f$ from the set of US citizens and permanent residents to the set of integers   `\{000000000,000000001,ldots,999999999\}`. For each person $x$, $f(x)$ is defined to be the social security number of person $x$.
+Consider the *social-security-number function* $f$ from the set of US citizens and permanent residents to the set of integers   $\\\{000000000,000000001,\ldots,999999999\\\}$. For each person $x$, $f(x)$ is defined to be the social security number of person $x$.
 
 * What are the largest and smallest possible values of the ratio     $\frac{|f(A)|}{|A|}$ for any nonempty subset $A$ of the domain of $f$? Largest: [[1]] Smallest: [[1]]
 * Estimate the ratio of the cardinality of the range of $f$ to the cardinality of the codomain of $f$. (You can estimate the number of social security numbers issued to be about 40% more than the current US population). [[0.45±0.2]] What implications does this have for the Social Security Administration?
@@ -896,7 +902,7 @@ _{button.next-step} Continue_
 
 *Solution*. The first statement is true; for example, consider the squaring function from the real number line to itself. The preimage of any set of negative numbers is empty.
 
-The second statement is also true, since multiple input elements may map to the same codomain values. 
+The second statement is also true, since multiple input elements may map to the same codomain element. 
 
 _{button.next-step} Continue_
 
@@ -938,14 +944,17 @@ _{button.next-step} Submit_
 To see that (i) may fail, consider the function from `\{-1,0,1\}` to `\{0,1\}` which squares its input. Let `A =
 \{-1,0\}` and `B = \{0,1\}`. Then $f(A \cap B)$ = `\{0\}`, while $f(A) \cap f(B)$ = `\{0,1\}`.
 
-_{button.next-step} Continue_
+    center
+      img(src="images/three-element-squaring.svg")
+      p.caption The squaring function on $\{-1,0,1\}$ shows that the equality $f(A \cap B) = f(A) \cap f(B)$ does not hold in general.
+    
 
 ---
 
 > id: function-properties
 ## Function Properties
 
-According to the definition, a function may map several elements of the domain to the same element of the codomain, and it may also miss elements in the codomain (in other words, fail to map any domain element to them). However, these behaviors can be undesirable in some situations, and we'll want terminology to refer to whether a given function exhibits them.
+According to the [definition](gloss:function-set), a function may map several elements of the domain to the same element of the codomain, and it may also miss elements in the [codomain](gloss:codomain) (in other words, fail to map any domain element to them). However, these behaviors can be undesirable in some situations, and we'll want terminology to refer to whether a given function exhibits them.
 
 ::: .definition
 **Definition**  
@@ -953,7 +962,7 @@ A function $f$ is **injective** if no two elements in the domain map to the same
 
 A function $f$ is **surjective** if the range of $f$ is equal to the codomain of $f$; in other words, if $b \in B$ implies that there exists $a\in A$ with $f(a) = b$.
 
-A function $f$ is **bijective** if it is both injective and surjective. This means that for every $b\in B$, there is exactly one   $a\in A$ such that $f(a) \in b$. If $f$ is bijective, then the **inverse** of $f$ is the function from $B$ to $A$ that maps $b\in B$ to the element $a \in A$ that satisfies $f(a) = b$.
+A function $f$ is **bijective** if it is both injective and surjective. This means that for every $b\in B$, there is exactly one $a\in A$ such that $f(a) \in b$. If $f$ is bijective, then the **inverse** of $f$ is the function from $B$ to $A$ that maps $b\in B$ to the element $a \in A$ that satisfies $f(a) = b$.
 :::
 
 _{button.next-step} Continue_
@@ -1009,6 +1018,8 @@ defined by
       | \end{equation*}
       
 :::
+
+    center: img(src="images/restriction.svg")
 
 _{button.next-step} Continue_
 
@@ -1086,10 +1097,6 @@ If the rule defining a function is sufficiently simple, we can describe the func
 Suppose that $f$ is the function $(x\mapsto \sqrt{x}) \circ (y\mapsto
 3y)$. Then $f\left(\frac{1}{12}\right)$ = [[0.5]]
 :::
-
----
-
-_{button.next-step} Continue_
 
 ---
 
