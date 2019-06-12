@@ -1,8 +1,10 @@
-
 # Multivariable Calculus
 
 > id: intro
+
 ## Introduction
+
+*Course author: [Samuel S. Watson](http://sswatson.com)*
 
 Calculus is the study of continuously varying functions. Specifically, we examine [[instantaneous|average|large]] rates of change (derivatives) and learn how to average (or total) the values of a function over a region (integration). In multivariable calculus, we generalize differentiation and integration ideas developed for functions defined on the number line $\mathbb{R}^1$ to the setting where our functions are defined on $\mathbb{R}^d$ for some $d \ge 1$. 
 
@@ -1218,123 +1220,10 @@ and set it equal to $\boldsymbol{0}$ to get
 (We know that $A' A$ has an inverse matrix because its rank is equal to that of $A$, which we assumed was $m$.)
 
 ---
-> id: multivariable-integration
-## Multivariable integration 
- 
-Integrating a function is a way of totaling up its values. For example, if $f$ is a function from a region $D$ in $\mathbb{R}^n$ to $\mathbb{R}$ which represents the mass density of a solid occupying the region $D$, we can find the total mass of the solid as follows: (i) split the region $D$ into many tiny pieces, (ii) multiply the volume of each piece by the value of the function at some point on that piece, (iii) and add up the results. If we take the number of pieces to infinity and the piece size to zero, then this sum converges to the total mass of the solid. 
-
-We may apply this procedure to any function $f$ defined on $D$, and we call the result the integral of $f$ over $D$, denoted $\int\_D f$. 
-
-To find the integral of a function $f$ defined on a 2D region $D$, we set up a double iterated integral over $D$: the bounds for the outer integral are the smallest and largest possible values of $y$ for point in $D$, and the bounds for the inner integral are the smallest and largest values of $x$ for any point in a given *each* "$y$ = *constant*" *slice* of the region (assuming that each slice intersects the region in a line segment). 
-
-::: .exercise
-**Exercise**  
-Find the integral over the triangle $T$ with vertices $(0,0)$, $(2,0)$, and $(0,3)$ of the function $f(x,y) = x^2y$. 
-:::
-
-    .quill#editor13
-
-_{button.next-step} Submit_
-
----
-> id: step-72 
-
-*Solution*. The least and greatest values of $y$ for any point in the region are 0 and 3, while the least and greatest values of $x$ for each given $y$-slice are 0 and $2 - \frac{2}{3}y$. Therefore, the integral is 
-
-    p
-      | \begin{equation*}
-      |     \int_0^3 \int_0^{2 - \frac{2}{3}y} x^2 y \, \mathrm{d} x \, \mathrm{d} y =
-      |     \frac{6}{5}.
-      | \end{equation*}
-
-_{button.next-step} Continue_
-
----
-> id: step-73
-
-### 3D integration
-
-To set up an integral of a function over a 3D region (for the order $\mathrm{d} x \\, \mathrm{d}y \\, \mathrm{d}z$): the bounds for the outer integral are the smallest and largest values of $z$ for any point in the region of integration, then the bounds for the middle integral are the smallest and largest values of $y$ for any point in the region in each "$z$ = constant" plane, and the inner bounds are the smallest and largest values of $x$ for any point in the region in each "$(y,z)$ = constant" line. 
-
-::: .exercise
-**Exercise**  
-Integrate the function $f(x,y,z) = 1$ over the tetrahedron with vertices $(0,0,0)$, $(2,0,0)$, $(0,3,0)$, and $(0,0,4)$. 
-:::
-
-    .quill#editor14
-
-_{button.next-step} Submit_
-
----
-> id: step-74
-
-*Solution*.  The least and greatest values of $z$ are 0 and 4, so those are our outer limits (see the figure below). For a fixed value of $z$, the least and greatest values of $y$ for a point in $D$ are 0 and $3 - \tfrac{3}{4}z$, respectively. Finally, for fixed $y$ and $z$, the least and greatest values of $x$ for a point in $D$ are 0 and the point on the plane $6x + 4y + 3z = 12$ with the given values of $y$ and $z$. So we get 
-
-    p
-      | \begin{align*}
-      |   \text{volume}(D) &= \int_{0}^{4}\int_{0}^{3-\frac{3}{4}z}\int_{0}^{2 - \frac{2}{3}y - \frac{1}{2}z} 1 \, \mathrm{d}x \, \mathrm{d}y \, \mathrm{d}z  \\\ &= \int_{0}^{4}\int_{0}^{3-\frac{3}{4}z} \left(2 - \frac{2}{3}y - \frac{1}{2}z \right) \, \mathrm{d}y \, \mathrm{d}z \\\ 
-      | &= \int_{0}^{4} \frac{3}{16}(z-4)^2 \, \mathrm{d}z \\\ 
-      | &= \boxed{4}.
-      | \end{align*}
-
-    center: img(src="images/tetrahedron.svg")
-
-### Exercises
-
-::: .exercise
-**Exercise**  
-Evaluate $\int_0^8 \int_{\sqrt[3]{y}}^2 e^{x^4} \, \mathrm{d} x \,\mathrm{d} y$ by writing it as an integral over a region in the plane and then integrating over the region with respect to the opposite order of integration.
-:::
-
-*Solution* Let's begin by drawing the region: 
-
-    center
-      img(src="images/reverse-region.svg")
-
-We can see that this is the region under the graph of $y = x^3$ from $x = 0$ to $x = 2$. Thus we integrate as $x$ ranges from 0 to 2 and (for each fixed value of $x$) as $y$ ranges from 0 to $x^3$. We get
-
-    p
-      | \begin{align*}
-      | \int^2_0 \int^{x^3}_0 e^{x^4}\,\mathrm{d} y\,\mathrm{d} x &= \int^2_0 \int^{x^3}_0 y
-      | e^{x^4} \bigg\rvert_{y=0}^{y={x^3}}\,\mathrm{d} x \\\ &= \int^2_0 x^3e^{x^4} \,\mathrm{d} x = \frac{e^{x^4}}{4}\bigg\rvert_0^2 = \frac{e^{16} - 1}{4} \approx
-      | 2221527. 
-      | \end{align*}
-
----
-> id: step-75
-
-::: .exercise
-**Exercise**  
-Consider the region $R$ between the parabolas $y=1-x^2$ and
-$y=x^2-7$. Find $\iint_R xy \\, \mathrm{d} A$.
-
-    center: img(src="images/two-parabs.svg")
-:::
-
-    .quill#editor15
-
-_{button.next-step} Submit_
-
----
-> id: step-76
-
-*Solution*. We see that the curves intersect at $x = -2$ and $x =
-2$. So we get 
-
-    p
-      | \begin{align*}
-      | \int^2_{-2} \int^{1-x^2}_{x^2-7} xy \,\mathrm{d} y\,\mathrm{d} x &= \int^{2}_{-2} {\frac{xy^2}{2} \bigg\rvert_{x^2-7}^{1-x^2}} \,\mathrm{d} x \\\ &= \int^2_{-2} {\frac{x}{2}[(1 - 2x^2 +x^4)-(x^4 -14x^2 +49)]} \,\mathrm{d} x \\\ 
-      |  &= \int^2_{-2} {6x^3 - 24x} \,\mathrm{d} x \\\ &= \frac{3x^4}{2}-12x^2 \bigg\rvert^2_{-2} \\\ &= 0
-      | \end{align*}
-      
-_{button.next-step} Continue_
-
----
-
 > id: chain-rule
 ## The chain rule
 
-One way of describing the chain rule is to say that derivatives of compositions of differentiable functions may be obtained by [linearizing](gloss:linearize). If linear functions (functions of the form $x\mapsto mx + b$) are composed, then the slope of the composition is the product of the slopes of the functions being composed. Since differentiable functions are practically linear if you zoom in far enough, they behave the same way under composition.
+One way of describing the [chain rule](gloss:chain-rule) is to say that derivatives of compositions of differentiable functions may be obtained by [linearizing](gloss:linearize). If linear functions (functions of the form $x\mapsto mx + b$) are composed, then the slope of the composition is the product of the slopes of the functions being composed. Since differentiable functions are practically linear if you zoom in far enough, they behave the same way under composition.
 
 The chain rule in multivariable calculus works similarly. If we compose a differentiable function $\mathbf{r}:[a,b]\to \mathbb{R}^2$ with a differentiable function $f: \mathbb{R}^2 \to \mathbb{R}^1$, we get a function whose derivative is 
 
@@ -1455,13 +1344,124 @@ We can check this exercise numerically:
 _{button.next-step} Continue_
 
 ---
+> id: multivariable-integration
+## Multivariable integration 
+ 
+Integrating a function is a way of totaling up its values. For example, if $f$ is a function from a region $D$ in $\mathbb{R}^n$ to $\mathbb{R}$ which represents the mass density of a solid occupying the region $D$, we can find the total mass of the solid as follows: (i) split the region $D$ into many tiny pieces, (ii) multiply the volume of each piece by the value of the function at some point on that piece, (iii) and add up the results. If we take the number of pieces to infinity and the piece size to zero, then this sum converges to the total mass of the solid. 
 
+We may apply this procedure to any function $f$ defined on $D$, and we call the result the integral of $f$ over $D$, denoted $\int\_D f$. 
+
+To find the integral of a function $f$ defined on a 2D region $D$, we set up a double iterated integral over $D$: the bounds for the outer integral are the smallest and largest possible values of $y$ for point in $D$, and the bounds for the inner integral are the smallest and largest values of $x$ for any point in a given *each* "$y$ = *constant*" *slice* of the region (assuming that each slice intersects the region in a line segment). 
+
+::: .exercise
+**Exercise**  
+Find the integral over the triangle $T$ with vertices $(0,0)$, $(2,0)$, and $(0,3)$ of the function $f(x,y) = x^2y$. 
+:::
+
+    .quill#editor13
+
+_{button.next-step} Submit_
+
+---
+> id: step-72 
+
+*Solution*. The least and greatest values of $y$ for any point in the region are 0 and 3, while the least and greatest values of $x$ for each given $y$-slice are 0 and $2 - \frac{2}{3}y$. Therefore, the integral is 
+
+    p
+      | \begin{equation*}
+      |     \int_0^3 \int_0^{2 - \frac{2}{3}y} x^2 y \, \mathrm{d} x \, \mathrm{d} y =
+      |     \frac{6}{5}.
+      | \end{equation*}
+
+_{button.next-step} Continue_
+
+---
+> id: step-73
+
+### 3D integration
+
+To set up an integral of a function over a 3D region (for the order $\mathrm{d} x \\, \mathrm{d}y \\, \mathrm{d}z$): the bounds for the outer integral are the smallest and largest values of $z$ for any point in the region of integration, then the bounds for the middle integral are the smallest and largest values of $y$ for any point in the region in each "$z$ = constant" plane, and the inner bounds are the smallest and largest values of $x$ for any point in the region in each "$(y,z)$ = constant" line. 
+
+::: .exercise
+**Exercise**  
+Integrate the function $f(x,y,z) = 1$ over the tetrahedron with vertices $(0,0,0)$, $(2,0,0)$, $(0,3,0)$, and $(0,0,4)$. 
+:::
+
+    .quill#editor14
+
+_{button.next-step} Submit_
+
+---
+> id: step-74
+
+*Solution*.  The least and greatest values of $z$ are 0 and 4, so those are our outer limits (see the figure below). For a fixed value of $z$, the least and greatest values of $y$ for a point in $D$ are 0 and $3 - \tfrac{3}{4}z$, respectively. Finally, for fixed $y$ and $z$, the least and greatest values of $x$ for a point in $D$ are 0 and the point on the plane $6x + 4y + 3z = 12$ with the given values of $y$ and $z$. So we get 
+
+    p
+      | \begin{align*}
+      |   \text{volume}(D) &= \int_{0}^{4}\int_{0}^{3-\frac{3}{4}z}\int_{0}^{2 - \frac{2}{3}y - \frac{1}{2}z} 1 \, \mathrm{d}x \, \mathrm{d}y \, \mathrm{d}z  \\\ &= \int_{0}^{4}\int_{0}^{3-\frac{3}{4}z} \left(2 - \frac{2}{3}y - \frac{1}{2}z \right) \, \mathrm{d}y \, \mathrm{d}z \\\ 
+      | &= \int_{0}^{4} \frac{3}{16}(z-4)^2 \, \mathrm{d}z \\\ 
+      | &= \boxed{4}.
+      | \end{align*}
+
+    center: img(src="images/tetrahedron.svg")
+
+### Exercises
+
+::: .exercise
+**Exercise**  
+Evaluate $\int_0^8 \int_{\sqrt[3]{y}}^2 e^{x^4} \, \mathrm{d} x \,\mathrm{d} y$ by writing it as an integral over a region in the plane and then integrating over the region with respect to the opposite order of integration.
+:::
+
+*Solution* Let's begin by drawing the region: 
+
+    center
+      img(src="images/reverse-region.svg")
+
+We can see that this is the region under the graph of $y = x^3$ from $x = 0$ to $x = 2$. Thus we integrate as $x$ ranges from 0 to 2 and (for each fixed value of $x$) as $y$ ranges from 0 to $x^3$. We get
+
+    p
+      | \begin{align*}
+      | \int^2_0 \int^{x^3}_0 e^{x^4}\,\mathrm{d} y\,\mathrm{d} x &= \int^2_0 \int^{x^3}_0 y
+      | e^{x^4} \bigg\rvert_{y=0}^{y={x^3}}\,\mathrm{d} x \\\ &= \int^2_0 x^3e^{x^4} \,\mathrm{d} x = \frac{e^{x^4}}{4}\bigg\rvert_0^2 = \frac{e^{16} - 1}{4} \approx
+      | 2221527. 
+      | \end{align*}
+
+---
+> id: step-75
+
+::: .exercise
+**Exercise**  
+Consider the region $R$ between the parabolas $y=1-x^2$ and
+$y=x^2-7$. Find $\iint_R xy \\, \mathrm{d} A$.
+
+    center: img(src="images/two-parabs.svg")
+:::
+
+    .quill#editor15
+
+_{button.next-step} Submit_
+
+---
+> id: step-76
+
+*Solution*. We see that the curves intersect at $x = -2$ and $x =
+2$. So we get 
+
+    p
+      | \begin{align*}
+      | \int^2_{-2} \int^{1-x^2}_{x^2-7} xy \,\mathrm{d} y\,\mathrm{d} x &= \int^{2}_{-2} {\frac{xy^2}{2} \bigg\rvert_{x^2-7}^{1-x^2}} \,\mathrm{d} x \\\ &= \int^2_{-2} {\frac{x}{2}[(1 - 2x^2 +x^4)-(x^4 -14x^2 +49)]} \,\mathrm{d} x \\\ 
+      |  &= \int^2_{-2} {6x^3 - 24x} \,\mathrm{d} x \\\ &= \frac{3x^4}{2}-12x^2 \bigg\rvert^2_{-2} \\\ &= 0
+      | \end{align*}
+      
+_{button.next-step} Continue_
+
+---
 > id: custom-integration
 ## Custom integration
 
 If we want to integrate over a region which doesn't split nicely along lines parallel to the coordinate axes, we can split the region up along other lines or curves. 
 
-For example, consider integrating $f(x,y) = y^2$ over the region bounded by the hyperbolas $xy = 1$ and $xy = 3$ and the lines $y = \frac{1}{2}x$ and $y = 2x$. This region naturally splits along hyperbolas of the form $xy = v$ where $v$ ranges from 1 to 3 and lines of the form $y/x = u$ where $u$ ranges from $\frac{1}{2}$ to 2. We can therefore write the region as the image of the rectangle $[\frac{1}{2},2] \times [1,3]$ under the inverse $\mathbf{T}$ of the transformation $(x,y) \mapsto (y/x,xy)$. 
+For example, consider integrating $f(x,y) = y^2$ over the region bounded by the hyperbolas $xy = 1$ and $xy = 3$ and the lines $y = \frac{1}{2}x$ and $y = 2x$. This region naturally splits along hyperbolas of the form $xy = v$ where $v$ ranges from 1 to 3 and lines of the form $y/x = u$ where $u$ ranges from $\frac{1}{2}$ to 2. One convenient way of describing this family of curves and lines we're using to slice up the region is to write the region as the image of the rectangle $[\frac{1}{2},2] \times [1,3]$ under the inverse $\mathbf{T}$ of the transformation $(x,y) \mapsto (y/x,xy)$. 
 
     center: img(src="images/change-of-variables.svg")
 
@@ -1489,7 +1489,7 @@ Since the area distortion factor of $\mathbf{T}$ is the [[reciprocal|negation]] 
 
     p 
       | \begin{equation*}
-      | \iint_D f(x,y) \, \mathrm{d}x\, \mathrm{d}y = \int_{1}^{3}\int_{1/2}^{2}uv \left(\frac{1}{2v}\right) \mathrm{d} u \, \mathrm{d}v = \boxed{3}
+      | \iint_D f(x,y) \, \mathrm{d}x\, \mathrm{d}y = \int_{1}^{3}\int_{1/2}^{2}uv \left(\frac{1}{2v}\right) \mathrm{d} u \, \mathrm{d}v = \boxed{3}.
       | \end{equation*}
 
 _{button.next-step} Continue_

@@ -4,6 +4,8 @@
 > id: intro
 ## Introduction
 
+*Course author: [Samuel S. Watson](http://sswatson.com)*
+
 Using and interpreting data requires storing and manipulating sets of numbers in conceptually and computationally helpful ways. The language of *linear algebra* provides basic vocabulary, visualizations, and mathematical results for understanding the structure of a dataset. 
 
 _{button.next-step} Continue_

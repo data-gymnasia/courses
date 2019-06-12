@@ -411,6 +411,10 @@ directional-derivative:
     The derivative of a funtion $f$ in the $\mathbb{u}$ direction is given by $\nabla f\cdot \mathbf{u}$. 
     
     There is therefore one direction in which $f$ increases most rapidly (the direction of $\nabla f$), and it increases in every direction which makes an acute angle with $\nabla f$. 
+
+chain-rule:
+  title: Chain Rule
+  text: The derivative of a composition of differentiable functions is the product of the derivatives of the functions (evaluated at the relevant points): $(f(g(x)))' = f'(g(x))g'(x)$.
     
 positive-definite:
   title: Positive definite
