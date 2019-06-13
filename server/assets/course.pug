@@ -12,6 +12,10 @@ html
     link(href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,300,400i,600i' rel='stylesheet' type='text/css')
     link(href='/course.css', rel='stylesheet')
     link(href='/resources/' + course.id + '/styles.css', rel='stylesheet')
+    style(type="text/css").
+      .choice strong {
+        color: white;
+      }
 
   body
     include components.html
