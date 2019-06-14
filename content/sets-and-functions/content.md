@@ -57,7 +57,7 @@ $s_1, s_2, \ldots, s_n$, we can write
       | S = \{s_1, s_2, \ldots, s_n\}.
       | \end{equation*}
       
-For example $\\\{2,3,5,7\\\}$ is the set of [[single-digit primes|single-digit odd numbers|digits you can write without making a loop]]
+For example $\\\{2,3,5,7\\\}$ is the set of [[single-digit primes|single-digit odd numbers|digits you can write without making a loop]].
 
 ---
 > id: step-5
@@ -132,7 +132,7 @@ Two sets are equal if [[each is a subset of the other|there is a set that each i
 ---
 > id: step-12
 
-The relationship between "`sub`" and "`=`" has a real-number analogue: we can say that `x = y` if and only if [[`x ≤ y` and `x ≤ y`|`y ≤ x`|`x ≤ y`]].
+The relationship between "`sub`" and "`=`" has a real-number analogue: we can say that `x = y` if and only if [[`x ≤ y` and `y ≤ x`|`y ≤ x`|`x ≤ y`]].
 
 ---
 > id: step-13
@@ -472,7 +472,9 @@ Let $S = \\\{1,2,3,4,5\\\}$ and $T = \\\{1,5,6,7,8\\\}$. Then $S \cap T$ has [[2
 
 ### Set operations with more sets
 
-The union and intersection operations may be applied to any number of sets. Suppose $S_1, S_2, \ldots, S_n$ are sets—the union of these sets can be expressed as $S_1 \cup S_2 \cup \cdots \cup S_n$. More compactly, 
+The union and intersection operations may be applied to any number of sets. Suppose $S_1, S_2, \ldots, S_n$ are sets—the union of these sets can be expressed as $S_1 \cup S_2 \cup \cdots \cup S_n$.
+
+More compactly, 
 
     p
       | \begin{equation*}
@@ -1004,7 +1006,7 @@ Which of the are true for all functions $f$ and all subsets $A$ and $B$ of the d
 
 (d) (iii) and (iv) only   
 
-(e) (i), (iii), and (iv) only
+(e) (ii), (iii), and (iv) only
 :::
 
     .quill#editor8
