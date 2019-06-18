@@ -142,9 +142,7 @@ The relationship between "`sub`" and "`=`" has a real-number analogue: we can sa
 Think of four pairs of real-world sets which satisfy a subset relationship. For example, the set of cars is a subset of the set of vehicles.
 :::
 
-    .quill#editor1
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-14
@@ -295,9 +293,7 @@ _{button.next-step} Continue_
 Show that the set of all ordered pairs of positive integers is countably infinite.   
 :::
 
-    .quill#editor2
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-26
@@ -387,9 +383,7 @@ Suppose $A\subset S$, $|S| = 55$, and $|A| = 13$. Then $|S \setminus A|$ = [[42]
 Is the assumption that $A \subset S$ necessary for the problem to be well-specified?
 :::
 
-    .quill#editor3
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-35
@@ -523,9 +517,7 @@ This definition extends to an arbitrary number of sets. We say that the sets $S_
 Find three sets $A$, $B$, and $C$ which have $A \cap B \cap C = \emptyset$, but for which all of the intersections $A \cap B$, $B\cap C$, and $A \cap C$ are nonempty.   
 :::
 
-    .quill#editor4
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-46
@@ -565,9 +557,7 @@ _{button.next-step} Continue_
 Find a partition of $\\\{1,2,3,4,5\\\}$ into three sets. Is there a partition of $\\\{1,2,3,4,5\\\}$ into *six* sets?   
 :::
 
-    .quill#editor5
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-49
@@ -695,9 +685,7 @@ Establish the first and third of the following four identities. Use the followin
 
 :::
 
-    .quill#editor6
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-57
@@ -931,9 +919,7 @@ Consider the *social-security-number function* $f$ from the set of US citizens a
 
 :::
 
-    .quill#editor7
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-74
@@ -1009,9 +995,7 @@ Which of the are true for all functions $f$ and all subsets $A$ and $B$ of the d
 (e) (ii), (iii), and (iv) only
 :::
 
-    .quill#editor8
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-78
@@ -1066,9 +1050,7 @@ For each of the four combinations of injectivity and surjectivity, come up with 
 For example, the function from the set of ticket numbers for a commercial airplane flight to the set of passengers on the plane (the one which associates each ticket number with the passenger named on that ticket) is bijective.
 :::
 
-    .quill#editor9
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: operations
@@ -1108,9 +1090,7 @@ _{button.next-step} Continue_
 State a general relationship involving the terms *restriction*, *image*, and *range*.   
 :::
 
-    .quill#editor10
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-82
@@ -1153,9 +1133,7 @@ Show that composition is associative: $(f\circ g)\circ h = f \circ
 (g \circ h)$ for all functions $f$, $g$, and $h$ with the property that the codomain of $h$ is equal to the domain of $g$ and the codomain of $g$ is equal to the domain of $f$.   
 :::
 
-    .quill#editor11
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-85
@@ -1212,9 +1190,7 @@ _{button.next-step} Continue_
 Find the inverse of the function $f(x) = x^2 + 1$ from the interval $[0,\infty)$ to the interval $[1,\infty)$. 
 :::
 
-    .quill#editor12
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-91

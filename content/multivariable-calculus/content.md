@@ -60,9 +60,7 @@ _{button.next-step} Continue_
 Suppose that $|x\_n| \leq n^{-1/2}$ for all $n \geq 1$. Show that $x\_n \to 0$ as $n\to\infty$. 
 :::
 
-    .quill#editor1
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-5
@@ -178,9 +176,7 @@ Numerically examine the statement that $\sum\_{n=1}^\infty \frac{1}{n^2}$ conver
 
 <p></p>
 
-    .quill#editor2
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-13
@@ -348,35 +344,30 @@ Find the Taylor series for $1/(1-x)$ centered at the origin, and show that it co
 Use your result to find $x + 2x^2 + 3x^3 + 4x^4 + \cdots$. Hint: think about differentiation. 
 :::
 
-    .quill#editor3
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-23 
 
 *Solution*. Calculating derivatives of $1/(1-x)$, we find that the Taylor series centered at the origin is $1 + x + x^2 + \cdots$. Furthermore, we know that 
 
-    p
-      | \begin{equation*}  
-      |   \frac{1}{1-x} = 1 + x + x^2 + x^3 + \cdots,
-      | \end{equation*}
-      
+``` latex
+\frac{1}{1-x} = 1 + x + x^2 + x^3 + \cdots,
+```
+
 for $-1 < x < 1$, by the formula for infinite geometric series. 
 
 We can use this result to find $\sum\_{k = 1}^\infty k x^k$ by differentiating both sides and multiplying both sides by $x$: 
 
-    p
-      | \begin{equation*}
-      |     \frac{1}{(1-x)^2} = 1 + 2x + 3x^2 + 4x^3 + \cdots
-      | \end{equation*}
-      
+``` latex
+\frac{1}{(1-x)^2} = 1 + 2x + 3x^2 + 4x^3 + \cdots
+```
+
  We get 
 
-    p
-      | \begin{equation*}
-      |   \frac{x}{(1-x)^2} = x + 2x^2 + 3x^3 + 4x^4 + \cdots
-      | \end{equation*}
+``` latex
+\frac{x}{(1-x)^2} = x + 2x^2 + 3x^3 + 4x^4 + \cdots
+```
 
 _{button.next-step} Continue_
 
@@ -388,9 +379,7 @@ _{button.next-step} Continue_
 Show that $\lim\_{n\to\infty}(1+x/n)^n$ is equal to $\mathrm{e}^x$ by showing that $\lim\_{n\to\infty}\log (1+x/n)^n = x$. 
 :::
 
-    .quill#editor4
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-25
@@ -463,9 +452,7 @@ We can partial-differentiate multiple times, and it turns out that the order in 
 Consider the function $f(x,y) = \mathrm{e}^{xy}\sin(y)$. Show that differentiating with respect to $x$ and then with respect to $y$ gives the same result as differentiating with respect to $y$ and then with respect to $x$. 
 :::
 
-    .quill#editor5
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-30
@@ -535,9 +522,7 @@ _{button.next-step} Continue_
 Suppose that $f:\mathbb{R}^2 \to \mathbb{R}$ is a differentiable function at the point $(a,b)\in \mathbb{R}^2$ and that its instantaneous rates of change in the directions $\mathbf{u}$ and $\mathbf{v}$ are known. Show that if $\mathbf{u}$ and $\mathbf{v}$ are not parallel, then it is always possible to infer $f$'s rates of change in the coordinate-axis directions. 
 ::: 
 
-    .quill#editor6
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-36
@@ -637,9 +622,7 @@ _{button.next-step} Continue_
 Suppose that $a,b,c,d,e$ and $f$ are real numbers and that $f(x,y) = a + bx + cy + dx^2 + exy + fy^2$. Show that the quadratic approximation of $f$ at the origin is equal to $f$. 
 :::
 
-    .quill#editor7
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-43
@@ -737,9 +720,7 @@ In addition to helping distinguish local minima, local maxima, and saddle points
 Suppose that $f:\mathbb{R}^2 \to \mathbb{R}$ has zero gradient at a given point, and suppose that its Hessian matrix at that point has eigenvalues $\lambda\_1$ and $\lambda\_2$. How can you recognize based on the values of $\lambda\_1$ and $\lambda\_2$ whether the graph of $f$ is ravine-shaped?
 :::
 
-    .quill#editor8
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-46
@@ -928,9 +909,7 @@ This theorem suggests a program for optimizing a function $f$ on a domain $D$ wh
   Find the maximum and minimum values of $f(x,y) = x^4 + y^4 - 4xy$ on the rectangle $[0,3]\times [0,2]$.
 :::
 
-    .quill#editor9
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-57
@@ -976,9 +955,7 @@ _{button.next-step} Continue_
 Find the point closest to the origin in the region $3x + 2y + z \geq 6$. 
 :::
 
-    .quill#editor10
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-59
@@ -1082,9 +1059,7 @@ Applying the same analysis to the lasso minimizer, we get an optimization proble
 Many airlines require that the sum of the length, width and height of a checked baggage cannot exceed 62 inches. Find the dimensions of the rectangular baggage that has the greatest possible volume under this regulation.
 :::
 
-    .quill#editor11
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-67
@@ -1153,9 +1128,7 @@ Some authors define $\frac{\partial f}{\partial \mathbf{x}'}$ to be $\left(\frac
 Let $f: \mathbb{R}^n \to \mathbb{R}$ be defined by $f(\mathbf{x}) = \mathbf{x}' A \mathbf{x}$ where $A$ is a symmetric matrix. Find $\frac{\partial f}{\partial \mathbf{x}}.$
 :::
 
-    .quill#editor12
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-69
@@ -1250,20 +1223,17 @@ Suppose that $\frac{\partial f}{\partial x}(3,2) = 4$, that $\frac{\partial f}{\
   1 + 2t$ and $y(t) = 4 - 2t^2$. Find the derivative of the function $f(x(t),y(t))$ at the point $t = 1$. 
 :::
 
-    .quill#editor16
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-78
 
 *Solution*. The chain rule implies that the derivative of $f(x(t),y(t))$ is 
 
-    p
-      | \begin{equation*}
-      |     [f_x(x(t),y(t)), f_y(x(t),y(t))]\cdot [x'(t), y'(t)] = (4)(2) +
-      |     (-2)(-4) = \boxed{16}.
-      | \end{equation*}
+``` latex
+[f_x(x(t),y(t)), f_y(x(t),y(t))]\cdot [x'(t), y'(t)] = (4)(2) +
+(-2)(-4) = \boxed{16}.
+```
 
 _{button.next-step} Continue_
 
@@ -1275,9 +1245,7 @@ _{button.next-step} Continue_
 Find the derivative with respect to $t$ of the function $g(t) = t^t$ by writing the function as $f(x(t),y(t))$ where $f(x,y) = x^y$ and $x(t) = t$ and $y(t)=t$.
 :::
 
-    .quill#editor17
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-80
@@ -1299,9 +1267,7 @@ Suppose that $g(\mathbf{y}) = A\mathbf{x}$ for some matrix $A$, and suppose that
 Note: you might find it convenient to express your answer using the function diag which maps a vector to a matrix with that vector along the diagonal.
 :::
 
-    .quill#editor18
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-81
@@ -1358,9 +1324,7 @@ To find the integral of a function $f$ defined on a 2D region $D$, we set up a d
 Find the integral over the triangle $T$ with vertices $(0,0)$, $(2,0)$, and $(0,3)$ of the function $f(x,y) = x^2y$. 
 :::
 
-    .quill#editor13
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-72 
@@ -1387,9 +1351,7 @@ To set up an integral of a function over a 3D region (for the order $\mathrm{d} 
 Integrate the function $f(x,y,z) = 1$ over the tetrahedron with vertices $(0,0,0)$, $(2,0,0)$, $(0,3,0)$, and $(0,0,4)$. 
 :::
 
-    .quill#editor14
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-74
@@ -1437,9 +1399,7 @@ $y=x^2-7$. Find $\iint_R xy \\, \mathrm{d} A$.
     center: img(src="images/two-parabs.svg")
 :::
 
-    .quill#editor15
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-76
@@ -1504,9 +1464,7 @@ Let's apply the Jacobian transformation idea to a familiar problem: the area enc
 Use the map $(u,v) \mapsto (u \cos v, u \sin v)$ from the rectangle $[0,1] \times [0,2\pi]$ to the unit disk, and calculate the Jacobian for this transformation. Use your result to integrate 1 over the unit disk and confirm that the result is equal to the area of the unit disk. 
 :::
 
-    .quill#editor19
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-85

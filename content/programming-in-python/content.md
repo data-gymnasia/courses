@@ -59,7 +59,7 @@ _{button.next-step} Continue_
 
 Once you have Python installed, there are several ways to interact with it. 
 
-**REPL**. Launch a read-eval-print loop from the [command line](gloss:command-line). Any code you enter will be executed immediately, and any values returned by your code will be displayed. To start a session, open your operating system's Terminal and run _{code.language-python}python_ or _{code.language-python}ipython_ (the latter being more colorful and having more features). You can do this in Binder by selecting *New > Terminal*. 
+**REPL**. Launch a read-eval-print loop from the [command line](gloss:command-line). Any code you enter will be executed immediately, and any values returned by your code will be displayed. To start a session, open your operating system's Terminal and run `{py} python` or `{py} ipython` (the latter being more colorful and having more features). You can do this in Binder by selecting *New > Terminal*. 
 
 _{button.next-step} Continue_
 
@@ -383,9 +383,7 @@ Write a function _{code.language-python}f_ which takes a positive integer _{code
 
 <p></p>
 
-    .quill#editor1
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-33
@@ -513,9 +511,7 @@ For which values of _{code.language-python}a_ and _{code.language-python}b_ does
 If either _{code.language-python}i_ or _{code.language-python}j_ is omitted in the expression _{code.language-python}s[i:j]_ (where _{code.language-python}s_ is a string), what happens? Experiment using the code block above. 
 :::
 
-    .quill#editor2
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-44
@@ -550,9 +546,7 @@ Use string interpolation to write a line of code which prints _{code.language-py
 
 <p></p>
 
-    .quill#editor3
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-46
@@ -613,9 +607,8 @@ Write a one-line [function](gloss:function) which takes 3 bools as arguments and
       |
       | test_f()
 
-    .quill#editor4
 
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-51
@@ -647,9 +640,7 @@ Write some code for computing $\frac{1}{a+\frac{2}{3}}$ where $a$ is equal to th
 
 <p></p>
 
-    .quill#editor5
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-53
@@ -763,9 +754,7 @@ Write a function called _{code.language-python}myAbs_ which computes the absolut
 
 <p></p>
 
-    .quill#editor6
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-60
@@ -792,9 +781,7 @@ Consider nesting _{code.language-python}if...else_ blocks inside of an _{code.la
 
 <p></p>
 
-    .quill#editor7
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-61
@@ -949,9 +936,7 @@ Write a function that takes two arguments _{code.language-python}a_ and _{code.l
 
 <p></p>
 
-    .quill#editor8
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-71
@@ -1006,9 +991,7 @@ Try nesting one function definition inside another. Are variables in the enclosi
 
 <p></p>
 
-    .quill#editor9
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-73
@@ -1050,9 +1033,7 @@ One common way to do this (which you have already seen several times in this cou
 The test cases above don't cover the *degenerate* situation where one of the strings is empty. Does the function return correct values for these degenerate cases? [[No|Yes]] Add test cases for this, and fix the function so that they pass.
 :::
 
-    .quill#editor10
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-75
@@ -1100,9 +1081,7 @@ Hint: Make a guess about which operator can be used to compare strings alphabeti
 
 <p></p>
 
-    .quill#editor11
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-76
@@ -1214,9 +1193,7 @@ Note that we import _{code.language-python}numpy_ with the alias _{code.language
  To import just the _{code.language-python}arcsin_ function from _{code.language-python}numpy_, we would use what statement? 
 :::
 
-    .quill#editor12
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-78
@@ -1233,9 +1210,7 @@ _{button.next-step} Continue_
  To import _{code.language-python}sympy with alias _{code.language-python}sp_, we would use what statement?
 :::
 
-    .quill#editor13
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-80
@@ -1252,9 +1227,7 @@ _{button.next-step} Continue_
 To import the standard library package _{code.language-python}itertools_ (with no alias), we would use what statement?
 :::
 
-    .quill#editor14
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-82
@@ -1377,9 +1350,7 @@ Implement a class called _{code.language-python}Fraction_ which represents a rat
 
 <p></p>
 
-    .quill#editor15
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-90
@@ -1677,14 +1648,10 @@ Write a [function](gloss:function) which takes as arguments a list _{code.langua
       |     return "Tests passed!"
       |
       | test_rotate()
-      
-      
+
 <p></p> 
 
-
-    .quill#editor16
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-101
@@ -1723,9 +1690,7 @@ Write a line of code which sets every even-indexed entry of a list _{code.langua
 
 <p></p>
 
-    .quill#editor17
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-103
@@ -1777,9 +1742,7 @@ Explain the errors in the code below (there are two).
 
 :::
 
-    .quill#editor18
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-105
@@ -1828,12 +1791,10 @@ Write a list comprehension which returns a list whose kth entry is the the last 
     pre(data-executable)
       | from sympy import isprime
       | 
-      
-<p></p>
-      
-    .quill#editor19
 
-_{button.next-step} Submit_
+<p></p>
+
+    x-quill
 
 ---
 > id: step-108
@@ -1860,9 +1821,7 @@ Write a list comprehension which takes a list of lists and returns only those li
 
 <p></p>
       
-    .quill#editor20
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-110
@@ -1935,9 +1894,7 @@ Write a list comprehension which adds the first two elements of each tuple in _{
 
 <p></p>
 
-    .quill#editor21
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-114
@@ -1976,9 +1933,7 @@ Find the fractional parts of the first 100 positive integer multiples of $\pi$. 
 
 <p></p>
 
-    .quill#editor22
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-116
@@ -2021,9 +1976,7 @@ Suppose that $H$ is a list which stores the heights of 100 cylinders and $R$ is 
 
 <p></p>
 
-    .quill#editor23
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-118
@@ -2081,9 +2034,7 @@ Write a function which takes a matrix _{code.language-python}M_ and an index _{c
 
 <p></p>
 
-    .quill#editor24
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-121
@@ -2128,9 +2079,7 @@ Hint: the string methods _{code.language-python}join_ and _{code.language-python
 
 <p></p>
 
-    .quill#editor25
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-123
@@ -2182,12 +2131,10 @@ Note 2: the computation below takes some time to run (20 seconds, say). It retur
       | b = timeit.timeit("98779 in primesSet", setup = SETUP)
       | c = timeit.timeit("isprime(98779)", setup = SETUP)
       | a,b,c
-      
-<p></p>      
 
-    .quill#editor26
+<p></p>
 
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-124
@@ -2314,9 +2261,7 @@ Implement this idea in the block below. Check that your dictionary works by inde
       |                 "Southwest 196": datetime.time(7,3)}
       | 
 
-<p></p>
-
-    .quill#editor27
+    x-quill
 
 _{button.next-step} Submit_
 
@@ -2347,9 +2292,7 @@ Use a dict comprehension to make a dictionary which maps each of the first 100 p
       
 <p></p>
 
-    .quill#editor28
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-132
@@ -2462,9 +2405,10 @@ Suppose you have imported a function _{code.language-python}fileBugReport_ with 
 
 <p></p>
 
-    .quill#editor29
+    x-quill
 
-_{button.next-step} Submit_
+---
+> id: step-137a
 
 *Solution*. We loop over the items: 
 
@@ -2502,9 +2446,7 @@ Write a [function](gloss:function) called _{code.language-python}factorial_ whic
 
 <p></p>
 
-    .quill#editor30
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-139
@@ -2581,10 +2523,8 @@ Note that $10^{-8}$ can be represented in Python using scientific notation _{cod
       | test_newton()
 
 <p></p>
-      
-    .quill#editor31
 
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-141
@@ -2633,9 +2573,7 @@ Note: _{code.language-python}\\n_ in a string literal represents the "newline" c
       
 <p></p>      
 
-    .quill#editor32
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-143
@@ -2692,9 +2630,7 @@ Note: there's no solution to this one, but you can do it on your own!
 
 <p></p>
 
-    .quill#editor33
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 
@@ -2850,9 +2786,7 @@ Write a [list comprehension](gloss:listcomp) to calculate the list of all of the
 
 <p></p>
 
-    .quill#editor34
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-155
@@ -2890,9 +2824,7 @@ This works! You can check that the order of the playlist was reversed.
 Add more features to the function **{code.language-python}track_modifier** to modify playlists in ways that you find interesting or desirable. In the answer box below, describe what you did and add code snippets as you see fit.
 :::
 
-    .quill#editor35
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 
@@ -3014,9 +2946,7 @@ Tie all of the above together to write a couple more lines of code that will act
 
 <p></p>
 
-    .quill#editor36
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-166

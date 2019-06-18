@@ -35,9 +35,7 @@ _{button.next-step} Continue_
 Is it possible to have numbers populating three columns in a spreadsheet such that any one of the three columns can be recovered from the other two, yet no column can be recovered from any other single column?
 :::
 
-    .quill#editor1
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-4
@@ -90,9 +88,8 @@ We define the **norm** $|\mathbf{v}|$ of a vector $\mathbf{v} \in \mathbb{R}^n$ 
 
 The fundamental vector operations are 
 
-    ol
-      li.md **Vector addition** (addition of two vectors), and 
-      li.md **Scalar multiplication** (multiplication of a real number and a vector). 
+1. **Vector addition** (addition of two vectors), and 
+2. **Scalar multiplication** (multiplication of a real number and a vector). 
 
 _{button.next-step} Continue_
 
@@ -101,9 +98,10 @@ _{button.next-step} Continue_
 
 These operations are defined componentwise, and they have simple geometric interpretations: 
 
-    ol
-      li.md Summing vectors concatenates them tail-to-head, and 
-      li.md Multiplying a vector by a positive real number $k$ preserves its direction and multiplies its norm by $k$. 
+1. Summing vectors concatenates them tail-to-head, and 
+2. Multiplying a vector by a positive real number $k$ preserves its direction
+   and multiplies its norm by $k$. 
+
 
     .row.padded
       .grow
@@ -135,15 +133,13 @@ The first component of $3\begin{bmatrix} -2 \\\\\\ 11 \end{bmatrix} - \begin{bma
 
 *Solution*. By definition, we have 
 
-    p
-      | \begin{equation*}
-      |       3\begin{bmatrix} -2 \\\ 11 \end{bmatrix} - \begin{bmatrix} 4
-      |         \\\ 0 \end{bmatrix} =
-      |        \begin{bmatrix} -6 \\\ 33 \end{bmatrix} + \begin{bmatrix} -4
-      |         \\\ 0 \end{bmatrix} =
-      |       \begin{bmatrix} -10 \\\ 33 \end{bmatrix}.
-      |     \end{equation*}
-      
+``` latex
+3 \begin{bmatrix} -2 \\\ 11 \end{bmatrix} -
+\begin{bmatrix} 4 \\\ 0 \end{bmatrix}
+= \begin{bmatrix} -6 \\\ 33 \end{bmatrix} +
+\begin{bmatrix} -4 \\\ 0 \end{bmatrix} =
+\begin{bmatrix} -10 \\\ 33 \end{bmatrix}.
+```
 
 _{button.next-step} Continue_
 
@@ -155,30 +151,20 @@ _{button.next-step} Continue_
 **Exercise**  
 Determine whether there exists a real number $r$ satisfying the vector equation
 
-    p
-      | \begin{equation*}
-      |       r
-      |       \begin{bmatrix} -3 \\\ 2
-      |       \end{bmatrix} -
-      |       \begin{bmatrix} 2
-      |         \\\ 1
-      |       \end{bmatrix} =
-      |       \begin{bmatrix} 4 \\\ 2
-      |       \end{bmatrix}.
-      | \end{equation*}
+``` latex
+r \begin{bmatrix} -3 \\\ 2 \end{bmatrix} -
+\begin{bmatrix} 2 \\\ 1 \end{bmatrix} =
+\begin{bmatrix} 4 \\\ 2 \end{bmatrix}.
+```
 
 :::
 
-    .quill#editor2
-
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-14
 
 *Solution*. For the first component of the two vectors to be equal, the equation $-3r - 2 = 4$ would have to hold. This implies that $r = -2$. If we substitute $r = -2$, then the second component on the left-hand side is $-5$, so there is no such number. 
-
 
 _{button.next-step} Continue_
 
@@ -190,17 +176,13 @@ _{button.next-step} Continue_
 Show that every nonzero vector $\mathbf{v}$ can be written as the product of a nonnegative real number $c$ and a unit vector $\mathbf{u}$. 
 :::
 
-    .quill#editor3
-
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-16
 
 *Solution*. We can see that the unit vector $\mathbf{u}$ must point in the same direction as $\mathbf{v}$, since multiplying it by $c$ does not change its direction. Furthermore, if $\mathbf{u}$ is the unit vector pointing in the same direction as $\mathbf{v}$, then we must scale $\mathbf{u}$ by a factor of $|\mathbf{v}|$ to get $\mathbf{v}$. Thus we find that $\mathbf{u} =
     \mathbf{v}/|\mathbf{v}|$ and $c = |\mathbf{v}|$. 
-
 
 _{button.next-step} Continue_
 
@@ -212,10 +194,7 @@ _{button.next-step} Continue_
 Find a formula in terms of $\mathbf{u}$ and $\mathbf{v}$ which represents the vector from the head of $\mathbf{v}$ to the head of $\mathbf{u}$ when $\mathbf{u}$ and $\mathbf{v}$ are situated so that their tails coincide. 
 :::
 
-    .quill#editor4
-
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-18
@@ -234,10 +213,7 @@ _{button.next-step} Continue_
 Solve for $\mathbf{u}$ in terms of $c$ and $\mathbf{v}$ in the equation $c \mathbf{u} + \mathbf{v} = \boldsymbol{0}$, assuming that $\mathbf{u}$ and $\mathbf{v}$ are vectors in $\mathbb{R}^n$ and $c$ is a nonzero real number. 
 :::
 
-    .quill#editor5
-
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-20
@@ -257,14 +233,14 @@ _{button.next-step} Continue_
 > id: step-21
 
 A [**linear combination**](gloss:linearcombination) of a [list](gloss:list-math) of vectors $\mathbf{v}\_1, \ldots, \mathbf{v}\_k$ is an expression of the form 
-  
-    p
-      | \begin{equation*}
-      |     c_1\mathbf{v_1} + c_2\mathbf{v_2}  + \cdots +
-      |     c_k\mathbf{v_k},
-      | \end{equation*}
-      
- where $c_1, \ldots, c_k$ are real numbers. The $c$'s are called the **weights** of the linear combination. 
+
+``` latex
+c_1\mathbf{v_1} + c_2\mathbf{v_2}  + \cdots +
+c_k\mathbf{v_k},
+```
+
+where $c_1, \ldots, c_k$ are real numbers. The $c$'s are called the **weights**
+of the linear combination. 
 
 ::: .exercise
 **Exercise**  
@@ -273,11 +249,8 @@ Suppose that $\mathbf{u} = [2,0]$ and $\mathbf{v} = [1,2]$. Draw the set of all 
 Note: an integer linear combination is a linear combination where the weights are integers.
 :::
 
-    .quill#editor6
- 
+    x-quill
 
-_{button.next-step} Submit_
- 
 ---
 > id: step-22
 
@@ -286,7 +259,7 @@ _{button.next-step} Submit_
     center: img(src="images/lattice.svg" width="400px")
  
 _{button.next-step} Continue_
- 
+
 ---
 
 > id: step-23
@@ -316,8 +289,8 @@ The span of two vectors in $\mathbb{R}^2$
       .item.pill.bblue(data-error="line-or-point") must be either a line or a point 
       .item.pill.bblue must be either a line or a point or all of $\mathbb{R}^2$
 
- The span of three vectors in $\mathbb{R}^3$ 
- 
+The span of three vectors in $\mathbb{R}^3$ 
+
     x-picker.list
       .item.pill.bblue(data-error="any-shape") can be any shape 
       .item.pill.bblue(data-error="sphere") must be a sphere or a line 
@@ -326,7 +299,7 @@ The span of two vectors in $\mathbb{R}^2$
       .item.pill.bblue(data-error="plane") must be a plane, a line, or a point 
 
 :::
- 
+
 ---
 > id: step-25
 
@@ -412,10 +385,7 @@ _{button.next-step} Continue_
 Explain geometrically why a list of three vectors in $\mathbb{R}^2$ is necessarily linearly dependent. 
 :::
 
-    .quill#editor7
-
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-30
@@ -471,10 +441,10 @@ for some $c\_2, \ldots, c\_n$. If all of the weights are zero, then $\mathbf{v}\
       | \begin{equation*}
       | 	\mathbf{v}_k = \frac{\mathbf{v}_1 - \left(c_2\mathbf{v}_2 + \cdots + c_{k- 1}\mathbf{v}_{k-1}\right)}{c_k}
       | \end{equation*}
-      
+
 ---
 > id: step-36
-      
+
 So the list does not satisfy the condition of having no vector in the span of the preceding ones. Similar reasoning would apply if we had chosen any vector other than $\mathbf{v}\_1$ as the one which can be written as a linear combination of the others. Therefore, we conclude that linear independence does imply failure to satisfy the given condition. 
 
 From logic, we know that "A implies B" is equivalent to its [[contrapositive|converse]] "not B implies not A". Therefore, we can say that satisfying the condition of having no vector in the span of the preceding ones does imply linear independence.
@@ -489,9 +459,7 @@ Let's say that a linear combination of a list of vectors is **trivial** if all o
 Show that a list of vectors is linearly independent if and only if every nontrivial linear combination of the vectors is not equal to the zero vector.
 :::
 
-    .quill#editor8
-    
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-38
@@ -549,10 +517,7 @@ Show that if $V$ and $W$ are vector spaces in $\mathbf{R}^n$, then $V \cap W$ is
 Hint: start by assuming that $\mathbf{x} \in V \cap W$ and $\mathbf{y} \in V \cap W$, and reason your way to the conclusion that $\mathbf{x} + \mathbf{y}$ is also in $V$. 
 :::
 
-    .quill#editor9
-
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-42
@@ -796,10 +761,7 @@ _{button.next-step} Continue_
 Consider a three-column spreadsheet of numerical data, with each entry in the third column computed to be the sum of the corresponding entries in the first two columns. Find a basis for the span of the three columns (assuming the first two columns are not multiples of one another), and find the coefficients all three columns with respect to this basis.
 :::
 
-    .quill#editor10
-
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-60
@@ -869,10 +831,7 @@ We can continue in this way, adding the next $\mathbf{l}$ at the beginning of th
 Use the dimension lemma to show that all bases of a vector space $V$ have the same length. In other words, if $B\_1$ is a basis for $V$, and $B\_2$ is a basis for $V$, then the lengths of $B\_1$ and $B\_2$ are equal. 
 :::
 
-    .quill#editor11
-
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-67
@@ -893,10 +852,7 @@ The following two exercises provide simple yet powerful tools for reasoning abou
 Show that any linearly independent list of vectors in a vector space $V\subset \mathbb{R}^n$ can be extended to form a basis of $V$, and show that any spanning list of $V$ can be trimmed to form a basis of $V$. 
 :::
 
-    .quill#editor12
-
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-69
@@ -930,9 +886,7 @@ Suppose that $U$ and $V$ are vector spaces in $\mathbb{R}^n$. Suppose that $\\{\
 
 Note: this exercise is on the challenging side. You might want to make your best effort over a reasonable period of time, submit what you've got, and then read the solution.
 
-    .quill#editor13
-    
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-72
@@ -1230,9 +1184,7 @@ Suppose that $V$ and $W$ are vector spaces and that $L\_1$ and $L\_2$ are linear
   L\_2(\mathbf{b})$ for all $\mathbf{b}\in \mathcal{B}$. Show that $L\_1(\mathbf{v}) = L\_2(\mathbf{v})$ for all $\mathbf{v} \in V$. 
 :::
 
-    .quill#editor14
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-94
@@ -1260,9 +1212,10 @@ What is the dimension of the null space of the linear transformation $L([x,y,z])
 The dimension of the null space is [[1]] and the rank is [[2]].
 :::
 
-    .quill#editor15
+    x-quill
 
-_{button.next-step} Submit_
+---
+> id: step-95a
 
 *Solution*. To find the dimension of the nullspace, let us first describe it explicitly. $L(x,y,z) = (y,z,0) = 0$ when $y = z= 0$, regardless of what $x$ is. Thus the nullspace is $\\{[x,0,0] \mid x \in \mathbb{R}\\}$, which is just a line with basis vector $[1,0,0]$. Thus, the dimension of the nullspace is $1$. The range of $L$ is the $xy$ plane, which has dimension $\boxed{2}$. 
 
@@ -1334,9 +1287,9 @@ To see that $\\{L(\mathbf{v}\_{k+1}), \ldots, L(\mathbf{v}\_n)\\}$ [[spans|is sp
 by linearity of $L$. This shows that $\mathbf{w}$ is in the [[span|range]] of the vectors $\\{L(\mathbf{v}\_{k+1}), \ldots, L(\mathbf{v}\_n)\\}$. 
  
 Since the list $\\{L(\mathbf{v}\_{k+1}), \ldots, L(\mathbf{v}\_n)\\}$ spans the range of $L$ and is linearly independent, it is a [[basis]] of the range of $L$. Therefore, the dimension of the range of $L$ is $n-k$, and the rank of $L$ plus the nullity of $L$ is $(n-k)+k = n$. 
-  
+
 ---
-> id: step-100 
+> id: step-100
 
 ::: .exercise
 **Exercise**  
@@ -1345,9 +1298,10 @@ Suppose you're designing an app that recommends cars. For every person in your d
 After some time, you find that storing all twenty variables takes up too much space in your database. Instead, you decide to take those twenty variables and apply a linear aggregate score function $S: \mathbb{R}^{20} \to \mathbb{R}^{3}$, with the three output components corresponding to health, personality, and finances. You also compute a linear map $R: \mathbb{R}^{3} \to \mathbb{R}^{10}$ that takes in these three aggregate scores and returns a vector of recommendation values. The total recommendation system is the composition $R \circ S: \mathbb{R}^{20} \to \mathbb{R}^{10}$. What is the maximum possible rank of $R \circ S$? What does this mean for the complexity of this recommendation system? 
 :::
 
-    .quill#editor16
+    x-quill
 
-_{button.next-step} Submit_
+---
+> id: step-100a
 
 *Solution*. The image of the transformation $R \circ S: \mathbb{R}^{20} \to \mathbb{R}^{10}$ is contained in the image of the transformation $R:\mathbb{R}^{3} \to \mathbb{R}^{10}$. As a result, the rank of $R \circ S$ is at most the rank of $S$, which is at most three. By reducing your twenty basic variables to three combined scores, your recommendation system only has three degrees of freedom, and can therefore only distinguish customers along three axes. 
 
@@ -1547,10 +1501,7 @@ With this definition of $A$, we have that $A\mathbf{e}\_1$ [[is equal to|is not 
 Find the matrix corresponding to the linear transformation $T([x,y,z]) = [z,x,y]$. 
 :::
 
-    .quill#editor17
-
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-111
@@ -1578,9 +1529,7 @@ Suppose that $A$ is an $m\times n$ matrix and $\mathbf{b}$ is a vector in $\math
 
 The intuition is that $\mathbf{x}$ provides a recipe for how much of each column of $A$ to use to get $\mathbf{b}$. If the columns of $A$ are linearly dependent, then we can swap out a unit of one of the vectors for some combination of others. This swappability shows that the solution is nonunique. 
 
-    .quill#editor18
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-113
@@ -1711,10 +1660,7 @@ The range or null space of a matrix $A$ is defined to be the range or null space
 Show that a matrix represents an injective transformation if and only if its null space is $\\{\boldsymbol{0}\\}$. 
 :::
 
-    .quill#editor19
-
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-119
@@ -1789,9 +1735,10 @@ If $A$ is invertible, then the inverse function is also a linear transformation:
 Show that if $L$ is a bijective linear transformation, then the inverse function $L^{-1}$ is also linear. 
 :::
 
-    .quill#editor20
+    x-quill
 
-_{button.next-step} Submit_
+---
+> id: step-125a
 
 *Solution*. Consider the linearity equation $L(a\mathbf{x} + b\mathbf{y}) = aL(\mathbf{x}) + bL(\mathbf{y})$ and two vectors $\mathbf{v} = L(\mathbf{x})$ and $\mathbf{w} = L(\mathbf{y})$ in the range of $L$. Substitute $\mathbf{x} = L^{-1}(\mathbf{v})$ and $\mathbf{x} = L^{-1}(\mathbf{v})$ into the linearity equation for $L$ to obtain 
 
@@ -1809,10 +1756,7 @@ which implies that
       |   b L^{-1}(\mathbf{w}) = L^{-1}(a\mathbf{v} + b\mathbf{w}).
       | \end{equation*}
 
-    .quill#editor21
-
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-126
@@ -1905,9 +1849,10 @@ Based on the above observations, can the equation $A\mathbf{x} = \mathbf{b}$ hav
 
 :::
 
-    .quill#editor22
+    x-quill
 
-_{button.next-step} Submit_
+---
+> id: step-128a
 
 *Solution*.  
 
@@ -2011,9 +1956,7 @@ Show that $|\mathbf{a} +\mathbf{b}|^2 =
     ^2$ for all vectors $\mathbf{a}$ and $\mathbf{b}$ in $\mathbb{R}^n$. 
 :::
 
-    .quill#editor23
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-130
@@ -2082,10 +2025,7 @@ _{button.next-step} Continue_
 Let $\mathbf{v}\_1, \dots, \mathbf{v}\_n$ be a list of orthogonal non-zero vectors, that is, for all $i, j \in \\{1, \dots, n\\},$ suppose that $\mathbf{v}\_i \cdot \mathbf{v}\_j = 0$ whenever $i \neq j$. Show that this list is linearly independent. 
 :::
 
-    .quill#editor24
-
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-134
@@ -2288,9 +2228,7 @@ _{button.next-step} Continue_
 Show that if $A$ is a matrix whose columns are $\mathbf{a}\_1, \ldots,  \mathbf{a}\_n$ and $B$ is a matrix whose rows are $\mathbf{b}\_1', \ldots, \mathbf{b}\_n'$, then $AB = \mathbf{a}\_1\mathbf{b}\_1' + \mathbf{a}\_2\mathbf{b}\_2' + \cdots + \mathbf{a}\_n\mathbf{b}\_n'$
 :::
 
-    .quill#editor25
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-144
@@ -2364,9 +2302,7 @@ Confirm your conjecture numerically in Python with some random matrices. You can
 
 <p></p>
 
-    .quill#editor26
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-148
@@ -2490,9 +2426,7 @@ In other words, we may move a matrix which is pre-multiplying one of the vectors
 Show that $\mathbf{x}\cdot (A' A\mathbf{x}) \geq 0$ for all $m\times n$ matrices $A$ and all $\mathbf{x} \in \mathbb{R}^n$. 
 :::
 
-    .quill#editor27
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-154
@@ -2564,9 +2498,7 @@ for $k$ to find the multiple of $\mathbf{v}$ which is perpendicular to its diffe
 
 :::
 
-    .quill#editor28
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-158
@@ -2658,9 +2590,7 @@ Then $\mathbf{v}$ is in $V$ and $\mathbf{u} - \mathbf{v}$ is [[perpendicular|par
 Suppose that $V$ is a $d$-dimensional vector space in $\mathbb{R}^n$. Show that there is a basis of $\mathbb{R}^n$ whose first $d$ vectors form a basis for $V$ and whose last $n-d$ vectors form a basis for $V^\perp$. 
 :::
 
-    .quill#editor29
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-165
@@ -2760,9 +2690,7 @@ _{button.next-step} Continue_
 (i) Explain why, for an $m \times n$ matrix $U$ with orthonormal columns, we must have $m \geq n$. (ii) Explain why the rank of $U$ is $n$. 
 :::
 
-    .quill#editor30
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-174 
@@ -2784,9 +2712,7 @@ If $U$ is an $m\times n$ matrix with orthonormal columns and if $n < m$, then $U
 Show that if $U$ is an $m \times n$ matrix with orthonormal columns, then $UU'$ is the matrix of the transformation which projects each vector in $\mathbb{R}^m$ onto the $n$-dimensional subspace of $\mathbb{R}^m$ spanned by the columns of $U$. 
 :::
 
-    .quill#editor31
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-176
@@ -2821,9 +2747,7 @@ _{button.next-step} Continue_
 Let $\mathbf{v}$ be a vector in $\mathbb{R}^n$, and consider the linear transformation $T: \mathbb{R}^{n} \to \mathbb{R}$ defined as $T(\mathbf{x}) = \mathbf{v} \cdot \mathbf{x}$. What is the rank of $T$? Geometrically describe the null space of $T$. 
 :::
 
-    .quill#editor32
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-178
@@ -2868,10 +2792,7 @@ Note: _{code.language-python}np.linalg.solve(A,b)_ solves the equation $A\mathbf
 
 <p></p>
 
-    .quill#editor33
-
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-181
@@ -2906,10 +2827,7 @@ Try the previous exercise again, but this time with the linear dependence relati
 
 <p></p>
 
-    .quill#editor34
-
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-183
@@ -2973,10 +2891,7 @@ Every nonzero vector is an eigenvector (with eigenvalue [[1]]) of the identity m
 Find a matrix with eigenpairs $([1,0],2)$ and $([1,1],3)$. Sketch the images of some gridlines under multiplication by this matrix to show how it scales space along the lines through its eigenvectors. Verbally describe your results below.
 :::
 
-    .quill#editor35
-
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-189
@@ -3022,10 +2937,7 @@ Let $A$ be a $4 \times 4$ matrix, with eigenvectors $\begin{bmatrix} 1
 
 :::
 
-    .quill#editor36
-
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-192
@@ -3087,10 +2999,7 @@ Let $V \subset \mathbb{R}^n$ be a subspace spanned by the eigenvectors of a matr
 
 :::
 
-    .quill#editor37
-
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-194
@@ -3119,9 +3028,7 @@ Suppose $A$ is a matrix with a eigenvector $\mathbf{v}$ whose eigenvalue is 2 an
 
 :::
 
-    .quill#editor38
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-196
@@ -3182,9 +3089,7 @@ Some matrices are not diagonalizable, because they correspond to geometric trans
   \times 2$ matrix which is not diagonalizable. 
 :::
 
-    .quill#editor39
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-198
@@ -3354,9 +3259,7 @@ _{button.next-step} Continue_
 Explain why the rank of $A$ is equal to the rank of $A'A$. (Hint: consider the null spaces of $A$ and $A'A$.)
 :::
 
-    .quill#editor40
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-207 
@@ -3422,9 +3325,7 @@ To be concrete, let's say "nearly equal" means "having ratio between 0.99 and 1.
 
 :::
 
-    .quill#editor41
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-211
@@ -3570,9 +3471,7 @@ Let's see why this converges to $R$.
 <p></p>
 
 
-    .quill#editor42
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-220
@@ -3643,9 +3542,7 @@ _{button.next-step} Continue_
 Show that the product of two matrices with orthonormal columns has orthonormal columns. 
 :::
 
-    .quill#editor43
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-224
@@ -3778,14 +3675,10 @@ Show that $\left[\begin{smallmatrix}-160 & -120 \\\\\\ -12 & -134 \\\\\\
 
 <p></p>
 
-    .quill#editor44
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-234
-
-<p></p>
 
 *Solution*. Let 
 
@@ -3846,9 +3739,7 @@ Define a matrix with 100 rows and 5 columns, and do it in such a way that two of
 
 <p></p>
 
-    .quill#editor45
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-237
@@ -3932,9 +3823,7 @@ Hint: you can achieve this computationally either by setting some singular value
 
 :::
 
-    .quill#editor46
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-240
@@ -4008,9 +3897,7 @@ Suppose that $R$ is a region in $\mathbb{R}^n$ and that $A$ is an $n
 
 :::
 
-    .quill#editor47
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-243
@@ -4035,9 +3922,7 @@ Find the volume scale factor of the matrix $A = \begin{bmatrix}
   \end{bmatrix}$ by describing how the matrix transforms a region in $\mathbb{R}^3$. 
 :::
 
-    .quill#editor48
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-245
@@ -4069,9 +3954,7 @@ Interpret $A = \begin{bmatrix}
   \end{bmatrix}$ geometrically and use this interpretation to find $\det A$, the determinant of $A$. 
 :::
 
-    .quill#editor49
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-247
