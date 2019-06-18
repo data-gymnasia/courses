@@ -1,5 +1,14 @@
-// -----------------------------------------------------------------------------
-// Shared Data Gym Styles
+// =============================================================================
+// Shared Data Gymnasia Styles
+// =============================================================================
+
+
+@import "./components/quill";
+
+
+.juniper-cell, code, pre, x-step code {
+  font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
 
 .exercise, .example, .definition {
   padding: .6em 1em;
@@ -15,7 +24,7 @@
 .theorem {
   background: #fbedf6;
   border: 1px solid #b30469;
-  border-left: 6px solid #b30469;  
+  border-left: 6px solid #b30469;
 }
 
 .exercise {
@@ -26,7 +35,7 @@
 
 .example {
   background: #f7ece1;
-  border: 1px solid #d8954b; 
+  border: 1px solid #d8954b;
   border-left: 6px solid #d8954b;
 }
 
@@ -40,7 +49,7 @@ x-picker .item {
   display: block;
 }
 
-// Fixes MathJax spacing issues: 
+// Fixes MathJax spacing issues:
 p { hanging-punctuation: none; }
 
 // Fixes bold text on multiple choice questions
@@ -48,67 +57,55 @@ p { hanging-punctuation: none; }
   color: white;
 }
 
-// -----------------------------------------------------------------------------
-// Juniper Notebooks
-
-.juniper-cell {
-  font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 1em;
-  line-height: 2;
-  border: 1px solid #ccc;
-  position: relative;
-  border-radius: 4px 4px 4px 4px;
-}
-
-.code {
-  font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 1em;
-  line-height: 2;
-  border: 1px solid #ccc;
-}
-
-.juniper-output {
-  background: #eee;
-  color: #222;
-  padding: 2em;
-  white-space: pre-wrap;
-  border-radius: 0px 0px 4px 4px;
-}
-
-.juniper-button {
-  font-size: 1em;
-  position: absolute;
-  top: 20px;
-  border: 1px solid #ccc;
-  right: 25px;
-  border-radius: 4px 4px 4px 4px;
-  padding: 2px;
-}
-
-.ql-toolbar {
-  border-radius: 4px 4px 0px 0px;
-}
-
-.quill {
-  border-radius: 0px 0px 4px 4px;
-}
-
-.CodeMirror pre {
-  font-size: 11pt;
-}
-
-.CodeMirror {
-  padding: 3em 12px 12px 18px;
-}
-
 .bblue {
   background:#1f7aff
 }
 
 x-step code {
-  background: transparent; 
+  background: transparent;
   border: none;
 }
+
+
+// -----------------------------------------------------------------------------
+// Juniper Notebooks
+
+.juniper-cell {
+  border: 1px solid @border-light;
+  border-radius: 4px;
+  margin: 1.5em 0;
+  line-height: 1.8;
+  overflow: hidden;
+  font-size: 15px;
+  .CodeMirror { padding: .6em 1em; }
+}
+
+.juniper-output {
+  background: #eee;
+  padding: .6em 1em;
+  white-space: pre-wrap;
+  border-top: 1px solid @border-light;
+  min-height: 27px;
+}
+
+.juniper-button {
+  .button();
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 16px;
+  z-index: 10;
+  padding: 0 1.1em;
+  height: 2em;
+  line-height: 2em;
+  font-weight: 600;
+  letter-spacing: .2px;
+  background-color: @green;
+  transition: transform .4s @bounce, background .2s, color .2s, box-shadow .2s;
+  &:active { transition: transform .2s, background .2s, color .2s, box-shadow .2s; transform: scale(0.9); }
+  &:hover, &:focus, &:active { background-color: lighten(@green, 8%); }
+}
+
 
 // -----------------------------------------------------------------------------
 // Prism.css
@@ -118,13 +115,12 @@ x-step code {
 code[class*="language-"],
 pre[class*="language-"] {
   color: #393A34;
-  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   direction: ltr;
   text-align: left;
   white-space: pre;
   word-spacing: normal;
   word-break: normal;
-  font-size: 0.95em;
+  font-size: 0.9em;
   line-height: 1.2em;
   tab-size: 4;
   hyphens: none;
@@ -139,14 +135,19 @@ pre[class*="language-"] {
   padding: 1em;
   margin: .5em 0;
   overflow: auto;
-  border: 1px solid #dddddd;
-  background-color: white;
-  border-radius: 10px;
+  border: 1px solid #ccc;
+  background-color: #eee;
+  border-radius: 4px;
 }
 
 :not(pre) > code[class*="language-"] {
   padding: .2em;
   padding-top: 1px; padding-bottom: 1px;
+}
+
+pre > code[class*="language-"] {
+  padding: 0;
+  border: 0;
 }
 
 .token.comment,

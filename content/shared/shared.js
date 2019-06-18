@@ -1,8 +1,12 @@
-import {script, $N, $, $$} from '@mathigon/boost';
+// =============================================================================
+// Shared Data Gymnasia Scripts
+// =============================================================================
 
 
-// -----------------------------------------------------------------------------
-// CodeMirror, Prism and Juniper Setup
+
+import {script} from '@mathigon/boost';
+import './components/quill';
+
 
 script('/resources/shared/static/prism.js');
 
@@ -15,35 +19,10 @@ script('/resources/shared/static/juniper.min.js').then(() => {
   if (window.CodeMirror) window.CodeMirror.defaults.indentUnit = 4;
 });
 
-
-// -----------------------------------------------------------------------------
-// MathJax Setup
-
 window.MathJax = {
   tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
-  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  TeX: { equationNumbers: { autoNumber: "AMS" } },
+  CommonHTML: { scale: 95 }
 };
 
 script('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML');
-
-
-// -----------------------------------------------------------------------------
-// Quill Setup
-
-$N('link', {rel: 'stylesheet', type: 'text/css', href: 'https://cdn.quilljs.com/1.3.6/quill.snow.css'}, $(document.head));
-
-script('https://cdn.quilljs.com/1.3.6/quill.js').then(() => {
-  for (const $quill of $$('.quill')) {
-    new window.Quill('#' + $quill.id, {
-      modules: {
-        toolbar: [
-          ['code', 'formula', 'code-block'],
-          ['bold', 'italic', 'underline'],
-          ['link', 'list']
-        ]
-      },
-      placeholder: 'Write your solution here...',
-      theme: 'snow'
-    });
-  }
-});
