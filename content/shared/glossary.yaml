@@ -109,7 +109,7 @@ dictionary:
 method:
   title: method
   text: |
-    A function associated with a specific class and called using dot syntax from an instance of that class
+    A function associated with a specific class and called using dot syntax from an instance of that class.
     
     For exapmle, in _{code}",".join([1,2,3])_, _{code}","_ is a string and _{code}join_ is a method of the string class.
     
