@@ -33,14 +33,14 @@ There are several ways to access Python:
 ---
 > id: step-3
 
-**Binder**. You can also run Python code in a notebook on the Binder website. To launch with a set of packages tailored to this course, [click here](https://mybinder.org/v2/gh/sswatson/simple-python-stack/master). Then select *New* (top right corner and *Python 3*). It is highly recommended that you keep a tab with a Binder notebook open while working through this course, because it can serve as a space for scratch work, and it provides more features than the blocks which appear in-page. 
+**Binder**. You can also run Python code in a notebook on the Binder website. To launch with a set of packages tailored to this course, [click here](https://mybinder.org/v2/gh/sswatson/simple-python-stack/master). Then, select *New* (top right corner and *Python 3*). It is highly recommended that you keep a tab with a Binder notebook open while working through this course, because it can serve as a space for scratch work, and it provides more features than the blocks which appear in-page. 
 
 [Continue](btn:next)
 
 ---
 > id: step-4
 
-**Anaconda**. Python is bundled with its system of scientific computing packages and a system for managing your Python environment in a distribution called [Anaconda](https://www.anaconda.com/). This is the recommended way to install Python on your own computer. [Download](https://www.anaconda.com/distribution) and launch the installer to set it up on your computer. 
+**Anaconda**. Python is bundled with its system of scientific computing packages and for managing Python environments in a distribution called [Anaconda](https://www.anaconda.com/). This is the recommended way to install Python on your own computer. [Download](https://www.anaconda.com/distribution) and launch the installer to set it up on your computer. 
 
 [Continue](btn:next)
 
@@ -95,7 +95,7 @@ Sort the following Python interaction modes in the order in which they appear in
 
     x-sortable
       .item.md(data-index="2") REPL
-      .item.md(data-index="1") script
+      .item.md(data-index="1") Script
       .item.md(data-index="0") Jupyter
 
 :::
@@ -114,7 +114,7 @@ Let's begin by developing some basic vocabulary for the elements of a program. T
 
 ### Objects
 
-A **object** is a fundamental entity that may be manipulated by a program. Objects have **types**; for example, _{code.language-python}5_ is an _{code.language-python}int_ (short for "integer") and _{code.language-python}"Hello world!"_ is a _{code.language-python}str_ (short for "string"). Types are important for the computer to keep track of, since objects are stored differently depending on their type. 
+An **object** is a fundamental entity that may be manipulated by a program. Objects have **types**; for example, _{code.language-python}5_ is an _{code.language-python}int_ (short for "integer") and _{code.language-python}"Hello world!"_ is a _{code.language-python}str_ (short for "string"). Types are important for the computer to keep track of, since objects are stored differently depending on their type. 
 
 [Continue](btn:next)
 
@@ -139,7 +139,7 @@ Use the code block below to find the type of _{code.language-python}1.0_. Does _
 ---
 > id: step-14
 
-(Note: you probably noticed the _{code.language-markup}Loading or None returned_ message that appeared briefly when you ran the cell. If that message appears for more than 10 seconds or so, it's likely that the cell has run successfully but doesn't have anything to show as a result. We will discuss this in more detail soon.)
+(_Note_: you probably noticed the _{code.language-markup}Loading or None returned_ message that appeared briefly when you ran the cell. If that message appears for more than 10 seconds or so, it's likely that the cell has run successfully but doesn't have anything to show as a result. We will discuss this in more detail soon.)
 
 [Continue](btn:next)
 
@@ -162,8 +162,6 @@ We say that _{code.language-python}41_ is the **value** of the variable _{code.l
 > id: step-16
 
 Variable names must begin with an underscore or letter and contain only letters, numbers, underscores after that. Letters may be uppercase or lowercase, and the case matters. For example _{code.language-python}extractValues0_ is [[a valid|an invalid]] variable name, and _{code.language-python}stop!_ is [[an invalid|a valid]] variable name. 
-
-[Continue](btn:next)
 
 ---
 > id: step-17
@@ -200,7 +198,7 @@ Use the code block below to find out what happens when you try to use a variable
 
     pre(data-executable)
       | num_carrots = 4
-      | num_Carrots
+      | num_carrots
 
 ---
 > id: step-20
@@ -221,11 +219,11 @@ Prompting a function to perform its task is referred to as **calling** the funct
 Some functions, like _{code.language-python}print_ are built into the language and are always available. You may also define your own functions using _{code.language-python}def_:
 
     pre(data-executable)
-      | def printtwice(x):
+      | def print_twice(x):
       |     print(x)
       |     print(x)
       |
-      | printtwice("hey")
+      | print_twice("hey")
 
 [Continue](btn:next)
 
@@ -239,12 +237,12 @@ _{code.language-python}def_ is an example of a **keyword**: a name with a specia
 ---
 > id: step-23
 
-Note that the lines of code to be executed when the function is called **must** be indented four spaces relative to _{code.language-python}def_. For example, _{code.language-python}printtwice("hey")_ [[is not|is]] part of the definition of the function in the example above.
+Note that the lines of code to be executed when the function is called **must** be indented four spaces relative to _{code.language-python}def_. For example, *{code.language-python}print_twice("hey")* [[is not|is]] part of the definition of the function in the example above.
 
 ---
 > id: step-24
 
-A function may perform an action, like _{code.language-python}printtwice_, or it may **return** an object. For example, after the following code block is run, the object _{code.language-python}28_ will be assigned to the variable _{code.language-python}y_. 
+A function may perform an action, like *{code.language-python}print_twice*, or it may **return** an object. For example, after the following code block is run, the object _{code.language-python}28_ will be assigned to the variable _{code.language-python}y_. 
 
     pre(data-executable)
       | def add_one(x):
@@ -253,7 +251,7 @@ A function may perform an action, like _{code.language-python}printtwice_, or it
       | y = 20 + add_one(7)
       | y
 
-(Note: we put _{code.language-python}y_ by itself on the last line so that we can see the value of _{code.language-python}y_ in the output area. If an assignment (like **{code.language-python}y = 20 + add_one(7)**) is the last line in the cell, then no value will be printed, and we will get the _{code.language-markup}Loading or None returned_ message.)
+(_Note_: we put _{code.language-python}y_ by itself on the last line so that we can see the value of _{code.language-python}y_ in the output area. If an assignment (like **{code.language-python}y = 20 + add_one(7)**) is the last line in the cell, then no value will be printed, and we will get the _{code.language-markup}Loading or None returned_ message.)
       
 [Continue](btn:next)
 
@@ -267,7 +265,7 @@ The variable name _{code.language-python}x_ in the above block is called a **par
 ---
 > id: step-26 
 
-An **operator** is a special kind of function that can be called in a special way. For example, the multiplication operator _{code.language-python}*_ is called using the mathematically familiar *infix notation* _{code.language-python}3 * 5_ rather than _{code.language-python}*(3,5)_.
+An **operator** is a special kind of function that can be called in a special way. For example, the multiplication operator _{code.language-python}*_ is called using the mathematically familiar *infix notation* _{code.language-python}3 * 5_.
 
 [Continue](btn:next)
 
@@ -357,18 +355,20 @@ z = 2*x
 
 ::: .exercise
 **Exercise**  
-Write a function _{code.language-python}f_ which takes a positive integer _{code.language-python}n_ as input and returns the $n$th positive odd integer. You should replace the keyword _{code.language-python}pass_ in the code block below (the rest of the code, starting from the fourth line, checks that your function works; you shouldn't change it.)
+Write a function _{code.language-python}f_ which takes a positive integer _{code.language-python}n_ as input and returns the $n$th positive odd integer. You should replace the line with the keyword _{code.language-python}pass_ in the code block below (the rest of the code, starting from the fourth line, checks that your function works).
+
+Also, note that you have *two* boxes: the first is for scratch, and the second is for saving your answer. Once you're happy with your code, copy and paste it into the second box.
 :::
 
     pre(data-executable)
       | def f(n):
-      |     pass
+      |     pass # add code here
       |
       | def test_f():
       |     assert f(3) == 5
       |     assert f(1) == 1
       |     assert f(100) == 199
-      |     return "Test passed!"
+      |     return "Tests passed!"
       |
       | test_f()
 
@@ -518,18 +518,19 @@ We can insert the value of a variable into a string using *string interpolation*
 
 ::: .exercise
 **Exercise**  
-Use string interpolation to write a line of code which prints _{code.language-python}multiplying by 6.2 yields 12.4_ if _{code.language-python}2_ is assigned to the variable _{code.language-python}A_ and prints _{code.language-python}multiplying by 6.2 yields 18.6_ if _{code.language-python}3_ is assigned to _{code.language-python}A_. 
+Use string interpolation to write a single line of code which prints _{code.language-python}multiplying by 6.2 yields 12.4_ if _{code.language-python}2_ is assigned to the variable _{code.language-python}A_ and prints _{code.language-python}multiplying by 6.2 yields 18.6_ if _{code.language-python}3_ is assigned to _{code.language-python}A_. 
 :::
 
     pre(data-executable)
-      | 
+      | A = 2
+      | print()
 
     x-quill
 
 ---
 > id: step-46
 
-*Solution*. The expression _{code.language-python}print(f"multiplying by 6.2 yields {6.2*x}")_ works. 
+*Solution*. The expression _{code.language-python}print(f"multiplying by 6.2 yields {6.2*A}")_ works. 
 
 [Continue](btn:next)
 
@@ -574,7 +575,7 @@ Write a one-line [function](gloss:function) which takes 3 bools as arguments and
 
     pre(data-executable)
       | def f(a,b,c):
-      |     pass
+      |     pass # add code here
       |
       | def test_f():
       |     assert f(True, True, True)
@@ -637,8 +638,6 @@ a = len("The quick brown fox jumped over the lazy dog")
 The expression _{code.language-python}1 < 3_ returns [[True]], which is an object of type [[bool]]. 
 :::
 
-[Continue](btn:next)
-
 ---
 > id: step-55
 
@@ -676,7 +675,7 @@ We can use an _{code.language-python}if_ statement to specify different blocks t
 ---
 > id: step-57
 
-Conditional expressions can be written using *ternary conditional* _{code.language-python}«truevalue» if «condition» else «falsevalue»_. For example, the following version of the _{code.language-python}sgn_ function returns the same values as the one above except when _{code.language-python}x = 0_. 
+Conditional expressions can be written using *ternary conditional* _{code.language-python}«truevalue» if «condition» else «falsevalue»_. For example, the following version of the _{code.language-python}sgn_ function returns the same values as the one above except when _{code.language-python}x == 0_. 
 
     pre(data-executable)
       | def sgn(x): 
@@ -710,17 +709,17 @@ Can the _{code.language-python}else_ part of an _{code.language-python}if_ state
 
 ::: .exercise
 **Exercise**  
-Write a function called _{code.language-python}myAbs_ which computes the absolute value of its input. Replace the keyword _{code.language-python}pass_ below with an appropriate block of code.
+Write a function called *{code.language-python}my_abs* which computes the absolute value of its input. Replace the keyword _{code.language-python}pass_ below with an appropriate block of code.
 :::
 
     pre(data-executable)
-      | def myAbs(x):
-      |     pass
+      | def my_abs(x):
+      |     pass # add code here
       |
       | def test_abs():
-      |     assert myAbs(-3) == 3
-      |     assert myAbs(5.0) == 5.0
-      |     assert myAbs(0.0) == 0.0
+      |     assert my_abs(-3) == 3
+      |     assert my_abs(5.0) == 5.0
+      |     assert my_abs(0.0) == 0.0
       |     return "Tests passed!"
       |
       | test_abs()
@@ -739,7 +738,7 @@ Consider nesting _{code.language-python}if...else_ blocks inside of an _{code.la
 
     pre(data-executable)
       | def quadrant(x,y):
-      |     pass
+      |     pass # add code here
       |
       | def test_quadrant():
       |     assert quadrant(1.0, 2.0) == 1
@@ -777,7 +776,7 @@ Consider nesting _{code.language-python}if...else_ blocks inside of an _{code.la
 > id: functions
 ## Functions
 
-Using functions to organize code helps to achieve *separation of concerns*: once a function is written, it may be relied upon to perform its designated task without the programmer having to think about *how* it accomplishes that task. This conceptual aid is crucial for writing maintainable code to solve large, complex problems. 
+[Functions](gloss:function) can be used to organize code and achieve *separation of concerns*: once a function is written, it may be relied upon to perform its designated task without the programmer having to think about *how* it accomplishes that task. This conceptual aid is crucial for writing maintainable code to solve large, complex problems. 
 
 [Continue](btn:next)
 
@@ -834,7 +833,7 @@ The objects supplied to a function when it's called are referred to as the funct
 
 ::: .exercise
 **Exercise**  
-In the following block of code, _{code.language-python}s_ is [[a parameter|an argument]], while _{code.language-python}"hello"_ is [[an argument | a parameter]]
+In the following block of code, _{code.language-python}s_ is [[a parameter|an argument]], while _{code.language-python}"hello"_ is [[an argument | a parameter]].
 
 ``` python
 def duplicate(s):
@@ -884,7 +883,7 @@ A function may be defined without assigning a name to it. Such a function is sai
       | def apply_three_times(f, x):
       |     return f(f(f(x)))
       |
-      | apply_three_times(lambda x: x*x, 5)
+      | apply_three_times(lambda x: x*x, 2)
       
 A multi-argument function works similarly, with the parameters separated by commas: the addition operator can be written as _{code.language-python}lambda x,y: x + y_. 
 
@@ -909,15 +908,14 @@ Write a function that takes two arguments _{code.language-python}a_ and _{code.l
 *Solution*. Here's an example solution:
 
 ``` python
-def whichsmaller(a,b,f):
+def which_smaller(a, b, f):
     if f(a) < f(b):
         return a
     else:
         return b
 
-whichsmaller(4,6, lambda x: -x)
+which_smaller(4, 6, lambda x: -x)
 ```
-
 [Continue](btn:next)
 
 ---
@@ -974,7 +972,7 @@ It's highly recommended to write tests to accompany your functions, so you can c
 One common way to do this (which you have already seen several times in this course) is to write functions whose names begin with **{code.language-python}test_** and which contain _{code.language-python}assert_ statements. An _{code.language-python}assert_ statement throws an error if the following expression evaluates to _{code.language-python}False_. You can run the test functions directly, or you can use a tool like [pytest](https://pytest.org) to find and run all of the test functions in your codebase. 
 
     pre(data-executable)
-      | def spaceconcat(s,t):
+      | def space_concat(s,t):
       |     """
       |     Concatenate strings s and t, ensuring a space
       |     between them if s ends with a non-space character
@@ -985,12 +983,12 @@ One common way to do this (which you have already seen several times in this cou
       |     else:
       |         return s + " " + t
       |
-      | def test_spaceconcat():
-      |     assert spaceconcat("foo", "bar") == "foo bar"
-      |     assert spaceconcat("foo ", "bar") == "foo bar"
+      | def test_space_concat():
+      |     assert space_concat("foo", "bar") == "foo bar"
+      |     assert space_concat("foo ", "bar") == "foo bar"
       |
-      | test_spaceconcat()
-      | spaceconcat("foo", "bar")
+      | test_space_concat()
+      | space_concat("foo", "bar")
       
 ::: .exercise
 **Exercise**  
@@ -1005,7 +1003,7 @@ The test cases above don't cover the *degenerate* situation where one of the str
 *Solution*. We check the empty string conditions prior to checking the last/first characters. This solves the problem because _{code.language-python}or_ is **short-circuiting**: if the first bool is _{code.language-python}True_ in an _{code.language-python}or_ operation, the second is never evaluated.
 
     pre(data-executable)
-      | def spaceconcat(s,t):
+      | def space_concat(s,t):
       |     """
       |     Concatenate strings s and t, ensuring a space
       |     between them if s ends with a non-space character 
@@ -1016,11 +1014,11 @@ The test cases above don't cover the *degenerate* situation where one of the str
       |     else:
       |         return s + " " + t
       |
-      | def test_spaceconcat():
-      |     assert spaceconcat("foo", "bar") == "foo bar"
-      |     assert spaceconcat("foo ", "bar") == "foo bar"
-      |     assert spaceconcat("foo", "") == "foo"
-      |     assert spaceconcat("", "bar") == "bar"
+      | def test_space_concat():
+      |     assert space_concat("foo", "bar") == "foo bar"
+      |     assert space_concat("foo ", "bar") == "foo bar"
+      |     assert space_concat("foo", "") == "foo"
+      |     assert space_concat("", "bar") == "bar"
 
 ### Exercises
 
@@ -1028,12 +1026,12 @@ The test cases above don't cover the *degenerate* situation where one of the str
 **Exercise**  
 Write a function which accepts two strings as input and returns the concatenation of those two strings in alphabetical order.
 
-Hint: Make a guess about which operator can be used to compare strings alphabetically.
+_Hint_: Make a guess about which operator can be used to compare strings alphabetically.
 :::
 
     pre(data-executable)
       | def alphabetical_concat(s,t):
-      |     pass
+      |     pass # add code here
       |
       | def test_concat(): 
       |     alphabetical_concat("alphabet", "soup") == "alphabetsoup"
@@ -1070,7 +1068,7 @@ Hint: Make a guess about which operator can be used to compare strings alphabeti
 > id: packages
 ## Packages
 
-A **package** is a collection of Python files that provide functionality beyond the core functionality available in every Python program. Packages achieve separation of concerns at the community level: someone else solves a problem of general interest, and then you can leverage their work and focus on applying it to the problem at hand.
+A [**package**](gloss:package) is a collection of Python files that provide functionality beyond the core functionality available in every Python program. Packages achieve separation of concerns at the community level: someone else solves a problem of general interest, and then you can leverage their work and focus on applying it to the problem at hand.
 
 Many Python packages are available in every standard distribution of Python and can be used without having to worry about whether they're installed. These packages make up the **standard library**. To see a list of standard library packages, visit the standard library page of the [Python documentation](https://docs.python.org/3/library/). Here's an example showing how to import the  _{code.language-python}math_ package and use the _{code.language-python}sqrt_ function it contains: 
 
@@ -1121,7 +1119,7 @@ Note that we import _{code.language-python}numpy_ with the alias _{code.language
       | from scipy.optimize import minimize
       | minimize(lambda x: x*(x-1), 1.0) # start from 1 and minimize x(x-1)
 
-**Matplotlib**. Standard plotting package in Python. (Note: run the cell below twice to get the graph to display.)
+**Matplotlib**. Standard plotting package in Python. (_Note_: run the cell below twice to get the graph to display.)
 
     pre(data-executable)
       | import matplotlib.pyplot as plt
@@ -1135,6 +1133,11 @@ Note that we import _{code.language-python}numpy_ with the alias _{code.language
       | x = symbols("x")
       | y = symbols("y")
       | solve([Eq(x + 5*y, 2), Eq(-3*x + 6*y, 15)], [x, y])
+
+The example above solves the system of equations:
+  $$x + 5y$$
+  $$-3x + 6y$$
+for $x$ and $y$.
 
 ### Exercises 
 
@@ -1157,7 +1160,7 @@ Note that we import _{code.language-python}numpy_ with the alias _{code.language
 
 ::: .exercise
 **Exercise**  
- To import _{code.language-python}sympy with alias _{code.language-python}sp_, we would use what statement?
+ To import _{code.language-python}sympy_ with alias _{code.language-python}sp_, we would use what statement?
 :::
 
     x-quill
@@ -1203,7 +1206,7 @@ These functions are called **methods**. For example, _{code.language-python}capi
 ---
 > id: step-84
 
-Suppose you want to write a program which keeps track of the albums you own. Each album is associated with several data, like the name of the album, the year it came out, the number of tracks, etc. You could store all these data by assigning them to different variables, but that becomes untidy very quickly. For example, you will frequently want to pass an album to a function, and you don't want that function to require a long list of parameters just because the Album has a lot of data associated with it. 
+Suppose you want to write a program which keeps track of the albums you own. Each album is associated with several data, like the name of the album, the year it came out, the number of tracks, etc. You could store all these data by assigning them to different variables, but that becomes untidy very quickly. For example, you will frequently want to pass an album to a function, and you don't want that function to require a long list of parameters just because the album has a lot of data associated with it. 
 
 [Continue](btn:next)
 
@@ -1229,7 +1232,7 @@ What you want is to be able to treat each album as its own Python object, with a
 ---
 > id: step-86
 
-A function defined in the block indented below _{code.language-python}class Album(object):_ is called a **method** of the class _{code.language-python}Album_. The **{code.language-python}__init__** method has a special role: Python calls it whenever _{code.language-python}Album_ is called as a function to create a ance** of the class _{code.language-python}Album_. 
+A function defined in the block indented below _{code.language-python}class Album(object):_ is called a **method** of the class _{code.language-python}Album_. The **{code.language-python}\_\_init\_\_** method has a special role: Python calls it whenever _{code.language-python}Album_ is called as a function to create an **instance** of the class _{code.language-python}Album_. 
 
     pre(data-executable)
       | A = Album("Abbey Road", "The Beatles", 1969, "47:23")
@@ -1283,7 +1286,7 @@ Implement a class called _{code.language-python}Fraction_ which represents a rat
 
     pre(data-executable)
       | from  math import gcd
-      | # add your code here
+      | # add code here
       | 
       | def test_Fraction():
       |     assert Fraction(1,2) + Fraction(1,3) == Fraction(5,6)
@@ -1580,6 +1583,7 @@ Write a [function](gloss:function) which takes as arguments a list _{code.langua
     pre(data-executable)
       | def rotate(L, n):
       |     "Cyclically shift the elements of L by n positions"
+      |     # add code here
       |
       | def test_rotate():
       |     assert rotate([1,2,3],1) == [3,1,2]
@@ -1656,8 +1660,8 @@ Note that each of these methods changes the list _{code.language-python}L_. They
 
     pre(data-executable)
       | L = [1,2,3]
-      | returnval = L.reverse()
-      | print(type(returnval))
+      | return_val = L.reverse()
+      | print(type(return_val))
       | print(L)
 
 ::: .exercise
@@ -1667,7 +1671,7 @@ Explain the errors in the code below (there are two).
 ``` python
 def remove_fives(L):
     "Removes instances of 5 from a list"
-  	return L.remove("5")
+    return L.remove("5")
 
 print(remove_fives(["1", "5", "5", "10"]))    
 ```
@@ -1732,7 +1736,7 @@ Write a list comprehension which returns a list whose kth entry is the the last 
 
     pre(data-executable)
       | from sympy import isprime
-      | [str(p)[-1] for p in range(100,1000) if isprime(p)]
+      | [str(k)[-1] for k in range(100,1000) if isprime(k)]
 
 [Continue](btn:next)
 
@@ -1929,15 +1933,15 @@ Write a function which takes a matrix _{code.language-python}M_ and an index _{c
 :::
 
     pre(data-executable)
-      | def selectCol(M, i):
-      |     pass
+      | def select_col(M, i):
+      |     pass # add code here
       |
-      | test_selectCol():
-      |     assert selectCol([[1,2],[3,4]],1) == [1,3]
-      |     assert selectCol([[7,8],[8,-2],[3,4]],1) == [8,-2,4]
-      |     return "Test passed!"
+      | def test_select_col():
+      |     assert select_col([[1,2],[3,4]],1) == [2,4]
+      |     assert select_col([[7,8],[8,-2],[3,4]],1) == [8,-2,4]
+      |     return "Tests passed!"
       |
-      | test_selectCol()
+      | test_select_col()
 
     x-quill
 
@@ -1947,15 +1951,15 @@ Write a function which takes a matrix _{code.language-python}M_ and an index _{c
 *Solution*. We use a list comprehension to select the appropriate entry from each row. 
 
     pre(data-executable)
-      | def selectCol(M, i):
+      | def select_col(M, i):
       |     return [row[i] for row in M]
       |
-      | test_selectCol():
-      |     assert selectCol([[1,2],[3,4]],1) == [1,3]
-      |     assert selectCol([[7,8],[8,-2],[3,4]],1) == [8,-2,4]
+      | def test_select_col():
+      |     assert select_col([[1,2],[3,4]],1) == [2,4]
+      |     assert select_col([[7,8],[8,-2],[3,4]],1) == [8,-2,4]
       |     return "Test passed!"
       |
-      | test_selectCol()
+      | test_select_col()
 
 [Continue](btn:next)
 
@@ -1966,19 +1970,19 @@ Write a function which takes a matrix _{code.language-python}M_ and an index _{c
 **Exercise**  
 Write a function which reverses the words in a sentence. For simplicity, you may assume that the sentence does not contain punctuation.
 
-Hint: the string methods _{code.language-python}join_ and _{code.language-python}split_ might be helpful. You can see the documentation for these methods with _{code.language-python}help(str.join)_ and _{code.language-python}help(str.split)_. 
+_Hint_: The string methods _{code.language-python}join_ and _{code.language-python}split_ might be helpful. You can see the documentation for these methods with _{code.language-python}help(str.join)_ and _{code.language-python}help(str.split)_. 
 :::
 
     pre(data-executable)
-      | def reversewords(sentence):
-      |     pass
+      | def reverse_words(sentence):
+      |     pass # add code here
       |
-      | def test_reversewords():
-      |     assert reversewords("The quick brown fox") == "fox brown quick The"
-      |     assert reversewords("") == ""
+      | def test_reverse_words():
+      |     assert reverse_words("The quick brown fox") == "fox brown quick The"
+      |     assert reverse_words("") == ""
       |     return "Tests passed!"
       |
-      | test_reversewords()
+      | test_reverse_words()
 
     x-quill
 
@@ -1988,7 +1992,7 @@ Hint: the string methods _{code.language-python}join_ and _{code.language-python
 *Solution*. We use the string method _{code.language-python}split_, which splits a string on a given character. This gives us a list of the words in the sentence, which we can reverse by indexing with a negative step and rejoin with the _{code.language-python}join_ method.
 
     pre(data-executable)
-      | def reversewords(sentence):
+      | def reverse_words(sentence):
       |     return " ".join(sentence.split(" ")[::-1])
 
 ---
@@ -2003,24 +2007,26 @@ Hint: the string methods _{code.language-python}join_ and _{code.language-python
       | A = [1,2,3]
       | S = set(A)
       | 2 in S # evaluates to true
-      | S.pop(2) # removes 2
+      | S.remove(2) # removes 2
       | S.add(11) # puts 11 in the set
       | 2 in S # evaluates to false now
  
 ::: .exercise
 **Exercise**  
-Make a set which contains the first 10,000 prime numbers. Hint: it suffices to look for primes among the first 110,000 integers. Compare how long it takes to check whether a given number is in that set to the time it takes to compute whether the number is prime using _{code.language-python}sympy.isprime_. 
+Make a set which contains the first 10,000 prime numbers.
 
-Note 1: the most reliable and efficient way to figure out how the _{code.language-python}timeit_ function works is to [[run help(timeit)|try it on different examples and guess|ask on StackOverflow]]. 
+_Hint_: It suffices to look for primes among the first 110,000 integers. Compare how long it takes to check whether a given number is in that set to the time it takes to compute whether the number is prime using _{code.language-python}sympy.isprime_. 
 
-Note 2: the computation below takes some time to run (20 seconds, say). It returns a tuple when it's done. 
+_Note 1_: The most reliable and efficient way to figure out how the _{code.language-python}timeit_ function works is to [[run help(timeit)|try it on different examples and guess|ask on StackOverflow]]. 
+
+_Note 2_: The computation below takes some time to run (20 seconds, say). It returns a tuple when it's done. 
 ::: 
 
     pre(data-executable)
       | import timeit
       | SETUP = """
       | from sympy import isprime
-      | primes = [] #todo
+      | primes = [] # add your code
       | primesSet = set(primes)
       | """
       | a = timeit.timeit("98779 in primes", setup = SETUP)
@@ -2078,21 +2084,25 @@ However, this solution gets very tedious quickly. For example, modifying this st
 ---
 > id: step-127
 
-The Python data structured tailored to the problem of encoding a map from one finite set to another is called a **dictionary**. Dictionary literals consist of a comma separated list of the desired input-output pairs (with each input and output separated by a colon) delimited by curly braces. For example, the dictionary encoding the map described above looks like this:
+The Python data structure tailored to the problem of encoding a map from one finite set to another is called a **dictionary**. Dictionary literals consist of a comma separated list of the desired input-output pairs (with each input and output separated by a colon) delimited by curly braces. For example, the dictionary encoding the map described above looks like this:
 
     pre(data-executable)
-      | rgb = {"fuchsia": (256, 0, 256),
-      |        "firebrick": (178, 34, 34),
-      |        "goldenrod": (218, 165, 32)}
+      | rgb = {
+      |   "fuchsia": (256, 0, 256),
+      |   "firebrick": (178, 34, 34),
+      |   "goldenrod": (218, 165, 32)
+      | }
 
 The domain elements _{code.language-python}"fuchsia"_, _{code.language-python}"firebrick"_ and _{code.language-python}"goldenrod"_ are called the **keys** of the dictionary, and the codomain elements _{code.language-python}(256,0,256)_, _{code.language-python}(178,34,34)_, and _{code.language-python}(218,165,32)_ are called the **values**. 
 
 We can also form new dictionaries from lists of pairs using the _{code.language-python}dict_ function:
 
 ``` python
-dict([("fuchsia": (256, 0, 256)),
-      ("firebrick": (178, 34, 34)),
-      ("goldenrod": (218, 165, 32))])
+dict([
+  ("fuchsia", (256, 0, 256)),
+  ("firebrick", (178, 34, 34)),
+  ("goldenrod", (218, 165, 32))
+])
 ```
 
 [Continue](btn:next)
@@ -2103,18 +2113,22 @@ dict([("fuchsia": (256, 0, 256)),
 We can perform a dictionary lookup using indexing [syntax](gloss:syntax): _{code.language-python}rgb["fuchsia"]_ returns _{code.language-python}(256,0,256)_. We can also change the value associated with a given key or introduce a new key-value pair using indexing and assignment: 
 
     pre(data-executable)
-      | rgb = {"fuchsia": (256, 0, 256),
-      |        "firebrick": (178, 34, 34),
-      |        "goldenrod": (218, 165, 32)}
+      | rgb = {
+      |   "fuchsia": (256, 0, 256),
+      |   "firebrick": (178, 34, 34),
+      |   "goldenrod": (218, 165, 32)
+      | }
       | rgb["crimson"] = (220, 20, 60)
       | len(rgb)
 
-The _{code.language-python}dict_ [methods](gloss:method) _{code.language-python}keys_ and _{code.language-python}values_ may be used to access the keys and values of a dictionary. 
+The _{code.language-python}dict_ [methods](gloss:method), _{code.language-python}keys_ and _{code.language-python}values_, may be used to access the keys and values of a dictionary. 
 
     pre(data-executable)
-      | rgb = {"fuchsia": (256, 0, 256),
-      |        "firebrick": (178, 34, 34),
-      |        "goldenrod": (218, 165, 32)}
+      | rgb = {
+      |   "fuchsia": (256, 0, 256),
+      |   "firebrick": (178, 34, 34),
+      |   "goldenrod": (218, 165, 32)
+      | }
       | rgb.keys()
 
 [Continue](btn:next)
@@ -2128,9 +2142,11 @@ Consider a dictionary which encodes flight arrival times:
 
 ``` python
 import datetime
-arrivalTimes = {"JetBlue 924": datetime.time(7,9),
-                "United 1282": datetime.time(7,42),
-                "Southwest 196": datetime.time(7,3)}
+arrival_times = {
+  "JetBlue 924": datetime.time(7,9),
+  "United 1282": datetime.time(7,42),
+  "Southwest 196": datetime.time(7,3)
+}
 ```
 
 You can most easily use this dictionary to [[look up the arrival time of a flight|look up which flights arrive at a given time]]. 
@@ -2145,10 +2161,11 @@ Implement this idea in the block below. Check that your dictionary works by inde
 
     pre(data-executable)
       | import datetime
-      | arrivalTimes = {"JetBlue 924": datetime.time(7,9),
-      |                 "United 1282": datetime.time(7,42),
-      |                 "Southwest 196": datetime.time(7,3)}
-      | 
+      | arrival_times = {
+      |   "JetBlue 924": datetime.time(7,9),
+      |   "United 1282": datetime.time(7,42),
+      |   "Southwest 196": datetime.time(7,3)
+      | }
 
     x-quill
 
@@ -2157,7 +2174,7 @@ _{button.next-step} Submit_
 ---
 > id: step-130
 
-*Solution*. We use the _{code.language-python}dict_ function to convert the list of pairs back into a dictionary: _{code.language-python}dict(map(reversed,arrivalTimes.items()))_. 
+*Solution*. We use the _{code.language-python}dict_ function to convert the list of pairs back into a dictionary: *{code.language-python}dict(map(reversed, arrival_times.items()))*. 
 
 [Continue](btn:next)
 
@@ -2171,7 +2188,7 @@ _{button.next-step} Submit_
 Python supports a _{code.language-python}dict_ comprehension construct which is very similar to a list comprehension. Here's a dictionary that maps each one-digit positive integer to its square: 
 
 ``` python
-squareDict = {k : k*k for k in range(1, 10)}
+square_dict = {k: k*k for k in range(1, 10)}
 ```
 
 Use a dict comprehension to make a dictionary which maps each of the first 100 powers of 2 to its units digit.
@@ -2188,7 +2205,7 @@ Use a dict comprehension to make a dictionary which maps each of the first 100 p
 *Solution*. We convert to a string, get the last character, and convert back to an integer: 
 
     pre(data-executable)
-      | unitsDigits = {2**k : int(str(2**k)[-1]) for k in range(100)}
+      |   {2**k: int(str(2**k)[-1]) for k in range(100)}
 
 [Continue](btn:next)
 
@@ -2215,9 +2232,9 @@ Suppose you want to store student IDs in a part of a web application where the m
 We have already seen one way of doing something to each element in a collection: the [*list comprehension*](gloss:listcomp).
 
     pre(data-executable)
-      | smallestFactor = {2: 2, 3: 3, 4: 2, 5: 5, 
+      | smallest_factor = {2: 2, 3: 3, 4: 2, 5: 5, 
       |                  6: 2, 7: 7, 8: 2, 9: 3}
-      | vals = [v for (k,v) in smallestFactor.items()]
+      | [v for (k,v) in smallest_factor.items()]
 
 In this list comprehension, we **iterate** over the pairs of the [dictionary](gloss:dictionary) to produce a new list. Although list comprehensions are very useful, they are not flexible enough to cover all our iteration needs. A much more flexible tool is the **for loop**.
 
@@ -2231,13 +2248,14 @@ In this list comprehension, we **iterate** over the pairs of the [dictionary](gl
 The code above could also be rewritten as follows:
 
     pre(data-executable)
-      | smallestFactor = {2: 2, 3: 3, 4: 2, 5: 5, 
+      | smallest_factor = {2: 2, 3: 3, 4: 2, 5: 5, 
       |                  6: 2, 7: 7, 8: 2, 9: 3}
       | vals = []
-      | for (k,v) in smallestFactor.items():
+      | for (k,v) in smallest_factor.items():
       |     vals.append(v)
+      | vals
 
-The statement _{code.language-python}for item in collection:_ works as follows: the first element of _{code.language-python}collection_ is assigned to _{code.language-python}item_, and the block indented below the _{code.language-python}for_ statement is executed. Then the second element of _{code.language-python}collection_ is assigned to _{code.language-python}item_, the indented block is executed again, etc., until the end of the collection is reached. 
+The statement _{code.language-python}for item in collection:_ works as follows: the first element of _{code.language-python}collection_ is assigned to _{code.language-python}item_, and the block indented below the _{code.language-python}for_ statement is executed. Then, the second element of _{code.language-python}collection_ is assigned to _{code.language-python}item_, the indented block is executed again, etc., until the end of the collection is reached. 
 
 [Continue](btn:next)
 
@@ -2248,7 +2266,7 @@ We can nest _{code.language-python}for_ statements. For example, suppose we have
 
     pre(data-executable)
       | 
-      | def sumMatrixEntries(M):
+      | def sum_matrix_entries(M):
       |     """
       |     Return the sum of the entries of M
       |     """
@@ -2260,7 +2278,8 @@ We can nest _{code.language-python}for_ statements. For example, suppose we have
       |
       | def test_sum():
       |     M = [[1,2,3],[4,5,6],[7,8,9]]
-      |     assert sumMatrixEntries(M) == 45
+      |     assert sum_matrix_entries(M) == 45
+      |     return 'Test passed!'
       |
       | test_sum()
 
@@ -2271,11 +2290,11 @@ We can nest _{code.language-python}for_ statements. For example, suppose we have
 
 ::: .exercise
 **Exercise**  
-Suppose you have imported a function _{code.language-python}fileBugReport_ with two parameters: _{code.language-python}id_ and _{code.language-python}description_. Suppose also that you have a _{code.language-python}dict_ called _{code.language-python}bugs_ whose keys are ids and whose values are strings representing descriptions. Write a loop which performs the action of filing each bug report in the dictionary.  
+Suppose you have imported a function *{code.language-python}file_bug_report* with two parameters: _{code.language-python}id_ and _{code.language-python}description_. Suppose also that you have a _{code.language-python}dict_ called _{code.language-python}bugs_ whose keys are ids and whose values are strings representing descriptions. Write a loop which performs the action of filing each bug report in the dictionary.  
 :::
 
     pre(data-executable)
-      | def fileBugReport(id, description):
+      | def file_bug_report(id, description):
       |     "A dummy function which represents filing a bug report"
       |     print(f"bug {id} ({description}) successfully filed")
       | 
@@ -2294,7 +2313,7 @@ Suppose you have imported a function _{code.language-python}fileBugReport_ with 
 
     pre(data-executable)
       | for id, desc in bugs.items():
-      |     fileBugReport(id, desc)
+      |     file_bug_report(id, desc)
 
 [Continue](btn:next)
 
@@ -2348,10 +2367,10 @@ The **Collatz conjecture** is one of the easiest-to-state unsolved problems in m
 
     center: p 17, 52, 26, 13, 40, 20, 10, 5, 16, 8, 4, 2, 1
 
-If we want to write a Python function which returns the Collatz sequence for any given starting number, we face a problem: we don't know from the start how many steps it will take to reach 1, so it isn't clear how this should fit into the *for loop* paradigm of iterating over a collection. What we want to do is execute a block of code until a given condition is met. Python provides the _{code.language-python}while_ loop for this purpose.
+If we want to write a Python function which returns the Collatz sequence for any given starting number, we face a problem: we don't know from the start how many steps it will take to reach 1, so it isn't clear how we could use a *for loop*. What we want to do is execute a block of code until a given condition is met. Python provides the _{code.language-python}while_ loop for this purpose.
 
     pre(data-executable)
-      | def collatzSequence(n):
+      | def collatz_sequence(n):
       |     "Return the Collatz sequence starting from n"
       |     sequence = [n]
       |     while n > 1:
@@ -2363,9 +2382,10 @@ If we want to write a Python function which returns the Collatz sequence for any
       |     return sequence
       |
       | def test_collatz():
-      |     assert collatzSequence(17) == [17, 52, 26, 13, 
+      |     assert collatz_sequence(17) == [17, 52, 26, 13, 
       |                                 40, 20, 10, 5, 
       |                                 16, 8, 4, 2, 1]
+      |     return 'Test passed!'
       |
       | test_collatz()
 
@@ -2387,6 +2407,7 @@ Note that $10^{-8}$ can be represented in Python using scientific notation _{cod
     pre(data-executable)
       | def newtonsqrt(n):
       |     """Use Newton's algorithm to approximate √n"""
+      |     # add code here
       |
       | def test_newton():
       |     assert abs(newtonsqrt(2) - 1.4142135623730951) < 1e-6
@@ -2423,7 +2444,7 @@ Note that $10^{-8}$ can be represented in Python using scientific notation _{cod
 **Exercise**  
 Write a function which prints an $n \times n$ checkerboard pattern of _{code.language-python}x_'s and _{code.language-python}o_'s. 
 
-Note: _{code.language-python}\\n_ in a string literal represents the "newline" character. You'll need to print this character after each row you've printed.
+_Note_: _{code.language-python}\\n_ in a string literal represents the "newline" character. You'll need to print this character after each row you've printed.
 :::
 
     pre(data-executable)
@@ -2456,7 +2477,7 @@ Note: _{code.language-python}\\n_ in a string literal represents the "newline" c
 
 ::: .exercise
 **Exercise**  
-Write a function which prints [Pascal's triangle](https://en.wikipedia.org/wiki/Pascal%27s_triangle) up to the $n$th row, where the top row counts as row zero. You might want to use a helper function _{code.language-python}printrow(n,row)_ to manage the responsibility of printing each row, as well as a helper function _{code.language-python}nextrow(row)_ to calculate each row from the previous one. 
+Write a function which prints [Pascal's triangle](https://en.wikipedia.org/wiki/Pascal%27s_triangle) up to the $n$th row, where the top row counts as row zero. You might want to use a helper function *{code.language-python}print_row(n,row)* to manage the responsibility of printing each row, as well as a helper function *{code.language-python}next_row(row)* to calculate each row from the previous one. 
 
 Example output, for _{code.language-python}n = 4_: 
 
@@ -2468,20 +2489,20 @@ Example output, for _{code.language-python}n = 4_:
 1   4   6   4   1
 ```
 
-Note: there's no solution to this one, but you can do it on your own!
+_Note_: there's no solution to this one, but you can do it on your own!
 :::
 
     pre(data-executable)
-      | def printrow(n,row):
+      | def print_row(n,row):
       |     """
       |     Prints the nth row (`row`) of Pascal's triangle
       |     with appropriate spacing.
       |     """
       |
-      | def nextrow(row):
+      | def next_row(row):
       |     """
       |     Returns the next row in Pascal's triangle.
-      |     Example: nextrow([1,3,3,1]) == [1,4,6,4,1]
+      |     Example: next_row([1,3,3,1]) == [1,4,6,4,1]
       |     """
       |
       | def pascals_triangle(n):
@@ -2523,7 +2544,9 @@ You decide to google *Spotify API* to see what the deal is. That takes you to th
 ---
 > id: step-146
 
-Turns out, you were right. The first few hits pertain to a package called _{code.language-python}spotipy_. You check out [the docs](https://spotipy.readthedocs.io/en/latest/) and find that you can install the package by running _pip install spotipy_. Since _{code}pip_ is a [command line](gloss:command-line) tool, this is something you should run from the terminal. Note: if you're working in a Jupyter notebook, you can send code from a cell to the command line by prepending an exclamation point:
+Turns out, you were right. The first few hits pertain to a package called _{code.language-python}spotipy_. You check out [the docs](https://spotipy.readthedocs.io/en/latest/) and find that you can install the package by running _pip install spotipy_. Since _{code}pip_ is a [command line](gloss:command-line) tool, this is something you should run from the terminal.
+
+_Note_: if you're working in a Jupyter notebook, you can send code from a cell to the command line by prepending an exclamation point:
 
 ``` python
 !pip install spotipy
@@ -2544,7 +2567,7 @@ Looking around a bit more, you find **{code.language-python}user_playlist_remove
 ---
 > id: step-149
 
-Your plan is beginning to take shape. You decide to make sure everything works before getting into the details of how you're going to modify the playlist. You follow the instructions in the documentation for getting the appropriate authorization credentials for your Python program to access your Spotify account. That step is a bit tedious, but it's going to be worth it. Working from the example in the documentation, you eventually arrive at some code that looks like the following (note that your _{code.language-python}CLIENT_ variables and **{code.language-python}playlist_id** will necessarily be different). 
+Your plan is beginning to take shape. You decide to make sure everything works before getting into the details of how you're going to modify the playlist. You follow the instructions in the documentation for getting the appropriate authorization credentials for your Python program to access your Spotify account. That step is a bit tedious, but it's going to be worth it. Working from the example in the documentation, you eventually arrive at some code that looks like the following (note that the values of the _{code.language-python}CLIENT_ variables and the **{code.language-python}playlist_id** below are fake, so yours will necessarily be different). 
 
 ``` python
 import spotipy
@@ -2577,6 +2600,7 @@ Next, you implement your plan sans-track-modification, to make sure the function
 
 ``` python
 original_tracks = sp.user_playlist_tracks(username, playlist_id)
+# shorten the name of the remove tracks function
 remove_tracks = sp.user_playlist_remove_all_occurrences_of_tracks
 remove_tracks(username, playlist_id, original_tracks)
 sp.user_playlist_add_tracks(username, playlist_id, original_tracks)
@@ -2695,9 +2719,9 @@ Add more features to the function **{code.language-python}track_modifier** to mo
 > id: project-2
 ## Project 2: Mail Merge
 
-Suppose you want to send an email to dozens of people, with some elements of the message varying by recipient. For example, you'd like to insert the recipient's first name in the salutation, and you might also need to insert a personal URL or passcode, information on the recipient's status, etc. 
+Suppose you want to send an email to dozens of people, with some elements of the message varying by recipient. For example, you'd like to insert the recipient's first name in the salutation, and you might also need to insert a personal URL or passcode, information on the recipient's status, etc.
 
-This problem is called *mail merge*, and there are many commercial software solutions available. However, in this section we'll implement a simple and flexible mail merge in Python. 
+This problem is called *mail merge*, and there are many commercial software solutions available. However, in this section you'll implement a simple and flexible mail merge in Python. You will want to do this on your computer, because the authorization step involves using your operating system keychain. 
 
 [Continue](btn:next)
 
@@ -2706,43 +2730,43 @@ This problem is called *mail merge*, and there are many commercial software solu
 
 ### yagmail
 
-The first hurdle is to securely authorize your Python program to access your email account. We'll do this for Gmail accounts using a package called [yagmail](https://github.com/kootenpv/yagmail). You will want to do this on your computer, because the authorization step involves using your operating system keychain. 
+The first hurdle is to securely authorize your Python program to access your email account. You're a Gmail user, so you search for a Gmail package for Python and find [yagmail](https://github.com/kootenpv/yagmail). 
 
-Following the installation instructions, we run _{code.language-python}pip3 install yagmail[all]_ from the [command line](gloss:command-line) to install _{code.language-python}yagmail_. 
+Following the installation instructions on the project GitHub page, you run _{code.language-python}pip3 install yagmail[all]_ from the [command line](gloss:command-line) to install _{code.language-python}yagmail_. 
 
 [Continue](btn:next)
 
 ---
 > id: step-158
 
-Continuing to follow the instructions, we run
+Continuing to follow the instructions, you run
 
 ``` python
 import yagmail
 yagmail.register('mygmailusername')
 ```
 
-and enter the password for the Gmail account in the resulting password prompt. This stores the password in the operating system keychain so we don't have to keep entering it. 
+and enter the password for the Gmail account in the resulting password prompt. This stores the password in the operating system keychain so you don't have to keep entering it. 
 
 [Continue](btn:next)
 
 ---
 > id: step-159
 
-Now we can set up an _{code.language-python}SMTP_ object for sending messages. 
+Now you can set up an _{code.language-python}SMTP_ object for sending messages. 
 
 ``` python
 yag = yagmail.SMTP("mygmailusername@gmail.com")
 ```
 
-In the documentation, we read that this object has a _{code.language-python}send_ method whose parameter list includes _{code.language-python}to_, _{code.language-python}subject_, and _{code.language-python}contents_. We want to call this method once for each recipient, and for that we will use a [[for loop|while loop|if statement]]. 
+In the documentation, you read that this object has a _{code.language-python}send_ method whose parameter list includes _{code.language-python}to_, _{code.language-python}subject_, and _{code.language-python}contents_. you want to call this method once for each recipient, and for that you use a [[for loop|while loop|if statement]]. 
 
 ---
 > id: step-160
 
 ### CSV
 
-Before sending the message, we have to figure out to store the data for each recipient and how to insert that data into the message. One easy solution to the former problem is to store the data in a spreadsheet. We don't even need spreadsheet software if our data is straightforward enough. We make a file called _{code.language-markup}mail-merge-data.csv_, open it in a text editor, and insert the contents
+Before sending the message, you have to figure out to store the data for each recipient and how to insert that data into the message. One easy solution to the former problem is to store the data in a spreadsheet. You decide to skip the spreadsheet software since the situation is so simple. Instead, you make a file called _{code.language-markup}mail-merge-data.csv_, open it in a text editor, and insert the contents
 
     pre
       | Name,Email,Status
@@ -2750,7 +2774,7 @@ Before sending the message, we have to figure out to store the data for each rec
       | Sidra,sidra_tiwana@example.com,completed
       | Alfonso,alfonso.serrano@example.com,pending
 
-We save the file and proceed to figuring out how to load it into Python. 
+You save the file and proceed to figuring out how to load it into Python. 
 
 [Continue](btn:next)
 
@@ -2759,38 +2783,38 @@ We save the file and proceed to figuring out how to load it into Python.
 
 ### Pandas
 
-We google "enter CSV in Python", and we scan the first several search results. The first couple show examples with a dozen or so lines of code, which seems more complicated than necessary. Going back to the search results, we see a function called **{code.language-python}pandas.read_csv**, and we remember that Pandas is the recommended package for handling spreadsheet data in Python. So we do 
+You google "enter CSV in Python" and scan the first several search results. The first couple show examples with a dozen or so lines of code, which seems more complicated than necessary. Going back to the search results, you see a function called **{code.language-python}pandas.read_csv**, and you remember that Pandas is the recommended package for handling spreadsheet data in Python. So you do 
 
 ``` python
 import pandas as pd
 mailData = pd.read_csv("mail-merge-data.csv")
 ```
 
-We check _{code.language-python}type(mailData)_ and see that _{code.language-python}mailData_ is a _{code.language-python}DataFrame_, which is the general Pandas type for tabular data. 
+You check _{code.language-python}type(mailData)_ and see that _{code.language-python}mailData_ is a _{code.language-python}DataFrame_, which is the general Pandas type for tabular data. 
       
 [Continue](btn:next)
 
 ---
 > id: step-162
 
-Now we have to figure out how to loop over the rows of a _{code.language-python}DataFrame_. We search the web for "how to loop over rows of pandas dataframe" and discover the method [[**itertuples** | **iteritems** | **items**]] (look it up!). 
+Now you have to figure out how to loop over the rows of a _{code.language-python}DataFrame_. You search the web for "how to loop over rows of pandas dataframe" and discover the method [[**itertuples** | **iteritems** | **items**]] (look it up!). 
 
 ---
 > id: step-163
 
-We do _{code.language-python}list(mailData.itertuples())[0]_ to get an example row from the _{code.language-python}DataFrame_, and we call _{code.language-python}dir_ on it to look for the right method for extracting each column value. We see that _{code.language-python}Name_, _{code.language-python}Email_, and _{code.language-python}Status_ are attributes of the row, so you can access them using dot syntax (like _{code.language-python}row.Email_). 
+You do _{code.language-python}list(mailData.itertuples())[0]_ to get an example row from the _{code.language-python}DataFrame_, and you call _{code.language-python}dir_ on it to look for the right method for extracting each column value. You see that _{code.language-python}Name_, _{code.language-python}Email_, and _{code.language-python}Status_ are attributes of the row, so you can access them using dot syntax (like _{code.language-python}row.Email_). 
 
 [Continue](btn:next)
 
 ---
 > id: step-164
 
-Finally, we need to insert information from each _{code.language-python}DataFrame_ row into the message. Fortunately, we've already learned a great way to do this: [[f-strings|dictionaries|lists]]! 
+Finally, you need to insert information from each _{code.language-python}DataFrame_ row into the message. Fortunately, you alreday know a great way to do this: [[f-strings|dictionaries|lists]]! 
 
 ---
 > id: step-165
 
-It will be a bit awkward to type the whole message into the line where we call _{code.language-python}yag.send_, so instead we write a function that takes _{code.language-python}row_ as a parameter and returns the message. 
+It will be a bit awkward to type the whole message into the line where you call _{code.language-python}yag.send_, so instead you write a function that takes _{code.language-python}row_ as a parameter and returns the message. 
 
 ``` python
 def message(row):

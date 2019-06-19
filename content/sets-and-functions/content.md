@@ -716,7 +716,7 @@ Similarly, if
 s \in \bigcap_{i=1}^n S_i^{\mathsf{c}}, 
 ```
 
-then $s$ is in none of the $S_i$'s, which in turn means that it is not in the union of the $S_i$'s. Thus $s$ is in the complement of the union of the $S_i$'s. 
+then $s$ is in none of the $S_i$'s, which in turn means that it is not in the union of the $S_i$'s. Thus, $s$ is in the complement of the union of the $S_i$'s. 
 
 
 ---
@@ -855,7 +855,7 @@ f(A') = \{b \in B \, : \,
 ---
 > id: step-70
 
-The **range** of $f$ is defined to be the image of the domain of $f$. Thus the range may be obtained from the codomain by removing all the elements that don't get mapped to.
+The **range** of $f$ is defined to be the image of the domain of $f$. Thus, the range may be obtained from the codomain by removing all the elements that don't get mapped to.
 
     figure: img(src="images/range.svg")
 
@@ -981,7 +981,7 @@ Which of the are true for all functions $f$ and all subsets $A$ and $B$ of the d
 ---
 > id: step-78
 
-*Solution*. The correct answer is (e). To show that (ii)   $f(A \cup B) = f(A) \cup f(B)$, we note that if $y \in f(A \cup B)$,   then $y = f(x)$ for some $x \in A \cup B$. This element $x$ is in either $A$ or $B$, which means that $y = f(x)$ is in either $f(A)$ or $f(B)$. Thus $y \in f(A) \cup f(B)$. So $f(A \cup B) \subset f(A) \cup f(B)$. Similar reasoning shows that $f(A) \cup f(B) \subset f(A \cup B)$ as well. Statements (iii) and (iv) may likewise be confirmed.
+*Solution*. The correct answer is (e). To show that (ii)   $f(A \cup B) = f(A) \cup f(B)$, we note that if $y \in f(A \cup B)$,   then $y = f(x)$ for some $x \in A \cup B$. This element $x$ is in either $A$ or $B$, which means that $y = f(x)$ is in either $f(A)$ or $f(B)$. Thus, $y \in f(A) \cup f(B)$. So $f(A \cup B) \subset f(A) \cup f(B)$. Similar reasoning shows that $f(A) \cup f(B) \subset f(A \cup B)$ as well. Statements (iii) and (iv) may likewise be confirmed.
 
 To see that (i) may fail, consider the function from $\\\{-1,0,1\\\}$ to $\\\{0,1\\\}$ which squares its input. Let $A =
 \\\{-1,0\\\}$ and $B = \\\{0,1\\\}$. Then $f(A \cap B) = \\\{0\\\}$, while $f(A) \cap f(B) = \\\{0,1\\\}$.

@@ -59,6 +59,14 @@ p { hanging-punctuation: none; }
 .choice strong {
   color: white;
 }
+// Fixes code text color on selection questions
+.pill code {
+  color: white;
+}
+
+.popup code {
+  color: white;
+}
 
 x-picker .item.pill.bblue {
   background: @blue;
@@ -83,6 +91,7 @@ x-step code {
   overflow: hidden;
   font-size: 15px;
   .CodeMirror { padding: .6em 1em; }
+  pre {color: #555}
 }
 
 .juniper-output {
