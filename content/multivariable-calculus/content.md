@@ -8,7 +8,7 @@
 
 Calculus is the study of continuously varying functions. Specifically, we examine [[instantaneous|average|large]] rates of change (derivatives) and learn how to average (or total) the values of a function over a region (integration). In multivariable calculus, we generalize differentiation and integration ideas developed for functions defined on the number line $\mathbb{R}^1$ to the setting where our functions are defined on $\mathbb{R}^d$ for some $d \ge 1$. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-1
@@ -17,7 +17,7 @@ The ideas of multivariable calculus are useful for data science in at least a co
 
 We will begin by studying sequences and series.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-2
@@ -29,14 +29,14 @@ A **sequence** of real numbers $(x\_n)\_{n=1}^\infty = x\_1, x\_2, \ldots$ conve
 ::: .example
 **Example**  
 The sequence $(-1)^n/n$ converges to 0 as $n\to\infty$, since the distance on the number line from 0 to $(-1)^n/n$ is $1/n$, and that distance may be made as small as desired by choosing $n$ large enough. For example, if you want $1/n$ to be less than $0.001$, all the values of $n$ larger than $1000$ will work. 
-         
-    center: img(src="images/sequence-converge.svg")
+
+    figure: img(src="images/sequence-converge.svg")
 
 Convergence to zero is apparent visually if make a scatter plot of $a_n$ versus $n$, because the points are getting arbitrariy close to the horizontal axis as we move further to the right.
 
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-3
@@ -50,7 +50,7 @@ If two sequences both converge to the same limit, then any sequence whose terms 
 If $a\_n \leq b\_n \leq c\_n$ for all $n\geq 1$ and if $\lim\_{n\to\infty} a\_n = \lim\_{n\to\infty} c\_n$, then the sequence $(b\_n)\_{n=1}^{\infty}$ converges, and its limiting value is equal to the common limiting value of $(a\_n)\_{n=1}^{\infty}$ and $(c\_n)\_{n=1}^{\infty}$. 
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-4 
@@ -67,7 +67,7 @@ Suppose that $|x\_n| \leq n^{-1/2}$ for all $n \geq 1$. Show that $x\_n \to 0$ a
 
 *Solution*. We have $-n^{-1/2} \leq x\_n \leq n^{-1/2}$ for all $n$, so we may apply the squeeze theorem to the sequences $-n^{-1/2}$ and $n^{-1/2}$ to conclude that $x\_n \to 0$ as $n\to\infty$. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-6
@@ -76,10 +76,9 @@ _{button.next-step} Continue_
 
 A **series** $\sum\_{n=1}^\infty x\_n = x\_1 + x\_2 + x\_3 + \cdots$ converges if the sequence $(S\_n)\_{n=1}^\infty$ converges, where 
 
-    p
-      | \begin{equation*}
-      |   S_n = x_1 + x_2 + \cdots + x_n
-      | \end{equation*}
+``` latex
+S_n = x_1 + x_2 + \cdots + x_n
+```
       
 is the $n\text{th}$ [*partial sum*](gloss:partial-sum). Roughly speaking, a series with positive terms converges if its terms converge to 0 fast enough. In particular, the terms must converge to zero: 
 
@@ -88,7 +87,7 @@ is the $n\text{th}$ [*partial sum*](gloss:partial-sum). Roughly speaking, a seri
 If $a\_n$ does not converge to zero, then the series $\displaystyle{\sum\_{n=1}^\infty a\_n}$ does not converge. 
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-7
@@ -104,18 +103,14 @@ Show that $\displaystyle{\sum\_{n=1}^\infty \frac{n}{n+1}}$ does not converge. P
       | A = [n/(n+1) for n in range(1,1001)]
       | plt.scatter(range(1, 1001), np.cumsum(A))
 
-<p></p>
-
-    div(id="editor1")
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-8
 
 *Solution*. Since $n/(n+1)$ converges to 1 as $n\to\infty$, the sum of these terms does not converge to zero, by the term test. The graph of the sequence of partial sums shows how the partial sums increase (approximately linearly) without bound, illustrating the series' lack of convergence to a finite value.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-9
@@ -130,7 +125,7 @@ Conversely, if $\sum\_{n=1}^\infty b\_n$ does not converge and $0 \leq b\_n <
 a\_n$, then $\Sigma\_{n=1}^\infty a\_n$ also does not converge. 
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-10
@@ -151,16 +146,14 @@ The comparison test works well in conjunction with a list of basic series whose 
 Show that the series $\sum\_{n=1}^\infty \frac{1}{n^2 + n}$ converges. 
 :::
 
-    div(id="editor2")
-
-_{button.next-step} Submit_
+    x-quill
 
 ---
 > id: step-11
 
 *Solution*. We know that $\frac{1}{n^2 + n} < \frac{1}{n^2}$ and that $\sum\_{n=1}^\infty \frac{1}{n^2}$ converges. Therefore, the comparison test implies that $\frac{1}{n^2 + n}$ converges. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-12
@@ -172,9 +165,6 @@ Numerically examine the statement that $\sum\_{n=1}^\infty \frac{1}{n^2}$ conver
 
     pre(data-executable)
       | import numpy as np
-      | 
-
-<p></p>
 
     x-quill
 
@@ -195,7 +185,7 @@ returns _{code.language-python}-0.0009995001666649461_, while
       | sum(1/n**2 for n in range(1,10_000_001)) - np.pi**2/6
       
 evaluates to _{code.language-python}-9.999994563525405e-7_. This is consistent with the proposition that $\sum\_{n=1}^N \frac{1}{n^2}$ gets arbitrarily close to $\pi^2/6$ for large enough $N$. 
- 
+
 ---
 
 > id: taylor-series
@@ -205,14 +195,14 @@ We can define a polynomial which approximates a smooth function in the vicinity 
 
 The utility of this simple idea emerges from the convenient simplicity of polynomials and the fact that a wide class of functions look pretty much like polynomials when you zoom in around a given point. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-14
 
 First, a bit of review on the exponential function $x\mapsto \exp(x)$: we define $\exp$ to be the function which maps 0 to 1 and which is everywhere equal to its own derivative. It follows (nontrivially) from this definition that $\exp(x) = \exp(1)^x$, so may define $\mathrm{e} = \exp(1)$ and write the exponential function as $x\mapsto \mathrm{e}^x$. The value of $\mathrm{e}$ is approximately 2.718. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-15
@@ -224,10 +214,9 @@ Find the quadratic polynomial $P\_2$ whose zeroth, first, and second derivatives
 
 *Solution*. Since $P\_2$ is quadratic, we must have 
 
-    p
-      | \begin{equation*}
-      |   P_2(x) = a_0 + a_1x + a_2x^2
-      | \end{equation*}
+``` latex
+P_2(x) = a_0 + a_1x + a_2x^2
+```
       
 for some $a\_0, a\_1,$ and $a\_2$. To match the [[zeroth|first|second]] derivative, we check that $P\_2(0) = a\_0$ and $f(0) = 1$. So we must have $a\_0 =1$. Similarly, $P\_2'(0) = a\_1$, so if we want $P\_2'(0) = f'(0) = 1$, have to choose $a\_1  = 1$ as well. 
 
@@ -236,18 +225,17 @@ for some $a\_0, a\_1,$ and $a\_2$. To match the [[zeroth|first|second]] derivati
 
 For $a\_2$, we calculate $P\_2''(x) = (a\_1 + 2a\_2x)' = 2a\_2$, so to get $P\_2''(0) = f''(0) = 1$, we have to let $a\_2 = \tfrac{1}{2}$. So 
 
-    p
-      | \begin{equation*}
-      |         P_2(x) = 1 + x + \tfrac{1}{2}x^2
-      | \end{equation*}
+``` latex
+P_2(x) = 1 + x + \tfrac{1}{2}x^2
+```
       
 is the best we can do. Looking at the figure, we set that $P\_2$ does indeed do a better job of 'hugging' the graph of $f$ near $x=0$ than the best linear approximation ($L(x) = 1 + x$) does. 
  
-    center
+    figure
       img(src="images/taylor.svg" width="300px")
-      p.caption The best constant, linear, and quadratic approximations of $\exp(x) = \mathrm{e}^x$ near the origin 
+      p.caption.md The best constant, linear, and quadratic approximations of $\exp(x) = \mathrm{e}^x$ near the origin 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-17
@@ -258,15 +246,14 @@ We can extend this idea to higher order polynomials, and we can even include ter
 **Definition** (Taylor Series)  
 The Taylor series, centered at $c$, of an infinitely differentiable function $f$ is defined to be 
 
-    p
-      | \begin{equation*}
-      |       f(c) + f'(c)(x-c) + \frac{f''(c)}{2!}(x-c)^2 +
-      |       \frac{f'''(c)}{3!}(x-c)^3 + \cdots
-      | \end{equation*}
+``` latex
+f(c) + f'(c)(x-c) + \frac{f''(c)}{2!}(x-c)^2 +
+\frac{f'''(c)}{3!}(x-c)^3 + \cdots
+```
 
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-18
@@ -278,14 +265,13 @@ Find the Taylor series centered at the origin for the exponential function.
 
 *Solution*. We continue the pattern we discovered for the quadratic approximation of the exponential function at the origin: the $n$th derivative of $a\_0 + a\_1x + \cdots + a\_n x^n + \cdots$ is $n!a\_n$, while the $n$th derivative of the exponential function is $1$ at the origin. Therefore, $a\_n = 1/n!$, and we obtain the Taylor series 
 
-    p
-      | \begin{equation*}
-      |       1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots
-      | \end{equation*}
+``` latex
+1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots
+```
 
 It turns out that this series does in fact converge to $\mathrm{e}^x$, for all $x \in \mathbb{R}$. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-19
@@ -303,7 +289,7 @@ It turns out that if the Taylor series for a function converges, then it does so
 All the operations described above may be applied wherever all the series in question are convergent. In other words, $f$ and $g$ have Taylor series $P$ and $Q$ converging to $f$ and $g$ in some open interval, then the Taylor series for $fg$, $f+g$, $f'$, and $\int f$ converge in that interval and are given by $PQ$, $P+Q$, $P'$, and $\int P$, respectively. If $P$ has an infinite radius of convergence, then the Taylor series for $f\circ g$ is given by $P\circ Q$. 
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-20
@@ -317,22 +303,21 @@ Find the Taylor series for $f(x) = \cos x + x \mathrm{e}^{x^2}$ centered at $c =
 
 *Solution*. Taking many derivatives is going to be no fun, especially with that second term. What we can do, however, is just substitute $x^2$ into the Taylor series for the exponential function, multiply that by $x$, and add the Taylor series for cosine: 
 
-    p
-      | \begin{align*}
-      |   &\left(1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots\right) + x\left(1 + x^2 +
-      |   \frac{(x^2)^2}{2!} + \frac{(x^2)^3}{3!} + \cdots\right) \\\ &=
-      |   1 + x - \frac{x^2}{2!} + x^3  + \frac{x^4}{4!}  + \frac{x^5}{2!} +
-      |   \cdots.
-      | \end{align*}
+``` latex
+&\left(1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots\right) + x\left(1 + x^2 +
+\frac{(x^2)^2}{2!} + \frac{(x^2)^3}{3!} + \cdots\right) \\\ &=
+1 + x - \frac{x^2}{2!} + x^3  + \frac{x^4}{4!}  + \frac{x^5}{2!} +
+\cdots.
+```
       
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-21
 
 In summation notation, we could write this series as $\sum\_{n=0}^\infty a\_n x^n$ where $a\_n$ is equal to $(-1)^{n/2}/n!$ if $n$ is even and $1/((n-1)/2)!$ if $n$ is odd. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-22
@@ -369,7 +354,7 @@ We can use this result to find $\sum\_{k = 1}^\infty k x^k$ by differentiating b
 \frac{x}{(1-x)^2} = x + 2x^2 + 3x^3 + 4x^4 + \cdots
 ```
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-24
@@ -386,24 +371,21 @@ Show that $\lim\_{n\to\infty}(1+x/n)^n$ is equal to $\mathrm{e}^x$ by showing th
 
 *Solution*. Integrating the equation 
 
-    p
-      | \begin{equation*}
-      |   \frac{1}{1+x} = 1 - x + x^2 - x^3 + x^4 - \cdots
-      | \end{equation*}
+``` latex
+\frac{1}{1+x} = 1 - x + x^2 - x^3 + x^4 - \cdots
+```
       
 term by term, we find that 
 
-    p
-      | \begin{equation*}
-      |   \log(1+x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \cdots
-      | \end{equation*}
+``` latex
+\log(1+x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \cdots
+```
       
 Substituting gives 
 
-    p
-      | \begin{equation*}
-      |   n \log (1+x/n) = x - \frac{x}{2n} + \frac{x^3}{3n^2} - \cdots.
-      | \end{equation*}
+``` latex
+n \log (1+x/n) = x - \frac{x}{2n} + \frac{x^3}{3n^2} - \cdots.
+```
       
 Each of the terms other than the [[first|second|third]] converges to 0, and we can take limits term-by-term since $x/n$ is inside of the interval of convergence for this series. Therefore, $\lim\_{n\to\infty}\log(1+x/n)^n = x$, and since the exponential function is continuous, this implies that $\lim\_{n\to\infty}(1+x/n)^n = \mathrm{e}^x$
 
@@ -429,7 +411,7 @@ The simplest directions for inquiring about the instantaneous rate of change of 
 **Exercise**  
 Consider the function $f$ whose graph is shown. Determine the sign of $f\_x(1,1)$ ([[negative|positive|zero]]) and the sign of $f\_y(1,1)$ ([[positive|negative|zero]]). 
   
-    center: img(src="images/partial-sign.svg")
+    figure: img(src="images/partial-sign.svg")
 
 :::
 
@@ -440,7 +422,7 @@ Consider the function $f$ whose graph is shown. Determine the sign of $f\_x(1,1)
 
 Graphically, the partial derivative with respect to $x$ at a point is equal to the slope of the trace of the graph in the "$y =\text{constant}$" plane passing through that point. Similarly, the partial derivative with respect to $y$ at a point is equal to the slope of the trace of the graph in the "$x =\text{constant}$" plane passing through that point. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-29
@@ -459,7 +441,7 @@ Consider the function $f(x,y) = \mathrm{e}^{xy}\sin(y)$. Show that differentiati
 
 *Solution*. The partial derivative of $f$ with respect to $x$ is $y\mathrm{e}^{xy}\sin(y)$, and the derivative of that with respect to $y$ is $\mathrm{e}^{xy} (x y \sin(y) + \sin(y) + y \cos(y))$. The partial derivative of $f$ with respect to $y$ is $e^{xy} (x sin(y) + cos(y))$, and the derivative of that with respect to $x$ is $\mathrm{e}^{xy} (x y \sin(y) + \sin(y) + y \cos(y))$. Therefore, the conclusion of Clairaut's theorem is satisfied in this case.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-31
@@ -468,40 +450,37 @@ _{button.next-step} Continue_
 
 A single-variable function is differentiable at a point if and only if its graph looks increasingly like that of a non-vertical line when zoomed increasingly far in. In other words, $f$ is differentiable if and only if there's a linear function $L$ such that $\frac{f(x) - L(x)}{x-a}$ goes to 0 as $x \to a$. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-32
 
 Likewise, a function of two variables is said to be **differentiable** at a point if its graph looks like a plane when you zoom in sufficiently around the point; that is, $f$ is differentiable at $(a,b)$ if 
 
-    p
-      | \begin{equation*}
-      |   \lim_{(x,y) \to (a,b)}\frac{f(x,y) - c_0 - c_1(x-a) -
-      |       c_2(y-b)}{|[x,y] - [a,b]|} = 0
-      | \end{equation*}
+``` latex
+\lim_{(x,y) \to (a,b)}\frac{f(x,y) - c_0 - c_1(x-a) - c_2(y-b)}{|[x,y] - [a,b]|} = 0
+```
 
 for some real numbers $c\_0$, $c\_1$, and $c\_2$. If such a linear function $c\_0 + c\_1(x-a) + c\_2(y-b)$ exists, then its coefficients are necessarily $c\_0 = f(a,b)$, $c\_1 = f\_x(a,b)$, and $c\_2 = f\_y(a,b)$. 
 
-    center
+    figure
       img(src="images/tangent-plane.svg")
-      p.caption The function $f$ is differentiable at the point shown, because its graph looks increasingly like the dark green plane shown as you zoom in around the point. 
+      p.caption.md The function $f$ is differentiable at the point shown, because its graph looks increasingly like the dark green plane shown as you zoom in around the point. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-33
 
 So, the equation of the plane tangent to the graph of a differentiable function $f$ at the point $(a,b,f(a,b))$ is given by 
 
-    p
-      | \begin{equation*} 
-      |   z = f(a,b) + f_x(a,b)(x-a) + f_y(a,b)(y-b).
-      | \end{equation*}
+``` latex
+z = f(a,b) + f_x(a,b)(x-a) + f_y(a,b)(y-b).
+```
       
 This equation says how $f$ behaves for values of $(x,y)$ very close to $(a,b)$: the output changes by the $x$-change $x-a$ times $f$'s sensitivity to changes in $x$ (namely $f\_x(a,b)$) *plus* the $y$-change times $f$'s sensitivity to changes in $y$ (namely $f\_y(a,b)$). 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-34
@@ -512,7 +491,7 @@ Once we know how a differentiable function $f: \mathbb{R}^d \to \mathbb{R}$ chan
 
 [Since](gloss:dotproductcosine) $\nabla f\cdot \mathbf{u} = |\nabla f| \cos \theta$, where $\theta$ is the angle between $\nabla f$ and $\mathbf{u}$, the direction of the gradient is the direction in which $f$ increases most rapidly. The direction opposite to the gradient is the direction of maximum decrease, and the directions orthogonal to these are the ones in which $f$ is constant. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-35
@@ -529,24 +508,22 @@ Suppose that $f:\mathbb{R}^2 \to \mathbb{R}$ is a differentiable function at the
 
 *Solution*. The problem stipulates that we are given equations of the form 
 
-    p
-      | \begin{align*}
-      |   u_1 f_x(a,b) + u_2 f_y(a,b) &= c_1  \\\\ 
-      |   v_1 f_x(a,b) + v_2 f_y(a,b) &= c_2
-      | \end{align*}
+``` latex
+u_1 f_x(a,b) + u_2 f_y(a,b) &= c_1  \\ 
+v_1 f_x(a,b) + v_2 f_y(a,b) &= c_2
+```
 
 for some numbers $u\_1, u\_2, c\_1, v\_1, v\_2, c\_2$. This system may be written in matrix form as 
 
-    p
-      | \begin{equation*}  
-      |   \begin{bmatrix} u_1 & u_2 \\\ v_1 & v_2 \end{bmatrix}
-      |   \begin{bmatrix} f_x(a,b) \\\ f_y(a,b) \end{bmatrix} =
-      |   \begin{bmatrix} c_1 \\\ c_2 \end{bmatrix}.
-      | \end{equation*}
+``` latex 
+\begin{bmatrix} u_1 & u_2 \\\ v_1 & v_2 \end{bmatrix}
+\begin{bmatrix} f_x(a,b) \\\ f_y(a,b) \end{bmatrix} =
+\begin{bmatrix} c_1 \\\ c_2 \end{bmatrix}.
+```
 
 Since $\mathbf{u}$ and $\mathbf{v}$ are not parallel, they span $\mathbb{R}^2$. Therefore, the matrix $\begin{bmatrix} u\_1 & u\_2 \\\\\\\\ v\_1 & v\_2 \end{bmatrix}$ is invertible, and the solution of <a name=eq:matrix-partials></a> is $\begin{bmatrix} u\_1 & u\_2 \\\\\\\\ v\_1 & v\_2 \end{bmatrix}^{-1}\begin{bmatrix} c\_1 \\\\\\\\ c\_2 \end{bmatrix}$. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-37
@@ -561,7 +538,7 @@ Consider a differentiable function $f$ from $\mathbb{R}^2$ to $\mathbb{R}$ and a
 
 *Solution*. $f$ increases maximally in the direction of its gradient and decreases maximally in the opposite direction. It remains approximately constant in the two directions orthogonal to its gradient. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-39
@@ -576,7 +553,7 @@ Consider a differentiable function $f$ from $\mathbb{R}^3$ to $\mathbb{R}$ and a
 
 *Solution*. $f$ increases maximally in the direction of its gradient and decreases maximally in the opposite direction. It remains approximately constant in the plane of directions orthogonal to its gradient. Since a plane contains infinitely many directions, the number of directions in which $f$ remains approximately constant is infinite. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-41
@@ -585,34 +562,33 @@ _{button.next-step} Continue_
 
 We can take the notion of a gradient, which measures the *linear* change of a function, up a degree. The **Hessian** of a function $f: \mathbb{R}^n \to \mathbb{R}$ is defined to be the matrix 
 
-    p
-      | \begin{equation*} \mathbf{H}(\mathbf{x}) =
-      |     \begin{bmatrix}
-      |       \frac{\partial^2 f}{\partial x_1^2} & \frac{\partial^2 f}{\partial x_1\,\partial x_2} & \cdots & \frac{\partial^2 f}{\partial x_1\,\partial x_n} \\[2.2ex]
-      |       \frac{\partial^2 f}{\partial x_2\,\partial x_1} & \frac{\partial^2 f}{\partial x_2^2} & \cdots & \frac{\partial^2 f}{\partial x_2\,\partial x_n} \\[2.2ex]
-      |       \vdots & \vdots & \ddots & \vdots \\[2.2ex]
-      |       \frac{\partial^2 f}{\partial x_n\,\partial x_1} & \frac{\partial^2 f}{\partial x_n\,\partial x_2} & \cdots & \frac{\partial^2 f}{\partial x_n^2}
-      |     \end{bmatrix}
-      | \end{equation*}
+``` latex
+\mathbf{H}(\mathbf{x}) =
+\begin{bmatrix}
+  \frac{\partial^2 f}{\partial x_1^2} & \frac{\partial^2 f}{\partial x_1\,\partial x_2} & \cdots & \frac{\partial^2 f}{\partial x_1\,\partial x_n} \\[2.2ex]
+  \frac{\partial^2 f}{\partial x_2\,\partial x_1} & \frac{\partial^2 f}{\partial x_2^2} & \cdots & \frac{\partial^2 f}{\partial x_2\,\partial x_n} \\[2.2ex]
+  \vdots & \vdots & \ddots & \vdots \\[2.2ex]
+  \frac{\partial^2 f}{\partial x_n\,\partial x_1} & \frac{\partial^2 f}{\partial x_n\,\partial x_2} & \cdots & \frac{\partial^2 f}{\partial x_n^2}
+\end{bmatrix}
+```
  
 
 The best quadratic approximation to the graph of a twice-differentiable function $f:\mathbb{R}^n \to \mathbb{R}$ at the origin is 
 
-    p
-      | \begin{equation*}
-      |       Q(\mathbf{x}) = f(\mathbf{0}) + (\nabla
-      |       f(\mathbf{0}))'\mathbf{x}+
-      |       \frac{1}{2}\mathbf{x}'
-      |       \mathbf{H}(\mathbf{0})\mathbf{x}.
-      | \end{equation*}
+``` latex
+Q(\mathbf{x}) = f(\mathbf{0}) + (\nabla
+f(\mathbf{0}))'\mathbf{x}+
+\frac{1}{2}\mathbf{x}'
+\mathbf{H}(\mathbf{0})\mathbf{x}.
+```
       
- The same is true at points $\mathbf{a}$ other than the origin if we evaluate the gradient and Hessian at $\mathbf{a}$ instead of $\mathbf{0}$ and if we replace $\mathbf{x}$ with $\mathbf{x}-\mathbf{a}$. 
+The same is true at points $\mathbf{a}$ other than the origin if we evaluate the gradient and Hessian at $\mathbf{a}$ instead of $\mathbf{0}$ and if we replace $\mathbf{x}$ with $\mathbf{x}-\mathbf{a}$. 
  
-    center
+    figure
       img(src="images/quadapprox.svg")
-      p.caption $Q$ is the best quadratic approximation of $f$ at the origin.
+      p.caption.md $Q$ is the best quadratic approximation of $f$ at the origin.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-42
@@ -629,17 +605,15 @@ Suppose that $a,b,c,d,e$ and $f$ are real numbers and that $f(x,y) = a + bx + cy
 
 *Solution*. The gradient of $f$ evaluated at the origin is $[b, c]$, so the linear approximation of $f$ is 
 
-    p
-      | \begin{equation*}
-      |   f(0,0) + f_x(0,0) x + f_y(0,0) = a + bx + cy.
-      | \end{equation*}
+``` latex
+f(0,0) + f_x(0,0) x + f_y(0,0) = a + bx + cy.
+```
 
 The Hessian is $\begin{bmatrix} 2d & e \\\\\\ e & 2f \end{bmatrix}$, so the quadratic terms in the quadratic approximation are 
 
-    p
-      | \begin{equation*}
-      |   \frac{1}{2}(2dx^2 + exy + exy + 2ey^2) = dx^2 + exy + fy^2,
-      | \end{equation*}
+``` latex
+\frac{1}{2}(2dx^2 + exy + exy + 2ey^2) = dx^2 + exy + fy^2,
+```
 
 as desired. 
 
@@ -650,22 +624,20 @@ We can combine the ideas of quadratic approximation and [*diagonalization*](glos
 
 With $VDV'$ as the diagonalization of $H$, the quadratic term in the quadratic approximation becomes 
 
-    p
-      | \begin{equation*}
-      |   \frac{1}{2} \mathbf{x}' V \Lambda V' \mathbf{x} = 
-      |     \frac{1}{2} (V'\mathbf{x})' \Lambda (V' \mathbf{x})
-      | \end{equation*}
+``` latex
+\frac{1}{2} \mathbf{x}' V \Lambda V' \mathbf{x} = 
+  \frac{1}{2} (V'\mathbf{x})' \Lambda (V' \mathbf{x})
+```
 
 Since the components of $V'\mathbf{x}$ are the coordinates of $\mathbf{x}$ with respect to the basis given by the columns $\mathbf{v}\_1, \ldots, \mathbf{v}\_n$ of $V$, the quadratic term may be written as  
 
-    p
-      | \begin{equation*}
-      |   \frac{1}{2} (\lambda_1\tilde{x}_1^2 + \lambda_2\tilde{x}_2^2 + \cdots + \lambda_n\tilde{x}_n^2), 
-      | \end{equation*}
+``` latex
+\frac{1}{2} (\lambda_1\tilde{x}_1^2 + \lambda_2\tilde{x}_2^2 + \cdots + \lambda_n\tilde{x}_n^2), 
+```
 
 where $[\tilde{x}\_1, \tilde{x}\_2, \ldots, \tilde{x}\_n]$ is the vector of coordinates of $[x\_1, x\_2, \ldots, x\_n]$ with respect to the basis given by the columns of $V$. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: simpleparabola
@@ -689,29 +661,28 @@ If $\lambda\_1$ is negative, then the graph of $f$ is shaped like an up-turned p
   If some eigenvalues are positive and some are negative, then $f$ increases as you move away from $(x\_1, \ldots x\_n)$ in some directions and [[decreases|remains constant]] in other directions. 
 :::
 
-  
     .row.padded
       .grow
-        center
+        figure
           img(src="images/up-parabola.svg")
-          p.caption If every slice of the graph of $f$ is convex, then $f$ has a local minimum at the origin
+          p.caption.md If every slice of the graph of $f$ is convex, then $f$ has a local minimum at the origin
       .grow
-        center
+        figure
           img(src="images/down-parabola.svg")
-          p.caption If every slice is concave, then $f$ has local maximum
+          p.caption.md If every slice is concave, then $f$ has local maximum
       .grow
-        center
+        figure
           img(src="images/saddle.svg")
-          p.caption If there are both concave and convex slices, then $f$ has a saddle point
+          p.caption.md If there are both concave and convex slices, then $f$ has a saddle point
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-45
 
 In addition to helping distinguish local minima, local maxima, and saddle points, the diagonalized Hessian can also help us recognize ravines in the graph of $f$. This idea arises in the context of numerical optimization methods for deep learning. 
 
-    center
+    figure
       img(src="images/noahs-ark.svg")
       p.caption The minimum of this function is in a long, narrow valley with steep sides. 
 
@@ -743,57 +714,53 @@ Suppose we want to use a line to describe the relationship between the $x$-value
 
 To identify which line which does the "best" job, we need to quantify how well a given line fits the points. The most common way to do this is to measure the sum of the squares of the vertical distances from each point to the line. We seek to make that sum of squared distances as small as possible. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-47
 
 If the points are $(x\_1, y\_1), \ldots, (y\_n, y\_n)$, then the value we're trying to minimize is 
 
-    p
-      | \begin{equation*}
-      |   L(m,b) = (mx_1 + b - y_1)^2 + \cdots + (mx_n + b - y_n)^2. 
-      | \end{equation*}
+``` latex
+L(m,b) = (mx_1 + b - y_1)^2 + \cdots + (mx_n + b - y_n)^2. 
+```
 
 The letter $L$ is used in this context in reference to the word *loss*, which is a synonym for *badness*. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-48
 
 Here's the key insight: at any point $(m,b)$ where $\nabla L(m,b)$ is a nonzero vector, there will be directions in which the pair $(m,b)$ may be perturbed to increase $L$'s value (specifically, any directions which make an [[acute|obtuse|right]] angle with $\nabla L(m,b)$) and perturbation directions which decrease the value of $L$ (specifically, any directions which make an [[obtuse|acute|right]] angle with $\nabla L(m,b)$). Therefore, at any point where $L$ has a minimum, we must have $\nabla L = 0$.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-49
 
 Taking the partial derivatives of $L$ and setting them equal to zero, we get the system of equations 
 
-    p
-      | \begin{align*}
-      |   2x_1(mx_1 + b - y_1) + \cdots + 2x_n(mx_n + b - y_n) &= 0 \\\ 
-      |   2(mx_1 + b - y_1) + \cdots + 2(mx_n + b - y_n) &= 0 
-      | \end{align*}
+``` latex
+2x_1(mx_1 + b - y_1) + \cdots + 2x_n(mx_n + b - y_n) &= 0 \\\ 
+2(mx_1 + b - y_1) + \cdots + 2(mx_n + b - y_n) &= 0 
+```
 
 We have two equations and two unknowns ($m$ and $b$), so we can solve using standard techniques for systems of linear equations. For example, solving the second equation for $b$ gives 
 
-    p
-      | \begin{equation*}
-      |   b = \frac{1}{n}(y_1 + \cdots + y_n) - \frac{m}{n}(x_1 +\cdots + x_n), 
-      | \end{equation*}
+``` latex
+b = \frac{1}{n}(y_1 + \cdots + y_n) - \frac{m}{n}(x_1 +\cdots + x_n), 
+```
 
 and substituting into the first equation and solving for $m$ yields 
 
-    p
-      | \begin{equation*}
-      |   m = \frac{(x_1y_1 + \cdots + x_ny_n) - \frac{1}{n}(x_1 + \cdots + x_n)(y_1 + \cdots + y_n)}{(x_1^2 + \cdots + x_n^2) - \frac{1}{n}(x_1 + \cdots + x_n)^2}
-      | \end{equation*}
+``` latex
+m = \frac{(x_1y_1 + \cdots + x_ny_n) - \frac{1}{n}(x_1 + \cdots + x_n)(y_1 + \cdots + y_n)}{(x_1^2 + \cdots + x_n^2) - \frac{1}{n}(x_1 + \cdots + x_n)^2}
+```
 
 We can substitute back into the equation for $b$ to find the only $(m,b)$ pair at which $\nabla L(m,b)$ is equal to the zero vector. If we trust our intuition that at least one minimizing $(m,b)$ pair must exist, then this is the one. In fact, this intuition is correct, and the formula above is indeed the formula for the line of best fit. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-50
@@ -816,9 +783,7 @@ Run the code below to confirm visually that the formula we derived above fits th
       | plt.scatter(x,y)
       | plt.plot(x,yfit)
 
-<p></p> <!--**-->
-
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-51
@@ -827,11 +792,9 @@ _{button.next-step} Continue_
 
 Let's consider the problem of optimizing a differentiable function $f$ from a subset $D$ of $\mathbb{R}^d$ to $\mathbb{R}$. 
 
-    center
+    figure
       img(src="images/lagrange.svg")
-      p.caption The graph of the function $f(x,y) = -x^2 - y^2 + x + \frac{2}{3} y + \frac{23}{36}$ over the disk $(x-\frac{1}{2})^2 + (y-\frac{1}{2})^2 \leq \frac{1}{4}$.
-
-<p></p>
+      p.caption.md The graph of the function $f(x,y) = -x^2 - y^2 + x + \frac{2}{3} y + \frac{23}{36}$ over the disk $(x-\frac{1}{2})^2 + (y-\frac{1}{2})^2 \leq \frac{1}{4}$.
 
 As we observed in the previous section, if $\nabla f$ is nonzero at a point away from the boundary of $D$, then there are directions in which $f$ decreases as you move away from that point and other directions where it increases. Therefore, any minima or maxima of $f$ away from the boundary of $D$ must occur at points where the gradient of $f$ is zero. We call points where the gradient of $f$ is zero or where $f$ is non-differentiable **critical points** of $f$. If a function has a minimum or a maximum at a point, then either that point is a critical point, or it is on the [[boundary|exterior|interior]] of the domain of the function. 
 
@@ -840,32 +803,32 @@ As we observed in the previous section, if $\nabla f$ is nonzero at a point away
 
 Now let's consider the possibility that $f$ has a maximum or minimum on the boundary of its domain $D$. For simplicity, we'll assume that $D$ is a subset of the plane. Because of the [directional derivative formula](gloss:directional-derivative), if $\nabla f$ is nonzero, then there are 180 degrees worth of directions in which $(x,y)$ may be nudged to increase the value of $f(x,y)$. Therefore, if $f$ reaches its maximum value at a boundary point, then either the gradient of $f$ is zero at that point, or else all of the directions in which $f$ increases are excluded by the constraint that $(x,y)$ is in $D$. If $D$ has a tangent line at such a point, the latter possibility requires that the tangent line be [[perpendicular|parallel]] to the gradient of $f$. 
 
-    center
-      img(src="images/lagrange-flat.svg")
-      p.caption If the gradient of $f$ is not perpendicular to the tangent line at a boundary point, then there are permissible directions of increase and $f$ does not have a maximum there. 
+::: figure
+    
+    img(src="images/lagrange-flat.svg")
+
+{.caption} If the gradient of $f$ is not perpendicular to the tangent line at a boundary point, then there are permissible directions of increase and $f$ does not have a maximum there.
+:::
 
 ---
 > id: step-53
 
-<p></p>
-
 If the boundary of $D$ is specified as a level set of a function $g$, then being perpendicular to the tangent line is the same as being parallel to the gradient of $g$. Two vectors are parallel if one is a multiple of the other, so we arrive at the equation 
 
-    p
-      | \begin{equation*}
-      |   \nabla f = \lambda \nabla g,
-      | \end{equation*}
+``` latex
+\nabla f = \lambda \nabla g,
+```
 
 for some $\lambda \in \mathbb{R}$. The variable $\lambda$ is called a *Lagrange multiplier*. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-54
 
 Although we framed the discussion assuming that the domain $D$ is a subset of the plane, the same analysis works in any dimension, and the resulting equation is still $\nabla f = \lambda \nabla g$. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-55
@@ -876,33 +839,25 @@ The *extreme value theorem* confirms the intuition that a continuous function de
 **Theorem** (Extreme value theorem and Lagrange multipliers)  
  Suppose that $f$ is a continuous function defined on a closed and bounded subset $D$ of $\mathbb{R}^n$. Then 
 
-    ul
-      li $f$ realizes an absolute maximum and absolute minimum on $D$ (the extreme value theorem) 
-      li any point where $f$ realizes an extremum is either a critical point—meaning that $\nabla f = 0$ or $f$ is non-differentiable at that point—or at a point on the boundary. 
-      li if $f$ realizes an extremum at a point on a portion of the boundary which is the level set of a differentiable function $g$ with non-vanishing gradient $\nabla g$, then either $f$ is non-differentiable at that point or the equation 
-        p
-          | \begin{equation*}
-          |   \nabla f = \lambda \nabla g
-          | \end{equation*}
-          | is satisfied at that point, for some $\lambda \in \mathbb{R}$. 
+* $f$ realizes an absolute maximum and absolute minimum on $D$ (the extreme value theorem) 
+* any point where $f$ realizes an extremum is either a critical point—meaning that $\nabla f = 0$ or $f$ is non-differentiable at that point—or at a point on the boundary. 
+* if $f$ realizes an extremum at a point on a portion of the boundary which is the level set of a differentiable function $g$ with non-vanishing gradient $\nabla g$, then either $f$ is non-differentiable at that point or the equation $\nabla f = \lambda \nabla g$ is satisfied at that point, for some $\lambda \in \mathbb{R}$. 
 
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-56
 
 This theorem suggests a program for optimizing a function $f$ on a domain $D$ whose boundary is a level set of a function $g$. 
 
-    ul
-      li Identify any points where
-        ul
-          li $\nabla f = 0$,
-          li $\nabla f$ is undefined,
-          li the boundary of $D$ is not smooth, or
-          li $\nabla f = \lambda \nabla g$ for some $\lambda \in \mathbb{R}$
-      li Calculate $f$ at all of these points and select the largest and smallest values.
+* Identify any points where
+  * $\nabla f = 0$,
+  * $\nabla f$ is undefined,
+  * the boundary of $D$ is not smooth, or
+  * $\nabla f = \lambda \nabla g$ for some $\lambda \in \mathbb{R}$
+* Calculate $f$ at all of these points and select the largest and smallest values.
 
 ::: .exercise
 **Exercise**  
@@ -916,10 +871,9 @@ This theorem suggests a program for optimizing a function $f$ on a domain $D$ wh
 
 *Solution*.   The system of equations $\frac{\partial}{\partial x} f = \frac{\partial}{\partial y} f = 0$ tells us that $y = x^3$ and $x = y^3$. Substituting, we find $x = x^9$, which can be rearranged and factored (by repeated applications of difference of squares) to get
 
-    p
-      | \begin{equation*}
-      |     x(x-1)(x+1)(x^2 + 1)(x^4+1) = 0.   
-      | \end{equation*}
+``` latex
+x(x-1)(x+1)(x^2 + 1)(x^4+1) = 0.   
+```
 
 The only value of $x$ in the interior of the rectangle which satisfies this equation is $x = 1$. Substituting into $y=x^3$, we find the critical point $(1,1)$ in the interior of the rectangle. The value of the function this point is $-2$.
 
@@ -929,23 +883,22 @@ Along the left edge, the function is equal to $y^4$, which has no interior criti
 
 So all together, checking critical points and corners gives
 
-    p
-      | \begin{equation*}
-      |   \begin{array}{c|c}
-      |     (x,y) & f(x,y)  \\\ \hline
-      |     (1,1) & -2 \\\ 
-      |     (0,0) & 0 \\\ 
-      |     (3,0) & 81 \\\ 
-      |     (0,2) & 16 \\\ 
-      |     (3,2) & 73 \\\ 
-      |     (3,\sqrt[3]{3}) & 81 - 9\sqrt[3]{3} \approx 68.02 \\\ 
-      |     (\sqrt[3]{2},2) & 16 - 6\sqrt[3]{2} \approx 8.44
-      |   \end{array}
-      | \end{equation*}
+``` latex
+\begin{array}{c|c}
+  (x,y) & f(x,y)  \\ \hline
+  (1,1) & -2 \\\ 
+  (0,0) & 0 \\\ 
+  (3,0) & 81 \\\ 
+  (0,2) & 16 \\\ 
+  (3,2) & 73 \\\ 
+  (3,\sqrt[3]{3}) & 81 - 9\sqrt[3]{3} \approx 68.02 \\\ 
+  (\sqrt[3]{2},2) & 16 - 6\sqrt[3]{2} \approx 8.44
+\end{array}
+```
 
 Therefore, the absolute maximum is $\boxed{81}$ and the absolute minimum is $\boxed{-2}$. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-58
@@ -962,28 +915,26 @@ Find the point closest to the origin in the region $3x + 2y + z \geq 6$.
 
 *Solution*. We can rule out the possibility that the point nearest the origin is in the interior of the region, on geometric grounds. To find the boundary critical points, we set the *objective* function 
 
-    p
-      | \begin{equation*}
-      |   f(x,y,z) = x^2 + y^2 + z^2
-      | \end{equation*}
+``` latex
+f(x,y,z) = x^2 + y^2 + z^2
+```
 
 and the *constraint* function $g(x,y,z) = 3x + 2y + z$ describing the boundary of the given set. Solving the Lagrange equation 
 
-    p
-      | \begin{equation*}
-      |   [2x, 2y, 2z] = \lambda [3, 2, 1],
-      | \end{equation*}
+``` latex
+[2x, 2y, 2z] = \lambda [3, 2, 1],
+```
 
 together with the constraint equation $3x + 2y + z = 6$, we get $\frac{\lambda}{2}(3(3) + 2(2) + 1(1)) = 6$, which implies $\lambda = \frac{6}{7}$. So we get a single critical point $\left(\frac{9}{7},\frac{6}{7}, \frac{3}{7}\right)$, and since there's only one, the minimum must occur here. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-60
 
 We can also use the Lagrange multiplier idea in the reverse direction. Let's look at an example from statistics where Lagrange multipliers give rise to a meaningful insight. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-61
@@ -992,28 +943,26 @@ _{button.next-step} Continue_
 
 Consider the problem of fitting a plane of the form $z = ax + by$ to a set of points $(x_1, y_1, z_1), \ldots, (x_n, y_n, z_n)$ in $\mathbb{R}^3$. As we did for the *line* of best fit above, we will look for the plane which minimizes the sum of squared distances in the $z$-direction from the points to the plane. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-62
 
 Sometimes this approach gives undesirable results because the resulting values for $a$ and $b$ are considered too large for a given application. If we want to force them to be smaller, we can add a term to our objective function which penalizes largeness of $a$ and $b$. We choose some positive value $\lambda$ and propose the objective function  
 
-    p
-      | \begin{equation*}
-      |   (ax_1 + by_1 - z_1)^2 + \cdots + (ax_n + by_n - z_n)^2 + \lambda(a^2 + b^2)
-      | \end{equation*}
+``` latex
+(ax_1 + by_1 - z_1)^2 + \cdots + (ax_n + by_n - z_n)^2 + \lambda(a^2 + b^2)
+```
 
 This is called the *ridge* objective function. Alternatively, we could use 
 
-    p
-      | \begin{equation*}
-      |   (ax_1 + by_1 - z_1)^2 + \cdots + (ax_n + by_n - z_n)^2 + \lambda(|a| + |b|)
-      | \end{equation*}
+``` latex
+(ax_1 + by_1 - z_1)^2 + \cdots + (ax_n + by_n - z_n)^2 + \lambda(|a| + |b|)
+```
 
 This is called the *lasso* objective function. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-63
@@ -1025,7 +974,7 @@ It turns out in practice that the lasso minimizer frequently has either $a$ or $
 Use the method of Lagrange multipliers to explain why the lasso minimizer tends to have solutions on the coordinate axes in the $(a,b)$ plane, while the ridge minimizer does not. 
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-64
@@ -1044,11 +993,11 @@ Applying the same analysis to the lasso minimizer, we get an optimization proble
 
     .row.padded
       .grow
-        center
+        figure
           img(src="images/ridge.svg")
           p.caption.md **Ridge**. The point of tangency is where $f(a,b)$ is minimized subject to the constraint $a^2 + b^2 \leq c$. This point is typically not on a coordinate axis.
       .grow
-        center
+        figure
           img(src="images/lasso.svg")
           p.caption.md **Lasso**. The lowest level line which intersects the square does so at one of the square's corners. 
 
@@ -1066,12 +1015,11 @@ Many airlines require that the sum of the length, width and height of a checked 
 
 *Solution*. The objective function is the volume formula for a box, namely $f(l,w,h) = lwh$. The constraint equation is $g(l,w,h) = lw + wh + hl = 62$. The Lagrange equation tells us that 
 
-    p
-      | \begin{align*}
-      |   wh &= \lambda \\\ 
-      |   lh &= \lambda \\\ 
-      |   lw &= \lambda
-      | \end{align*}
+``` latex
+wh &= \lambda \\\ 
+lh &= \lambda \\\ 
+lw &= \lambda
+```
 
 Since we also have the equation $lw + wh + hl = 62$, we have four equations and four variables. Multiplying the three equations above, we get $(whl)^2=\lambda^3$, which means $whl = \lambda^{3/2}$. Dividing this equation by each of the original three equations gives $w = h = l = \lambda^{1/2}$. Substituting into the last equation, we find $w = h = l = 62/3$. Thus the maximum-volume luggage shape is a cube.
 
@@ -1084,29 +1032,27 @@ Just as elementary differentiation rules are helpful for optimizing single-varia
 
 Suppose $\mathbf{f}$ is a function from $\mathbb{R}^n$ to $\mathbb{R}^m$. Writing $\mathbf{f}(\mathbf{x}) = \mathbf{f}(x\_1, \ldots, x\_n)$, we define the Jacobian matrix (or *derivative* matrix) to be 
 
-    p
-      | \begin{equation*} 
-      |     \frac{\partial \mathbf{f}}{\partial \mathbf{x}} = \left[
-      |       \begin{array}{cccc}
-      |         \frac{\partial f_1}{\partial x_1} & \frac{\partial f_1}{\partial x_2} & \cdots & \frac{\partial f_1}{\partial x_n}  \\\\ 
-      |         \frac{\partial f_2}{\partial x_1} & \frac{\partial f_2}{\partial x_2} & \cdots & \frac{\partial f_2}{\partial x_n}  \\\\ 
-      |         \vdots & & \ddots & \vdots \\\\ 
-      |         \frac{\partial f_m}{\partial x_1} & \frac{\partial f_m}{\partial x_2} & \cdots & \frac{\partial f_m}{\partial x_n}
-      |       \end{array}\right]
-      | \end{equation*}
+``` latex
+\frac{\partial \mathbf{f}}{\partial \mathbf{x}} = \left[
+  \begin{array}{cccc}
+    \frac{\partial f_1}{\partial x_1} & \frac{\partial f_1}{\partial x_2} & \cdots & \frac{\partial f_1}{\partial x_n}  \\ 
+    \frac{\partial f_2}{\partial x_1} & \frac{\partial f_2}{\partial x_2} & \cdots & \frac{\partial f_2}{\partial x_n}  \\ 
+    \vdots & & \ddots & \vdots \\ 
+    \frac{\partial f_m}{\partial x_1} & \frac{\partial f_m}{\partial x_2} & \cdots & \frac{\partial f_m}{\partial x_n}
+  \end{array}\right]
+```
 
 Note that if $m=1$, then differentiating $f$ with respect to $\mathbf{x}$ is the same as taking the gradient of $f$. 
 
 With this definition, we obtain the following analogues to some basic single-variable differentiation results: if $A$ is a constant matrix, then 
 
-    p
-      | \begin{align*}
-      |     \frac{\partial}{\partial \mathbf{x}} (A \mathbf{x}) &= A \\\ 
-      |     \frac{\partial}{\partial \mathbf{x}} (\mathbf{x}' A) &= A'
-      |     \\\ 
-      |     \frac{\partial}{\partial \mathbf{x}} (\mathbf{u}' \mathbf{v})
-      |              &= \mathbf{u}'\frac{\partial \mathbf{v}}{\partial \mathbf{x}} + \mathbf{v}'\frac{\partial \mathbf{u}}{\partial \mathbf{x}}
-      |   \end{align*}
+``` latex
+\frac{\partial}{\partial \mathbf{x}} (A \mathbf{x}) &= A \\\ 
+\frac{\partial}{\partial \mathbf{x}} (\mathbf{x}' A) &= A'
+\\\ 
+\frac{\partial}{\partial \mathbf{x}} (\mathbf{u}' \mathbf{v})
+         &= \mathbf{u}'\frac{\partial \mathbf{v}}{\partial \mathbf{x}} + \mathbf{v}'\frac{\partial \mathbf{u}}{\partial \mathbf{x}}
+```
  
 The third of these equations is the [[product]] rule. 
 
@@ -1115,11 +1061,10 @@ The third of these equations is the [[product]] rule.
 
 The Hessian of a function $f:\mathbb{R}^n \to \mathbb{R}$ may be written in terms of the matrix differentiation operator as follows: 
 
-    p
-      | \begin{equation*}
-      |     \mathbf{H}(\mathbf{x}) = \frac{\partial}{\partial \mathbf{x}}
-      |     \left(\frac{\partial f}{\partial \mathbf{x}}\right)'.
-      | \end{equation*}
+``` latex
+\mathbf{H}(\mathbf{x}) = \frac{\partial}{\partial \mathbf{x}}
+\left(\frac{\partial f}{\partial \mathbf{x}}\right)'.
+```
       
 Some authors define $\frac{\partial f}{\partial \mathbf{x}'}$ to be $\left(\frac{\partial f}{\partial \mathbf{x}}\right)'$, in which case the Hessian operator can be written as $\frac{\partial^2}{\partial \mathbf{x} \partial \mathbf{x}'}$. 
 
@@ -1135,17 +1080,16 @@ Let $f: \mathbb{R}^n \to \mathbb{R}$ be defined by $f(\mathbf{x}) = \mathbf{x}' 
 
 *Solution*. We can apply the product rule to find that 
 
-    p
-      | \begin{equation*}
-      |       \frac{\partial f}{\partial \mathbf{x}} = \mathbf{x}'
-      |       \frac{\partial}{\partial \mathbf{x}}(A\mathbf{x}) +
-      |       (A\mathbf{x})' \frac{\partial \mathbf{x}}{\partial
-      |         \mathbf{x}}
-      |        = \mathbf{x}' A + \mathbf{x}' A =
-      |        2\mathbf{x}' A.
-      | \end{equation*}
+``` latex
+\frac{\partial f}{\partial \mathbf{x}} = \mathbf{x}'
+\frac{\partial}{\partial \mathbf{x}}(A\mathbf{x}) +
+(A\mathbf{x})' \frac{\partial \mathbf{x}}{\partial
+  \mathbf{x}}
+ = \mathbf{x}' A + \mathbf{x}' A =
+ 2\mathbf{x}' A.
+```
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-70 
@@ -1155,40 +1099,37 @@ _{button.next-step} Continue_
 Suppose $A$ is an $m\times n$ matrix and $\mathbf{b} \in \mathbb{R}^m$. Use matrix differentiation to find the vector $\mathbf{x}$ which minimizes $|A \mathbf{x} - \mathbf{b}|^2$. Hint: begin by writing $|A \mathbf{x} - \mathbf{b}|^2$ as $(A \mathbf{x} - \mathbf{b})' (A \mathbf{x} - \mathbf{b})$. You may assume that the rank of $A$ is $n$. 
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-71
 
 *Solution*. We write 
 
-    p
-      | \begin{align*}
-      |        |A \mathbf{x} - \mathbf{b}|^2 &= (A \mathbf{x} -
-      |                                        \mathbf{b})' (A \mathbf{x} - \mathbf{b}) \\\ 
-      |        &= \mathbf{x}' A' A \mathbf{x} -
-      |          \mathbf{b}' A' \mathbf{x} + \mathbf{x}' A
-      |          \mathbf{b} + |\mathbf{b}|^2.
-      | \end{align*}
+``` latex
+|A \mathbf{x} - \mathbf{b}|^2 &= (A \mathbf{x} -
+                                \mathbf{b})' (A \mathbf{x} - \mathbf{b}) \\\ 
+&= \mathbf{x}' A' A \mathbf{x} -
+  \mathbf{b}' A' \mathbf{x} + \mathbf{x}' A
+  \mathbf{b} + |\mathbf{b}|^2.
+```
 
 To minimize this function, we find its gradient 
 
-    p
-      | \begin{equation*}
-      |   \frac{\partial}{\partial \mathbf{x}}|A \mathbf{x} -
-      |   \mathbf{b}|^2 = 2\,\mathbf{x}' A' A -
-      |   \mathbf{b}' A + (A'\mathbf{b})' =
-      |   2\mathbf{x}' A' A- 2\mathbf{b}' A
-      | \end{equation*}
+``` latex
+\frac{\partial}{\partial \mathbf{x}}|A \mathbf{x} -
+\mathbf{b}|^2 = 2\,\mathbf{x}' A' A -
+\mathbf{b}' A + (A'\mathbf{b})' =
+2\mathbf{x}' A' A- 2\mathbf{b}' A
+```
 
 and set it equal to $\boldsymbol{0}$ to get 
 
-    p
-      | \begin{equation*}
-      |   \mathbf{x}' = \mathbf{b}' A(A' A)^{-1}
-      |   \implies \mathbf{x} = (A' A)^{-1} A'
-      |   \mathbf{x}.
-      | \end{equation*}
+``` latex
+\mathbf{x}' = \mathbf{b}' A(A' A)^{-1}
+\implies \mathbf{x} = (A' A)^{-1} A'
+\mathbf{x}.
+```
 
 (We know that $A' A$ has an inverse matrix because its rank is equal to that of $A$, which we assumed was $m$.)
 
@@ -1200,19 +1141,18 @@ One way of describing the [chain rule](gloss:chain-rule) is to say that derivati
 
 The chain rule in multivariable calculus works similarly. If we compose a differentiable function $\mathbf{r}:[a,b]\to \mathbb{R}^2$ with a differentiable function $f: \mathbb{R}^2 \to \mathbb{R}^1$, we get a function whose derivative is 
 
-    p
-      | \begin{equation*}
-      |   (f \circ \mathbf{r})'(t)  = \frac{\partial f}{\partial \mathbf{x}}(\mathbf{r}(t))
-      |   \mathbf{r}'(t)
-      | \end{equation*}
+``` latex
+(f \circ \mathbf{r})'(t)  = \frac{\partial f}{\partial \mathbf{x}}(\mathbf{r}(t))
+\mathbf{r}'(t)
+```
 
 Note that the right-hand side can also be written as $(\nabla f)(\mathbf{r}(t)) \cdot \mathbf{r}'(t)$, since $\frac{\partial f}{\partial \mathbf{x}}(\mathbf{r}(t))$ is a row vector, and the product of a row vector and a column vector is the same as the dot product of the [[transpose|unit vector|inverse]] of the row vector and the column vector. We can explain this formula geometrically: the change that results from making a small move from $\mathbf{r}(t)$ to $\mathbf{r}(t) + \mathbf{r}'(t) \Delta t$ is the dot product of the gradient of $f$ and the small step $\mathbf{r}'(t) \Delta t$. 
 
-    center
+    figure
       img(src="images/chain-rule.svg")
-      p.caption We visualize $\mathbf{r}$ by drawing the points $\mathbf{r}(t)$, which trace out a curve in the plane. We visualize $f$  only by showing the direction of its gradient at the point $\mathbf{r}(t)$. The change in $f$ from one point on the curve to another is the dot product of the change in position and the gradient.
+      p.caption.md We visualize $\mathbf{r}$ by drawing the points $\mathbf{r}(t)$, which trace out a curve in the plane. We visualize $f$  only by showing the direction of its gradient at the point $\mathbf{r}(t)$. The change in $f$ from one point on the curve to another is the dot product of the change in position and the gradient.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-77
@@ -1231,11 +1171,10 @@ Suppose that $\frac{\partial f}{\partial x}(3,2) = 4$, that $\frac{\partial f}{\
 *Solution*. The chain rule implies that the derivative of $f(x(t),y(t))$ is 
 
 ``` latex
-[f_x(x(t),y(t)), f_y(x(t),y(t))]\cdot [x'(t), y'(t)] = (4)(2) +
-(-2)(-4) = \boxed{16}.
+[f_x(x(t),y(t)), f_y(x(t),y(t))]\cdot [x'(t), y'(t)] = (4)(2) + (-2)(-4) = \boxed{16}.
 ```
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-79
@@ -1252,13 +1191,12 @@ Find the derivative with respect to $t$ of the function $g(t) = t^t$ by writing 
 
 *Solution*. Let $f(x(t),y(t)) = x^y$ where $x(t) = t$ and $y(t) = t$.  We have that $\frac{\partial f}{\partial x} = yx^{y-1}$ and $\frac{\partial f}{\partial y} = x^{y} \ln{x}$.  Since both derivatives of $x$ and $y$ with respect to $t$ are 1, the chain rule implies that 
 
-    p
-      | \begin{equation*}
-      |   g'(t) = t\cdot t^{t-1} + t^t\ln{t} = t^t(1 + \ln{t}).
-      | \end{equation*}
+``` latex
+g'(t) = t\cdot t^{t-1} + t^t\ln{t} = t^t(1 + \ln{t}).
+```
 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ::: .exercise
 **Exercise**  
@@ -1274,16 +1212,15 @@ Note: you might find it convenient to express your answer using the function dia
 
 *Solution*. The derivative matrix of $f$ is diagonal, since the derivative of $y_j^2$ with respect to $y_i$ is zero unless $i = j$. The diagonal entries are $2y_1, 2y_2, \ldots$. The derivative of $g$ is $A$, as we saw in the section on matrix differentiation. Therefore, the derivative of the composition is 
 
-    p
-      | \begin{equation*}
-      | \left[
-      |   \begin{array}{cccc} 2(A\mathbf{x})_1 & 0 & \cdots & 0 \\\ 
-      |   0 & (2A\mathbf{x})_2 & \cdots & 0 \\\ 
-      |   \vdots & & \ddots & \vdots \\\ 
-      |   0 & 0 & \cdots & 2(A\mathbf{x})_n
-      |   \end{array}
-      | \right]A = 2\operatorname{diag}(A\mathbf{x})A. 
-      | \end{equation*}
+``` latex
+\left[
+  \begin{array}{cccc} 2(A\mathbf{x})_1 & 0 & \cdots & 0 \\\ 
+  0 & (2A\mathbf{x})_2 & \cdots & 0 \\\ 
+  \vdots & & \ddots & \vdots \\\ 
+  0 & 0 & \cdots & 2(A\mathbf{x})_n
+  \end{array}
+\right]A = 2\operatorname{diag}(A\mathbf{x})A. 
+```
 
 We can check this exercise numerically: 
 
@@ -1304,10 +1241,7 @@ We can check this exercise numerically:
       | derivative = 2 * np.diag(A @ x) @ A
       | np.allclose(f(g(x + Δx)) - f(g(x)), derivative @ Δx)
 
-
-<p></p>
-
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: multivariable-integration
@@ -1331,13 +1265,12 @@ Find the integral over the triangle $T$ with vertices $(0,0)$, $(2,0)$, and $(0,
 
 *Solution*. The least and greatest values of $y$ for any point in the region are 0 and 3, while the least and greatest values of $x$ for each given $y$-slice are 0 and $2 - \frac{2}{3}y$. Therefore, the integral is 
 
-    p
-      | \begin{equation*}
-      |     \int_0^3 \int_0^{2 - \frac{2}{3}y} x^2 y \, \mathrm{d} x \, \mathrm{d} y =
-      |     \frac{6}{5}.
-      | \end{equation*}
+``` latex
+\int_0^3 \int_0^{2 - \frac{2}{3}y} x^2 y \, \mathrm{d} x \, \mathrm{d} y =
+\frac{6}{5}.
+```
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-73
@@ -1358,14 +1291,13 @@ Integrate the function $f(x,y,z) = 1$ over the tetrahedron with vertices $(0,0,0
 
 *Solution*.  The least and greatest values of $z$ are 0 and 4, so those are our outer limits (see the figure below). For a fixed value of $z$, the least and greatest values of $y$ for a point in $D$ are 0 and $3 - \tfrac{3}{4}z$, respectively. Finally, for fixed $y$ and $z$, the least and greatest values of $x$ for a point in $D$ are 0 and the point on the plane $6x + 4y + 3z = 12$ with the given values of $y$ and $z$. So we get 
 
-    p
-      | \begin{align*}
-      |   \text{volume}(D) &= \int_{0}^{4}\int_{0}^{3-\frac{3}{4}z}\int_{0}^{2 - \frac{2}{3}y - \frac{1}{2}z} 1 \, \mathrm{d}x \, \mathrm{d}y \, \mathrm{d}z  \\\ &= \int_{0}^{4}\int_{0}^{3-\frac{3}{4}z} \left(2 - \frac{2}{3}y - \frac{1}{2}z \right) \, \mathrm{d}y \, \mathrm{d}z \\\ 
-      | &= \int_{0}^{4} \frac{3}{16}(z-4)^2 \, \mathrm{d}z \\\ 
-      | &= \boxed{4}.
-      | \end{align*}
+``` latex
+\text{volume}(D) &= \int_{0}^{4}\int_{0}^{3-\frac{3}{4}z}\int_{0}^{2 - \frac{2}{3}y - \frac{1}{2}z} 1 \, \mathrm{d}x \, \mathrm{d}y \, \mathrm{d}z  \\\ &= \int_{0}^{4}\int_{0}^{3-\frac{3}{4}z} \left(2 - \frac{2}{3}y - \frac{1}{2}z \right) \, \mathrm{d}y \, \mathrm{d}z \\\ 
+&= \int_{0}^{4} \frac{3}{16}(z-4)^2 \, \mathrm{d}z \\\ 
+&= \boxed{4}.
+```
 
-    center: img(src="images/tetrahedron.svg")
+    figure: img(src="images/tetrahedron.svg")
 
 ### Exercises
 
@@ -1376,17 +1308,16 @@ Evaluate $\int_0^8 \int_{\sqrt[3]{y}}^2 e^{x^4} \, \mathrm{d} x \,\mathrm{d} y$ 
 
 *Solution* Let's begin by drawing the region: 
 
-    center
+    figure
       img(src="images/reverse-region.svg")
 
 We can see that this is the region under the graph of $y = x^3$ from $x = 0$ to $x = 2$. Thus we integrate as $x$ ranges from 0 to 2 and (for each fixed value of $x$) as $y$ ranges from 0 to $x^3$. We get
 
-    p
-      | \begin{align*}
-      | \int^2_0 \int^{x^3}_0 e^{x^4}\,\mathrm{d} y\,\mathrm{d} x &= \int^2_0 \int^{x^3}_0 y
-      | e^{x^4} \bigg\rvert_{y=0}^{y={x^3}}\,\mathrm{d} x \\\ &= \int^2_0 x^3e^{x^4} \,\mathrm{d} x = \frac{e^{x^4}}{4}\bigg\rvert_0^2 = \frac{e^{16} - 1}{4} \approx
-      | 2221527. 
-      | \end{align*}
+``` latex
+\int^2_0 \int^{x^3}_0 e^{x^4}\,\mathrm{d} y\,\mathrm{d} x &= \int^2_0 \int^{x^3}_0 y
+e^{x^4} \bigg\rvert_{y=0}^{y={x^3}}\,\mathrm{d} x \\\ &= \int^2_0 x^3e^{x^4} \,\mathrm{d} x = \frac{e^{x^4}}{4}\bigg\rvert_0^2 = \frac{e^{16} - 1}{4} \approx
+2221527. 
+```
 
 ---
 > id: step-75
@@ -1396,7 +1327,7 @@ We can see that this is the region under the graph of $y = x^3$ from $x = 0$ to 
 Consider the region $R$ between the parabolas $y=1-x^2$ and
 $y=x^2-7$. Find $\iint_R xy \\, \mathrm{d} A$.
 
-    center: img(src="images/two-parabs.svg")
+    figure: img(src="images/two-parabs.svg")
 :::
 
     x-quill
@@ -1407,13 +1338,12 @@ $y=x^2-7$. Find $\iint_R xy \\, \mathrm{d} A$.
 *Solution*. We see that the curves intersect at $x = -2$ and $x =
 2$. So we get 
 
-    p
-      | \begin{align*}
-      | \int^2_{-2} \int^{1-x^2}_{x^2-7} xy \,\mathrm{d} y\,\mathrm{d} x &= \int^{2}_{-2} {\frac{xy^2}{2} \bigg\rvert_{x^2-7}^{1-x^2}} \,\mathrm{d} x \\\ &= \int^2_{-2} {\frac{x}{2}[(1 - 2x^2 +x^4)-(x^4 -14x^2 +49)]} \,\mathrm{d} x \\\ 
-      |  &= \int^2_{-2} {6x^3 - 24x} \,\mathrm{d} x \\\ &= \frac{3x^4}{2}-12x^2 \bigg\rvert^2_{-2} \\\ &= 0
-      | \end{align*}
+``` latex
+\int^2_{-2} \int^{1-x^2}_{x^2-7} xy \,\mathrm{d} y\,\mathrm{d} x &= \int^{2}_{-2} {\frac{xy^2}{2} \bigg\rvert_{x^2-7}^{1-x^2}} \,\mathrm{d} x \\\ &= \int^2_{-2} {\frac{x}{2}[(1 - 2x^2 +x^4)-(x^4 -14x^2 +49)]} \,\mathrm{d} x \\\ 
+&= \int^2_{-2} {6x^3 - 24x} \,\mathrm{d} x \\\ &= \frac{3x^4}{2}-12x^2 \bigg\rvert^2_{-2} \\\ &= 0
+```
       
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: custom-integration
@@ -1423,36 +1353,34 @@ If we want to integrate over a region which doesn't split nicely along lines par
 
 For example, consider integrating $f(x,y) = y^2$ over the region bounded by the hyperbolas $xy = 1$ and $xy = 3$ and the lines $y = \frac{1}{2}x$ and $y = 2x$. This region naturally splits along hyperbolas of the form $xy = v$ where $v$ ranges from 1 to 3 and lines of the form $y/x = u$ where $u$ ranges from $\frac{1}{2}$ to 2. One convenient way of describing this family of curves and lines we're using to slice up the region is to write the region as the image of the rectangle $[\frac{1}{2},2] \times [1,3]$ under the inverse $\mathbf{T}$ of the transformation $(x,y) \mapsto (y/x,xy)$. 
 
-    center: img(src="images/change-of-variables.svg")
+    figure: img(src="images/change-of-variables.svg")
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-82
 
 To integrate over the region in the $xy$-plane using this subdivision, we need to find the area of each small piece. Since the areas of the rectangles in the $uv$-plane are easier to deal with, we find the areas of the piece in the $xy$-plane by [[multiplying|dividing]] the area of the corresponding rectangle by the area distortion factor of the transformation $\mathbf{T}$. This local area distortion factor, or *Jacobian determinant* is the absolute value of the determinant of the Jacobian matrix $\frac{\partial \mathbf{T}(\mathbf{x})}{\partial \mathbf{x}}$. This is because the area distortion factor of a linear transformation is the absolute value of its determinant, and a differentiable function is essentially [linear](gloss:linearize) when zoomed far enough in. Thus we arrive at the formula 
 
-    p
-      | \begin{equation*}
-      |   \iint_D f(x,y) \, \mathrm{d}x\, \mathrm{d}y = \iint_R f(\mathbf{T}(u,v)) \left|
-      |     \frac{\partial \mathbf{T}(u,v)}{\partial (u,v)} \right| \, \mathrm{d}u \, \mathrm{d}v, 
-      | \end{equation*}
+``` latex
+\iint_D f(x,y) \, \mathrm{d}x\, \mathrm{d}y = \iint_R f(\mathbf{T}(u,v)) \left|
+\frac{\partial \mathbf{T}(u,v)}{\partial (u,v)} \right| \, \mathrm{d}u \, \mathrm{d}v, 
+```
 
 where $\left|\frac{\partial \mathbf{T}(u,v)}{\partial (u,v)} \right|$ is notation for the absolute value of the determinant of the transformation $\mathbf{T}$. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-83
 
 Since the area distortion factor of $\mathbf{T}$ is the [[reciprocal|negation]] of the area distortion factor of $\mathbf{T}^{-1}$, we can work out that $\left|\frac{\partial \mathbf{T}(u,v)}{\partial (u,v)} \right| = \left|\begin{array}{cc} x & y \\\\\\ 1/x & -y/x^2 \end{array} \right|^{-1} = (2y/x)^{-1} = \frac{1}{2v}$, which implies 
 
-    p 
-      | \begin{equation*}
-      | \iint_D f(x,y) \, \mathrm{d}x\, \mathrm{d}y = \int_{1}^{3}\int_{1/2}^{2}uv \left(\frac{1}{2v}\right) \mathrm{d} u \, \mathrm{d}v = \boxed{3}.
-      | \end{equation*}
+``` latex
+\iint_D f(x,y) \, \mathrm{d}x\, \mathrm{d}y = \int_{1}^{3}\int_{1/2}^{2}uv \left(\frac{1}{2v}\right) \mathrm{d} u \, \mathrm{d}v = \boxed{3}.
+```
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-84
@@ -1471,23 +1399,21 @@ Use the map $(u,v) \mapsto (u \cos v, u \sin v)$ from the rectangle $[0,1] \time
 
 *Solution*. The Jacobian of the given transformation is 
 
-    p
-      | \begin{equation*}
-      |     \left|\begin{array}{cc}
-      |             \cos v & \sin v \\\\ 
-      |             -u\sin v & u \cos v
-      |           \end{array}
-      |         \right| = u(\cos^2 v + \sin^2 v) = u.
-      | \end{equation*}
+``` latex
+\left|\begin{array}{cc}
+        \cos v & \sin v \\ 
+        -u\sin v & u \cos v
+      \end{array}
+    \right| = u(\cos^2 v + \sin^2 v) = u.
+```
       
 So the area of the disk is equal to 
 
-    p
-      | \begin{equation*}
-      |   \int_0^1 \int_0^{2\pi} u \, \mathrm{d}u \mathrm{d}v = \boxed{\pi}.
-      | \end{equation*}
+``` latex
+\int_0^1 \int_0^{2\pi} u \, \mathrm{d}u \mathrm{d}v = \boxed{\pi}.
+```
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-86

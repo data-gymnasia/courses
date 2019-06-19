@@ -32,7 +32,7 @@ decide to train an algorithm to operate the controls. If your
 algorithm presses random buttons (like your little sibling), it will
 perform [[poorly|great]]: 
 
-    center
+    figure
         <iframe width="560" height="315" src="https://www.youtube.com/embed/1qa7oRhZvbM?start=12&end=20" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ---
@@ -41,7 +41,7 @@ However, if the algorithm is provided with information about when it
 was doing well and when it wasn't, then over time it can learn to do
 much better:
 
-    center
+    figure
         <iframe width="560" height="315" src="https://www.youtube.com/embed/1qa7oRhZvbM?start=94&end=102" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 The missing ingredient in this story is a mechanism for
@@ -76,7 +76,7 @@ action chosen by the agent, we mean that ($r_{t}, s_{t+1}$) is a
 *CartPole* is the canonical first reinforcement learning example
 problem: 
 
-    center
+    figure
         <iframe width="560" height="315" src="https://www.youtube.com/embed/5Q14EjnOJZc?start=94&end=100" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 The goal is to keep the pole upright. The agent gets to decide [[how
@@ -232,7 +232,7 @@ sums]]. Furthermore, in a real-world
 scenario, we don't know the values of $\mathcal{R}$
 and $\mathbb{P}$; we can only infer them by following a policy and
 repeatedly observing the behavior of the environment. 
- 
+
 ---
  
 Remarkably, there is a way to squeeze water from the Q-function
@@ -285,21 +285,23 @@ We'll begin by importing _{code.language-python}gym_ as well as
 _{code.language-python}numpy_
 and _{code.language-python}pyplot_. 
 
-    pre: code.language-python
-      | import numpy as np
-      | import matplotlib.pyplot as plt
-      | import gym
+``` python
+import numpy as np
+import matplotlib.pyplot as plt
+import gym
+```
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 
 Next, we'll create and visualize a new environment for an MDP called
 *FrozenLake*.
 
-    pre: code.language-python
-      | env = gym.make('FrozenLake-v0',is_slippery=False)
-      | env.render()
+``` python
+env = gym.make('FrozenLake-v0',is_slippery=False)
+env.render()
+```
 
     table.eqnarray
       tr
@@ -345,18 +347,20 @@ function]] to store them. Let's initialize this matrix to the zero
 matrix. Let's make our code generic by accessing the size of the state
 space and action space of the environment. 
 
-    pre: code.language-python
-      | Q = np.zeros((env.observation_space.n, env.action_space.n))
+``` python
+Q = np.zeros((env.observation_space.n, env.action_space.n))
+```
 
 ---
 
 Next, let's set our momentum, discount rate, and number of
 episodes.
 
-    pre: code.language-python
-      | α = 0.8  # momentum
-      | γ = 0.95 # discount factor
-      | EPISODES = 10000
+``` python
+α = 0.8  # momentum
+γ = 0.95 # discount factor
+EPISODES = 10000
+```
 
 Continue: [[Yes!|No]]
 
@@ -373,17 +377,18 @@ that we are approximating the expectation on the right-hand side of
 the Bellman equation using [[a one-sample plug-in estimator|an
 integral|a kernel density estimator]].
 
-    pre: code.language-python
-      | for i in range(EPISODES):
-      |     s = env.reset()
-      |     while True:
-      |         a = np.argmax(Q[s,:])
-      |         s_new, reward, done, info = env.step(a)
-      |         Q[s,a] = (1-α)*Q[s,a] + α*(reward + γ*np.max(Q[s_new,:]))
-      |         s = s_new
-      |         if done:
-      |             break
-      
+``` python
+for i in range(EPISODES):
+    s = env.reset()
+    while True:
+        a = np.argmax(Q[s,:])
+        s_new, reward, done, info = env.step(a)
+        Q[s,a] = (1-α)*Q[s,a] + α*(reward + γ*np.max(Q[s_new,:]))
+        s = s_new
+        if done:
+            break
+```
+
 ---
 
 The problem with this approach is that we make the same decisions
@@ -395,16 +400,17 @@ Q-vector before choosing an action. We define the amount of noise to
 be a decreasing function of the episode number so that we focus
 increasingly on paths we've determined to be better:
 
-    pre: code.language-python
-      | for i in range(EPISODES):
-      |     s = env.reset()
-      |     while True:
-      |         a = np.argmax(Q[s,:] + np.random.randn(1,env.action_space.n)/(i+1))
-      |         s_new, reward, done, info = env.step(a)
-      |         Q[s,a] = (1-α)*Q[s,a] + α*(reward + γ*np.max(Q[s_new,:]))
-      |         s = s_new
-      |         if done:
-      |             break
+``` python
+for i in range(EPISODES):
+    s = env.reset()
+    while True:
+        a = np.argmax(Q[s,:] + np.random.randn(1,env.action_space.n)/(i+1))
+        s_new, reward, done, info = env.step(a)
+        Q[s,a] = (1-α)*Q[s,a] + α*(reward + γ*np.max(Q[s_new,:]))
+        s = s_new
+        if done:
+            break
+```
 
 ---
 
@@ -412,10 +418,11 @@ We can look at the resulting Q-matrix, but it's a little hard to
 read. Let's reshape it back into a 4×4 grid by identifying for each
 position the Q-value of the *best* action from that state. 
 
-    pre: code.language-python
-      | plt.matshow(np.max(Q, axis=1).reshape(4,4))
-      
-    center: img(src="images/matrix-output.jpg" width=240)
+``` python
+plt.matshow(np.max(Q, axis=1).reshape(4,4))
+```
+
+    figure: img(src="images/matrix-output.jpg" width=240)
 
 We see that our agent [[did|did not]] find the frisbee, and it
 identified [[1]] path(s) for doing so. 
@@ -427,9 +434,9 @@ path and still isn't exploring the state space very well. We can fix
 this by increasing the [[variance|mean|correlation]] of the Gaussian
 noise. Doing so yields the following result:
 
-    center: img(src="images/matrix-output-2.jpg" width=240)
+    figure: img(src="images/matrix-output-2.jpg" width=240)
 
---
+---
 
 This is a much more accurate estimate of the true Q-function: every
 non-hole state has significant value, since optimal play will get you
@@ -481,35 +488,35 @@ weights based on the observed history
 (_{code.language-python}replay_). Our main task will be to implement
 the _{code.language-python}DQNAgent_ class. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 
-    pre: code.language-python
-      | import gym
-      | 
-      | env = gym.make('FrozenLake-v0')
-      | state_size = env.observation_space.n
-      | action_size = env.action_space.n
-      | agent = DQNAgent(state_size, action_size)
-      | batch_size = 32
-      | EPISODES = 1000
-      | 
-      | for i in range(EPISODES):
-      |     state = env.reset()
-      |     for time in range(500):
-      |         action = agent.act(state)
-      |         next_state, reward, done, info = env.step(action)
-      |         agent.remember(state, action, reward, next_state, done)
-      |         state = next_state
-      |         if done:
-      |             print(f"episode: {i}/{EPISODES}, reward: {reward}")
-      |             break
-      |         if len(agent.memory) > batch_size:
-      |             agent.replay(batch_size)
+``` python
+import gym
 
+env = gym.make('FrozenLake-v0')
+state_size = env.observation_space.n
+action_size = env.action_space.n
+agent = DQNAgent(state_size, action_size)
+batch_size = 32
+EPISODES = 1000
 
-_{button.next-step} Continue_
+for i in range(EPISODES):
+    state = env.reset()
+    for time in range(500):
+        action = agent.act(state)
+        next_state, reward, done, info = env.step(action)
+        agent.remember(state, action, reward, next_state, done)
+        state = next_state
+        if done:
+            print(f"episode: {i}/{EPISODES}, reward: {reward}")
+            break
+        if len(agent.memory) > batch_size:
+            agent.replay(batch_size)
+```
+
+[Continue](btn:next)
 
 ---
 
@@ -520,11 +527,12 @@ space size and an action space size when initializing an agent.
 
 ---
 
-    pre: code.language-python
-      | class DQNAgent(object):
-      |     def __init__(self, state_size, action_size):
-      |         self.state_size = state_size
-      |         self.action_size = action_size
+``` python
+class DQNAgent(object):
+    def __init__(self, state_size, action_size):
+        self.state_size = state_size
+        self.action_size = action_size
+```
 
 ---
 
@@ -539,23 +547,26 @@ list but is optimized for appending and popping from both ends. We only want to 
 makes this easier because [[a full deque drops old entries|plain
 Python lists cannot drop entries]]. So we'll add 
 
-    pre: code.language-python
-      | from collections import deque
-      
+``` python
+from collections import deque
+```
+
 to our import statements, 
 
-    pre: code.language-python
-      | self.memory = deque(maxlen=2000)
+``` python
+self.memory = deque(maxlen=2000)
+```
 
 to *{code.language-python}__init__*, and the method 
 
-    pre: code.language-python
-      | def remember(self, state, action, reward, next_state, done):
-      |     self.memory.append((state, action, reward, next_state, done))
+``` python
+def remember(self, state, action, reward, next_state, done):
+    self.memory.append((state, action, reward, next_state, done))
+```
 
 to _{code.language-python}class DQNAgent_. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 
@@ -576,19 +587,20 @@ call an internally stored Keras model, to obtain our current estimate
 of `Q`. Finally, we will return the index corresponding to the largest
 value. 
 
-    pre: code.language-python
-      | # add to import statements: 
-      | import numpy as np 
-      | import random
-      |
-      | # add to __init__
-      | self.epsilon = 1.0
-      | 
-      | def act(self, state):
-      |     if np.random.rand() <= self.epsilon:
-      |         return random.randrange(self.action_size)
-      |     act_values = self.predict(state)
-      |     return np.argmax(act_values[0])
+``` python
+# add to import statements: 
+import numpy as np 
+import random
+
+# add to __init__
+self.epsilon = 1.0
+
+def act(self, state):
+    if np.random.rand() <= self.epsilon:
+        return random.randrange(self.action_size)
+    act_values = self.predict(state)
+    return np.argmax(act_values[0])
+```
 
 To implement _{code.language-python}predict_, we add a Keras model as
 an attribute of the object. We will use a helper method to build the
@@ -599,29 +611,30 @@ _{code.language-python}self.model.predict_, additionally taking care of
 the one-hot encoding and the [[extra axis|spline|decorator]] expected by the Keras
 object. 
 
-    pre: code.language-python
-      | # add import statements 
-      | from tensorflow.keras.models import Sequential
-      | from tensorflow.keras.layers import Dense
-      | from tensorflow.keras.optimizers import Adam
-      | 
-      | # add these lines to __init__:
-      | self.learning_rate = 0.001
-      | self.model = self._build_model()
-      | 
-      | def _build_model(self):
-      |     model = Sequential()
-      |     model.add(Dense(24, input_dim=self.state_size, activation='relu'))
-      |     model.add(Dense(24, activation='relu'))
-      |     model.add(Dense(self.action_size, activation='linear'))
-      |     model.compile(loss='mse',
-      |                   optimizer=Adam(lr=self.learning_rate))
-      |     return model
-      | 
-      | def predict(self, state):
-      |     onehot = np.zeros(self.state_size)
-      |     onehot[state] = 1
-      |     return self.model.predict(onehot[np.newaxis,:])
+``` python
+# add import statements 
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.optimizers import Adam
+
+# add these lines to __init__:
+self.learning_rate = 0.001
+self.model = self._build_model()
+
+def _build_model(self):
+    model = Sequential()
+    model.add(Dense(24, input_dim=self.state_size, activation='relu'))
+    model.add(Dense(24, activation='relu'))
+    model.add(Dense(self.action_size, activation='linear'))
+    model.compile(loss='mse',
+                  optimizer=Adam(lr=self.learning_rate))
+    return model
+
+def predict(self, state):
+    onehot = np.zeros(self.state_size)
+    onehot[state] = 1
+    return self.model.predict(onehot[np.newaxis,:])
+```
 
 ---
 
@@ -629,11 +642,12 @@ Likewise, we can define a _{code.language-python}fit_ analogue to
 _{code.language-python}self.model.fit_ which handles the one-hot
 encoding
 
-    pre: code.language-python
-      | def fit(self, state, *args, **kwargs):
-      |     onehot = np.zeros(self.state_size)
-      |     onehot[state] = 1
-      |     self.model.fit(onehot[np.newaxis, :], *args, **kwargs)
+``` python
+def fit(self, state, *args, **kwargs):
+    onehot = np.zeros(self.state_size)
+    onehot[state] = 1
+    self.model.fit(onehot[np.newaxis, :], *args, **kwargs)
+```
 
 Note the use of _{code.language-python}\*args, \*\*kwargs_ to support
 passing arbitrary positional and keyword arguments through from the
@@ -661,24 +675,25 @@ actual action taken, so we call _{code.language-python}fit_ with a
 vector that is only different from the already-predicted vector in the
 position coresponding to the action taken. 
 
-    pre: code.language-python
-      | self.gamma = 0.95 # add to __init__
-      | 
-      | def replay(self, batch_size):
-      |     minibatch = random.sample(self.memory, batch_size)
-      |     for state, action, reward, next_state, done in minibatch:
-      |         if not done:
-      |             target = (reward + self.gamma *
-      |                       np.amax(self.predict(next_state)[0]))
-      |         else: 
-      |             target = reward
-      |         target_f = self.predict(state)
-      |         # index 0 b/c of extra axis expected by Keras: 
-      |         target_f[0][action] = target 
-      |         self.fit(state, target_f, epochs=1, verbose=0)
-      |     if self.epsilon > 0.01:
-      |         self.epsilon *= 0.995
-    
+``` python
+self.gamma = 0.95 # add to __init__
+
+def replay(self, batch_size):
+    minibatch = random.sample(self.memory, batch_size)
+    for state, action, reward, next_state, done in minibatch:
+        if not done:
+            target = (reward + self.gamma *
+                      np.amax(self.predict(next_state)[0]))
+        else: 
+            target = reward
+        target_f = self.predict(state)
+        # index 0 b/c of extra axis expected by Keras: 
+        target_f[0][action] = target 
+        self.fit(state, target_f, epochs=1, verbose=0)
+    if self.epsilon > 0.01:
+        self.epsilon *= 0.995
+```
+
 If we run this model, then the update messages show us that the agent
 takes several runs to [[begin finding the frisbee|find the frisbee
 every time]] and then begins succeeding [[more frequently|100% of the time]]. 
@@ -712,7 +727,7 @@ This second approach is called a *policy gradient* method. Policy
 gradient's key difference from Q-learning is that the policy is being
 modeled directly and is adjusted based on observed rewards. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 
@@ -745,7 +760,7 @@ $\alpha$ is the learning rate and $\theta$ is a vector of all of `J`'s
 parameters. It turns out that we can crack this problem with some
 pretty interesting math ideas. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 
@@ -763,7 +778,7 @@ the *derivative* of this function.
 
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 
@@ -778,7 +793,7 @@ way to compute derivatives (due to catastrophic cancellation), a
 finite-difference derivative estimate using Monte Carlo will be
 inaccurate to the point of meaninglessness.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 
@@ -827,11 +842,10 @@ differentiate it. However, if we write $\tau$ out as
 $(s_0, a_0, r_0, s_1, a_1, \ldots)$,
 then 
 
-    p 
-      | \begin{equation} 
-      | p_\theta(\tau) = \prod_{t \geq 0}\left[\mathbb{P}_{(s_t,a_t)}
-      | (s_{t+1}) \mathcal{R}_{(s_t,a_t)}(r_t) \pi_{\theta}(s_t,a_t)\right]
-      | \end{equation} 
+``` latex
+p_\theta(\tau) = \prod_{t \geq 0}\left[\mathbb{P}_{(s_t,a_t)}
+(s_{t+1}) \mathcal{R}_{(s_t,a_t)}(r_t) \pi_{\theta}(s_t,a_t)\right]
+```
 
 This formula just says that the probability of a trajectory `tau` is
 the probability that each transition in `tau` occurs. Each of those
@@ -844,11 +858,10 @@ since it's [[constant with respect to `theta`|linear in
 `theta`]]. Likewise, the [[second|third]] term also goes away. We're
 left with 
 
-    p 
-      | $$
-      | \frac{\partial}{\partial \theta}\log p_{\theta}(\tau) = \sum_{t \geq
-      | 0}\frac{\partial}{\partial \theta}\log \pi_{\theta}(s_t,a_t). 
-      | $$
+``` latex
+\frac{\partial}{\partial \theta}\log p_{\theta}(\tau) = \sum_{t \geq
+0}\frac{\partial}{\partial \theta}\log \pi_{\theta}(s_t,a_t). 
+```
 
 ---
 
@@ -860,16 +873,16 @@ backpropagation, for example, if $\pi_{\theta}$ is a neural network).
 Putting it all together, our Monte Carlo estimate for 
 $\partial J/\partial \theta$ is 
 
-    p 
-      | \begin{equation} \label{eq:mc}
-      | \overline{\sum_{\tau}}R(\tau)\sum_{t \geq 0} \frac{\partial}{\partial \theta}
-      | \log \pi_{\theta}(s_t, a_t), 
-      | \end{equation} 
+``` latex
+\label{eq:mc}
+\overline{\sum_{\tau}}R(\tau)\sum_{t \geq 0} \frac{\partial}{\partial \theta}
+\log \pi_{\theta}(s_t, a_t), 
+```
 
 where $\overline{\sum_{\tau}}$ indicates taking a mean over
 a collection of sample trajectories $\tau$. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 
@@ -889,7 +902,7 @@ policy to inferior actions as we go. We can do this by defining a
 baseline function $b:\mathcal{S} \to \mathbb{R}$ 
 to subtract from the reward in \eqref{eq:mc}.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 
@@ -915,10 +928,9 @@ To be specific, let's consider one particular actor-critic model: the
 the actor weight update rule by replacing reward $\mathcal{R}(\tau)$ 
 with the **advantage**
 
-    p 
-      | $$
-      | A(s_t, a_t) = Q(s_t, a_t) - V(s_t),
-      | $$
+``` latex
+A(s_t, a_t) = Q(s_t, a_t) - V(s_t),
+```
 
 where $V(s)$
 represents the average value of the state $s$ when the action 
@@ -935,7 +947,7 @@ $r_t + \gamma V(s_{t+1})$ for $Q(s_t, a_t)$ in the formula for
 advantage, and we will train the critic model to estimate the value 
 function $V$ rather than $Q$. 
       
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
   
@@ -951,6 +963,6 @@ time $t$ already sampled, we
    with the single-element set of training data $[s_t]$ and target 
    $r_t + \gamma \widehat{V}(s_{t+1})$. 
    
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 Your homework will involve implementing this model in Keras!

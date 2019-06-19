@@ -8,21 +8,21 @@
 
 When we do data science, we begin with a data set and work to gain insights about the process that generated the data. Crucial to this endeavor is a robust vocabulary for discussing the behavior of data-generating processes. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-1
 
 It is helpful to initially consider data-generating processes whose randomness properties are specified completely and precisely. The study of such processes is called **probability**. For example, "What's the probability that I get at least 7 heads in 10 independent flips of a fair coin?" is a probability question, because the setup is fully specified: the coins have exactly 50% probability of heads, and the different flips do not affect one another. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-2
 
 The question of whether the coins are really fair or whether the flips are really independent will be deferred to our study of *statistics*. In statistics, we will have the *outcome* of a random experiment in hand and will be looking to draw inferences about the unknown *setup*. Once we are able to answer questions in the "setup $\rightarrow$ outcome" direction, we will be well positioned to approach the "outcome $\rightarrow$ setup" direction. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-3
@@ -51,7 +51,6 @@ The third question is also a **probability** question. We're told the dice are f
 
 The third question is a **statistics** question, since the outcome of the rolls is known, and the probabilities are in question. 
 
- 
 ---
 > id: counting
 ## Counting
@@ -60,7 +59,7 @@ We begin our study of probability with a closely related topic: *counting*.
 
 We first learn to count the number of elements in a set by mentally [traversing](gloss:traverse) it while reciting a sequence of natural numbers: "one, two, three, ...". The last number recited when all elements have been counted is the number of elements in the set. However, that approach quickly becomes impractical if the set is large, and it doesn't yield much insight. Therefore, we will build up a toolkit of principles for reasoning about counting problems.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-5
@@ -82,24 +81,22 @@ This exercise is a special case of the **fundamental principle of counting**:
 If one experiment has $m$ possible outcomes, and if a second experiment has $n$ possible outcomes for each of the outcomes in the first experiment, then there are $mn$ possible outcomes for the pair of experiments. 
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-7
 
 One simple way to prove the fundamental theorem of counting is to observe that the possible outcomes for the pair of experiments can be arranged to form an $m\times n$ rectangle: 
 
-    p
-      | \begin{equation*} 
-      |   \begin{array}{c|cccccc}
-      |     & 1 & 2 & 3 & 4 & 5 & 6 \\\ \hline
-      |   \texttt{H} & (\texttt{H},1) & (\texttt{H},2) & (\texttt{H},3) & (\texttt{H},4) & (\texttt{H},5) & (\texttt{H},6) \\\ 
-      |   \texttt{T} & (\texttt{T},1) & (\texttt{T},2) & (\texttt{T},3) & (\texttt{T},4) & (\texttt{T},5) & (\texttt{T},6)
-      |   \end{array}
-      | \end{equation*}
-      | 
+``` latex
+\begin{array}{c|cccccc}
+  & 1 & 2 & 3 & 4 & 5 & 6 \\ \hline
+\texttt{H} & (\texttt{H},1) & (\texttt{H},2) & (\texttt{H},3) & (\texttt{H},4) & (\texttt{H},5) & (\texttt{H},6) \\
+\texttt{T} & (\texttt{T},1) & (\texttt{T},2) & (\texttt{T},3) & (\texttt{T},4) & (\texttt{T},5) & (\texttt{T},6)
+\end{array}
+```
  
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-8
@@ -116,31 +113,29 @@ The number of ordered triples of *distinct* elements from $\\{1,2,3,4\\}$ is [[2
 
 *Solution*. This problem is different from the previous one because the choice for which number goes in the first slot in the tuple affects the subsequent choices. If we choose 3 first, then we can't choose it for the second or third slots. However, the *number* of options for each choice is the same regardless of the previous choices: we have four choices for the first slot, then three for the second (once the first choice has been made), then two for the third. Thus there are $4 \times 3 \times 2 = 24$ ordered triples.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-10
 
 So that it's extra clear there's no sleight of hand involved in this argument, here's a graphic organizer for all 24 triples and the choices made along the way: 
 
-    center: img(src="images/counting-tree.svg")
+    figure: img(src="images/counting-tree.svg")
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-11
  
 We can generalize this idea to count the number of ordered $r$-tuples of distinct elements of an $n$-element set. We begin forming an $r$-tuple by selecting any one of the $n$ possibilities for the first entry. Given any of the choices for the first entry, there are $n-1$ choices for the second entry. By the fundamental principle of counting, there are $n(n-1)$ choices for the first two entries. Continuing in this way, we find that there are 
 
-    p
-      | \begin{equation*}
-      |   n(n-1)(n-2) \cdots (n-r+1)
-      | \end{equation*}
-      |
+``` latex
+n(n-1)(n-2) \cdots (n-r+1)
+```
        
 choices for filling in all $r$ entries. We write $n(n-1)(n-2) \cdots (n-r+1)$ as $(n)\_r$, read as "$n$ falling $r$". 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-12
@@ -157,7 +152,7 @@ Note: a positive integer must be between 100 and 999 (inclusive) to count as a t
 
 *Solution*. There are 9 choices for the first digit, then for any of those choices there are 9 choices for the second digit. Finally, given any pair of digits in the first two positions, there are 8 choices for the last entry. So there are $9\cdot 9 \cdot 8  = \boxed{648}$ choices in total. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-14
@@ -170,42 +165,35 @@ The number of $r$-element subsets of an $n$-element set is denoted $\binom{n}{r}
 **Example**  
 We have $\binom{4}{3} = 4$, since there are four ways to choose a 3-element subset of a 4-element set. The sets 
 
-    p
-      | \begin{equation*}
-      |     \{1,2,3\}, \{1,2,4\}, \{1,3,4\}, \{2,3,4\}
-      | \end{equation*}
+``` latex
+\{1,2,3\}, \{1,2,4\}, \{1,3,4\}, \{2,3,4\}
+```
       
 are all of the 3-element subsets of $\\{1,2,3,4\\}$. 
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-15
  
 To work out a general procedure for evaluating $\binom{n}{r}$, we may first count the number of $r$-tuples and then account for all of the repeats. For example, if $r = 3$, then the tuples 
 
-    p
-      | \begin{equation*}
-      |   (1,2,3), (1,3,2), (2,1,3), (2,3,1), (3,1,2), (3,2,1)
-      | \end{equation*}
-      | 
- should collectively contribute 1, rather than 6, to the total count. Since every set of $r$ elements corresponds to $r(r-1)(r-2)\cdots (2)(1)$ $r$-tuples of distinct elements, we divide the number of $r$-tuples by this number to obtain an expression for $\binom{n}{r}$: 
+``` latex
+(1,2,3), (1,3,2), (2,1,3), (2,3,1), (3,1,2), (3,2,1)
+```
 
-    p
-      | \begin{equation*}
-      |   \binom{n}{r} = \frac{n(n-1)(n-2)\cdots (n-r+1)}{r(r-1)(r-2)\cdots
-      |     (2)(1)}.
-      | \end{equation*}
+should collectively contribute 1, rather than 6, to the total count. Since every set of $r$ elements corresponds to $r(r-1)(r-2)\cdots (2)(1)$ $r$-tuples of distinct elements, we divide the number of $r$-tuples by this number to obtain an expression for $\binom{n}{r}$: 
+
+``` latex
+\binom{n}{r} = \frac{n(n-1)(n-2)\cdots (n-r+1)}{r(r-1)(r-2)\cdots (2)(1)}.
+```
 
 We often abbreviate the product $r(r-1)(r-2)\cdots (2)(1)$ as $r!$. Thus 
 
-    p
-      | \begin{equation*}
-      |   \binom{n}{r} = \frac{(n){}_r}{r!}
-      | \end{equation*}
-      | 
-
+``` latex
+\binom{n}{r} = \frac{(n){}_r}{r!}
+```
 
 ::: .exercise
 **Exercise**  
@@ -217,7 +205,7 @@ Of the 1024 total length-10 strings composed of the symbols _{code.language-pyth
 
 *Solution*. For each 6-element subset of the 10 positions in the string, we can place _{code.language-python}T_'s in those six positions and _{code.language-python}H_'s in the remaining positions to get a sequence of the given description. Therefore, there are $\binom{10}{6} = 210$ total strings with exactly 6 _{code.language-python}T_'s. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-17
@@ -254,7 +242,7 @@ Let $\Omega = \\{0, 1, 2, \cdots, 100\\}$ be the set of natural numbers up to an
 * Using values calculated above, we have $|A\cup B| = 34 + 21 - 7 = 48.$
 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-19
@@ -273,7 +261,7 @@ For example, $\\{\mathrm{a}, \mathrm{r}, \mathrm{w}\\}$ and $\\{\mathrm{d}, \mat
 *Solution*. There are $2^{26} = 67{,}108{,}864$ subsets of the alphabet, because we can form a subset by choosing for each letter whether to include it or exclude it. By the fundamental principle of counting, the number of ways to make these 26 choices is $2 \times 2 \times \cdots
   \times 2 = 2^{26}$. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-21
@@ -282,11 +270,10 @@ _{button.next-step} Continue_
 **Exercise**  
 Expand the algebraic expression $(x+y)^3$. Show that the coefficients of this expansion are given by the binomial coefficients of the form $\binom{3}{r}$ where $r$ ranges from 0 to 3: 
 
-    p
-      | \begin{equation*}
-      |     (x+y)^3 = \binom{3}{0}x^3y^0 + \binom{3}{1}x^2y^1 +
-      |     \binom{3}{2}x^1y^2 + \binom{3}{3}x^0y^3
-      | \end{equation*}
+``` latex
+(x+y)^3 = \binom{3}{0}x^3y^0 + \binom{3}{1}x^2y^1 +
+\binom{3}{2}x^1y^2 + \binom{3}{3}x^0y^3
+```
 
 Write an analogous expansion for $(x+y)^4$. 
 :::
@@ -298,22 +285,19 @@ Write an analogous expansion for $(x+y)^4$.
 
 *Solution*. The first equation holds since both sides work out to $(x+y)^3 = x^3 + 3x^2y + 3xy^2 + y^3$. The second holds since both sides are equal to 
 
-    p
-      | \begin{equation*}
-      |     (x+y)^4 = x^4 + 4x^3y + 6x^2y^2 + 4xy^3 + y^4.
-      | \end{equation*}
+``` latex
+(x+y)^4 = x^4 + 4x^3y + 6x^2y^2 + 4xy^3 + y^4.
+```
  
 Generally, we have 
 
-    p
-      | \begin{equation*}
-      |     (x+y)^n = \binom{n}{0}x^ny^0 + \binom{n}{1}x^{n-1}y^1 + \cdots +
-      |     \binom{n}{n-1}x^1y^{n-1} + \binom{n}{n}x^0y^3
-      | \end{equation*}
+``` latex
+(x+y)^n = \binom{n}{0}x^ny^0 + \binom{n}{1}x^{n-1}y^1 + \cdots +
+\binom{n}{n-1}x^1y^{n-1} + \binom{n}{n}x^0y^3
+```
 
 because a term of the form $x^{n-r}y^r$ is formed when expanding the product $(x+y)(x+y)\cdots(x+y)$ if and only if the $x$ was selected from $n-r$ of the $(x+y)$ factors and $y$ was selected from the remaining $r$ factors. This can happen in $\binom{n}{r}$ ways, so the coefficient of $x^{n-r}y^r$ is $\binom{n}{r}$. 
 
- 
 ---
 > id: probability-models
 ## Probability Models
@@ -322,22 +306,22 @@ In this section we will learn how to mathematically represent and reason about r
 
 ::: .example
 **Example** (Exchange paradox)  
-Two envelopes are placed on the table in front of you, containing $X$ and $2X$ dollars for some unknown positive number $X$ (you don't know which envelope is which). You choose one of the envelopes and discover <span>$</span>10 inside. You have a choice to switch envelopes; should you? 
+Two envelopes are placed on the table in front of you, containing $X$ and $2X$ dollars for some unknown positive number $X$ (you don't know which envelope is which). You choose one of the envelopes and discover \$10 inside. You have a choice to switch envelopes; should you? 
 
 On one hand, your chance of getting the better envelope was 50% to begin with, and opening the envelope did not provide any information on whether you succeeded. From this perspective, you should be indifferent to switching. 
 
-On the other hand, you might reason that the unopened envelope contains either <span>$</span>20 or <span>$5</span>, with a 50% chance of each. So on average the other envelope contains <span>$</span>12.50. from this perspective, you should switch. 
+On the other hand, you might reason that the unopened envelope contains either \$20 or \$5, with a 50% chance of each. So on average the other envelope contains \$12.50. from this perspective, you should switch. 
 
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-23
 
 How can we adjudicate between these contradictory analyses? It would be very helpful to have **model** for the situation—that is, a mathematical object together with a way to translate questions about the situation to unambiguous questions about the object. This provides separation of concerns: questions about the model will be math questions and can be answered with mathematical certainty. Any remaining uncertainty about the applicability of conclusions will pertain to whether the model suitably reflects reality. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-24
@@ -346,11 +330,10 @@ _{button.next-step} Continue_
 
 Let's set the exchange paradox aside and develop a model for the following simple experiment: **two flips of a fair coin**. We begin by observing that we can write down all [[4]] possible outcomes: 
 
-    p
-      | \begin{equation*}
-      |   \{(\texttt{H},\texttt{H}), (\texttt{H},\texttt{T}),
-      |   (\texttt{T},\texttt{H}), (\texttt{T},\texttt{T})\}.
-      | \end{equation*}
+``` latex
+\{(\texttt{H},\texttt{H}), (\texttt{H},\texttt{T}),
+(\texttt{T},\texttt{H}), (\texttt{T},\texttt{T})\}.
+```
       
 This is clearly an important set; let's call it the **sample space** and denote it as $\Omega$. 
 
@@ -368,7 +351,7 @@ So all together, we have
 
 The pair $(\Omega,m)$ is already enough to specify the experiment, but we need a few more translations for the model to be useful. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-27
@@ -423,16 +406,16 @@ Match each term to its corresponding set-theoretic operation by appropriately so
 
 For concreteness, you can think about the events "first flip comes up heads" and "second flip comes up heads" for the two-flip probability space we've been considering. 
 
-    ul 
-      li the event that $E$ and $F$ both occur 
-      li the event that $E$ does not occur 
-      li the event that either $E$ occurs or $F$ occurs 
+* the event that $E$ and $F$ both occur 
+* the event that $E$ does not occur 
+* the event that either $E$ occurs or $F$ occurs 
+
 
     x-sortable
       .item.md(data-index="0") the intersection $E \cap F$
       .item.md(data-index="2") the union $E \cup F$
       .item.md(data-index="1") the complement $E^{\mathsf{c}}$
-        
+
 :::
 
 ---
@@ -444,7 +427,7 @@ The event that $E$ does not occur is $E^{\mathsf{c}}$, since the complement of $
 
 The event that either $E$ or $F$ occurs is $E \cup F$, since $E \cup F$ is the set of outcomes which are in either $E$ or $F$. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-32
@@ -468,25 +451,24 @@ Suppose a group of $n$ friends enter the lottery. For $i \in \\{1, \dots , n\\}$
 * The event that all friends win is $\bigcap\_{i=1}^n E\_i.$ 
 * The event that at least one friend wins is $\bigcup\_{i=1}^n E\_i.$
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-34
 
 Since events play a more prominent role than individual outcomes in discussions of probability, we will demote the probability mass function to auxiliary status and instead focus on the function $\mathbb{P}$ from the set of *events* to $[0,1]$ which assigns to each event the total probability mass therein. For example, for our two-flip experiment, the function $\mathbb{P}$ satisfies 
 
-    p
-      | \begin{align*}
-      |   \mathbb{P}(\{(\texttt{H},\texttt{T})\}) &= \tfrac{1}{4} \\\\ 
-      |   \mathbb{P}(\{\}) &= 0 \\\\ 
-      |   \mathbb{P}(\{(\texttt{H},\texttt{H}), (\texttt{H},\texttt{T}),
-      |   (\texttt{T},\texttt{T})\}) &= \tfrac{3}{4} \\\\ 
-      |   \mathbb{P}(\Omega) &= 1,
-      | \end{align*}
-      | 
+``` latex
+\mathbb{P}(\{(\texttt{H},\texttt{T})\}) &= \tfrac{1}{4} \\ 
+\mathbb{P}(\{\}) &= 0 \\ 
+\mathbb{P}(\{(\texttt{H},\texttt{H}), (\texttt{H},\texttt{T}),
+(\texttt{T},\texttt{T})\}) &= \tfrac{3}{4} \\ 
+\mathbb{P}(\Omega) &= 1,
+```
+
 and so on. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-35
@@ -495,11 +477,10 @@ _{button.next-step} Continue_
 **Exercise**  
 If 
 
-    p
-      | \begin{equation*}
-      |     \Omega = \{(\texttt{H},\texttt{H}), (\texttt{H},\texttt{T}),
-      |   (\texttt{T},\texttt{H}), (\texttt{T},\texttt{T})\}, 
-      | \end{equation*}
+``` latex
+\Omega = \{(\texttt{H},\texttt{H}), (\texttt{H},\texttt{T}),
+(\texttt{T},\texttt{H}), (\texttt{T},\texttt{T})\}, 
+```
       
 then the number of elements in the domain of $\mathbb{P}$ is [[16]]. 
 
@@ -507,7 +488,7 @@ then the number of elements in the domain of $\mathbb{P}$ is [[16]].
 
 *Solution*. The domain of $\mathbb{P}$ is the set of subsets of $\Omega$. Since $\Omega$ has 4 elements, there are $2 \times 2 \times 2 \times 2 = \boxed{16}$ elements in the domain of $\mathbb{P}$. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-36
@@ -525,7 +506,7 @@ We call $\mathbb{P}(E) = \sum\_{\omega \in E} m(\omega)$ the **probability measu
 
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-37
@@ -546,12 +527,13 @@ Use the additivity property and the fact that $A = (A \cap B) \cup (A \cap B^{\m
 
 *Solution*. We have $\mathbb{P}(A) = \mathbb{P}(A \cap B) + \mathbb{P}(A \cap B^c)$ by additivity. Since $A \cap B = B$ and probabilities are non-negative, it follows that 
 
-    p
-      | \begin{equation*}\mathbb{P}(A) = \mathbb{P}(B) + \mathbb{P}(A \cap B^c) \geq \mathbb{P}(B) \end{equation*}
+``` latex
+\mathbb{P}(A) = \mathbb{P}(B) + \mathbb{P}(A \cap B^c) \geq \mathbb{P}(B)
+```
 
 as required. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-39
@@ -570,26 +552,24 @@ Use this property to show that if $A$ occurs with probability zero and $B$ occur
  
 *Solution*. Define $\tilde{A}$ to be the set of $\omega$'s which are in $A$ but not $B$, and let $\tilde{B}$ be the set of $\omega$'s which are in $B$ but not $A$. Then 
 
-    p
-      | \begin{equation*}
-      |       \mathbb{P}(A \cup B) = \mathbb{P}(\tilde{A} \cup \tilde{B} \cup (A \cap B)) =
-      |       \mathbb{P}(\tilde{A}) + \mathbb{P}(\tilde{B}) + \mathbb{P}( A \cap B),
-      | \end{equation*}
+``` latex
+\mathbb{P}(A \cup B) = \mathbb{P}(\tilde{A} \cup \tilde{B} \cup (A \cap B)) =
+\mathbb{P}(\tilde{A}) + \mathbb{P}(\tilde{B}) + \mathbb{P}( A \cap B),
+```
 
  since $\tilde{A}$, $\tilde{B}$, and $A \cap B$ are disjoint and together make up $A \cup B$. Furthermore, since $\mathbb{P}(A) =
     \mathbb{P}(\tilde{A}) + \mathbb{P}(A \cap B)$ and similarly for $B$, we have 
 
-    p
-      | \begin{align*}
-      |       \mathbb{P}(A \cup B) &= \mathbb{P}(A) - \mathbb{P}(A \cap B) + \mathbb{P}(B) - \mathbb{P}(A\cap B) + \mathbb{P}(A
-      |       \cap B) \\\ &= \mathbb{P}(A) + \mathbb{P}(B) - \mathbb{P}(A \cap B) \leq \mathbb{P}(A) + \mathbb{P}(B),
-      | \end{align*}
+``` latex
+\mathbb{P}(A \cup B) &= \mathbb{P}(A) - \mathbb{P}(A \cap B) + \mathbb{P}(B) - \mathbb{P}(A\cap B) + \mathbb{P}(A
+\cap B) \\\ &= \mathbb{P}(A) + \mathbb{P}(B) - \mathbb{P}(A \cap B) \leq \mathbb{P}(A) + \mathbb{P}(B),
+```
 
 as desired. 
 
 We have $\mathbb{P}(A \cup B) \leq \mathbb{P}(A) + \mathbb{P}(B) \leq 0 + 0 = 0$ if both $A$ and $B$ have probability zero, so $\mathbb{P}(A \cup B) = 0$ in that case.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-41
@@ -610,7 +590,7 @@ Suppose that $\Omega$ is the set of ordered pairs of positive integers, with pro
 
 *Solution*. The probability of the event $\\{(i,j) \in \Omega : i > 2\\}$ is the sum of the probability masses of all the points in $\Omega$ which lie to the right of the line $x = 2$. The probability of the event $\\{(i,j) \in \Omega : i = t\\}$ is the sum of the probability masses of all of the points on the vertical line $x = t$. So summing these probabilities over each $t$ value in $\\{3, 4, 5, \ldots\\}$ amounts to totalling the probability mass right of the line $x = 2$ in columns. Since positive quantities may be summed in any order, this column-wise sum will indeed yield the total mass right of the line $x = 2$. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-43
@@ -640,47 +620,45 @@ An event may be regarded as [[a binary|an unbounded|a bijective]] function of th
 
 For example, suppose that you will receive a dollar for each head flipped in our two-fair-flips experiment. Then your payout $X$ might be 0 dollars, 1 dollar, or 2 dollars. Because $X$ represents a value which is random (that is, dependent on the outcome of a random experiment), it is called a **random variable**. A random variable which takes values in some finite or countably infinite set (such as $\\{0,1,2\\}$, in this case) is called a **discrete** random variable. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-47
 
 Since a random variable associates a real number to each outcome of the experiment, in mathematical terms a random variable is a *function* from the sample space to $\mathbb{R}$. Using function notation, the dollar-per-head payout random variable $X$ satisfies 
 
-    p
-      | \begin{align*}
-      |     X((\texttt{T}, \texttt{T})) &= 0, \\\ 
-      |     X((\texttt{H}, \texttt{T})) &= 1, \\\ 
-      |     X((\texttt{T}, \texttt{H})) &= 1, \text{ and} \\\ 
-      |     X((\texttt{H}, \texttt{H})) &= 2.
-      | \end{align*}
+``` latex
+X((\texttt{T}, \texttt{T})) &= 0, \\\ 
+X((\texttt{H}, \texttt{T})) &= 1, \\\ 
+X((\texttt{T}, \texttt{H})) &= 1, \text{ and} \\\ 
+X((\texttt{H}, \texttt{H})) &= 2.
+```
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-48
       
 Note that a random variable $X$, as a function from $\Omega$ to $\mathbb{R}$, does not have its own uncertainty: for each outcome $\omega$, the value of $X(\omega)$ is consistently and perfectly well defined. The randomness comes entirely from thinking of $\omega$ as being selected randomly from $\Omega$. For example, the amount $X$ of money you'll take home from tomorrow's poker night is a random quantity, but the function which maps each poker game outcome $\omega$ to your haul $X(\omega)$ is fully specified by the rules of poker.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-49
  
 We can combine random variables using any operations or functions we can use to combine numbers. For example, suppose $X\_1$ is defined to be the number of heads in the first of two coin flips. In other words, we define
 
-    p
-      | \begin{align*}
-      |     X_1((\texttt{T}, \texttt{T})) &= 0 \\\ 
-      |     X_1((\texttt{H}, \texttt{T})) &= 1 \\\ 
-      |     X_1((\texttt{T}, \texttt{H})) &= 0 \\\ 
-      |     X_1((\texttt{H}, \texttt{H})) &= 1,
-      | \end{align*}
+``` latex
+X_1((\texttt{T}, \texttt{T})) &= 0 \\\ 
+X_1((\texttt{H}, \texttt{T})) &= 1 \\\ 
+X_1((\texttt{T}, \texttt{H})) &= 0 \\\ 
+X_1((\texttt{H}, \texttt{H})) &= 1,
+```
 
       
 and $X\_2$ is defined to be the number of heads in the second flip. Then the random variable $X\_1 + X\_2$ maps each $\omega \in \Omega$ to $X\_1(\omega) + X\_2(\omega)$. This random variable is equal to $X$, since $X(\omega) = X\_1(\omega) + X\_2(\omega)$ for every $\omega \in \Omega$. 
  
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-50
@@ -699,15 +677,14 @@ Define a six-element probability space $\Omega$ on which $X$ and $Y$ may be defi
 
 *Solution*. We set $\Omega = \\{(1, 1), (2, 2), (3, 3), (4, 0), (5, 1), (6, 2)\\}.$ From the sample space, we see that for any integer value $k,$ we have 
 
-    p
-      | \begin{equation*}
-      |   \mathbb{P}(X - Y = k) = \begin{cases}
-      |     \frac{1}{2} & \text{if} \; k \in \{0, 4\} \\\ 
-      |               0 & \text{otherwise.}
-      |   \end{cases}
-      | \end{equation*}
+``` latex
+\mathbb{P}(X - Y = k) = \begin{cases}
+  \frac{1}{2} & \text{if} \; k \in \{0, 4\} \\\ 
+            0 & \text{otherwise.}
+\end{cases}
+```
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-52
@@ -716,14 +693,13 @@ _{button.next-step} Continue_
 **Exercise**  
 Consider a sample space $\Omega$ and an event $E \subset \Omega$. We define the random variable $\mathbf{1}\_{E} : \Omega \rightarrow \\{0,1\\}$ by 
 
-    p
-      | \begin{equation*}
-      |       \mathbf{1}_{E} (\omega) =
-      |       \begin{cases}
-      |         1 & \text{if} \: \omega \in E \\\ 
-      |         0 & \text{otherwise}.
-      |       \end{cases}
-      | \end{equation*}
+``` latex
+\mathbf{1}_{E} (\omega) =
+\begin{cases}
+  1 & \text{if} \: \omega \in E \\\ 
+  0 & \text{otherwise}.
+\end{cases}
+```
       
  The random variable $\mathbf{1}\_{E}$ is called the [indicator](gloss:indicator) random variable for $E.$ If $F$ is another event, which of the following random variables are necessarily equal? 
  
@@ -744,7 +720,7 @@ Consider a sample space $\Omega$ and an event $E \subset \Omega$. We define the 
 
 * We observe that $1 - \mathbf{1}\_{E^c} = \mathbf{1}\_E$ because $\mathbf{1}\_{E^c} = 0$ if and only if $\mathbf{1}\_E = 1.$
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: probability-distributions
@@ -752,7 +728,7 @@ _{button.next-step} Continue_
  
 Given a probability space $(\Omega, \mathbb{P})$ and a random variable $X$, the **distribution** of $X$ tells us how $X$ *distributes* probability mass on the real number line. Loosely speaking, the distribution tells us where we can expect to find $X$ and with what probabilities. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-54
@@ -762,7 +738,7 @@ _{button.next-step} Continue_
 The distribution (or *law*) of a random variable $X$ is the probability measure on $\mathbb{R}$ which maps a set $A \subset \mathbb{R}$ to $\mathbb{P}(X \in A)$. 
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-55 
@@ -777,11 +753,11 @@ Suppose that $X$ represents the amount of money you're going to win with the lot
 
 We can think of $X$ as pushing forward the probability mass from $\Omega$ to $\mathbb{R}$ by sending the probability mass at $\omega$ to $X(\omega)$ for each $\omega \in \Omega$. The probability masses at multiple $\omega$'s can stack up at the same point on the real line if $X$ maps the $\omega$'s to the same value. 
 
-    center
+    figure
       img(src="images/distribution.svg")
       p.caption The distribution of a discrete random variable is the measure on $\mathbb{R}$ obtained by pushing forward the probability masses at elements of the sample space to the locations of their images on the real line. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-57
@@ -798,42 +774,43 @@ A problem on a test requires students to match molecule diagrams to their approp
 
 *Solution*. The number of correctly labeled diagrams is an integer between 0 and 3 inclusive. Suppose the labels are $\mathrm{A},\mathrm{B},\mathrm{C}$, and suppose the correct labeling sequence is $ABC$ (the final result would be the same regardless of the correct labeling sequence). The sample space consists of all six possible labeling sequences, and each of them is equally likely since the student applies the labels uniformly at random. So we have 
 
-    p
-      | \begin{align*}
-      |       \Omega &= \{\mathrm{ABC}, \mathrm{ACB}, \mathrm{BAC}, \mathrm{BCA}, \mathrm{CAB}, \mathrm{CBA}\}, \\\ 
-      |       \{X = 0\} &= \{\mathrm{BCA},\mathrm{CAB}\}, \\\ 
-      |       \{X = 1\} &= \{\mathrm{ACB},\mathrm{CBA},\mathrm{BAC}\}, \\\ 
-      |       \{X = 2\} &= \{\}, \text{ and} \\\ 
-      |       \{X = 3\} &= \{\mathrm{ABC}\}.
-      | \end{align*}
+``` latex
+\Omega &= \{\mathrm{ABC}, \mathrm{ACB}, \mathrm{BAC}, \mathrm{BCA}, \mathrm{CAB}, \mathrm{CBA}\}, \\\ 
+\{X = 0\} &= \{\mathrm{BCA},\mathrm{CAB}\}, \\\ 
+\{X = 1\} &= \{\mathrm{ACB},\mathrm{CBA},\mathrm{BAC}\}, \\\ 
+\{X = 2\} &= \{\}, \text{ and} \\\ 
+\{X = 3\} &= \{\mathrm{ABC}\}.
+```
 
 The probability mass function of the distribution of $X$ is therefore 
 
-    p
-      | \begin{equation*}m_X(0) = \frac{1}{3}\end{equation*}
- 
+``` latex
+m_X(0) = \frac{1}{3}
+```
 
-    p
-      | \begin{equation*}m_X(1) = \frac{1}{2}\end{equation*}
+``` latex
+m_X(1) = \frac{1}{2}
+```
 
-    p
-      | \begin{equation*}m_X(2) = 0\end{equation*}
+``` latex
+m_X(2) = 0
+```
 
-    p
-      | \begin{equation*}m_X(3) = \frac{1}{6}\end{equation*}
+``` latex
+m_X(3) = \frac{1}{6}
+```
 
 All together, we have 
 
-    p
-      | \begin{align*}
-      |   m_X(x) =
-      |   \begin{cases}
-      |     \frac{1}{3} & \text{if }x = 0 \\\ 
-      |     \frac{1}{2} & \text{if }x = 1 \\\ 
-      |     \frac{1}{6} & \text{if }x = 3 \\\ 
-      |     0 & \text{otherwise}.
-      |   \end{cases}
-      | \end{align*}
+``` latex
+m_X(x) =
+\begin{cases}
+  \frac{1}{3} & \text{if }x = 0 \\\ 
+  \frac{1}{2} & \text{if }x = 1 \\\ 
+  \frac{1}{6} & \text{if }x = 3 \\\ 
+  0 & \text{otherwise}.
+\end{cases}
+```
 
 
 ### Cumulative distribution function
@@ -844,18 +821,17 @@ The distribution of a random variable $X$ may be specified by its probability ma
 **Definition** (Cumulative distribution function)  
 If $X$ is a random variable, then its cumulative distribution function $F\_X$ is the function from $\mathbb{R}$ to $[0,1]$ defined by 
 
-    p
-      | \begin{equation*}
-      |       F_X(x) = \mathbb{P}(X \leq x).
-      |  \end{equation*}
+``` latex
+F_X(x) = \mathbb{P}(X \leq x).
+```
 
 :::
 
-    center
+    figure
       img(src="images/cdf.svg")
       p.caption A probability mass function $m_X$ and its corresponding CDF $F_X$ 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-59
@@ -883,7 +859,7 @@ The third one is false: there is no probability mass in the interval from $-\fra
 
 $\mathbb{P}(100X < 1)$ is equivalent to the probability that $X$ is less than $\frac{1}{100}$, which (reading the graph of the CDF) we see is between $0.25$ and $0.5$. Therefore, the last one is false. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-61
@@ -900,13 +876,11 @@ Suppose that $X$ is a random variable with CDF $F\_X$ and that $Y = X^2$. Expres
 
 *Solution*. By definition of $Y$, we have that $Y^2 > 9$ if $X < -3$ or $X> 3.$ Since these events are mutually exclusive, we have 
 
-    p
-      | \begin{align*}
-      |    \mathbb{P}(Y > 9) &= \mathbb{P}(X < -3) + \mathbb{P}(X > 3) \\\ 
-      |                      &= \mathbb{P}(X < -3) + 1 - \mathbb{P}(X \leq 3) \\\ 
-      |                      &= F_X(-3) + 1 - F_X(3),
-      | \end{align*}
-      | 
+``` latex
+\mathbb{P}(Y > 9) &= \mathbb{P}(X < -3) + \mathbb{P}(X > 3) \\\ 
+                  &= \mathbb{P}(X < -3) + 1 - \mathbb{P}(X \leq 3) \\\ 
+                  &= F_X(-3) + 1 - F_X(3),
+```
       
 where the last step follows since $\mathbb{P}(X < -3) = \mathbb{P}(X \leq 3)$ for this random variable $X$. 
 
@@ -917,7 +891,7 @@ Random variables with the same cumulative distribution function are not necessar
 For example, consider the two-fair-coin-flip experiment and let $X$ be the number of heads. Find another random variable $Y$ which is not equal to $X$ but which has the same distribution as $X$. 
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-63
@@ -926,14 +900,13 @@ _{button.next-step} Continue_
 
 (In fact, we can express $Y$ in terms of $X$ as $Y = 2-X$.) 
 
- 
 ---
 > id: joint-distributions
 ## Joint Distributions
  
 The distribution of a random variable is sometimes its called its **marginal** distribution, with the term *marginal* emphasizing that distribution includes information only about a single random variable. If we are interested in two random variables $X$ and $Y$, it is often important to consider their *joint* distribution, which captures probabilistic information about where the pair $(X,Y)$ falls in $\mathbb{R}^2$. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-64
@@ -943,7 +916,7 @@ _{button.next-step} Continue_
 If $X$ and $Y$ are two random variables defined on the same probability space, then the **joint distribution** of $X$ and $Y$ is the measure on $\mathbb{R}^2$ which assigns to each set $A \subset \mathbb{R}^2$ the value $\mathbb{P}((X,Y) \in A)$. 
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-65
@@ -965,7 +938,7 @@ Show that $X\_1$, $X\_2$, and $Y\_1$ all have the same marginal distributions an
 
 *Solution*. The random variables $X\_1, X\_2, Y\_1$ all have the same distribution because each can be $1$ or $0$ with probability $\frac{1}{2}.$ On the other hand, $(X\_1, X\_2)$ can take the values $\\{(0, 0), (0, 1), (1, 0), (1, 1)\\}$ with equal probability $\frac{1}{4},$ while $(X\_1, Y\_1)$ can only be either $(0, 1)$ or $(1,0)$ with probability $\frac{1}{2}.$
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-67
@@ -978,26 +951,25 @@ Consider a computer program which rolls two virtual dice and returns roll result
 
 The probability that die 1 shows 4 is [[0.1527±0.01]]. 
 
-    center: img(src="images/dicetable.svg")    
+    figure: img(src="images/dicetable.svg")    
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-68 
 
 *Solution*. The event that the first die shows 4 can be written as a disjoint union of the events $\\{\text{Die 1} = 4\\} \cap \text{Die 2} = j$ where $j$ ranges over the integers 1 to 6. We get 
 
-    p
-      | \begin{align*}
-      | \mathbb{P}(\text{Die 1} = 4) &= \sum_{j=1}^6 \mathbb{P}(\text{Die 1} = 4, \text{ Die 2} = j) \\\ &= \frac{1}{36} + \frac{1}{36} +  \frac{1}{72} + \frac{1}{36} + \frac{1}{36} + \frac{1}{36} \\\ &= \frac{11}{72}.
-      | \end{align*}
+``` latex
+\mathbb{P}(\text{Die 1} = 4) &= \sum_{j=1}^6 \mathbb{P}(\text{Die 1} = 4, \text{ Die 2} = j) \\\ &= \frac{1}{36} + \frac{1}{36} +  \frac{1}{72} + \frac{1}{36} + \frac{1}{36} + \frac{1}{36} \\\ &= \frac{11}{72}.
+```
 
 ::: .exercise
 **Exercise**  
 Determine which of the following joint distributions on $(X,Y)$ has the property that each random variable $X$ and $Y$ has the same marginal distribution. (Note: each disk indicates a probability mass at a point, with the size of the disk proportional to the mass at that point)
 
-    center: img(src="images/marginal.svg")
+    figure: img(src="images/marginal.svg")
     
     x-picker.list
       .item.bblue.pill(data-error="marginal") The first one
@@ -1012,7 +984,7 @@ Determine which of the following joint distributions on $(X,Y)$ has the property
 **Solution**.
 We find the distribution of $X$ by summing the joint distribution along vertical lines, and we obtain the distribution of $Y$ by summing along horizontal lines. Only for the third distribution do these two procedures give the same results. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-70
@@ -1036,18 +1008,18 @@ For each of the three joint distributions in the previous exercise, the probabil
 
 One of the most important goals of modeling random phenomena is to account for *partial information*. We often discover something about the outcome of an experiment before we know the outcome exactly. For example, when we flip a fair coin twice, we see the result of the first flip before we see the result of the second flip, and we would like to define a new probability measure which reflects this intermediate knowledge. We call this a **conditional probability measure**. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-72
 
 Suppose we observe that the first of two flips is a tail. Then all of the $\omega$'s which are incompatible with this observation should receive a probability of zero under our conditional probability measure. Since we have no new information about the remaining $\omega$'s, it makes sense to keep their probabilities in the same proportions as in the original probability measure. 
 
-    center
+    figure
       img(src="images/conditional-mass.svg")
-      p.caption Consider the event $E$ that the first flip is a tail. The conditional probability mass function $\widetilde{m}$ given $E$ assigns probability mass $\frac{1}{2}$ to each of the $\omega$'s in $E$. 
+      p.caption.md Consider the event $E$ that the first flip is a tail. The conditional probability mass function $\widetilde{m}$ given $E$ assigns probability mass $\frac{1}{2}$ to each of the $\omega$'s in $E$. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-73
@@ -1058,24 +1030,22 @@ These two observations are sufficient to fully determine the conditional probabi
 **Definition**  
 Given a probability space $(\Omega, \mathbb{P})$ and an event $E \subset \Omega$ whose probability is positive, the *conditional probability mass function* given $E$, written as $\omega \mapsto m(\omega | E)$ is defined by 
 
-    p
-      | \begin{equation*}
-      |       m(\omega | E) =
-      |       \begin{cases} \frac{m(\omega)}{P(E)} & \text{if }\omega \in E \\\ 
-      |         0 & \text{otherwise}.
-      |       \end{cases}
-      | \end{equation*}
+``` latex
+m(\omega | E) =
+\begin{cases} \frac{m(\omega)}{P(E)} & \text{if }\omega \in E \\\ 
+  0 & \text{otherwise}.
+\end{cases}
+```
       
 The conditional probability measure given $E$ is the measure associated to $\omega\mapsto m(\omega | E)$: for all events $F$, we have 
 
-    p
-      | \begin{equation*} 
-      |       \mathbb{P}(F | E) = \frac{\mathbb{P}(F \cap E)}{\mathbb{P}(E)}.
-      | \end{equation*}
+``` latex
+\mathbb{P}(F | E) = \frac{\mathbb{P}(F \cap E)}{\mathbb{P}(E)}.
+```
 
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-74
@@ -1092,28 +1062,24 @@ After the objects are released, an observer sees one of them emerge at the water
 
 *Solution*. Let's use the given sample space: 
 
-    p
-      | \begin{equation*}
-      |       \Omega = \{\text{both positive}, \text{opposite buoyancy}, \text{both negative}\}
-      | \end{equation*}
+``` latex
+\Omega = \{\text{both positive}, \text{opposite buoyancy}, \text{both negative}\}
+```
 
 The emergence of the object tells us precisely that the event 
 
-    p
-      | \begin{equation*}
-      |       E = \{\text{both positive}, \text{opposite buoyancy}\}
-      | \end{equation*}
-      | 
+``` latex
+E = \{\text{both positive}, \text{opposite buoyancy}\}
+```
       
 occurs. The conditional probability of the event $\\{\text{both positive}\\}$ given $E$ is 
 
-    p
-      | \begin{equation*}
-      |       \frac{\mathbb{P}(\{\text{both positive}\}\cap E)}{\mathbb{P}(E)} =
-      |       \frac{\frac{1}{4}}{\frac{1}{4} + \frac{1}{2}} = \frac{1}{3}.
-      | \end{equation*}
+``` latex
+\frac{\mathbb{P}(\{\text{both positive}\}\cap E)}{\mathbb{P}(E)} =
+\frac{\frac{1}{4}}{\frac{1}{4} + \frac{1}{2}} = \frac{1}{3}.
+```
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-76
@@ -1137,19 +1103,18 @@ Find a probability space $\Omega$ which models this experiment, find a pair of e
 The probability of the outcome (A, blue) is equal to the probability that Urn A is selected times the conditional probability of selecting a blue ball given that Urn A was selected. We interpret the information that Urn A contains an equal number of blue and red balls as a statement that this conditional probability should be $\frac{1}{2}$. Therefore, we assign the probability $\frac{1}{2} \cdot \frac{1}{3} = \frac{1}{6}$ to the event (A, blue). 
 
 Likewise, the probabilities we assign to the three other outcomes are $\frac{1}{6}$, $\frac{1}{2}$, and $\frac{1}{6}$, [respectively](gloss:respectively). 
-    
-    center: img(src="images/tree.svg")
+
+    figure: img(src="images/tree.svg")
 
 With probabilities thus assigned to the outcomes in $\Omega$, we should have $\mathbb{P}(E | F) = \frac{3}{4}$ where $E$ is the event that we select a blue ball and $F$ is the event that Urn B was selected. Let us check that this is indeed the case: 
 
-    p
-      | \begin{equation*}
-      |   \frac{\mathbb{P}(E \cap F)}{\mathbb{P}(F)} = \frac{\frac{1}{2}}{\frac{2}{3}} = \frac{3}{4}.
-      | \end{equation*}
+``` latex
+\frac{\mathbb{P}(E \cap F)}{\mathbb{P}(F)} = \frac{\frac{1}{2}}{\frac{2}{3}} = \frac{3}{4}.
+```
       
 We have arrived at an important insight: a probability space may alternatively by specified via a tree diagram showing conditional probabilities, or by the probability space $\Omega$ consisting of the endpoints of the tree diagram. We can translate back and forth between these two representations by multiplying along branches to get from the tree's conditional probabilities to $\Omega$'s outcome probabilities or by calculating conditional probabilities to go from $\Omega$ to the tree diagram. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-78
@@ -1170,16 +1135,15 @@ Consider three random variables $X\_1$, $X\_2$, and $X\_3$, each of which is equ
 *Solution*.  
 * By monotonicity, we have 
 
-    p
-      | \begin{equation*}
-      |   \mathbb{P}(X_1 + X_2 +X_3 = 0) = \mathbb{P}(X_1 = X_2 = X_3 = 0) \leq \mathbb{P}(X_1 = 0) = 0.4.
-      | \end{equation*}
+``` latex
+\mathbb{P}(X_1 + X_2 +X_3 = 0) = \mathbb{P}(X_1 = X_2 = X_3 = 0) \leq \mathbb{P}(X_1 = 0) = 0.4.
+```
       
 We note that this maximum can be attained by setting $X\_1 = X\_2 = X\_3.$ 
 
 * The least possible value is zero. This minimum can be attained, for example, if we take $\Omega = \\{\omega\_1, \omega\_2, \omega\_3\\}$, with probability mass $0.4$, $0.2$, and $0.4$, [respectively](gloss:respectively), and set $X\_1(\omega\_1) = 1$, $X\_1(\omega\_2) = 1$, $X\_1(\omega\_3) = 0$, $X\_2(\omega\_1) = 0$, $X\_2(\omega\_2) = 1$, $X\_2(\omega\_3) = 1$, and $X\_3 = X\_1$. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-80
@@ -1188,15 +1152,14 @@ _{button.next-step} Continue_
 
 **Bayes' theorem** tells us how to update beliefs in light of new evidence. It relates the conditional probabilities $\mathbb{P}(A | E)$ and $\mathbb{P}(E | A)$: 
 
-    p
-      | \begin{equation*}
-      |     \mathbb{P}(A | E) = \frac{\mathbb{P}(E | A)\mathbb{P}(A)}{\mathbb{P}(E)} = \frac{\mathbb{P}(E | A)\mathbb{P}(A)}{\mathbb{P}(E |
-      |       A)\mathbb{P}(A) + \mathbb{P}(E | A^{\mathrm{c}})\mathbb{P}(A^{\mathrm{c}})}.
-      | \end{equation*}
+``` latex
+\mathbb{P}(A | E) = \frac{\mathbb{P}(E | A)\mathbb{P}(A)}{\mathbb{P}(E)} = \frac{\mathbb{P}(E | A)\mathbb{P}(A)}{\mathbb{P}(E |
+  A)\mathbb{P}(A) + \mathbb{P}(E | A^{\mathrm{c}})\mathbb{P}(A^{\mathrm{c}})}.
+```
  
 The last step follows from writing out $\mathbb{P}(E)$ as $\mathbb{P}(E \cap A) + \mathbb{P}(E \cap A^\mathsf{c})$. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-81
@@ -1215,20 +1178,18 @@ Suppose you're 90% sure that your package was delivered today and 75% sure that 
 
 *Solution*. The desired conditional probability is $\mathbb{P}(\text{delivered} | \text{invisible})$, which by Bayes' theorem is 
 
-    p
-      | \begin{equation*}
-      |       \frac{\mathbb{P}(\text{invisible} | \text{delivered})
-      |         \mathbb{P}(\text{delivered})}{\mathbb{P}(\text{invisible} |
-      |         \text{delivered}) \mathbb{P}(\text{delivered})+\mathbb{P}(\text{invisible}
-      |         | \text{undelivered}) \mathbb{P}(\text{undelivered})}
-      | \end{equation*}
+``` latex
+\frac{\mathbb{P}(\text{invisible} | \text{delivered})
+  \mathbb{P}(\text{delivered})}{\mathbb{P}(\text{invisible} |
+  \text{delivered}) \mathbb{P}(\text{delivered})+\mathbb{P}(\text{invisible}
+  | \text{undelivered}) \mathbb{P}(\text{undelivered})}
+```
  
-    p
-      | \begin{equation*}
-      |       = \frac{(0.75)(0.9)}{(0.75)(0.9)+(1)(0.1)} \approx 0.871.
-      | \end{equation*}
+``` latex
+= \frac{(0.75)(0.9)}{(0.75)(0.9)+(1)(0.1)} \approx 0.871.
+```
       
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-83
@@ -1238,19 +1199,18 @@ _{button.next-step} Continue_
 Suppose a disease has 0.1% prevalence in the population and has a test with 90% reliability. A random selected person is tested for the disease and tests positive. What is the conditional probability that the person has the disease, given the positive test result? [[0.0089±0.0005]]
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-84 
 
 *Solution*. Let $D$ be the event that a person has the disease and $P$ be the event that a person tests positive to the test. We would like to find $\mathbb{P}(D | P)$ given that $P(D) = 0.001$, $\mathbb{P}(P | D) = 0.9$ and $\mathbb{P}(P | D^c) = 0.1$. By Bayes' Theorem, 
 
-    p
-      | \begin{align*}
-      |       \mathbb{P}(D |P) &= \frac{\mathbb{P}(P | D) \cdot \mathbb{P}(D)}{\mathbb{P}(P |D) \cdot \mathbb{P}(D) + \mathbb{P}(P | D^c) \cdot \mathbb{P}(D^c)} \\\\ 
-      |                &= \frac{0.9 \times 0.001}{0.9 \times 0.001 + 0.1 \times 0.999} \\\\ 
-      |                &\approx 0.0089.
-      | \end{align*}
+``` latex
+\mathbb{P}(D |P) &= \frac{\mathbb{P}(P | D) \cdot \mathbb{P}(D)}{\mathbb{P}(P |D) \cdot \mathbb{P}(D) + \mathbb{P}(P | D^c) \cdot \mathbb{P}(D^c)} \\ 
+&= \frac{0.9 \times 0.001}{0.9 \times 0.001 + 0.1 \times 0.999} \\ 
+&\approx 0.0089.
+```
  
 (*Note:* The fact that $\mathbb{P}(P |D^c) = 0.1 = 1 - \mathbb{P}(P |D)$ follows from the fact that the test is $10\%$ unreliable. In general, it is not the case that $\mathbb{P}(A | B) = 1 - \mathbb{P}(A | B^\mathsf{c})$ for any two events $A$ and $B$.)
 
@@ -1260,26 +1220,24 @@ _{button.next-step} Continue_
 
 In the context of a random experiment, two positive-probability events $E$ and $F$ are **independent** if knowledge of the occurrence of one of the events gives no information about the occurrence of the other event. In other words, $E$ and $F$ are independent if the probability of $E$ is the same as the conditional probability of $E$ given $F$, and vice versa. In other words, $E$ and $F$ are independent if 
 
-    p
-      | \begin{equation*}
-      |   \mathbb{P}(E) = \frac{\mathbb{P}(E \cap F)}{\mathbb{P}(F)} \quad \text{and} \quad
-      |   \mathbb{P}(F) = \frac{\mathbb{P}(F \cap E)}{\mathbb{P}(E)}.
-      | \end{equation*}
+``` latex
+\mathbb{P}(E) = \frac{\mathbb{P}(E \cap F)}{\mathbb{P}(F)} \quad \text{and} \quad
+\mathbb{P}(F) = \frac{\mathbb{P}(F \cap E)}{\mathbb{P}(E)}.
+```
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-85
 
 Each of these equations rearranges to 
 
-    p
-      | \begin{equation*}
-      |   \mathbb{P}(E \cap F) = \mathbb{P}(E) \mathbb{P}(F).
-      | \end{equation*}
+``` latex
+\mathbb{P}(E \cap F) = \mathbb{P}(E) \mathbb{P}(F).
+```
 
-_{button.next-step} Continue_
- 
+[Continue](btn:next)
+
 ---
 > id: step-86
  
@@ -1289,14 +1247,13 @@ This equation is symmetric in $E$ and $F$, and it does not require that $E$ and 
 **Definition** (Independence)  
 If $(\Omega, \mathbb{P})$ is a probability space, then two events $E$ and $F$ are said to be independent if 
 
-    p
-      | \begin{equation*}
-      |   \mathbb{P}(E \cap F) = \mathbb{P}(E) \mathbb{P}(F).
-      | \end{equation*}
+``` latex
+\mathbb{P}(E \cap F) = \mathbb{P}(E) \mathbb{P}(F).
+```
 
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-87 
@@ -1307,12 +1264,11 @@ If we want to check whether two positive-probability events are independent, we 
 **Exercise**  
 Let $X$ be the result of a six-sided die roll. Consider the following events. 
 
-    p
-      | \begin{align*}
-      |      A &= \{X \text{ is even}\}  \\\ 
-      |      B &= \{X \text{ is odd}\}  \\\ 
-      |      C &= \{X \leq 4\}
-      | \end{align*}
+``` latex
+A &= \{X \text{ is even}\}  \\\ 
+B &= \{X \text{ is odd}\}  \\\ 
+C &= \{X \leq 4\}
+```
 
 Are events $A$ and $B$ independent? [[No|Yes]] Are events $A$ and $C$ independent? [[Yes|No]]
 :::
@@ -1346,43 +1302,40 @@ Directly showing that random variables are independent can be tedious, because t
 **Theorem** (Product measure)  
 Suppose that $(\Omega\_1,\mathbb{P}\_1)$ and $(\Omega\_2,\mathbb{P}\_2)$ are probability spaces with associated probability mass functions $m\_1$ and $m\_2$. Define a probability space $\Omega$ by defining 
 
-    p
-      | \begin{equation*}
-      |    \Omega = \Omega_1 \times \Omega_2
-      | \end{equation*}
+``` latex
+\Omega = \Omega_1 \times \Omega_2
+```
       
 and
 
-    p
-      | \begin{equation*}
-      |   m((\omega_1, \omega_2)) = m_1(\omega_1)m_2(\omega_2)
-      | \end{equation*}
+``` latex
+m((\omega_1, \omega_2)) = m_1(\omega_1)m_2(\omega_2)
+```
 
 for every $(\omega\_1, \omega\_2) \in \Omega\_1 \times \Omega\_2$. Let $\mathbb{P}$ be the probability measure with probability mass function $m$. Then the random variables $X\_1((\omega\_1, \omega\_2)) = \omega\_1$ and $X\_2((\omega\_1, \omega\_2)) = \omega\_2$ are independent. 
 
 We call $\mathbb{P}$ a **product measure** and $(\Omega, \mathbb{P})$ a **product space**. 
 :::
 
-    center
+    figure
       img(src="images/product-measure.svg")
-      p.caption We define the product space $\Omega$ to be the Cartesian product of the spaces $\Omega_1$ and $\Omega_2$, and we obtain probability masses for the product space by multiplying corresponding masses in $\Omega_1$ and $\Omega_2$.
+      p.caption.md We define the product space $\Omega$ to be the Cartesian product of the spaces $\Omega_1$ and $\Omega_2$, and we obtain probability masses for the product space by multiplying corresponding masses in $\Omega_1$ and $\Omega_2$.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-90
 
 We say that a collection of random variables $(X\_1, X\_2, \ldots, X\_{n})$ is independent if 
 
-    p
-      | \begin{equation*}
-      |     \mathbb{P}(\{X_1 \in A_1\} \cap \{X_2 \in A_2\} \cap \cdots \cap \{X_n \in A_n\})
-      |     = \mathbb{P}(X_1 \in A_1) \mathbb{P}(X_2 \in A_2)\cdots \mathbb{P}(X_n \in A_n)
-      | \end{equation*}
+``` latex
+\mathbb{P}(\{X_1 \in A_1\} \cap \{X_2 \in A_2\} \cap \cdots \cap \{X_n \in A_n\})
+= \mathbb{P}(X_1 \in A_1) \mathbb{P}(X_2 \in A_2)\cdots \mathbb{P}(X_n \in A_n)
+```
 
 for any events $A\_1, A\_2, \ldots, A\_n$. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-91
@@ -1401,40 +1354,40 @@ Define a probability space $\Omega$ and 10 independent random variables which ar
 
 *Solution*. We follow the product space construction and define $\Omega$ to be the set of all length-10 tuples of elements in $\\{1,2,3,4,5,6\\}$. For each $i \in \\{1, 2, \dots, 10\\}$ let $\Omega\_i = \\{1, 2, 3, 4, 5, 6\\}$ and let $m\_i$ be the uniform probability mass function on $\Omega\_i.$ Then desired probability space is $\Omega$ where 
 
-    p
-      | \begin{equation*}
-      |       \Omega = \Omega_1 \times \Omega_2 \times \cdots \times
-      |       \Omega_{10}
-      | \end{equation*}
+``` latex
+\Omega = \Omega_1 \times \Omega_2 \times \cdots \times
+\Omega_{10}
+```
 
 together with probability mass function 
 
-    p
-      | \begin{equation*}
-      |   m((\omega_1, \omega_2, \dots, \omega_{10})) = m_1(\omega_1) \times
-      |   m_2(\omega_2) \times \cdots \times m_{10}(\omega_{10})
-      | \end{equation*}
+``` latex
+m((\omega_1, \omega_2, \dots, \omega_{10})) = m_1(\omega_1) \times
+m_2(\omega_2) \times \cdots \times m_{10}(\omega_{10})
+```
 
 for all $(\omega\_1, \omega\_2, \dots, \omega\_{10}) \in \Omega.$ We define the corresponding random variables $X\_i : \Omega \to \\{1, 2, 3, 4, 5, 6\\}$ by 
 
-    p
-      | \begin{equation*}X((\omega_1, \omega_2, \dots, \omega_{10})) = \omega_i\end{equation*}
+``` latex
+X((\omega_1, \omega_2, \dots, \omega_{10})) = \omega_i
+```
 
 for all integer values of $i$ ranging from $1$ to $10$. Then for all of these random variables, 
 
-    p
-      | \begin{equation*}\mathbb{P}(X_i = k) = \mathbb{P}_i(\omega_i = k) = \frac{1}{6}\end{equation*}
+``` latex
+\mathbb{P}(X_i = k) = \mathbb{P}_i(\omega_i = k) = \frac{1}{6}
+```
 
 for any $k \in \\{1, 2, 3, 4, 5, 6\\}$, as required. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-93
 
 The product measure construction can be extended further still to give a supply of *infinitely many* independent random variables. The idea is use a space of the form $\Omega = \Omega\_1 \times \Omega\_2 \times \Omega\_3 \cdots$ (whose elements are infinite tuples $\omega = (\omega\_1, \omega\_2, \omega\_3, \ldots)$) and define a measure which makes the random variables $X\_n(\omega) = \omega\_n$ independent. We will not need the details of this construction, although we will use it indirectly when we discuss infinite sequences of independent random variables.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-94
@@ -1445,19 +1398,18 @@ We say that a collection of events is independent if the corresponding [indicato
 **Exercise**  
 Three events can be *pairwise* independent without being independent: Suppose that $\omega$ is selected uniformly at random from the set 
 
-    p
-      | \begin{equation*}
-      |       \Omega =
-      |       \{
-      |       (0,0,0),(0,1,1),(1,0,1),(1,1,0)
-      |       \}
-      | \end{equation*}
+``` latex
+\Omega =
+\{
+(0,0,0),(0,1,1),(1,0,1),(1,1,0)
+\}
+```
 
- and define $A$ to be the event that the first entry is 1, $B$ to be the event that the second entry is $1$, and $C$ to be the event that the third entry is 1. For example, if $\omega = (0,1,1)$, then $B$ and $C$ occurred but $A$ did not. 
+and define $A$ to be the event that the first entry is 1, $B$ to be the event that the second entry is $1$, and $C$ to be the event that the third entry is 1. For example, if $\omega = (0,1,1)$, then $B$ and $C$ occurred but $A$ did not. 
 
- Show that $A$ and $B$ are independent, that $A$ and $C$ are independent, and that $B$ and $C$ are independent. 
+Show that $A$ and $B$ are independent, that $A$ and $C$ are independent, and that $B$ and $C$ are independent. 
 
- Show that the equation $\mathbb{P}(A \cap B \cap C) = \mathbb{P}(A) \mathbb{P}(B) \mathbb{P}(C)$ does **not** hold and that the triple of events is therefore not independent. 
+Show that the equation $\mathbb{P}(A \cap B \cap C) = \mathbb{P}(A) \mathbb{P}(B) \mathbb{P}(C)$ does **not** hold and that the triple of events is therefore not independent. 
 :::
 
     x-quill
@@ -1467,26 +1419,26 @@ Three events can be *pairwise* independent without being independent: Suppose th
 
 *Solution*. By definition, $A = \\{(1,0, 1), (1, 1, 0)\\},$ $B = \\{(0, 1, 1), (1, 1, 0)\\}$ and $C = \\{(0, 1, 1), (1, 0, 1)\\}.$ Therefore, 
 
-    p
-      | \begin{equation*}
-      |       \mathbb{P}(A) = \mathbb{P}(B) = \mathbb{P}(C) = \frac{1}{2}.\end{equation*}
+``` latex
+\mathbb{P}(A) = \mathbb{P}(B) = \mathbb{P}(C) = \frac{1}{2}.
+```
 
 Now, $A \cap B = (1,1,0)$, $A \cap C = (1,0 ,1),$ and $B \cap C = (0, 1, 1),$ whence 
 
-    p
-      | \begin{equation*}
-      |       \mathbb{P}(A \cap B) = \frac{1}{4} = \mathbb{P}(A) \mathbb{P}(B).
-      | \end{equation*}
+``` latex
+\mathbb{P}(A \cap B) = \frac{1}{4} = \mathbb{P}(A) \mathbb{P}(B).
+```
 
 The same thing applies to $A \cap C$ and $B \cap C$ so $A, B, C$ are pairwise independent. However, since $A \cap B \cap C = \emptyset,$ we have 
 
-    p
-      | \begin{equation*}\mathbb{P}(A \cap B \cap C) = 0 \neq \frac{1}{2} \times \frac{1}{2}
-      |       \times \frac{1}{2} = \mathbb{P}(A) \times \mathbb{P}(B) \times \mathbb{P}(C)\end{equation*}
+``` latex
+\mathbb{P}(A \cap B \cap C) = 0 \neq \frac{1}{2} \times \frac{1}{2}
+\times \frac{1}{2} = \mathbb{P}(A) \times \mathbb{P}(B) \times \mathbb{P}(C)
+```
 
 and thus, $A, B,$ and $C$ are not independent. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-96
@@ -1499,28 +1451,26 @@ Independence satisfies many basic relationships suggested by the intuition that 
 **Theorem** (persistence of independence)  
 Suppose that $m$ and $n$ are positive integers and that 
 
-    p
-      | \begin{align*} 
-      | X_{1,1}, X_{1,2}, \ldots, X_{1,n}, \\\ 
-      | X_{2,1}, X_{2,2}, \ldots, X_{2,n}, \\\ 
-      | \cdots, \\\ 
-      | X_{m,1}, X_{m,2}, \ldots, X_{m,n}
-      | \end{align*}
+``` latex 
+X_{1,1}, X_{1,2}, \ldots, X_{1,n}, \\\ 
+X_{2,1}, X_{2,2}, \ldots, X_{2,n}, \\\ 
+\cdots, \\\ 
+X_{m,1}, X_{m,2}, \ldots, X_{m,n}
+```
 
 are independent. If $f_1, \ldots, f_m$ are functions, then the random variables
 
-    p
-      | \begin{align*}
-      |  f_1(X_{1,1}, X_{1,2}, \ldots, X_{1,n}), \\\ 
-      |  f_2(X_{2,1}, X_{2,2}, \ldots, X_{2,n}), \\\ 
-      |  \cdots, \\\ 
-      |  f_m(X_{m,1}, X_{m,2}, \ldots, X_{m,n})
-      | \end{align*}
+``` latex
+f_1(X_{1,1}, X_{1,2}, \ldots, X_{1,n}), \\\ 
+f_2(X_{2,1}, X_{2,2}, \ldots, X_{2,n}), \\\ 
+\cdots, \\\ 
+f_m(X_{m,1}, X_{m,2}, \ldots, X_{m,n})
+```
       
 are independent. 
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-97
@@ -1560,30 +1510,28 @@ If the random individual is selected according to some non-uniform probability d
 **Definition**  
 The **expectation** $\mathbb{E}[X]$ (or **mean** $\mu\_X$) of a random variable $X$ is the *probability-weighted average of $X$*: 
 
-    p
-      | \begin{equation*}
-      |       \mathbb{E}[X] = \sum_{\omega \in \Omega} X(\omega) m(\omega)
-      | \end{equation*}
+``` latex
+\mathbb{E}[X] = \sum_{\omega \in \Omega} X(\omega) m(\omega)
+```
 
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-101
 
 For example, the expected number of heads in two fair coin flips is 
 
-    p
-      | \begin{equation*}
-      |     \mathbb{E}[X] = \tfrac{1}{4}\cdot 2 + \tfrac{1}{4}\cdot 1 +
-      |     \tfrac{1}{4}\cdot 1 + \tfrac{1}{4}\cdot 0 = 1.
-      | \end{equation*}
+``` latex
+\mathbb{E}[X] = \tfrac{1}{4}\cdot 2 + \tfrac{1}{4}\cdot 1 +
+\tfrac{1}{4}\cdot 1 + \tfrac{1}{4}\cdot 0 = 1.
+```
  
 
 There are two common ways of interpreting expected value. 
-* The expectation $\mathbb{E}[X]$ may be thought of as the value of a random game with payout $X$. According to this interpretation, you should be willing to pay anything less than <span>$</span>1 to play the game where you get a dollar for each head in two fair coin flips. For more than <span>$</span>1 you should be unwilling to play the game, and at <span>$</span>1 you should be indifferent. 
-* The second way of thinking about expected value is as a *long-run average*. If you play the dollar-per-head two-coin-flip game a very large number of times, then your average payout per play is very likely to be close to <span>$</span>1. 
+* The expectation $\mathbb{E}[X]$ may be thought of as the value of a random game with payout $X$. According to this interpretation, you should be willing to pay anything less than \$1 to play the game where you get a dollar for each head in two fair coin flips. For more than \$1 you should be unwilling to play the game, and at \$1 you should be indifferent. 
+* The second way of thinking about expected value is as a *long-run average*. If you play the dollar-per-head two-coin-flip game a very large number of times, then your average payout per play is very likely to be close to \$1. 
 
 We can test this second interpretation out: 
 
@@ -1603,16 +1551,13 @@ How close to 1 is the result typically? Choose the best answer.
 
     pre(data-executable)
       | from numpy.random import randint
-      | 
-
-<p></p>
 
 ---
 > id: step-102
 
 *Solution*. Running the code several times, we see that the error is seldom as large as 0.01 or as small as 0.0000001. So the correct answer choice is the third one. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-103
@@ -1626,9 +1571,6 @@ Use a Monte Carlo simulation to estimate the expectation of $X/Y$, where $X$ and
 
     pre(data-executable)
       | import numpy as np
-      | 
-
-<p></p>
 
     x-quill
 
@@ -1637,7 +1579,7 @@ Use a Monte Carlo simulation to estimate the expectation of $X/Y$, where $X$ and
 
 *Solution*. **{code.language-python}sum(randint(1,7)/randint(1,7) for i in range(10_000_000))/10_000_000** returns approximately 1.43. The actual mean is _{code.language-python}sum(x/y for x in range(1,7) for y in range(1,7))/36_, which is $\frac{343}{240} = 1.4291\overline{6}$. So we can say that the Monte Carlo result with 10 million trials is quite close to the correct value. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-105
@@ -1656,12 +1598,11 @@ Explain why $\mathbb{E}[X] \leq \mathbb{E}[Y]$ if $X(\omega) \leq Y(\omega)$ for
 
 *Solution*. If $X(\omega) \leq Y(\omega)$ for all $\omega \in \Omega,$ then we have 
 
-    p
-      | \begin{align*}
-      | 	\mathbb{E}[X] &= \sum_{\omega \in \Omega}X(\omega)m(\omega) \\\ 
-      | 	&\leq \sum_{\omega \in \Omega}Y(\omega)m(\omega) \\\ 
-      | 	&= \mathbb{E}[Y].
-      | \end{align*}
+``` latex
+\mathbb{E}[X] &= \sum_{\omega \in \Omega}X(\omega)m(\omega) \\\ 
+&\leq \sum_{\omega \in \Omega}Y(\omega)m(\omega) \\\ 
+&= \mathbb{E}[Y].
+```
 
 ### Expectation and distribution
 
@@ -1671,64 +1612,57 @@ Although the definition $\mathbb{E}[X] = \sum\_{\omega \in \Omega} X(\omega) m(\
 **Theorem**  
 The expectation of a discrete random variable $X$ is equal to 
 
-    p
-      | \begin{equation*}
-      |   \mathbb{E}[X] = \sum_{x \in \mathbb{R}} x \mathbb{P}(X = x).
-      | \end{equation*}
+``` latex
+\mathbb{E}[X] = \sum_{x \in \mathbb{R}} x \mathbb{P}(X = x).
+```
 
 ::: 
 
 The idea is that the given formula is just a rearrangement of the terms in the definition of expectation. Let's begin by considering an example. Suppose $\Omega = \\{1,2,3\\}$ with probability mass function $m$ satisfying $m(1) = 1/6$, $m(2) = 2/6$, and $m(3) = 3/6$. Suppose $X(1) = 5, X(2) = 5$ and $X(3)= 7$. Then 
 
-    p
-      | \begin{equation*}
-      |   \mathbb{E}[X] = \frac{1}{6}\cdot 5 + \frac{2}{6} \cdot 5 +
-      |   \frac{3}{6}\cdot 7.
-      | \end{equation*}
+``` latex
+\mathbb{E}[X] = \frac{1}{6}\cdot 5 + \frac{2}{6} \cdot 5 +
+\frac{3}{6}\cdot 7.
+```
 
  We can group the first two terms together to get 
 
-    p
-      | \begin{equation*}
-      |   \mathbb{E}[X] = \left(\frac{1}{6} + \frac{2}{6}\right)\cdot 5 +
-      |   \frac{3}{6}\cdot 7.
-      | \end{equation*}
+``` latex
+\mathbb{E}[X] = \left(\frac{1}{6} + \frac{2}{6}\right)\cdot 5 +
+\frac{3}{6}\cdot 7.
+```
       
 This expression is the one we would get if we wrote out 
 
-    p
-      | \begin{equation*}
-      |   \sum_{x \in \mathbb{R}} x \mathbb{P}(X = x).
-      | \end{equation*}
+``` latex
+\sum_{x \in \mathbb{R}} x \mathbb{P}(X = x).
+```
       
 Therefore, we can see that the two sides are the same. 
 
 Let's write this idea down in general form. We group terms on the right-hand side in the formula $\mathbb{E}[X] = \sum\_{\omega \in \Omega} X(\omega) m(\omega)$ according to the value of $X(\omega)$: 
 
-    p
-      | \begin{equation*}
-      |       \mathbb{E}[X] = \sum_{x\in \mathbb{R}}\sum_{\omega \in \Omega: X(\omega) =
-      |         x} X(\omega)m(\omega).
-      | \end{equation*}
+``` latex
+\mathbb{E}[X] = \sum_{x\in \mathbb{R}}\sum_{\omega \in \Omega: X(\omega) =
+  x} X(\omega)m(\omega).
+```
       | 
- Then we can replace $X(\omega)$ with $x$ and pull it out of the inside sum to get 
+Then we can replace $X(\omega)$ with $x$ and pull it out of the inside sum to get 
 
-    p
-      | \begin{equation*}
-      |       \mathbb{E}[X] = \sum_{x \in \mathbb{R}} x \sum_{\omega \in \Omega :
-      |       X(\omega) = x} m(\omega).
-      | \end{equation*}
+``` latex
+\mathbb{E}[X] = \sum_{x \in \mathbb{R}} x \sum_{\omega \in \Omega :
+X(\omega) = x} m(\omega).
+```
 
- Since $\sum\_{\omega \in \Omega:X(\omega) = x} m(\omega)$ is equal to $\mathbb{P}(X = x)$, we get 
+Since $\sum\_{\omega \in \Omega:X(\omega) = x} m(\omega)$ is equal to $\mathbb{P}(X = x)$, we get 
 
-    p
-      | \begin{equation*}
-      |   \mathbb{E}[X] = \sum_{x \in \mathbb{R}} x \mathbb{P}(X = x),
-      | \end{equation*}
+``` latex
+\mathbb{E}[X] = \sum_{x \in \mathbb{R}} x \mathbb{P}(X = x),
+```
 
 as desired. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-107
@@ -1747,14 +1681,13 @@ Consider a random variable $X$ whose distribution assigns a probability mass of 
 
 *Solution*. We multiply the probability mass at each point $x$ by the location $x$ and sum to get 
 
-    p
-      | \begin{equation*}
-      |   \sum_{n = 1}^\infty 2^{-n}2^n = \sum_{n=1}^\infty 1 = \infty.
-      | \end{equation*}
+``` latex
+\sum_{n = 1}^\infty 2^{-n}2^n = \sum_{n=1}^\infty 1 = \infty.
+```
 
 For the second distribution, the positive and negative parts of the are both infinite for the same reason. Therefore, the sum does not make sense and the mean is therefore not well-defined. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-109
@@ -1765,24 +1698,22 @@ We can also work out the expectation of a function of two [discrete](gloss:discr
 **Theorem**  
 If $f:\mathbb{R}^2 \to \mathbb{R}$, and $X$ and $Y$ are discrete random variables defined on the same probability space, then 
 
-    p
-      | \begin{equation*}
-      |       \mathbb{E}[f(X,Y)] = \sum_{(x,y)\in \mathbb{R}^2} f(x,y) \mathbb{P}(X=x \text{ and }Y = y).
-      | \end{equation*}
+``` latex
+\mathbb{E}[f(X,Y)] = \sum_{(x,y)\in \mathbb{R}^2} f(x,y) \mathbb{P}(X=x \text{ and }Y = y).
+```
 :::
 
 *Proof*. We use the same idea we used in the proof of the expectation formula: group terms in the definition of expectation according the value of the pair $(X(\omega),Y(\omega))$. We get 
 
-    p
-      | \begin{align*}
-      |       \mathbb{E}[f(X,Y)] &= \sum_{\omega \in
-      |         \Omega}f(X(\omega),Y(\omega)) m(\omega) \\\ 
-      |       &= \sum_{(x,y) \in \mathbb{R}^2} \sum_{\substack{\omega \in \Omega :
-      |       \\\ X(\omega)
-      |       = x \text{ and } Y(\omega) = y}} f(X(\omega),Y(\omega)) m(\omega)
-      |       \\\ 
-      |       &= \sum_{(x,y) \in \mathbb{R}^2} f(x,y) \mathbb{P}(X = x \text{ and } Y = y).
-      | \end{align*}
+``` latex
+\mathbb{E}[f(X,Y)] &= \sum_{\omega \in
+  \Omega}f(X(\omega),Y(\omega)) m(\omega) \\\ 
+&= \sum_{(x,y) \in \mathbb{R}^2} \sum_{\substack{\omega \in \Omega :
+\\\ X(\omega)
+= x \text{ and } Y(\omega) = y}} f(X(\omega),Y(\omega)) m(\omega)
+\\\ 
+&= \sum_{(x,y) \in \mathbb{R}^2} f(x,y) \mathbb{P}(X = x \text{ and } Y = y).
+```
 
 We can use this theorem to show that expectation distributes across multiplication for independent random variables: 
 
@@ -1798,18 +1729,16 @@ Show that $\mathbb{E}[XY] = \mathbb{E}[X]\mathbb{E}[Y]$ if $X$ and $Y$ are indep
 
 *Solution*. Using the definition of independence, we have 
 
-    p
-      | \begin{align*}
-      |       \mathbb{E}[XY] &= \sum_{\omega \in
-      |         \Omega}XY \mathbb{P}(X = x \text{ and } Y = y) \\\ 
-      |        &= \sum_{(x,y) \in \mathbb{R}^2}XY \mathbb{P}(X =x) \mathbb{P}(Y = y) \\\ 
-      |     &= \left(\sum_{x \in \mathbb{R}} x\mathbb{P}(X=x)\right)\left(\sum_{x \in \mathbb{R}} x\mathbb{P}(X=x)\right) \\\ 
-      | &= \mathbb{E}[X]\mathbb{E}[Y], 
-      | \end{align*}
+``` latex
+\mathbb{E}[XY] &= \sum_{\omega \in \Omega}XY \mathbb{P}(X = x \text{ and } Y = y) \\\ 
+&= \sum_{(x,y) \in \mathbb{R}^2}XY \mathbb{P}(X =x) \mathbb{P}(Y = y) \\\ 
+&= \left(\sum_{x \in \mathbb{R}} x\mathbb{P}(X=x)\right)\left(\sum_{x \in \mathbb{R}} x\mathbb{P}(X=x)\right) \\\ 
+&= \mathbb{E}[X]\mathbb{E}[Y], 
+```
   
 as desired.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-111
@@ -1822,21 +1751,19 @@ The expectation of a random variable gives us some coarse information about wher
 **Definition** (Variance)  
 The variance of a random variable $X$ is defined to be 
 
-    p
-      | \begin{equation*}
-      |       \operatorname{Var} X = \mathbb{E}[(X - \mathbb{E}[X])^2].
-      | \end{equation*}
+``` latex
+\operatorname{Var} X = \mathbb{E}[(X - \mathbb{E}[X])^2].
+```
       
- The standard deviation $\sigma(X)$ of $X$ is the square root of the variance: 
+The standard deviation $\sigma(X)$ of $X$ is the square root of the variance: 
 
-    p
-      | \begin{equation*}
-      |       \sigma(X) = \sqrt{\operatorname{Var} X}.
-      | \end{equation*}
+``` latex
+\sigma(X) = \sqrt{\operatorname{Var} X}.
+```
 
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-112
@@ -1845,34 +1772,29 @@ _{button.next-step} Continue_
 **Exercise**  
  Consider a random variable which is obtained by making a selection from the list 
 
-    center
+    figure
       pre
         | [0.245, 0.874, 0.998, 0.567, 0.482]
 
 uniformly at random. Make a rough estimate of the mean and variance of this random variable just from looking at the number line. Then use Python to calculate the mean and variance exactly to see how close your estimates were. 
  
-    center: img(src="images/fivepoints.svg")
+    figure: img(src="images/fivepoints.svg")
 
 :::
 
     pre(data-executable)
       | import numpy as np
-      | 
-
-<p></p>
 
     x-quill
 
 ---
 > id: step-113
 
-<p></p>
-
 *Solution*. My estimate of the mean and variance are $0.6$ and $0.1$, [respectively](gloss:respectively). The value 0.6 appears to be around the balance point of the points on the number line, and the squared deviation from 0.6 is very small for a couple of the points and as large as about 0.15 for others. 
 
 Calculating the mean exactly using _{code.language-python}m = np.mean([0.245, 0.874, 0.998, 0.567, 0.482])_, we get a value of 0.6332. Calculating the variance exactly using _{code.language-python}np.mean([(a-m)**2 for a in A])_ (where $A$ is the array above), we get a value of 0.074. Therefore, our estimate was a little high. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-114
@@ -1886,10 +1808,7 @@ Tips: _{code.language-python}np.random.randint(0,1001)/1000_ returns a sample fr
 
     pre(data-executable)
       | import numpy as np
-      | 
 
-<p></p>
- 
     x-quill
 
 ---
@@ -1897,39 +1816,36 @@ Tips: _{code.language-python}np.random.randint(0,1001)/1000_ returns a sample fr
 
 *Solution*. We define a function _{code.language-python}run_ which plays the game once, and we record the result of the game over a million runs. We estimate the mean as the mean of the resulting list, and we estimate the variance using 
 
-    pre: code.language-python
-      | 
-      | import numpy as np
-      | def runs_till_over():
-      |     s = 0
-      |     ctr = 0
-      |     while s < 1.0:
-      |         s += np.random.randint(1,1001)/1000
-      |     return ctr
-      | 
-      | A = [runs_till_over() for _ in range(1_000_000)]
-      | μ = np.mean(A)
-      | var = np.mean((a-μ)**2 for a in A)
-      | μ,var
-      
-<!--**-->      
-      
+``` python
+import numpy as np
+def runs_till_over():
+    s = 0
+    ctr = 0
+    while s < 1.0:
+        s += np.random.randint(1,1001)/1000
+    return ctr
+
+A = [runs_till_over() for _ in range(1_000_000)]
+μ = np.mean(A)
+var = np.mean((a-μ)**2 for a in A)
+μ,var
+```
+
 We get a mean of about $2.71$, and a variance of about $0.77$. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-116
 
 We can use linearity of expectation to rewrite the formula for variance in a simpler form: 
 
-    p
-      | \begin{align*}
-      |     \operatorname{Var} X &= \mathbb{E}[X^2 - 2X \mathbb{E}[X] + \mathbb{E}[X]^2] \\\ 
-      |            &= \mathbb{E}[X^2] - 2\mathbb{E}[X\mathbb{E}[X]] + \mathbb{E}[X]^2 \\\ 
-      |            &= \mathbb{E}[X^2] - 2 \mathbb{E}[X]^2 + \mathbb{E}[X]^2 \\\ 
-      |            &= \mathbb{E}[X^2] - \mathbb{E}[X]^2.
-      | \end{align*}      
+``` latex
+\operatorname{Var} X &= \mathbb{E}[X^2 - 2X \mathbb{E}[X] + \mathbb{E}[X]^2] \\\ 
+       &= \mathbb{E}[X^2] - 2\mathbb{E}[X\mathbb{E}[X]] + \mathbb{E}[X]^2 \\\ 
+       &= \mathbb{E}[X^2] - 2 \mathbb{E}[X]^2 + \mathbb{E}[X]^2 \\\ 
+       &= \mathbb{E}[X^2] - \mathbb{E}[X]^2.
+```
  
 We can use this formula to show how variance interacts with linear operations: 
 
@@ -1937,13 +1853,12 @@ We can use this formula to show how variance interacts with linear operations:
 **Exercise**  
 Show that variance satisfies the properties 
 
-    p
-      | \begin{equation*}
-      |       \left\{\begin{array}{r@{\,}c@{\,}ll}
-      |                \operatorname{Var}(a X) &=& a^2 \operatorname{Var} X, \\\ 
-      |                \operatorname{Var}(X+Y) &=& \operatorname{Var}(X) + \operatorname{Var}(Y),
-      |              \end{array}\right.
-      | \end{equation*}
+``` latex
+\left\{\begin{array}{r@{\,}c@{\,}ll}
+         \operatorname{Var}(a X) &=& a^2 \operatorname{Var} X, \\\ 
+         \operatorname{Var}(X+Y) &=& \operatorname{Var}(X) + \operatorname{Var}(Y),
+       \end{array}\right.
+```
 
 if $a$ is a real number and $X$ is a random variable, and if $X$ and $Y$ are **independent** random variables, [respectively](gloss:respectively).
 
@@ -1956,33 +1871,30 @@ if $a$ is a real number and $X$ is a random variable, and if $X$ and $Y$ are **i
 
 *Proof*. The first part of the statement follows easily from linearity of expectation 
 
-    p
-      | \begin{align*}
-      |       \operatorname{Var}(aX) &= \mathbb{E}[a^2X^2] - \mathbb{E}[aX]^2\\\ 
-      |                &= a^2\mathbb{E}[X^2] - a^2\mathbb{E}[X]^2 \\\ 
-      |                & = a^2 (\mathbb{E}[X^2] - \mathbb{E}[X]^2)\\\ 
-      |                &= a^2 \operatorname{Var}(X).
-      | \end{align*}
+``` latex
+\operatorname{Var}(aX) &= \mathbb{E}[a^2X^2] - \mathbb{E}[aX]^2\\\ 
+         &= a^2\mathbb{E}[X^2] - a^2\mathbb{E}[X]^2 \\\ 
+         & = a^2 (\mathbb{E}[X^2] - \mathbb{E}[X]^2)\\\ 
+         &= a^2 \operatorname{Var}(X).
+```
  
 Since $\mathbb{E}[X + Y] = \mathbb{E}[X] + \mathbb{E}[Y]$ by linearity, we have 
 
-    p
-      | \begin{align*}
-      |       \operatorname{Var}(X + Y) &= \mathbb{E}[(X + Y)^2] - (\mathbb{E}[X] + \mathbb{E}[Y])^2 \\\ 
-      |                   &= \mathbb{E}[X^2 + 2XY + Y^2] - \mathbb{E}[X]^2 -2\mathbb{E}[X]\mathbb{E}[Y] -\mathbb{E}[Y]^2.
-      |     \end{align*}
+``` latex
+\operatorname{Var}(X + Y) &= \mathbb{E}[(X + Y)^2] - (\mathbb{E}[X] + \mathbb{E}[Y])^2 \\\ 
+            &= \mathbb{E}[X^2 + 2XY + Y^2] - \mathbb{E}[X]^2 -2\mathbb{E}[X]\mathbb{E}[Y] -\mathbb{E}[Y]^2.
+```
 
 Rearranging and using linearity of expectation, we get 
 
-    p
-      | \begin{align*}
-      |       \operatorname{Var}(X+Y)  &= \mathbb{E}[X^2] - \mathbb{E}[X]^2 + \mathbb{E}[Y^2] - \mathbb{E}[Y]^2 + 2(\mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y]) \\\ 
-      |                  &= \operatorname{Var}(X) + \operatorname{Var}(Y) + 2(\mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y]).
-      |     \end{align*}
+``` latex
+\operatorname{Var}(X+Y) &= \mathbb{E}[X^2] - \mathbb{E}[X]^2 + \mathbb{E}[Y^2] - \mathbb{E}[Y]^2 + 2(\mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y]) \\\ 
+                        &= \operatorname{Var}(X) + \operatorname{Var}(Y) + 2(\mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y]).
+```
 
 The desired result follows because if $X$ and $Y$ are independent, $\mathbb{E}[XY] = \mathbb{E}[X]\mathbb{E}[Y]$ by the [independence product formula](gloss:independence-product). 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-118 
@@ -2001,17 +1913,15 @@ Show that this distribution has a finite mean but not a finite variance.
 
 *Solution*. Let $X$ be a random variable with this distribution. Then 
 
-    p
-      | \begin{align*}
-      | 	\mathbb{E}[X] &= \sum_{n=1}^{\infty} n \cdot \frac{c}{n^3}= c \sum_{n=1}^{\infty} \frac{1}{n^2}.
-      | \end{align*}
+``` latex
+\mathbb{E}[X] &= \sum_{n=1}^{\infty} n \cdot \frac{c}{n^3}= c \sum_{n=1}^{\infty} \frac{1}{n^2}.
+```
 
 Since the sum on the right converges by the $p$-test, it follows that $\mathbb{E}[X]$ is finite. On the other hand, 
 
-    p
-      | \begin{align*}
-      | 	\mathbb{E}[X^2] &= \sum_{n=1}^{\infty} n^2 \cdot \frac{c}{n^3}= c \sum_{n=1}^{\infty} \frac{1}{n}.
-      | \end{align*}
+``` latex
+\mathbb{E}[X^2] &= \sum_{n=1}^{\infty} n^2 \cdot \frac{c}{n^3}= c \sum_{n=1}^{\infty} \frac{1}{n}.
+```
 
 does not converge because of the harmonic series term. Therefore $\operatorname{Var}(X) = \mathbb{E}[X^2] - \mathbb{E}[X]^2$ is infinite. 
 
@@ -2022,19 +1932,18 @@ does not converge because of the harmonic series term. Therefore $\operatorname{
 
 Just as mean and variance are summary statistics for the distribution of a single random variable, *covariance* is useful for summarizing how $(X,Y)$ are jointly distributed. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-120
 
 The **covariance** of two random variables $X$ and $Y$ is defined to be the expected product of their deviations from their respective means: 
 
-    p
-      | \begin{equation*}
-      |     \operatorname{Cov}(X,Y) = \mathbb{E}[ (X - \mathbb{E}[X]) (Y - \mathbb{E}[Y])].
-      | \end{equation*}
+``` latex
+\operatorname{Cov}(X,Y) = \mathbb{E}[ (X - \mathbb{E}[X]) (Y - \mathbb{E}[Y])].
+```
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-121
@@ -2045,7 +1954,7 @@ The covariance of two independent random variables is zero, because the expectat
 **Exercise**  
 Identify each of the following joint distributions as representing positive covariance, zero covariance, or negative covariance. The size of a dot at $(x,y)$ represents the probability that $X = x$ and $Y = y$. 
 
-    center: img(src="images/cov-examples.svg")
+    figure: img(src="images/cov-examples.svg")
 
 :::
 
@@ -2060,7 +1969,7 @@ The second graph shows positive covariance, since the top right and bottom left 
 
 The third graph shows zero covariance, since the points contribute to the sum defining $\mathbb{E}((X - \mathbb{E}(X))(Y-\mathbb{E}[Y]))$ in two cancelling pairs. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-123
@@ -2080,33 +1989,25 @@ Alternatively, the suggested random variables $X$ and $Y$ have zero covariance, 
 **Exercise**  
 The **correlation** of two random variables $X$ and $Y$ is defined to be their covariance normalized by the product of their standard deviations: 
 
-    p
-      | \begin{equation*}
-      |       \operatorname{Corr}(X,Y) = \frac{\operatorname{Cov}(X,Y)}{\sigma(X)\sigma(Y)}
-      | \end{equation*}
+``` latex
+\operatorname{Corr}(X,Y) = \frac{\operatorname{Cov}(X,Y)}{\sigma(X)\sigma(Y)}
+```
       
 In this problem, we will show that the correlation of two random variables is always between $-1$ and $1$. Let $\mu\_X = \mathbb{E}[X]$, and let $\mu\_Y = \mathbb{E}[Y]$. 
 
- 
-    ul
-      li Consider the following quadratic polynomial in $t$: 
-        p
-          | \begin{align*}
-          |  \mathbb{E}[&((X - \mu_X) + (Y - \mu_Y) t)^2] \\\ &= \mathbb{E}[(X-\mu_X)^2] + 2t\mathbb{E}[(X-\mu_X)(Y-\mu_Y)] + t^2  \mathbb{E}[(Y-\mu_Y)^2],
-          | \end{align*}
-        p
-          where $t$ is a variable. 
- 
-      li Explain why this polynomial is nonnegative for all $t \in \mathbb{R}$. 
-      
-      li Recall that a polynomial $at^2 + bt + c$ is nonnegative for all $t$ if and only if the discriminant $b^2 - 4ac$ is nonpositive (this follows from the quadratic formula). Use this fact to show that 
-        p
-          | \begin{equation*}
-          |         \mathbb{E}[(X-\mu_X)(Y-\mu_Y)]^2 \leq \operatorname{Var} X \operatorname{Var} Y.
-          | \end{equation*}
-          | 
+Consider the following quadratic polynomial in $t$: 
+``` latex
+\mathbb{E}[&((X - \mu_X) + (Y - \mu_Y) t)^2] \\\ &= \mathbb{E}[(X-\mu_X)^2] + 2t\mathbb{E}[(X-\mu_X)(Y-\mu_Y)] + t^2  \mathbb{E}[(Y-\mu_Y)^2],
+```
 
-      li Conclude that $-1 \leq \operatorname{Corr}(X,Y) \leq 1$. 
+where $t$ is a variable. Explain why this polynomial is nonnegative for all $t \in \mathbb{R}$. 
+      
+Recall that a polynomial $at^2 + bt + c$ is nonnegative for all $t$ if and only if the discriminant $b^2 - 4ac$ is nonpositive (this follows from the quadratic formula). Use this fact to show that 
+
+``` latex
+\mathbb{E}[(X-\mu_X)(Y-\mu_Y)]^2 \leq \operatorname{Var} X \operatorname{Var} Y.
+```
+Conclude that $-1 \leq \operatorname{Corr}(X,Y) \leq 1$. 
 
 :::
 
@@ -2114,29 +2015,29 @@ In this problem, we will show that the correlation of two random variables is al
 
 ---
 > id: step-124
- 
 
 *Solution*.  
 
-    ul
-      li The polynomial is nonnegative because the left-hand side of the given equation is the expectation of a nonnegative random variable. 
-      li Substituting $\mathbb{E}[(Y-\mu\_Y)^2]$ for $a$, $2\mathbb{E}[(X-\mu\_X)(Y-\mu\_Y)]$ for $b$, and $\mathbb{E}[(X-\mu\_X)^2]$ for $c$, the inequality $b^2 - 4ac \leq 0$ implies 
-      p
-        | \begin{equation*}
-        |           4\mathbb{E}[(X-\mu_X)(Y-\mu_Y)]^2 - 4 \mathbb{E}[(X-\mu_X)^2]\mathbb{E}[(Y-\mu_Y)^2]
-        |           \leq 0,
-        | \end{equation*}
-        | which implies the desired inequality. 
-    li Dividing both sides of the preceding inequality by $\operatorname{Var} X \operatorname{Var} Y$ and taking the square root of both sides, we find that $|\operatorname{Corr}(X,Y)| \leq 1$, which implies $-1 \leq \operatorname{Corr}(X,Y) \leq 1$. 
+The polynomial is nonnegative because the left-hand side of the given equation is the expectation of a nonnegative random variable. 
+
+Substituting $\mathbb{E}[(Y-\mu\_Y)^2]$ for $a$, $2\mathbb{E}[(X-\mu\_X)(Y-\mu\_Y)]$ for $b$, and $\mathbb{E}[(X-\mu\_X)^2]$ for $c$, the inequality $b^2 - 4ac \leq 0$ implies 
+
+``` latex
+4\mathbb{E}[(X-\mu_X)(Y-\mu_Y)]^2 - 4 \mathbb{E}[(X-\mu_X)^2]\mathbb{E}[(Y-\mu_Y)^2]
+\leq 0,
+```
+
+which implies the desired inequality. 
+
+Dividing both sides of the preceding inequality by $\operatorname{Var} X \operatorname{Var} Y$ and taking the square root of both sides, we find that $|\operatorname{Corr}(X,Y)| \leq 1$, which implies $-1 \leq \operatorname{Corr}(X,Y) \leq 1$. 
 
 ::: .exercise
 **Exercise**  
 Show that 
 
-    p
-      | \begin{equation*}
-      |       \operatorname{Var}(X_{1}+X_{2}+\cdots+X_{n}) = \sum_{k=1}^n \operatorname{Var} X_k
-      | \end{equation*}
+``` latex
+\operatorname{Var}(X_{1}+X_{2}+\cdots+X_{n}) = \sum_{k=1}^n \operatorname{Var} X_k
+```
       
 if $X\_1, \ldots, X_n$ are independent random variables. 
 
@@ -2149,55 +2050,21 @@ if $X\_1, \ldots, X_n$ are independent random variables.
 
 *Solution*. The expectation of $(X\_1+\cdots+X\_n)^2$ is the sum of the values in this table: 
 
-    table
-      tr
-        td $\mathbb{E}[X_1^2]$
-        td $\mathbb{E}[X_1X_2]$
-        td $\cdots$
-        td $\mathbb{E}[X_1X_n]$
-      tr
-        td $\mathbb{E}[X_2X_1]$
-        td $\mathbb{E}[X_2^2]$
-        td $\cdots$
-        td $\mathbb{E}[X_2X_n]$
-      tr
-        td $\vdots$
-        td $\vdots$
-        td $\ddots$
-        td $\vdots$
-      tr
-        td $\mathbb{E}[X_nX_1]$
-        td $\mathbb{E}[X_nX_2]$
-        td $\cdots$
-        td $\mathbb{E}[X_n^2]$
+| $\mathbb{E}[X_1^2]$  | $\mathbb{E}[X_1X_2]$ | $\cdots$ | $\mathbb{E}[X_1X_n]$ |
+| $\mathbb{E}[X_2X_1]$ | $\mathbb{E}[X_2^2]$  | $\cdots$ | $\mathbb{E}[X_2X_n]$ |
+| $\vdots$             | $\vdots$             | $\ddots$ | $\vdots$             |
+| $\mathbb{E}[X_nX_1]$ | $\mathbb{E}[X_nX_2]$ | $\cdots$ | $\mathbb{E}[X_n^2]$  |
 
 The square of the expectation of $X\_1+\cdots+X\_n$ is the sum of the values in this table: 
 
-    table
-      tr
-        td $\mathbb{E}[X_1]^2$
-        td $\mathbb{E}[X_1]\mathbb{E}[X_2]$
-        td $\cdots$
-        td $\mathbb{E}[X_1]\mathbb{E}[X_n]$
-      tr
-        td $\mathbb{E}[X_2]\mathbb{E}[X_1]$
-        td $\mathbb{E}[X_2]^2$
-        td $\cdots$
-        td $\mathbb{E}[X_2]\mathbb{E}[X_n]$
-      tr
-        td $\vdots$
-        td $\vdots$
-        td $\ddots$
-        td $\vdots$
-      tr
-        td $\mathbb{E}[X_n]\mathbb{E}[X_1]$
-        td $\mathbb{E}[X_n]\mathbb{E}[X_2]$
-        td $\cdots$
-        td $\mathbb{E}[X_n]^2$
+| $\mathbb{E}[X_1]^2$              | $\mathbb{E}[X_1]\mathbb{E}[X_2]$ | $\cdots$ | $\mathbb{E}[X_1]\mathbb{E}[X_n]$ |
+| $\mathbb{E}[X_2]\mathbb{E}[X_1]$ | $\mathbb{E}[X_2]^2$              | $\cdots$ | $\mathbb{E}[X_2]\mathbb{E}[X_n]$ |
+| $\vdots$                         | $\vdots$                         | $\ddots$ | $\vdots$                         |
+| $\mathbb{E}[X_n]\mathbb{E}[X_1]$ | $\mathbb{E}[X_n]\mathbb{E}[X_2]$ | $\cdots$ | $\mathbb{E}[X_n]^2$              |
 
 Subtracting these two tables entry-by-entry, we get the variances on the right-hand side from the diagonal terms, and all of the off-diagonal terms cancel, by the [independence product formula](gloss:independence-product). 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-126
@@ -2206,35 +2073,29 @@ _{button.next-step} Continue_
 **Exercise** (Mean and variance of the sample mean)  
 Suppose that $X\_1, \ldots, X\_n$ are independent random variables with the same distribution. Find the mean and variance of 
 
-    p
-      | \begin{equation*}
-      |       \frac{X_1 + \cdots + X_n}{n}
-      | \end{equation*}
+``` latex
+\frac{X_1 + \cdots + X_n}{n}
+```
 
 :::
 
- 
-
 *Solution*. By linearity of expectation, we have 
 
-    p
-      | \begin{align*}
-      |       \mathbb{E}\left[\frac{X_1 + X_2 + \cdots + X_n}{n}\right] &= \frac{\mathbb{E}[X_1] + \mathbb{E}[X_2]+ \cdots + \mathbb{E}[X_n]}{n} \\\ 
-      |                                                         &= \mathbb{E}[X_1],
-      |     \end{align*}
-      | 
+``` latex
+\mathbb{E}\left[\frac{X_1 + X_2 + \cdots + X_n}{n}\right] &= \frac{\mathbb{E}[X_1] + \mathbb{E}[X_2]+ \cdots + \mathbb{E}[X_n]}{n} \\\ 
+                                                  &= \mathbb{E}[X_1],
+```
  
 Then
 
-    p
-      | \begin{align*}
-      |  \operatorname{Var}\left(\frac{X_1+X_2 + \cdots + X_n}{n}\right) &= \sum_{k = 1}^{n}\operatorname{Var}\left(\frac{X_k}{n}\right) \\\ 
-      |  &= \sum_{k = 1}^{n}\operatorname{Var}\left(\frac{X_k}{n}\right) \\\ 
-      |  &= \sum_{k = 1}^{n} \frac{1}{n^2} \operatorname{Var}(X_k) \\\ 
-      |  &= \frac{\operatorname{Var}(X_1)}{n}. 
-      | \end{align*}
+``` latex
+\operatorname{Var}\left(\frac{X_1+X_2 + \cdots + X_n}{n}\right) &= \sum_{k = 1}^{n}\operatorname{Var}\left(\frac{X_k}{n}\right) \\\ 
+&= \sum_{k = 1}^{n}\operatorname{Var}\left(\frac{X_k}{n}\right) \\\ 
+&= \sum_{k = 1}^{n} \frac{1}{n^2} \operatorname{Var}(X_k) \\\ 
+&= \frac{\operatorname{Var}(X_1)}{n}. 
+```
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-127
@@ -2259,19 +2120,17 @@ Show that $\Sigma = \mathbb{E}[\mathbf{X} \mathbf{X}']$ if all of the random var
  
 Not every random phenomenon is ideally modeled using a discrete probability space. For example, we will see that the study of discrete distributions leads us to the *Gaussian distribution*, which smooths its probability mass out across the whole real number line, with most of the mass near the origin and less as you move out toward $-\infty$ or $+\infty$. 
 
-    center
+    figure
       img(src="images/gaussian.svg")
-      p.caption The *Gaussian* distribution spreads its probability mass out across the real number line. There is no single point where a positive amount of probability mass is concentrated. 
+      p.caption.md The *Gaussian* distribution spreads its probability mass out across the real number line. There is no single point where a positive amount of probability mass is concentrated. 
 
 <p></p>
 
 We won't be able to work with such distributions using probability mass functions, since the function which maps each point to the amount of probability mass at that point is the zero function. However, calculus provides us with a smooth way of specifying where stuff is on the number line and how to total it up: **integration**. We can define a function $f$ which is larger where there's more probability mass and smaller where there's less, and we can calculate probabilities by integrating $f$. 
  
-    center
+    figure
       img(src="images/density.svg")
-      p.caption The probability measure $\nu$ associated with a density $f$ assigns the measure $\int\_a^b f(x) \, \mathrm{d} x$ to each interval $[a,b]$ 
-
-<p></p>
+      p.caption.md The probability measure $\nu$ associated with a density $f$ assigns the measure $\int\_a^b f(x) \, \mathrm{d} x$ to each interval $[a,b]$ 
 
 The simplest possible choice for $f$ is the function which is $1$ on $[0,1]$ and 0 elsewhere. In this case, the probability mass associated with a set $\mathbb{E} \subset [0,1]$ is the total length of $E$. In higher dimensions, $\Omega = [0,1]^2$ with the probability measure $\mathbb{P}(E) = \text{area}(E)$ gives us a probability space, as does $\Omega = [0,1]^3$ with the probability measure $\mathbb{P}(E) = \text{volume}(E)$. 
 
@@ -2282,11 +2141,10 @@ Consider the probability space $\Omega = [0,1]^2$ with the area probability meas
 
 *Solution*. We have 
 
-    p
-      | \begin{equation*}
-      |       \mathbb{P}(\{X \in I\} \cap \{Y \in J\}) = \text{area}(I \times J) =
-      |       \text{length}(I) \text{length}(J),
-      | \end{equation*}
+``` latex
+\mathbb{P}(\{X \in I\} \cap \{Y \in J\}) = \text{area}(I \times J) =
+\text{length}(I) \text{length}(J),
+```
 
  by the area formula for a rectangle. Since $\text{length}(I) = \mathbb{P}(\\{X \in I\\} \cap \\{Y \in [0,1]\\}) = \mathbb{P}(X \in I)$ and $\text{length}(J) = \mathbb{P}(\\{Y \in J\\} \cap \\{X \in [0,1]\\}) = \mathbb{P}(Y \in J)$, we conclude that $\\{X \in I\\}$ and $\\{Y \in J\\}$ are independent. 
 
@@ -2298,14 +2156,12 @@ Just as a function we integrate to find total mass is called a mass density func
 **Definition**  
 Suppose that $\Omega \subset \mathbb{R}^n$ for some $n \geq 1$, and suppose that $f:\Omega \to [0,\infty)$ has the property that $\int\_\Omega f \mathrm{d} V = 1$. We call $f$ a *probability density function*, abbreviated PDF, and we define 
 
-    p
-      | \begin{equation*}
-      |       \mathbb{P}(E) = \int_E f \, \mathrm{d} V
-      | \end{equation*}
+``` latex
+\mathbb{P}(E) = \int_E f \, \mathrm{d} V
+```
 
 for events $E \subset \Omega$. We call $(\Omega, \mathbb{P})$ a **continuous probability space**. 
 :::
-
 
 ::: .exercise
 **Exercise**  
@@ -2324,36 +2180,29 @@ If $f$ is constant on $\Omega$, then we call $f$ the *uniform measure* on $\Omeg
 
 All of the tools we developed for discrete probability spaces have analogues for continuous probability spaces. The main idea is to replace sums with integrals, and many of the definitions transfer over with no change. Let's briefly summarize and follow up with some exercises. 
  
- 
-    ul
-      li The distribution of a continuous random variable $X$ is the measure $A\mapsto \mathbb{P}(X \in A)$ on $\mathbb{R}$. 
-      li The cumulative distribution function $F_X$ of a continuous random variable $X$ is defined by $F_X(x) = \mathbb{P}(X \leq x)$ for all $x \in \mathbb{R}$. 
-    
-      li The joint distribution of two continuous random variables $X$ and $Y$ is the measure $A \mapsto \mathbb{P}((X,Y) \in A)$ on $\mathbb{R}^2$. 
-      
-      li If $(X,Y)$ is a continuous pair of random variables with joint density $f_{X,Y}: \mathbb{R}^2 \to \mathbb{R}$, then the conditional distribution of $X$ given the event $\\{Y=y\\}$ has density $f_{X| Y=y}$ defined by 
-        p
-          | \begin{equation*}
-          |       f_{X| \{Y=y\}}(x)  = \frac{f_{X,Y}(x,y)}{f_Y(y)},
-          | \end{equation*}
-        p
-          where $\displaystyle{f_Y(y) = \int_{-\infty}^\infty f(x,y) \, \mathrm{d} x}$ is the pdf of $Y$
-      li Two continuous random variables $X$ and $Y$ are independent if $\mathbb{P}((X,Y) \in A \times B) = \mathbb{P}(X \in A) \mathbb{P}(Y \in B)$ for all $A\subset \mathbb{R}$ and $B \subset \mathbb{R}$. This is true if and only if $(X,Y)$ has density $(x,y) \mapsto f_X(x)f_Y(y)$, where $f_X$ and $f_Y$ are the densities of $X$ and $Y$, [respectively](gloss:respectively). 
-      
-      li The expectation of a continuous random variable $X$ defined on a probability space $(\Omega, \mathbb{P})$ 
-        p
-          | \begin{equation*}
-          |       \mathbb{E}[X] = \int_\Omega X(\omega) f(\omega) \, \mathrm{d} \omega,
-          | \end{equation*}
-          | where $f$ is $\mathbb{P}$'s density. The expectation is also given by 
+* The distribution of a continuous random variable $X$ is the measure $A\mapsto
+  \mathbb{P}(X \in A)$ on $\mathbb{R}$. 
+* The cumulative distribution function $F_X$ of a continuous random variable
+  $X$ is defined by $F_X(x) = \mathbb{P}(X \leq x)$ for all $x \in \mathbb{R}$. 
+* The joint distribution of two continuous random variables $X$ and $Y$ is the
+  measure $A \mapsto \mathbb{P}((X,Y) \in A)$ on $\mathbb{R}^2$. 
+* If $(X,Y)$ is a continuous pair of random variables with joint density
+  $f_{X,Y}: \mathbb{R}^2 \to \mathbb{R}$, then the conditional distribution of
+  $X$ given the event $\\{Y=y\\}$ has density $f_{X| Y=y}$ defined by 
+  $f_{X| \{Y=y\}}(x)  = \frac{f_{X,Y}(x,y)}{f_Y(y)}$, where $\displaystyle{f_Y(y)
+  = \int_{-\infty}^\infty f(x,y) \, \mathrm{d} x}$ is the pdf of $Y$
+* Two continuous random variables $X$ and $Y$ are independent if $\mathbb{P}((X,Y)
+  \in A \times B) = \mathbb{P}(X \in A) \mathbb{P}(Y \in B)$ for all $A\subset
+  \mathbb{R}$ and $B \subset \mathbb{R}$. This is true if and only if $(X,Y)$ has
+  density $(x,y) \mapsto f_X(x)f_Y(y)$, where $f_X$ and $f_Y$ are the densities
+  of $X$ and $Y$, [respectively](gloss:respectively). 
+* The expectation of a continuous random variable $X$ defined on a probability
+  space $(\Omega, \mathbb{P})$ is $\mathbb{E}[X] = \int_\Omega X(\omega)
+  f(\omega) \, \mathrm{d} \omega$, where $f$ is $\mathbb{P}$'s density. The
+  expectation is also given by $\mathbb{E}[X] = \int_{\mathbb{R}} x f_X(x) \,
+  \mathrm{d} x$, where $f_X$ is the density of the distribution of $X$. 
 
-        p
-          | \begin{equation*}
-          |       \mathbb{E}[X] = \int_{\mathbb{R}} x f_X(x) \, \mathrm{d} x,
-          | \end{equation*}
-          | where $f_X$ is the density of the distribution of $X$. 
-
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-130
@@ -2371,7 +2220,7 @@ Suppose that $f$ is the function which returns $2$ for any point in the triangle
 *Solution*. Then the conditional density of $X$ given $\\{Y = y\\}$ is the uniform distribution on the segment $[y,1]$, since that interval is the intersection of the triangle and the horizontal line at height $y$. 
 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-132
@@ -2388,12 +2237,11 @@ Find the expectation of a random variable whose density is $f(x) = \mathrm{e}^{-
 
 *Solution*. We calculate 
 
-    p
-      | \begin{equation*}
-      |       \int_{-\infty}^\infty x \mathrm{e}^{-x} \boldsymbol{1}_{x \in [0,\infty)}
-      |       \, \mathrm{d} x = \int_{0}^\infty x \mathrm{e}^{-x} \, \mathrm{d} x = 1.
-      | \end{equation*}
-      
+``` latex
+\int_{-\infty}^\infty x \mathrm{e}^{-x} \boldsymbol{1}_{x \in [0,\infty)}
+\, \mathrm{d} x = \int_{0}^\infty x \mathrm{e}^{-x} \, \mathrm{d} x = 1.
+```
+
 ::: .exercise
 **Exercise**  
 Show that the cumulative distribution function of a continuous random variable is increasing and continuous. 
@@ -2410,7 +2258,7 @@ Show that the cumulative distribution function of a continuous random variable i
 
 To see that $F$ is continuous, we note that the difference between $F(s)$ and $F(s+\epsilon)$ is the integral of the density $f$ over a width- $\epsilon$ interval. Thus we can use the supplied note to conclude that $F(s + \epsilon) \to F(s)$ as $\epsilon \to 0$ for all $s \in \mathbb{R}$. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-135 
@@ -2429,16 +2277,15 @@ Use this result to show that if $U$ is uniformly distributed on $[0,1]$, then $U
 
 *Solution*. The equation $F'(x) = f(x)$ follows immediately from the fundamental theorem of calculus. We have 
 
-    p
-      | \begin{equation*}
-      |       F'(x) = \frac{\mathrm{d} }{\mathrm{d} x} \int_{-\infty}^x f(t) \, \mathrm{d} t = f(x)
-      | \end{equation*}
+``` latex
+F'(x) = \frac{\mathrm{d} }{\mathrm{d} x} \int_{-\infty}^x f(t) \, \mathrm{d} t = f(x)
+```
 
- at any point $x$ where $f$ is continuous. 
+at any point $x$ where $f$ is continuous. 
 
 Let $F$ be the CDF of $U^2$. Since $\mathbb{P}(U \le t) = t$ for $t \in [0,1]$, we have $F(x) = \mathbb{P}(U^2 < x) = \mathbb{P}(U < \sqrt{x}) = \sqrt{x}$ for $x \in [0,1]$. Differentiating, we find that the density is $\frac{1}{2\sqrt{x}}$ on $(0,1)$. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-137 
@@ -2464,41 +2311,53 @@ The remarkably useful **inverse CDF trick** gives us a way of sampling from any 
 
 *Solution*.  
 
-    ul
-      li It can be shown that, as result of monotonicity and additivity, 
-        p
-          | \begin{equation*}\mathbb{P}(X < x) = \max\{F(t) : t < x \},\end{equation*}
-          | whenever the maximum exists. Now, because a CDF is monotonic, if $F$ has a jump from $y_1$ to $y_2$ at $x$ it must be the case that $F(x) = y_2$ and $\max\\{F(t) : t < x \\} = y_1.$ Therefore, $\mathbb{P}(X < x) = y_1.$ Since 
-          | \begin{equation*}\mathbb{P}(X = x)  = F(x) -  \mathbb{P}(X < x)\end{equation*}
-          | by additivity, it follows that $\mathbb{P}(X = x) = y_1 - y_2$ as required. 
-      li The CDF $F_U$ of a uniform $[0, 1]$ random variable is 
-        p
-          | \begin{equation*}F_U(t) = \begin{cases}
-          | 	0 & \text{if} \; t < 0 \\
-          | 	t & \text{if} \; 0 \leq t \leq 1 \\
-          | 	1 & \text{otherwise.}
-          | 	\end{cases}
-          | 	\end{equation*}
-          | Therefore we have 
-          | \begin{equation*} \mathbb{P}(U \leq F(t)) = F_U(F(t)) = F(t) = \mathbb{P}(X \leq t)\end{equation*}
-          | as required. 
+It can be shown that, as result of monotonicity and additivity, 
 
-      li A random variable with this density function has a CDF defined by 
-        p
-          | \begin{equation*}
-          | 	F(t) = \begin{cases}
-          | 	0 & \text{if} \; t < 0 \\
-          | 	t^2 & \text{if} \; 0 \leq t \leq 1 \\
-          | 	1 & \text{otherwise}.
-          | 	\end{cases}
-          | 	\end{equation*}
-          | Therefore the generalized inverse of $F$ is $F^{-1}(u) = \sqrt{u}$ for all $0 \leq u \leq 1.$ This leads to the following Julia code for sampling from this distribution. 
+``` latex
+\mathbb{P}(X < x) = \max\{F(t) : t < x \},
+```
 
-    pre: code.language-python
-      | 
-      | np.sqrt(np.random.random_sample())
-      | 	
+whenever the maximum exists. Now, because a CDF is monotonic, if $F$ has a jump from $y_1$ to $y_2$ at $x$ it must be the case that $F(x) = y_2$ and $\max\\{F(t) : t < x \\} = y_1.$ Therefore, $\mathbb{P}(X < x) = y_1.$ Since 
 
+``` latex
+\mathbb{P}(X = x)  = F(x) -  \mathbb{P}(X < x)
+```
+
+by additivity, it follows that $\mathbb{P}(X = x) = y_1 - y_2$ as required. 
+
+The CDF $F_U$ of a uniform $[0, 1]$ random variable is 
+
+``` latex
+F_U(t) = \begin{cases}
+0 & \text{if} \; t < 0 \\
+t & \text{if} \; 0 \leq t \leq 1 \\
+1 & \text{otherwise.}
+\end{cases}
+```
+
+Therefore we have
+
+``` latex
+\mathbb{P}(U \leq F(t)) = F_U(F(t)) = F(t) = \mathbb{P}(X \leq t)
+```
+
+as required. 
+
+A random variable with this density function has a CDF defined by
+
+``` latex
+F(t) = \begin{cases}
+0 & \text{if} \; t < 0 \\
+t^2 & \text{if} \; 0 \leq t \leq 1 \\
+1 & \text{otherwise}.
+\end{cases}
+```
+
+Therefore the generalized inverse of $F$ is $F^{-1}(u) = \sqrt{u}$ for all $0 \leq u \leq 1.$ This leads to the following Julia code for sampling from this distribution. 
+
+``` python
+np.sqrt(np.random.random_sample())
+```
 
 ### General probability spaces
 
@@ -2506,9 +2365,9 @@ So far we have discussed probability spaces which are specified with the help of
 
 In general, a person may propose a probability space by specifying any set $\Omega$, a collection of subsets of $\Omega$ which supports taking countable unions, intersections, and complements, and a function $\mathbb{P}$ defined on that collection of subsets. We require that certain properties are satisfied: 
  
-    center
+    figure
       img(src="images/cantor.svg")
-      p.caption The CDF of the uniform measure on the Cantor set. 
+      p.caption.md The CDF of the uniform measure on the Cantor set. 
 
 ::: .definition
 **Definition** (Probability space: the general definition)  
@@ -2526,13 +2385,12 @@ then we say that $\mathbb{P}$ is a probability measure on $\Omega$, and that $\O
  
 The **conditional expectation** of $Y$ given $\\{X=x\\}$ is defined to be the expectation of $Y$ calculated with respect to its conditional distribution given $\\{X=x\\}$. For example, if $X$ and $Y$ are continuous random variables, then 
 
-    p
-      | \begin{equation*}
-      |     E[Y | X = x] = \int_{-\infty}^{\infty}y f_{Y | \{X = x\}} (y)  \, \mathrm{d} y.
-      | \end{equation*}
- 
-_{button.next-step} Continue_
- 
+``` latex
+E[Y | X = x] = \int_{-\infty}^{\infty}y f_{Y | \{X = x\}} (y)  \, \mathrm{d} y.
+```
+
+[Continue](btn:next)
+
 ---
 > id: step-139
  
@@ -2548,7 +2406,7 @@ The **conditional variance** of $Y$ given $\\{X = x\\}$ is defined to be the var
 Continuing with the example above, the conditional density of $Y$ given $\\{X = x\\}$ is the variance of the uniform distribution on the segment $[x,1]$, which is $\frac{(1-x)^2}{12}$. 
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-140
@@ -2560,7 +2418,7 @@ We can regard the conditional expectation of $Y$ given $X$ as a random variable,
 With $Y$ and $X$ as defined above, we have $\mathbb{E}[Y | X] = \frac{1+X}{2}$ and $\operatorname{Var}[Y | X] = \frac{(1-X)^2}{12}$. 
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-141
@@ -2577,17 +2435,15 @@ Find the conditional expectation of $Y$ given $X$ where the pair $(X,Y)$ has den
 
 *Solution*. We calculate the conditional density as 
 
-    p
-      | \begin{equation*}
-      |       \frac{f_{X,Y}(x,y)}{f_X(x)} = \frac{x + y}{x + \frac{1}{2}},
-      | \end{equation*}
+``` latex
+\frac{f_{X,Y}(x,y)}{f_X(x)} = \frac{x + y}{x + \frac{1}{2}},
+```
 
  which means that 
 
-    p
-      | \begin{equation*}
-      |   \mathbb{E}[Y | X = x] = \int_0^1 \frac{y(x+y)}{x + \frac{1}{2}} \, \mathrm{d} x = \frac{3x+2}{6(x+\frac{1}{2})}.
-      | \end{equation*}
+``` latex
+\mathbb{E}[Y | X = x] = \int_0^1 \frac{y(x+y)}{x + \frac{1}{2}} \, \mathrm{d} x = \frac{3x+2}{6(x+\frac{1}{2})}.
+```
 
 So $\mathbb{E}[Y | X] = \frac{3X+2}{6(X+\frac{1}{2})}$
 
@@ -2599,10 +2455,9 @@ Conditional expectation can be helpful for calculating expectations, because of 
 **Theorem** (Tower law of conditional expectation)  
 If $X$ and $Y$ are random variables defined on a probability space, then 
 
-    p
-      | \begin{equation*}
-      |       \mathbb{E}[\mathbb{E}[Y | X]] = \mathbb{E}[Y].
-      | \end{equation*}
+``` latex
+\mathbb{E}[\mathbb{E}[Y | X]] = \mathbb{E}[Y].
+```
 
 :::
 
@@ -2621,24 +2476,21 @@ Find the expected number of particles extant just after time $t = 2$. Hint: defi
 
 *Solution*. If $Y$ is the number of particles and $X$ is the [indicator](gloss:indicator) of the event that the particle split at time $1$, then 
 
-    p
-      | \begin{equation*}
-      |       \mathbb{E}[Y | \{X = 0\}] = 2(p) + 1(1-p) = 1+p
-      | \end{equation*}
+``` latex
+\mathbb{E}[Y | \{X = 0\}] = 2(p) + 1(1-p) = 1+p
+```
       
  while 
 
-    p
-      | \begin{equation*}
-      |       \mathbb{E}[Y | \{X = 1\}] = 2(1+p) = 2 + 2p.
-      | \end{equation*}
+``` latex
+\mathbb{E}[Y | \{X = 1\}] = 2(1+p) = 2 + 2p.
+```
 
  Therefore, $\mathbb{E}[Y | \\{X = x\\}] = (1+p)(1+X)$. By the tower law, we have 
 
-    p
-      | \begin{equation*}
-      |   \mathbb{E}[Y] = \mathbb{E}[\mathbb{E}[Y | X]] = (1+p)(1+\mathbb{E}[X]) = (1+p)^2.
-      | \end{equation*}
+``` latex
+\mathbb{E}[Y] = \mathbb{E}[\mathbb{E}[Y | X]] = (1+p)(1+\mathbb{E}[X]) = (1+p)^2.
+```
 
 ---
 > id: central-limit-theorem
@@ -2650,22 +2502,22 @@ The **central limit theorem**, one of the most important results in applied prob
 
 Roughly speaking, we will consider two probability measures close if they put approximately the same amount of probability mass in approximately the same places on the number line. For example, a sequence of continuous probability measures with densities $f\_1, f\_2, \ldots$ converges to a continuous probability measure with density $f$ if $\lim\_{n\to\infty} f\_n(x) = f(x)$ for all $x \in \mathbb{R}$:
 
-    center
+    figure
       img(src="images/densities.svg")
-      p.caption The sequence of densities $f_n$ converges to the density $f$ as $n\to\infty$ 
+      p.caption.md The sequence of densities $f_n$ converges to the density $f$ as $n\to\infty$ 
       
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-144
 
 If the limiting probability measure is not continuous, then the situation is slightly more complicated. For example, we would like to say that the probability measure which puts a mass of $\frac{1}{2}+\frac{1}{n}$ at $\frac{1}{n}$ and a mass of $\frac{1}{2}-\frac{1}{n}$ at $1 + \frac{1}{n}$ converges to the [fair coin flip distribution](gloss:bernoulli) as $n\to\infty$. This does not correspond to pointwise convergence of the probability mass functions, since we don't have convergence of probability mass function values at 0 or at 1 in this example. 
 
-    center
+    figure
       img(src="images/convergence-in-distribution.svg")
-      p.caption The probability measures which assign mass $\frac{1}{2}+\frac{1}{n}$ and $\frac{1}{2} - \frac{1}{n}$ to $\frac{1}{n}$ and $1+\frac{1}{n}$, respectively, (shown in sea green) converge to the Bernoulli distribution with success probability $\frac{1}{2}$(shown in red). 
+      p.caption.md The probability measures which assign mass $\frac{1}{2}+\frac{1}{n}$ and $\frac{1}{2} - \frac{1}{n}$ to $\frac{1}{n}$ and $1+\frac{1}{n}$, respectively, (shown in sea green) converge to the Bernoulli distribution with success probability $\frac{1}{2}$(shown in red). 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-145
@@ -2681,7 +2533,7 @@ We can combine the discrete and continuous definitions into a single definition:
 A sequence $\nu\_1, \nu\_2, \ldots$ of probability measures on $\mathbb{R}$ converges to a probability measure $\nu$ on $\mathbb{R}$ if $\nu\_n(I) \to \nu(I)$ whenever $I$ is an interval satisfying $\nu(\\{a,b\\}) = 0$, where $a$ and $b$ are the endpoints of $I$. 
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-146
@@ -2704,7 +2556,7 @@ If $I$ does not contain the origin, then the terms of the sequence $\nu\_1(I), \
 
 In either case, $\nu\_n(I)$ converges to $\nu(I)$. Therefore, $\nu\_n$ converges to $\nu$. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-148
@@ -2713,52 +2565,50 @@ _{button.next-step} Continue_
  
 The *law of large numbers* tells us that the distribution $\nu$ of a mean of many independent, identically distributed finite-variance, mean-$\mu$ random variables is concentrated around $\mu$. This a mathematical formalization of the well-known fact that flipping a coin many times results in a heads proportion close to 1/2 with high probability, or the average of many die rolls is very close to 3.5 with high probability. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-149
 
 The **central limit theorem** gives us precise information about *how* the probability mass of $\nu$ is concentrated around its mean. Consider a sequence of independent fair coin flips $X\_1, X\_2, \ldots$, and define the sums 
 
-    p
-      | \begin{equation*}
-      |     S_n = X_1 + \cdots + X_n,
-      | \end{equation*}
+``` latex
+S_n = X_1 + \cdots + X_n,
+```
 
 for $n \geq 1$. The probability mass functions of the $S\_n$'s can be calculated exactly, and they are graphed in the figure below, for several values of $n$. We see that the graph is becoming increasingly bell-shaped as $n$ increases. 
 
-    center
+    figure
       img(src="images/bernoulliCLT.svg")
       p.caption Probability mass functions of sums of Bernoulli(1/2) random variables.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-150
 
 If we repeat this exercise with other distributions in place of the independent coin flips, we obtain similar results. For example, the *Poisson* distribution is a discrete distribution which assigns mass $e^{-3}3^{k}/k!$ to each nonnegative integer $k$. The probability mass functions for sums of the independent Poisson(3) random variables is shown in the figure below. Not only is the shape of the graph stabilizing as $n$ increases, but we're apparently getting the *same* shape as in the Bernoulli example. 
 
-    center
+    figure
       img(src="images/otherCLT.svg")
       p.caption Probability mass functions of sums of Poisson(3) random variables. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-151
 
 To account for the shifting and spreading of the distribution of $S\_n$, we *normalize* it: we subtract its mean and then divide by its standard deviation to obtain a random variable with mean zero and variance 1: 
 
-    p
-      | \begin{equation*}
-      |     S_n \quad\stackrel{\text{shift}}{\longrightarrow}\quad
-      |     S_n - n\mu \quad \stackrel{\text{scale}}{\longrightarrow}\quad
-      |     \frac{S_n - n\mu}{\sigma\sqrt{n}}
-      | \end{equation*}
+``` latex
+S_n \quad\stackrel{\text{shift}}{\longrightarrow}\quad
+S_n - n\mu \quad \stackrel{\text{scale}}{\longrightarrow}\quad
+\frac{S_n - n\mu}{\sigma\sqrt{n}}
+```
  
 So, we define $S\_n^* = \frac{S\_n - n\mu}{\sigma\sqrt{n}}$, which has mean 0 and variance 1. Based on the figures above, we conjecture that the distribution of $S\_n^\*$ converges as $n\to\infty$ to some distribution with a bell-shaped probability density function. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-152
@@ -2771,15 +2621,14 @@ Suppose that $X\_1,X\_2,\ldots,$ are independent, identically distributed random
 
 For all $-\infty \leq a < b \leq \infty$, we have 
 
-    p
-      | \begin{equation*}
-      |       \lim_{n\to\infty} \mathbb{P}( a < S_n^* < b) = \mathbb{P}(a < Z < b),
-      | \end{equation*}
+``` latex
+\lim_{n\to\infty} \mathbb{P}( a < S_n^* < b) = \mathbb{P}(a < Z < b),
+```
 
 where $Z \sim \mathcal{N}(0,1)$. In other words, the sequence $S\_1^\*, S\_2^\*,\ldots$ *converges in distribution* to $Z$. 
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-153
@@ -2798,30 +2647,26 @@ Suppose we flip a coin which has probability 60% of turning up heads $n$ times. 
 
 *Solution*. We calculate the standard deviation $\sigma = \sqrt{(0.4)(0.6)}$ and the mean $\mu = 0.6$ of each flip, and we use these values to rewrite the desired probability in terms of $S\_n^*$. We find 
 
-    p
-      | \begin{align*}
-      |       P\left( 0.59 < \frac{1}{n}S_n < 0.61\right) &= P\left( -0.01  < \frac{S_n - \mu n}{n}
-      |                                                     < 0.01\right) \\\\ 
-      |                                                   &= P\left(
-      |                                                     -\frac{0.01\sqrt{n}}{\sqrt{0.4\cdot0.6}}
-      |                                                     < \frac{S_n - \mu n}{\sigma\sqrt{n}}
-      |                                                     <\frac{0.01\sqrt{n}}{\sqrt{0.4\cdot0.6}}\right),
-      |   \end{align*}
-      | 
-      
- where the last step was obtained by multiplying all three expressions in the compound inequality by $\sqrt{n}/\sigma$. Since $S\_n^\*$ is distributed approximately like a standard normal random variable, the normal approximation tells us to look for the least $n$ so that 
+``` latex
+P\left( 0.59 < \frac{1}{n}S_n < 0.61\right) &= P\left( -0.01  < \frac{S_n - \mu n}{n}
+                                              < 0.01\right) \\ 
+                                            &= P\left(
+                                              -\frac{0.01\sqrt{n}}{\sqrt{0.4\cdot0.6}}
+                                              < \frac{S_n - \mu n}{\sigma\sqrt{n}}
+                                              <\frac{0.01\sqrt{n}}{\sqrt{0.4\cdot0.6}}\right),
+```
 
-    p
-      | \begin{equation*}  
-      |     \int_{-a_n}^{a_n} \, dt > 0.99,
-      | \end{equation*}
+where the last step was obtained by multiplying all three expressions in the compound inequality by $\sqrt{n}/\sigma$. Since $S\_n^\*$ is distributed approximately like a standard normal random variable, the normal approximation tells us to look for the least $n$ so that 
+
+``` latex 
+\int_{-a_n}^{a_n} \, dt > 0.99,
+```
 
 where $a\_n = 0.01\sqrt{n}/\sqrt{0.4\cdot0.6}$. By the symmetry of the Gaussian density, we may rewrite this equation as 
 
-    p
-      | \begin{equation*}
+``` latex
       |   \int_{-\infty}^{a_n} \, dt > 0.995.
-      | \end{equation*}
+```
 
 Defining the normal CDF $\Phi(x) = \int\_{-\infty}^x \frac{1}{\sqrt{2\pi}}e^{-t^2/2}\, dt$, we want to find the least integer $n$ such that $a\_n$ exceeds $\Phi^{-1}(0.995)$. The following code tells us that $\Phi^{-1}(0.995) \approx 2.576$. 
 
@@ -2833,7 +2678,7 @@ Defining the normal CDF $\Phi(x) = \int\_{-\infty}^x \frac{1}{\sqrt{2\pi}}e^{-t^
       
 Setting this equal to $a\_n$ and solving for $n$ gives 15,924. The exact value of $n$ for which the probability is closest to 99% is 15,861, so we can see that the normal approximation worked pretty well in this case.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-155 
@@ -2868,13 +2713,11 @@ For simplicity, you may assume that $n$ is even.
       |
       | binom_stickplot(10)
 
-<p></p>
-
 *Solution*. Executing the cells, we see that the height of the tallest stick indeed goes to zero as the argument to **{code.language-python}binom_stickplot** is increased. 
 
 This finding does not contract the central limit theorem, since convergence in distribution is not based on convergence of the amount of probability mass at individual points but rather on the amount of probability mass assigned to *intervals*. In any positive-width interval, the distribution of $S\_n^\*$ has many points with nonzero probability mass. Since there are many of them, they can be small individually while nevertheless totaling up to a non-small mass. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-157 
@@ -2898,21 +2741,21 @@ Suppose that the percentage of residents in favor of a particular policy is 64%.
 
 We need to find $\varepsilon > 0$ such that $\mathbb{P}\left(0.64 - \varepsilon \leq \overline{X} \leq 0.64 + \varepsilon\right) = 0.95.$ Equivalently, we need to find $\varepsilon > 0$ such that $\mathbb{P}\left(\frac{-n\varepsilon}{\sigma(X\_1)\sqrt{n}} \leq \frac{X\_1+X\_2+ \cdots + X\_n - 0.64n}{\sigma(X\_1)\sqrt{n}} \leq \frac{n\varepsilon}{\sigma(X\_1)\sqrt{n}}\right) = 0.95.$ Now by the Central Limit Theorem, $\frac{X\_1+X\_2+ \cdots + X\_n - 0.64n}{\sigma(X\_1)\sqrt{n}} \thicksim \mathcal{N}(0, 1)$ for $n$ large. Since $\mathbb{P}(-1.96 \leq Z \leq 1.96) \approx 0.95$ for $Z \thicksim \mathcal{N}(0, 1),$ we look to solve 
 
-    p
-      | \begin{equation*}\frac{n\varepsilon}{\sigma(X_1)\sqrt{n}} \approx 1.96.\end{equation*}
+``` latex
+\frac{n\varepsilon}{\sigma(X_1)\sqrt{n}} \approx 1.96.
+```
 
 Therefore, 
 
-    p
-      | \begin{equation*}\varepsilon = 1.96 \frac{\sigma(X_1)}{\sqrt{n}} =
-      |         \frac{0.9408}{\sqrt{n}}
-      | \end{equation*}
+``` latex
+\varepsilon = 1.96 \frac{\sigma(X_1)}{\sqrt{n}} = \frac{0.9408}{\sqrt{n}}
+```
       
 and with probability 95%, the proportion of polled residents in favor of the policy will be in $I = [0.64 - \varepsilon, 0.64 + \varepsilon].$ 
 
 For the second part, we want to find $n$ such that $\mathbb{P}(0.64 - 0.02 \leq \overline{X} \leq 0.64 + 0.02) \geq 0.95.$ From above, we find that $0.02 \geq \frac{0.9408}{\sqrt{n}}$ and thus $n \geq \left(\frac{0.9408}{0.02}\right)^2  \approx 2212.8.$ Therefore at least 2,213 residents must be polled, according to the normal approximation. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-159
@@ -2934,35 +2777,32 @@ Suppose that $X\_1, X\_2, \ldots$ is a sequence of independent, identically dist
 
 *Solution*. Let $Z \thicksim \mathcal{N}(0, 1).$ 
 
-    ul
-      li For each non-negative integer $n,$ we have $\mathbb{P}(X_1+\cdots+X_n = 7n) = \mathbb{P}\left(\frac{X_1+\cdots +X_n - 7n}{\sqrt{2n}} = 0\right).$ By the Central Limit Theorem (CLT), 
-        p
-          | \begin{equation*}
-          | \lim\limits_{n \to \infty}\mathbb{P}\left(\frac{X_1+\cdots +X_n - 7n}{\sqrt{2n}} = 0\right) = \mathbb{P}(Z= 0) = 0.
-          | \end{equation*}
+For each non-negative integer $n,$ we have $\mathbb{P}(X_1+\cdots+X_n = 7n) = \mathbb{P}\left(\frac{X_1+\cdots +X_n - 7n}{\sqrt{2n}} = 0\right).$ By the Central Limit Theorem (CLT),
 
+``` latex
+\lim\limits_{n \to \infty}\mathbb{P}\left(\frac{X_1+\cdots +X_n - 7n}{\sqrt{2n}} = 0\right) = \mathbb{P}(Z= 0) = 0.
+```
 
-      li We have 
-        p
-          | \begin{align*}
-          | 	\lim\limits_{n \to \infty}&\mathbb{P}(6.9n< X_1+\cdots +X_n<7.1n) \\\ &= \lim\limits_{n \to \infty}\mathbb{P}\left(\frac{-0.1n}{\sqrt{2n}} < \frac{X_1+\cdots +X_n - 7n}{\sqrt{2n}} < \frac{0.1n}{\sqrt{2n}} \right) \\\ 
-          | 		&= \lim\limits_{n \to \infty}\mathbb{P}\left(\frac{-0.1\sqrt{n}}{\sqrt{2}}< \frac{X_1+\cdots +X_n - 7n}{\sqrt{2n}} < \frac{0.1\sqrt{n}}{\sqrt{2}} \right) \\\ 
-          | 		&= \mathbb{P}(-\infty< Z<\infty) = 1
-          | \end{align*}
-          | by the CLT. 
+We have 
 
-      li Since $\mathbb{P}(7n< X_1+\cdots +X_n<7n+3\sqrt{n}) = \mathbb{P}\left(0 < \frac{X_1+\cdots +X_n - 7n}{\sqrt{2n}} < \frac{3}{\sqrt{2}} \right)$ for all $n \geq 1,$ we find that 
-        p
-          | \begin{equation*}\lim\limits_{n \to \infty}\mathbb{P}(7n< X_1+\cdots +X_n<7n+3\sqrt{n}) = \mathbb{P}\left(0 < Z < \frac{3}{\sqrt{2}}\right) \approx 0.483\end{equation*}
-          | 
-          | by the CLT. 
+``` latex
+\lim\limits_{n \to \infty}&\mathbb{P}(6.9n< X_1+\cdots +X_n<7.1n) \\\ &= \lim\limits_{n \to \infty}\mathbb{P}\left(\frac{-0.1n}{\sqrt{2n}} < \frac{X_1+\cdots +X_n - 7n}{\sqrt{2n}} < \frac{0.1n}{\sqrt{2n}} \right) \\\ 
+&= \lim\limits_{n \to \infty}\mathbb{P}\left(\frac{-0.1\sqrt{n}}{\sqrt{2}}< \frac{X_1+\cdots +X_n - 7n}{\sqrt{2n}} < \frac{0.1\sqrt{n}}{\sqrt{2}} \right) \\\ 
+&= \mathbb{P}(-\infty< Z<\infty) = 1
+```
 
+by the CLT. Since $\mathbb{P}(7n< X_1+\cdots +X_n<7n+3\sqrt{n}) = \mathbb{P}\left(0 < \frac{X_1+\cdots +X_n - 7n}{\sqrt{2n}} < \frac{3}{\sqrt{2}} \right)$ for all $n \geq 1,$ we find that 
 
-      li We have
-        p
-          | \begin{align*}
-          | \lim\limits_{n \to \infty}&\mathbb{P}(6n< X_1+\cdots +X_n<7.1n) \\\ &= \lim\limits_{n \to \infty}\mathbb{P}\left(\frac{-n}{\sqrt{2n}} < \frac{X_1+\cdots +X_n - 7n}{\sqrt{2n}} < \frac{3\sqrt{n}}{\sqrt{2n}} \right) \\\ 
-          | &= \lim\limits_{n \to \infty}\mathbb{P}\left(\frac{-\sqrt{n}}{\sqrt{2}}< \frac{X_1+\cdots +X_n - 7n}{\sqrt{2n}} < \frac{3}{\sqrt{2}} \right) \\\ 
-          | &= \mathbb{P}\left(-\infty< Z<\frac{3}{\sqrt{2}}\right) \approx 0.983
-          | \end{align*}
-          | by the CLT. 
+``` latex
+\lim\limits_{n \to \infty}\mathbb{P}(7n< X_1+\cdots +X_n<7n+3\sqrt{n}) = \mathbb{P}\left(0 < Z < \frac{3}{\sqrt{2}}\right) \approx 0.483
+```
+
+by the CLT. We have
+
+``` latex
+\lim\limits_{n \to \infty}&\mathbb{P}(6n< X_1+\cdots +X_n<7.1n) \\\ &= \lim\limits_{n \to \infty}\mathbb{P}\left(\frac{-n}{\sqrt{2n}} < \frac{X_1+\cdots +X_n - 7n}{\sqrt{2n}} < \frac{3\sqrt{n}}{\sqrt{2n}} \right) \\\ 
+&= \lim\limits_{n \to \infty}\mathbb{P}\left(\frac{-\sqrt{n}}{\sqrt{2}}< \frac{X_1+\cdots +X_n - 7n}{\sqrt{2n}} < \frac{3}{\sqrt{2}} \right) \\\ 
+&= \mathbb{P}\left(-\infty< Z<\frac{3}{\sqrt{2}}\right) \approx 0.983
+```
+
+by the CLT. 

@@ -20,7 +20,8 @@ According to Python, the answer is [[3.3000000000000003|3.3000000000000000|3.4]]
 > id: pause-and-ponder
 
 That's strange. Why do you think this is the case?
-_{button.next-step} Continue_
+
+[Continue](btn:next)
 
 ---
 > id: why
@@ -54,7 +55,7 @@ For a given number, we follow a process to find where it is on the number line:
 * Find the closest power of 2 (smaller than the number)
 * Count up tick marks until you hit the number
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: formula-on-line
@@ -99,7 +100,7 @@ That's right! We divide the section between 1 and 2 into $2^{52}$ sections, then
 
     iframe(width='560', height='315', src='https://www.youtube.com/embed/zNwvChJFfCE', frameborder='0', allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture', allowfullscreen='')
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: formula-meaning
@@ -114,16 +115,16 @@ What does this formula mean?
 
     iframe(width='560', height='315', src='https://www.youtube.com/embed/-BAoa7oOCKM', frameborder='0', allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture', allowfullscreen='')
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: example-num
 
 Feel free to play with values of $e$ and $f$ to see how the two values can express an astronimcal range of numbers.
 
-\begin{equation}
+``` latex
 (-1)^{\sigma}(2^{e-1023}+2^{e-1023}2^{52}f)
-\end{equation}
+```
 
 __$\sigma$__: ${sigma}{sigma|1|0,1,1}
 

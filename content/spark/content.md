@@ -13,7 +13,7 @@ and some familiarity with the context of the system and its core
 abstractions might very well prove helpful in interviews or on the
 job.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 
@@ -39,7 +39,7 @@ across a (potentially very large) collection of servers and devise a
 scheme and an implementation for specifying computations and
 distributing them to the appropriate servers for execution. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 
@@ -66,7 +66,7 @@ operation means to repeatedly apply the operation to pairs of values
 from the collection, replacing the pair with the result of the
 operation, until only a single number remains. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 
@@ -115,7 +115,7 @@ the result is in _{.pill.green}green_):
       tr
         td: .pill.b.green 7
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 
@@ -152,7 +152,7 @@ and reduces the result. In Python:
       | def mapreduce(f, op, A):
       |     return reduce(op, map(f,A))
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 
@@ -178,7 +178,7 @@ _{button.next-step} Reveal_
 reduce over the subset of data that it stores. Then the 1000 resulting
 values can be aggregated and mapreduced by a single machine. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 
@@ -203,7 +203,7 @@ distributed data processing. Spark is faster and more flexible than
 MapReduce, so it is a natural choice for situations where you're
 placing real-time data processing demands on your big data system.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 
@@ -242,7 +242,7 @@ You can execute the code cells below in-browser (and edit them!). Make
 sure to execute them in order. The first one will probably be slow,
 since a Binder instance is being launched in the background.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 
@@ -255,7 +255,7 @@ called a _{code.language-python}SparkContext_. Let's instantiate one:
       | type(sc)
 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 
@@ -270,7 +270,7 @@ method. Let's put a million ordered pairs into an RDD.
       | rdd = sc.parallelize(points)
       | type(rdd)
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 
@@ -281,7 +281,7 @@ _{code.language-python}SparkContext_ object). However, we will carry
 on with the RDD we just made, so we can see what you can do with it
 once it's loaded. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 
@@ -298,7 +298,7 @@ the RDD.
       | 
       | 4 * rdd.filter(inside_circle).count() / n 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 
@@ -320,7 +320,7 @@ method to find the average.
     pre(data-executable)
       | # TODO
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 
@@ -348,7 +348,7 @@ DataFrame or SQL database.
 Note: you can access the underlying _{code.language-python}SparkContext_
 object using the _{code.language-python}sparkContext_ attribute. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 
@@ -377,7 +377,7 @@ string literal to escape the dot.
       | # Find mean petal width for each species
       | df.groupby("Species").agg({"`Petal.Width`": "mean"}).show()
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 
@@ -394,7 +394,7 @@ entering _{code.language-python}?df.join_ in the code cell.
     pre(data-executable)
       | 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 

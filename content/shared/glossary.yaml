@@ -4,7 +4,7 @@
 
 word:
   title: Word
-  text: A word is a single distinct meaningful element of speech or writing. 
+  text: A word is a single distinct meaningful element of speech or writing.
 
 receptive-field:
   title: Receptive field
@@ -12,36 +12,38 @@ receptive-field:
     contribute to that neuron's value, based on the architecture of the neural network.
     For example, the receptive field of a neuron in a dense layer includes the entire
     preceding layer, while the receptive field of a neuron in a convolutional
-    or subsampling layer is typically much smaller. 
-    
+    or subsampling layer is typically much smaller.
+
 command-line:
   title: Command line
   text: |
     A **command-line interface** (CLI) is a way of interacting with a computer using a sequence of commands entered as lines of text. Each typed command is submitted to the command line application by pressing "enter" and is run by the computer.
-    
+
     On macOS, the command-line application is called *Terminal* and may be opened by spotlighting "Terminal" (do ⌘-spacebar and start typing "Terminal").
-    
+
     The language for the Windows CLI is quite different from the standard one for macOS/Linux. We recommend ins
     talling the [Git Bash](https://gitforwindows.org) emulator so that you can learn to operate the command line in a cross-platform way.
 
 int:
   title: int
   text: the standard integer type in Python
-  
+
 float:
   title: float
   text: the standard Python type for floating point numbers
 
 str:
   title: str
-  text: | 
+  text: |
     The standard Python type for textual data
-    
-    _{pre}myString = "Hello world!"
+
+    ``` python
+    myString = "Hello world!"
     myString[0] # returns "H"
     myString[3:] # returns "lo world!"
-    dir(str) # to see all of the string methods_
-    
+    dir(str) # to see all of the string methods
+    ```
+
 list-math:
   title: List
   text: A list is a finite, ordered collection of items. Lists are different from sets because they are ordered and allow elements to be repeated.
@@ -49,46 +51,47 @@ list-math:
 list:
   title: List
   text: |
-    A mutable data type for storing an ordered sequence of objects. 
-    
-    _{pre}L = [5, "Hello", "world", 
-         6, [1,2,3]]
+    A mutable data type for storing an ordered sequence of objects.
+
+    ``` python
+    L = [5, "Hello", "world", 6, [1,2,3]]
     L[0] # returns 5
-    L[4][1] # returns 2_
+    L[4][1] # returns 2
+    ```
 
 listcomp:
   title: List Comprehension
   text: |
     Special syntax for generating lists by mapping and filtering. To remove the elements of _{code}L_ not satisfying a condition _{code}cond_ and apply a function _{code}f_ to the remaining elements:
-    
+
     _{pre}[f(x) for x in L if cond(x)]_
-    
+
     The _{code}if_ clause may be omitted.
-    
-    _{pre}[x**2 for x in range(5) 
+
+    _{pre}[x**2 for x in range(5)
             if x % 2 == 0]_
-            
+
     returns _{code}[0, 4, 16]_
 
 tuple:
   title: tuple
   text: |
-    An immutable data type for storing an ordered sequence of objects. 
-    
-    _{pre}T = (5, "Hello", "world", 
+    An immutable data type for storing an ordered sequence of objects.
+
+    _{pre}T = (5, "Hello", "world",
          6, (1,2,3))
     T[0] # returns 5
     T[4][1] # returns 2_
-    
+
 function-set:
   title: Function
   text: A function from a set $A$ to another set $B$ is an assignment of some element of $B$ to each element in $A$.
 
 function:
   title: Function
-  text: | 
+  text: |
     A packaged block of related code for performing a specific computation or action. Values to be input are called **parameters**, and they can be given default values:
-    
+
     _{pre}def add(x, y, z=0):
         return x + y + z_
 
@@ -97,156 +100,152 @@ function:
 
 dictionary:
   title: Dictionary
-  text: | 
+  text: |
     An unordered, mutable data type used for encoding a function whose domain is a finite set
-  
-    For example, if we set 
-    
-    _{code}D = {'a': 1, 'b': 2, 'c': 3}_, 
-    
-    then the expression _{code}D['b']_ returns _{code}2_. 
-    
+
+    For example, if we set
+
+    _{code}D = {'a': 1, 'b': 2, 'c': 3}_,
+
+    then the expression _{code}D['b']_ returns _{code}2_.
+
 method:
   title: method
   text: |
     A function associated with a specific class and called using dot syntax from an instance of that class
-    
+
     For exapmle, in _{code}",".join([1,2,3])_, _{code}","_ is a string and _{code}join_ is a method of the string class.
-    
+
 package:
   title: Package
   text: A package is a collection of code that is distributed by the authors and may be loaded by a user to extend the functionality of the language.
-    
+
 rounding:
   title: Floating point representation
   text: |
     A real number typically has to be rounded by about $10^{-16}$ times its absolute value to be represented as a float. For example, the difference between $\sqrt{2}$ and the float which is closest to $\sqrt{2}$ is about $9.66 \times 10^{-17}$.
-    
+
     However, numbers which are rational with a power of 2 in the denominator (including integers) can typically be represented exactly. Exceptions are when the number itself is very large or when the power of 2 in the denominator is very large.
-    
+
 syntax:
   title: Syntax
   text: |
     Syntax refers to the textual **form** of a given construct in a programming language. Examples:
 
     Indexing: _{code}myList[0], myDict["green"]_
-    
+
     Named functions: _{code}myFunction(x)_
-    
+
     Anonymous functions: _{code}lambda x,y: x**y_
-    
+
     Lists: _{code}[1, 2, 3]_
-    
+
     Tuples: _{code}(1, 2, 3)_
-    
+
     Dictionaries: _{code}{"a": 1, "b": 2}_
-    
+
     Dot syntax: _{code}module.function, object.attribute, object.method()_
-    
+
 immutable:
   title: Immutable
   text: |
-    A type is immutable if the values it stores cannot be changed. For example, 
-    
+    A type is immutable if the values it stores cannot be changed. For example,
+
     _{pre}T = (1, 2, 3)
     T[1] = 4_
-    
+
     throws an error, because tuples are immutable. Changes in mutable data structures can be handled by assigning **new** instances of the type to the variable:
-    
+
     _{pre}T = (1, 2, 3)
     T = (T[0], 4, T[2])_
 
     Dictionaries, lists, and sets are mutable.
-    
+
 linearcombination:
   title: Linear Combination
   text: |
     A **linear combination** of a list of vectors $\mathbf{v}\_1,
-      \ldots, \mathbf{v}\_k$ is an expression of the form 
-      
-        p
-          | \begin{equation*}
-          |     c_1\mathbf{v_1} + c_2\mathbf{v_2}  + \cdots +
-          |     c_k\mathbf{v_k},
-          | \end{equation*}
-          
-     where $c_1, \ldots, c_k$ are real numbers. The $c$'s are called the **weights** of the linear combination. 
+      \ldots, \mathbf{v}\_k$ is an expression of the form
+
+    ``` latex
+    c_1\mathbf{v_1} + c_2\mathbf{v_2}  + \cdots + c_k\mathbf{v_k},
+    ```
+
+     where $c_1, \ldots, c_k$ are real numbers. The $c$'s are called the **weights** of the linear combination.
 
 span:
   title: Span
-  text: The **span** of a list of vectors is the set of all vectors which can be written as a linear combination of the vectors in the list. 
-  
+  text: The **span** of a list of vectors is the set of all vectors which can be written as a linear combination of the vectors in the list.
+
 spanning:
   title: Spanning List
   text: A spanning list of a vector space $V$ is a list of vectors in $V$ whose span is equal to $V$.
-  
+
 LDL:
   title: Linear dependence lemma
-  text: A list of vectors is linearly independent if and only if there is no vector in the list which is in the span of the *preceding* vectors. 
-  
+  text: A list of vectors is linearly independent if and only if there is no vector in the list which is in the span of the *preceding* vectors.
+
 zerovector:
   title: Zero Vector
   text: The zero vector is the vector all of whose entries are zero.
-  
+
 vectorspace:
   title: Vector Space
   text: A nonempty set of vectors which is closed under the vector space operations of vector addition and scalar multiplication.
-  
+
 basis:
   title: Basis
   text: A **basis** of a vector space $V$ is a linearly independent spanning list of $V$
-  
+
 dimension:
   title: Dimension
   text: The dimenion of a vector space is the number of vectors in any basis of the vector space.
-  
+
 basisequality:
   title: Basis equality theorem
   text: |
     Two linear transformations from $V$ to $W$ which agree on a basis of $V$ agree everywhere on $V$.
-    
+
     In other words, $L_1(\mathbf{x}) = L_2(\mathbf{x})$ for every $\mathbf{x}$ in a basis of $V$ implies that $L_1(\mathbf{x}) = L_2(\mathbf{x})$ for all $\mathbf{x} \in V$, if $L_1$ and $L_2$ are linear transformations from a vector space $V$ to a vector space $W$.
-  
+
 matrixvectormultiplication:
   title: Matrix-vector multiplication
   text: |
-    If $A$ is an $m\times n$ matrix and $\mathbf{x}$ is a column vector in $\mathbb{R}^n$, then $A\mathbf{x}$ is defined to be the linear combination of the columns of $A$ with weights given by the entries of $\mathbf{x}$. 
-    
+    If $A$ is an $m\times n$ matrix and $\mathbf{x}$ is a column vector in $\mathbb{R}^n$, then $A\mathbf{x}$ is defined to be the linear combination of the columns of $A$ with weights given by the entries of $\mathbf{x}$.
+
 algebraically:
   title: algebraically
   text: |
     Mathematical reasoning is *algebraic* if it involves the manipulation of symbols representing mathematical objects. Algebraic reasoning complements geometric reasoning, which involves figures or other non-symbolic visualizations.
-    
+
     For example, $(a+b)^2 = a^2 + 2ab + b^2$ may be proved algebraically using the distributive property or geometrically by representing the left side as the area of an $(a+b) \times (a+b)$ square and the right side as the sum of the areas of four rectangles into which the square is divided.
   image: square-area.svg
 
 geometrically:
   title: geometrically
   text: |
-    Mathematical reasoning is *geometric* if it involves spatial representations of the mathematical objects under consideration. Geometric reasoning complements algebraic reasoning, which involves symbolic manipulations. 
-    
+    Mathematical reasoning is *geometric* if it involves spatial representations of the mathematical objects under consideration. Geometric reasoning complements algebraic reasoning, which involves symbolic manipulations.
+
     For example, $(a+b)^2 = a^2 + 2ab + b^2$ may be proved algebraically using the distributive property or geometrically by representing the left side as the area of an $(a+b) \times (a+b)$ square and the right side as the sum of the areas of four rectangles into which the square is divided.
   image: square-area.svg
-  
+
 dotproduct:
   title: Dot Product
   text: |
-    The **dot product** of two vectors in $\mathbb{R}^n$ is defined by 
+    The **dot product** of two vectors in $\mathbb{R}^n$ is defined by
 
-        p
-          | \begin{equation*}
-          |    \mathbf{x} \cdot \mathbf{y} = x_1y_1 + x_2y_2 + \cdots + x_n
-          |     y_n.
-          | \end{equation*}
-          
+    ``` latex
+    \mathbf{x} \cdot \mathbf{y} = x_1y_1 + x_2y_2 + \cdots + x_n y_n.
+    ```
+
 potato:
   title: Potato
   text: In the context of set theory, a *potato* is a blob which is drawn to visually represent a set. Elements of the set are drawn as points inside the boundary of the blob, and non-elements are drawn outside the blob.
-    
+
 potato-and-arrow:
   title: Potato-and-arrow Diagram
   text: A figure which represents sets as blobs and functions as a collection of arrows between the blobs. Each arrow goes from a point in the domain to its image in the codomain.
-  
+
 codomain:
   title: Codomain
   text: The **codomain** of a function from one set $A$ to another set $B$ is the set $B$. The codomain must be specified as part of the function's definition, and there is no guarantee that every element of the codomain has any preimages in the domain. Codomain is similar to **range**, but the range of a function includes only those elements of the codomain which have preimages in the domain.
@@ -255,19 +254,18 @@ codomain:
 productcolumnrule:
   title: Product Column Rule
   text: |
-    Given matrices $A$ and $B$, the $k$th column of $AB$ is the product of $A$ and the $k$th column of $B$: 
+    Given matrices $A$ and $B$, the $k$th column of $AB$ is the product of $A$ and the $k$th column of $B$:
 
-        p
-          | \begin{align*}
-          | AB &= A[\begin{array}{cccc}\mathbf{b}_1 & \mathbf{b}_2 & \cdots & \mathbf{b}_n\end{array}] \\\\ &= 
-          | [\begin{array}{cccc} A\mathbf{b}_1 & A\mathbf{b_2} & \cdots & A\mathbf{b}_n\end{array}],
-          | \end{align*}
-          
+    ``` latex
+    AB &= A[\begin{array}{cccc}\mathbf{b}_1 & \mathbf{b}_2 & \cdots & \mathbf{b}_n\end{array}] \\
+    &= [\begin{array}{cccc} A\mathbf{b}_1 & A\mathbf{b_2} & \cdots & A\mathbf{b}_n\end{array}],
+    ```
+
 transpose:
   title: Transpose
   text: |
-    The **transpose** $A'$ of a matrix $A$ to be the matrix which results from switching the rows and columns of $A$. 
-    
+    The **transpose** $A'$ of a matrix $A$ to be the matrix which results from switching the rows and columns of $A$.
+
     For example, if $A = \begin{bmatrix}
       	1 & 2 & 3 \\\\\\
       	4 & 5 & 6
@@ -280,21 +278,22 @@ transpose:
 matrixproductdot:
   title: Matrix product dot formula
   text: |
-    The (i,j)th entry of the product of two matrices $A$ and $B$ is equal to the dot product of the $i$th row of $A$ and the $j$th column of $B$. 
-      
+    The (i,j)th entry of the product of two matrices $A$ and $B$ is equal to the dot product of the $i$th row of $A$ and the $j$th column of $B$.
+
 blockmatrixproduct:
   title: Block Matrix Product Formula
   text: |
     Block matrices can be multiplied using the matrix product dot formula, treating the blocks as entries:
-    
-        p
-          |   \begin{bmatrix} 
-          |     A & B \\\ C & D 
-          |   \end{bmatrix}\begin{bmatrix} 
-          |     E & F \\\ G & H
-          |   \end{bmatrix} = \begin{bmatrix} 
-          |     AE + BG & AF + BH \\\ CE + DG & CF + DH
-          |   \end{bmatrix}, 
+
+    ``` latex
+    \begin{bmatrix}
+      A & B \\\ C & D
+    \end{bmatrix}\begin{bmatrix}
+      E & F \\\ G & H
+    \end{bmatrix} = \begin{bmatrix}
+      AE + BG & AF + BH \\\ CE + DG & CF + DH
+    \end{bmatrix},
+    ```
 
 gram:
   title: Gram matrix
@@ -302,120 +301,121 @@ gram:
 
 diagonalize:
   title: Diagonalize
-  text: To *diagonalize* a matrix $A$ is to represent it in the form $PDP^{-1}$, where $D$ is a diagonal matrix. A diagonalizable matrix scales space along the directions represented by the columns of $P$, with scale factors given by the diagonal entries of $D$. 
-  
+  text: To *diagonalize* a matrix $A$ is to represent it in the form $PDP^{-1}$, where $D$ is a diagonal matrix. A diagonalizable matrix scales space along the directions represented by the columns of $P$, with scale factors given by the diagonal entries of $D$.
+
 spectraltheorem:
   title: Spectral Theorem
   text: A matrix is orthogonally diagonalizable if and only if it's symmetric
-  
+
 orthogonal-complement:
   title: Orthogonal Complement
   text: The **orthogonal complement** $V^\perp$ of a vector space $V\subset \mathbb{R}^n$ is the set of vectors in $\mathbb{R}^n$ which are orthogonal to every vector in $V$.
-  
+
 extensiontheorem:
   title: Extension Theorem
   text: Any list of linearly independent vectors in a vector space $V$ can be extended to obtain a basis of $V$.
-  
+
 trimmingtheorem:
   title: Trimming Theorem
   text: A list of vectors which spans $V$ may be trimmed to obtain a basis of $V$.
-  
+
 dotproductcosine:
   title: Dot Product Cosine Formula
-  text: If $\mathbf{u}$ and $\mathbf{v}$ are vectors which meet an angle $\theta$, then $\mathbf{u} \cdot \mathbf{v} = |\mathbf{u}||\mathbf{v}| \cos\theta$. 
-  
+  text: If $\mathbf{u}$ and $\mathbf{v}$ are vectors which meet an angle $\theta$, then $\mathbf{u} \cdot \mathbf{v} = |\mathbf{u}||\mathbf{v}| \cos\theta$.
+
 svdfigure:
   title: SVD Figure
   text: SVD Figure
   image: svd.svg
   link: /content/linear-algebra/singular-value-decomposition#svdfig
-  
+
 fullrank:
   title: Full rank
   text: A matrix has **full rank** if its rank is as large as allowed by its dimension. In other words, a matrix has full rank if its rank is equal to its number of rows or number of columns, whichever is smaller.
 
 norm:
   title: Norm
-  text: The **norm** of a vector is the distance from its tail to its head. It may be computed as the square root of the sum of the squares of the components of the vector. 
-  
+  text: The **norm** of a vector is the distance from its tail to its head. It may be computed as the square root of the sum of the squares of the components of the vector.
+
 rankdeficient:
   title: Rank deficient
   text: A matrix is rank deficient if it is not full rank. Rank deficiency implies linearly dependent columns and linearly dependent rows.
-  
+
 multiple-extension:
   title: Multiple extension principle
   text: If a basis of the intersection of two vector spaces is extended separately to bases of the two vector spaces, then the resulting compiled list of basis vectors is linearly independent.
-  
+
 predicate:
   title: Predicate
   text: An true/false assertion about the state of the world.
 
 discreteRV:
   title: Discrete random variable
-  text: A random variable is **discrete** if its range is finite or countably infinite. 
-  
+  text: A random variable is **discrete** if its range is finite or countably infinite.
+
 positivelybuoyant:
   title: Positively buoyant
   text: An object is positively buoyant if it is lighter than the fluid it's in. If a positively buoyant object is submerged and released, it will rise to the surface. A negatively buoyant object will sink.
-  
+
 respectively:
   title: Respectively
   text: |
     *Respectively* means *in the given order*. For example, the sentence "Alice and Bob wore a green and a blue shirt, respectively." means that Alice wore a green shirt and Bob wore a blue shirt.
-  
+
 indicator:
   title: Indicator random variable
   text: |
     The **indicator** of an event $E$ is the random variable which returns 1 for each $\omega$ in $E$ and returns 0 for every other $\omega$.
-  
+
 independence-product:
   title: Independence product formula
   text: |
-    If $X$ and $Y$ are independent random variables, then $\mathbb{E}[XY] = \mathbb{E}[X]\mathbb{E}[Y]$. If $A$ and $B$ are independent events, then $\mathbb{P}(A \cap B) = \mathbb{P}(A)\mathbb{P}(B)$. 
-    
+    If $X$ and $Y$ are independent random variables, then $\mathbb{E}[XY] = \mathbb{E}[X]\mathbb{E}[Y]$. If $A$ and $B$ are independent events, then $\mathbb{P}(A \cap B) = \mathbb{P}(A)\mathbb{P}(B)$.
+
 bernoulli:
   title: Bernoulli
   text: |
     The Bernoulli distribution with parameter $p \in [0,1]$ is the distribution which assigns mass $p$ to 1 and mass $1-p$ to 0. When $p = 1/2$, we call this distribution the *fair coin flip distribution*.
-    
+
 traverse:
   title: Traverse
   text: |
-    To **traverse** a set is to visit each of its elements once. 
-    
+    To **traverse** a set is to visit each of its elements once.
+
 bruno:
   title: Bruno
   text: |
-    Bruno is the bear in the bottom right corner of your screen. 
-    
+    Bruno is the bear in the bottom right corner of your screen.
+
 model:
   title: Model
   text: A *model* is a mathematical object which describes relationships between random quantities in a data-generating process.
-  
+
 partial-sum:
   title: Partial sum
   text: |
     The $n$th partial sum of the infinite series $x_1 + x_2 + \cdots$ is $S_n = x_1 + x_2 + \cdots + x_n$.
-  
+
 linearize:
   title: Linearize
-  text: To **linearize** a differentiable function at a point is to treat it as though it were a linear function (specifically, the best linear approximation) near that point. 
-  
+  text: To **linearize** a differentiable function at a point is to treat it as though it were a linear function (specifically, the best linear approximation) near that point.
+
 clairaut:
   title: Clairaut's theorem
-  text: Suppose $f:D \to \mathbb{R}$, where $D$ is a disk in $\mathbb{R}^2$. If $\partial_x \partial_y f$ and $\partial_y \partial_x f$ exist and are continuous, then $\partial_x \partial_y f = \partial_y \partial_x f$ throughout $D$. 
-  
+  text: Suppose $f:D \to \mathbb{R}$, where $D$ is a disk in $\mathbb{R}^2$. If $\partial_x \partial_y f$ and $\partial_y \partial_x f$ exist and are continuous, then $\partial_x \partial_y f = \partial_y \partial_x f$ throughout $D$.
+
 directional-derivative:
   title: Directional derivative
   text: |
-    The derivative of a funtion $f$ in the $\mathbb{u}$ direction is given by $\nabla f\cdot \mathbf{u}$. 
-    
-    There is therefore one direction in which $f$ increases most rapidly (the direction of $\nabla f$), and it increases in every direction which makes an acute angle with $\nabla f$. 
+    The derivative of a funtion $f$ in the $\mathbb{u}$ direction is given by $\nabla f\cdot \mathbf{u}$.
+
+    There is therefore one direction in which $f$ increases most rapidly (the direction of $\nabla f$), and it increases in every direction which makes an acute angle with $\nabla f$.
 
 chain-rule:
   title: Chain Rule
-  text: The derivative of a composition of differentiable functions is the product of the derivatives of the functions (evaluated at the relevant points): $(f(g(x)))' = f'(g(x))g'(x)$.
-    
+  text: |
+    The derivative of a composition of differentiable functions is the product of the derivatives of the functions (evaluated at the relevant points): $(f(g(x)))' = f'(g(x))g'(x)$.
+
 positive-definite:
   title: Positive definite
-  text: A **positive definite** matrix $A$ is a symmetric matrix whose eigenvalues are all positive. A **positive semidefinite** matrix $A$ is a symmetric matrix whose eigenvalues are all nonnegative. Equivalently, a matrix $A$ is positive semidefinite if $\mathbf{x}' A \mathbf{x} \ge 0$ for all $\mathbf{x}$. 
+  text: A **positive definite** matrix $A$ is a symmetric matrix whose eigenvalues are all positive. A **positive semidefinite** matrix $A$ is a symmetric matrix whose eigenvalues are all nonnegative. Equivalently, a matrix $A$ is positive semidefinite if $\mathbf{x}' A \mathbf{x} \ge 0$ for all $\mathbf{x}$.

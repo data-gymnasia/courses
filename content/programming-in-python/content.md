@@ -10,14 +10,14 @@ This chapter is an introduction to programming in **Python**, which is a general
 
 Although programming is a powerful tool, learning to program is also about honing your problem solving skills and thinking in an organized way about structure and computation. You are likely to find that computer science ideas support your ability to reason about complex systems, even in situations where you won't be programming anything. This is a useful frame of mind to bring to the learning process.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-1
 
 This course contains many exercises. Doing them in earnest is essential for knowledge and skill retention. You should solve each exercise prior to clicking the "Continue" button to see an example solution.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-2
@@ -28,28 +28,28 @@ There are several ways to access Python:
 
 **Inline**. This course will let you execute Python code blocks in the webpage (thanks to [Juniper](https://github.com/ines/juniper) and [Binder](https://mybinder.org)). So if you don't want to install anything yet, you don't have to. (However, the first cell you run will be slow with this method, like up to 30 seconds, since your environment has to be launched behind the scenes on Binder's servers. If it's taking too long, reload the page.)
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-3
 
 **Binder**. You can also run Python code in a notebook on the Binder website. To launch with a set of packages tailored to this course, [click here](https://mybinder.org/v2/gh/sswatson/simple-python-stack/master). Then select *New* (top right corner and *Python 3*). It is highly recommended that you keep a tab with a Binder notebook open while working through this course, because it can serve as a space for scratch work, and it provides more features than the blocks which appear in-page. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-4
 
 **Anaconda**. Python is bundled with its system of scientific computing packages and a system for managing your Python environment in a distribution called [Anaconda](https://www.anaconda.com/). This is the recommended way to install Python on your own computer. [Download](https://www.anaconda.com/distribution) and launch the installer to set it up on your computer. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-5
 
 **CoCalc**. If you want a complete environment without having to install anything locally, [CoCalc](https://cocalc.com) is a batteries-included, community-oriented platform for open-source mathematical and scientific computing. You can use it for free with limited functionality, and it's $14 per month to support the project and get paid account features.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-6
@@ -61,28 +61,28 @@ Once you have Python installed, there are several ways to interact with it.
 
 **REPL**. Launch a read-eval-print loop from the [command line](gloss:command-line). Any code you enter will be executed immediately, and any values returned by your code will be displayed. To start a session, open your operating system's Terminal and run `{py} python` or `{py} ipython` (the latter being more colorful and having more features). You can do this in Binder by selecting *New > Terminal*. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-7
 
 **Script**. Save a file called _{code}example.py_ and run _{code}python example.py_ from the [command line](gloss:command-line) (in the same directory as the file) to execute all the code in the script. You can do this in Binder by selecting *New > Text File* and then changing the name of the text file to something that ends in _{code}.py_. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-8
 
 **Jupyter**. Like a REPL, but allows inserting text and math expressions, grouping code into blocks, etc. This is the interface provided by default in [Binder](https://mybinder.org/v2/gh/sswatson/simple-python-stack/master), and you can launch a notebook locally by running _{code.language-python}jupyter notebook_ from the [command line](gloss:command-line) (assuming you have Anaconda installed). 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-9
 
 **Integrated development environment (IDE)**. Essential for extensive software development projects, an IDE provides an editor for writing code, conveniences to help you code more efficiently, and a debugger to help you fix your mistakes. There are many IDEs for Python, including Visual Studio Code, Atom, and PyCharm.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-10
@@ -91,8 +91,8 @@ _{button.next-step} Continue_
 **Exercise**.  
 Sort the following Python interaction modes in the order in which they appear in this video. 
 
-    center: video(src="images/jupyter-script-repl.mp4" width="75%" controls)
-    
+    figure: video(src="images/jupyter-script-repl.mp4" width="75%" controls)
+
     x-sortable
       .item.md(data-index="2") REPL
       .item.md(data-index="1") script
@@ -107,7 +107,7 @@ Sort the following Python interaction modes in the order in which they appear in
 
 Let's begin by developing some basic vocabulary for the elements of a program. This section is an overview: will develop some of these ideas in greater depth in later sections.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-11
@@ -116,14 +116,14 @@ _{button.next-step} Continue_
 
 A **object** is a fundamental entity that may be manipulated by a program. Objects have **types**; for example, _{code.language-python}5_ is an _{code.language-python}int_ (short for "integer") and _{code.language-python}"Hello world!"_ is a _{code.language-python}str_ (short for "string"). Types are important for the computer to keep track of, since objects are stored differently depending on their type. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-12
 
 You can check the type of an object using _{code.language-python}type_. For example, running _{code.language-python}type("hello")_ gives _{code.language-python}str_.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-13
@@ -136,15 +136,13 @@ Use the code block below to find the type of _{code.language-python}1.0_. Does _
     pre(data-executable)
       | # replace this text with code and press enter while holding shift to run
 
-<p></p>
-
 ---
 > id: step-14
 
 (Note: you probably noticed the _{code.language-markup}Loading or None returned_ message that appeared briefly when you ran the cell. If that message appears for more than 10 seconds or so, it's likely that the cell has run successfully but doesn't have anything to show as a result. We will discuss this in more detail soon.)
 
-_{button.next-step} Continue_
-      
+[Continue](btn:next)
+
 ---
 > id: step-15
 
@@ -152,19 +150,20 @@ _{button.next-step} Continue_
 
 A **variable** is a name used to refer to an object. We can **assign** an object (say _{code.language-python}41_) to a variable (say _{code.language-python}age_) as follows: 
 
-    pre: code.language-python
-      | age = 41
+``` python
+age = 41
+```
 
 We say that _{code.language-python}41_ is the **value** of the variable _{code.language-python}age_.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-16
 
 Variable names must begin with an underscore or letter and contain only letters, numbers, underscores after that. Letters may be uppercase or lowercase, and the case matters. For example _{code.language-python}extractValues0_ is [[a valid|an invalid]] variable name, and _{code.language-python}stop!_ is [[an invalid|a valid]] variable name. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-17
@@ -175,12 +174,12 @@ The object assigned to a given variable may be changed as many times as desired 
 **Exercise**.  
 Find the value of _{code.language-python}x_ at the end of the following block of code. [[3]]
 
-    pre: code.language-python
-      | x = 3
-      | y = x
-      | x = x + 1
-      | x = y
-    
+``` python
+x = 3
+y = x
+x = x + 1
+x = y
+```
 :::
 
 ---
@@ -188,7 +187,7 @@ Find the value of _{code.language-python}x_ at the end of the following block of
 
 *Solution*. The value 3 is assigned to _{code.language-python}x_ and then also to _{code.language-python}y_ on the second line. After the third line, the value of _{code.language-python}x_ is 4, since the right-hand side works out to 4 an is *then* assigned to the variable _{code.language-python}x_. After the fourth line _{code.language-python}3_ is of _{code.language-python}x_ again, since the value of _{code.language-python}y_ is still 3 when the fourth line is executed. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-19
@@ -206,8 +205,6 @@ Use the code block below to find out what happens when you try to use a variable
 ---
 > id: step-20
 
-<p></p>
-
 Note that when an error occurs in your code, you get a **traceback** which helps you identify the source of the error.
 
 ### Functions
@@ -216,7 +213,7 @@ A **function** performs a particular task. For example, _{code.language-python}p
 
 Prompting a function to perform its task is referred to as **calling** the function. Functions are called using parentheses following the function's name, and any objects which are needed by the function are supplied between these parentheses, separated by commas. These objects are called **arguments**. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-21
@@ -229,17 +226,15 @@ Some functions, like _{code.language-python}print_ are built into the language a
       |     print(x)
       |
       | printtwice("hey")
-      
-<p></p>
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-22
 
 _{code.language-python}def_ is an example of a **keyword**: a name with a special meaning in the language. Since it has a special meaning, a keyword may not be used as a variable name. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-23
@@ -257,26 +252,24 @@ A function may perform an action, like _{code.language-python}printtwice_, or it
       |
       | y = 20 + add_one(7)
       | y
-      
-<p></p>
 
 (Note: we put _{code.language-python}y_ by itself on the last line so that we can see the value of _{code.language-python}y_ in the output area. If an assignment (like **{code.language-python}y = 20 + add_one(7)**) is the last line in the cell, then no value will be printed, and we will get the _{code.language-markup}Loading or None returned_ message.)
       
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-25
             
 The variable name _{code.language-python}x_ in the above block is called a **parameter**. Parameters play the same role as dummy variables in the definition of a mathematical function (for example, when the squaring function is defined using the notation `f(x) = x^2`).
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-26 
 
 An **operator** is a special kind of function that can be called in a special way. For example, the multiplication operator _{code.language-python}*_ is called using the mathematically familiar *infix notation* _{code.language-python}3 * 5_ rather than _{code.language-python}*(3,5)_.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-27 
@@ -303,8 +296,6 @@ Arrange the operation descriptions below in order, according the corresponding P
 
 ---
 > id: step-28
-
-<p></p>
 
 ### Statements and expressions
 
@@ -351,14 +342,14 @@ _{code.language-python}myName = "John" + "Doe"_ is
 **Exercise**  
 Find the value of _{code.language-python}x_ at the end of the following block of code. [[25]]
 
-    pre: code.language-python
-      | x = 3**2
-      | x = x + 1
-      | x = x + 1
-      | y = x//2
-      | x = y*y
-      | z = 2*x
-      
+``` python
+x = 3**2
+x = x + 1
+x = x + 1
+y = x//2
+x = y*y
+z = 2*x
+```
 :::
 
 ---
@@ -381,8 +372,6 @@ Write a function _{code.language-python}f_ which takes a positive integer _{code
       |
       | test_f()
 
-<p></p>
-
     x-quill
 
 ---
@@ -394,18 +383,13 @@ Select the true statements.
 
     x-picker.list
       .item.pill.bblue.md The statement `[balance = 46.04]` assigns the value `[46.04]` to the variable `[balance]`. 
-      
       .item.pill.bblue.md(data-error="not-a-variable") The object `[33]` is a variable. 
-      
       .item.pill.bblue(data-error="mutable") The value of a variable cannot be changed. 
-      
       .item.pill.bblue Variables in Python are case-sensitive.
-      
-      
 :::
 
-_{button.next-step} Continue_
-          
+[Continue](btn:next)
+
 ---
 
 > id: types
@@ -413,7 +397,7 @@ _{button.next-step} Continue_
 
 Python, like most programming languages, has built-in types for handling common data like numbers and text. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-34
@@ -422,14 +406,14 @@ _{button.next-step} Continue_
 
 As discussed in the previous section, a numerical value can be either an _{code.language-python}int_ or a _{code.language-python}float_. We can represent integers exactly, while storing a real number as a float [often requires rounding slightly](gloss:rounding).
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-35
 
 A number is stored as a float or integer according to whether it contains a decimal point, so if you want the value 6 to be stored as a _{code.language-python}float_, you should write it as _{code.language-python}6.0_. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-36
@@ -469,7 +453,7 @@ Textual data is represented using a sequence of characters called a **string**. 
       | 
       | "This is an ordinary string. \"Quotes\" require a backslash."
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-39
@@ -481,14 +465,14 @@ We can find the number of characters in a string with the _{code.language-python
  
 We can concatenate two strings with the addition operator (_{code.language-python}+_): _{code.language-python}"Hello " + "World"_. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-41
 
 We can return the first character in a string _{code.language-python}s_ using the expression _{code.language-python}s[0]_, the second element using _{code.language-python}s[1]_, and so on. We can get the substring from the third to the eighth character using _{code.language-python}s[3:9]_. Note that the 9 is one **past** the index where we want to stop. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-42
@@ -503,8 +487,6 @@ For which values of _{code.language-python}a_ and _{code.language-python}b_ does
 
 ---
 > id: step-43
-
-<p></p>
       
 ::: .exercise
 **Exercise**  
@@ -518,7 +500,7 @@ If either _{code.language-python}i_ or _{code.language-python}j_ is omitted in t
 
 *Solution*. Omitting _{code.language-python}i_ or _{code.language-python}j_ has the effect of setting _{code.language-python}i = 0_ or _{code.language-python}j = len(s)_. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-45
@@ -533,9 +515,7 @@ We can insert the value of a variable into a string using *string interpolation*
       | The quotient when x is divided by 3 
       | is {x//3}, and the remainder is {x % 3}.
       | """)
-      
-<p></p>
-      
+
 ::: .exercise
 **Exercise**  
 Use string interpolation to write a line of code which prints _{code.language-python}multiplying by 6.2 yields 12.4_ if _{code.language-python}2_ is assigned to the variable _{code.language-python}A_ and prints _{code.language-python}multiplying by 6.2 yields 18.6_ if _{code.language-python}3_ is assigned to _{code.language-python}A_. 
@@ -544,8 +524,6 @@ Use string interpolation to write a line of code which prints _{code.language-py
     pre(data-executable)
       | 
 
-<p></p>
-
     x-quill
 
 ---
@@ -553,7 +531,7 @@ Use string interpolation to write a line of code which prints _{code.language-py
 
 *Solution*. The expression _{code.language-python}print(f"multiplying by 6.2 yields {6.2*x}")_ works. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-47
@@ -562,7 +540,7 @@ _{button.next-step} Continue_
 
 A **bool** is a special type whose only values are _{code.language-python}True_ and _{code.language-python}False_. The fundamental operators that can be used to combine boolean values are _{code.language-python}and_, _{code.language-python}or_, and _{code.language-python}not_. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-48
@@ -575,14 +553,12 @@ Does Python convert types when doing equality comparison? In other words, does _
     pre(data-executable)
       | 1 == 1.0
 
-<p></p>
-
 ---
 > id: step-49
 
 *Solution*. Yes, Python does convert types for equality comparison. So _{code.language-python}1 == 1.0_ returns _{code.language-python}True_. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-50
@@ -594,6 +570,7 @@ Write a one-line [function](gloss:function) which takes 3 bools as arguments and
 1. Both of the first two arguments are _{code.language-python}True_ , or 
 2. The third argument is _{code.language-python}False_
 :::
+
 
     pre(data-executable)
       | def f(a,b,c):
@@ -607,7 +584,6 @@ Write a one-line [function](gloss:function) which takes 3 bools as arguments and
       |
       | test_f()
 
-
     x-quill
 
 ---
@@ -615,13 +591,14 @@ Write a one-line [function](gloss:function) which takes 3 bools as arguments and
 
 *Solution*. Here's an example of a simple way to do it: 
 
-    pre: code.language-python
-      | def f(a,b,c):
-      |     return a and b or not c
+``` python
+def f(a,b,c):
+    return a and b or not c
+```
 
 Be wary of comparisons of the form _{code.language-python}a == True_ or _{code.language-python}b == False_. These are equivalent to _{code.language-python}a_ and _{code.language-python}not b_, [respectively](gloss:respectively), assuming _{code.language-python}a_ and _{code.language-python}b_ are both bools. The more succinct versions are preferred. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-52
@@ -638,8 +615,6 @@ Write some code for computing $\frac{1}{a+\frac{2}{3}}$ where $a$ is equal to th
     pre(data-executable)
       | 
 
-<p></p>
-
     x-quill
 
 ---
@@ -647,11 +622,12 @@ Write some code for computing $\frac{1}{a+\frac{2}{3}}$ where $a$ is equal to th
 
 *Solution*. We store the length of the given string in a variable _{code.language-python}a_ and evaluate the given expression as follows: 
 
-    pre: code.language-python
-      | a = len("The quick brown fox jumped over the lazy dog")
-      | 1/(a+2/3)
-      
-_{button.next-step} Continue_
+``` python
+a = len("The quick brown fox jumped over the lazy dog")
+1/(a+2/3)
+```
+
+[Continue](btn:next)
 
 ---
 > id: step-54
@@ -661,7 +637,7 @@ _{button.next-step} Continue_
 The expression _{code.language-python}1 < 3_ returns [[True]], which is an object of type [[bool]]. 
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-55
@@ -670,9 +646,6 @@ _{button.next-step} Continue_
 **Exercise**  
 If we set _{code.language-python}s = "Bruno"_, then _{code.language-python}s[:j] == "Bru"_ when _{code.language-python}j =_ [[3]]. 
 :::
-
-
-
 
 ---
 > id: conditionals
@@ -698,7 +671,7 @@ We can use an _{code.language-python}if_ statement to specify different blocks t
       |
       | sgn(-5)
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-57
@@ -711,7 +684,7 @@ Conditional expressions can be written using *ternary conditional* _{code.langua
       |
       | sgn(-5)
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-58
@@ -730,7 +703,7 @@ Can the _{code.language-python}else_ part of an _{code.language-python}if_ state
       | elif x < 1: 
       |     print("x is between 0 and 1")
       
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-59
@@ -751,8 +724,6 @@ Write a function called _{code.language-python}myAbs_ which computes the absolut
       |     return "Tests passed!"
       |
       | test_abs()
-
-<p></p>
 
     x-quill
 
@@ -779,12 +750,11 @@ Consider nesting _{code.language-python}if...else_ blocks inside of an _{code.la
       |
       | test_quadrant()
 
-<p></p>
-
     x-quill
 
 ---
 > id: step-61
+
 *Solution*. Here's an example solution: 
 
     pre(data-executable)
@@ -809,7 +779,7 @@ Consider nesting _{code.language-python}if...else_ blocks inside of an _{code.la
 
 Using functions to organize code helps to achieve *separation of concerns*: once a function is written, it may be relied upon to perform its designated task without the programmer having to think about *how* it accomplishes that task. This conceptual aid is crucial for writing maintainable code to solve large, complex problems. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-62
@@ -820,35 +790,35 @@ A good rule of thumb is that a function should be sufficiently general to be re-
 **Exercise**  
 How could the design of the following code be improved?
 
-    pre: code.language-python
-      | def remove_one_leading_space(S):
-      |     if S[0] == " ":
-      |         return S[1:]
-      |     else:
-      |         return S
-      | 
-      | def remove_two_leading_spaces(S):
-      |     if S[0:2] == "  ":
-      |         return S[2:]
-      |     else:
-      |         return S
-      | 
-      | def remove_three_leading_spaces(S):
-      |     if S[0:3] == "  ":
-      |         return S[3:]
-      |     else:
-      |         return S
+``` python
+def remove_one_leading_space(S):
+    if S[0] == " ":
+        return S[1:]
+    else:
+        return S
 
+def remove_two_leading_spaces(S):
+    if S[0:2] == "  ":
+        return S[2:]
+    else:
+        return S
+
+def remove_three_leading_spaces(S):
+    if S[0:3] == "  ":
+        return S[3:]
+    else:
+        return S
+```
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-63
 
 *Solution*. We should have a single function to remove whatever number of leading spaces the string happens to have. The design above has the problem that we have to figure out how many leading spaces there are before we can call the appropriate function, which means that most of the work that should be performed by the function will have to be performed when the function is called. Thus separation of concerns is not achieved.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-64
@@ -857,7 +827,7 @@ _{button.next-step} Continue_
 
 The objects supplied to a function when it's called are referred to as the function's **arguments**. The variables which represent the arguments in the function definition are called **parameters**. The indented block of code that runs when the function is called is the **body** of the function.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-65
@@ -866,12 +836,12 @@ _{button.next-step} Continue_
 **Exercise**  
 In the following block of code, _{code.language-python}s_ is [[a parameter|an argument]], while _{code.language-python}"hello"_ is [[an argument | a parameter]]
 
-    pre: code.language-python
-      | def duplicate(s):
-      |     return s + s
-      | 
-      | duplicate("hello")
+``` python
+def duplicate(s):
+    return s + s
 
+duplicate("hello")
+```
 :::
 
 ---
@@ -886,23 +856,22 @@ We can give parameters **default values** and supply arguments for those paramet
       |
       | line(2,3) # returns 6
       | line(5,4,b=2) # returns 22
-      |   
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-67
 
 The arguments 1, 2, and 3 in this example are called **positional** arguments, and _{code.language-python}5_ is a **keyword argument**. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-68
 
 If the function body begins with a string literal, that string will be interpreted as documentation for the function. This **docstring** helps you and other users of your functions quickly ascertain how they are meant to be used. A function's docstring can accessed in a Python session using the function _{code.language-python}help_. For example, _{code.language-python}help(print)_ pulls up the docstring for the built-in _{code.language-python}print_ function.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-69
@@ -916,12 +885,10 @@ A function may be defined without assigning a name to it. Such a function is sai
       |     return f(f(f(x)))
       |
       | apply_three_times(lambda x: x*x, 5)
-
-<p></p>
       
 A multi-argument function works similarly, with the parameters separated by commas: the addition operator can be written as _{code.language-python}lambda x,y: x + y_. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-70      
@@ -934,8 +901,6 @@ Write a function that takes two arguments _{code.language-python}a_ and _{code.l
     pre(data-executable)
       | 
 
-<p></p>
-
     x-quill
 
 ---
@@ -943,16 +908,17 @@ Write a function that takes two arguments _{code.language-python}a_ and _{code.l
 
 *Solution*. Here's an example solution:
 
-    pre: code.language-python
-      | def whichsmaller(a,b,f):
-      |     if f(a) < f(b):
-      |         return a
-      |     else:
-      |         return b
-      | 
-      | whichsmaller(4,6, lambda x: -x)
+``` python
+def whichsmaller(a,b,f):
+    if f(a) < f(b):
+        return a
+    else:
+        return b
 
-_{button.next-step} Continue_
+whichsmaller(4,6, lambda x: -x)
+```
+
+[Continue](btn:next)
 
 ---
 > id: step-72
@@ -989,8 +955,6 @@ Try nesting one function definition inside another. Are variables in the enclosi
       |
       | f()
 
-<p></p>
-
     x-quill
 
 ---
@@ -998,7 +962,7 @@ Try nesting one function definition inside another. Are variables in the enclosi
 
 *Solution*. The variable defined in the inner function is not in scope in the body of the outer function, but the variable defined in the body of the outer function is in scope in the body of the inner function.
     
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-74
@@ -1057,8 +1021,7 @@ The test cases above don't cover the *degenerate* situation where one of the str
       |     assert spaceconcat("foo ", "bar") == "foo bar"
       |     assert spaceconcat("foo", "") == "foo"
       |     assert spaceconcat("", "bar") == "bar"
-      
-      
+
 ### Exercises
 
 ::: .exercise
@@ -1102,7 +1065,6 @@ Hint: Make a guess about which operator can be used to compare strings alphabeti
       |
       | test_concat()
 
-
 ---
 
 > id: packages
@@ -1115,16 +1077,12 @@ Many Python packages are available in every standard distribution of Python and 
     pre(data-executable)
       | import math
       | math.sqrt(3)
-      
-<p></p>
 
 Note that we access names like _{code.language-python}sqrt_ provided by the package using the dot [syntax](gloss:syntax) _{code.language-python}math.sqrt_. This is common practice, and it's a good idea because if functions are called in a way that makes it clear what package they came from, then (1) you can use the same name in multiple packages, and (2) you can easily identify which package that is supplying each function. We can also import individual functions and skip the dot syntax:
 
     pre(data-executable)
       | from math import sqrt
       | sqrt(3)
-      
-<p></p>      
 
 Sometimes a package contains a **subpackage** which must itself be accessed with dot syntax:
 
@@ -1132,7 +1090,7 @@ Sometimes a package contains a **subpackage** which must itself be accessed with
       | from numpy.random import standard_normal
       | standard_normal()
       
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-77
@@ -1147,8 +1105,6 @@ Here are some of the most important scientific computing packages (along with ve
       | import numpy as np
       | np.random.standard_normal((5,5)) # randomly fill a 5 × 5 matrix
       | np.full((3,3),7) # make a 3 × 3 matrix full of 7's
-      
-<p></p>
 
 Note that we import _{code.language-python}numpy_ with the alias _{code.language-python}np_ for brevity. 
 
@@ -1158,8 +1114,6 @@ Note that we import _{code.language-python}numpy_ with the alias _{code.language
       | import pandas as pd
       | iris = pd.read_csv("http://bit.ly/iris-dataset")
       | iris
-      
-<p></p>
 
 **SciPy**. Provides scientific computing tools for optimization, numerical integration, linear algebra, statistics, etc.
 
@@ -1167,16 +1121,12 @@ Note that we import _{code.language-python}numpy_ with the alias _{code.language
       | from scipy.optimize import minimize
       | minimize(lambda x: x*(x-1), 1.0) # start from 1 and minimize x(x-1)
 
-<p></p>
-
 **Matplotlib**. Standard plotting package in Python. (Note: run the cell below twice to get the graph to display.)
 
     pre(data-executable)
       | import matplotlib.pyplot as plt
       | import numpy as np
       | plt.plot(np.cumsum(np.random.standard_normal(1000)))
-
-<p></p>
 
 **SymPy**. Pure math tools like symbolic integration/differentiation, number theory, etc.
 
@@ -1200,7 +1150,7 @@ Note that we import _{code.language-python}numpy_ with the alias _{code.language
 
 *Solution.* _{code.language-python}from numpy import arcsin_
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-79
@@ -1217,7 +1167,7 @@ _{button.next-step} Continue_
 
 *Solution* _{code.language-python}import scipy as sp_
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-81
@@ -1234,12 +1184,7 @@ To import the standard library package _{code.language-python}itertools_ (with n
 
 *Solution* _{code.language-python}import itertools_
 
-_{button.next-step} Continue_
-
----
-> id: step-83
-
-
+[Continue](btn:next)
 
 ---
       
@@ -1250,19 +1195,17 @@ Many Python functions use the usual function [syntax](gloss:syntax), like _{code
 
     pre(data-executable)
       | "hello".capitalize()
-      
-<p></p>
 
 These functions are called **methods**. For example, _{code.language-python}capitalize_ is a string method. To understand how methods work in the language, it's helpful to see what they look like at the point of definition. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-84
 
 Suppose you want to write a program which keeps track of the albums you own. Each album is associated with several data, like the name of the album, the year it came out, the number of tracks, etc. You could store all these data by assigning them to different variables, but that becomes untidy very quickly. For example, you will frequently want to pass an album to a function, and you don't want that function to require a long list of parameters just because the Album has a lot of data associated with it. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-85
@@ -1281,7 +1224,7 @@ What you want is to be able to treat each album as its own Python object, with a
       |         "Return the number of years since album was released"
       |         return currentYear - self.year
       
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-86
@@ -1298,8 +1241,9 @@ The first parameter, customarily called _{code.language-python}self_, refers to 
 
 Dot syntax is also used to access other methods like _{code.language-python}numYearsAgo_.
 
-    pre: code.language-python
-      | A.numYearsAgo(2019)
+``` python
+A.numYearsAgo(2019)
+```
 
 The object appearing before the dot is implicitly supplied as the first argument to the method. Therefore, _{code.language-python}A.numYearsAgo(2019)_ at call time corresponds to _{code.language-python}numYearsAgo(A, 2019)_ at the point of definition. In fact, you can use the latter syntax if you want, because methods are also accessible using dot syntax on the class name: 
 _{code.language-python}Album.numYearsAgo(A, 2019)_. 
@@ -1311,8 +1255,8 @@ Confirm that _{code.language-python}"hello".capitalize()_ does give the same val
 
     pre(data-executable)
       | 
-      
-_{button.next-step} Continue_
+
+[Continue](btn:next)
 
 ---
 > id: step-87
@@ -1327,7 +1271,7 @@ In the expression _{code.language-python}"".join("hello")_, the method _{code.la
 
 *Solution*. There are two arguments: the first is the empty string, and the second is _{code.language-python}"hello"_. 
       
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-89
@@ -1347,8 +1291,6 @@ Implement a class called _{code.language-python}Fraction_ which represents a rat
       |     return "Test passed!"
       |
       | test_Fraction()
-
-<p></p>
 
     x-quill
 
@@ -1379,7 +1321,7 @@ Implement a class called _{code.language-python}Fraction_ which represents a rat
       |     return "Test passed!"
       |
       | test_Fraction()
-    
+
 ---
 
 > id: lists-and-tuples
@@ -1511,7 +1453,7 @@ Let's revisit the spreadsheet example we discussed earlier: suppose you're writi
 
 We definitely don't want to think of 100 variable names for the 100 values in the table, and we don't want to write a line of code for each row. What we need is a way to store all of the rows (or columns) in an object designed to contain many objects. Python provides several such **compound data structures**, and in this section we will learn about two: **lists** and **tuples**. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-91
@@ -1538,7 +1480,7 @@ What happens to _{code.language-python}myOtherList_ in the example above if a di
 
 *Solution*. The list doesn't change. The object associated with the variable _{code.language-python}x_ is retrieved when the list is created, and after that point the list is no longer connected to the name _{code.language-python}x_. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-93
@@ -1550,7 +1492,7 @@ Like strings, lists can be **indexed** to obtain their elements. Indexes in Pyth
       | myList[0] # returns 1
       | myList[3] # returns 7
       
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-94
@@ -1565,7 +1507,7 @@ Negative indices can be used to count from the end:
 <p></p>
   
 If we set _{code.language-python}i_ to the negative number [[-3]], then _{code.language-python}myList[i]_ would return _{code.language-python}"flower"_. 
-      
+
 ---
 > id: step-95
 
@@ -1590,7 +1532,7 @@ The start or stop value of a slice can be omitted, in which case it defaults to 
       | L[2:] # returns [12,13,...,20]
       | L[:4] # returns [10,11,12,13]
       
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-97
@@ -1600,7 +1542,7 @@ Slices can include a *step* value after a second colon. For example, **{code.lan
     pre(data-executable)
       | list(range(100, 200))[::2]
       
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-98
@@ -1613,14 +1555,14 @@ What step value can be used to *reverse* a list? [[-1]] (Hint: you can reason it
     pre(data-executable)
       | [2,4,6,8][::k]
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-99
 
 *Solution*. Going in reverse order through a list corresponds to stepping by $-1$ each time. Setting _{code.language-python}k = -1_ in the code block above, we see that _{code.language-python}[::-1]_ does indeed reverse the list. Apparently the start and stop values for a list _{code.language-python}L_ implicitly are implicitly set to _{code.language-python}-1_ and _{code.language-python}-len(L)_ when a negative step value is used. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-100
@@ -1629,8 +1571,6 @@ Like strings, lists can be concatenated with the _{code.language-python}+_ opera
 
     pre(data-executable)
       | [1,2,3] + [4,5,6,7]
-
-<p></p>
 
 ::: .exercise
 **Exercise**  
@@ -1649,8 +1589,6 @@ Write a [function](gloss:function) which takes as arguments a list _{code.langua
       |
       | test_rotate()
 
-<p></p> 
-
     x-quill
 
 ---
@@ -1663,11 +1601,8 @@ Write a [function](gloss:function) which takes as arguments a list _{code.langua
       |     "Cyclically shift the elements of L by n positions"
       |     k = len(L) - n % len(L)
       |     return L[k:] + L[:k]
-      |
-  
-<p></p>
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-102
@@ -1688,8 +1623,6 @@ Write a line of code which sets every even-indexed entry of a list _{code.langua
     pre(data-executable)
       | L = list(range(100))
 
-<p></p>
-
     x-quill
 
 ---
@@ -1697,7 +1630,7 @@ Write a line of code which sets every even-indexed entry of a list _{code.langua
 
 *Solution*. _{code.language-python}L[::2] = [0] * (len(L)//2)_
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-104
@@ -1716,8 +1649,6 @@ The _{code.language-python}list_ class has 11 ordinary [methods](gloss:method) (
       | L.remove("hey") # remove first occurrence of "hey"
       | L.reverse()
       | L.sort()
-      
-<p></p>
 
 If you forget these methods, you can access them in an interactive session by running _{code.language-python}dir(list)_. 
 
@@ -1733,13 +1664,13 @@ Note that each of these methods changes the list _{code.language-python}L_. They
 **Exercise**  
 Explain the errors in the code below (there are two). 
 
-    pre: code.language-python
-      | def remove_fives(L):
-      |     "Removes instances of 5 from a list"
-      |   	return L.remove("5")
-      | 
-      | print(remove_fives(["1", "5", "5", "10"]))    
+``` python
+def remove_fives(L):
+    "Removes instances of 5 from a list"
+  	return L.remove("5")
 
+print(remove_fives(["1", "5", "5", "10"]))    
+```
 :::
 
     x-quill
@@ -1749,7 +1680,7 @@ Explain the errors in the code below (there are two).
 
 *Solution*. The _{code.language-python}remove_ method only removes one instances of _{code.language-python}"5"_ (the first one). Also, this method modifies the argument supplied to the function; it does not return new list with the _{code.language-python}"5"_ removed.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-106
@@ -1758,16 +1689,17 @@ _{button.next-step} Continue_
 
 Two of the most common ways of generating one list from another are (1) applying a given function to every element of the original list, and (2) retaining only those elements of the original list which satisfy a given criterion. These two operations are called **map** and **filter**, respectively. 
 
-    pre: code.language-python
-      | def square(x):
-      |     return x*x
-      |
-      | list(map(square, range(5))) # returns [0, 1, 4, 9, 16]
-      |
-      | def iseven(x):
-      |     return x % 2 == 0      
-      |
-      | list(filter(iseven, range(5))) # returns [0,2,4]
+``` python
+def square(x):
+    return x*x
+
+list(map(square, range(5))) # returns [0, 1, 4, 9, 16]
+
+def iseven(x):
+    return x % 2 == 0      
+
+list(filter(iseven, range(5))) # returns [0,2,4]
+```
 
 The extra calls to _{code.language-python}list_ in the examples above are required to see the result because _{code.language-python}map_ and _{code.language-python}filter_ are *lazy*: they return objects which *promise* to perform the specified calculation when it's needed. 
 
@@ -1776,7 +1708,7 @@ Python provides a convenient [syntax](gloss:syntax) for both mapping *and* filte
     pre(data-executable)
       | [x**2 for x in range(5) if x % 2 == 0]
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-107
@@ -1790,9 +1722,6 @@ Write a list comprehension which returns a list whose kth entry is the the last 
 
     pre(data-executable)
       | from sympy import isprime
-      | 
-
-<p></p>
 
     x-quill
 
@@ -1805,7 +1734,7 @@ Write a list comprehension which returns a list whose kth entry is the the last 
       | from sympy import isprime
       | [str(p)[-1] for p in range(100,1000) if isprime(p)]
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-109
@@ -1817,10 +1746,7 @@ Write a list comprehension which takes a list of lists and returns only those li
 
     pre(data-executable)
       | records = [[3, "flower", -1], [2, "rise", 3], [0, "basket", 0]]
-      | 
 
-<p></p>
-      
     x-quill
 
 ---
@@ -1831,7 +1757,7 @@ Write a list comprehension which takes a list of lists and returns only those li
     pre(data-executable)
       | [record for record in records if len(record[1]) >= 5]
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-111
@@ -1845,13 +1771,10 @@ Tuples are very similar to lists, except that tuples are [immutable](gloss:immut
       | row = (22,2.0,"tomato")
       | row[2] # returns "tomato"
       | row[2] = "squash" # throws TypeError
-      |   
-
-<p></p>
 
 Programmers tend to use tuples instead of lists in situations where **position** in the tuple carries more meaning than **order**. For example, perhaps the tuple assigned to _{code.language-python}row_ above describes a row of plants in a garden, with the three numbers indicating the number of plants, the number of weeks since they were planted, and the type of plant. We could have chosen some other order for those three values, as long as we're consistent about which position corresponds to which value. By contrast, the 22 heights of the plants on that row would typically be stored in a *list*, since the list order corresponds to something meaningful in that case (namely, the order of the plants in the row).
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-112
@@ -1863,13 +1786,10 @@ Functions often return multiple values by returning a tuple containing those val
       | mycolor = (1.0,1.0,0.44)
       | r, g, b = mycolor
       | b 
-      |   
-
-<p></p>
 
 The convention in Python for values you don't want to store is to assign them to the variable whose name is just an underscore. That way you don't have to think of names for those variables, and you signal to anyone reading your code that you are not using those values.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-113
@@ -1880,8 +1800,6 @@ Tuple unpacking can be combined with list comprehension syntax. If we want to ex
       | L = [(1,2,3),(4,5,6),(7,8,9)]
       | [a for (a,_,_) in L]
 
-<p></p>
-
 The value 1 is assigned to _{code.language-python}a_, the value 2 is assigned to the underscore variable, and then the value 3 is also assigned to the underscore variable (this overwrite is no problem since we aren't using that value anyway). Then _{code.language-python}a_ is evaluated as the first element in the new list, and the process repeats for the remaining triples in the list.
 
 ::: .exercise
@@ -1891,8 +1809,6 @@ Write a list comprehension which adds the first two elements of each tuple in _{
 
     pre(data-executable)
       | 
-
-<p></p>
 
     x-quill
 
@@ -1905,7 +1821,7 @@ Write a list comprehension which adds the first two elements of each tuple in _{
       | L = [(1,2,3),(4,5,6),(7,8,9)]
       | [a+b for (a,b,_) in L]
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-115
@@ -1931,8 +1847,6 @@ Find the fractional parts of the first 100 positive integer multiples of $\pi$. 
       |             m = element
       |     return (m,M)
 
-<p></p>
-
     x-quill
 
 ---
@@ -1944,22 +1858,19 @@ Find the fractional parts of the first 100 positive integer multiples of $\pi$. 
       | m,M = extrema([pi*k-int(pi*k) for k in range(1,101)])
       | M/m
 
-<p></p>
-
 The result is about 56.08. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-117
 
 A common pattern for generating new arrays combines list comprehension, tuple unpacking, and the function _{code.language-python}zip_. The _{code.language-python}zip_ function takes two arrays and returns a single array of pairs of corresponding entries (or three arrays, in which case it returns an array of triples, etc.). For example, 
 
-    pre: code.language-python 
-      | 
-      | zip(["a", "b", "c"], [1, 2, 3])
-      |   
-      
+``` python 
+zip(["a", "b", "c"], [1, 2, 3])
+```
+
 returns an object which is equivalent to _{code.language-python}[("a", 1), ("b", 2), ("c", 3)]_. 
 
 If we have three vectors $A$, $B$, and $C$ of equal length, then the vector sum $A + B + C$ can be computed using the expression _{code.language-python}[a + b + c for (a,b,c) in zip(A,B,C)]_. 
@@ -1972,9 +1883,6 @@ Suppose that $H$ is a list which stores the heights of 100 cylinders and $R$ is 
     pre(data-executable)
       | H = [1, 2, 3]
       | R = [0.8, 1.0, 1.2]
-      | 
-
-<p></p>
 
     x-quill
 
@@ -1989,8 +1897,7 @@ Suppose that $H$ is a list which stores the heights of 100 cylinders and $R$ is 
       | R = [0.8, 1.0, 1.2]
       | [pi*r*r*h for (h,r) in zip(H,R)]
 
-
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-119
@@ -2001,17 +1908,17 @@ _{button.next-step} Continue_
 **Exercise**  
 (Try doing this one without executing any code.) What will the value of _{code.language-python}L_ be after the following block is executed?  [[(4,1,2,7,3,-1,8) | (4,1,2,7,3,-1) | (4,2,1,7,3,-1,8)]]
 
-    pre: code.language-python
-      | L = [4, 8, 2]
-      | L.append(7)
-      | L.extend([3,-1,8])
-      | L.insert(2, 1)
-      | L.remove(8)
-      | L = tuple(L)
-
+``` python
+L = [4, 8, 2]
+L.append(7)
+L.extend([3,-1,8])
+L.insert(2, 1)
+L.remove(8)
+L = tuple(L)
+```
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-120
@@ -2032,8 +1939,6 @@ Write a function which takes a matrix _{code.language-python}M_ and an index _{c
       |
       | test_selectCol()
 
-<p></p>
-
     x-quill
 
 ---
@@ -2051,10 +1956,8 @@ Write a function which takes a matrix _{code.language-python}M_ and an index _{c
       |     return "Test passed!"
       |
       | test_selectCol()
-      
-<p></p>
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-122      
@@ -2077,8 +1980,6 @@ Hint: the string methods _{code.language-python}join_ and _{code.language-python
       |
       | test_reversewords()
 
-<p></p>
-
     x-quill
 
 ---
@@ -2090,9 +1991,6 @@ Hint: the string methods _{code.language-python}join_ and _{code.language-python
       | def reversewords(sentence):
       |     return " ".join(sentence.split(" ")[::-1])
 
-
-
-
 ---
 > id: sets-and-dictionaries
 ## Sets and Dictionaries
@@ -2102,14 +2000,12 @@ Hint: the string methods _{code.language-python}join_ and _{code.language-python
 **Sets** are unordered collections of unique values. The main advantage of having a special type for sets is that the design of the data structure can be optimized for membership checking. Figuring out whether a given value is in a list requires going through each element in the list, so the amount of time it takes increases with the length of the list. By contrast, checking membership in a set can be done very quickly even if the set is large. 
 
     pre(data-executable)
-      | 
       | A = [1,2,3]
       | S = set(A)
       | 2 in S # evaluates to true
       | S.pop(2) # removes 2
       | S.add(11) # puts 11 in the set
       | 2 in S # evaluates to false now
-      |   
  
 ::: .exercise
 **Exercise**  
@@ -2132,8 +2028,6 @@ Note 2: the computation below takes some time to run (20 seconds, say). It retur
       | c = timeit.timeit("isprime(98779)", setup = SETUP)
       | a,b,c
 
-<p></p>
-
     x-quill
 
 ---
@@ -2152,8 +2046,6 @@ Note 2: the computation below takes some time to run (20 seconds, say). It retur
       | b = timeit.timeit("98779 in primesSet", setup = SETUP)
       | c = timeit.timeit("isprime(98779)", setup = SETUP)
       | a,b,c
-
-<p></p>
 
 Put the three methods in order from fastest to slowest: 
 
@@ -2176,10 +2068,11 @@ For example, suppose you want to store a collection of color names together with
 
 It's possible to do this by putting the names in a list and the values in a list of the same length: 
 
-    pre: code.language-python
-      | names = ["fuchsia", "firebrick", "goldenrod"]
-      | rgbs = [(256, 0, 256), (178, 34, 34), (218, 165, 32)]
-      
+``` python
+names = ["fuchsia", "firebrick", "goldenrod"]
+rgbs = [(256, 0, 256), (178, 34, 34), (218, 165, 32)]
+```
+
 However, this solution gets very tedious quickly. For example, modifying this structure requires [[modifying both lists|modifying at least one of the lists]]. 
 
 ---
@@ -2192,18 +2085,17 @@ The Python data structured tailored to the problem of encoding a map from one fi
       |        "firebrick": (178, 34, 34),
       |        "goldenrod": (218, 165, 32)}
 
-<p></p>
-
 The domain elements _{code.language-python}"fuchsia"_, _{code.language-python}"firebrick"_ and _{code.language-python}"goldenrod"_ are called the **keys** of the dictionary, and the codomain elements _{code.language-python}(256,0,256)_, _{code.language-python}(178,34,34)_, and _{code.language-python}(218,165,32)_ are called the **values**. 
 
 We can also form new dictionaries from lists of pairs using the _{code.language-python}dict_ function:
 
-    pre: code.language-python
-      | dict([("fuchsia": (256, 0, 256)),
-      |       ("firebrick": (178, 34, 34)),
-      |       ("goldenrod": (218, 165, 32))])
+``` python
+dict([("fuchsia": (256, 0, 256)),
+      ("firebrick": (178, 34, 34)),
+      ("goldenrod": (218, 165, 32))])
+```
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-128
@@ -2217,8 +2109,6 @@ We can perform a dictionary lookup using indexing [syntax](gloss:syntax): _{code
       | rgb["crimson"] = (220, 20, 60)
       | len(rgb)
 
-<p></p>
-
 The _{code.language-python}dict_ [methods](gloss:method) _{code.language-python}keys_ and _{code.language-python}values_ may be used to access the keys and values of a dictionary. 
 
     pre(data-executable)
@@ -2227,9 +2117,7 @@ The _{code.language-python}dict_ [methods](gloss:method) _{code.language-python}
       |        "goldenrod": (218, 165, 32)}
       | rgb.keys()
 
-<p></p>
-
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-129
@@ -2238,11 +2126,12 @@ _{button.next-step} Continue_
 **Exercise**  
 Consider a dictionary which encodes flight arrival times: 
 
-    pre: code.language-python
-      | import datetime
-      | arrivalTimes = {"JetBlue 924": datetime.time(7,9),
-      |                 "United 1282": datetime.time(7,42),
-      |                 "Southwest 196": datetime.time(7,3)}
+``` python
+import datetime
+arrivalTimes = {"JetBlue 924": datetime.time(7,9),
+                "United 1282": datetime.time(7,42),
+                "Southwest 196": datetime.time(7,3)}
+```
 
 You can most easily use this dictionary to [[look up the arrival time of a flight|look up which flights arrive at a given time]]. 
 
@@ -2270,7 +2159,7 @@ _{button.next-step} Submit_
 
 *Solution*. We use the _{code.language-python}dict_ function to convert the list of pairs back into a dictionary: _{code.language-python}dict(map(reversed,arrivalTimes.items()))_. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-131
@@ -2281,16 +2170,15 @@ _{button.next-step} Continue_
 **Exercise**  
 Python supports a _{code.language-python}dict_ comprehension construct which is very similar to a list comprehension. Here's a dictionary that maps each one-digit positive integer to its square: 
 
-    pre: code.language-python
-      | squareDict = {k : k*k for k in range(1, 10)}
+``` python
+squareDict = {k : k*k for k in range(1, 10)}
+```
 
 Use a dict comprehension to make a dictionary which maps each of the first 100 powers of 2 to its units digit.
 :::
 
     pre(data-executable)
       | 
-      
-<p></p>
 
     x-quill
 
@@ -2302,7 +2190,7 @@ Use a dict comprehension to make a dictionary which maps each of the first 100 p
     pre(data-executable)
       | unitsDigits = {2**k : int(str(2**k)[-1]) for k in range(100)}
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-133
@@ -2312,7 +2200,7 @@ _{button.next-step} Continue_
 Suppose you want to store student IDs in a part of a web application where the main thing you need to do is check whether an ID input by a student is a valid student ID (so you can flag it if it has been mistyped). Among the given options, the best data structure for this purpose would be a [[set|list|tuple|dictionary]]. 
 :::
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-134
@@ -2331,11 +2219,9 @@ We have already seen one way of doing something to each element in a collection:
       |                  6: 2, 7: 7, 8: 2, 9: 3}
       | vals = [v for (k,v) in smallestFactor.items()]
 
-<p></p>
-
 In this list comprehension, we **iterate** over the pairs of the [dictionary](gloss:dictionary) to produce a new list. Although list comprehensions are very useful, they are not flexible enough to cover all our iteration needs. A much more flexible tool is the **for loop**.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-135
@@ -2350,12 +2236,10 @@ The code above could also be rewritten as follows:
       | vals = []
       | for (k,v) in smallestFactor.items():
       |     vals.append(v)
-    
-<p></p>
-      
+
 The statement _{code.language-python}for item in collection:_ works as follows: the first element of _{code.language-python}collection_ is assigned to _{code.language-python}item_, and the block indented below the _{code.language-python}for_ statement is executed. Then the second element of _{code.language-python}collection_ is assigned to _{code.language-python}item_, the indented block is executed again, etc., until the end of the collection is reached. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-136
@@ -2380,9 +2264,7 @@ We can nest _{code.language-python}for_ statements. For example, suppose we have
       |
       | test_sum()
 
-<p></p>
-
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-137
@@ -2403,8 +2285,6 @@ Suppose you have imported a function _{code.language-python}fileBugReport_ with 
       |         "100b359a": 
       |           "customers not receiving text alerts"}
 
-<p></p>
-
     x-quill
 
 ---
@@ -2416,9 +2296,7 @@ Suppose you have imported a function _{code.language-python}fileBugReport_ with 
       | for id, desc in bugs.items():
       |     fileBugReport(id, desc)
 
-<p></p>
-
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-138
@@ -2444,8 +2322,6 @@ Write a [function](gloss:function) called _{code.language-python}factorial_ whic
       |
       | test_factorial()
 
-<p></p>
-
     x-quill
 
 ---
@@ -2460,9 +2336,8 @@ Write a [function](gloss:function) called _{code.language-python}factorial_ whic
       |     for k in range(1, n+1):
       |         product = k * product 
       |     return product
-      |
-      
-_{button.next-step} Continue_
+
+[Continue](btn:next)
 
 ---
 > id: step-140
@@ -2493,8 +2368,6 @@ If we want to write a Python function which returns the Collatz sequence for any
       |                                 16, 8, 4, 2, 1]
       |
       | test_collatz()
-      
-<p></p>
 
 The expression which appears immediately following the _{code.language-python}while_ keyword is called the **condition**, and the block indented below the _{code.language-python}while_ statement is the **body** of the loop. The rules of the language stipulate the following execution sequence for a _{code.language-python}while_ statement: the condition is evaluated, and if it's true, then the body is executed, then condition is evaluated again, and so on. When the condition returns _{code.language-python}False_, the loop is exited. An exit can also be forced from within the body of the while loop with the keyword _{code.language-python}break_. 
 
@@ -2522,8 +2395,6 @@ Note that $10^{-8}$ can be represented in Python using scientific notation _{cod
       |
       | test_newton()
 
-<p></p>
-
     x-quill
 
 ---
@@ -2540,10 +2411,8 @@ Note that $10^{-8}$ can be represented in Python using scientific notation _{cod
       |         x = 1/2 * (x + n/x)
       |         if abs(x - old_x)/old_x < 1e-8:
       |             return x
-      | 
 
-
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-142
@@ -2567,11 +2436,6 @@ Note: _{code.language-python}\\n_ in a string literal represents the "newline" c
       |     xoxo
       |     oxox
       |     """
-      |     
-      |      
-      |
-      
-<p></p>      
 
     x-quill
 
@@ -2589,9 +2453,6 @@ Note: _{code.language-python}\\n_ in a string literal represents the "newline" c
       |         else:
       |             print("ox" * (n//2))
       |         print("\n")
-      |
-      
-
 
 ::: .exercise
 **Exercise**  
@@ -2628,8 +2489,6 @@ Note: there's no solution to this one, but you can do it on your own!
       |     Print the first n rows of Pascal's triangle
       |     """
 
-<p></p>
-
     x-quill
 
 ---
@@ -2641,7 +2500,7 @@ One of the most challenging aspects of learning to program is the difficulty of 
 
 You'll want to follow along either on your own computer or in [Binder](https://mybinder.org/v2/gh/sswatson/simple-python-stack/master). You can't use code blocks in this page, because there's an authentication step which requires a feature which isn't supported here.
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-144
@@ -2652,24 +2511,25 @@ As an avid Spotify listener, you find that you'd prefer more flexibility in the 
 
 This is not the sort of capability that Spotify is ever going to provide through its app, but Spotify *does* support interaction through a programming language. Such an interface is called an **API** (application programming interface). 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-145
 
 You decide to google *Spotify API* to see what the deal is. That takes you to the [main Spotify API page](https://developer.spotify.com/documentation/web-api/), where you read about how the API uses standard HTTPS requests (these are the requests that your browser is using in the background load webpages, enter information into forms on the internet, etc.). Rather than proceeding along this route, you think to yourself "surely someone in the vast Python world has made a Python package to handle these HTTPS requests". So you google "Spotify Python API". 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-146
 
 Turns out, you were right. The first few hits pertain to a package called _{code.language-python}spotipy_. You check out [the docs](https://spotipy.readthedocs.io/en/latest/) and find that you can install the package by running _pip install spotipy_. Since _{code}pip_ is a [command line](gloss:command-line) tool, this is something you should run from the terminal. Note: if you're working in a Jupyter notebook, you can send code from a cell to the command line by prepending an exclamation point:
 
-    pre: code.language-python
-      | !pip install spotipy
-      
-_{button.next-step} Continue_
+``` python
+!pip install spotipy
+```
+
+[Continue](btn:next)
 
 ---
 > id: step-147
@@ -2686,89 +2546,94 @@ Looking around a bit more, you find **{code.language-python}user_playlist_remove
 
 Your plan is beginning to take shape. You decide to make sure everything works before getting into the details of how you're going to modify the playlist. You follow the instructions in the documentation for getting the appropriate authorization credentials for your Python program to access your Spotify account. That step is a bit tedious, but it's going to be worth it. Working from the example in the documentation, you eventually arrive at some code that looks like the following (note that your _{code.language-python}CLIENT_ variables and **{code.language-python}playlist_id** will necessarily be different). 
 
-    pre: code.language-python
-      | 
-      | import spotipy
-      | import spotipy.util as util
-      | 
-      | username = 'sswatson'
-      | scope = 'user-library-read'
-      | scope = 'playlist-modify-public'
-      | 
-      | CLIENT_ID = 'bcc57908a2e54cee94f9e2307db67c2e'
-      | CLIENT_SECRET = '6831b3ceaf0a40a6a1fdeb67105ef19b'
-      | 
-      | playlist_id = '57hQnYeBC4u0IUhaaHmM0k'
-      |   
-      | token = util.prompt_for_user_token(username, 
-      |                                    scope,
-      |                                    client_id=CLIENT_ID,
-      |                                    client_secret=CLIENT_SECRET,
-      |                                    redirect_uri='http://localhost/')
-      | 
-      | sp = spotipy.Spotify(auth=token)
+``` python
+import spotipy
+import spotipy.util as util
 
-_{button.next-step} Continue_
+username = 'sswatson'
+scope = 'user-library-read'
+scope = 'playlist-modify-public'
+
+CLIENT_ID = 'bcc57908a2e54cee94f9e2307db67c2e'
+CLIENT_SECRET = '6831b3ceaf0a40a6a1fdeb67105ef19b'
+
+playlist_id = '57hQnYeBC4u0IUhaaHmM0k'
+  
+token = util.prompt_for_user_token(username, 
+                                   scope,
+                                   client_id=CLIENT_ID,
+                                   client_secret=CLIENT_SECRET,
+                                   redirect_uri='http://localhost/')
+
+sp = spotipy.Spotify(auth=token)
+```
+
+[Continue](btn:next)
 
 ---
 > id: step-150
 
 Next, you implement your plan sans-track-modification, to make sure the functions work as expected. 
 
-    pre: code.language-python
-      | original_tracks = sp.user_playlist_tracks(username, playlist_id)
-      | remove_tracks = sp.user_playlist_remove_all_occurrences_of_tracks
-      | remove_tracks(username, playlist_id, original_tracks)
-      | sp.user_playlist_add_tracks(username, playlist_id, original_tracks)
-      
+``` python
+original_tracks = sp.user_playlist_tracks(username, playlist_id)
+remove_tracks = sp.user_playlist_remove_all_occurrences_of_tracks
+remove_tracks(username, playlist_id, original_tracks)
+sp.user_playlist_add_tracks(username, playlist_id, original_tracks)
+```
+
 That second line is there because you decided that function's name was so long it was getting unwieldy. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-151
 
 Hmm. Error. Specifically, a _{code.language-python}SpotifyException_, which suggests that you didn't use the API in the intended way. You'll have to dig into this to figure out what went wrong. But first, it's a bit untidy to have those four lines of code loose in our program. Let's wrap them in a function. The playlist id should be an argument, and we should also take as an argument a track-modifying function that we'll start using once we get to that part. 
 
-    pre: code.language-python
-      | def modify_playlist_tracks(playlist_id, track_modifier):
-      |     original_tracks = sp.user_playlist_tracks(username, playlist_id)
-      |     new_tracks = track_modifier(original_tracks)
-      |     remove_tracks = sp.user_playlist_remove_all_occurrences_of_tracks
-      |     remove_tracks(username, playlist_id, original_tracks)
-      |     sp.user_playlist_add_tracks(username, playlist_id, new_tracks)
-
+``` python
+def modify_playlist_tracks(playlist_id, track_modifier):
+    original_tracks = sp.user_playlist_tracks(username, playlist_id)
+    new_tracks = track_modifier(original_tracks)
+    remove_tracks = sp.user_playlist_remove_all_occurrences_of_tracks
+    remove_tracks(username, playlist_id, original_tracks)
+    sp.user_playlist_add_tracks(username, playlist_id, new_tracks)
+```
 
 Now let's figure out the error. If we examine the traceback supplied as a part of the error message, we can see that the error is being thrown from the line where we call **{code.language-python}remove_tracks**. So we look at the documentation for that function. 
 
-    pre: code.language-python
-      | help(remove_tracks)
+``` python
+help(remove_tracks)
+```
 
 We see that the _{code.language-python}tracks_ argument is supposed to be a list of playlist ids. Is that what **{code.language-python}user_playlist_tracks** returns? You investigate. 
 
-    pre: code.language-python
-      | original_tracks = sp.user_playlist_tracks(username, playlist_id)
-      | original_tracks
+``` python
+original_tracks = sp.user_playlist_tracks(username, playlist_id)
+original_tracks
+```
 
 The output from that expression prints all over the screen, and it looks like it has a lot more data than just a list of id's. That's actually pretty helpful, because we'll need that data to modify the list appropriately. But in the meantime, we need to extract the actual playlist ids. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-152
 
 You begin by checking **{code.language-python}type(original_tracks)**. It's a [[dict|list|tuple]]. So you have a look at its keys: 
 
-    pre: code.language-python
-      | original_tracks.keys()
-      
+``` python
+original_tracks.keys()
+```
+
 ---
-> id: step-153      
+> id: step-153
 
 This returns
 
-    pre: code.language-python
-      | dict_keys(['href', 'items', 'limit', 'next', 'offset', 'previous', 'total'])
+``` python
+dict_keys(['href', 'items', 'limit', 'next', 'offset', 'previous', 'total'])
+```
 
 Without looking to carefully at the other items, it's a good guess that _{code.language-python}'items'_ is the one you want. You check 
 **{code.language-python}type(original_tracks['items'])** and find that it's a [[list|dict|tuple]]. To have a look at the first one, you do **{code.language-python}original_tracks['items'][0]**. Repeating this step-by-step inspection, you find finally that **{code.language-python}original_tracks['items'][0]['track']['id']** is an actual playlist id. 
@@ -2784,8 +2649,6 @@ Write a [list comprehension](gloss:listcomp) to calculate the list of all of the
     pre(data-executable)
       | 
 
-<p></p>
-
     x-quill
 
 ---
@@ -2793,29 +2656,30 @@ Write a [list comprehension](gloss:listcomp) to calculate the list of all of the
 
 *Solution*. **{code.language-python}[item for item in original_tracks['items']]** would return the _{code.language-python}'items'_ list. To map each item to its playlist id, we index it with _{code.language-python}'track'_ and then with _{code.language-python}'id'_ as above. So we get **{code.language-python}[item['track']['id'] for item in original_tracks['items']]** 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-156
 
 You insert this list comprehension into our function to fix it. You decide to reverse the list of tracks just to confirm that running the code has an effect on the Spotify side. 
 
-    pre: code.language-python
-      | def modify_playlist_tracks(playlist_id, track_modifier):
-      |     original_tracks = sp.user_playlist_tracks(username, playlist_id)
-      |     new_tracks = track_modifier(original_tracks)
-      |     remove_tracks = sp.user_playlist_remove_all_occurrences_of_tracks
-      |     original_ids = [item['track']['id'] for item in
-      |                                         original_tracks['items']]
-      |     remove_tracks(username, playlist_id, original_ids)
-      |     sp.user_playlist_add_tracks(username, playlist_id, new_tracks)
-      | 
-      | 
-      | def track_modifier(tracks):
-      |     return reversed([item['track']['id'] for item in tracks['items']])
-      | 
-      | 
-      | modify_playlist_tracks(playlist_id, track_modifier)
+``` python
+def modify_playlist_tracks(playlist_id, track_modifier):
+    original_tracks = sp.user_playlist_tracks(username, playlist_id)
+    new_tracks = track_modifier(original_tracks)
+    remove_tracks = sp.user_playlist_remove_all_occurrences_of_tracks
+    original_ids = [item['track']['id'] for item in
+                                        original_tracks['items']]
+    remove_tracks(username, playlist_id, original_ids)
+    sp.user_playlist_add_tracks(username, playlist_id, new_tracks)
+
+
+def track_modifier(tracks):
+    return reversed([item['track']['id'] for item in tracks['items']])
+
+
+modify_playlist_tracks(playlist_id, track_modifier)
+```
 
 This works! You can check that the order of the playlist was reversed. 
 
@@ -2835,7 +2699,7 @@ Suppose you want to send an email to dozens of people, with some elements of the
 
 This problem is called *mail merge*, and there are many commercial software solutions available. However, in this section we'll implement a simple and flexible mail merge in Python. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-157
@@ -2846,28 +2710,30 @@ The first hurdle is to securely authorize your Python program to access your ema
 
 Following the installation instructions, we run _{code.language-python}pip3 install yagmail[all]_ from the [command line](gloss:command-line) to install _{code.language-python}yagmail_. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-158
 
 Continuing to follow the instructions, we run
 
-    pre: code.language-python
-      | import yagmail
-      | yagmail.register('mygmailusername')
+``` python
+import yagmail
+yagmail.register('mygmailusername')
+```
 
 and enter the password for the Gmail account in the resulting password prompt. This stores the password in the operating system keychain so we don't have to keep entering it. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-159
 
 Now we can set up an _{code.language-python}SMTP_ object for sending messages. 
 
-    pre: code.language-python
-      | yag = yagmail.SMTP("mygmailusername@gmail.com")
+``` python
+yag = yagmail.SMTP("mygmailusername@gmail.com")
+```
 
 In the documentation, we read that this object has a _{code.language-python}send_ method whose parameter list includes _{code.language-python}to_, _{code.language-python}subject_, and _{code.language-python}contents_. We want to call this method once for each recipient, and for that we will use a [[for loop|while loop|if statement]]. 
 
@@ -2886,7 +2752,7 @@ Before sending the message, we have to figure out to store the data for each rec
 
 We save the file and proceed to figuring out how to load it into Python. 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-161
@@ -2895,13 +2761,14 @@ _{button.next-step} Continue_
 
 We google "enter CSV in Python", and we scan the first several search results. The first couple show examples with a dozen or so lines of code, which seems more complicated than necessary. Going back to the search results, we see a function called **{code.language-python}pandas.read_csv**, and we remember that Pandas is the recommended package for handling spreadsheet data in Python. So we do 
 
-    pre: code.language-python
-      | import pandas as pd
-      | mailData = pd.read_csv("mail-merge-data.csv")
-      
+``` python
+import pandas as pd
+mailData = pd.read_csv("mail-merge-data.csv")
+```
+
 We check _{code.language-python}type(mailData)_ and see that _{code.language-python}mailData_ is a _{code.language-python}DataFrame_, which is the general Pandas type for tabular data. 
       
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-162
@@ -2913,7 +2780,7 @@ Now we have to figure out how to loop over the rows of a _{code.language-python}
 
 We do _{code.language-python}list(mailData.itertuples())[0]_ to get an example row from the _{code.language-python}DataFrame_, and we call _{code.language-python}dir_ on it to look for the right method for extracting each column value. We see that _{code.language-python}Name_, _{code.language-python}Email_, and _{code.language-python}Status_ are attributes of the row, so you can access them using dot syntax (like _{code.language-python}row.Email_). 
 
-_{button.next-step} Continue_
+[Continue](btn:next)
 
 ---
 > id: step-164
@@ -2925,16 +2792,17 @@ Finally, we need to insert information from each _{code.language-python}DataFram
 
 It will be a bit awkward to type the whole message into the line where we call _{code.language-python}yag.send_, so instead we write a function that takes _{code.language-python}row_ as a parameter and returns the message. 
 
-    pre: code.language-python
-      | def message(row):
-      |     return f"""
-      |     Dear {row.Name},
-      |     
-      |     Thanks for participating! Your status is {row.Status}. 
-      |     
-      |     Yours,
-      |     Roza
-      |     """
+``` python
+def message(row):
+    return f"""
+    Dear {row.Name},
+    
+    Thanks for participating! Your status is {row.Status}. 
+    
+    Yours,
+    Roza
+    """
+```
 
 ::: .exercise
 **Exercise**  
@@ -2944,8 +2812,6 @@ Tie all of the above together to write a couple more lines of code that will act
     pre(data-executable)
       | 
 
-<p></p>
-
     x-quill
 
 ---
@@ -2953,19 +2819,16 @@ Tie all of the above together to write a couple more lines of code that will act
 
 *Solution*. We supply the _{code.language-python}Email_ attribute of _{code.language-python}row_ to the _{code.language-python}to_ argument, and  _{code.language-python}message(row)_ to _{code.language-python}contents_:
 
-    pre: code.language-python
-      | for row in mailData.itertuples():
-      |     yag.send(to=row.Email, 
-      |              subject="Your status",
-      |              contents = message(row))
-      
-_{button.next-step} Continue_
+``` python
+for row in mailData.itertuples():
+    yag.send(to=row.Email, 
+             subject="Your status",
+             contents = message(row))
+```
+
+[Continue](btn:next)
 
 ---
 > id: step-167
 
 Congratulations! You have finished the Data Gymnasia *Programming with Python* course.
-
-
-
-
