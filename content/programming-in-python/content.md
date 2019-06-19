@@ -2911,7 +2911,7 @@ _{button.next-step} Continue_
 
 ### Pandas
 
-We google "enter CSV in Python", and we scan the first several search results. The first couple show examples with a dozen or so lines of code, which seems more complicated than necessary. Going back to the search results, we see a function called **{code.language-python}pandas.read_csv**, and we remember that Pandas is the recommended package for handling spreadsheet data in Python. So we do 
+We Google "enter CSV in Python", and we scan the first several search results. The first couple show examples with a dozen or so lines of code, which seems more complicated than necessary. Going back to the search results, we see a function called **{code.language-python}pandas.read_csv**, and we remember that Pandas is the recommended package for handling spreadsheet data in Python. So we do 
 
     pre: code.language-python
       | import pandas as pd
