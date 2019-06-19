@@ -3,8 +3,11 @@
 // =============================================================================
 
 
+@import "styles/variables";
 @import "./components/quill";
 
+
+svg.mathjax { display: inline-block; }
 
 .juniper-cell, code, pre, x-step code {
   font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -57,8 +60,10 @@ p { hanging-punctuation: none; }
   color: white;
 }
 
-.bblue {
-  background:#1f7aff
+x-picker .item.pill.bblue {
+  background: @blue;
+  &:not(.correct):not(.incorrect):hover { background: darken(@blue, 15%); }
+  &:after { border-width: 2px; margin: 2px; }
 }
 
 x-step code {
@@ -86,6 +91,7 @@ x-step code {
   white-space: pre-wrap;
   border-top: 1px solid @border-light;
   min-height: 27px;
+  color: inherit;
 }
 
 .juniper-button {
