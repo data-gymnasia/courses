@@ -364,12 +364,14 @@ Find the value of _{code.language-python}x_ at the end of the following block of
 
 ::: .exercise
 **Exercise**  
-Write a function _{code.language-python}f_ which takes a positive integer _{code.language-python}n_ as input and returns the $n$th positive odd integer. You should replace the keyword _{code.language-python}pass_ in the code block below (the rest of the code, starting from the fourth line, checks that your function works; you shouldn't change it.)
+Write a function _{code.language-python}f_ which takes a positive integer _{code.language-python}n_ as input and returns the $n$th positive odd integer. You should replace the line with the keyword _{code.language-python}pass_ in the code block below (the rest of the code, starting from the fourth line, checks that your function works).
+
+Also, note that you have *two* boxes: the first is for scratch, and the second is for saving your answer. Once you're happy with your code, copy and paste it into the second box.
 :::
 
     pre(data-executable)
       | def f(n):
-      |     pass
+      |     pass # add code here
       |
       | def test_f():
       |     assert f(3) == 5
@@ -536,11 +538,12 @@ We can insert the value of a variable into a string using *string interpolation*
       
 ::: .exercise
 **Exercise**  
-Use string interpolation to write a line of code which prints _{code.language-python}multiplying by 6.2 yields 12.4_ if _{code.language-python}2_ is assigned to the variable _{code.language-python}A_ and prints _{code.language-python}multiplying by 6.2 yields 18.6_ if _{code.language-python}3_ is assigned to _{code.language-python}A_. 
+Use string interpolation to write a single line of code which prints _{code.language-python}multiplying by 6.2 yields 12.4_ if _{code.language-python}2_ is assigned to the variable _{code.language-python}A_ and prints _{code.language-python}multiplying by 6.2 yields 18.6_ if _{code.language-python}3_ is assigned to _{code.language-python}A_. 
 :::
 
     pre(data-executable)
-      | 
+      | A = 2
+      | print()
 
 <p></p>
 
@@ -549,7 +552,7 @@ Use string interpolation to write a line of code which prints _{code.language-py
 ---
 > id: step-46
 
-*Solution*. The expression _{code.language-python}print(f"multiplying by 6.2 yields {6.2*x}")_ works. 
+*Solution*. The expression _{code.language-python}print(f"multiplying by 6.2 yields {6.2*A}")_ works. 
 
 _{button.next-step} Continue_
 
@@ -595,7 +598,7 @@ Write a one-line [function](gloss:function) which takes 3 bools as arguments and
 
     pre(data-executable)
       | def f(a,b,c):
-      |     pass
+      |     pass # add code here
       |
       | def test_f():
       |     assert f(True, True, True)
@@ -738,7 +741,7 @@ Write a function called *{code.language-python}my_abs* which computes the absolu
 
     pre(data-executable)
       | def my_abs(x):
-      |     pass
+      |     pass # add code here
       |
       | def test_abs():
       |     assert my_abs(-3) == 3
@@ -764,7 +767,7 @@ Consider nesting _{code.language-python}if...else_ blocks inside of an _{code.la
 
     pre(data-executable)
       | def quadrant(x,y):
-      |     pass
+      |     pass # add code here
       |
       | def test_quadrant():
       |     assert quadrant(1.0, 2.0) == 1
@@ -1066,7 +1069,7 @@ _Hint_: Make a guess about which operator can be used to compare strings alphabe
 
     pre(data-executable)
       | def alphabetical_concat(s,t):
-      |     pass
+      |     pass # add code here
       |
       | def test_concat(): 
       |     alphabetical_concat("alphabet", "soup") == "alphabetsoup"
@@ -1340,7 +1343,7 @@ Implement a class called _{code.language-python}Fraction_ which represents a rat
 
     pre(data-executable)
       | from  math import gcd
-      | # add your code here
+      | # add code here
       | 
       | def test_Fraction():
       |     assert Fraction(1,2) + Fraction(1,3) == Fraction(5,6)
@@ -1641,6 +1644,7 @@ Write a [function](gloss:function) which takes as arguments a list _{code.langua
     pre(data-executable)
       | def rotate(L, n):
       |     "Cyclically shift the elements of L by n positions"
+      |     # add code here
       |
       | def test_rotate():
       |     assert rotate([1,2,3],1) == [3,1,2]
@@ -2024,12 +2028,12 @@ Write a function which takes a matrix _{code.language-python}M_ and an index _{c
 
     pre(data-executable)
       | def select_col(M, i):
-      |     pass
+      |     pass # add code here
       |
       | def test_select_col():
       |     assert select_col([[1,2],[3,4]],1) == [2,4]
       |     assert select_col([[7,8],[8,-2],[3,4]],1) == [8,-2,4]
-      |     return "Test passed!"
+      |     return "Tests passed!"
       |
       | test_select_col()
 
@@ -2069,7 +2073,7 @@ _Hint_: The string methods _{code.language-python}join_ and _{code.language-pyth
 
     pre(data-executable)
       | def reverse_words(sentence):
-      |     pass
+      |     pass # add code here
       |
       | def test_reverse_words():
       |     assert reverse_words("The quick brown fox") == "fox brown quick The"
@@ -2531,6 +2535,7 @@ Note that $10^{-8}$ can be represented in Python using scientific notation _{cod
     pre(data-executable)
       | def newtonsqrt(n):
       |     """Use Newton's algorithm to approximate √n"""
+      |     # add code here
       |
       | def test_newton():
       |     assert abs(newtonsqrt(2) - 1.4142135623730951) < 1e-6
@@ -2703,7 +2708,7 @@ Looking around a bit more, you find **{code.language-python}user_playlist_remove
 ---
 > id: step-149
 
-Your plan is beginning to take shape. You decide to make sure everything works before getting into the details of how you're going to modify the playlist. You follow the instructions in the documentation for getting the appropriate authorization credentials for your Python program to access your Spotify account. That step is a bit tedious, but it's going to be worth it. Working from the example in the documentation, you eventually arrive at some code that looks like the following (note that your _{code.language-python}CLIENT_ variables and **{code.language-python}playlist_id** will necessarily be different). 
+Your plan is beginning to take shape. You decide to make sure everything works before getting into the details of how you're going to modify the playlist. You follow the instructions in the documentation for getting the appropriate authorization credentials for your Python program to access your Spotify account. That step is a bit tedious, but it's going to be worth it. Working from the example in the documentation, you eventually arrive at some code that looks like the following (note that the values of the _{code.language-python}CLIENT_ variables and the **{code.language-python}playlist_id** below are fake, so yours will necessarily be different). 
 
     pre: code.language-python
       | 
@@ -2849,9 +2854,9 @@ Add more features to the function **{code.language-python}track_modifier** to mo
 > id: project-2
 ## Project 2: Mail Merge
 
-Suppose you want to send an email to dozens of people, with some elements of the message varying by recipient. For example, you'd like to insert the recipient's first name in the salutation, and you might also need to insert a personal URL or passcode, information on the recipient's status, etc. 
+Suppose you want to send an email to dozens of people, with some elements of the message varying by recipient. For example, you'd like to insert the recipient's first name in the salutation, and you might also need to insert a personal URL or passcode, information on the recipient's status, etc.
 
-This problem is called *mail merge*, and there are many commercial software solutions available. However, in this section we'll implement a simple and flexible mail merge in Python. 
+This problem is called *mail merge*, and there are many commercial software solutions available. However, in this section you'll implement a simple and flexible mail merge in Python. You will want to do this on your computer, because the authorization step involves using your operating system keychain. 
 
 _{button.next-step} Continue_
 
@@ -2860,41 +2865,41 @@ _{button.next-step} Continue_
 
 ### yagmail
 
-The first hurdle is to securely authorize your Python program to access your email account. We'll do this for Gmail accounts using a package called [yagmail](https://github.com/kootenpv/yagmail). You will want to do this on your computer, because the authorization step involves using your operating system keychain. 
+The first hurdle is to securely authorize your Python program to access your email account. You're a Gmail user, so you search for a Gmail package for Python and find [yagmail](https://github.com/kootenpv/yagmail). 
 
-Following the installation instructions, we run _{code.language-python}pip3 install yagmail[all]_ from the [command line](gloss:command-line) to install _{code.language-python}yagmail_. 
+Following the installation instructions on the project GitHub page, you run _{code.language-python}pip3 install yagmail[all]_ from the [command line](gloss:command-line) to install _{code.language-python}yagmail_. 
 
 _{button.next-step} Continue_
 
 ---
 > id: step-158
 
-Continuing to follow the instructions, we run
+Continuing to follow the instructions, you run
 
     pre: code.language-python
       | import yagmail
       | yagmail.register('mygmailusername')
 
-and enter the password for the Gmail account in the resulting password prompt. This stores the password in the operating system keychain so we don't have to keep entering it. 
+and enter the password for the Gmail account in the resulting password prompt. This stores the password in the operating system keychain so you don't have to keep entering it. 
 
 _{button.next-step} Continue_
 
 ---
 > id: step-159
 
-Now we can set up an _{code.language-python}SMTP_ object for sending messages. 
+Now you can set up an _{code.language-python}SMTP_ object for sending messages. 
 
     pre: code.language-python
       | yag = yagmail.SMTP("mygmailusername@gmail.com")
 
-In the documentation, we read that this object has a _{code.language-python}send_ method whose parameter list includes _{code.language-python}to_, _{code.language-python}subject_, and _{code.language-python}contents_. We want to call this method once for each recipient, and for that we will use a [[for loop|while loop|if statement]]. 
+In the documentation, you read that this object has a _{code.language-python}send_ method whose parameter list includes _{code.language-python}to_, _{code.language-python}subject_, and _{code.language-python}contents_. you want to call this method once for each recipient, and for that you use a [[for loop|while loop|if statement]]. 
 
 ---
 > id: step-160
 
 ### CSV
 
-Before sending the message, we have to figure out to store the data for each recipient and how to insert that data into the message. One easy solution to the former problem is to store the data in a spreadsheet. We don't even need spreadsheet software if our data is straightforward enough. We make a file called _{code.language-markup}mail-merge-data.csv_, open it in a text editor, and insert the contents
+Before sending the message, you have to figure out to store the data for each recipient and how to insert that data into the message. One easy solution to the former problem is to store the data in a spreadsheet. You decide to skip the spreadsheet software since the situation is so simple. Instead, you make a file called _{code.language-markup}mail-merge-data.csv_, open it in a text editor, and insert the contents
 
     pre
       | Name,Email,Status
@@ -2902,7 +2907,7 @@ Before sending the message, we have to figure out to store the data for each rec
       | Sidra,sidra_tiwana@example.com,completed
       | Alfonso,alfonso.serrano@example.com,pending
 
-We save the file and proceed to figuring out how to load it into Python. 
+You save the file and proceed to figuring out how to load it into Python. 
 
 _{button.next-step} Continue_
 
@@ -2911,37 +2916,37 @@ _{button.next-step} Continue_
 
 ### Pandas
 
-We Google "enter CSV in Python", and we scan the first several search results. The first couple show examples with a dozen or so lines of code, which seems more complicated than necessary. Going back to the search results, we see a function called **{code.language-python}pandas.read_csv**, and we remember that Pandas is the recommended package for handling spreadsheet data in Python. So we do 
+You google "enter CSV in Python" and scan the first several search results. The first couple show examples with a dozen or so lines of code, which seems more complicated than necessary. Going back to the search results, you see a function called **{code.language-python}pandas.read_csv**, and you remember that Pandas is the recommended package for handling spreadsheet data in Python. So you do 
 
     pre: code.language-python
       | import pandas as pd
       | mailData = pd.read_csv("mail-merge-data.csv")
       
-We check _{code.language-python}type(mailData)_ and see that _{code.language-python}mailData_ is a _{code.language-python}DataFrame_, which is the general Pandas type for tabular data. 
+You check _{code.language-python}type(mailData)_ and see that _{code.language-python}mailData_ is a _{code.language-python}DataFrame_, which is the general Pandas type for tabular data. 
       
 _{button.next-step} Continue_
 
 ---
 > id: step-162
 
-Now we have to figure out how to loop over the rows of a _{code.language-python}DataFrame_. We search the web for "how to loop over rows of pandas dataframe" and discover the method [[**itertuples** | **iteritems** | **items**]] (look it up!). 
+Now you have to figure out how to loop over the rows of a _{code.language-python}DataFrame_. You search the web for "how to loop over rows of pandas dataframe" and discover the method [[**itertuples** | **iteritems** | **items**]] (look it up!). 
 
 ---
 > id: step-163
 
-We do _{code.language-python}list(mailData.itertuples())[0]_ to get an example row from the _{code.language-python}DataFrame_, and we call _{code.language-python}dir_ on it to look for the right method for extracting each column value. We see that _{code.language-python}Name_, _{code.language-python}Email_, and _{code.language-python}Status_ are attributes of the row, so you can access them using dot syntax (like _{code.language-python}row.Email_). 
+You do _{code.language-python}list(mailData.itertuples())[0]_ to get an example row from the _{code.language-python}DataFrame_, and you call _{code.language-python}dir_ on it to look for the right method for extracting each column value. You see that _{code.language-python}Name_, _{code.language-python}Email_, and _{code.language-python}Status_ are attributes of the row, so you can access them using dot syntax (like _{code.language-python}row.Email_). 
 
 _{button.next-step} Continue_
 
 ---
 > id: step-164
 
-Finally, we need to insert information from each _{code.language-python}DataFrame_ row into the message. Fortunately, we've already learned a great way to do this: [[f-strings|dictionaries|lists]]! 
+Finally, you need to insert information from each _{code.language-python}DataFrame_ row into the message. Fortunately, you alreday know a great way to do this: [[f-strings|dictionaries|lists]]! 
 
 ---
 > id: step-165
 
-It will be a bit awkward to type the whole message into the line where we call _{code.language-python}yag.send_, so instead we write a function that takes _{code.language-python}row_ as a parameter and returns the message. 
+It will be a bit awkward to type the whole message into the line where you call _{code.language-python}yag.send_, so instead you write a function that takes _{code.language-python}row_ as a parameter and returns the message. 
 
     pre: code.language-python
       | def message(row):
