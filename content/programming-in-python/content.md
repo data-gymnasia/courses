@@ -393,7 +393,7 @@ Select the true statements.
 > id: types
 ## Types
 
-Python, like most programming languages, has built-in types for handling common data like numbers and text. 
+Python, like most programming languages, has built-in types for handling common data like numbers and text.
 
 [Continue](btn:next)
 
@@ -1133,8 +1133,10 @@ Note that we import _{code.language-python}numpy_ with the alias _{code.language
       | solve([Eq(x + 5*y, 2), Eq(-3*x + 6*y, 15)], [x, y])
 
 The example above solves the system of equations:
-  $$x + 5y$$
-  $$-3x + 6y$$
+``` latex
+  x + 5y &= 2 \\\\ 
+  -3x + 6y &= 15
+```
 for $x$ and $y$.
 
 ### Exercises 

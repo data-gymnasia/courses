@@ -1167,7 +1167,7 @@ Suppose that $V$ and $W$ are vector spaces and that $L\_1$ and $L\_2$ are linear
 *Solution*. Let $\mathbf{v} \in V$ be an arbitrary vector. Since $\mathcal{B}$ is a basis, we can find coefficients $c\_1, \cdots, c\_{n} \in \mathbb{R}$ such that $\mathbf{v} = c\_{1}\mathbf{b}\_1 + \cdots + c\_{n}\mathbf{b}\_n$. Since $L\_1$ and $L\_2$ are linear, we have
 
 ``` latex
-L_1(\mathbf{v})  & = L_{1}(c_{1}\mathbf{b}_1 + \cdots + c_{n}\mathbf{b}_n) \\\\ 
+L_1(\mathbf{v}) &= L_{1}(c_{1}\mathbf{b}_1 + \cdots + c_{n}\mathbf{b}_n) \\\\ 
 &= c_{1}L_{1}(\mathbf{b}_1) + \cdots + c_{n}L_{1}(\mathbf{b}_n) \\\\ 
 &= c_{1}L_{2}(\mathbf{b}_1) + \cdots + c_{n}L_{2}(\mathbf{b}_n) \\\\ 
 &= L_{2}(c_{1}\mathbf{b}_1 + \cdots + c_{n}\mathbf{b}_n) \\\\ 
@@ -3640,9 +3640,9 @@ We close this section with a computational exercise illustrating another widely 
 
 * Show that if $\mathbf{u}\_1, \ldots, \mathbf{u}\_n$ are the columns of $U$,
   $\mathbf{v}\_1, \ldots \mathbf{v}\_n$ are the columns of $V$, and $\sigma\_1,
-  \ldots, \sigma\_n$ are the diagonal entries of $\Sigma$, then $A = \sigma_{1}
-  \mathbf{u}_{1}\mathbf{v}_{1}'+\sigma_{2}\mathbf{u}_{2}\mathbf{v}_{2}'+\cdots+
-  \sigma_{n}\mathbf{u}_{n}\mathbf{v}_{n}'$.
+  \ldots, \sigma\_n$ are the diagonal entries of $\Sigma$, then $A = \sigma\_{1}
+  \mathbf{u}\_{1}\mathbf{v}\_{1}'+\sigma\_{2}\mathbf{u}\_{2}\mathbf{v}\_{2}'+\cdots+
+  \sigma\_{n}\mathbf{u}\_{n}\mathbf{v}\_{n}'$.
 
 * The equation is useful for *compression*, because terms with sufficiently
   small singular value factors can be dropped and the remaining vectors and
