@@ -196,7 +196,7 @@ Use the code block below to find out what happens when you try to use a variable
 
     pre(data-executable)
       | num_carrots = 4
-      | num_carrots
+      | num_Carrots
 
 ---
 > id: step-20
