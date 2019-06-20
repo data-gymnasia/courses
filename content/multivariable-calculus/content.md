@@ -4,8 +4,6 @@
 
 ## Introduction
 
-*Course author: [Samuel S. Watson](http://sswatson.com)*
-
 Calculus is the study of continuously varying functions. Specifically, we examine [[instantaneous|average|large]] rates of change (derivatives) and learn how to average (or total) the values of a function over a region (integration). In multivariable calculus, we generalize differentiation and integration ideas developed for functions defined on the number line $\mathbb{R}^1$ to the setting where our functions are defined on $\mathbb{R}^d$ for some $d \ge 1$. 
 
 [Continue](btn:next)

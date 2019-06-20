@@ -3,8 +3,6 @@
 > id: intro
 ## Introduction 
 
-*Course author: [Samuel S. Watson](http://sswatson.com)*
-
 Sets and functions are foundational to the study of mathematics and
 ubiquitous in quantitative disciplines, including statistics and data
 science. In this course we review the basics of sets, lists, and

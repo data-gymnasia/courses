@@ -4,8 +4,6 @@
 > id: intro
 ## Introduction
 
-*Course author: [Samuel S. Watson](http://sswatson.com)*
-
 This chapter is an introduction to programming in **Python**, which is a general-purpose language with a very large user base in the software engineering world. With the emergence of a powerful stack of scientific computing [packages](gloss:package) since the early 2000s, it has emerged as the most popular language for data science.
 
 Although programming is a powerful tool, learning to program is also about honing your problem solving skills and thinking in an organized way about structure and computation. You are likely to find that computer science ideas support your ability to reason about complex systems, even in situations where you won't be programming anything. This is a useful frame of mind to bring to the learning process.

@@ -4,22 +4,34 @@
 
 sets-and-functions:
   name: Sets and Functions
-  topics: 
+  topics:
     - Sets
     - Functions
+  author:
+    name: Samuel S. Watson
+    link: http://sswatson.com
 
 programming-in-python:
   name: Programming in Python
-  topics: 
+  topics:
     - Programming
     - Python
+  author:
+    name: Samuel S. Watson
+    link: http://sswatson.com
 
 linear-algebra:
   name: Linear Algebra
-  topics: 
+  topics:
     - Linear Algebra
+  author:
+    name: Samuel S. Watson
+    link: http://sswatson.com
 
 probability:
   name: Probability
-  topics: 
+  topics:
     - probability
+  author:
+    name: Samuel S. Watson
+    link: http://sswatson.com

@@ -27,6 +27,7 @@ class Course {
     this.title = data.title;
     this.locale = locale;
     this.color = '#' + (CURRICULUM[id] || {}).color;
+    this.author = (CURRICULUM[id] || {}).author;
   }
 
   readFile(name) {

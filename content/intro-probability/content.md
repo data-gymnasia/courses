@@ -4,8 +4,6 @@
 > id: intro
 ## Introduction
 
-*Course author: [Samuel S. Watson](http://sswatson.com)*
-
 When we do data science, we begin with a data set and work to gain insights about the process that generated the data. Crucial to this endeavor is a robust vocabulary for discussing the behavior of data-generating processes. 
 
 [Continue](btn:next)
