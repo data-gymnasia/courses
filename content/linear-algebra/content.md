@@ -13,7 +13,7 @@ Using and interpreting data requires storing and manipulating sets of numbers in
 
 ::: .exercise
 **Exercise**  
-Consider a spreadsheet of data whose rows correspond to individuals and whose three columns correspond to weight in kilograms, height in centimeters, and height in inches. Are any of the columns redundant? [[Yes|No]]
+Consider a spreadsheet whose rows correspond to individuals and whose three columns correspond to weight in kilograms, height in centimeters, and height in inches. Are any of the columns redundant? [[Yes|No]]
 :::
 
 ---
@@ -38,7 +38,7 @@ Is it possible to have numbers populating three columns in a spreadsheet such th
 ---
 > id: step-4
 
-*Solution*. Yes! If the third column is the sum of the first two, then any column can be recovered from any other (either by adding to get the third from the first and second, or by subtracting to get the first from the third and second or the second from the first and third). However, if the first two columns contain genuinely different data, then you do need at least two columns to figure out the rest.
+*Solution*. Yes! If the third column is the sum of the first two, then any column can be recovered from any other (either by adding to get the third from the first and second, or by subtracting to get the first from the third and second or the second from the first and third). However, if the first two columns contain different data, then you do need at least two columns to figure out the rest.
  
 
 In this course, we will develop a more general and mathematically rigorous version of the idea of redundancy developed in the two exercises above. 
@@ -84,7 +84,7 @@ We define the **norm** $|\mathbf{v}|$ of a vector $\mathbf{v} \in \mathbb{R}^n$ 
 ---
 > id: step-9
 
-The fundamental vector operations are 
+The fundamental vector operations are:
 
 1. **Vector addition** (addition of two vectors), and 
 2. **Scalar multiplication** (multiplication of a real number and a vector). 
@@ -191,6 +191,8 @@ Show that every nonzero vector $\mathbf{v}$ can be written as the product of a n
 ::: .exercise
 **Exercise**  
 Find a formula in terms of $\mathbf{u}$ and $\mathbf{v}$ which represents the vector from the head of $\mathbf{v}$ to the head of $\mathbf{u}$ when $\mathbf{u}$ and $\mathbf{v}$ are situated so that their tails coincide. 
+
+_Note_: Two vectors' tails coincide when they originate from the same point.
 :::
 
     x-quill
@@ -224,7 +226,7 @@ Solve for $\mathbf{u}$ in terms of $c$ and $\mathbf{v}$ in the equation $c \math
 > id: span
 ## Span
 
-Although there are many operations on columns of real numbers (like squaring each entry), the fundamental operations in linear algebra are the **linear** ones: addition of two columns, multiplication of the whole column by a constant, and compositions of those operations. In this section we will introduce some vocabulary to help us reason about linear relationships between vectors. 
+Although there are many operations on columns of real numbers, the fundamental operations in linear algebra are the **linear** ones: addition of two columns, multiplication of the whole column by a constant, and compositions of those operations. In this section we will introduce some vocabulary to help us reason about linear relationships between vectors. 
 
 [Continue](btn:next)
 
@@ -245,7 +247,7 @@ of the linear combination.
 **Exercise**  
 Suppose that $\mathbf{u} = [2,0]$ and $\mathbf{v} = [1,2]$. Draw the set of all points $(a,b)$ in $\mathbb{R}^2$ for which the vector $[a,b]$ can be written as an *integer* linear combination of $\mathbf{u}$ and $\mathbf{v}$. 
 
-Note: an integer linear combination is a linear combination where the weights are integers.
+_Note_: An integer linear combination is a linear combination where the weights are integers.
 :::
 
     x-quill
@@ -323,7 +325,7 @@ Check out the 3Blue1Brown video segment below for some helpful visualizations fo
 > id: linear-independence
 ## Linear Independence
 
-The idea of *redundancy* that we discussed in the Introduction can now be phrased in a mathematically precise way: a [list](gloss:list-math) of vectors is **linearly dependent** if one of the vectors can be expressed as a linear combination of the others. 
+The idea of *redundancy* that we discussed in the introduction can now be phrased in a mathematically precise way: a [list](gloss:list-math) of vectors is **linearly dependent** if one of the vectors can be expressed as a linear combination of the others. 
 
 [Continue](btn:next)
 
@@ -413,7 +415,7 @@ A list of vectors is linearly independent if and only if there is no vector in t
 ---
 > id: step-33
 
-For example, to check that $\\{\mathbf{v}\_1, \mathbf{v}\_2, \mathbf{v}\_3\\}$ is linear independent, it suffices to check that $\mathbf{v}\_1 \neq \boldsymbol{0}$, that $\mathbf{v}\_2$ is not a scalar multiple of $\mathbf{v}\_1$ and that $\mathbf{v}\_3$ is not in the span of $\\{\mathbf{v}\_1, \mathbf{v}_2\\}$. 
+For example, to check that $\\{\mathbf{v}\_1, \mathbf{v}\_2, \mathbf{v}\_3\\}$ is linearly independent, it suffices to check that $\mathbf{v}\_1 \neq \boldsymbol{0}$, that $\mathbf{v}\_2$ is not a scalar multiple of $\mathbf{v}\_1$ and that $\mathbf{v}\_3$ is not in the span of $\\{\mathbf{v}\_1, \mathbf{v}_2\\}$. 
 
 Let's walk through a proof of this theorem.
 
@@ -427,17 +429,19 @@ Let's walk through a proof of this theorem.
 ---
 > id: step-35
 
-For the other direction, suppose that the list $\mathbf{v}\_1, \ldots, \mathbf{v}\_n$ is linearly dependent. Then one of the vectors can be written as linear combination of the others. For example, if $\mathbf{v}\_1$ can be written as a linear combination of the others, then 
+For the other direction, suppose that the list $\mathbf{v}\_1, \ldots, \mathbf{v}\_n$ is linearly dependent. Then, one of the vectors can be written as a linear combination of the others. For example, if $\mathbf{v}\_1$ can be written as a linear combination of the others, then 
 
 ``` latex
 \mathbf{v}_1 = c_2\mathbf{v}_2 + \cdots + c_n\mathbf{v}_n
 ```
       
-for some $c\_2, \ldots, c\_n$. If all of the weights are zero, then $\mathbf{v}\_1$ is zero and is therefore in the span of the empty list of vectors which precede it. If at least one is nonzero, then let's define $k$ so that $c\_k$ is the [[*last*|*first*]] of the nonzero $c$'s. Then we can rearrange the equation above to find that
+for some weights $c\_2, \ldots, c\_n$. If all of the weights are zero, then $\mathbf{v}\_1$ is zero and is therefore in the span of the empty list of vectors which precede it. If at least one is nonzero, then let's define $k$ so that $c\_k$ is the [[*last*|*first*]] of the nonzero $c$'s. Then we can rearrange the equation above to find that
 
 ``` latex
 \mathbf{v}_k = \frac{\mathbf{v}_1 - \left(c_2\mathbf{v}_2 + \cdots + c_{k- 1}\mathbf{v}_{k-1}\right)}{c_k}
 ```
+
+which is in the span of $\\{\mathbf{v}\_1,...,\mathbf{v}\_{k-1}\\}$.
 
 ---
 > id: step-36
