@@ -1,9 +1,6 @@
 # Data Gymnasia
 
-The [Data Science Initiative](https://www.brown.edu/initiatives/data-science/home)
-at Brown University is a hub for research and education in the foundational
-methodologies, domain applications, and societal impacts of data science.
-
+Data Gymnasia is a free [website](https://mathigon.org/data-gymnasia) for learning data science, built using open-source [Mathigon](https://mathigon.io) technology. Content is written in a simple Markdown format equipped with special syntax for a variety of interactive features, including executable code blocks, editors for writing exercises, and interctive Javascript components.
 
 ## Getting started
 
