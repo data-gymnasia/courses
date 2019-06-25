@@ -15,6 +15,8 @@ methodologies, domain applications, and societal impacts of data science.
 [Python course](content/programming-in-python), for example, will be
 [localhost:5000/course/programming-in-python](http://localhost:5000/course/programming-in-python).
 
+To make a new course, run `cp -r content/blank-course content/my-new-course-name` (or just duplicate the `blank-course` folder and change the name). You can get started by editing the `my-new-course-name/content.md` file. Note that you have to `ctrl-c` to kill the `npm` process and then restart it whenver you add a new course or a new section in a course.
+
 ## Course Structure
 
 Every course consists of a few different components:
