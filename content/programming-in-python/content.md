@@ -383,7 +383,7 @@ Select the true statements.
       .item.pill.bblue.md The statement `[balance = 46.04]` assigns the value `[46.04]` to the variable `[balance]`. 
       .item.pill.bblue.md(data-error="not-a-variable") The object `[33]` is a variable. 
       .item.pill.bblue(data-error="mutable") The value of a variable cannot be changed. 
-      .item.pill.bblue Variables in Python are case-sensitive.
+      .item.pill.bblue Variable names in Python are case-sensitive.
 :::
 
 [Continue](btn:next)

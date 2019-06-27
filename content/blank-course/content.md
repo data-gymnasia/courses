@@ -14,6 +14,7 @@ Every non-constant single-variable polynomial with complex coefficients has at l
 [Continue](btn:next)
 
 ---
+> id: step-1
 
 The equation $x^2 - 1 = 0$ has two roots $x = 1$ and $x = $ [[-1]]. 
 
@@ -30,6 +31,7 @@ This figure illustrates the relationship between a matrix and its **Gram** matri
 [Continue](btn:next)
 
 ---
+> id: step-2
 
 Is the orthogonal transformation relating $A$ and $\sqrt{A' A}$ always a rotation? Explain below.
 

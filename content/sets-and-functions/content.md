@@ -931,7 +931,7 @@ This is the subset of $A$ consisting of every element of $A$ that maps to some e
 **Exercise**  
 
 1. The statement "the preimage of a nonempty subset of the codomain of a function may be empty" is [[true|false]]. 
-2. The statement "the preimage of $B'$ have more elements than $B'$" is [[true|false]].
+2. The statement "the preimage of $B'$ can have more elements than $B'$" is [[true|false]].
 
 :::
 
@@ -1076,7 +1076,7 @@ State a general relationship involving the terms *restriction*, *image*, and *ra
 \left. f \right|_{A'}
 ```
 
-is equal to the image $f(A)$. These sets are equal because they are both equal to the set of elements of $B$ which $f$ maps to from some element of $A'$. 
+is equal to the image $f(A')$. These sets are equal because they are both equal to the set of elements of $B$ which $f$ maps to from some element of $A'$. 
 
 [Continue](btn:next)
 
