@@ -419,3 +419,22 @@ chain-rule:
 positive-definite:
   title: Positive definite
   text: A **positive definite** matrix $A$ is a symmetric matrix whose eigenvalues are all positive. A **positive semidefinite** matrix $A$ is a symmetric matrix whose eigenvalues are all nonnegative. Equivalently, a matrix $A$ is positive semidefinite if $\mathbf{x}' A \mathbf{x} \ge 0$ for all $\mathbf{x}$.
+
+directory:
+  title: Directory
+  text: Another term for *folder* in an operating system
+
+unix-run:
+  title: Run
+  text: To *run* a command in Unix, you type it or paste it into the command line and press the return key.
+
+executable:
+  title: Executable
+  text: An executable is a file that can be run by the operating system.
+
+bash-options:
+  title: Options
+  text: |
+    A bash **option** is an argument which is supplied to a bash command to modify the way it runs. For example, `ls` list the files in a directory, and `ls -l` lists them in long form (including more information about each file).
+
+    Single-letter options usually begin with one dash, while longer option names usually begin with two dashes.
