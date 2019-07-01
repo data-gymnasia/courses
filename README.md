@@ -78,7 +78,7 @@ Your Markdown file should have one top-level header, which is the title of the c
 
 ### Equations and code
 
-Inline code is supported with backtick delimiters and a language indicator in curly braces: `` `{py} 1 + 2` ``. Code blocks are denoted with fences:
+Inline code is supported with backtick delimiters and a language indicator in curly braces: `` `{py} 1 + 2` ``. The possible languages are `py`, `jl`, `r`, and `code` (the last of which gets no language-specific syntax highlighting). Code blocks are denoted with fences:
 
 ````
 ``` python
@@ -86,6 +86,8 @@ import numpy as np
 np.random.standard_normal((10,10))
 ```
 ````
+
+The currently supported languages are `python`, `julia`, `r`, and `markup` (the last one for no syntax highlighting). 
 
 *Executable* code blocks are supplied using Mathigon Markdown's support for [pugs](https://pugjs.org/api/getting-started.html)
 
