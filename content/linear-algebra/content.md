@@ -308,8 +308,8 @@ The same reasoning implies that the span of a list of vectors in $\mathbb{R}^3$ 
 
 Check out the 3Blue1Brown video segment below for some helpful visualizations for spans of vectors in three-dimensional space.
 
-    figure
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/k7RM-ot2NWY?start=358&end=495" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    figure.video-wrap
+      iframe(src="https://www.youtube.com/embed/k7RM-ot2NWY?start=358&end=495" frameborder="0" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen)
 
 [Continue](btn:next)
 
@@ -1082,7 +1082,8 @@ Many fundamental geometric transformations are linear. The figure below illustra
 
 This 3Blue1Brown video provides some helpful animated illustrations of linear transformations: 
 
-    figure: <iframe width="560" height="315" src="https://www.youtube.com/embed/kYB8IZa5AuE?start=159&end=211" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    figure.video-wrap
+      iframe(src="https://www.youtube.com/embed/kYB8IZa5AuE?start=159&end=211" frameborder="0" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen)
 
 [Continue](btn:next)
 
