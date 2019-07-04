@@ -284,9 +284,9 @@ The span of two vectors in $\mathbb{R}^2$
     x-picker.list
       .item.pill.bblue(data-error="any-shape") can be any shape 
       .item.pill.bblue(data-error="circle") must be either a circle or a line 
-      .item.pill.bblue can be all of $\mathbb{R}^2$
+      .item.pill.bblue.md can be all of $\mathbb{R}^2$
       .item.pill.bblue(data-error="line-or-point") must be either a line or a point 
-      .item.pill.bblue must be either a line or a point or all of $\mathbb{R}^2$
+      .item.pill.bblue.md must be either a line or a point or all of $\mathbb{R}^2$
 
 The span of three vectors in $\mathbb{R}^3$ 
 
@@ -294,7 +294,7 @@ The span of three vectors in $\mathbb{R}^3$
       .item.pill.bblue(data-error="any-shape") can be any shape 
       .item.pill.bblue(data-error="sphere") must be a sphere or a line 
       .item.pill.bblue(data-error="plane") must be a plane 
-      .item.pill.bblue must be a point, a plane, a line, or all of $\mathbb{R}^3$
+      .item.pill.bblue.md must be a point, a plane, a line, or all of $\mathbb{R}^3$
       .item.pill.bblue(data-error="plane") must be a plane, a line, or a point 
 
 :::
