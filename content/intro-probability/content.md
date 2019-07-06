@@ -1547,7 +1547,7 @@ How close to 1 is the result typically? Choose the best answer.
 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | from numpy.random import randint
 
 ---
@@ -1567,7 +1567,7 @@ We will see that this second interpretation is actually a *theorem* in probabili
 Use a Monte Carlo simulation to estimate the expectation of $X/Y$, where $X$ and $Y$ are independent die rolls. 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | import numpy as np
 
     x-quill
@@ -1780,7 +1780,7 @@ uniformly at random. Make a rough estimate of the mean and variance of this rand
 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | import numpy as np
 
     x-quill
@@ -1804,7 +1804,7 @@ Consider the following game. We begin by picking a number in $\\{0,\frac{1}{1000
 Tips: _{code.language-python}np.random.randint(0,1001)/1000_ returns a sample from the desired distribution. Also, it's a good idea to wrap a single run of the game into a zero-argument function. 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | import numpy as np
 
     x-quill
@@ -2668,7 +2668,7 @@ where $a\_n = 0.01\sqrt{n}/\sqrt{0.4\cdot0.6}$. By the symmetry of the Gaussian 
 
 Defining the normal CDF $\Phi(x) = \int\_{-\infty}^x \frac{1}{\sqrt{2\pi}}e^{-t^2/2}\, dt$, we want to find the least integer $n$ such that $a\_n$ exceeds $\Phi^{-1}(0.995)$. The following code tells us that $\Phi^{-1}(0.995) \approx 2.576$. 
 
-    pre(data-executable)
+    pre(python-executable)
       | from scipy.stats import norm
       | norm.ppf(0.995)
 
@@ -2693,7 +2693,7 @@ For simplicity, you may assume that $n$ is even.
 ---
 > id: step-156 
 
-    pre(data-executable)
+    pre(python-executable)
       | import matplotlib.pyplot as plt
       | import scipy.stats
       | def binom_stickplot(n):

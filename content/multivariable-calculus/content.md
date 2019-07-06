@@ -95,7 +95,7 @@ If $a\_n$ does not converge to zero, then the series $\displaystyle{\sum\_{n=1}^
 Show that $\displaystyle{\sum\_{n=1}^\infty \frac{n}{n+1}}$ does not converge. Plot the partial sums using the code below to appreciate this fact visually. (You have to run the cell twice for the plot to show; the second time will be quick.)
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | import matplotlib.pyplot as plt
       | import numpy as np
       | A = [n/(n+1) for n in range(1,1001)]
@@ -161,7 +161,7 @@ Show that the series $\sum\_{n=1}^\infty \frac{1}{n^2 + n}$ converges.
 Numerically examine the statement that $\sum\_{n=1}^\infty \frac{1}{n^2}$ converges to $\frac{\pi^2}{6}$. 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | import numpy as np
 
     x-quill
@@ -171,14 +171,14 @@ Numerically examine the statement that $\sum\_{n=1}^\infty \frac{1}{n^2}$ conver
 
 *Solution*. The expression 
 
-    pre(data-executable)
+    pre(python-executable)
       | sum(1/n**2 for n in range(1,1001)) - np.pi**2/6
 
 <p></p>
 
 returns _{code.language-python}-0.0009995001666649461_, while 
 
-    pre(data-executable)
+    pre(python-executable)
       | import numpy as np
       | sum(1/n**2 for n in range(1,10_000_001)) - np.pi**2/6
       
@@ -768,7 +768,7 @@ We can substitute back into the equation for $b$ to find the only $(m,b)$ pair a
 Run the code below to confirm visually that the formula we derived above fits the sampled points reasonably well. (Note that you have to run the cell twice to get the plot to show.)
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | import numpy as np
       | import matplotlib.pyplot as plt
       | n = 10
@@ -1222,7 +1222,7 @@ Note: you might find it convenient to express your answer using the function dia
 
 We can check this exercise numerically: 
 
-    pre(data-executable)
+    pre(python-executable)
       | import numpy as np
       | A = np.random.random_sample((5,5))
       | x = np.random.random_sample(5)

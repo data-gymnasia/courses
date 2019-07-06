@@ -705,7 +705,7 @@ The three coordinates are [[2]], [[2]], [[0]].
 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | import numpy as np
 
 <p></p>
@@ -715,7 +715,7 @@ The three coordinates are [[2]], [[2]], [[0]].
 
 *Solution*. We can calculate using NumPy as suggested: 
 
-    pre(data-executable)
+    pre(python-executable)
       | import numpy as np
       | A = np.array([[1,1,np.sqrt(2)],
       |               [1,1,-np.sqrt(2)],
@@ -978,7 +978,7 @@ Repeat with random vectors whose entries are 0 or 1 with probability $\frac{1}{2
 Hint: for part (b): _{code.language-python}np.random.randint(0,2,(5,7))_ generates the desired random matrix, and importing _{code.language-python}Counter_ from _{code.language-python}collections_ might be helpful for helping you inspect the contents of the list of ranks.
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | import numpy as np
 
 ---
@@ -986,7 +986,7 @@ Hint: for part (b): _{code.language-python}np.random.randint(0,2,(5,7))_ generat
 
 *Solution*. If we run 
 
-    pre(data-executable)
+    pre(python-executable)
       | rank = np.linalg.matrix_rank
       | def randmat():
       |     return np.random.random_sample((7,5))
@@ -1002,7 +1002,7 @@ we get a set containing only _{code.language-python}5_. Therefore, five random v
 
 If we run
 
-    pre(data-executable)
+    pre(python-executable)
       | from collections import Counter
       | Counter([rank(np.random.randint(0,2,(7,5))) for i in range(100_000)])
     
@@ -2123,7 +2123,7 @@ H = \begin{bmatrix}
 ```
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | 
 
 <p></p>
@@ -2237,7 +2237,7 @@ Suppose that $A$ is an $m \times n$ matrix and that $B$ is an $n \times p$ matri
 Confirm your conjecture numerically in Python with some random matrices. You can generate a random $m \times n$ matrix using **{code.language-python}np.random.random_sample((m,n))**, the transpose of _{code.language-python}A_ is accessed as _{code.language-python}A.T_, and the product of _{code.language-python}A_ and _{code.language-python}B_ is _{code.language-python}A @ B_. 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | import numpy as np
 
 <p></p>
@@ -2263,7 +2263,7 @@ in general.
 
 The following block of code checks the equation for a particular random example. 
 
-    pre(data-executable)
+    pre(python-executable)
       | import numpy as np
       | A = np.random.random_sample((3,7))
       | B = np.random.random_sample((7,3))
@@ -2701,7 +2701,7 @@ Use the code below to build a random 100 × 6 matrix whose first five columns ar
 Note: _{code.language-python}np.linalg.solve(A,b)_ solves the equation $A\mathbf{x} = \mathbf{b}$ for $\mathbf{x}$. 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | import numpy as np
       | A = np.random.randint(0,2,(100,5))
       | b = np.random.randint(0,2,(100,))
@@ -2714,7 +2714,7 @@ Note: _{code.language-python}np.linalg.solve(A,b)_ solves the equation $A\mathbf
 
 *Solution* We try 
 
-    pre(data-executable)
+    pre(python-executable)
       | np.linalg.solve(A.T @ A, A.T @ b)
 
 and we get an error telling us that $A'A$ is not invertible. This makes sense, because $A'A$ has the same rank as $A$, and we know $A$ is [rank deficient](gloss:rankdeficient). Since there are different ways of combining the columns of $A$ to get the vector in its column space which is as close as possible to $\mathbf{b}$, it is not possible that we would have gotten a unique answer using this method.
@@ -2729,7 +2729,7 @@ and we get an error telling us that $A'A$ is not invertible. This makes sense, b
 Try the previous exercise again, but this time with the linear dependence relation holding only approximately. What goes wrong this time?
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | import numpy as np
       | A = 1.0*np.random.randint(0,2,(100,5))
       | b = np.random.randint(0,2,(100,))
@@ -2742,7 +2742,7 @@ Try the previous exercise again, but this time with the linear dependence relati
 
 *Solution*. We take a look at the solution:
 
-    pre(data-executable)
+    pre(python-executable)
       | import matplotlib.pyplot as plt
       | plt.bar(range(5),np.linalg.solve(A.T @ A, A.T @ b))
 
@@ -3222,7 +3222,7 @@ To be concrete, let's say "nearly equal" means "having ratio between 0.99 and 1.
 
 *Solution*. One simple way to do this is make $\mathbf{b}$ and $\widehat{\mathbf{b}}$ the columns of the matrix. For example, _{code.language-python}solve(array([[1,1],[1, 1.01]]),[1,1])_ returns _{code.language-python}[1,0]_ while _{code.language-python}solve(array([[1,1],[1, 1.01]]),[1,1.01])_ returns _{code.language-python}[0,1]_. 
 
-    pre(data-executable)
+    pre(python-executable)
       | from numpy.linalg import solve
       | from numpy import array
 
@@ -3345,7 +3345,7 @@ and confirm that the resulting matrices $R$ and $P$ satisfy $R' R = I$ and $P^2 
 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | 
 
     x-quill
@@ -3393,7 +3393,7 @@ Thus the $P\_{k}$'s converge to the matrix $V \Lambda\_\infty V^{-1}$, where $\L
  
 For example: 
 
-    pre(data-executable)
+    pre(python-executable)
       | import numpy as np
       | 
       | def polar(A,n):
@@ -3541,7 +3541,7 @@ Show that $\left[\begin{smallmatrix}-160 & -120 \\\\\\ -12 & -134 \\\\\\
       \\\\\\ \end{smallmatrix}\right]$. Find its Moore-Penrose pseudoinverse. 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | 
 
     x-quill
@@ -3602,7 +3602,7 @@ This intuition is accurate, and it highlights the utility of having a generaliza
 Define a matrix with 100 rows and 5 columns, and do it in such a way that two of the five columns are nearly equal to some linear combination of the other three. Calculate the singular values of the matrix, and make a conjecture about how the number of approximate linear dependencies could have been detected from the list of singular values.
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | import numpy as np
 
     x-quill
@@ -3612,7 +3612,7 @@ Define a matrix with 100 rows and 5 columns, and do it in such a way that two of
 
 *Solution*. We see that two of the singular values are much smaller than the other three. (Remember that you have to run the cell twice to get the plot to show.)
 
-    pre(data-executable)
+    pre(python-executable)
       | import numpy as np
       | import matplotlib.pyplot as plt
       | A = np.random.standard_normal((100,5))

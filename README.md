@@ -57,9 +57,9 @@ Your Markdown file should have one top-level header, which is the title of the c
 
     ```
         x-sortable
-        .item.md(data-index="2") REPL
-        .item.md(data-index="1") Script
-        .item.md(data-index="0") Jupyter
+          .item.md(data-index="2") REPL
+          .item.md(data-index="1") Script
+          .item.md(data-index="0") Jupyter
     ```
 
     The `data-index` values specify the correct order and must start from 0.
@@ -87,15 +87,17 @@ np.random.standard_normal((10,10))
 ```
 ````
 
-The currently supported languages are `python`, `julia`, `r`, and `markup` (the last one for no syntax highlighting). 
+The currently supported languages are `python`, `julia`, `r`, `markup` (no syntax highlighting), `markdown`, `bash`, `docker`, `git`, `json`, `makefile`, `sql`, `yaml`, and `toml`. If you want to add more, visit [follow this link](https://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javascript+bash+docker+git+json+julia+latex+markdown+makefile+sql+python+r+yaml+toml+pug), check additional boxes as desired, and download the resulting JS file to `content/shared/static/prism.js`. 
 
 *Executable* code blocks are supplied using Mathigon Markdown's support for [pugs](https://pugjs.org/api/getting-started.html)
 
 ```
-    pre(data-executable)
+    pre(python-executable)
       | x = 3
       | x
 ```
+
+The supported languages are `python`, `julia`, `r`, and `bash`. The Jupyter kernels which supply these environments are listed in `content/shared/shared.js`. 
 
 Inline math expressions are supported using LaTeX syntax with dollar signs (`$x^2 + 2\sin y$`), and display math is supported with `latex` code fences. 
 
