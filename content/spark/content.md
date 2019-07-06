@@ -249,7 +249,7 @@ since a Binder instance is being launched in the background.
 The object that mediates between Spark and the Python environment is
 called a _{code.language-python}SparkContext_. Let's instantiate one: 
     
-    pre(data-executable)
+    pre(python-executable)
       | import pyspark
       | sc = pyspark.SparkContext(appName="PiEstimator")
       | type(sc)
@@ -263,7 +263,7 @@ The simplest way to create an RDD is to populate it with values from
 the Python session using the context's _{code.language-python}parallelize_
 method. Let's put a million ordered pairs into an RDD.
 
-    pre(data-executable)
+    pre(python-executable)
       | import numpy as np
       | n = 1_000_000
       | points = zip(np.random.rand(n), np.random.rand(n))
@@ -291,7 +291,7 @@ condition may be described in Python code. The
 _{code.language-python}count_ method returns the number of records in
 the RDD. 
 
-    pre(data-executable)
+    pre(python-executable)
       | def inside_circle(p):
       |     x,y = p
       |     return x*x + y*y < 1
@@ -317,7 +317,7 @@ method to find the average.
 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | # TODO
 
 [Continue](btn:next)
@@ -326,7 +326,7 @@ method to find the average.
 
 Here's an extra executable cell for experimentation: 
 
-    pre(data-executable)
+    pre(python-executable)
       | 
 
 ---
@@ -338,7 +338,7 @@ _{code.language-python}SparkContext_ and supplies additional
 functionality that allows you to interact with Spark more like a
 DataFrame or SQL database.
 
-    pre(data-executable)
+    pre(python-executable)
       | import pandas
       | from pyspark.sql import SparkSession
       | spark = SparkSession.builder.appName("Iris").getOrCreate()
@@ -364,7 +364,7 @@ given column. The latter syntax is necessary if there's a dot in the
 column name, because in that case you have to use backticks in a
 string literal to escape the dot. 
 
-    pre(data-executable)
+    pre(python-executable)
       | # count the setosa's
       | df.filter(df.Species == "setosa").count()
       | # add a column and sort on it
@@ -391,7 +391,7 @@ entering _{code.language-python}?df.join_ in the code cell.
 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | 
 
 [Continue](btn:next)
@@ -405,7 +405,7 @@ rows of the DataFrame _{code.language-python}df_?
 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | df.sample(0.2)
     
 _{button.next-step} Reveal_
