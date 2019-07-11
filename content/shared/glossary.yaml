@@ -438,25 +438,30 @@ bash-options:
     A bash **option** is an argument which is supplied to a bash command to modify the way it runs. For example, `ls` list the files in a directory, and `ls -l` lists them in long form (including more information about each file).
 
     Single-letter options usually begin with one dash, while longer option names usually begin with two dashes.
-    
+
 hidden-directory:
   title: Hidden Directory
-  text: A directory whose name begins with `{sh} .` is hidden by default on Unix systems. This means that it doesn't show up in your operating system's file browser (unless you do `{sh} command-shift-.`, on macOS), and it isn't listed when you run `{sh} ls` at the command line (unless you supply the flag `{sh} -a` to see *all* files). 
-  
+  text: A directory whose name begins with `{sh} .` is hidden by default on Unix systems. This means that it doesn't show up in your operating system's file browser (unless you do `{sh} command-shift-.`, on macOS), and it isn't listed when you run `{sh} ls` at the command line (unless you supply the flag `{sh} -a` to see *all* files).
+
 hash:
   title: Hash
   text: |
-    A **hash function** is any function that maps data of arbitrary size to data of fixed size. 
-    
-    Hash functions often have two additional properties: 
-      
-      (1) Even small changes to the input usually result in substantial changes to the output. For example, the SHA-1 hash function maps "The quick brown fox jumps over the lazy dog" to 2fd4e1c67a2d28fced849ee1bb76e7391b93eb12 and "The quick brown fox jumps over the lazy **c**og" to de9f2c7fd25e1b3afad3e85a0bd17d9b100db4b3. 
-      
-      (2) It's computationally challenging to invert the function. Hash functions with this property are useful for cryptographic purposes (such as verifying the integrity of a file downloaded from the internet). 
-      
+    A **hash function** is any function that maps data of arbitrary size to data of fixed size.
+
+    Hash functions often have two additional properties:
+
+      (1) Even small changes to the input usually result in substantial changes to the output. For example, the SHA-1 hash function maps "The quick brown fox jumps over the lazy dog" to 2fd4e1c67a2d28fced849ee1bb76e7391b93eb12 and "The quick brown fox jumps over the lazy **c**og" to de9f2c7fd25e1b3afad3e85a0bd17d9b100db4b3.
+
+      (2) It's computationally challenging to invert the function. Hash functions with this property are useful for cryptographic purposes (such as verifying the integrity of a file downloaded from the internet).
+
 git-clone:
   title: Git Clone
   text: |
-    Create a local copy of a remote Git repository. 
-  
+    Create a local copy of a remote Git repository.
+
     For example, running `{sh} git clone git@github.com:data-gymnasia/python-binder.git` puts a directory called `{sh} python-binder` in the current directory. The directory contains the latest version of the repository files, along with a `{sh} .git` subdirectory that contains the commit history of the project. The URL for a GitHub repository is available under the green *Clone or Download* pulldown on the repository page.
+
+reading:
+  title: Tip
+  text: |
+    It's probably a good idea to open this in a new tab now and keep it for reference.
