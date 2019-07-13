@@ -5,8 +5,13 @@
 sets-and-functions:
   name: Sets and Functions
   topics:
-    - Sets
+    - Subsets
+    - Set Builder Notation
+    - Set Operations
+    - Lists
     - Functions
+    - Function Properties
+    - Function Operations
   author:
     name: Samuel S. Watson
     link: http://sswatson.com
@@ -14,8 +19,12 @@ sets-and-functions:
 programming-in-python:
   name: Programming in Python
   topics:
-    - Programming
-    - Python
+    - Types
+    - Functions
+    - Classes
+    - Lists and Tuples
+    - Sets and Dictionaries
+    - Flow Control
   author:
     name: Samuel S. Watson
     link: http://sswatson.com
@@ -23,15 +32,64 @@ programming-in-python:
 linear-algebra:
   name: Linear Algebra
   topics:
-    - Linear Algebra
+    - Vectors
+    - Span
+    - Linear independence
+    - Vector spaces
+    - Linear transformations
+    - Matrices
+    - Dot Products
+    - Transposes
+    - Orthogonality
+    - Eigenanalysis
+    - Singular Value Decomposition
+    - Determinants
   author:
     name: Samuel S. Watson
     link: http://sswatson.com
 
+multivariable-calculus:
+  name: Multivariable Calculus
+  topics:
+    - Taylor Series
+    - Differentiation
+    - Optimization
+    - Matrix Differentiation
+    - The Chain Rule
+    - Integration
+    - Custom Integration
+  author:
+    name: Samuel S. Watson
+    link: http://sswatson.com
+    
 probability:
   name: Probability
   topics:
-    - probability
+    - Counting
+    - Probability Models
+    - Random Variables
+    - Probability Distributions
+    - Joint Distributions
+    - Conditional Probability
+    - Independence
+    - Expectation and Variance
+    - Covariance
+    - Continuous Distributions
+    - Conditional Expectation
+    - Central Limit Theorem
+  author:
+    name: Samuel S. Watson
+    link: http://sswatson.com
+
+data-science-utilities:
+  name: Utilities
+  topics:
+    - Unix
+    - Git
+    - Conda
+    - Jupyter
+    - VS Code
+    - Markdown
   author:
     name: Samuel S. Watson
     link: http://sswatson.com

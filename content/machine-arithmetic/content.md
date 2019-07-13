@@ -40,7 +40,8 @@ We'll start off by thinking about how we represent floating point numbers.
 
 First, consider a number line, whose ticks increase in width exponentially.
     
-    iframe(width='560', height='315', src='https://www.youtube.com/embed/DirrjvBYt_E', frameborder='0', allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture', allowfullscreen='')
+    figure.video-wrap
+      iframe(src="https://www.youtube.com/embed/DirrjvBYt_E" frameborder=0 allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen)
 
 This is how we choose to represent floating point numbers since most numbers we work with are [[closer to|farther from]] zero.
 
@@ -49,7 +50,8 @@ This is how we choose to represent floating point numbers since most numbers we 
 
 How do we calculate where a number is? Let's look at an example.
 
-    iframe(width='560', height='315', src='https://www.youtube.com/embed/UK_Yfs3_lng', frameborder='0', allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture', allowfullscreen='')
+    figure.video-wrap
+      iframe(src="https://www.youtube.com/embed/UK_Yfs3_lng" frameborder=0 allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen)
 
 For a given number, we follow a process to find where it is on the number line:
 * Find the closest power of 2 (smaller than the number)
@@ -62,7 +64,8 @@ For a given number, we follow a process to find where it is on the number line:
 
 More specifically, 0.75 is calculated in the following way.
 
-    iframe(width='560', height='315', src='https://www.youtube.com/embed/kppfswPWytc', frameborder='0', allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture', allowfullscreen='')
+    figure.video-wrap
+      iframe(src="https://www.youtube.com/embed/kppfswPWytc" frameborder=0 allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen)
 
 The equation we're working with here is:
 
@@ -98,7 +101,8 @@ In reality, we have a lot of numbers, so we don't divide the range between 1 and
 
 That's right! We divide the section between 1 and 2 into $2^{52}$ sections, then scale those ticks accordingly for each interval.
 
-    iframe(width='560', height='315', src='https://www.youtube.com/embed/zNwvChJFfCE', frameborder='0', allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture', allowfullscreen='')
+    figure.video-wrap
+      iframe(src="https://www.youtube.com/embed/zNwvChJFfCE" frameborder=0 allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen)
 
 [Continue](btn:next)
 
@@ -113,7 +117,8 @@ As you can see, the formula for calculating floating point numbers can be writte
 
 What does this formula mean?
 
-    iframe(width='560', height='315', src='https://www.youtube.com/embed/-BAoa7oOCKM', frameborder='0', allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture', allowfullscreen='')
+    figure.video-wrap
+      iframe(src="https://www.youtube.com/embed/-BAoa7oOCKM" frameborder=0 allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen)
 
 [Continue](btn:next)
 

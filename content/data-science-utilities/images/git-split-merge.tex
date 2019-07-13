@@ -1,0 +1,51 @@
+\documentclass[border=3pt]{standalone}
+\usepackage{giambattista}
+\usepackage{mathmacros} 
+\usepackage[svgnames]{xcolor} 
+\usepackage[utf8]{inputenc} 
+\usepackage{fullpage}
+\usepackage{tikz}
+\usetikzlibrary{arrows,calc, 
+                shapes,positioning}
+                
+\setmainfont{Latin Modern Sans}
+\setmonofont{Cavalcade Mono}
+                
+\thispagestyle{empty}
+\begin{document}
+ 
+\begin{tikzpicture}
+  \tikzset{SectionNode/.style = {shape = rectangle, rounded corners, fill opacity = 0.5, fill = SeaGreen, draw = MidnightBlue, text = MidnightBlue, text opacity = 1, minimum size = 18, minimum height = 50}};
+  \tikzset{EdgeStyle/.style = {>=stealth,
+      MidnightBlue,text = MidnightBlue,shorten >=1mm,->}};
+      
+  \node[SectionNode, text width = 50, align = center, label={\texttt{master}}] (shared parent) {shared parent};
+  \node[SectionNode, text width = 60, above = 15mm of shared parent, align = center, xshift = -30mm] (my commit) {my commit};
+  \node[SectionNode, text width = 60, above = 15mm of my commit, align = center] (my second commit) {my second commit};
+  \node[SectionNode, text width = 60, above = 15mm of my second commit, align = center, label={\texttt{master}}] (merge commit) {merge commit};
+  \node[SectionNode, above = 15mm of shared parent, text width = 50, align = center, xshift = 30mm, label={\texttt{theirbranch}}] (their commit) {their commit};  
+  \node[SectionNode, below = 15mm of shared parent,text width = 50, align = center] (previous commit) {previous commit};
+  \node[SectionNode, below = 15mm of previous commit,text width = 50, align = center] (initial commit) {initial commit}; 
+  
+  \draw[EdgeStyle] (my commit) to (shared parent);
+  \draw[EdgeStyle] (their commit) to (shared parent);
+  \draw[EdgeStyle] (shared parent) to (previous commit);
+  \draw[EdgeStyle] (previous commit) to (initial commit);
+  \draw[EdgeStyle] (my second commit) to (my commit);
+  \draw[EdgeStyle] (merge commit) to (my second commit);
+  \draw[EdgeStyle] (merge commit) to (their commit.west);
+  
+    \node[SectionNode, left = 80mm of shared parent, text width = 50, align = center] (shared parent 2) {shared parent};
+    \node[SectionNode, text width = 60, above = 15mm of shared parent 2, align = center, xshift = -30mm] (my commit 2) {my commit};
+    \node[SectionNode, above = 15mm of shared parent 2, text width = 50, align = center, xshift = 30mm, label={\texttt{theirbranch}}] (their commit 2) {their commit};  
+      \node[SectionNode, text width = 60, above = 15mm of my commit 2, align = center, label={\texttt{master}}] (my second commit 2) {my second commit};
+    \node[SectionNode, below = 15mm of shared parent 2,text width = 50, align = center] (previous commit 2) {previous commit};
+    \node[SectionNode, below = 15mm of previous commit 2,text width = 50, align = center] (initial commit 2) {initial commit}; 
+    
+    \draw[EdgeStyle] (my commit 2) to (shared parent 2);
+    \draw[EdgeStyle] (their commit 2) to (shared parent 2);
+    \draw[EdgeStyle] (shared parent 2) to (previous commit 2);
+    \draw[EdgeStyle] (previous commit 2) to (initial commit 2);
+    \draw[EdgeStyle] (my second commit 2) to (my commit 2);
+\end{tikzpicture}
+\end{document}

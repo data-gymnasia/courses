@@ -1,0 +1,29 @@
+\documentclass[border=3pt]{standalone}
+\usepackage{giambattista}
+\usepackage{mathmacros} 
+\usepackage[svgnames]{xcolor} 
+\usepackage[utf8]{inputenc} 
+\usepackage{fullpage}
+\usepackage{tikz}
+\usetikzlibrary{arrows,calc, 
+                shapes,positioning}
+                
+\setmainfont{Latin Modern Sans}
+                
+\thispagestyle{empty}
+\begin{document}
+ 
+\begin{tikzpicture}
+  \tikzset{SectionNode/.style = {shape = rectangle, rounded corners, fill opacity = 0.5, fill = SeaGreen, draw = MidnightBlue, text = MidnightBlue, text opacity = 1, minimum size = 18, minimum height = 50}};
+  \tikzset{EdgeStyle/.style = {>=stealth,
+      MidnightBlue,text = MidnightBlue,shorten >=1mm,->}};
+  \node[SectionNode, text width = 60, align = center] (wd) {working directory};
+  \node[SectionNode, right = 15mm of wd, text width = 50, align = center] (sa) {staging area}; 
+  \node[SectionNode, right = 20mm of sa,text width = 50, align = center] (repo) {local repository}; 
+  \node[SectionNode, right = 15mm of repo,text width = 50, align = center] (rr) {remote repository}; 
+  
+  \draw[EdgeStyle] (wd) to node[below, pos = 0.5]{stage} (sa);
+  \draw[EdgeStyle] (sa) to node[below, pos = 0.5]{commit} (repo);
+  \draw[EdgeStyle] (repo) to node[below, pos = 0.5]{push} (rr);
+\end{tikzpicture}
+\end{document}

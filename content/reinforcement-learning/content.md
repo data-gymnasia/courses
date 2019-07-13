@@ -32,8 +32,8 @@ decide to train an algorithm to operate the controls. If your
 algorithm presses random buttons (like your little sibling), it will
 perform [[poorly|great]]: 
 
-    figure
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/1qa7oRhZvbM?start=12&end=20" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    figure.video-wrap
+      iframe(src="https://www.youtube.com/embed/1qa7oRhZvbM?start=12&end=20" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
 
 ---
 
@@ -41,8 +41,8 @@ However, if the algorithm is provided with information about when it
 was doing well and when it wasn't, then over time it can learn to do
 much better:
 
-    figure
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/1qa7oRhZvbM?start=94&end=102" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    figure.video-wrap
+      iframe(src="https://www.youtube.com/embed/1qa7oRhZvbM?start=94&end=102" frameborder="0" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscree)
 
 The missing ingredient in this story is a mechanism for
 [[learning|memorizing|retreating]] from experience. There are several
@@ -76,8 +76,8 @@ action chosen by the agent, we mean that ($r_{t}, s_{t+1}$) is a
 *CartPole* is the canonical first reinforcement learning example
 problem: 
 
-    figure
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/5Q14EjnOJZc?start=94&end=100" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    figure.video-wrap
+      iframe(src="https://www.youtube.com/embed/5Q14EjnOJZc?start=94&end=100" frameborder="0" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen)
 
 The goal is to keep the pole upright. The agent gets to decide [[how
 to move the cart left and right|how gravity acts on the pole|the

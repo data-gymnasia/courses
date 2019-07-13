@@ -131,7 +131,7 @@ You can check the type of an object using _{code.language-python}type_. For exam
 Use the code block below to find the type of _{code.language-python}1.0_. Does _{code.language-python}1.0_ have the same type as _{code.language-python}1_? [[No|Yes]]
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | # replace this text with code and press enter while holding shift to run
 
 ---
@@ -194,7 +194,7 @@ Use the code block below to find out what happens when you try to use a variable
 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | num_carrots = 4
       | num_Carrots
 
@@ -216,7 +216,7 @@ Prompting a function to perform its task is referred to as **calling** the funct
 
 Some functions, like _{code.language-python}print_ are built into the language and are always available. You may also define your own functions using _{code.language-python}def_:
 
-    pre(data-executable)
+    pre(python-executable)
       | def print_twice(x):
       |     print(x)
       |     print(x)
@@ -242,7 +242,7 @@ Note that the lines of code to be executed when the function is called **must** 
 
 A function may perform an action, like *{code.language-python}print_twice*, or it may **return** an object. For example, after the following code block is run, the object _{code.language-python}28_ will be assigned to the variable _{code.language-python}y_. 
 
-    pre(data-executable)
+    pre(python-executable)
       | def add_one(x):
       |     return x + 1
       |
@@ -283,7 +283,7 @@ Arrange the operation descriptions below in order, according the corresponding P
       
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | print(6 + 11)
       | print(2**5)
       | print(3 * 4)
@@ -358,7 +358,7 @@ Write a function _{code.language-python}f_ which takes a positive integer _{code
 Also, note that you have *two* boxes: the first is for scratch, and the second is for saving your answer. Once you're happy with your code, copy and paste it into the second box.
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | def f(n):
       |     pass # add code here
       |
@@ -423,7 +423,7 @@ Numbers can be compared using the operators _{code.language-python}==,>,<,<=,>=_
 What is the type of the object returned by _{code.language-python}1 == 2_? [[bool]]
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | 1 == 2
 
 ---
@@ -443,7 +443,7 @@ _{code.language-python}x == 1_ is [[an expression|a statement]] which returns _{
 
 Textual data is represented using a sequence of characters called a **string**. We can create a string object by enclosing the desired sequence of characters in quotation marks: _{code.language-python}a = "this is a string"_. Such a quote-enclosed string of characters in a Python file is called a **string literal**. String literals can also be delimited by triple quotes, which can be useful for multi-line strings and for strings containing quotes. 
 
-    pre(data-executable)
+    pre(python-executable)
       | """
       | This is a multiline string. 
       | It can have "quotes", no problem.
@@ -480,7 +480,7 @@ We can return the first character in a string _{code.language-python}s_ using th
 For which values of _{code.language-python}a_ and _{code.language-python}b_ does the expression _{code.language-python}"Hello World"[i:j] == "o Wo"_ return _{code.language-python}True_? i = [[4]] and j = [[8]]
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | "Hello World"[i:j]
 
 ---
@@ -507,7 +507,7 @@ If either _{code.language-python}i_ or _{code.language-python}j_ is omitted in t
 
 We can insert the value of a variable into a string using *string interpolation*. There are several ways to do this in Python, but perhaps the simplest is to place an _{code.language-python}f_ character immediately before the opening quotation mark. A string literal modified in this way is called an *f-string*, or *formatted string literal*. Any parts of an f-string between curly braces are evaluated, and their string representations are inserted into the string at that point. 
 
-    pre(data-executable)
+    pre(python-executable)
       | x = 19
       | print(f"""
       | The quotient when x is divided by 3 
@@ -519,7 +519,7 @@ We can insert the value of a variable into a string using *string interpolation*
 Use string interpolation to write a single line of code which prints _{code.language-python}multiplying by 6.2 yields 12.4_ if _{code.language-python}2_ is assigned to the variable _{code.language-python}A_ and prints _{code.language-python}multiplying by 6.2 yields 18.6_ if _{code.language-python}3_ is assigned to _{code.language-python}A_. 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | A = 2
       | print()
 
@@ -549,7 +549,7 @@ A **bool** is a special type whose only values are _{code.language-python}True_ 
 Does Python convert types when doing equality comparison? In other words, does _{code.language-python}1 == 1.0_ return _{code.language-python}True_ or _{code.language-python}False_? [[True|False]]
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | 1 == 1.0
 
 ---
@@ -571,7 +571,7 @@ Write a one-line [function](gloss:function) which takes 3 bools as arguments and
 :::
 
 
-    pre(data-executable)
+    pre(python-executable)
       | def f(a,b,c):
       |     pass # add code here
       |
@@ -611,7 +611,7 @@ Write some code for computing $\frac{1}{a+\frac{2}{3}}$ where $a$ is equal to th
 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | 
 
     x-quill
@@ -657,7 +657,7 @@ Consider a simple computational task performed by commonplace software, like hig
 
 We can use an _{code.language-python}if_ statement to specify different blocks to be executed depending on the value of a boolean expression. For example, the following function calculates the sign of the input value _{code.language-python}x_.
 
-    pre(data-executable)
+    pre(python-executable)
       | def sgn(x):
       |     if x > 0:
       |         return +1
@@ -675,7 +675,7 @@ We can use an _{code.language-python}if_ statement to specify different blocks t
 
 Conditional expressions can be written using *ternary conditional* _{code.language-python}«truevalue» if «condition» else «falsevalue»_. For example, the following version of the _{code.language-python}sgn_ function returns the same values as the one above except when _{code.language-python}x == 0_. 
 
-    pre(data-executable)
+    pre(python-executable)
       | def sgn(x): 
       |     return +1 if x > 0 else -1
       |
@@ -693,7 +693,7 @@ Conditional expressions can be written using *ternary conditional* _{code.langua
 Can the _{code.language-python}else_ part of an _{code.language-python}if_ statement be omitted? [[Yes|No]] Try running the example below. 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | x = 0.5
       | if x < 0: 
       |     print("x is negative")
@@ -710,7 +710,7 @@ Can the _{code.language-python}else_ part of an _{code.language-python}if_ state
 Write a function called *{code.language-python}my_abs* which computes the absolute value of its input. Replace the keyword _{code.language-python}pass_ below with an appropriate block of code.
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | def my_abs(x):
       |     pass # add code here
       |
@@ -734,7 +734,7 @@ Write a function which returns the quadrant number (1, 2, 3, or 4) in which the 
 Consider nesting _{code.language-python}if...else_ blocks inside of an _{code.language-python}if...else_ block. 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | def quadrant(x,y):
       |     pass # add code here
       |
@@ -754,7 +754,7 @@ Consider nesting _{code.language-python}if...else_ blocks inside of an _{code.la
 
 *Solution*. Here's an example solution: 
 
-    pre(data-executable)
+    pre(python-executable)
       | 
       | def quadrant(x,y):
       |     if x > 0:
@@ -846,7 +846,7 @@ duplicate("hello")
 
 We can give parameters **default values** and supply arguments for those parameters optionally when calling the function.
 
-    pre(data-executable)
+    pre(python-executable)
       | 
       | def line(m, x, b=0):
       |     return m * x + b
@@ -877,7 +877,7 @@ If the function body begins with a string literal, that string will be interpret
 
 A function may be defined without assigning a name to it. Such a function is said to be *anonymous*. Python's anonymous function [syntax](gloss:syntax) uses the keyword _{code.language-python}lambda_. A common situation where anonymous functions can be useful is when supplying one function to another as an argument. For example:
 
-    pre(data-executable)
+    pre(python-executable)
       | def apply_three_times(f, x):
       |     return f(f(f(x)))
       |
@@ -895,7 +895,7 @@ A multi-argument function works similarly, with the parameters separated by comm
 Write a function that takes two arguments _{code.language-python}a_ and _{code.language-python}b_ and a function _{code.language-python}f_ and returns _{code.language-python}a_ if _{code.language-python}f(a) < f(b)_ and _{code.language-python}b_ otherwise. Then use anonymous function syntax to call your function with two numbers and the negation function $x\mapsto -x$. 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | 
 
     x-quill
@@ -927,7 +927,7 @@ A variable defined in the main body of a file has **global scope**, meaning that
 
 A variable defined in the body of a function is in that function's **local scope**. For example: 
 
-    pre(data-executable)
+    pre(python-executable)
       | def f(x):
       |     y = 2
       |     return x + y
@@ -940,7 +940,7 @@ A variable defined in the body of a function is in that function's **local scope
 Try nesting one function definition inside another. Are variables in the enclosing function body available in the inner function. What about vice versa?
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | def f():
       |     def g():
       |         j = 2
@@ -969,7 +969,7 @@ It's highly recommended to write tests to accompany your functions, so you can c
 
 One common way to do this (which you have already seen several times in this course) is to write functions whose names begin with **{code.language-python}test_** and which contain _{code.language-python}assert_ statements. An _{code.language-python}assert_ statement throws an error if the following expression evaluates to _{code.language-python}False_. You can run the test functions directly, or you can use a tool like [pytest](https://pytest.org) to find and run all of the test functions in your codebase. 
 
-    pre(data-executable)
+    pre(python-executable)
       | def space_concat(s,t):
       |     """
       |     Concatenate strings s and t, ensuring a space
@@ -1000,7 +1000,7 @@ The test cases above don't cover the *degenerate* situation where one of the str
 
 *Solution*. We check the empty string conditions prior to checking the last/first characters. This solves the problem because _{code.language-python}or_ is **short-circuiting**: if the first bool is _{code.language-python}True_ in an _{code.language-python}or_ operation, the second is never evaluated.
 
-    pre(data-executable)
+    pre(python-executable)
       | def space_concat(s,t):
       |     """
       |     Concatenate strings s and t, ensuring a space
@@ -1027,7 +1027,7 @@ Write a function which accepts two strings as input and returns the concatenatio
 _Hint_: Make a guess about which operator can be used to compare strings alphabetically.
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | def alphabetical_concat(s,t):
       |     pass # add code here
       |
@@ -1047,7 +1047,7 @@ _Hint_: Make a guess about which operator can be used to compare strings alphabe
 
 *Solution*. 
 
-    pre(data-executable)
+    pre(python-executable)
       | def alphabetical_concat(s,t):
       |     if s < t:
       |         return s + t
@@ -1070,19 +1070,19 @@ A [**package**](gloss:package) is a collection of Python files that provide func
 
 Many Python packages are available in every standard distribution of Python and can be used without having to worry about whether they're installed. These packages make up the **standard library**. To see a list of standard library packages, visit the standard library page of the [Python documentation](https://docs.python.org/3/library/). Here's an example showing how to import the  _{code.language-python}math_ package and use the _{code.language-python}sqrt_ function it contains: 
 
-    pre(data-executable)
+    pre(python-executable)
       | import math
       | math.sqrt(3)
 
 Note that we access names like _{code.language-python}sqrt_ provided by the package using the dot [syntax](gloss:syntax) _{code.language-python}math.sqrt_. This is common practice, and it's a good idea because if functions are called in a way that makes it clear what package they came from, then (1) you can use the same name in multiple packages, and (2) you can easily identify which package that is supplying each function. We can also import individual functions and skip the dot syntax:
 
-    pre(data-executable)
+    pre(python-executable)
       | from math import sqrt
       | sqrt(3)
 
 Sometimes a package contains a **subpackage** which must itself be accessed with dot syntax:
 
-    pre(data-executable)
+    pre(python-executable)
       | from numpy.random import standard_normal
       | standard_normal()
       
@@ -1097,7 +1097,7 @@ Here are some of the most important scientific computing packages (along with ve
 
 **NumPy**. Provides multi-dimensional arrays (like vectors, matrices, and higher-order arrays). 
 
-    pre(data-executable)
+    pre(python-executable)
       | import numpy as np
       | np.random.standard_normal((5,5)) # randomly fill a 5 × 5 matrix
       | np.full((3,3),7) # make a 3 × 3 matrix full of 7's
@@ -1106,27 +1106,27 @@ Note that we import _{code.language-python}numpy_ with the alias _{code.language
 
 **Pandas**. Provides support for tabular data. 
 
-    pre(data-executable)
+    pre(python-executable)
       | import pandas as pd
       | iris = pd.read_csv("http://bit.ly/iris-dataset")
       | iris
 
 **SciPy**. Provides scientific computing tools for optimization, numerical integration, linear algebra, statistics, etc.
 
-    pre(data-executable)
+    pre(python-executable)
       | from scipy.optimize import minimize
       | minimize(lambda x: x*(x-1), 1.0) # start from 1 and minimize x(x-1)
 
 **Matplotlib**. Standard plotting package in Python. (_Note_: run the cell below twice to get the graph to display.)
 
-    pre(data-executable)
+    pre(python-executable)
       | import matplotlib.pyplot as plt
       | import numpy as np
       | plt.plot(np.cumsum(np.random.standard_normal(1000)))
 
 **SymPy**. Pure math tools like symbolic integration/differentiation, number theory, etc.
 
-    pre(data-executable)
+    pre(python-executable)
       | from sympy import symbols, Eq, solve
       | x = symbols("x")
       | y = symbols("y")
@@ -1196,7 +1196,7 @@ To import the standard library package _{code.language-python}itertools_ (with n
 
 Many Python functions use the usual function [syntax](gloss:syntax), like _{code.language-python}len("hello")_. However, many other functions are called using a different syntax where an *object* comes first: 
 
-    pre(data-executable)
+    pre(python-executable)
       | "hello".capitalize()
 
 These functions are called **methods**. For example, _{code.language-python}capitalize_ is a string method. To understand how methods work in the language, it's helpful to see what they look like at the point of definition. 
@@ -1215,7 +1215,7 @@ Suppose you want to write a program which keeps track of the albums you own. Eac
 
 What you want is to be able to treat each album as its own Python object, with all its associated data stored inside. In other words, you want an _{code.language-python}Album_ type. You can do that with the _{code.language-python}class_ keyword (this block won't return anything): 
 
-    pre(data-executable)
+    pre(python-executable)
       | class Album(object):
       |     def __init__(self, name, artist, year, length): 
       |         self.name = name
@@ -1234,7 +1234,7 @@ What you want is to be able to treat each album as its own Python object, with a
 
 A function defined in the block indented below _{code.language-python}class Album(object):_ is called a **method** of the class _{code.language-python}Album_. The **{code.language-python}\_\_init\_\_** method has a special role: Python calls it whenever _{code.language-python}Album_ is called as a function to create an **instance** of the class _{code.language-python}Album_. 
 
-    pre(data-executable)
+    pre(python-executable)
       | A = Album("Abbey Road", "The Beatles", 1969, "47:23")
       | A
 
@@ -1256,7 +1256,7 @@ _{code.language-python}Album.numYearsAgo(A, 2019)_.
 Confirm that _{code.language-python}"hello".capitalize()_ does give the same value as _{code.language-python}str.capitalize("hello")_. 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | 
 
 [Continue](btn:next)
@@ -1284,7 +1284,7 @@ In the expression _{code.language-python}"".join("hello")_, the method _{code.la
 Implement a class called _{code.language-python}Fraction_ which represents a ratio of two positive integers. You should reduce the fraction in your **{code.language-python}\_\_init\_\_** method. Your _{code.language-python}Fraction_ type should include a method called *{code.language-python}\_\_add\_\_* which adds two fractions and an *{code.language-python}\_\_eq\_\_* which checks whether two fractions are equal. (These methods will be automatically used by the addition and equality operators.)
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | from  math import gcd
       | # add code here
       | 
@@ -1302,7 +1302,7 @@ Implement a class called _{code.language-python}Fraction_ which represents a rat
 
 *Solution*. We divide by the gcd in the init method, and we define the other two methods according to the rules of arithmetic:
 
-    pre(data-executable)
+    pre(python-executable)
       | from math import gcd
       |
       | class Fraction(object):
@@ -1467,7 +1467,7 @@ A _{code.language-python}list_ in Python is a compound data type for storing a f
 
 The simplest way to supply a list with a Python program is with a **list literal**, which requires listing the objects separated by commas and delimited by square brackets: 
 
-    pre(data-executable)
+    pre(python-executable)
       | myList = [1, "flower", True, 7]
       | x = 5
       | myOtherList = [1, x, x, 2]
@@ -1490,7 +1490,7 @@ What happens to _{code.language-python}myOtherList_ in the example above if a di
 
 Like strings, lists can be **indexed** to obtain their elements. Indexes in Python begin at 0: 
 
-    pre(data-executable)
+    pre(python-executable)
       | myList = [1, "flower", True, 7]
       | myList[0] # returns 1
       | myList[3] # returns 7
@@ -1502,7 +1502,7 @@ Like strings, lists can be **indexed** to obtain their elements. Indexes in Pyth
 
 Negative indices can be used to count from the end:
 
-    pre(data-executable)
+    pre(python-executable)
       | myList = [1, "flower", True, 7]
       | i = -2
       | myList[i]
@@ -1516,7 +1516,7 @@ If we set _{code.language-python}i_ to the negative number [[-3]], then _{code.l
 
 Sublists can be extracted by **slicing**. Indexing a list with _{code.language-markup}[i:j]_ returns the portion of the list from the `i`th element to the `(j-1)`st element. 
 
-    pre(data-executable)
+    pre(python-executable)
       | myList = [1, "flower", True, 7]
       | myList[0:2]
 
@@ -1530,7 +1530,7 @@ If _{code.language-python}i_ = [[1]] and _{code.language-python}j_ = [[3]], then
 
 The start or stop value of a slice can be omitted, in which case it defaults to the beginning or end of the list, respectively. 
 
-    pre(data-executable)
+    pre(python-executable)
       | L = list(range(10,20)) # returns [10,11,12,...,19]
       | L[2:] # returns [12,13,...,20]
       | L[:4] # returns [10,11,12,13]
@@ -1542,7 +1542,7 @@ The start or stop value of a slice can be omitted, in which case it defaults to 
 
 Slices can include a *step* value after a second colon. For example, **{code.language-python}L[1::10::2]** returns the elements of _{code.language-python}L_ at positions 1, 3, 5, 7, and 9. The step value is often used with omitted start and stop values: 
 
-    pre(data-executable)
+    pre(python-executable)
       | list(range(100, 200))[::2]
       
 [Continue](btn:next)
@@ -1555,7 +1555,7 @@ Slices can include a *step* value after a second colon. For example, **{code.lan
 What step value can be used to *reverse* a list? [[-1]] (Hint: you can reason it out!)
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | [2,4,6,8][::k]
 
 [Continue](btn:next)
@@ -1572,7 +1572,7 @@ What step value can be used to *reverse* a list? [[-1]] (Hint: you can reason it
 
 Like strings, lists can be concatenated with the _{code.language-python}+_ operator. 
 
-    pre(data-executable)
+    pre(python-executable)
       | [1,2,3] + [4,5,6,7]
 
 ::: .exercise
@@ -1580,7 +1580,7 @@ Like strings, lists can be concatenated with the _{code.language-python}+_ opera
 Write a [function](gloss:function) which takes as arguments a list _{code.language-python}L_ and a positive integer _{code.language-python}n_ and rotates _{code.language-python}L_ by _{code.language-python}n_ positions. In other words, every element of the list should move forward _{code.language-python}n_ positions, wrapping around to the beginning if it goes off the end of the list. 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | def rotate(L, n):
       |     "Cyclically shift the elements of L by n positions"
       |     # add code here
@@ -1600,7 +1600,7 @@ Write a [function](gloss:function) which takes as arguments a list _{code.langua
 
 *Solution*. We figure out where the list needs to be split and concatenate the two resulting sublists in the opposite order:
 
-    pre(data-executable)
+    pre(python-executable)
       | def rotate(L, n):
       |     "Cyclically shift the elements of L by n positions"
       |     k = len(L) - n % len(L)
@@ -1613,7 +1613,7 @@ Write a [function](gloss:function) which takes as arguments a list _{code.langua
 
 Lists may be modified by combining indexing with assignment:
 
-    pre(data-executable)
+    pre(python-executable)
       | L = [4,-3,2]
       | L[0] = 1
       | L[1:3] = [6,3]
@@ -1624,7 +1624,7 @@ Lists may be modified by combining indexing with assignment:
 Write a line of code which sets every even-indexed entry of a list _{code.language-python}L_ to zero. Note that you can get a list of _{code.language-python}n_ zeros with _{code.language-python}[0] * n_.
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | L = list(range(100))
 
     x-quill
@@ -1641,7 +1641,7 @@ Write a line of code which sets every even-indexed entry of a list _{code.langua
 
 The _{code.language-python}list_ class has 11 ordinary [methods](gloss:method) (that is, methods that don't have the double underscores in the name):
 
-    pre(data-executable)
+    pre(python-executable)
       | L = [1,2,3]
       | L.append(4) # add an element to the end
       | L.clear() # remove all items from list
@@ -1658,7 +1658,7 @@ If you forget these methods, you can access them in an interactive session by ru
 
 Note that each of these methods changes the list _{code.language-python}L_. They do not return a new list: 
 
-    pre(data-executable)
+    pre(python-executable)
       | L = [1,2,3]
       | return_val = L.reverse()
       | print(type(return_val))
@@ -1709,7 +1709,7 @@ The extra calls to _{code.language-python}list_ in the examples above are requir
 
 Python provides a convenient [syntax](gloss:syntax) for both mapping *and* filtering: the **list comprehension**. It's essentially a programming version of set builder notation. For example, to square the even numbers from 0 to 4, we can use the following expression: 
 
-    pre(data-executable)
+    pre(python-executable)
       | [x**2 for x in range(5) if x % 2 == 0]
 
 [Continue](btn:next)
@@ -1724,7 +1724,7 @@ Let's break this example down step-by-step: the first value of _{code.language-p
 Write a list comprehension which returns a list whose kth entry is the the last digit of the kth three-digit prime number.
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | from sympy import isprime
 
     x-quill
@@ -1734,7 +1734,7 @@ Write a list comprehension which returns a list whose kth entry is the the last 
 
 *Solution*. Here's an example solution:
 
-    pre(data-executable)
+    pre(python-executable)
       | from sympy import isprime
       | [str(k)[-1] for k in range(100,1000) if isprime(k)]
 
@@ -1748,7 +1748,7 @@ Write a list comprehension which returns a list whose kth entry is the the last 
 Write a list comprehension which takes a list of lists and returns only those lists whose second element has a least five characters. 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | records = [[3, "flower", -1], [2, "rise", 3], [0, "basket", 0]]
 
     x-quill
@@ -1758,7 +1758,7 @@ Write a list comprehension which takes a list of lists and returns only those li
 
 *Solution*. Here's one solution:
 
-    pre(data-executable)
+    pre(python-executable)
       | [record for record in records if len(record[1]) >= 5]
 
 [Continue](btn:next)
@@ -1770,7 +1770,7 @@ Write a list comprehension which takes a list of lists and returns only those li
 
 Tuples are very similar to lists, except that tuples are [immutable](gloss:immutable).
 
-    pre(data-executable)
+    pre(python-executable)
       | 
       | row = (22,2.0,"tomato")
       | row[2] # returns "tomato"
@@ -1785,7 +1785,7 @@ Programmers tend to use tuples instead of lists in situations where **position**
 
 Functions often return multiple values by returning a tuple containing those values. You can access individual elements of a tuple without having to index the tuple using *tuple unpacking*: 
 
-    pre(data-executable)
+    pre(python-executable)
       | 
       | mycolor = (1.0,1.0,0.44)
       | r, g, b = mycolor
@@ -1800,7 +1800,7 @@ The convention in Python for values you don't want to store is to assign them to
 
 Tuple unpacking can be combined with list comprehension syntax. If we want to extract the first element from each tuple in a list of triples, for example, we can do that as follows:
 
-    pre(data-executable)
+    pre(python-executable)
       | L = [(1,2,3),(4,5,6),(7,8,9)]
       | [a for (a,_,_) in L]
 
@@ -1811,7 +1811,7 @@ The value 1 is assigned to _{code.language-python}a_, the value 2 is assigned to
 Write a list comprehension which adds the first two elements of each tuple in _{code.language-python}L_. (So for the example above, the resulting list should be _{code.language-python}[3, 9, 15]_.)
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | 
 
     x-quill
@@ -1821,7 +1821,7 @@ Write a list comprehension which adds the first two elements of each tuple in _{
 
 *Solution*. Same idea: 
 
-    pre(data-executable)
+    pre(python-executable)
       | L = [(1,2,3),(4,5,6),(7,8,9)]
       | [a+b for (a,b,_) in L]
 
@@ -1837,7 +1837,7 @@ The fractional part of a positive real number $x$ is the part after the decimal 
 Find the fractional parts of the first 100 positive integer multiples of $\pi$. Use the function _{code.language-python}extrema_ (defined below) on the resulting array to find its least and greatest values. Find the ratio of the greatest value to the least. 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | from numpy import pi
       | 
       | def extrema(L):
@@ -1858,7 +1858,7 @@ Find the fractional parts of the first 100 positive integer multiples of $\pi$. 
 
 *Solution*. We use tuple unpacking to extract the min and max values from the tuple returned by the _{code.language-python}extrema_ function.
 
-    pre(data-executable)
+    pre(python-executable)
       | m,M = extrema([pi*k-int(pi*k) for k in range(1,101)])
       | M/m
 
@@ -1884,7 +1884,7 @@ If we have three vectors $A$, $B$, and $C$ of equal length, then the vector sum 
 Suppose that $H$ is a list which stores the heights of 100 cylinders and $R$ is a list which stores their radii (in the same order). Write a [list comprehension](gloss:listcomp) which returns a list containing the volumes of these cylinders. 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | H = [1, 2, 3]
       | R = [0.8, 1.0, 1.2]
 
@@ -1895,7 +1895,7 @@ Suppose that $H$ is a list which stores the heights of 100 cylinders and $R$ is 
 
 *Solution*. We zip _{code.language-python}H_ and _{code.language-python}R_ and use the volume formula $\pi r^2 h$: 
 
-    pre(data-executable)
+    pre(python-executable)
       | from numpy import pi
       | H = [1, 2, 3]
       | R = [0.8, 1.0, 1.2]
@@ -1932,7 +1932,7 @@ L = tuple(L)
 Write a function which takes a matrix _{code.language-python}M_ and an index _{code.language-python}i_ and returns the $i$th column of _{code.language-python}M_. Assume that _{code.language-python}M_ is represented as a list of lists, where each list represents a row. 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | def select_col(M, i):
       |     pass # add code here
       |
@@ -1950,7 +1950,7 @@ Write a function which takes a matrix _{code.language-python}M_ and an index _{c
 
 *Solution*. We use a list comprehension to select the appropriate entry from each row. 
 
-    pre(data-executable)
+    pre(python-executable)
       | def select_col(M, i):
       |     return [row[i] for row in M]
       |
@@ -1973,7 +1973,7 @@ Write a function which reverses the words in a sentence. For simplicity, you may
 _Hint_: The string methods _{code.language-python}join_ and _{code.language-python}split_ might be helpful. You can see the documentation for these methods with _{code.language-python}help(str.join)_ and _{code.language-python}help(str.split)_. 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | def reverse_words(sentence):
       |     pass # add code here
       |
@@ -1991,7 +1991,7 @@ _Hint_: The string methods _{code.language-python}join_ and _{code.language-pyth
 
 *Solution*. We use the string method _{code.language-python}split_, which splits a string on a given character. This gives us a list of the words in the sentence, which we can reverse by indexing with a negative step and rejoin with the _{code.language-python}join_ method.
 
-    pre(data-executable)
+    pre(python-executable)
       | def reverse_words(sentence):
       |     return " ".join(sentence.split(" ")[::-1])
 
@@ -2003,7 +2003,7 @@ _Hint_: The string methods _{code.language-python}join_ and _{code.language-pyth
 
 **Sets** are unordered collections of unique values. The main advantage of having a special type for sets is that the design of the data structure can be optimized for membership checking. Figuring out whether a given value is in a list requires going through each element in the list, so the amount of time it takes increases with the length of the list. By contrast, checking membership in a set can be done very quickly even if the set is large. 
 
-    pre(data-executable)
+    pre(python-executable)
       | A = [1,2,3]
       | S = set(A)
       | 2 in S # evaluates to true
@@ -2022,7 +2022,7 @@ _Note 1_: The most reliable and efficient way to figure out how the _{code.langu
 _Note 2_: The computation below takes some time to run (20 seconds, say). It returns a tuple when it's done. 
 ::: 
 
-    pre(data-executable)
+    pre(python-executable)
       | import timeit
       | SETUP = """
       | from sympy import isprime
@@ -2041,7 +2041,7 @@ _Note 2_: The computation below takes some time to run (20 seconds, say). It ret
 
 *Solution*. To get exactly 10,000 primes, we index the list obtained by filtering out the composite numbers:
 
-    pre(data-executable)
+    pre(python-executable)
       | import timeit
       | SETUP = """
       | from sympy import isprime
@@ -2086,7 +2086,7 @@ However, this solution gets very tedious quickly. For example, modifying this st
 
 The Python data structure tailored to the problem of encoding a map from one finite set to another is called a **dictionary**. Dictionary literals consist of a comma separated list of the desired input-output pairs (with each input and output separated by a colon) delimited by curly braces. For example, the dictionary encoding the map described above looks like this:
 
-    pre(data-executable)
+    pre(python-executable)
       | rgb = {
       |   "fuchsia": (256, 0, 256),
       |   "firebrick": (178, 34, 34),
@@ -2112,7 +2112,7 @@ dict([
 
 We can perform a dictionary lookup using indexing [syntax](gloss:syntax): _{code.language-python}rgb["fuchsia"]_ returns _{code.language-python}(256,0,256)_. We can also change the value associated with a given key or introduce a new key-value pair using indexing and assignment: 
 
-    pre(data-executable)
+    pre(python-executable)
       | rgb = {
       |   "fuchsia": (256, 0, 256),
       |   "firebrick": (178, 34, 34),
@@ -2123,7 +2123,7 @@ We can perform a dictionary lookup using indexing [syntax](gloss:syntax): _{code
 
 The _{code.language-python}dict_ [methods](gloss:method), _{code.language-python}keys_ and _{code.language-python}values_, may be used to access the keys and values of a dictionary. 
 
-    pre(data-executable)
+    pre(python-executable)
       | rgb = {
       |   "fuchsia": (256, 0, 256),
       |   "firebrick": (178, 34, 34),
@@ -2159,7 +2159,7 @@ Implement this idea in the block below. Check that your dictionary works by inde
 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | import datetime
       | arrival_times = {
       |   "JetBlue 924": datetime.time(7,9),
@@ -2194,7 +2194,7 @@ square_dict = {k: k*k for k in range(1, 10)}
 Use a dict comprehension to make a dictionary which maps each of the first 100 powers of 2 to its units digit.
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | 
 
     x-quill
@@ -2204,7 +2204,7 @@ Use a dict comprehension to make a dictionary which maps each of the first 100 p
 
 *Solution*. We convert to a string, get the last character, and convert back to an integer: 
 
-    pre(data-executable)
+    pre(python-executable)
       |   {2**k: int(str(2**k)[-1]) for k in range(100)}
 
 [Continue](btn:next)
@@ -2231,7 +2231,7 @@ Suppose you want to store student IDs in a part of a web application where the m
 
 We have already seen one way of doing something to each element in a collection: the [*list comprehension*](gloss:listcomp).
 
-    pre(data-executable)
+    pre(python-executable)
       | smallest_factor = {2: 2, 3: 3, 4: 2, 5: 5, 
       |                  6: 2, 7: 7, 8: 2, 9: 3}
       | [v for (k,v) in smallest_factor.items()]
@@ -2247,7 +2247,7 @@ In this list comprehension, we **iterate** over the pairs of the [dictionary](gl
 
 The code above could also be rewritten as follows:
 
-    pre(data-executable)
+    pre(python-executable)
       | smallest_factor = {2: 2, 3: 3, 4: 2, 5: 5, 
       |                  6: 2, 7: 7, 8: 2, 9: 3}
       | vals = []
@@ -2264,7 +2264,7 @@ The statement _{code.language-python}for item in collection:_ works as follows: 
 
 We can nest _{code.language-python}for_ statements. For example, suppose we have a matrix represented as a [list](gloss:list) of lists, and we want to sum all of the matrix entries. We can do that by iterating over the rows and then iterating over each row: 
 
-    pre(data-executable)
+    pre(python-executable)
       | 
       | def sum_matrix_entries(M):
       |     """
@@ -2293,7 +2293,7 @@ We can nest _{code.language-python}for_ statements. For example, suppose we have
 Suppose you have imported a function *{code.language-python}file_bug_report* with two parameters: _{code.language-python}id_ and _{code.language-python}description_. Suppose also that you have a _{code.language-python}dict_ called _{code.language-python}bugs_ whose keys are ids and whose values are strings representing descriptions. Write a loop which performs the action of filing each bug report in the dictionary.  
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | def file_bug_report(id, description):
       |     "A dummy function which represents filing a bug report"
       |     print(f"bug {id} ({description}) successfully filed")
@@ -2311,7 +2311,7 @@ Suppose you have imported a function *{code.language-python}file_bug_report* wit
 
 *Solution*. We loop over the items: 
 
-    pre(data-executable)
+    pre(python-executable)
       | for id, desc in bugs.items():
       |     file_bug_report(id, desc)
 
@@ -2325,7 +2325,7 @@ Suppose you have imported a function *{code.language-python}file_bug_report* wit
 Write a [function](gloss:function) called _{code.language-python}factorial_ which takes a positive integer _{code.language-python}n_ as an argument and returns its factorial. 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | def factorial(n):
       |     "Return n!"
       |     product = 1
@@ -2348,7 +2348,7 @@ Write a [function](gloss:function) called _{code.language-python}factorial_ whic
 
 *Solution*. We loop through _{code.language-python}range(1, n+1)_ and multiply as we go. 
 
-    pre(data-executable)
+    pre(python-executable)
       | def factorial(n):
       |     "Return n!"
       |     product = 1
@@ -2369,7 +2369,7 @@ The **Collatz conjecture** is one of the easiest-to-state unsolved problems in m
 
 If we want to write a Python function which returns the Collatz sequence for any given starting number, we face a problem: we don't know from the start how many steps it will take to reach 1, so it isn't clear how we could use a *for loop*. What we want to do is execute a block of code until a given condition is met. Python provides the _{code.language-python}while_ loop for this purpose.
 
-    pre(data-executable)
+    pre(python-executable)
       | def collatz_sequence(n):
       |     "Return the Collatz sequence starting from n"
       |     sequence = [n]
@@ -2404,7 +2404,7 @@ Write a function _{code.language-python}newtonsqrt_ which takes as an argument t
 Note that $10^{-8}$ can be represented in Python using scientific notation _{code.language-python}1e-8_. 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | def newtonsqrt(n):
       |     """Use Newton's algorithm to approximate √n"""
       |     # add code here
@@ -2423,7 +2423,7 @@ Note that $10^{-8}$ can be represented in Python using scientific notation _{cod
 
 *Solution*. We keep up with two separate variables, which we call _{code.language-python}x_ and **{code.language-python}old_x**, to compare the most recent two iterates: 
 
-    pre(data-executable)
+    pre(python-executable)
       | def newtonsqrt(n):
       |     """Use Newton's algorithm to approximate √n"""
       |     x = 1
@@ -2447,7 +2447,7 @@ Write a function which prints an $n \times n$ checkerboard pattern of _{code.lan
 _Note_: _{code.language-python}\\n_ in a string literal represents the "newline" character. You'll need to print this character after each row you've printed.
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | def checkerboard(n):
       |     """
       |     Prints an n × n checkerboard, like:
@@ -2465,7 +2465,7 @@ _Note_: _{code.language-python}\\n_ in a string literal represents the "newline"
 
 *Solution*. We loop through the rows and use an _{code.language-python}if_ statement to print a different output depending on whether the row is even-numbered or odd-numbered.
 
-    pre(data-executable)
+    pre(python-executable)
       | def checkerboard(n):
       |     "Prints an n × n checkerboard"
       |     for i in range(n):
@@ -2492,7 +2492,7 @@ Example output, for _{code.language-python}n = 4_:
 _Note_: there's no solution to this one, but you can do it on your own!
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | def print_row(n,row):
       |     """
       |     Prints the nth row (`row`) of Pascal's triangle
@@ -2670,7 +2670,7 @@ Without looking to carefully at the other items, it's a good guess that _{code.l
 Write a [list comprehension](gloss:listcomp) to calculate the list of all of the tracks' playlist ids. 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | 
 
     x-quill
@@ -2746,7 +2746,7 @@ import yagmail
 yagmail.register('mygmailusername')
 ```
 
-and enter the password for the Gmail account in the resulting password prompt. This stores the password in the operating system keychain so you don't have to keep entering it. 
+and enter the password for the Gmail account in the resulting password prompt. This stores the password in the operating system keychain so you don't have to keep entering it. (Note: if you're using dual authentication on your Google account, you'll need to generate and enter a special app password instead of your regular password; see [this info page](https://support.google.com/accounts/answer/185833?p=InvalidSecondFactor) for instructions.)
 
 [Continue](btn:next)
 
@@ -2833,7 +2833,7 @@ def message(row):
 Tie all of the above together to write a couple more lines of code that will actually send the messages. 
 :::
 
-    pre(data-executable)
+    pre(python-executable)
       | 
 
     x-quill

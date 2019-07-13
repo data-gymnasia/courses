@@ -57,9 +57,9 @@ Your Markdown file should have one top-level header, which is the title of the c
 
     ```
         x-sortable
-        .item.md(data-index="2") REPL
-        .item.md(data-index="1") Script
-        .item.md(data-index="0") Jupyter
+          .item.md(data-index="2") REPL
+          .item.md(data-index="1") Script
+          .item.md(data-index="0") Jupyter
     ```
 
     The `data-index` values specify the correct order and must start from 0.
@@ -68,17 +68,17 @@ Your Markdown file should have one top-level header, which is the title of the c
 
     ```
         x-picker.list
-            .item.pill.bblue.md $1 + 1 = 2$
-            .item.pill.bblue.md(data-error="too-large") $1 + 1 = 3$
-            .item.pill.bblue(data-error="too-small")  $1 + 1 = 1$
-            .item.pill.bblue $1 + 2 = 3$
+          .item.pill.bblue.md $1 + 1 = 2$
+          .item.pill.bblue.md(data-error="too-large") $1 + 1 = 3$
+          .item.pill.bblue(data-error="too-small")  $1 + 1 = 1$
+          .item.pill.bblue $1 + 2 = 3$
     ```
 
     Correct answers are indicated by the absence of `data-error`, and the `data-error` values can be `"incorrect"` or can include context-specific feedback by putting a line like `mutable: Variables can be changed!` into the course's `hints.yaml` file.
 
 ### Equations and code
 
-Inline code is supported with backtick delimiters and a language indicator in curly braces: `` `{py} 1 + 2` ``. Code blocks are denoted with fences:
+Inline code is supported with backtick delimiters and a language indicator in curly braces: `` `{py} 1 + 2` ``. The possible languages are `py`, `jl`, `r`, and `code` (the last of which gets no language-specific syntax highlighting). Code blocks are denoted with fences:
 
 ````
 ``` python
@@ -87,13 +87,17 @@ np.random.standard_normal((10,10))
 ```
 ````
 
+The currently supported languages are `python`, `julia`, `r`, `markup` (no syntax highlighting), `markdown`, `bash`, `docker`, `git`, `json`, `makefile`, `sql`, `yaml`, and `toml`. If you want to add more, visit [follow this link](https://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javascript+bash+docker+git+json+julia+latex+markdown+makefile+sql+python+r+yaml+toml+pug), check additional boxes as desired, and download the resulting JS file to `content/shared/static/prism.js`. 
+
 *Executable* code blocks are supplied using Mathigon Markdown's support for [pugs](https://pugjs.org/api/getting-started.html)
 
 ```
-    pre(data-executable)
+    pre(python-executable)
       | x = 3
       | x
 ```
+
+The supported languages are `python`, `julia`, `r`, and `bash`. The Jupyter kernels which supply these environments are listed in `content/shared/shared.js`. 
 
 Inline math expressions are supported using LaTeX syntax with dollar signs (`$x^2 + 2\sin y$`), and display math is supported with `latex` code fences. 
 
