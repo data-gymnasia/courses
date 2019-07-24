@@ -460,3 +460,82 @@ git-clone:
     Create a local copy of a remote Git repository. 
   
     For example, running `{sh} git clone git@github.com:data-gymnasia/python-binder.git` puts a directory called `{sh} python-binder` in the current directory. The directory contains the latest version of the repository files, along with a `{sh} .git` subdirectory that contains the commit history of the project. The URL for a GitHub repository is available under the green *Clone or Download* pulldown on the repository page.
+    
+binary-file:
+  title: Binary File
+  text: |
+    A **text file** is a file whose contents are stored as text, and a **binary file** is a file which is not a text file.
+    
+    For example, a C program is specified in a text file and then *compiled* to an executable file that the computer can run. The executable is binary. 
+    
+    We say that "binaries are available" for a given unit of software if users can download executable files to run the software. The alternative is that only the source code is available for download, and the user must "build from source" on their own computer before they can run the software.
+    
+YAML:
+  title: YAML
+  text: |
+    YAML stands for "yet another markup language" and is commonly used format for configuration files. Here's an example YAML file:
+      
+    ``` yaml  
+    receipt:     Oz-Ware Purchase Invoice
+    date:        2019-07-04
+    customer:
+        first_name:   Dorothy
+        family_name:  Gale
+
+    items:
+        - part_no:   A4786
+          descrip:   Water Bucket (Filled)
+          price:     1.47
+          quantity:  4
+
+        - part_no:   E1628
+          descrip:   High Heeled "Ruby" Slippers
+          size:      8
+          price:     133.7
+          quantity:  1
+    ```
+    
+lingua-franca:
+  title: Lingua Franca
+  text: A *lingua franca* is a language which is popular enough in a given community that knowledge of it is typically assumed within that community. 
+  
+REPL:
+  title: REPL
+  text: A *REPL*, or *read-eval-print-loop*, is a programming environment which takes user input at a command prompt, evaluates it, prints any results, and gives the user another prompt for further input.
+  
+refactoring:
+  title: Refactoring
+  text: |
+    **Code refactoring** is changing the structure of a unit of code without changing its effect. For example, the lines
+  
+    ``` python
+    root1 = (-b + sqrt(b^2-4*a*c))/(2*a)
+    root2 = (-b - sqrt(b^2-4*a*c))/(2*a)
+    ```
+    
+    might be refactored into 
+    
+    ``` python
+    Δ = b^2-4*a*c
+    root1 = (-b + sqrt(Δ))/(2*a)
+    root2 = (-b - sqrt(Δ))/(2*a)
+    ```
+    
+linting:
+  title: Linting
+  text: |
+    A **code linter** takes a program as input and identifies opportunities to improve the code's style.
+    
+    For example, a linter might suggest replacing `{py} x=3` with `{py} x = 3`. 
+    
+vscode-install:
+  title: Installing from the VS Code Marketplace
+  text: To install an extension from the Marketplace, click the square icon on the left edge of your window. Search for the desired extension and select "Install". 
+  
+vscode-jupyter-option:
+  title: VS Code Jupyter kernel 
+  text: Python code execution in VS Code is done either through an integrated terminal or using a Jupyter notebook kernel running behind the scenes. To activate the Jupyter option, go to the Marketplace, right click the gear icon on the Python extension, and enter "send selection" in the search bar. Check the box for "Send Selection to Interactive Window". 
+
+boilerplate:
+  title: Boilerplate
+  text: Chunks of code that are typically used with little modification. Requiring extensive boilerplate is generally considered undesirable, because of the unnecessary code chunk management it imposes on the programmer and its obscuration of what aspects of the program are most important.

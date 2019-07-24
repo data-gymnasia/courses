@@ -82,7 +82,7 @@ The string `{sh} /home/jovyan` is called a **path**. The forward slashes in a pa
 
 The very first slash is the **root** directory, and all of the files and directories on the machine are nested in this directory. 
 
-You can view the contents of the current directory with `{sh} ls`, and you can change directory using the `{sh} cd` command. If the initial slash is omitted, directory names are interpreted *relative* to the current directory. For example, you can navigate to `{sh} /Users/jovyan` from the `{sh} /Users` directory by running `{sh} cd jovyan`. Note that arguments are supplied to Unix commands by separating them with spaces following the name of the command. You can also navigate to containing folders using `{sh} ..`. For example, `{sh} cd ../../` navigates to the grandparent directory of the current directory. 
+You can view the contents of directory with `{sh} ls`, and you can change directory using the `{sh} cd` command. If the initial slash is omitted in a directory name, the name is interpreted *relative* to the current directory. For example, you can navigate to `{sh} /Users/jovyan` from the `{sh} /Users` directory by running `{sh} cd jovyan`. Note that arguments are supplied to Unix commands by separating them with spaces following the name of the command. You can also navigate to containing folders using `{sh} ..`. For example, `{sh} cd ../../` navigates to the grandparent directory of the current directory.
 
 ---
 > id: step-mkdir
@@ -126,13 +126,38 @@ Here are some other important commands:
 * `{sh} head` Print the first 10 lines of a file
 * `{sh} tail` Print the last 10 lines of a file
 * `{sh} wc` Count the number of words, lines, and characters in a file
+* `{sh} grep` Find specific text in file contents
 * `{sh} vim` Open an editor for making changes to a file
 
 Many commands in bash take [*options*](gloss:bash-options) (analogous to keyword arguments in Python) which modify how they run. For example, `{sh} rm -i` gives you an interactive session where you can say for each file whether you want to delete it. Some options can themselves take arguments, in which case those arguments should be listed directly after the option. For example, `{sh} head -n 20 data.txt` prints the first 20 lines of the file `{sh} data.txt`. You can read about the options a command takes by viewing its man page (for example, `{sh} man head`).
 
-### Vim
+::: exercise
+**Exercise**  
+Navigate into the `{sh} my-data-science-project` directory and the use the `{sh} grep` command to figure out which file contains the text `{sh} find_packages`. 
 
-Vim is the only command line text editor which is almost always available on Unix systems. As a result, you will sometimes find yourself needing some basic familiarity with it, even if you use another editor for the bulk of your work. Furthermore, vim is designed to prioritize efficiency over intuitiveness, so it's really helpful to learn a few vim ideas before you need them. To practice with Vim, open this course's [Binder page](https://mybinder.org/v2/gh/sswatson/utilities-course/master), open a new Terminal ("New", top right), and run `{sh} vim tmp.txt`. Alternatively, you can run vim in your own Terminal if you have macOS or Linux, or you can download it for Windows. 
+Some helpful information: (i) `{sh} grep -r text directory` searches recursively for `{sh} text` in the `{sh} directory`, and (ii) `{sh} .` is an alias for the current directory.
+:::
+
+    pre(bash-executable)
+      | 
+
+    .quill#editor
+    
+---
+
+*Solution*. 
+
+Running the commands below, we find that `{sh} setup.py` contains the `{sh} find_packages` function.   
+
+    pre(bash-executable)
+      | cd my-data-science-project
+      | grep -r find_packages .
+
+---
+### Vim
+> id: vim
+
+Vim is the command line text editor which most consistently available on Unix systems. As a result, you will sometimes find yourself needing some basic familiarity with it, even if you use another editor for the bulk of your work. Furthermore, vim is designed to prioritize efficiency over intuitiveness, so it's really helpful to learn a few vim ideas before you need them. To practice with Vim, open this course's [Binder page](https://mybinder.org/v2/gh/sswatson/utilities-course/master), open a new Terminal ("New", top right), and run `{sh} vim tmp.txt`. Alternatively, you can run vim in your own Terminal if you have macOS or Linux, or you can download it for Windows. 
 
 The most important distinction between vim and most other text editors is that it has multiple **modes**, the main ones being *insert* mode and *command* mode. Insert mode is similar to what other editors provide: keystrokes you type appear as characters in the file. Command mode is for performing various actions on the file. 
 
@@ -140,6 +165,8 @@ A vim session often opens to command mode by default. To activate insert mode, p
 
 To undo and redo, use `{sh} u` and `{sh} ctrl-r`. Copy and paste are `{sh} yy` and `{sh} p`; Page up and page down are `{sh} ctrl-u` and `{sh} ctrl-d`.
 
+---
+> id: variables
 ### Variables
 
 Bash supports variable definition using similar syntax to Python. The main differences are (1) spaces *cannot* be used around the equals sign, and (2) variable names are conventionally all upper case. Another distinction from Python is that a dollar sign is required to access a variable's value: 
@@ -234,8 +261,8 @@ Which of the following names match the glob pattern `{sh} [aA]nswer.*`?
 *Solution*. The first and third options match. The second one doesn't because the pattern specifies that the first character must be uppercase or lowercase `{sh} a`.     
 
 ---
-> id: version-control
-## Version control
+> id: git
+## Git
 
 Managing your files by simply saving them in folders on a hard drive runs afoul of some core concerns of anyone working on a computer for a living:
 
@@ -488,41 +515,516 @@ Let's say you decide you want to go back to the version of a file two commits ag
 This operation changes the file in the local working directory. You can then stage and commit that change, or edit the file further and then stage and commit.
 
 ---
-> id: package-management
-## Package management
+> id: latex
+## LaTeX
+
+TeX (pronounced *tech*) is an open-source typesetting engine for technical documents. It was created in the late 1970s by Donald Knuth, and it has since become almost universally adopted in the mathematical research community and widely adopted in other scientific communities. The most common way to use TeX is through *LaTeX*, which provides extra tools that make TeX easier to use.
+
+A LaTeX document consists of a plain text file which is processed by a command-line utility called `{sh}pdflatex` to produce a PDF. Here's a snippet of a TeX source file followed by the corresponding page in the resulting PDF (the full source and PDF are available [here](https://github.com/sswatson/MultivariableCalculus.tex)):
+
+    figure
+      img(src="images/latex-input.png")
+      img(src="images/latex-output.png")
+
+In this course, we will not learn to typeset documents in LaTeX, because we will use more dynamic alternatives which are built on web technologies. However, these alternatives do rely on LaTeX's legacy for one important purpose: *rendering mathematical expressions*. For example, the text
+
+``` code
+\operatorname{KL}(p\|q) = 
+  \int_{\mathbb{R}^n}p(x) \log \frac{p(x)}{q(x)} \, \mathrm{d}x.
+```
+
+renders as 
+
+``` latex
+\operatorname{KL}(p\|q) = \int_{\mathbb{R}^n}p(x) \log \frac{p(x)}{q(x)} \, \mathrm{d}x.
+```
+
+We will discuss some basics of specifying math expressions in LaTeX, but recent developments have made it easy to produce LaTeX source code without having to type it out directly. You can produce a math expression using a graphical user interphase like [SymboLab](https://www.symbolab.com) and then use [MathPix](https://mathpix.com) to snip the resulting expression on your screen and convert it to LaTeX. MathPix works directly from the taskbar, so the whole process is quite efficient.
+
+---
+> id: latex-expression-markup
+### LaTeX expression markup
+
+#### Superscripts and subscripts
+
+Inline mathematical expressions in LaTeX are delimited by dollar signs. For example:
+
+``` code
+The Pythagorean theorem says that $a^2 + b^2 = c^2$, where 
+$a$ and $b$ are the lengths of the legs and $c$ is the 
+length of the hypotenuse of a right triangle.
+```
+
+The Pythagorean theorem says that $a^2 + b^2 = c^2$, where $a$ and $b$ are the lengths of the legs and $c$ is the length of the hypotenuse of a right triangle.
+
+As illustrated in that example, superscripts are indicated with carats. Subscripts are indicated with underscores: 
+
+``` code
+a_1, a_2, a_3, \ldots, a_{100}
+```
+
+``` latex
+a_1, a_2, a_3, \ldots, a_{100}
+```
+
+Curly braces are used for grouping and do not appear in the rendered expression. If you want a literal curly brace, it must be escaped with a backslash: 
+
+``` code
+\{1,2,3\}
+```
+
+``` latex
+\{1,2,3\}
+```
+
+#### Fractions
+
+The syntax for fractions in LaTeX is `{code} \frac{numerator}{denominator}`. For example, `{code} \frac{x^3}{3}` renders as $\frac{x^3}{3}$. Fractions can be nested: 
+
+```code
+\frac{1}{1+\frac{2}{3}}
+```
+
+``` latex
+\frac{1}{1+\frac{2}{3}}
+```
+
+#### Greek symbols and math symbols
+
+Greek letters may be typeset by putting a backslash in front of the letter name. For example, `{code} \alpha, \beta, \gamma` becomes $\alpha, \beta, \gamma$. 
+
+[Many common math symbols](https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols) have built-in support in LaTeX: 
+
+``` code
+\sum_{i=1}^{10} i^2 = 385 + 0 \times \int_1^\infty dx/x^2
+```
+
+``` latex
+\sum_{i=1}^{10} i^2 = 385 + 0 \times \int_1^\infty dx/x^2
+```
+
+#### Styling text
+
+Math text is styled using various commands which begin with `{code} \math`. For example, `{code} \mathrm` prevents letters in equations from rendering in italics, while `{code} \mathbf` renders letters or numbers in boldface.
+
+```code
+|\mathbf{a}|^2 = \mathbf{a} \cdot \mathbf{a}
+```
+
+``` latex
+|\mathbf{a}|^2 = \mathbf{a} \cdot \mathbf{a}
+```
+
+Blackboard bold symbols like $\mathbb{R}, \mathbb{Z}, \mathbb{N}$ are typeset like `{code} \mathbb{R}, \mathbb{Z}, \mathbb{N}`. 
+
+#### Delimiters
+
+Delimiters (like parentheses or brackets) can be made to reach vertically as far as necessary to properly enclose the content they surround. The delimiting characters must be preceded by `{code} \left` and `{code} right`. 
+
+``` code
+\mathrm{e}^x = \lim_{n \to \infty} \left( 1 + \frac{x}{n} \right)^n
+```
+
+``` latex
+\mathrm{e}^x = \lim_{n \to \infty} \left( 1 + \frac{x}{n} \right)^n
+```
+
+#### Displayed equations
+
+Multi-line displayed equations (which are rendered in the center of the page and on their own lines) open with `{sh} \begin{align*}` and close with `{sh} \end{align*}`. Lines are separated with a double backslash, and an ampersand goes in front of the character in each line that should be used for alignment (usually the equals sign): 
+
+``` code
+\begin{align*}
+(x+y)^2 &= (x+y)(x+y) \\\ 
+        &= x^2 + 2xy + y^2
+\end{align*}
+```
+
+``` latex
+(x+y)^2 &= (x+y)(x+y) \\
+        &= x^2 + 2xy + y^2
+```
+
+#### Arrays
+
+The easiest way to create a matrix is to use a `{sh} bmatrix` environment. Rows are separated with a double backslash, and entries within each row are separated by ampersands.
+
+``` code
+\begin{bmatrix}
+1 & 2 \\\ 
+3 & 4
+\end{bmatrix}
+```
+
+``` latex
+\begin{bmatrix}
+1 & 2 \\
+3 & 4
+\end{bmatrix}
+```
+
+---
+> id: Conda
+## Conda
 
 Suppose you've written a Python module that you want to share. Other users will have to get your code and perform some setup operations, including making their Python environment aware of your package so they can `{code} import` it. Ideally you'd communicate information about any other modules that your module requires, so that users can make sure they have all of the requirements before they try to use your module. When you make improvements to your code, you'd like for your users to be able to get those changes without having to go through installation steps again. 
 
 These code distribution challenges are difficult to manage manually, so developers have built systems designed to automate code distribution processes. These systems are called **package managers**. The main package managers for Python are **Pip** and **Anaconda**. Pip is a general Python installer, installing packages from the [Python Package Index](https://pypi.org). *Anaconda* is more geared toward data science, and it installs packages from its own collection called [Anaconda Repository](https://repo.continuum.io/).
 
-We recommend [installing Anaconda](https://docs.anaconda.com/anaconda/install/) and using it to manage your packages (except when a package is only available through Pip). Anaconda has a couple of important advantages over Pip: 
+We recommend [installing Anaconda](https://docs.anaconda.com/anaconda/install/) and using it to manage your packages. Anaconda has a few important advantages over Pip: 
 
 1. Anaconda ensures that all requirements of all available packages are satisfied. Pip updates your environment when you install a package based on *that* package's requirements. Such an update might break previously installed packages, since they might depend on a different version of the same package.
 
-2. Anaconda provides built-in support for managing multiple *virtual environments*. If Package A and Package B have incompatible versions of Package C, you can set up one virtual environment with Package A and one version Package C, and a second virtual environment with Package B and another version of Package C. 
+2. Anaconda provides built-in support for managing multiple *virtual environments*. If Package A and Package B have incompatible versions of Package C, you can set up one virtual environment with Package A and one version Package C, and a second virtual environment with Package B and another version of Package C.
+
+3. For packages that depend on compiled code, Anaconda directly installs [*binaries*](gloss:binary-file). This means that these dependencies are built by the package maintainers sent to you ready to run. If the build process happens on your computer, there are more opportunities for things to go wrong in the installation process.
+
+Some packages are available on PyPI but not Anaconda, and in these cases we recommend that you use `{sh} pip`.
 
 ---
 > id: virtual-environments
 ### Virtual Environments
 
-Your Python **environment** is the set of packages you have available to `{sh} import` in a Python session. For example, an environment often include all of the packages installed on the computer. A **virtual environment** emulates a Python environment by exposing specific packages (and specific versions of those packages) to the Python interpreter. Virtual environments are useful because they allow you to quickly switch between different sets of available packages. They also make it possible to be confident about exactly what packages are needed for a given application, and to distribute that information to users of the package.
+Your Python **environment** is the set of packages you have available to `{sh} import` in a Python session. For example, an environment often includes all of the packages installed on the computer. A **virtual environment** emulates a Python environment by exposing specific packages (and specific versions of those packages) to the Python interpreter. Virtual environments are useful because they allow the user to quickly switch between different sets of available packages. They also make it possible to be confident about exactly what packages are needed for a given application and share that information so that others can reproduce an environment.
 
 For example, if you need NumPy 1.16.3 for one project and NumPy 1.16.4 for a different project, your package manager can install *both* versions and just change which one is used when you execute `{py} import numpy`. This is much more convenient than uninstalling one version and installing the other every time you need to switch between the two projects. 
 
+To use conda virtual environments, we first have to set up conda to work with our shell. This requires restarting bash. 
 
+    pre(bash-executable)
+      | conda init bash 
+      | conda config --set changeps1 False
+      | exit 
 
----
-> id: jupyter
-## Jupyter
+The second line configures conda to refrain from its default behavior of printing the name of the current environment every time a command is run from the command line.
 
----
-> id: vs-code
-## VS Code
+To create a new Anaconda virtual environment, use `{sh} conda create`. To activate an environment, use `{sh} conda activate`. (Note: this cell takes a few dozen seconds to run, and it prints quite a bit of text. The `{sh} --yes` argument automatically answers "yes" when conda asks us whether we want to proceed)
+
+    pre(bash-executable)
+      | conda create -n myenv python numpy=1.16.4 --yes
+      | conda activate myenv
+      
+We can check that our newly activated environment has NumPy but not Pandas.  
+
+    pre(bash-executable)
+      | echo "import numpy" > tmp.py
+      | echo "print(numpy.version.version)" >> tmp.py
+      | echo "import pandas" >> tmp.py
+      | python tmp.py
+
+We can view all of the environments we've set up with `{sh} conda env list`: 
+
+    pre(bash-executable)
+      | conda env list
+
+Conda installation operations modify the current environment. For example, we can add pandas:
+
+    pre(bash-executable)
+      | conda install pandas --yes
+      | python tmp.py
+
+We can get a readable version of the current environment using `{sh} export`: 
+
+    pre(bash-executable)
+      | conda env export
+
+The output of this command can saved to a file—customarily called `{sh} environment.yml`— which can be used by others to replicate the environment. Just for practice, let's save the environment to a [YAML](gloss:YAML) file, remove the environment from our system, and then re-create it from the YAML file.
+
+    pre(bash-executable)
+      | conda env export > environment.yml
+      | conda remove -n myenv --all
+      | conda env create -f environment.yml
+
+Note that we used the `{sh} -f` argument to make `{sh} conda env create` get the package list from the `{sh} environment.yml` file rather than directly from the command line.
 
 ---
 > id: markdown
 ## Markdown
 
+Websites are written in HTML, which is a document specification language that supports many embellishments like boldface, italics, numbered lists, links, etc. HTML can be difficult to read directly, however, because the markers are quite obtrusive. Here's a (kind of silly) example to illustrate the point:
+
+    figure
+      img(src="images/html-example.png")
+
+<!--<p>The <em>quick</em> brown fox <strong>jumped</strong>
+over the lazy <code>dog</code>.</p>-->
+
+Markdown was invented in 2004 by John Gruber and Aaron Swartz as a tool for specifying rich text (boldface, italics, links, etc.) in a plain text file that is easy to read and write. Here's the example above in Markdown:
+
+``` markdown
+The *quick* brown fox **jumped** over the lazy `dog`.
+```
+
+Markdown has since become a [lingua franca](gloss:lingua-franca) among developers and data scientists. For example, forum content on GitHub is specified in Markdown. Rather than having a single rich-text editor, the user is presented with a plain text editor and a *Preview* tab to see how the Markdown will render in the forum:
+
+    figure
+      img(src="images/github-markdown-input.png")
+      img(src="images/github-markdown-output.png")
+      
 ---
-> id: regular-expressions
-## Regular Expressions
+> id: markdown-rules
+### Markdown rules
+
+The list of Markdown rules is pretty short: 
+
+1. Boldface is indicated with double underscores or double asterisks: `{code} __This text is bold__` or `{code} **This text is bold**`. 
+
+2. For italics, use underscores or asterisks: `{code} _This text is italic_` or `{code} *This text is italic*`.
+
+3. Headers are indicated with a number of hashmarks followed by a space and the header text. Top-level headers use a single hashmark, and using more hashmarks makes the resulting font size increasingly small
+
+    ``` markup
+    # Top-level title
+    ## Section 1
+    ### Subsection
+    ## Section 2
+    ```
+
+4. Links use square brackets around the text to be displayed and parentheses around the URL to be linked: `{code} [Click here](http://www.google.com)`. 
+
+
+5. Images are included using the link syntax preceded by an exclamation point. The contents of the square brackets are used as alt-text (the text that appears if there's an issue loading the image).
+
+    ``` markdown
+    ![a tiger](https://upload.wikimedia.org/wikipedia/commons/5/56/Tiger.50.jpg)
+    ```
+
+6. *Blockquotes* are marked with a greater-than sign at the beginning of the line: 
+
+    ``` markdown
+    > "Imagination is more important than knowledge." -Albert Einstein
+    ```
+
+7. Bullet lists are achieved with an asterisk and a space at the beginning of each line containing a list item: 
+
+    ``` markdown
+    * Limits
+    * Differentiation
+    * Integration
+    ```
+
+8. Numbered lists use numbers instead of asterisks. Numbers are assigned sequentially when the list is rendered, so you can use 1 for every list item in the source file. For nested lists, indent two spaces:
+
+    ``` markdown
+    1. Limits
+    1. Differentiation
+      1. Power rule
+      2. Product rule
+      3. Chain rule
+    1. Integration
+      1. Power rule
+      1. Substitution
+      1. Integration-by-parts
+    ```
+
+9. Inline code is surrounded by backticks, as in "``{code} try the `sqrt` function``". Code blocks are surrounded by three backticks, with an optional language name following the first set:
+
+    ```` markdown
+    ```python
+    import numpy as np
+    np.sqrt(3)
+    ```
+    ````
+
+---
+> id: jupyter
+## Jupyter
+
+Findings in quantitative disciplines have historically been communicated primarily through written reports. In many cases, accompanying code is unavailable or difficult to replicate for readers who might wish to reproduce the analysis. This dissociation of exposition and code has major drawbacks: (i) ease of replication has significant implications for the reliability of the results being reported, and (ii) the code must be carefully organized and commented to document the relationship between its elements and the corresponding elements of the written report. 
+
+*Project Jupyter* provides researchers with tools for combining exposition and code into a single document called a *Jupyter notebook*. Notebook files are managed by a command line program called `{sh} jupyter` and are presented to the user for viewing and editing in their preferred web browser. A Jupyter notebook contains of a list of *cells*, each of which is either a Markdown cell for exposition or a code cell for execution by a program called a *kernel*, which runs in the background. The default kernel is Python, but kernels are available for a wide variety of languages. 
+
+Many rich code cell output types are supported, including both static and interactive graphics which appear in the notebook. Here's an example session: 
+
+    figure
+      img(src="images/jupyter-example.png")
+
+Project Jupyter is currently in a period of transition from the *Classic Jupyter Notebook* to *JupyterLab*. JupyterLab is the next-generation version of Jupyter Notebook, built from scratch using more modern web tools and years of insight gained from the development of the classic notebook. We recommend using JupyterLab, although you might occasionally come across features which are available only in the Classic Notebook. The underlying file format is the same, so you can use the two interfaces interchangeably.
+
+---
+> id: magic-commands
+### Magic Commands
+
+You might have noticed that one line in the executable cell in the screenshot above is *not* valid Python: `{code} %matplotlib inline`. This instruction, which makes matplotlib figures appear directly in the notebook, is specific to the Jupyter interface and is not part of matplotlib itself. Such instructions are called **magic commands** and are indicated in Python with a leading percent sign. 
+
+Here are some handy magic commands: 
+
+* `{code} %run`. If you have a large or ungainly block of code that you don't want taking up space in your notebook, you can save it in a `{code} .py` file in the current directory and use the `{code} %run` magic to execute all of the code in that file.
+
+* `{code} %timeit`. Place this line in front of any line of Python code to approximate how long it takes to execute. 
+
+* `{code} %debug`. Running this magic after a cell returns an error puts you into a debugger session with the interpreter paused at the point where the error was thrown. This allows you to inspect the values of variables, try new code, and step through the execution of your program one line at a time.
+
+* `{code} %%load_ext autoreload`. If the `{code} autoreload` extension is loaded, then any changes in imported modules are automatically picked up whenever a cell is executed. This can be helpful if you want to alternate between making changes to a module and experimenting with them in a Jupyter notebook. The alternative is to re-start the kernel each time you make a change to the module, and that gets rather tedious.
+
+---
+> id: keyboard-shortcuts
+### Keyboard Shortcuts
+
+Jupyter notebooks can be navigated entirely by mouse or trackpad, but it is much more efficient to use keyboard shortcuts for common operations. Furthermore, it's worth learning many of these shortcuts before working extensively with the software, because it's easier to build good habits from the start than to replace bad habits one at a time as your frustration with inefficiencies reaches the limits of what you can tolerate.
+
+Jupyter has an **edit mode** for entering text in cells and a **command mode** for manipulating cells (for example, merging or deleting cells). If there's a blinking cursor in a cell, the current mode is *edit*, and otherwise the current mode is *command*. Switching between modes is accomplished with the escape key (edit to command mode) and the enter key (command to edit mode).
+
+Cells are deleted in command mode with two strokes of the `{code} d` key. You can highlight cells in command mode by holding shift and using your arrow keys, and you can merge the highlighted cells into a single cell using `{code} shift-m`. Insertion of new cells is accomplished with either `{code} a` (insert cell *above*) or `{code} b` (insert cell *below*) in command mode. Cells can be switched between Markdown (`{code} m`) and code (`{code} y`) in command mode.
+
+The most important shortcut works the same in both modes: `{code} shift-enter` executes the current cell or cells.
+
+If you want to perform an action that you don't know a keyboard shortcut yet, you can do `{code} cmd-shift-c` (in either mode) to activate the *command palette*. Then start typing keywords related to what you want to accomplish, selected the desired command, and run it by pressing enter. The command palette will also display the shortcut for that command (if one exists). The sequence `{code} cmd-shift-f-f` closes the command palette. 
+
+---
+> id: notebook-consoles
+### Notebook Consoles
+
+One difficulty with Jupyter notebooks is that it's easy for your workspace to get cluttered. The problem is that all code in the notebook is handled in the same way regardless of its role: 
+
+1. **Publication code**. Code that contributes to the narrative should be included in the final Jupyter notebook.
+2. **Library code**. Long functions may be critical for the code in the notebook to run properly, but they occupy a lot of vertical space in the notebook and often distract from the narrative.
+3. **Scratch code**. While executing throwaway lines of scratch code is an important part of the development process, that code doesn't logically belong in the notebook.
+
+JupyterLab includes functionality for interacting with all three types of code in a manner appropriate to their roles. The idea is to open three tabs: a Jupyter notebook for publication code, a Python text file for library code, and a *console* linked to the notebook for scratch code. The linked console is a [REPL](gloss:REPL) which interacts with the same kernel instance as the notebook. 
+
+    figure
+      img(src="images/jupyterlab-setup.png")
+
+To achieve this setup in JupyterLab, begin by opening a Jupyter notebook and a text file saved with the `{code} .py` extension. Then right-click the tab for the Jupyter notebook and select "New console for notebook". You can drag each tab to wherever you want it to appear on the screen, and all of them are visible at once. The combinations `{code} ctrl-shift-[` and `{code} ctrl-shift-]` switch between tabs.
+
+---
+> id: vs-code
+## VS Code
+
+Jupyter is geared toward producing documents which interweave exposition, code, and visualizations. Dedicated editors provide more features for writing large codebases, and it's worth learning enough about them to make an informed decision about when to switch as a project scales beyond the sweet spot for Jupyter.
+
+The editor we will use is the free and open source Microsoft product **Visual Studio Code**, or *VS Code* for short. VS Code has risen sharply in popularity since its introduction in 2015, reaching the top of the ranks in the 2018 StackOverflow Developer Survey. It starts quickly and offers many powerful features, including a system for users to add their own extensions. This combination of popularity and extensibility means that extensions are available for almost everything, so users can often comfortably use VS Code for all of their editing tasks (for example, authoring in Markdown, LaTeX, etc., and doing web development, Python development, data exploration, etc.).
+
+---
+> id: vs-code-main-features
+### Main Features
+
+Let's do a walkthrough of some basic VS Code features. We begin a VS Code session by opening a project folder (although you can directly open specific files, we recommend opening the project folder first, because some features are designed with this workflow in mind).
+
+    center: figure: video(src="images/vs-code-open-folder.mp4" width="75%" controls)
+
+    ol
+      li.md **File Navigation**. When you open a project folder, the *Explorer* pops open on the left side of the window. In the Explorer you can navigate the directory tree and do common file operations like adding new files, moving them around, and re-naming them. Right-clicking a file or folder brings up the available options along with keyboard shortcuts so you can learn to access them without having to right-click in the future. Clicking on a file opens it in the main window to the right. You can hide the Explorer to create more space for the main window with `{code} cmd-b`.
+
+      center: figure: video(src="images/vs-code-explorer.mp4" width="75%" controls) 
+        
+      li.md **Command Palette**. VS Code has enough functionality that it would be inefficient to access all of it through menus and infeasible to assign and remember keyboard shortcuts for every operation. The *Command Palette* is a way to find functions quickly based on descriptive names of those functions. For example, if you want to replace one string with another throughout a file, you can do `{code} cmd-shift-P` and start typing "replace". Use the arrow keys to select the desired function and hit `{code} enter` to run it. Note that the Command Palette displays keyboard shortcuts if you want to learn them. However, the Command Palette is fast enough that you might want to use it instead of keyboard shortcuts as your primary way of accessing some functions. 
+      
+      center: figure: video(src="images/vs-code-command-palette.mp4" width="75%" controls)
+      
+      li.md **Integrated Terminal**. VS Code has an integrated terminal that you can pop up and down using ``{code} ctrl-` `` (that's a backtick, top left corner of the keyboard). 
+      
+      center: figure: video(src="images/vs-code-terminal.mp4" width="75%" controls)
+      
+      li.md **Marketplace**. Much of VS Code's functionality is provided through *extensions*, which are third-party packages provided in the VS Code *Marketplace*. The Marketplace can be accessed using the square icon on the left side of the window. You can search for and install extensions with a click, and you can right-click the gear icon on an installed extension to edit the settings for that extension. You'll want to go ahead and install the Python extension. 
+      
+      center: figure: video(src="images/vs-code-marketplace.mp4" width="75%" controls)
+      
+      li.md **Bookmarks**. When you're working with a large file, you'll often want to save your place so you can inspect a different part of file and quickly get back to where you were. VS Code has a bookmark system to facilitate this kind of navigation: `{code} cmd-opt-k` sets or removes a bookmark on the current line, and `{code} cmd-opt-j` and `{code} cmd-opt-l` navigate through the bookmarks forwards and backwards. You can also use bookmarks to highlight large blocks of text for copying or deleting; try "Bookmarks" in the Command Palette to see all of the available options.
+      
+      center: figure: video(src="images/vs-code-bookmarks.mp4" width="75%" controls)
+      
+      li.md 
+        p **Git Integration**. VS Code provides a graphical user interface for performing common Git operations like staging and committing changes and resolving merge conflicts.
+      
+        p Suppose we've just run `{sh} git merge` from the command line, and conflicts were introduced in the file `{code} setup.py`. We can resolve these conflicts and commit the resolutions all in VS Code:
+      
+      center
+        figure: video(src="images/vs-code-merge-conflicts.mp4" width="75%" controls)
+        figure: video(src="images/vs-code-git-commit.mp4" width="75%" controls)
+      
+      li.md  
+        p **Snippets**. If you want to save time writing boilerplate code or text, you can bind chunks of text to short key sequences using VS Code's *snippet* mechanism. For example, you can enter a Markdown code fence if you have a snippets file with the following entry:
+      
+        center: figure: img(src="images/fence.png" width="75%")
+      
+        p The dollar-sign expressions indicate points where the user is prompted for text when the snippet is triggered. These points are visited in order starting from `{code} ＄1`, with `{code} ＄0` indicating the location of the cursor when the snippet is exited.
+      
+        center: figure: video(src="images/vs-code-snippets.mp4" width="75%" controls)
+      
+        p Many extensions come with snippets, and you can create your own by creating a new global snippet configuration file by searching in the Command Palette for "Configure User Snippets". 
+      
+---
+> id: python-ide
+### Python IDE
+
+An **integrated development environment** (or *IDE*) is a full-featured environment for writing code. Advanced features that distinguish an IDE from a plain text editor include autocompletion, variable inspection, debugging, and [refactoring](gloss:refactoring) and [linting](gloss:linting) tools. 
+
+The most popular extension in the VS Code Marketplace, the Microsoft-supported *Python* extension, effectively turns VS Code into a full-fledged IDE for Python. Let's take a tour of the most important features. Begin by opening a new buffer (`{code} cmd-n`) and switching to Python mode (click on "Plain Text" in the bottom left corner and choose Python from the menu). It's important to [install](gloss:vscode-install) Python from the Marketplace if you haven't already. 
+
+    ol
+      li.md **Code execution**. `{code} shift-enter` sends the highlighted text to a kernel for execution. Lines containing `{py} #%%` can be used to split your code into Jupyter-like cells, so you don't have to highlight the whole block you want to execute. We recommend that you [use a Jupyter kernel](gloss:vscode-jupyter-option) rather than a Terminal for code execution. 
+
+      center: figure: video(src="images/vs-code-code-execution.mp4" width="75%" controls)
+
+      li.md **Code completion**. When you begin typing a name in a Python file in VS Code, you will see suggestions of Python names which begin with the letters you're typing. You can hit tab to select the top recommendation or use the arrow keys to navigate through other options. (Note also that when you open parentheses to make a function call, documentation for the function pops up to help you remember its arguments.)
+
+      center: figure: video(src="images/vs-code-code-completion.mp4" width="75%" controls)
+
+      li.md **Variable inspection**. Above the Jupyter pane is a *variable inspector* where you can see the variables which are currently in scope. Arrays and other compound data structures can be opened in a special *Data Viewer* window (using the icon in the rightmost column in the variable inspector).
+
+      center: figure: video(src="images/vs-code-variable-inspection.mp4" width="75%" controls)
+
+      li.md **Debugging**. VS Code provides several tools for inspecting the execution of a Python program as it runs. These tools are organized in a unified interface called a *debugger*. To debug a Python file in VS Code, begin by clicking in the gutter (the region left of the line numbers) to place red dots indicating **breakpoints** on specific lines where you would like to pause the interpreter. Then click the bug icon in the panel on the left. In the *Watch* section, you can any expressions whose values you would like to be able to monitor as the debugger runs. Press the green play button to begin debugging, and use the controls to navigate. 
+
+      center: figure: video(src="images/vs-code-debugging.mp4" width="75%" controls)
+
+      li.md **Refactoring**. Highlighting an expression and right-clicking brings up a menu which includes the option "Extract Variable". Selecting this option will replace the given expression with a variable name and insert a line which binds the value of the highlighted expression to the variable. Using this tool to perform the refactoringn operation makes mistakes less likely and saves you a little time.
+
+      center: figure: video(src="images/vs-code-refactoring.mp4" width="75%" controls)
+
+      li.md **Linting**. When you save a Python file in VS Code, a [linter](gloss:linting) is automatically run. Its suggestions are indicated by squiggly red underlines which you can mouse over to read the details for.
+
+      center: figure: video(src="images/vs-code-linting.mp4" width="75%" controls)
+
+      li.md **Testing**. 
+        p VS Code provides support for `{code} pytest` for unit testing. The process is designed to involve minimal [boilerplate](gloss:boilerplate): you write test functions whose names begin with `{code} test_` in files whose names begin with `{code} test_`, and VS Code will discover them for you. From the command palette, run "Python: Discover Tests". The first time you run this command, you'll need to configure it. Just select "pytest" and follow the instructions. 
+
+        p After VS code has discovered your tests, you can run all tests with a button at the bottom of the window. You can also run individual tests using a button which appears in the editor above the function.
+
+        center: figure: video(src="images/vs-code-testing.mp4" width="75%" controls)
+
+
+---
+> id: gnu-make
+## Make
+
+In a typical coding project, some files will be processed to produce other files as output. For example, programs written in C are compiled into [binary](gloss:binary-file) executable files. LaTeX files are compiled to PDF files. Python files process raw data files and produce clean versions of the data. The clean versions of the data are in turn used to produce analysis and visualizations. 
+
+We call the output files *target* files, and the input files are called *source* files. The source-target relationships of a project are a crucial component of the structure of the project, because the processing steps are required to reproduce the analysis or update the target files to reflect changes in the source. However, this important structure is not usually apparent from the source and target files themselves.
+
+There are at least two ways to address this problem: (1) document the processing steps in a README file, or (2) write a *Makefile*, which can be processed by a command-line utility called *make* to actually carry out the processing steps. The second approach documents the source-target relationships *and* makes them executable. 
+
+Suppose, for example, that we have a file called `{code} raw-data.csv` which contains some data we are meant to analyze. We write some code in a file called `clean-data.py` to process that data and write a file called `{code} clean-data.csv`. Then we run `{code} model.py` to do some analysis and come up with a model that we save in a file called `{code} model.pkl`. Our Makefile would look something like this:
+
+``` makefile
+
+all : model.pkl
+
+model.pkl : model.py clean-data.csv
+  python model.py
+
+clean-data.csv : clean-data.py
+  python clean-data.py
+  
+clean : 
+  rm model.pkl
+  rm clean-data.csv
+
+.PHONY all
+
+```
+
+The basic formula for a Makefile entry is 
+
+``` makefile
+target : dependencies
+  recipe
+```
+
+The command-line function `{code} make` looks at whether the dependencies have changed since the target was last built, if they have then it runs the commands in the corresponding recipe. 
+
+The `{code} target` can either be an actual target file or a *phony* target, which is a name used to refer to a given processing step. The phony targets should be declared in a line that begins `{code} .PHONY` and lists the phony targets. It's conventional to include the phony targets `{code} all` and `{code} clean`. These correspond to the operations "build everything" and "remove the target files". 
+
+Specific targets can be invoked at the command line by running `{code} make targetname`. For example, `{code} make all` builds everything and `{code} make clean` removes the target files. The target may be omitted, in which case it defaults to the first target in the file. 
