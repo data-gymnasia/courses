@@ -459,7 +459,7 @@ git-clone:
   text: |
     Create a local copy of a remote Git repository. 
   
-    For example, running `{sh} git clone git@github.com:data-gymnasia/python-binder.git` puts a directory called `{sh} python-binder` in the current directory. The directory contains the latest version of the repository files, along with a `{sh} .git` subdirectory that contains the commit history of the project. The URL for a GitHub repository is available under the green *Clone or Download* pulldown on the repository page.
+    For example, running `{sh} git clone git@github.com:data- gymnasia/python-binder.git` puts a directory called `{sh} python-binder` in the current directory. The directory contains the latest version of the repository files, along with a `{sh} .git` subdirectory that contains the commit history of the project. The URL for a GitHub repository is available under the green *Clone or Download* pulldown on the repository page.
     
 binary-file:
   title: Binary File
@@ -539,3 +539,15 @@ vscode-jupyter-option:
 boilerplate:
   title: Boilerplate
   text: Chunks of code that are typically used with little modification. Requiring extensive boilerplate is generally considered undesirable, because of the unnecessary code chunk management it imposes on the programmer and its obscuration of what aspects of the program are most important.
+  
+de-facto:
+  title: De Facto
+  text: A **de facto standard** is a convention or tool that has achieved dominance by popular acceptance. 
+  
+use-case:
+  title: Use Case
+  text: A **use case** for a tool or idea is a scenario in which it might be applied.
+
+linus:
+  title: Linus Torvalds
+  text: The creator of both Linux and Git.
