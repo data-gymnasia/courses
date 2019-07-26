@@ -4,13 +4,24 @@
 > id: intro
 ## Introduction
 
-Data Science is an exciting area that has helped us automate many processes using machine learning and other techniques. The impact of data science on our daily lives, and society more generally, has been tremendous. Much of data science has focused on extending and optimizing the underlying algorithms and technologies, often without considering how these algorithms and their concrete applications affect people and society. For instance, deep learning algorithms, once they have been trained, are essentially black-box routines, where nobody can explain or justify the outcomes of running the algorithm on new data: this becomes an issue when such algorithms are used for loan decisions, recommendations for parole or bail, or for hiring and salary recommendations. There are also legal issues since algorithms may discriminate against groups of individuals. For these reasons, and many others, it becomes increasingly important to think about biases, transparency, and fairness of machine-learning algorithms and training data sets. It is also important to communicate the limitations of data science algorithms in terms of fairness and accountability to non-experts who may not have the expertise to know what these limitations are.
+Data Science is an exciting area that has helped us automate many processes using machine learning and other techniques.
+The impact of data science on our daily lives, and society more generally, has been tremendous.
+Much of data science has focused on extending and optimizing the underlying algorithms and technologies, often without considering how these algorithms and their concrete applications affect people and society.
+For instance, deep learning algorithms, once they have been trained, are essentially black-box routines, where nobody can explain or justify the outcomes of running the algorithm on new data: this becomes an issue when such algorithms are used for loan decisions, recommendations for parole or bail, or for hiring and salary recommendations.
+There are also legal issues since algorithms may discriminate against groups of individuals.
+For these reasons, and many others, it becomes increasingly important to think about biases, transparency, and fairness of machine-learning algorithms and training data sets.
+It is also important to communicate the limitations of data science algorithms in terms of fairness and accountability to non-experts who may not have the expertise to know what these limitations are.
 
 <!-- should this be more standalone material or is it ok to directly address the class as follows ?-->
 
-The Data & Society course that you will take in the spring semester has two related goals. First, we will explore how data science impacts society, and how these impacts affect our work as data scientists. Second, because data scientists have to communicate about their work to a general audience in their jobs, we will use this course as a way to improve our skills as data science communicators, primarily in writing.
+The Data & Society course that you will take in the spring semester has two related goals.
+First, we will explore how data science impacts society more generally, and how to understand those impacts in our work as data scientists.
+Second, because data scientists have to communicate about their work to a general audience in their jobs, we will use this course as a way to improve our skills as data science communicators, primarily in writing.
+To prepare for the course, you'll do some reading and writing now, so that some of the issues we'll address in the spring are in your minds as you learn data science techniques in the fall.
+You will also get some feedback now on your writing, so that you know what will be expected in this graduate program.
 
-To prepare for the course, you will do some reading and writing now, so that some of the issues we will address in the spring are in your minds as you learn data-science techniques in the fall. You will also get some feedback now on your writing, so that you know what will be expected throughout this graduate program.
+To prepare for the course, you will do some reading and writing now, so that some of the issues we will address in the spring are in your minds as you learn data-science techniques in the fall.
+You will also get some feedback now on your writing, so that you know what will be expected throughout this graduate program.
 
 [Continue](btn:next)
 
@@ -53,12 +64,17 @@ Which of the following topics will be covered in this class
 ## Bias in Word Embeddings
 
 As a first example for why we may need to change our technical choices in order to make fair algorithms, we will look at the [paper](gloss:reading), [_A Man is to Computer Programmer as Woman is to Homemaker? Debiasing Word Embeddings_](https://papers.nips.cc/paper/6228-man-is-to-computer-programmer-as-woman-is-to-homemaker-debiasing-word-embeddings.pdf),
-which was published in a top Machine Learning Conference, Neural Information Processing Systems (NeurIPS) in [[2016|2019|2020]]. This paper was highly influential and led to a number of other publications that demonstrated how biased word embeddings can influence the world.
+which was published in a top Machine Learning Conference, Neural Information Processing Systems (NeurIPS) in [[2016|2019|2020]].
+This paper was highly influential and led to a number of other publications that demonstrated how biased word embeddings can influence the world.
 
 ---
 > id: wordembeddingsbkg
 
-Word embeddings are a technique for transforming text into matrices, by turning each word into a vector with real entries. The goal is to design word embeddings so that words with similar meaning are mapped to vectors that are close to each other (as measured by their angle or distance). Many word embeddings are based on co-occurence counts: which words frequently appear together in the same document? The idea behind this design is that words that occur together in a given document should share similar meaning. Word embeddings are useful since they can streamline search engines (if people search for the same topic using different but similar words) or infer meaning from texts.
+Word embeddings are a technique for transforming text into matrices, by turning each word into a vector with real entries.
+The goal is to design word embeddings so that words with similar meaning are mapped to vectors that are close to each other (as measured by their angle or distance).
+Many word embeddings are based on co-occurence counts: which words frequently appear together in the same document?
+The idea behind this design is that words that occur together in a given document should share similar meaning.
+Word embeddings are useful since they can streamline search engines (if people search for the same topic using different but similar words) or infer meaning from texts.
 
 [Continue](btn:next)
 
@@ -74,7 +90,8 @@ Biased word embeddings are a(n) [[representational|allocative]] harm because the
 ::: .exercise
 **Exercise**  
 
-With the following exercise, we aim to accomplish three goals: (i) learn more about biases in word embeddings, (ii) learn how to read technical papers, and (iii) begin to write brief summaries for a general non-expert audience. The tasks are to read the word-embeddings paper referenced above and (ii) write an article that summarizes its content for a general audience. Upload your article via this [Google Form](https://forms.gle/G9BRkw9KunZSbyAN9)
+With the following exercise, we aim to accomplish three goals: (i) learn more about biases in word embeddings, (ii) learn how to read technical papers, and (iii) begin to write brief summaries for a general non-expert audience.
+The tasks are to first read the word-embeddings paper referenced above and second, write a 300-500 word article that summarizes its content for a general audience. Upload your article via this [Google Form](https://forms.gle/G9BRkw9KunZSbyAN9)
 
 :::
 
@@ -85,7 +102,10 @@ With the following exercise, we aim to accomplish three goals: (i) learn more ab
 
 ### Reading Technical Papers
 
-Graduate school requires reading large amounts of material to learn. Working in a fast-moving field like data science requires the same reading skill to stay up-to-date and current in one's area. There are some useful techniques for reading scientific and technical papers that can make this easier. Since this is a new skill for most graduate students, faculty have written guides on how to read for their discipline, including for [computer science](https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf).
+Graduate school requires reading large amounts of material to learn.
+Working in a fast-moving field like data science requires the same reading skill to stay up-to-date and current in one's area.
+There are some useful techniques for reading scientific and technical papers that can make this easier. 
+Since this is a new skill for most graduate students, faculty have written guides on how to read for their discipline, including for [computer science](https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf).
 Data science methods are often published in computer science related venues so this fits well.
 
 Open the reading-guide paper referenced above and read the headings.
@@ -130,13 +150,16 @@ Now try reading the word embeddings paper, taking note of what the key points ar
 ---
 > id: writing-non-technical
 
-Writing a newspaper style article might also be new.  
+Writing a newspaper style article might also be new. This piece should be in less formal language than academic publishing and accessible to an adult with a secondary (high school) education. Below are a number of (optional) resources to help you understand what we are looking for.
 
-Here is an [instructional guide](https://www.improbable.com/airchives/paperair/volume10/v10i4/scient-PR-10-4.pdf).  
+Your article should summarize the paper.  Here is a guide to [summarizing a psychology research paper](https://depts.washington.edu/psych/files/writing_center/summarizing.pdf) as an example. There are some psychology-specific points (eg APA is American Psychological Association), but it is overall a good guide. Here is a second [guide to summarizing a research paper](https://www.ufv.ca/media/assets/academic-success-centre/handouts/Summarizing-a-Scholarly-Journal-Article-rev2018.pdf).
 
-[Massive Science](https://massivesci.com/) tabulates publicly accessible science articles written by other scientists.  If you're still unsure how to write your summary, try reading an example like one of these
+
+As an example, see this Science News article [AI acquired humanlike 'numbersense' on its own](https://www.sciencenews.org/article/new-ai-acquired-humanlike-number-sense-its-own). That is a stand-alone summary of the finding, like what you should aim for in your article. As a second example, see [When should banks chase debts? New method could help them decide](https://www.eurekalert.org/pub_releases/2019-07/uota-wsb072519.php), note here that this one is based on an interview with the researchers and includes quotes.  We're not asking for that, but the style and level of complexity used is appropriate.
+
+If you're looking for more inspiration, [Massive Science](https://massivesci.com/) tabulates publicly accessible science articles written by other scientists. Below are a couple of examples you might read to get a feel for the style of writing. These are longer and more detailed than we expect for this assignment, but have the right style.
 
 - [Being a Pokémon Master in childhood permanently alters your brain](https://massivesci.com/articles/pokemon-detective-pikachu-brains-video-games/)
 - [Artificial intelligence isn’t a ‘black box.’ It’s a key to studying the brain](https://massivesci.com/articles/artificial-intelligence-human-brain-black-box-algorithm/)
 
-Hopefully now you feel prepared to write and submit your summary of the paper.
+Hopefully now you feel prepared to write and [submit](https://forms.gle/G9BRkw9KunZSbyAN9) your summary of the paper.
