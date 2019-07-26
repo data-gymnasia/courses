@@ -104,7 +104,7 @@ The tasks are to first read the word-embeddings paper referenced above and secon
 
 Graduate school requires reading large amounts of material to learn.
 Working in a fast-moving field like data science requires the same reading skill to stay up-to-date and current in one's area.
-There are some useful techniques for reading scientific and technical papers that can make this easier. 
+There are some useful techniques for reading scientific and technical papers that can make this easier.
 Since this is a new skill for most graduate students, faculty have written guides on how to read for their discipline, including for [computer science](https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf).
 Data science methods are often published in computer science related venues so this fits well.
 
