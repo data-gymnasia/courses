@@ -1168,7 +1168,7 @@ for $x$ and $y$.
 ---
 > id: step-80
 
-*Solution* _{code.language-python}import scipy as sp_
+*Solution* _{code.language-python}import sympy as sp_
 
 [Continue](btn:next)
 

@@ -827,7 +827,7 @@ F_X(x) = \mathbb{P}(X \leq x).
 
     figure
       img(src="images/cdf.svg")
-      p.caption A probability mass function $m_X$ and its corresponding CDF $F_X$ 
+      p.caption.md A probability mass function $m_X$ and its corresponding CDF $F_X$.
 
 [Continue](btn:next)
 
@@ -2128,7 +2128,7 @@ We won't be able to work with such distributions using probability mass function
  
     figure
       img(src="images/density.svg")
-      p.caption.md The probability measure $\nu$ associated with a density $f$ assigns the measure $\int\_a^b f(x) \, \mathrm{d} x$ to each interval $[a,b]$ 
+      p.caption.md The probability measure $\nu$ associated with a density $f$ assigns the measure $\int\_a^b f(x) \, \mathrm{d} x$ to each interval $[a,b]$.
 
 The simplest possible choice for $f$ is the function which is $1$ on $[0,1]$ and 0 elsewhere. In this case, the probability mass associated with a set $\mathbb{E} \subset [0,1]$ is the total length of $E$. In higher dimensions, $\Omega = [0,1]^2$ with the probability measure $\mathbb{P}(E) = \text{area}(E)$ gives us a probability space, as does $\Omega = [0,1]^3$ with the probability measure $\mathbb{P}(E) = \text{volume}(E)$. 
 
@@ -2502,7 +2502,7 @@ Roughly speaking, we will consider two probability measures close if they put ap
 
     figure
       img(src="images/densities.svg")
-      p.caption.md The sequence of densities $f_n$ converges to the density $f$ as $n\to\infty$ 
+      p.caption.md The sequence of densities $f_n$ converges to the density $f$ as $n\to\infty$.
       
 [Continue](btn:next)
 
