@@ -1488,6 +1488,27 @@ The list of essential Markdown rules is pretty short:
 [Continue](btn:next)
 
 ---
+> id: step-markdown-line-break
+
+10. A single newline character is ignored by default, so that you can break up the lines of a paragraph however you want without affecting the output. To separarate paragraphs, put a blank line between them. To force a line break without a paragraph break, put *two spaces* just before the newline.
+
+[Continue](btn:next)
+
+---
+> id: step-markdown-exercise
+::: .exercise
+**Exercise**  
+Answer each of the following questions about Markdown.  
+1. Code fences are marked using [[3|2|1]] [[backticks|hyphens|colons]].
+2. Markdown will automatically correct the numbering in your numbered lists [[True|False]].
+3. The syntax for inserting an image is an [[exclamation point|period|colon]] followed by [[square brackets|parentheses]] containing the [[alt text|url]] followed by [[parentheses|square brackets]] containing the [[url|alt text]]. 
+4. The syntax for inserting links is [[square brackets|parentheses]] containing the [[link text|url]] followed by [[parentheses|square brackets]] containing the [[url|link text]].
+5. Inline code is indicated using [[single backticks|quotation marks|curly braces]]. 
+6. Section headings are indicated using [[hashmarks|asterisks]] followed by a [[space|newline|tilde]].
+7. For boldface or italics, use [[double|single]] or [[single|double]] underscores (or asterisks), [respectively](gloss:respectively).
+:::
+
+---
 > id: jupyter
 ## Jupyter
 
