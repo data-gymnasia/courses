@@ -1051,7 +1051,7 @@ is the LaTeX code for
 
 The syntax for fractions in LaTeX is `{code} \frac{numerator}{denominator}`. For example, `{code} \frac{x^3}{3}` renders as $\frac{x^3}{3}$. Fractions can be nested: 
 
-```code
+``` code
 \frac{1}{1+\frac{2}{3}}
 ```
 
@@ -1309,6 +1309,41 @@ Note that we used the `{sh} -f` argument to make `{sh} conda env create` get the
 **Exercise**  
 If you want a colleague to be able to reproduce the Python environment you used in a particular project, one convenient way to do that is to give them your [[environment.yml|contents.txt]] file, using [[`{code} conda env export`|`{code} conda env list`]].
 :::
+
+--- 
+### Other reproducibility solutions
+> id: other-reproducibility-solutions
+
+We will close this section by mentioning two other solutions for the reproducibility problem. If you're working with a non-Conda Python installation, you can use pip together with **virtualenv** to reproduce the virtual environment functionality of Conda. You can also get pip to give you a list of the packages and versions available in the local virtual environment using `{py} pip freeze`. 
+
+[Continue](btn:next)
+
+---
+> id: docker
+
+A much more general-purpose tool for achieving reproducibility is **Docker**. To oversimplify a bit, using Docker involves figuring out how to build your desired computational environment by running a sequence of shell commands starting from a bare-bones Linux operating system. You store this sequence of commands in a text file called **Dockerfile**, and the results achieved by performing the specified installation steps are stored as a Docker **image**. Docker (the company) provides a free cross-platform application called Docker Desktop which allows any user to download Docker images from a repository of published Dockerfiles and run them on their own machine. These image instances, called **containers**, run in their own isolated filesystem on the user's computer. 
+
+[Continue](btn:next)
+
+Since no assumptions are made about anything else on the user's system, Docker applications reliably run the same way for everyone. Furthermore, Docker containers are *not* virtual machines, so they are lightweight and can run code with near-native performance. Because of their flexibility and reliability, Docker containers have become very popular in the software engineering world. They are especially useful in cloud computing contexts, because you can debug a system on your computer and deploy it to the cloud without worrying about how to configure everything to work in the cloud the same way it works on your personal machine. 
+
+[Continue](btn:next)
+
+
+To give you a sense of how profound this can be, if you install Docker Desktop and run 
+
+``` code
+docker run -p 8888:8888 jupyter/datascience-notebook
+```
+
+then several Docker images that are a part of the `{code} datascience-notebook` stack published by the Jupyter team will be downloaded to your machine. The download takes a while, but when it's complete, you will have a running Jupyter instance accessible at `{code} localhost:8888` in your browser (the `{code} -p 8888:8888` part of the command connects the port 8888 in the container to the port 8888 in the host operating system). This notebook will have Python, R, and Julia kernels, each complete with curated sets of data science packages. It would take much more work to follow a list of installation instructions to achieve the same setup using native installations. Furthermore, the time cost of downloading images is incurred only the first time you run the command, because downloaded images are saved on your computer for fast loading in the future. 
+
+[Continue](btn:next)
+
+---
+> id: docker-disadvantages
+
+Disadvantages of using Docker include (1) running a given piece of software both through Docker and natively on your operating system requires having two installations of it, and (2) care must be taken to connect the container to your operating system so you can interact with it (for example, using Jupyter notebooks, or saving files from within the container and having them show up in your primary file system). 
 
 ---
 > id: markdown

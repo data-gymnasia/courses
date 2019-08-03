@@ -93,3 +93,12 @@ data-science-utilities:
   author:
     name: Samuel S. Watson
     link: http://sswatson.com
+
+  data-and-society:
+  name: Data and Society
+  topics:
+    - Data Ethics
+    - Biased Word Embeddings
+  author:
+    name: Sarah M. Brown
+    link: http://sarahmbrown.org

@@ -12,6 +12,8 @@ There are also legal issues since algorithms may discriminate against groups of 
 For these reasons, and many others, it becomes increasingly important to think about biases, transparency, and fairness of machine-learning algorithms and training data sets.
 It is also important to communicate the limitations of data science algorithms in terms of fairness and accountability to non-experts who may not have the expertise to know what these limitations are.
 
+[Continue](btn:next)
+
 <!-- should this be more standalone material or is it ok to directly address the class as follows ?-->
 
 The Data & Society course that you will take in the spring semester has two related goals.
@@ -19,6 +21,8 @@ First, we will explore how data science impacts society more generally, and how 
 Second, because data scientists have to communicate about their work to a general audience in their jobs, we will use this course as a way to improve our skills as data science communicators, primarily in writing.
 To prepare for the course, you'll do some reading and writing now, so that some of the issues we'll address in the spring are in your minds as you learn data science techniques in the fall.
 You will also get some feedback now on your writing, so that you know what will be expected in this graduate program.
+
+[Continue](btn:next)
 
 To prepare for the course, you will do some reading and writing now, so that some of the issues we will address in the spring are in your minds as you learn data-science techniques in the fall.
 You will also get some feedback now on your writing, so that you know what will be expected throughout this graduate program.
@@ -123,10 +127,10 @@ It also addresses a level of detail that may not be practical.
 We recommend a slightly modified three passes, that follow the same basic goals as the paper.  
 Use that to put the three steps in order:
 
-x-sortable
-  .item.md(data-index="2") Read through the whole paper for detail, consider if there are parts that raise questions or concerns.
-  .item.md(data-index="1") Study the figures and their captions, read equations, read key section (method and/or result) related to why you're reading the paper
-  .item.md(data-index="0") Read only headings, get an idea of the scope and organization
+    x-sortable
+      .item.md(data-index="2") Read through the whole paper for detail, consider if there are parts that raise questions or concerns.
+      .item.md(data-index="1") Study the figures and their captions, read equations, read key section (method and/or result) related to why you're reading the paper
+      .item.md(data-index="0") Read only headings, get an idea of the scope and organization
 
 ---
 > id: reading-3
@@ -134,7 +138,6 @@ x-sortable
 
 For projects, you may need to do some more extensive reading.
 If you plan to pursue a PhD later, you will definitely need to write literature reviews and eventually review papers.
-Now read the remaining sections if they apply to you.
 
 [Continue](btn:next)
 
