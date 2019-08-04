@@ -61,7 +61,7 @@ multivariable-calculus:
   author:
     name: Samuel S. Watson
     link: http://sswatson.com
-    
+
 probability:
   name: Probability
   topics:
@@ -94,7 +94,7 @@ data-science-utilities:
     name: Samuel S. Watson
     link: http://sswatson.com
 
-  data-and-society:
+data-and-society:
   name: Data and Society
   topics:
     - Data Ethics
