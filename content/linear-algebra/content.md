@@ -2236,7 +2236,7 @@ Taking the transpose also interacts nicely with matrix multiplication:
 
 ::: .exercise
 **Exercise**  
-Suppose that $A$ is an $m \times n$ matrix and that $B$ is an $n \times p$ matrix. Exactly one of the following expressions is equal to $(AB)'$ in general—identify the correct answer choice by checking the dimensions of each matrix in each expression. [[`A' B'`|`B' A'`|`ABA'`]]
+Suppose that $A$ is an $m \times n$ matrix and that $B$ is an $n \times p$ matrix. Exactly one of the following expressions is equal to $(AB)'$ in general—identify the correct answer choice by checking the dimensions of each matrix in each expression. [[`B' A'`|`A' B'`|`ABA'`]]
 
 Confirm your conjecture numerically in Python with some random matrices. You can generate a random $m \times n$ matrix using **{code.language-python}np.random.random_sample((m,n))**, the transpose of _{code.language-python}A_ is accessed as _{code.language-python}A.T_, and the product of _{code.language-python}A_ and _{code.language-python}B_ is _{code.language-python}A @ B_. 
 :::
@@ -2297,11 +2297,11 @@ If $A$ is an $n\times n$ matrix satisfying the equation $A = A'$, we say that $A
 Suppose that $A$ is a symmetric matrix, $B$ is a matrix, and $c \in  \mathbb{R}$. Which of the following is necessarily equal to $(c^2 (A+B)' + A)'$? 
 
     x-picker.list
-      .item.pill.bblue  $c^2 A' + B$
-      .item.pill.bblue  $(c^2 - 1) A' + B'$
-      .item.pill.bblue  $(c^2 + 1) A + c^2 B$
-      .item.pill.bblue  $(c^2 - 1) A + B'$
-      .item.pill.bblue  $(c^2 + 1) A + c^2 B'$
+      .item.pill.bblue.md  $c^2 A' + B$
+      .item.pill.bblue.md  $(c^2 - 1) A' + B'$
+      .item.pill.bblue.md  $(c^2 + 1) A + c^2 B$
+      .item.pill.bblue.md  $(c^2 - 1) A + B'$
+      .item.pill.bblue.md  $(c^2 + 1) A + c^2 B'$
 
 :::
 
