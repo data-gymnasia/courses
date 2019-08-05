@@ -380,8 +380,8 @@ Also, note that you have *two* boxes: the first is for scratch, and the second i
 Select the true statements.
 
     x-picker.list
-      .item.pill.bblue.md The statement `[balance = 46.04]` assigns the value `[46.04]` to the variable `[balance]`. 
-      .item.pill.bblue.md(data-error="not-a-variable") The object `[33]` is a variable. 
+      .item.pill.bblue.md The statement `{py} balance = 46.04` assigns the value `{py} 46.04` to the variable `{py} balance`. 
+      .item.pill.bblue.md(data-error="not-a-variable") The object `{py} 33` is a variable. 
       .item.pill.bblue(data-error="mutable") The value of a variable cannot be changed. 
       .item.pill.bblue Variable names in Python are case-sensitive.
 :::

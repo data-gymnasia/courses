@@ -435,7 +435,7 @@ executable:
 bash-options:
   title: Options
   text: |
-    A bash **option** is an argument which is supplied to a bash command to modify the way it runs. For example, `ls` list the files in a directory, and `ls -l` lists them in long form (including more information about each file).
+    A bash **option** is an argument which is supplied to a bash command to modify the way it runs. For example, `{sh}ls` list the files in a directory, and `{sh}ls -l` lists them in long form (including more information about each file).
 
     Single-letter options usually begin with one dash, while longer option names usually begin with two dashes.
 

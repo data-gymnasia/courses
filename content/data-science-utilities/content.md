@@ -1836,7 +1836,7 @@ There are at least two ways to address this problem: (1) document the processing
 ---
 > id: step-example-makefile
 
-Suppose, for example, that we have a file called `{code} raw-data.csv` which contains some data we are meant to analyze. We write some code in a file called `clean-data.py` to process that data and write a file called `{code} clean-data.csv`. Then we run `{code} model.py` to do some analysis and come up with a model that we save in a file called `{code} model.pkl`. Our Makefile would look something like this:
+Suppose, for example, that we have a file called `{code} raw-data.csv` which contains some data we are meant to analyze. We write some code in a file called `{code} clean-data.py` to process that data and write a file called `{code} clean-data.csv`. Then we run `{code} model.py` to do some analysis and come up with a model that we save in a file called `{code} model.pkl`. Our Makefile would look something like this:
 
 ``` makefile
 
