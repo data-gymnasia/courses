@@ -1365,7 +1365,7 @@ To integrate over the region in the $xy$-plane using this subdivision, we need t
 \frac{\partial \mathbf{T}(u,v)}{\partial (u,v)} \right| \, \mathrm{d}u \, \mathrm{d}v, 
 ```
 
-where $\left|\frac{\partial \mathbf{T}(u,v)}{\partial (u,v)} \right|$ is notation for the absolute value of the determinant of the transformation $\mathbf{T}$. 
+where $\left|\frac{\partial \mathbf{T}(u,v)}{\partial (u,v)} \right|$ is notation for the absolute value of the determinant of the transformation $\frac{\partial \mathbf{T}(u,v)}{\partial (u,v)}$. 
 
 [Continue](btn:next)
 
