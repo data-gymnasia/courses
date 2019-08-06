@@ -9,7 +9,7 @@ export function intro($step) {
 
   $step.$$('svg').forEach(($s, i) => {
     const $polygons = $s.$$('polygon');
-    $polygons[0].transform = `translate(${initial[i].x}px, ${initial[i].y}px)`;
+    $polygons[0].translate(initial[i].x, initial[i].y);
 
     const drag = new Draggable($polygons[1], $s, {useTransform: true, snap: 20});
     drag.setPosition(initial[i].x, initial[i].y);
