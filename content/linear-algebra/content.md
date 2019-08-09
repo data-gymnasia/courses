@@ -2900,13 +2900,11 @@ $
 Let $V \subset \mathbb{R}^n$ be a subspace spanned by the eigenvectors of a matrix $A.$ If $\mathbf{v} \in V,$ which of the following are necessarily true? 
 
     x-picker.list
-      .item.pill.bblue  $A\mathbf{v} \in V.$
-      .item.pill.bblue(data-error="orthogonal-every") $A\mathbf{v}$ is orthogonal to every vector in $V.$
-      .item.pill.bblue(data-error="always-lin-dep")  $A\mathbf{v}$ and $\mathbf{v}$ are always linearly dependent. 
+      .item.pill.bblue.md  $A\mathbf{v} \in V.$
+      .item.pill.bblue.md(data-error="orthogonal-every") $A\mathbf{v}$ is orthogonal to every vector in $V.$
+      .item.pill.bblue.md(data-error="always-lin-dep")  $A\mathbf{v}$ and $\mathbf{v}$ are always linearly dependent. 
 
 :::
-
-    x-quill
 
 ---
 > id: step-194
