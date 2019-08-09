@@ -556,3 +556,35 @@ reading:
   title: Tip
   text: |
     It's probably a good idea to open this in a new tab now and keep it for reference.
+
+churn:
+  title: Churn
+  text: Customer churn refers to the cessation of a customer's relationship with a company
+  
+abtesting:
+  title: A/B Testing
+  text: An **A/B test** is a randomized experiment for assessing the difference between two variations (called A and B). For example, if you want to test whether changing the design of your credit card payment page leads to more completed transactions, you might randomly show half of the customers the new design and measure the transaction completion rates for the two groups.
+  
+R:
+  title: R
+  text: R is a popular open source programming language for data science. Python and R are by far the most prominent two programming languages used in data science in industry and academia. R is heavily geared toward statistical applications and is very popular among research statisticians. Python is becoming increasingly popular in industry, where it benefits from its closer ties to the software development world.
+  
+iris:
+  title: Iris dataset
+  text: The Iris dataset records 4 measurements (sepal length, sepal width, petal length, and petal width) for 50 flowers from each of three different species. The data set has become a staple of introductory data analysis materials. 
+  
+hadley:
+  title: Hadley Wickham
+  text: Hadley Wickham is the Chief Scientist at RStudio. He created an influential visualization library in R based on the *grammar of graphics* idea, which emphasizes a core set of building blocks and principled ways to combine them into more complex graphics. He also created several other packages applying similar ideas to data manipulation. This suite of packages, called the *tidyverse*, has become the de facto standard for data visualization and manipulation in R. 
+  
+python-sets:
+  title: Sets
+  text: In Python, a `{py} set` is a data structure with efficient support for insertion, deletion, and membership checking. As in math, elements of a sets are unordered and repetitions are ignored. The basic set operations for two sets `{py} s` and `{py} t` are `{py} s & t` for intersection, `{py} s | t` for union, `{py} s - t` for set difference (elements in the first set but not the second), and `{py} s ^ t` for symmetric difference (elements in exactly one of the two sets).
+  
+allocation:
+  title: Allocation
+  text: To store an array or other data structure, the computer must **allocate** memory for it and insert the appropriate data. For example, when you execute `{py} pos_inds = (a > 0)` where `{py} a` is a NumPy array of length 1,000,000, one million new memory addresses are dedicated to storing the entries of `{py} pos_inds`, and those bytes are filled with `{py} True`s and `{py} False`s. Depending on what you want to do with `{py} pos_inds`, this operation might be wasteful.
+  
+splat:
+  title: Splatting
+  text: In Python, you can supply the contents of a list as arguments to a function by putting an asterisk in front of the list name when calling the function. For example `{py} f(*[1,2,3])` is the same as `{py} f(1,2,3)`. Likewise, you can supply the contents of a dictionary as keyword arguments. For example, `{py} f(**{'a': 1, 'b': 2})` is the same as `{py} f(a=1,b=2)`. This is useful when want to manage arguments programatically rather than having to type them in when you call the function.
