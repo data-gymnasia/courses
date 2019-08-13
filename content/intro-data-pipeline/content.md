@@ -235,7 +235,7 @@ If the name of the data frame is quite long, you can avoid having to type it rep
 
     pre(python-executable)
       | df.assign(density = lambda d: d.population / d.area) \\ 
-      |   .assign(**{'inverse density': lambda d: 1/d.density})**
+      |   .assign(**{'inverse density': lambda d: 1/d.density})** DELETE
 
 Oops! There was a spurious space after the line continuation backslash. Delete it and run the cell again.
 
@@ -316,7 +316,7 @@ Hint: make a new column to group by.
       | iris = data('iris')
       | 
       
-    .x-quill
+    x-quill
 
 *Solution*. Delete the spaces after each line continuation backslash before running the following block:
 
@@ -345,11 +345,203 @@ The other four operations (filter, sort, select, and transform) can be applied t
 > id: visualize
 ## Data Visualization
 
+Data visualization is a way to leverage your visual cortex to gain insight into data. Because vision is such a rich and well-developed interface between the human mind and the external world, visualization is a critical tool for understanding and communicating data ideas.
 
+The standard graphics library in Python is Matplotlib, but we will use a newer package called *Plotly*. Plotly offers a number of material improvements over Matplotlib: (1) figures support interactions like mouseovers and animations, (2) there is support for [genuine](gloss:mpl3d) 3D graphics, and (3) Plotly is not Python-specific: it can be used directly in Javascript or in R or Julia. 
 
+If you use Plotly in a Jupyter notebook, the figures will automatically display in an interactive form. Therefore, it is recommended that you follow along using a separate tab with a [Jupyter notebook](https://mybinder.org/v2/gh/data-gymnasia/python-binder/master). However, we will use the function `{py} show` defined in the cell below to display the figures as static images so they can be viewed on this page. 
+
+    pre(python-executable)
+      | from IPython.display import SVG, display
+      | def show(fig):
+      |     filename = "my-figure.svg"
+      |     fig.write_image(filename)
+      |     return display(SVG(filename))
+
+[Continue](btn:next)
+
+---
+> id: step-scatter-example
+
+We can visualize the relationship between two columns of numerical data by associating them with the horizontal and vertical axes of the Cartesian plane and drawing a point in the figure for each observation. This is called a **scatter plot**. In Plotly Express, scatter plots are created using the `{py} px.scatter` function. The columns to associate with the two axes are identified by name using the keyword arguments `{py} x` and `{py} y`.  
+
+    pre(python-executable)
+      | show(px.scatter(iris,x='Sepal.Width',y='Sepal.Length'))
+
+[Continue](btn:next)
+
+---
+> id: step-aesthetic
+
+An **aesthetic** is any visual property of a plot object. For example, horizontal position is an aesthetic, since we can visually distinguish objects based on their horizontal position in a graph. We call horizontal position the `{py} x` aesthetic. Similarly, the `{py} y` aesthetic represents vertical position. 
+
+We say that the `{py} x='Sepal.Width'` argument *maps* the `{py} 'Sepal.Width'` variable to the $x$ **aesthetic**. We can map other variables to other aesthetics, with further keyword arguments, like `{py} color` and `{py} symbol`: 
+
+    pre(python-executable)
+      | show(px.scatter(iris,x='Sepal.Width',y='Sepal.Length',
+      |                 color='Species',symbol='Species'))
+      
+Note that we used the same categorical variable (`{py} 'Species'`) to the `{py} color` and `{py} symbol` aesthetics. 
+
+::: .exercise
+**Exercise**  
+Create a new data frame by appending a new column called "area" which is computed as a product of petal length and width. Map this new column to the `{py} size` aesthetic (keeping `{py} x`, `{py} y`, and `{py} color` the same as above). Which species of flowers has the smallest petal area? 
+:::
+
+    pre(python-executable)
+      | 
+      
+    x-quill
+    
+*Solution*. 
+
+    pre(python-executable)
+      | show(px.scatter(iris.assign(area = iris["Petal.Length"]*iris['Petal.Width']),
+      | x='Sepal.Width',y='Sepal.Length',color='Species',size='area'))* DELETE
+
+[Continue](btn:next)
+
+---
+> id: step-facets
+
+Rather than distinguishing species by color, we could also show them on three separate plots. This is called **faceting**. In Plotly Express, variables can be faceted using the `{py} facet_row` and `{py} facet_col` arguments. 
+
+    pre(python-executable)
+      | show(px.scatter(iris, x = 'Sepal.Width', y = 'Sepal.Length', facet_col = 'Species'))
+
+[Continue](btn:next)
+
+---
+> id: step-line
+
+A point is not the only geometric object we can use to represent data. A *line* might be more suitable if we want to help guide the eye from one data point to the next. Points and lines are examples of plot **geometries**. Geometries are tied to Plotly Express functions: `{py} px.scatter` uses the point geometry, and `{py} px.line` uses the line geometry.
+
+Let's make a line plot using the *Gapminder* data set, which records life expectancy and per-capita GDP for 142 countries. 
+
+    pre(python-executable)
+      | import plotly.express as px
+      | gapminder = px.data.gapminder()
+      | usa = gapminder.query('country == "United States"')
+      | show(px.line(usa, x="year", y="lifeExp"))
+
+[Continue](btn:next)
+
+---
+> id: step-line-group
+
+The `{py} line_group` argument allows us to group the data by country so we can plot multiple lines. Let's also map the `{py} 'continent'` variable to the `{py} color` aesthetic. 
+
+    pre(python-executable)
+      | show(px.line(gapminder, x="year", y="lifeExp", line_group="country", color="continent"))
+      
+::: .exercise
+**Exercise**  
+Although Plotly Express is designed primarily for data analysis, it can be used for mathematical graphs as well. Use `px.line` to graph the function $x\mapsto \operatorname{e}^x$ over the interval $[0,5]$.
+
+Hint: begin by making a new data frame with appropriate columns. You might find `{py} np.linspace` useful.
+:::
+
+    pre(python-executable)
+      | 
+      
+    x-quill
+
+*Solution*. We use `{py} np.linspace` to define an array of $x$-values, and we exponentiate it to make a list of $y$-values. We package these together into a data frame and plot it with `{py} px.line` as usual:
+
+    pre(python-executable)
+      | import numpy as np
+      | import pandas as pd
+      | x = np.linspace(0,5,100)
+      | y = np.exp(x)
+      | df = pd.DataFrame({'x': x, 'exp(x)': y})
+      | show(px.line(df, x = 'x', y = 'exp(x)'))
+
+[Continue](btn:next)
+
+---
+> id: step-bar
+
+Another common plot geometry is the *bar*. Suppose we want to know the average petal width for flowers with a given petal length. We can group by petal length and aggregate with the `{py} mean` function to obtain the desired data, and then visualize it with a bar graph: 
+
+    pre(python-executable)
+      | px.bar(iris.groupby('Petal.Length').agg('mean').reset_index(), 
+      |        x = 'Petal.Length', y = 'Petal.Width')
+
+We use `{py} reset_index` because we want to be able to access the index column of the data frame (which contains the petal lengths), and the index is not directly accessible from Plotly Express. Resetting makes the index a normal column and replaces it with consecutive integers starting from 0. 
+
+[Continue](btn:next)
+
+---
+> id: step-histogram
+
+Perhaps the most common use of the bar geometry is to make **histograms**. A histogram is a bar plot obtained by *binning* observations into intervals based on the values of a particular variable and plotting the intervals on the horizontal axis and the bin counts on the vertical axis. 
+
+Here's an example of a histogram in Plotly Express.  
+
+    pre(python-executable)
+      | px.histogram(iris, x = 'Sepal.Width', nbins = 30)
+
+We can control the number of bins with the `{py} nbins` argument. 
+
+::: .exercise
+**Exercise**  
+Does it make sense to map a categorical variable to the `{py} color` aesthetic for a histogram? Try changing the command below to map the species column to `{py} color`. 
+:::
+
+    pre(python-executable)
+      | px.histogram(iris, x = 'Sepal.Width', nbins = 30)
+      
+    x-quill
+    
+*Solution*. Yes, we can split each bar into multiple colors to visualize the contribution to each bar from each category. This works in Plotly Express: 
+
+    pre(python-executable)
+      | px.histogram(iris, x = 'Sepal.Width', nbins = 30, color = 'Species')
+      
+[Continue](btn:next)
+
+---
+> id: step-density-plots
+
+Closely related to the histogram is a one-dimensional *density plot*. A density plot approximates the distribution of a variable in a smooth way, rather than the using the [[piecewise constant|linear|quadratic]] function mapping each $x$ value to the height of its histogram bar.
+
+Unfortunately, Plotly Express doesn't have direct support for one-dimensional density plots, so we'll use plotly module called the *figure factory*: 
+
+    pre(python-executable)
+      | import plotly.figure_factory as ff
+      | ff.create_distplot([iris['Sepal.Width']],['Sepal.Width'])
+      
+The figure factory takes two lists as arguments: one contains the values to use to estimate the density, and the other represents the names of the groups (in this case, we're just using one group). You'll see that the plot produced by this function contains three [[geometries|aesthetics|plot titles]]: the bar plot is a histogram, the line plot represents the density, and the tick marks indicate the individual variable values (the set of tick marks is called a **rug plot**). 
+
+[Continue](btn:next)
+
+---
+> id: step-boxplot
+
+If a categorical variables is mapped to the `{py} x` aesthetic, the point geometry fails to make good use of plot space because all of the points will lie on a limited number of [[vertical|horizontal]] lines. As a result, it's common practice to represent the points in each category in some other way. Examples include the boxplot and the violin plot:
+
+    pre(python-executable)
+      | px.box(iris, x = 'Species', y = 'Petal.Width')
+      
+    pre(python-executable)
+      | px.violin(iris, x = 'Species', y = 'Petal.Width')
+      
+The box plot represents the distribute of the `{py} y` variable using five numbers: the min, first quartile, median, third quartile, and max. Alternatively, the min and max are sometimes replaced with upper and lower *fences*, and observations which lie outside are considered outliers and depicted with with points. The plot creator has discretion regarding how to calculate fence cutoffs, but one common choice for the upper fence formula is $\mathrm{Q}_3 + (1.5 \cdot \mathrm{IQR})$, where $$\mathrm{Q}_3$ is the third quartile and $\mathrm{IQR}$ is the [interquartile range](gloss:IQR). The corresponding lower fence formula would be [[`Q_1`|`Q_2`]] [[minus|plus]] 1.5 times the [[inter-quartile range|variance|median]].
+
+[Continue](btn:next)
+
+---
+> id: step-violin
+
+A violin plot is similar to a boxplot, except that rather than a box, a small [[density plot|histogram]] is drawn instead. 
+
+[Continue](btn:next)
+      
 ---
 > id: model
 ## Data Modeling
+
+
 
 ---
 > id: communicate

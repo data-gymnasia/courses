@@ -588,3 +588,11 @@ allocation:
 splat:
   title: Splatting
   text: In Python, you can supply the contents of a list as arguments to a function by putting an asterisk in front of the list name when calling the function. For example `{py} f(*[1,2,3])` is the same as `{py} f(1,2,3)`. Likewise, you can supply the contents of a dictionary as keyword arguments. For example, `{py} f(**{'a': 1, 'b': 2})` is the same as `{py} f(a=1,b=2)`. This is useful when want to manage arguments programatically rather than having to type them in when you call the function.
+  
+mpl3d:
+  title: 3D in Matplotlib
+  text: Matplotlib does not support true 3D graphics. You can make 3D figures, but for every pair of objects in the scene, one will be rendered entirely in front of the other. This leads to inaccuracies if the scene is relatively complex. See the Matplotlib [FAQ page](https://matplotlib.org/mpl_toolkits/mplot3d/faq.html) for more details.
+
+IQR:
+  title: Inter-quartile range
+  text: The inter-quartile range of a list of real numbers is the difference between the third and first quartiles.
