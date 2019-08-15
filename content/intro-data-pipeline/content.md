@@ -68,8 +68,6 @@ The difficulty of obtaining useful data ranges from trivial (your supervisor ema
 
 6. **Quandl**. A mixture of free and paid [financial datasets](https://www.quandl.com/).
 
-[Continue](btn:next)
-
 ---
 > id: wrangle
 ## Wrangling
@@ -252,6 +250,11 @@ Pandas does provide a solution to this problem: the `{py} query` method. You sup
 
     pre(python-executable)
       | ri.query('population > 50_000 & area > 50')
+
+[Continue](btn:next)
+
+---
+> id: step-query-interpolation
       
 Python variables can be interpolated in query strings using the `{py} @` prefix. For example, the query above could also be written as
 
@@ -412,7 +415,8 @@ For each observation in the `{py} 'toothpaste'` data set, find the ratio of the 
     pre(python-executable)
       | import numpy as np
       | toothpaste = pydataset.data('toothpaste')
-      | toothpaste.assign(score=lambda d: (d.meanA - d.meanB)/np.sqrt(d.sdA**2 + d.sdB**2))
+      | toothpaste.assign(score = lambda d: 
+      |       (d.meanA - d.meanB)/np.sqrt(d.sdA**2 + d.sdB**2))
 
 
 [Continue](btn:next)
@@ -531,7 +535,7 @@ Hint: make a new column to group by.
     pre(python-executable)
       | import pydataset
       | import numpy as np
-      | iris = pydataset.data('iris'); 
+      | iris = pydataset.data('iris') 
       | iris.assign(sepal_length_floor = np.floor(iris["Sepal.Length"])) \\ 
       |     .groupby('sepal_length_floor') \\ 
       |     [['Sepal.Width']] \\ 
@@ -683,6 +687,8 @@ Hint: begin by making a new data frame with appropriate columns. You might find 
       
     x-quill
 
+---
+
 *Solution*. We use `{py} np.linspace` to define an array of $x$-values, and we exponentiate it to make a list of $y$-values. We package these together into a data frame and plot it with `{py} px.line` as usual:
 
     pre(python-executable)
@@ -722,6 +728,11 @@ Here's an example of a histogram in Plotly Express.
 
 We can control the number of bins with the `{py} nbins` argument. 
 
+[Continue](btn:next)
+
+---
+> id: step-histogram-exercise
+
 ::: .exercise
 **Exercise**  
 Does it make sense to map a categorical variable to the `{py} color` aesthetic for a histogram? Try changing the command below to map the species column to `{py} color`. 
@@ -731,6 +742,8 @@ Does it make sense to map a categorical variable to the `{py} color` aesthetic f
       | show(px.histogram(iris, x = 'Sepal.Width', nbins = 30))
       
     x-quill
+    
+---
     
 *Solution*. Yes, we can split each bar into multiple colors to visualize the contribution to each bar from each category. This works in Plotly Express: 
 
@@ -743,6 +756,7 @@ Does it make sense to map a categorical variable to the `{py} color` aesthetic f
 [Continue](btn:next)
 
 ---
+### Density plots
 > id: step-density-plots
 
 Closely related to the histogram is a one-dimensional *density plot*. A density plot approximates the distribution of a variable in a smooth way, rather than the using the [[piecewise constant|linear|quadratic]] function mapping each $x$ value to the height of its histogram bar.
@@ -763,19 +777,19 @@ The figure factory takes two lists as arguments: one contains the values to use 
 If a categorical variables is mapped to the `{py} x` aesthetic, the point geometry fails to make good use of plot space because all of the points will lie on a limited number of [[vertical|horizontal]] lines. As a result, it's common practice to represent the points in each category in some other way. Examples include the boxplot and the violin plot:
 
     pre(python-executable)
-      | px.box(iris, x = 'Species', y = 'Petal.Width')
+      | show(px.box(iris, x = 'Species', y = 'Petal.Width'))
       
     pre(python-executable)
-      | px.violin(iris, x = 'Species', y = 'Petal.Width')
+      | show(px.violin(iris, x = 'Species', y = 'Petal.Width'))
       
-The box plot represents the distribute of the `{py} y` variable using five numbers: the min, first quartile, median, third quartile, and max. Alternatively, the min and max are sometimes replaced with upper and lower *fences*, and observations which lie outside are considered outliers and depicted with with points. The plot creator has discretion regarding how to calculate fence cutoffs, but one common choice for the upper fence formula is $\mathrm{Q}_3 + (1.5 \cdot \mathrm{IQR})$, where $$\mathrm{Q}_3$ is the third quartile and $\mathrm{IQR}$ is the [interquartile range](gloss:IQR). The corresponding lower fence formula would be [[`Q_1`|`Q_2`]] [[minus|plus]] 1.5 times the [[inter-quartile range|variance|median]].
+The box plot represents the distribute of the `{py} y` variable using five numbers: the min, first quartile, median, third quartile, and max. Alternatively, the min and max are sometimes replaced with upper and lower *fences*, and observations which lie outside are considered outliers and depicted with with points. The plot creator has discretion regarding how to calculate fence cutoffs, but one common choice for the upper fence formula is $\mathrm{Q}_3 + (1.5 \cdot \mathrm{IQR})$, where $\mathrm{Q}_3$ is the third quartile and $\mathrm{IQR}$ is the [interquartile range](gloss:IQR). The corresponding lower fence formula would be [[`Q_1`|`Q_2`]] [[minus|plus]] 1.5 times the [[inter-quartile range|variance|median]].
 
 [Continue](btn:next)
 
 ---
 > id: step-violin
 
-A violin plot is similar to a boxplot, except that rather than a box, a small [[density plot|histogram]] is drawn instead. 
+A violin plot is similar to a boxplot, except that rather than a box, a small [[density plot|histogram]] is drawn instead of the box-and-whisker figure. 
 
 [Continue](btn:next)
 
@@ -886,7 +900,7 @@ The advantage of the first model is that it's very [[simple|complicated]]. Howev
 ---
 > id: step-overfit
 
-The advantage of the second model is that it passes through [[almost all|all|a few]] of the training points. The disadvantage is that it is clearly taking the exact locations of these points [[too seriously|not seriously enough]]. If we got more observations, we would would not expect them to continue to fall on the curve. We say that the this model is **overfit**: it matches the training data well but will not generalize to new observations. 
+The advantage of the second model is that it passes through [[almost all|all|a few]] of the training points. The disadvantage is that it is clearly taking the locations of these points [[too seriously|not seriously enough]]. If we got more observations, we would would not expect them to continue to fall on the curve. We say that the this model is **overfit**: it matches the training data well but will not generalize to new observations. 
 
 ---
 > id: step-underfit
@@ -939,6 +953,11 @@ The examples in the previous section hint at some of the disadvantages of the re
 > id: machine-learning-machines
 
 So let's turn to doing machine learning with *machines*. Python's standard machine learning package is called Scikit-Learn. Let's see how it can be used to replicate the regression task you performed above, starting with linear regression. 
+
+[Continue](btn:next)
+
+---
+> id: step-ml-in-sklearn
 
 Machine learning models in Scikit-Learn are represented as objects whose class reflects the type of estimator. For example, a linear regression model has class `{py} LinearRegression`. Such objects can be fit to training data using the `{py} fit` method, which takes two arguments: a two-dimensional array or data frame of features and a one-dimensional array of response values. Once the model has been fit, it can `{py} predict` response values for a new two-dimensional array of features:
 
@@ -1029,11 +1048,11 @@ The arguments `{py} test_size` and `{py} random_state` specify the proportion of
       | 
       | from sklearn.model_selection import train_test_split
       | X_train, X_test, Y_train, Y_test = train_test_split(boston.drop('medv',axis=1),
-      |                                                     boston['medv'], 
-      |                                                     test_size = 0.2,
-      |                                                     random_state = 42)
-      | model = LinearRegression()
-      | model.fit(X_train, Y_train)
+      |                                                 boston['medv'], 
+      |                                                 test_size = 0.2,
+      |                                                 random_state = 42)
+      | linear = LinearRegression()
+      | linear.fit(X_train, Y_train)
 
 
 [Continue](btn:next)
@@ -1041,7 +1060,7 @@ The arguments `{py} test_size` and `{py} random_state` specify the proportion of
 ---
 > id: step-testing-data-caution
 
-At this point we'd like to test our model on the testing data we set aside. However, we should be very careful about doing that, because if we repeat that process on many models and select the best, then the testing data have effectively crept into the training loop, and we are no longer confident about how the model will perform on fresh data. 
+At this point we'd like to test our dflinear on the testing data we set aside. However, we should be very careful about doing that, because if we repeat that process on many models and select the best, then the testing data have effectively crept into the training loop, and we are no longer confident about how the model will perform on fresh data. 
 
 [Continue](btn:next)
 
@@ -1050,15 +1069,23 @@ At this point we'd like to test our model on the testing data we set aside. Howe
 
 Instead what we'll do is carve out preliminary testing data from our training data. Then we'll follow the same fitting procedure to train a model on remaining training data. We can do this repeatedly to get a better sense for how our model tends to perform when it sees new data. This process is called **cross-validation**, and Scikit-Learn has built-in methods for it. We'll use a version called $k$-fold cross-validation which partitions the training data into $k$ subsets called *folds* and trains the model with $k-1$ of the folds as training data and the last fold as test data. Each fold takes one turn as the test data, so you get $k$ fits in total.
 
+[Continue](btn:next)
+
+---
+> id: step-cross-val-score
+
 We supply the model and the training data to the function `{py} cross_val_score`. We use *negative mean squared error* for assessing how well the model fits the test data. The *mean squared error* refers to the average squared difference between predictions and actual response values, and this value is negated since Scikit-Learn's cross-validation is designed for the convention that a higher score is better (whereas un-negated squared error has the property that [[lower|higher]] is better). The `{py} cv` argument specifies the number of folds.
 
     pre(python-executable)
       | 
       | import numpy as np
       | from sklearn.model_selection import cross_val_score
-      | scores = cross_val_score(model, X_train, Y_train,
+      | scores = cross_val_score(linear, X_train, Y_train,
       |                          scoring="neg_mean_squared_error", cv=10)
       | linreg_cv_scores = np.sqrt(-scores)
+      | linreg_cv_scores
+
+The average value of the variable we're trying to predict is around [[23±5]], so the model's accuracy is not particularly impressive.
 
 [Continue](btn:next)
 
@@ -1074,13 +1101,18 @@ We can swap out the linear model for other `{py} sklearn` models to see how they
       | scores = cross_val_score(decisiontree, X_train, Y_train,
       |                          scoring="neg_mean_squared_error", cv=10)
       | tree_cv_scores = np.sqrt(-scores)
+      | tree_cv_scores
 
     pre(python-executable)
       | 
-      | import plotly.express as 
+      | import plotly.express as px
       | from datagymnasia import show
-      | results = pd.DataFrame({'scores': np.hstack((linreg_cv_scores,tree_cv_scores)),
-      |                         'model': np.hstack((np.full(10,'linear'),np.full(10,'tree')))})
+      | results = pd.DataFrame(
+      |   {'scores': np.hstack((linreg_cv_scores,
+      |                        tree_cv_scores)),
+      |    'model': np.hstack((np.full(10,'linear'),
+      |                        np.full(10,'tree')))}
+      | )
       | 
       | show(px.histogram(results, x = 'scores', color = 'model', barmode = 'group'))
 
@@ -1097,6 +1129,7 @@ Let's try one more model: the *random forest*. As the name suggests, random fore
       | scores = cross_val_score(randomforest, X_train, Y_train,
       |                          scoring="neg_mean_squared_error", cv=10)
       | forest_cv_scores = np.sqrt(-scores)
+      | forest_cv_scores
 
 [Continue](btn:next)
 
@@ -1106,20 +1139,26 @@ Let's try one more model: the *random forest*. As the name suggests, random fore
 Now let's compare all three models:
 
     pre(python-executable)
-      | results = pd.DataFrame({'scores': np.hstack((linreg_cv_scores,tree_cv_scores,forest_cv_scores)),
-      |                         'model': np.hstack((np.full(10,'linear'),np.full(10,'tree'),np.full(10,'forest')))})
+      | results = pd.DataFrame(
+      |     {'scores': np.hstack((linreg_cv_scores,
+      |                           tree_cv_scores,
+      |                           forest_cv_scores)),
+      |      'model': np.hstack((np.full(10,'linear'),
+      |               np.full(10,'tree'),
+      |               np.full(10,'forest')))}
+      | )
       | show(px.histogram(results, x = 'scores', color = 'model', barmode = 'group'))
 
-According to this bar chart, the best model between these three is the [[random forest|linear model|decision tree]], while the second best is the [[linear model|decision tree|random forest]]. Let's check whether that holds up when we finally use the test set:
+According to this bar chart, the best model among these three is the [[random forest|linear model|decision tree]], while the second best is the [[linear model|decision tree|random forest]]. Let's check whether that holds up when we finally use the test set:
 
     pre(python-executable)
       | 
-      | model.fit(X_train, Y_train)
-      | np.mean((model.predict(X_test) - Y_test)**2)
+      | linear.fit(X_train, Y_train)
+      | print(np.mean((linear.predict(X_test) - Y_test)**2))
       | decisiontree.fit(X_train, Y_train)
-      | np.mean((decisiontree.predict(X_test) - Y_test)**2)
+      | print(np.mean((decisiontree.predict(X_test) - Y_test)**2))
       | randomforest.fit(X_train, Y_train)
-      | np.mean((randomforest.predict(X_test) - Y_test)**2)
+      | print(np.mean((randomforest.predict(X_test) - Y_test)**2))
 
 Are these results expected? Discuss.
 
@@ -1138,7 +1177,7 @@ It's ultimately up to the data scientist to make good choices for hyperparameter
 ---
 > id: step-hyperparameter-search
 
-The hyperparameters for a random forest include `{py} n_estimators` (the number of trees in the forest) and `{py} max_features` (the number of features that each branch in each decision tree is allowed to consider). `{py} GridSearchCV` is a Scikit-Learn class for performing hyperparameter searches. 
+The hyperparameters for a random forest include `{py} n_estimators` (the number of trees in the forest) and `{py} max_features` (the number of features that each branch in each decision tree is allowed to consider). `{py} GridSearchCV` is a Scikit-Learn class for performing hyperparameter searches. It does cross-validation for every combination of the supplied parameters (hence *grid* in the name).
 
     pre(python-executable)
       | 
@@ -1157,9 +1196,9 @@ The hyperparameters for a random forest include `{py} n_estimators` (the number 
 ---
 > id: step-moving-on
 
-Although there's a lot more stuff to know about data preparation and modeling, we've seen some of the basic elements in action: do any necessary preprocessing, prepare the data for modeling using a train-test split, fit a model to the data, assess models using cross-validation, and choose model hyperparameters using a grid search. 
+Although there's a lot more to know about data preparation and modeling, we've seen some of the basic elements in action: do any necessary preprocessing, prepare the data for modeling using a train-test split, fit a model to the data, assess models using cross-validation, and choose model hyperparameters using a grid search. 
 
-As you gain experience, the wrangling, visualization, and modeling phases will begin to intertwine: you wrangle to get a better visualization and to prepare data for the model, you gain modeling insights from visualization, and your preliminary modeling results suggest visualizations to investigate. The process of navigating fluidly between wrangling, visualization, and modeling is called **exploratory data analysis**. 
+As you gain experience, the wrangling, visualization, and modeling phases will intertwine: you wrangle to get a better visualization and to prepare data for the model, you gain modeling insights from visualization, and your preliminary modeling results suggest visualizations to investigate. The process of navigating fluidly between wrangling, visualization, and modeling is called **exploratory data analysis**. 
 
 ---
 > id: communicate
@@ -1223,4 +1262,4 @@ Read [this report](https://data-gymnasia.github.io/report-examples/bad-example.h
 ### Bon voyage
 > id: step-bon-voyage
 
-This course has been a very brief introduction to the data science pipeline. If you try to tackle a real data science problem, you will find that there are many important skills that we did not develop (for example, handling missing data or making categorical variables quantitative for purposes of training a model). However, getting a survey of the full pipeline will serve as a useful frame of reference as you learn more data science from more in-depth sources. My top recommendations are *Hands-on Machine Learning with Scikit-Learn and TensorFlow* by Aurélien Geron for Python, and the free online book *Introduction to Data Science* by Rafael Irizarry for R.
+This course has been a very brief introduction to the data science pipeline. If you try to tackle a real data science problem, you will find that there are many important skills that we did not develop (for example, handling missing data or making categorical variables quantitative for purposes of training a model). However, getting a survey of the full pipeline will serve as a useful frame of reference as you learn more data science from more in-depth sources. My top recommendations are *Hands-on Machine Learning with Scikit-Learn and TensorFlow* by Aurélien Geron for Python, and the free online book [*Introduction to Data Science*](http://rafalab.github.io/dsbook) by Rafael Irizarry for R.
