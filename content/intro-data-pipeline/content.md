@@ -31,7 +31,7 @@ The difficulty of obtaining useful data ranges from trivial (your supervisor ema
 ---
 > id: data-sources
 
-1. **R packages**. Many classic datasets are available as packages in [R](gloss:R). Of particular note is the package `{code} fivethirtyeight`, which includes data for more than 100 articles from the popular data journalism outfit [FiveThirtyEight](https://fivethirtyeight.com). We will discuss the easiest way to load packages from R into Python in the next section. 
+1. **R packages**. Many classic datasets are available as packages in [R](gloss:R). Of particular note is the package `{code} fivethirtyeight`, which includes data for more than 100 articles from the popular data journalism outfit [FiveThirtyEight](https://fivethirtyeight.com). You can use R from within Python using the package [`{code} rpy2`](gloss:rpy2).
 
 [Continue](btn:next)
 
@@ -52,7 +52,7 @@ The difficulty of obtaining useful data ranges from trivial (your supervisor ema
 ---
 > id: uc-irvine
 
-4. **UC Irvine Machine Learning Repository**. [About 480 datasets](http://archive.ics.uci.edu/ml/index.php), hosted by UC Irvine as a service to the machine learning community
+4. **UC Irvine Machine Learning Repository**. [About 480 datasets](http://archive.ics.uci.edu/ml/index.php), hosted by UC Irvine as a service to the machine learning community.
 
 [Continue](btn:next)
 
@@ -71,26 +71,10 @@ The difficulty of obtaining useful data ranges from trivial (your supervisor ema
 [Continue](btn:next)
 
 ---
-> id: data-types
-
-We conclude this section by highlighting a distinction between two types of data:  
-
-1. **Scientific data**. Scientists are trained to take great care to mitigate problems of bias in data collection, so these data tend to provide the most reliable insights into underlying phenomena.
-
-[Continue](btn:next)
-
----
-> id: incidental-data
-
-2. **Incidental data**. Processes not intended primarily for data collection often yield artifacts that can be mined for insight using data techniques. For example, web logs tracking users' interaction with a website can be used to improve the user experience. Patterns observed in such data are often more reflective of the manner of collection than of underlying phenomena, so hypotheses formed by looking at the data are often subjected to experimental scrutiny using statistical methods like [A/B testing](gloss:abtesting).
-
-[Continue](btn:next)
-
----
 > id: wrangle
 ## Wrangling
 
-Data is said to be in *tidy* format if each row corresponds to an observation and each column corresponds a different observation variable. For example, in the [iris dataset](gloss:iris), each row represents a flower, and the entries of a row specify the flower's species and various measurements made for that flower: 
+Data is said to be in *tidy* format if each row corresponds to an observation and each column corresponds a different observation variable. For example, in the [iris dataset](gloss:iris), each row represents a flower, and the entries of a row specify the flower's species and various measurements made for that flower. Here's the [head](gloss:dataframe-head) of the Iris data frame. 
 
 <!--python
 from pydataset import data
@@ -98,7 +82,7 @@ data('iris').head().to_html(border=0)
 -->
 <table border=0 class="dataframe">  <thead>    <tr style="text-align: right;">      <th></th>      <th>Sepal.Length</th>      <th>Sepal.Width</th>      <th>Petal.Length</th>      <th>Petal.Width</th>      <th>Species</th>    </tr>  </thead>  <tbody>    <tr>      <th>1</th>      <td>5.1</td>      <td>3.5</td>      <td>1.4</td>      <td>0.2</td>      <td>setosa</td>    </tr>    <tr>      <th>2</th>      <td>4.9</td>      <td>3.0</td>      <td>1.4</td>      <td>0.2</td>      <td>setosa</td>    </tr>    <tr>      <th>3</th>      <td>4.7</td>      <td>3.2</td>      <td>1.3</td>      <td>0.2</td>      <td>setosa</td>    </tr>    <tr>      <th>4</th>      <td>4.6</td>      <td>3.1</td>      <td>1.5</td>      <td>0.2</td>      <td>setosa</td>    </tr>    <tr>      <th>5</th>      <td>5.0</td>      <td>3.6</td>      <td>1.4</td>      <td>0.2</td>      <td>setosa</td>    </tr>  </tbody></table>
 
-Note that four of the columns are **quantitative** (that is, they contain numerical data), while one is **categorical** (that is, it contains a string which represents a category).
+Note that four of the columns are **quantitative** (that is, they contain numerical data), while one is **categorical** (that is, they contain strings which represent categories).
 
 [Continue](btn:next)
 
@@ -116,56 +100,125 @@ Many types of data do not fit naturally into the tidy data framework, like image
 A **data frame** is an object for storing tidy data, and the package which provides data frames in the Python ecosystem is **Pandas**. 
 
     pre(python-executable)
-      | from pydataset import data
-      | df = data("iris")
-      | type(df)
+      | import pydataset
+      | iris = pydataset.data("iris")
+      | print(type(iris))
+      | iris.head()
 
-A data frame's `{py} index` attribute stores the labels of the rows, and `{py} columns` attribute stores the column names. 
+A data frame's `{py} index` attribute stores the labels of the rows, and the `{py} columns` attribute stores the column names. 
 
     pre(python-executable)
-      | df.columns, df.index
+      | iris.columns, iris.index
     
 [Continue](btn:next)
 
 ---
 > id: step-access-row-col
       
-Columns of the data frame can be accessed using index notation or as attributes: 
+Columns of the data frame can be accessed using by indexing the data frame with the name of the column. For column names that are valid Python variable names, dot syntax access is also supported: 
 
     pre(python-executable)
       | import pandas as pd
       | data = [[179_335,47.7],[81_274,73.4],[24_590,19.9],[22_131,25.4]]
       | columns = ['population', 'area']
       | index = ['Providence', 'Cranston', 'Newport', 'Bristol']
-      | df = pd.DataFrame(data, columns = columns, index = index)
-      | df['population'] # or df.population, same thing
+      | ri = pd.DataFrame(data, columns = columns, index = index)
+      | ri['population'] # or ri.population, same thing
+
+[Continue](btn:next)
+
+---
+> id: step-loc-iloc
 
 Pandas `{py} DataFrame` objects provide two attributes, called `{py} loc` and `{py} iloc`, for accessing entries using names or integers, respectively.
 
     pre(python-executable)
-      | df.loc['Providence',:'area'], df.iloc[0,:1]
+      | ri.loc['Providence',:'area'], ri.iloc[0,:1]
+
+[Continue](btn:next)
+
+---
+> id: step-slicing-exercise
 
 Note that slices built with row or column names are inclusive, while integer slices follow the usual Python convention of being exclusive of the upper bound. 
+
+::: .exercise
+**Exercise**  
+Use the `{py} pydataset` package to load the `{py} 'Boston'` data set. Select all of the columns between `{py} indus` and `{py} rad` and assign the resulting data frame to a new variable. Then select the first 25 rows from that new data frame.
+:::
+
+    pre(python-executable)
+      | 
+      
+    x-quill
+    
+---
+
+*Solution*. We index columns using `{py} loc` and the rows using `{py} iloc`
+
+    pre(python-executable)
+      | boston = pydataset.data('Boston')
+      | boston_trimmed = boston.loc[:,'indus':'rad']
+      | boston_trimmed.iloc[:25,:]
+
+[Continue](btn:next)
 
 ---
 > id: five-verbs
 ### The five verbs of data manipulation
 
-Although data frames support many transformations, we will follow data science legend [Hadley Wickham](gloss:hadley) in suggesting the following six as fundamental. They can be combined to cover most of your data manipulation needs, so you can get up and running quickly in any data manipulation framework by learning how these actions are performed and composed. 
+Although data frames support many transformations, we will follow the prominent data scientist [Hadley Wickham](gloss:hadley) in suggesting the following six as fundamental. They can be combined to cover most of your data manipulation needs, so you can get up and running quickly in any data manipulation framework by learning how these actions are performed and composed. 
+
+[Continue](btn:next)
+
+---
+> id: step-verb-item-filter
 
 1. **Filter**. Pick rows based on their values.
 
+[Continue](btn:next)
+
+---
+> id: step-verb-item-sort
+
 2. **Sort**. Re-order the rows.
+
+[Continue](btn:next)
+
+---
+> id: step-verb-item-select
 
 3. **Select**. Choose specific columns.
 
+[Continue](btn:next)
+
+---
+> id: step-verb-item-transform
+
 4. **Transform**. Create new columns from existing ones.
 
-5. **Aggregate**. Reduce the data frame to a single row by applying a function (like `{py} sum`, `{py} min`, `{py} max`, etc.) which maps a column of values to a single value.
+[Continue](btn:next)
+
+---
+> id: step-verb-item-aggregate
+
+5. **Aggregate**. Reduce the data frame to a single row by applying a function (like `{py} sum`, `{py} min`, `{py} max`, etc.) which maps each column of values to a single value.
+
+[Continue](btn:next)
+
+---
+> id: step-verb-item-group
 
 6. **Group**. Collect the rows of the data frame into groups. 
 
+[Continue](btn:next)
+
+---
+> id: step-verb-item-group-explanation
+
 The grouping operation is different from the others because it outputs a **grouped data frame** (which can be visualized as a stack of data frames). The other operations can be applied group-by-group. 
+
+[Continue](btn:next)
 
 ---
 > id: filter-verb
@@ -174,27 +227,59 @@ The grouping operation is different from the others because it outputs a **group
 There are two main ways to filter rows in Pandas. The first is to obtain a column of boolean values and use it to index the rows of the data frame. For example: 
 
     pre(python-executable)
-      | df[df.population > 50_000]
+      | ri[ri.population > 50_000]
 
-In the last line above, `{py} df.population > 50_000` returns a column with the values `{py} [True, True, False, False]`, and indexing the data frame with a boolean array selects only those rows corresponding to the `{py} True` values. 
+In the last line above, `{py} ri.population > 50_000` returns a column with the values `{py} [True, True, False, False]`, and indexing the data frame with a boolean array selects only those rows corresponding to the `{py} True` values. 
+
+[Continue](btn:next)
+
+---
+> id: step-index-predicates
 
 We can combine predicates using the usual Python operations for [sets](gloss:python-sets): 
 
     pre(python-executable)
-      | df[(df.population > 50_000) & (df.area > 50)]
+      | ri[(ri.population > 50_000) & (ri.area > 50)]
       
-This approach has some drawbacks: First, we have to repeat the name of the data frame multiple times. This violates the maxim "Don't repeat yourself". Second, computing an expression like `{py} (df.population > 50_000) & (df.area > 50)` requires three array [allocations](gloss:allocation): one for `{py} df.population > 50_000`, one for `{py} df.area > 50`, and one for the `{py} (df.population > 50_000) & (df.area > 50)`. These allocations are unnecessary, since you can imagine just looping over the rows and directly checking the whole condition for each row (although you don't want to do that by hand, because loops in Python are slow). 
+This approach has some drawbacks: First, we have to repeat the name of the data frame multiple times. This violates the programming maxim "Don't repeat yourself". Second, computing an expression like `{py} (ri.population > 50_000) & (ri.area > 50)` requires three array [allocations](gloss:allocation): one for `{py} ri.population > 50_000`, one for `{py} ri.area > 50`, and one for the `{py} (ri.population > 50_000) & (ri.area > 50)`. These allocations are unnecessary, since it is possible to just loop over the rows and directly check the whole condition for each row (although you don't want to program that yourself in Python, because loops in Python are slow). 
+
+[Continue](btn:next)
+
+---
+> id: step-query-method
 
 Pandas does provide a solution to this problem: the `{py} query` method. You supply your condition as a string, and Pandas makes things efficient for you under the hood:
 
     pre(python-executable)
-      | df.query('population > 50_000 & area > 50')
+      | ri.query('population > 50_000 & area > 50')
       
 Python variables can be interpolated in query strings using the `{py} @` prefix. For example, the query above could also be written as
 
     pre(python-executable)
       | min_pop = 50_000
-      | df.query('population > @min_pop & area > 50')
+      | ri.query('population > @min_pop & area > 50')
+      
+::: .exercise
+**Exercise**  
+Use the `{code} query` method to identify the records in the `{py} 'Boston'` data set which have the property that `{py} indus` is at least 10 and either `{py} medv` is less than 8 or `{py} chas` is 1. 
+:::
+
+    pre(python-executable)
+      | 
+      
+    x-quill
+    
+---
+> id: filter-exercise-solution
+
+*Solution*. We use parentheses to group the given logical conditions:
+
+    pre(python-executable)
+      | import pydataset
+      | boston = pydataset.data('Boston')
+      | boston.query('indus >= 10 & (medv < 8 | chas == 1)')
+
+[Continue](btn:next)
 
 ---
 > id: sort-verb
@@ -203,7 +288,7 @@ Python variables can be interpolated in query strings using the `{py} @` prefix.
 The `{py} DataFrame` method that sorts values is called `{py} sort_values`. It takes an argument for the column labels (or list of columns labels) to use for sorting, and you can use the `{py} ascending` argument to specify whether the values in that column should be in increasing or decreasing order. 
 
     pre(python-executable)
-      | df.sort_values('population',ascending=False)
+      | ri.sort_values('population',ascending=False)
 
 If a list of columns is supplied, then each column after the first is used to break ties in the preceding columns: 
 
@@ -213,6 +298,27 @@ If a list of columns is supplied, then each column after the first is used to br
 
 Note that `{py} sort_values` returns a new data frame. It does not modify the original one. 
 
+::: .exercise
+**Exercise**  
+Sort the `{py} 'Boston'` data set in decreasing order of the value in the first column.
+:::
+
+    pre(python-executable)
+      | 
+      
+    x-quill
+    
+---
+> id: filter-exercise-solution
+
+*Solution*. We can inspect `{py} columns` or look at the data frame's head to see that the first column is `{py} 'crim'`. Then we sort:
+
+    pre(python-executable)
+      | boston = pydataset.data('Boston')
+      | boston.sort_values(['crim'], ascending = False)
+
+[Continue](btn:next)
+
 ---
 > id: select-verb
 #### Select
@@ -220,14 +326,54 @@ Note that `{py} sort_values` returns a new data frame. It does not modify the or
 To select columns in Pandas, you can just index the data frame with a list of column names: 
 
     pre(python-executable)
-      | df[['population','area']]
+      | ri[['population','area']]
+      
+[Continue](btn:next)
+
+---
+> id: step-drop-method      
 
 If you want to keep all columns *except* specific ones, you can use the `{py} drop` method:       
 
     pre(python-executable)
-      | df.drop('population', axis=1)
+      | ri.drop('population', axis=1)
       
-We have to specify that `{py} 'population'` refers to columns (`{py} axis=1`), because the `{py} drop` method can also be used to drop rows. Like `{py} sort_values`, `{py} drop` doesn't modify the original data frame.
+We have to specify that `{py} 'population'` refers to columns (`{py} axis=1`), because the `{py} drop` method's default is to look for rows to drop. Like `{py} sort_values`, `{py} drop` doesn't modify the original data frame.
+
+[Continue](btn:next)
+
+---
+> id: step-integer-drop
+
+::: .exercise
+**Exercise**  
+Select the columns in the Boston data frame which contain floating point numbers (as opposed to integers, which do not print with a decimal point). 
+:::
+
+    pre(python-executable)
+      |     
+      
+    x-quill
+    
+---
+> id: filter-exercise-solution
+
+*Solution*. We inspect the data frame to find that the columns which are not floats are `{py} 'chas'`, `{py} rad`, and `{py} 'tax'`. So we use drop instead of selecting: 
+
+    pre(python-executable)
+      | boston_float_only = boston.drop(['chas', 'rad', 'tax'],axis=1)
+      | boston_float_only.head()
+
+As a follow-up, we note that this is a sufficiently common operation that Pandas supplies a convenience method for it: 
+
+    pre(python-executable)
+      | import numpy as np
+      | boston_float_only = boston.select_dtypes(exclude=['int'])
+      | boston_float_only.head()
+
+You can inspect the types of the columns of a data frame using its `{py} dtypes` attribute.
+
+[Continue](btn:next)
 
 ---
 > id: transform-verb
@@ -236,17 +382,40 @@ We have to specify that `{py} 'population'` refers to columns (`{py} axis=1`), b
 We can create new columns in a data frame using the `{py} assign` method. For example: 
 
     pre(python-executable)
-      | df.assign(density = df.population / df.area)
+      | ri.assign(density = ri.population / ri.area)
       
 If the name of the data frame is quite long, you can avoid having to type it repeatedly by supplying an anonymous function to be applied to the data frame: 
 
     pre(python-executable)
-      | df.assign(density = lambda d: d.population / d.area) \\ 
+      | ri.assign(density = lambda d: d.population / d.area) \\ 
       |   .assign(**{'inverse density': lambda d: 1/d.density})
 
 Oops! There was a spurious space after the line continuation backslash. Delete it and run the cell again.
 
 We are using two `{py} assign` calls to create a column called `{py} density` and then a second new column called `{py} inverse density`. (Note how we used [splatting](gloss:splat) to get a space in the column name.)
+
+::: .exercise
+**Exercise**  
+For each observation in the `{py} 'toothpaste'` data set, find the ratio of the difference between means to the square root of the sum of the squares of the standard deviations for conditions "A" and "B". 
+:::
+
+    pre(python-executable)
+      | 
+      
+    x-quill
+    
+---
+> id: filter-exercise-solution
+
+*Solution*. Since the formula is quite involved, we use an anonymous function: 
+
+    pre(python-executable)
+      | import numpy as np
+      | toothpaste = pydataset.data('toothpaste')
+      | toothpaste.assign(score=lambda d: (d.meanA - d.meanB)/np.sqrt(d.sdA**2 + d.sdB**2))
+
+
+[Continue](btn:next)
 
 ---
 > id: aggregate-verb
@@ -269,12 +438,37 @@ The `{py} agg` method applies a specified function (called the *aggregation* fun
 For example, to find the total population of the four cities in our data frame, we run: 
 
     pre(python-executable)
-      | df.population.agg('sum')
+      | ri.population.agg('sum')
 
 To find the average population and area: 
 
     pre(python-executable)
-      | df.agg('mean')
+      | ri.agg('mean')
+
+You can also supply a custom aggregation function instead of a string. 
+
+::: .exercise
+**Exercise**  
+Find the range (the difference between max and min) for each of the four quantitative columns in the `{py} iris` dataset. Try using an anonymous function rather than using the built-in `{py} 'min'` and `{py} 'max'` aggregation functions.
+:::
+
+    pre(python-executable)
+      | 
+      
+    x-quill
+    
+---
+> id: filter-exercise-solution
+
+*Solution*. We have to drop the categorical column first since we can't compute a range for that. 
+
+    pre(python-executable)
+      | import numpy as np
+      | import pydataset
+      | iris = pydataset.data('iris')
+      | iris.drop(['Species'],axis=1).agg(lambda r: np.max(r) - np.min(r))
+
+[Continue](btn:next)
 
 ---
 > id: group-verb
@@ -311,6 +505,11 @@ and `{py} 'XYZ Widgets'` to
 
 The `{py} agg` method of `{py} DataFrameGroupBy` object operates on each each of these data frames to produce a row, and these rows are collected into a new data frame. The row index for this output data frame comes from the keys of the dictionary-like `{py} DataFrameGroupBy` object. 
 
+[Continue](btn:next)
+
+---
+> id: step-flower-group-exercise
+
 ::: .exercise
 **Exercise**  
 Group the flowers in the Iris data set in unit intervals of sepal length and find the average sepal width for each such group. (In other words, one group contains all flowers with sepal length in $[4,5)$, another group has all flowers with sepal length in $[5,6)$, and so on.)
@@ -319,18 +518,20 @@ Hint: make a new column to group by.
 :::
 
     pre(python-executable)
-      | from pydataset import data
-      | iris = data('iris')
+      | import pydataset
+      | iris = pydataset.data('iris')
       | 
       
     x-quill
 
+---
+
 *Solution*. Delete the spaces after each line continuation backslash before running the following block:
 
     pre(python-executable)
-      | from pydataset import data
+      | import pydataset
       | import numpy as np
-      | iris = data('iris'); 
+      | iris = pydataset.data('iris'); 
       | iris.assign(sepal_length_floor = np.floor(iris["Sepal.Length"])) \\ 
       |     .groupby('sepal_length_floor') \\ 
       |     [['Sepal.Width']] \\ 
@@ -343,7 +544,7 @@ Line by line, starting from the fourth: we create a new column to group by using
 ---
 > id: step-other-functions
 
-The other four operations (filter, sort, select, and transform) can be applied to grouped data frames as well. However, only selection works directly on grouped data frames. For the others, the `{py} apply` method is used to operate group-by-group. For example, we can sort by petal length within species as follows:
+We conclude this section by noting that the other four operations (filter, sort, select, and transform) can be applied to grouped data frames as well. However, only selection works directly on grouped data frames. For the others, the `{py} apply` method is used to operate group-by-group. For example, we can sort by petal length within species as follows:
 
     pre(python-executable)
       | iris.groupby('Species').apply(lambda d: d.sort_values('Petal.Length'))
@@ -354,21 +555,26 @@ The other four operations (filter, sort, select, and transform) can be applied t
 
 Data visualization is a way to leverage your visual cortex to gain insight into data. Because vision is such a rich and well-developed interface between the human mind and the external world, visualization is a critical tool for understanding and communicating data ideas.
 
-The standard graphics library in Python is Matplotlib, but we will use a newer package called *Plotly*. Plotly offers a number of material improvements over Matplotlib: (1) figures support interactions like mouseovers and animations, (2) there is support for [genuine](gloss:mpl3d) 3D graphics, and (3) Plotly is not Python-specific: it can be used directly in Javascript or in R or Julia. 
+The standard graphics library in Python is Matplotlib, but here we will use a newer package called *Plotly*. Plotly offers a number of material advantages relative to Matplotlib: (1) figures support interactions like mouseovers and animations, (2) there is support for [genuine](gloss:mpl3d) 3D graphics, and (3) Plotly is not Python-specific: it can be used directly in Javascript or in R or Julia.
 
 If you use Plotly in a Jupyter notebook, the figures will automatically display in an interactive form. Therefore, it is recommended that you follow along using a separate tab with a [Jupyter notebook](https://mybinder.org/v2/gh/data-gymnasia/python-binder/master). However, we will use the function `{py} show` defined in the cell below to display the figures as static images so they can be viewed on this page. 
 
     pre(python-executable)
       | from datagymnasia import show
+      | print("Success!")
 
 [Continue](btn:next)
 
 ---
+### Scatter plot
 > id: step-scatter-example
 
 We can visualize the relationship between two columns of numerical data by associating them with the horizontal and vertical axes of the Cartesian plane and drawing a point in the figure for each observation. This is called a **scatter plot**. In Plotly Express, scatter plots are created using the `{py} px.scatter` function. The columns to associate with the two axes are identified by name using the keyword arguments `{py} x` and `{py} y`.  
 
     pre(python-executable)
+      | import plotly.express as px
+      | import pydataset
+      | iris = pydataset.data('iris')
       | show(px.scatter(iris,x='Sepal.Width',y='Sepal.Length'))
 
 [Continue](btn:next)
@@ -378,13 +584,21 @@ We can visualize the relationship between two columns of numerical data by assoc
 
 An **aesthetic** is any visual property of a plot object. For example, horizontal position is an aesthetic, since we can visually distinguish objects based on their horizontal position in a graph. We call horizontal position the `{py} x` aesthetic. Similarly, the `{py} y` aesthetic represents vertical position. 
 
-We say that the `{py} x='Sepal.Width'` argument *maps* the `{py} 'Sepal.Width'` variable to the $x$ **aesthetic**. We can map other variables to other aesthetics, with further keyword arguments, like `{py} color` and `{py} symbol`: 
+We say that the `{py} x='Sepal.Width'` argument *maps* the `{py} 'Sepal.Width'` variable to the `{py} x` aesthetic. We can map other variables to other aesthetics, with further keyword arguments, like `{py} color` and `{py} symbol`: 
 
     pre(python-executable)
-      | show(px.scatter(iris,x='Sepal.Width',y='Sepal.Length',
-      |                 color='Species',symbol='Species'))
+      | show(px.scatter(iris,
+      |                 x='Sepal.Width',
+      |                 y='Sepal.Length',
+      |                 color='Species',
+      |                 symbol='Species'))
       
 Note that we used the same categorical variable (`{py} 'Species'`) to the `{py} color` and `{py} symbol` aesthetics. 
+
+[Continue](btn:next)
+
+---
+> id: step-map-new-aesthetic
 
 ::: .exercise
 **Exercise**  
@@ -396,26 +610,37 @@ Create a new data frame by appending a new column called "area" which is compute
       
     x-quill
     
-*Solution*. 
+---
+    
+*Solution*. We use the `{py} assign` method to add the suggested column, and we include an additiona keyword argument to map the new column to the `{py} size` aesthetic.
 
     pre(python-executable)
-      | show(px.scatter(iris.assign(area = iris["Petal.Length"]*iris['Petal.Width']),
-      | x='Sepal.Width',y='Sepal.Length',color='Species',size='area'))
+      | show(px.scatter(iris.assign(area = iris["Petal.Length"] * 
+      |                                    iris['Petal.Width']),
+      |                 x='Sepal.Width',
+      |                 y='Sepal.Length',
+      |                 color='Species',
+      |                 size='area'))
 
 [Continue](btn:next)
 
 ---
+#### Faceting
 > id: step-facets
 
 Rather than distinguishing species by color, we could also show them on three separate plots. This is called **faceting**. In Plotly Express, variables can be faceted using the `{py} facet_row` and `{py} facet_col` arguments. 
 
     pre(python-executable)
-      | show(px.scatter(iris, x = 'Sepal.Width', y = 'Sepal.Length', facet_col = 'Species'))
+      | show(px.scatter(iris, 
+      |                 x = 'Sepal.Width', 
+      |                 y = 'Sepal.Length', 
+      |                 facet_col = 'Species'))
 
 [Continue](btn:next)
 
 ---
-> id: step-line
+### Line plots
+> id: step-line-plot
 
 A point is not the only geometric object we can use to represent data. A *line* might be more suitable if we want to help guide the eye from one data point to the next. Points and lines are examples of plot **geometries**. Geometries are tied to Plotly Express functions: `{py} px.scatter` uses the point geometry, and `{py} px.line` uses the line geometry.
 
@@ -435,11 +660,20 @@ Let's make a line plot using the *Gapminder* data set, which records life expect
 The `{py} line_group` argument allows us to group the data by country so we can plot multiple lines. Let's also map the `{py} 'continent'` variable to the `{py} color` aesthetic. 
 
     pre(python-executable)
-      | show(px.line(gapminder, x="year", y="lifeExp", line_group="country", color="continent"))
+      | show(px.line(gapminder, 
+      |              x="year", 
+      |              y="lifeExp", 
+      |              line_group="country", 
+      |              color="continent"))
+
+[Continue](btn:next)
+
+---
+> id: step-line-plot-exercise
       
 ::: .exercise
 **Exercise**  
-Although Plotly Express is designed primarily for data analysis, it can be used for mathematical graphs as well. Use `px.line` to graph the function $x\mapsto \operatorname{e}^x$ over the interval $[0,5]$.
+Although Plotly Express is designed primarily for data analysis, it can be used for mathematical graphs as well. Use `{py} px.line` to graph the function $x\mapsto \operatorname{e}^x$ over the interval $[0,5]$.
 
 Hint: begin by making a new data frame with appropriate columns. You might find `{py} np.linspace` useful.
 :::
@@ -462,13 +696,15 @@ Hint: begin by making a new data frame with appropriate columns. You might find 
 [Continue](btn:next)
 
 ---
+### Bar plots
 > id: step-bar
 
 Another common plot geometry is the *bar*. Suppose we want to know the average petal width for flowers with a given petal length. We can group by petal length and aggregate with the `{py} mean` function to obtain the desired data, and then visualize it with a bar graph: 
 
     pre(python-executable)
-      | px.bar(iris.groupby('Petal.Length').agg('mean').reset_index(), 
-      |        x = 'Petal.Length', y = 'Petal.Width')
+      | show(px.bar(iris.groupby('Petal.Length').agg('mean').reset_index(), 
+      |             x = 'Petal.Length', 
+      |             y = 'Petal.Width'))
 
 We use `{py} reset_index` because we want to be able to access the index column of the data frame (which contains the petal lengths), and the index is not directly accessible from Plotly Express. Resetting makes the index a normal column and replaces it with consecutive integers starting from 0. 
 
@@ -482,7 +718,7 @@ Perhaps the most common use of the bar geometry is to make **histograms**. A his
 Here's an example of a histogram in Plotly Express.  
 
     pre(python-executable)
-      | px.histogram(iris, x = 'Sepal.Width', nbins = 30)
+      | show(px.histogram(iris, x = 'Sepal.Width', nbins = 30))
 
 We can control the number of bins with the `{py} nbins` argument. 
 
@@ -492,14 +728,17 @@ Does it make sense to map a categorical variable to the `{py} color` aesthetic f
 :::
 
     pre(python-executable)
-      | px.histogram(iris, x = 'Sepal.Width', nbins = 30)
+      | show(px.histogram(iris, x = 'Sepal.Width', nbins = 30))
       
     x-quill
     
 *Solution*. Yes, we can split each bar into multiple colors to visualize the contribution to each bar from each category. This works in Plotly Express: 
 
     pre(python-executable)
-      | px.histogram(iris, x = 'Sepal.Width', nbins = 30, color = 'Species')
+      | show(px.histogram(iris, 
+      |                   x = 'Sepal.Width', 
+      |                   nbins = 30, 
+      |                   color = 'Species'))
       
 [Continue](btn:next)
 
@@ -512,7 +751,7 @@ Unfortunately, Plotly Express doesn't have direct support for one-dimensional de
 
     pre(python-executable)
       | import plotly.figure_factory as ff
-      | ff.create_distplot([iris['Sepal.Width']],['Sepal.Width'])
+      | show(ff.create_distplot([iris['Sepal.Width']],['Sepal.Width']))
       
 The figure factory takes two lists as arguments: one contains the values to use to estimate the density, and the other represents the names of the groups (in this case, we're just using one group). You'll see that the plot produced by this function contains three [[geometries|aesthetics|plot titles]]: the bar plot is a histogram, the line plot represents the density, and the tick marks indicate the individual variable values (the set of tick marks is called a **rug plot**). 
 
@@ -539,7 +778,12 @@ The box plot represents the distribute of the `{py} y` variable using five numbe
 A violin plot is similar to a boxplot, except that rather than a box, a small [[density plot|histogram]] is drawn instead. 
 
 [Continue](btn:next)
-      
+
+---
+> id: step-viz-close
+
+In this section we introduced several of the main tools in a data scientist's visualization toolkit, but you will learn many others. Check out the [cheatsheet for ggplot2](https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf) to see a much longer list of geometries, aesthetics, and statistical transformations.
+
 ---
 > id: model
 ## Modeling
@@ -573,6 +817,7 @@ Fill in the missing data in the following data frame. Think of each row as havin
 |2|3|
 |7|-2|
 |1|[[4]]|
+|6|[[-1]]|
 :::
 
 ---
@@ -636,7 +881,7 @@ The human brain is remarkably well-suited to learning tasks like the one in the 
       .item(data-error="overfit" style="width: 600px"): img(src="images/overfit.svg")
       .item(style="width: 600px"): img(src="images/justright.svg")
 
-The advantage of the first model is that it's very [[simple|complicated]]. However, the $y$ values for these data were in fact generated as twice the square of the corresponding $x$ value plus an independent integer selected uniformly at random from $\\{-80,-79,\ldots,79,80\\}$. The step of squaring the $x$ value produces some curviness which is not captured by the straight line. We say that this model is **underfit**: it doesn't match the data well enough because it too simple. 
+The advantage of the first model is that it's very [[simple|complicated]]. However, (spoiler alert!) the $y$ values for the data points were in fact generated as twice the square of the corresponding $x$ value plus an independent integer selected uniformly at random from $\\{-80,-79,\ldots,79,80\\}$. The step of squaring the $x$ value produces some curviness which is not captured by the straight line. We say that this model is **underfit**: it doesn't match the data well enough because it too simple. 
 
 ---
 > id: step-overfit
@@ -648,9 +893,17 @@ The advantage of the second model is that it passes through [[almost all|all|a f
 
 The third model represents a compromise between underfitting and overfitting. It's curvy enough to match the training data reasonably well, but not so well that it will fail to generalize to new observations. 
 
+[Continue](btn:next)
+
+---
+> id: step-complexity-tradeoff
+
 The tension between underfitting and overfitting is called the **bias-complexity tradeoff**, and it lies at the heart of machine learning. 
 
 [Continue](btn:next)
+
+---
+> id: overfitting-exercise
 
 ::: .exercise
 **Exercise**  
@@ -682,6 +935,9 @@ If the response variable is categorical, then the prediction problem is called a
 
 The examples in the previous section hint at some of the disadvantages of the relying on the human brain to make data predictions: our ability to meaningfully visualize features maxes out pretty quickly. We can visualize only [[3|4|5]] features using distinct spatial dimensions, and other aesthetics like color, size, and shape can handle only a few more. Furthermore, important patterns in the data might not be visually salient in the graphical depictions we come up with.
 
+---
+> id: machine-learning-machines
+
 So let's turn to doing machine learning with *machines*. Python's standard machine learning package is called Scikit-Learn. Let's see how it can be used to replicate the regression task you performed above, starting with linear regression. 
 
 Machine learning models in Scikit-Learn are represented as objects whose class reflects the type of estimator. For example, a linear regression model has class `{py} LinearRegression`. Such objects can be fit to training data using the `{py} fit` method, which takes two arguments: a two-dimensional array or data frame of features and a one-dimensional array of response values. Once the model has been fit, it can `{py} predict` response values for a new two-dimensional array of features:
@@ -695,7 +951,7 @@ Machine learning models in Scikit-Learn are represented as objects whose class r
       | model.fit(df[['x']],df['y'])
       | model.predict([[5]])
 
-This estimate ends up being significantly [[higher|lower]] than the actual response value of 118 for that sample. The linear model underfits the data, and that leads to an overestimate at $x = 5$. 
+This estimate ends up being significantly [[higher|lower]] than the actual response value of 118 for that sample. The linear model underfits the data, and that happens to lead to an overestimate at $x = 5$. 
 
 [Continue](btn:next)
 
@@ -703,6 +959,11 @@ This estimate ends up being significantly [[higher|lower]] than the actual respo
 > id: step-quadfit
 
 Next let's use `{py} sklearn` to fit the same data with a quadratic polynomial. There is no class for polynomial fitting, because polynomial regression is actually a special case of linear regression: we create new features by computing pairwise products of the original features and then fit a linear model using the new data frame. The coefficients for that model provide the quadratic coefficients of best fit for the original features. 
+
+[Continue](btn:next)
+
+---
+> id: step-PolynomialFeatures
 
 In Scikit-Learn, creating new columns for the pairwise products of original columns is achieved using a class called `{py} PolynomialFeatures`. To actually apply the transformation, we use the `{py} fit_transform` method: 
 
@@ -756,6 +1017,11 @@ Let's begin by looking at the dataset's documentation.
       | boston = pydataset.data('Boston')
       | pydataset.data('Boston',show_doc=True)
 
+[Continue](btn:next)
+
+---
+> id: step-train-test-split
+
 Our goal will be to predict median housing prices (the column `{py} 'medv'`) based on the other columns in the data frame. However, we already have all of these values! If we want to be able to assess how well we are predicting median housing prices, we need to set some of the data aside for testing. It's important that we do this from the outset, because any work we do with the test data has the potential to influence our model in the direction of working better on the data we have than on actual fresh data.
 The arguments `{py} test_size` and `{py} random_state` specify the proportion of data set aside for testing (20\%) and a seed for the random number generator to ensure we reproduce the same split if we run the code again.
 
@@ -769,6 +1035,11 @@ The arguments `{py} test_size` and `{py} random_state` specify the proportion of
       | model = LinearRegression()
       | model.fit(X_train, Y_train)
 
+
+[Continue](btn:next)
+
+---
+> id: step-testing-data-caution
 
 At this point we'd like to test our model on the testing data we set aside. However, we should be very careful about doing that, because if we repeat that process on many models and select the best, then the testing data have effectively crept into the training loop, and we are no longer confident about how the model will perform on fresh data. 
 
@@ -789,6 +1060,11 @@ We supply the model and the training data to the function `{py} cross_val_score`
       |                          scoring="neg_mean_squared_error", cv=10)
       | linreg_cv_scores = np.sqrt(-scores)
 
+[Continue](btn:next)
+
+---
+> id: step-try-decision-trees
+
 We can swap out the linear model for other `{py} sklearn` models to see how they compare. For example, let's try *decision tree regression*, which can account for complex relationships between features by applying branching sequences of rules. 
 
     pre(python-executable)
@@ -808,6 +1084,10 @@ We can swap out the linear model for other `{py} sklearn` models to see how they
       | 
       | show(px.histogram(results, x = 'scores', color = 'model', barmode = 'group'))
 
+[Continue](btn:next)
+
+---
+> id: step-try-random-forest
 
 Let's try one more model: the *random forest*. As the name suggests, random forests are made up of many decision trees. 
 
@@ -818,13 +1098,17 @@ Let's try one more model: the *random forest*. As the name suggests, random fore
       |                          scoring="neg_mean_squared_error", cv=10)
       | forest_cv_scores = np.sqrt(-scores)
 
+[Continue](btn:next)
+
+---
+> id: step-model-comparison
+
 Now let's compare all three models:
 
     pre(python-executable)
       | results = pd.DataFrame({'scores': np.hstack((linreg_cv_scores,tree_cv_scores,forest_cv_scores)),
       |                         'model': np.hstack((np.full(10,'linear'),np.full(10,'tree'),np.full(10,'forest')))})
       | show(px.histogram(results, x = 'scores', color = 'model', barmode = 'group'))
-
 
 According to this bar chart, the best model between these three is the [[random forest|linear model|decision tree]], while the second best is the [[linear model|decision tree|random forest]]. Let's check whether that holds up when we finally use the test set:
 
@@ -849,6 +1133,11 @@ A *hyperparameter* is a value which impacts the behavior of a model but which is
 
 It's ultimately up to the data scientist to make good choices for hyperparameter values. However, you can automate this process by getting Scikit-Learn to search through a collection of values and return the best ones (selected according to cross-validation results). 
 
+[Continue](btn:next)
+
+---
+> id: step-hyperparameter-search
+
 The hyperparameters for a random forest include `{py} n_estimators` (the number of trees in the forest) and `{py} max_features` (the number of features that each branch in each decision tree is allowed to consider). `{py} GridSearchCV` is a Scikit-Learn class for performing hyperparameter searches. 
 
     pre(python-executable)
@@ -862,6 +1151,15 @@ The hyperparameters for a random forest include `{py} n_estimators` (the number 
       | 
       | grid_search.fit(X_train, Y_train)
       | grid_search.best_params_
+
+[Continue](btn:next)
+
+---
+> id: step-moving-on
+
+Although there's a lot more stuff to know about data preparation and modeling, we've seen some of the basic elements in action: do any necessary preprocessing, prepare the data for modeling using a train-test split, fit a model to the data, assess models using cross-validation, and choose model hyperparameters using a grid search. 
+
+As you gain experience, the wrangling, visualization, and modeling phases will begin to intertwine: you wrangle to get a better visualization and to prepare data for the model, you gain modeling insights from visualization, and your preliminary modeling results suggest visualizations to investigate. The process of navigating fluidly between wrangling, visualization, and modeling is called **exploratory data analysis**. 
 
 ---
 > id: communicate
@@ -911,9 +1209,18 @@ Here are a few tips for writing about your data analysis:
 [Continue](btn:next)
 
 ---
-> id: pipeline-report-sections
-### Sections
+> id: communication-exercise
 
-Although you will ultimately want to be flexible about how you structure your writing, one reasonable way to start an outline is to follow the data science pipeline: introduce the problem, describe the dataset, explain the necessary data cleaning and other preprocessing steps, model the data (discussing the pros and cons of various models you tried), and finally summarize your results. 
+::: .exercise
+**Exercise**  
+Read [this report](https://data-gymnasia.github.io/report-examples/bad-example.html) and [this report](http://cs229.stanford.edu/proj2014/Adam%20Abdulhamid,%20Ivaylo%20Bahtchevanov,%20Peng%20Jia,Life%20Expectancy%20Post%20Thoracic%20Surgery.pdf). Make five positive or negative observations about each report. It's OK if your observations are mostly negative about one and mostly positive about the other.
+:::
 
-See [Stanford's CS 229 page](http://cs229.stanford.edu/projects2014.html) for a list of data science reports. 
+    x-quill
+
+---
+
+### Bon voyage
+> id: step-bon-voyage
+
+This course has been a very brief introduction to the data science pipeline. If you try to tackle a real data science problem, you will find that there are many important skills that we did not develop (for example, handling missing data or making categorical variables quantitative for purposes of training a model). However, getting a survey of the full pipeline will serve as a useful frame of reference as you learn more data science from more in-depth sources. My top recommendations are *Hands-on Machine Learning with Scikit-Learn and TensorFlow* by Aurélien Geron for Python, and the free online book *Introduction to Data Science* by Rafael Irizarry for R.

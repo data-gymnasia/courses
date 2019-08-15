@@ -650,3 +650,21 @@ monomial:
 geron:
   title: Hands-on ML
   text: This section draws some ideas from chapter *End-to-End Machine Learning Project* in the (highly recommended) book *Hands on Machine Learning with Scikit-Learn and TensorFlow* by Aurélien Geron. In that chapter, California housing prices are considered.
+
+rpy2:
+  title: rpy2
+  text: |
+    rpy2 is the standard Python package for interfacing with R. For example, the block 
+    
+    ```python
+    from rpy2.robjects import r, pandas2ri
+    from rpy2.robjects.packages import importr 
+    importr('nycflights13')
+    pandas2ri.ri2py(r['flights'])
+    ```
+    
+    loads the R package `{r} nycflights13`, accesses the `{r} flights` variable from the R environment, and converts it to a Pandas data frame. 
+
+dataframe-head:
+  title: Head
+  text: The **head** of a dataframe is the first several rows. Pandas data frame objects have a `{py} head` method which returns the head. This method is useful when you want to have a look at the data frame but don't want to fill the screen with its many rows.
