@@ -15,7 +15,7 @@ We will be using the Python data science ecosystem for developing the computatio
 
 ---
 > id: acquire
-## Data Acquisition
+## Acquisition
 
 As a data scientist on the job, you will often be given a data set and a problem to solve. In these situations, obtaining data might not seem like a high priority. However, using external sources in addition to the original data can be a critical source of leverage. For example, if you want to predict a company's customer [churn](gloss:churn) you might supplement the internal customer data with economic or geographic information about the city where each customer lives. 
 
@@ -88,7 +88,7 @@ We conclude this section by highlighting a distinction between two types of data
 
 ---
 > id: wrangle
-## Data Wrangling
+## Wrangling
 
 Data is said to be in *tidy* format if each row corresponds to an observation and each column corresponds a different observation variable. For example, in the [iris dataset](gloss:iris), each row represents a flower, and the entries of a row specify the flower's species and various measurements made for that flower: 
 
@@ -97,6 +97,13 @@ from pydataset import data
 data('iris').head().to_html(border=0)
 -->
 <table border=0 class="dataframe">  <thead>    <tr style="text-align: right;">      <th></th>      <th>Sepal.Length</th>      <th>Sepal.Width</th>      <th>Petal.Length</th>      <th>Petal.Width</th>      <th>Species</th>    </tr>  </thead>  <tbody>    <tr>      <th>1</th>      <td>5.1</td>      <td>3.5</td>      <td>1.4</td>      <td>0.2</td>      <td>setosa</td>    </tr>    <tr>      <th>2</th>      <td>4.9</td>      <td>3.0</td>      <td>1.4</td>      <td>0.2</td>      <td>setosa</td>    </tr>    <tr>      <th>3</th>      <td>4.7</td>      <td>3.2</td>      <td>1.3</td>      <td>0.2</td>      <td>setosa</td>    </tr>    <tr>      <th>4</th>      <td>4.6</td>      <td>3.1</td>      <td>1.5</td>      <td>0.2</td>      <td>setosa</td>    </tr>    <tr>      <th>5</th>      <td>5.0</td>      <td>3.6</td>      <td>1.4</td>      <td>0.2</td>      <td>setosa</td>    </tr>  </tbody></table>
+
+Note that four of the columns are **quantitative** (that is, they contain numerical data), while one is **categorical** (that is, it contains a string which represents a category).
+
+[Continue](btn:next)
+
+---
+> id: step-not-tidy-data
 
 Many types of data do not fit naturally into the tidy data framework, like image data and passages of text. However, tidy data occupies a sweet spot of generality which covers a wide variety of use cases but is nevertheless specific enough to support tools which are both concise and powerful. In this mini-course, we will focus on tidy data.
 
@@ -235,7 +242,7 @@ If the name of the data frame is quite long, you can avoid having to type it rep
 
     pre(python-executable)
       | df.assign(density = lambda d: d.population / d.area) \\ 
-      |   .assign(**{'inverse density': lambda d: 1/d.density})** DELETE
+      |   .assign(**{'inverse density': lambda d: 1/d.density})
 
 Oops! There was a spurious space after the line continuation backslash. Delete it and run the cell again.
 
@@ -343,7 +350,7 @@ The other four operations (filter, sort, select, and transform) can be applied t
 
 ---
 > id: visualize
-## Data Visualization
+## Visualization
 
 Data visualization is a way to leverage your visual cortex to gain insight into data. Because vision is such a rich and well-developed interface between the human mind and the external world, visualization is a critical tool for understanding and communicating data ideas.
 
@@ -352,11 +359,7 @@ The standard graphics library in Python is Matplotlib, but we will use a newer p
 If you use Plotly in a Jupyter notebook, the figures will automatically display in an interactive form. Therefore, it is recommended that you follow along using a separate tab with a [Jupyter notebook](https://mybinder.org/v2/gh/data-gymnasia/python-binder/master). However, we will use the function `{py} show` defined in the cell below to display the figures as static images so they can be viewed on this page. 
 
     pre(python-executable)
-      | from IPython.display import SVG, display
-      | def show(fig):
-      |     filename = "my-figure.svg"
-      |     fig.write_image(filename)
-      |     return display(SVG(filename))
+      | from datagymnasia import show
 
 [Continue](btn:next)
 
@@ -397,7 +400,7 @@ Create a new data frame by appending a new column called "area" which is compute
 
     pre(python-executable)
       | show(px.scatter(iris.assign(area = iris["Petal.Length"]*iris['Petal.Width']),
-      | x='Sepal.Width',y='Sepal.Length',color='Species',size='area'))* DELETE
+      | x='Sepal.Width',y='Sepal.Length',color='Species',size='area'))
 
 [Continue](btn:next)
 
@@ -539,11 +542,378 @@ A violin plot is similar to a boxplot, except that rather than a box, a small [[
       
 ---
 > id: model
-## Data Modeling
+## Modeling
+
+A machine learning **model** is a mathematical description of a relationship between random variables. In this section, we will focus on **supervised learning**, which is the task of predicting the values of one random variable given the values of others. We call the variable to predict the **response variable** and the other variables **features**. 
+
+[Continue](btn:next)
+
+---
+> id: step-response-feature
+
+We get information about the joint distribution of the features and response variable in the form of a tidy data frame whose rows represent independent samples from the distribution. These data are called **training data**. 
+
+[Continue](btn:next)
+
+---
+> id: human-machine-learning
+### Machine learning with no machine
+
+Let's warm up with some supervised *human* learning.
+
+::: .exercise
+**Exercise**  
+Fill in the missing data in the following data frame. Think of each row as having been randomly sampled from the distribution of a random vector $(X,Y)$ in $\mathbb{R}^2$. 
+
+|x|y|
+|--|--|
+|3|2|
+|4|1|
+|-3|8|
+|2|3|
+|7|-2|
+|1|[[4]]|
+:::
+
+---
+> id: step-variance
+
+In the data frame above, not much is clear about the distribution of the random variable $X$. But it does seem reasonable to speculate that $Y = 5 - X$ based on the available data. Based on this observation, we might choose to use $h(x) = 5 - x$ as our **prediction** function for the problem of predicting $Y$ based on the value of $X$. 
+
+[Continue](btn:next)
+
+---
+> id: step-not-deterministic
+
+The situation where one random variable is strictly determined by another is rare in practice. Let's try a trickier version of the previous exercise:
+
+::: .exercise
+**Exercise**  
+Fill in the missing data in the following data frame. Hint: it might help to make a scatter plot.
+
+| x  |  y  |
+|----|-----|
+|  2 |   1 |
+| 13 | 325 |
+|  1 |  28 |
+|  9 | 190 |
+| 20 | 818 |
+| 12 | 291 |
+| 18 | 592 |
+|  9 | 153 |
+| -8 |  80 |
+|  5 | [[118±50]] |
+:::
+
+    pre(python-executable)
+      | import plotly.express as px
+      | from datagymnasia import show
+      | import pandas as pd
+      | df = pd.DataFrame({'x': [2, 13, 1, 9, 20, 12, 18, 9, -8],
+      |                  'y': [1, 325, 28, 190, 818, 291, 592, 153, 80]})
+      | show(px.scatter(df, x = 'x', y = 'y'))
+    
+---
+    
+The data in the table above were actually generated from a particular distribution, and the value of $y$ for the last observation happened to be 118. However, all you can really tell from the training data is that it looks like the value is probably between 0 and 200 or so. Because the [conditional variance](gloss:conditional-variance) of $Y$ given $X$ is nonzero, it is not possible to predict $Y$ values exactly given corresponding $X$ values.
+
+[Continue](btn:next)
+
+---
+> id: step-predict-expectation
+
+As illustrated in this example, when predicting one random variable $Y$ given another random variable $X$, we accept that we don't have enough information (even with *perfect* knowledge of the joint distribution of $X$ and $Y$) to make an exact prediction. Instead, we typically estimate the [conditional expectation](gloss:conditional-expectation) of $Y$ given $X$. This is a value we should be able to estimate with an error going to zero as the number of observations goes to infinity and we get a clearer picture of the joint distribution of $X$ and $Y$.
+
+[Continue](btn:next)
+
+---
+> id: step-bias-variance-tradeoff
+
+The human brain is remarkably well-suited to learning tasks like the one in the previous exercise. It's worth reflecting on some of its insights. Which of the following was closer to your mind's implicit model for how the random variables are related?
+
+    x-picker.rigid
+      .item(data-error="underfit" style="width: 600px"): img(src="images/underfit.svg")
+      .item(data-error="overfit" style="width: 600px"): img(src="images/overfit.svg")
+      .item(style="width: 600px"): img(src="images/justright.svg")
+
+The advantage of the first model is that it's very [[simple|complicated]]. However, the $y$ values for these data were in fact generated as twice the square of the corresponding $x$ value plus an independent integer selected uniformly at random from $\\{-80,-79,\ldots,79,80\\}$. The step of squaring the $x$ value produces some curviness which is not captured by the straight line. We say that this model is **underfit**: it doesn't match the data well enough because it too simple. 
+
+---
+> id: step-overfit
+
+The advantage of the second model is that it passes through [[almost all|all|a few]] of the training points. The disadvantage is that it is clearly taking the exact locations of these points [[too seriously|not seriously enough]]. If we got more observations, we would would not expect them to continue to fall on the curve. We say that the this model is **overfit**: it matches the training data well but will not generalize to new observations. 
+
+---
+> id: step-underfit
+
+The third model represents a compromise between underfitting and overfitting. It's curvy enough to match the training data reasonably well, but not so well that it will fail to generalize to new observations. 
+
+The tension between underfitting and overfitting is called the **bias-complexity tradeoff**, and it lies at the heart of machine learning. 
+
+[Continue](btn:next)
+
+::: .exercise
+**Exercise**  
+The following two figures represent two machine learning models for predicting a categorical variable. There are two features, represented by horizontal and vertical position in the plane. The response variable can be either 'red x' or 'blue o'. The prediction function is specified by color: points which fall in the red region are predicted to be red, and points which fall in the blue region are predicted to be blue.
+
+Which model correctly classifies more training points?
+
+    x-picker.rigid
+      .item(style="width: 400px"): img(src="images/nn-overfit.png")
+      .item(data-error="incorrect",style="width: 400px"): img(src="images/nn-not-overfit.png")
+
+Which model is more likely to correctly classify a new observation based on its feature values?
+
+    x-picker.rigid
+      .item(data-error="overfit" style="width: 400px"): img(src="images/nn-overfit.png")
+      .item(style="width: 400px"): img(src="images/nn-not-overfit.png")
+
+Even with perfect information about the distribution that the data frame rows are sampled from, is it possible to correctly classify new observations with 100% accuracy? [[No|Yes]]
+:::
+
+---
+> id: step-classification-regression
+
+If the response variable is categorical, then the prediction problem is called a [[**classification**|**regression**]] problem. If the response variable is quantitative, then the prediction problem is called a [[**regression**|**classification**]] problem. 
+
+---
+> id: Scikit-Learn
+### Scikit-Learn
+
+The examples in the previous section hint at some of the disadvantages of the relying on the human brain to make data predictions: our ability to meaningfully visualize features maxes out pretty quickly. We can visualize only [[3|4|5]] features using distinct spatial dimensions, and other aesthetics like color, size, and shape can handle only a few more. Furthermore, important patterns in the data might not be visually salient in the graphical depictions we come up with.
+
+So let's turn to doing machine learning with *machines*. Python's standard machine learning package is called Scikit-Learn. Let's see how it can be used to replicate the regression task you performed above, starting with linear regression. 
+
+Machine learning models in Scikit-Learn are represented as objects whose class reflects the type of estimator. For example, a linear regression model has class `{py} LinearRegression`. Such objects can be fit to training data using the `{py} fit` method, which takes two arguments: a two-dimensional array or data frame of features and a one-dimensional array of response values. Once the model has been fit, it can `{py} predict` response values for a new two-dimensional array of features:
+
+    pre(python-executable)
+      | from sklearn.linear_model import LinearRegression
+      | import pandas as pd
+      | df = pd.DataFrame({'x': [2, 13, 1, 9, 20, 12, 18, 9, -8],
+      |                   'y': [1, 325, 28, 190, 818, 291, 592, 153, 80]})
+      | model = LinearRegression()
+      | model.fit(df[['x']],df['y'])
+      | model.predict([[5]])
+
+This estimate ends up being significantly [[higher|lower]] than the actual response value of 118 for that sample. The linear model underfits the data, and that leads to an overestimate at $x = 5$. 
+
+[Continue](btn:next)
+
+---
+> id: step-quadfit
+
+Next let's use `{py} sklearn` to fit the same data with a quadratic polynomial. There is no class for polynomial fitting, because polynomial regression is actually a special case of linear regression: we create new features by computing pairwise products of the original features and then fit a linear model using the new data frame. The coefficients for that model provide the quadratic coefficients of best fit for the original features. 
+
+In Scikit-Learn, creating new columns for the pairwise products of original columns is achieved using a class called `{py} PolynomialFeatures`. To actually apply the transformation, we use the `{py} fit_transform` method: 
+
+    pre(python-executable)
+      | from sklearn.preprocessing import PolynomialFeatures
+      | poly = PolynomialFeatures(degree=2)
+      | extended_features = poly.fit_transform(df[['x']])
+      | extended_features
+
+Now we can use this new array to fit a linear model.
+
+    pre(python-executable)
+      | 
+      | model = LinearRegression()
+      | model.fit(extended_features,df['y'])
+      | model.predict([[5]])
+
+Oops! That didn't work because we need to process the input in the same way we processed the training data before fitting the model. 
+
+    pre(python-executable)
+      | model.predict([[1,5,25]])
+      
+This model returns a value which is quite close to the conditional expectation of $Y$ given $X=5$, which is [[50]] (Hint: look back to where you got a peek behind the curtain to see how the $y$ values were generated).
+
+[Continue](btn:next)
+
+---
+> id: step-sklearn-pipelines
+
+Sklearn has a solution to the problem of having to apply the same preprocessing steps multiple times (once for training data and again at prediction time). The idea is to bind the preprocessing steps and the machine learning model into a single object. This object is called a **pipeline**. Let's do the same calculation again:
+
+    pre(python-executable)
+      | from sklearn.pipeline import Pipeline
+      | model = Pipeline([('poly', PolynomialFeatures(degree=2)),
+      |                   ('linear', LinearRegression(fit_intercept=False))])
+      | model.fit(df[['x']],df['y'])
+      | model.predict([[5]])
+
+Much simpler! Note that we turned the [[intercept|slope]] off for the `{py} LinearRegression` model because the first step in the pipeline outputs a constant column (which plays the role of an intercept).
+
+---
+> id: step-real-example
+
+Having used toy data to go through some of the basics of `{py} sklearn`, let's fit some models on a real data set on [home prices in Boston](gloss:geron). 
+
+Let's begin by looking at the dataset's documentation.
+
+    pre(python-executable)
+      | 
+      | import pydataset
+      | boston = pydataset.data('Boston')
+      | pydataset.data('Boston',show_doc=True)
+
+Our goal will be to predict median housing prices (the column `{py} 'medv'`) based on the other columns in the data frame. However, we already have all of these values! If we want to be able to assess how well we are predicting median housing prices, we need to set some of the data aside for testing. It's important that we do this from the outset, because any work we do with the test data has the potential to influence our model in the direction of working better on the data we have than on actual fresh data.
+The arguments `{py} test_size` and `{py} random_state` specify the proportion of data set aside for testing (20\%) and a seed for the random number generator to ensure we reproduce the same split if we run the code again.
+
+    pre(python-executable)
+      | 
+      | from sklearn.model_selection import train_test_split
+      | X_train, X_test, Y_train, Y_test = train_test_split(boston.drop('medv',axis=1),
+      |                                                     boston['medv'], 
+      |                                                     test_size = 0.2,
+      |                                                     random_state = 42)
+      | model = LinearRegression()
+      | model.fit(X_train, Y_train)
 
 
+At this point we'd like to test our model on the testing data we set aside. However, we should be very careful about doing that, because if we repeat that process on many models and select the best, then the testing data have effectively crept into the training loop, and we are no longer confident about how the model will perform on fresh data. 
+
+[Continue](btn:next)
+
+---
+> id: step-cross-validation
+
+Instead what we'll do is carve out preliminary testing data from our training data. Then we'll follow the same fitting procedure to train a model on remaining training data. We can do this repeatedly to get a better sense for how our model tends to perform when it sees new data. This process is called **cross-validation**, and Scikit-Learn has built-in methods for it. We'll use a version called $k$-fold cross-validation which partitions the training data into $k$ subsets called *folds* and trains the model with $k-1$ of the folds as training data and the last fold as test data. Each fold takes one turn as the test data, so you get $k$ fits in total.
+
+We supply the model and the training data to the function `{py} cross_val_score`. We use *negative mean squared error* for assessing how well the model fits the test data. The *mean squared error* refers to the average squared difference between predictions and actual response values, and this value is negated since Scikit-Learn's cross-validation is designed for the convention that a higher score is better (whereas un-negated squared error has the property that [[lower|higher]] is better). The `{py} cv` argument specifies the number of folds.
+
+    pre(python-executable)
+      | 
+      | import numpy as np
+      | from sklearn.model_selection import cross_val_score
+      | scores = cross_val_score(model, X_train, Y_train,
+      |                          scoring="neg_mean_squared_error", cv=10)
+      | linreg_cv_scores = np.sqrt(-scores)
+
+We can swap out the linear model for other `{py} sklearn` models to see how they compare. For example, let's try *decision tree regression*, which can account for complex relationships between features by applying branching sequences of rules. 
+
+    pre(python-executable)
+      | 
+      | from sklearn.tree import DecisionTreeRegressor
+      | decisiontree = DecisionTreeRegressor()
+      | scores = cross_val_score(decisiontree, X_train, Y_train,
+      |                          scoring="neg_mean_squared_error", cv=10)
+      | tree_cv_scores = np.sqrt(-scores)
+
+    pre(python-executable)
+      | 
+      | import plotly.express as 
+      | from datagymnasia import show
+      | results = pd.DataFrame({'scores': np.hstack((linreg_cv_scores,tree_cv_scores)),
+      |                         'model': np.hstack((np.full(10,'linear'),np.full(10,'tree')))})
+      | 
+      | show(px.histogram(results, x = 'scores', color = 'model', barmode = 'group'))
+
+
+Let's try one more model: the *random forest*. As the name suggests, random forests are made up of many decision trees. 
+
+    pre(python-executable)
+      | from sklearn.ensemble import RandomForestRegressor
+      | randomforest = RandomForestRegressor()
+      | scores = cross_val_score(randomforest, X_train, Y_train,
+      |                          scoring="neg_mean_squared_error", cv=10)
+      | forest_cv_scores = np.sqrt(-scores)
+
+Now let's compare all three models:
+
+    pre(python-executable)
+      | results = pd.DataFrame({'scores': np.hstack((linreg_cv_scores,tree_cv_scores,forest_cv_scores)),
+      |                         'model': np.hstack((np.full(10,'linear'),np.full(10,'tree'),np.full(10,'forest')))})
+      | show(px.histogram(results, x = 'scores', color = 'model', barmode = 'group'))
+
+
+According to this bar chart, the best model between these three is the [[random forest|linear model|decision tree]], while the second best is the [[linear model|decision tree|random forest]]. Let's check whether that holds up when we finally use the test set:
+
+    pre(python-executable)
+      | 
+      | model.fit(X_train, Y_train)
+      | np.mean((model.predict(X_test) - Y_test)**2)
+      | decisiontree.fit(X_train, Y_train)
+      | np.mean((decisiontree.predict(X_test) - Y_test)**2)
+      | randomforest.fit(X_train, Y_train)
+      | np.mean((randomforest.predict(X_test) - Y_test)**2)
+
+Are these results expected? Discuss.
+
+    x-quill
+
+---
+> id: hyperparameter-tuning
+### Hyperparameter tuning
+
+A *hyperparameter* is a value which impacts the behavior of a model but which is held fixed during the fitting process. For example, if you fit a polynomial of degree $n$ to a set of data, then the coefficients of the polynomial are parameters and $n$ is a hyperparameter. 
+
+It's ultimately up to the data scientist to make good choices for hyperparameter values. However, you can automate this process by getting Scikit-Learn to search through a collection of values and return the best ones (selected according to cross-validation results). 
+
+The hyperparameters for a random forest include `{py} n_estimators` (the number of trees in the forest) and `{py} max_features` (the number of features that each branch in each decision tree is allowed to consider). `{py} GridSearchCV` is a Scikit-Learn class for performing hyperparameter searches. 
+
+    pre(python-executable)
+      | 
+      | from sklearn.model_selection import GridSearchCV
+      | param_grid = [
+      |     {'n_estimators': [3, 10, 30], 'max_features': [2, 4, 6, 8]},
+      | ]
+      | grid_search = GridSearchCV(randomforest, param_grid, cv=5,
+      |                            scoring='neg_mean_squared_error')
+      | 
+      | grid_search.fit(X_train, Y_train)
+      | grid_search.best_params_
 
 ---
 > id: communicate
-## Data Communication
+## Communication
 
+Once you've decided on a model, the next step is to use it to actually solve your problem. For example, perhaps the housing pricing prediction is part of a real estate app. In that case, you would need to incorporate your model into the app. Typically you would have an app development team with whom to discuss the best way to do that, since the details would often depend on various technical aspects of how the app works. 
+
+[Continue](btn:next)
+
+---
+> id: step-informing-business-decisions
+
+Another common machine learning use case is informing business decisions. Typically, the people ultimately responsible for those decisions will want as robust an understanding as possible of the relevant details about how the model works and how reliable its predictions are. The data scientist is responsible for describing their process clearly and being forthright about any causes for concern. It might also be important at this stage to be able to think of machine learning models in more specific terms than "something that can be trained in Scikit-Learn". 
+
+You might be asked to give a report or a presentation or both, and your ability to have an impact in your organization might depend on your ability to inspire confidence through these media. It's a good idea to begin practicing supporting your quantitative work with clear explanations, well before the stakes are high. 
+
+[Continue](btn:next)
+
+---
+> id: step-data-science-report-advice
+
+Here are a few tips for writing about your data analysis:
+
+1. **Know your audience.** Learning to anticipate what will be understandable and meaningful to your readers is one of the most important skills for any sort of writing. It takes practice, and it requires targeting a specific audience throughout the writing process. If in doubt, provide an explanation rather than assuming your reader will be familiar with a necessary idea.
+
+[Continue](btn:next)
+
+---
+> id: step-narrative-cohesion
+
+2. **Prioritize narrative cohesion**. You don't want a report to read like a laundry list of things you did. The reader should be able to easily identify the motivating question, follow idea threads from section to section, appreciate any surprises, and spend attention on various components in proportion to their actual importance. 
+
+[Continue](btn:next)
+
+---
+> id: step-dont-waste-space
+
+3. **Don't waste space**. Leave out stuff if it really doesn't matter. No one can appreciate dozens of lines of data frame printouts, so they should not appear in a report. If it's important to show what a data frame looks like, you might print its head. The same goes for figures: it takes time for the reader to absorb the lessons of a graphic, so you want to write explicit captions to facilitate that process. It's also important to be mindful of reader fatigue. If you have 20 plots related to the same idea, you probably need to identify a handful of especially useful ones and do without the rest. 
+
+[Continue](btn:next)
+
+---
+> id: step-check-for-typos
+
+4. **Check for typos**. Readers will, subconsciously or otherwise, take your work less seriously if it is riddled with errors. Use a service like Grammarly or a colleague who will proofread your work to help make sure it is grammatically and typographically accurate. 
+
+[Continue](btn:next)
+
+---
+> id: pipeline-report-sections
+### Sections
+
+Although you will ultimately want to be flexible about how you structure your writing, one reasonable way to start an outline is to follow the data science pipeline: introduce the problem, describe the dataset, explain the necessary data cleaning and other preprocessing steps, model the data (discussing the pros and cons of various models you tried), and finally summarize your results. 
+
+See [Stanford's CS 229 page](http://cs229.stanford.edu/projects2014.html) for a list of data science reports. 

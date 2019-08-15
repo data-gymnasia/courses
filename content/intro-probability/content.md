@@ -2185,10 +2185,10 @@ All of the tools we developed for discrete probability spaces have analogues for
 * The joint distribution of two continuous random variables $X$ and $Y$ is the
   measure $A \mapsto \mathbb{P}((X,Y) \in A)$ on $\mathbb{R}^2$. 
 * If $(X,Y)$ is a continuous pair of random variables with joint density
-  $f_{X,Y}: \mathbb{R}^2 \to \mathbb{R}$, then the conditional distribution of
-  $X$ given the event $\\{Y=y\\}$ has density $f_{X| Y=y}$ defined by 
-  $f_{X| \{Y=y\}}(x)  = \frac{f_{X,Y}(x,y)}{f_Y(y)}$, where $\displaystyle{f_Y(y)
-  = \int_{-\infty}^\infty f(x,y) \, \mathrm{d} x}$ is the pdf of $Y$
+  $f_{X,Y}: \mathbb{R}^2 \to \mathbb{R}$, then the [conditional distribution](gloss:conditional-distribution) of
+  $Y$ given the event $\\{X=x\\}$ has density $f_{Y| X=x}$ defined by 
+  $f_{Y| \{X=x\}}(x)  = \frac{f_{X,Y}(x,y)}{f_X(x)}$, where $\displaystyle{f_X(x)
+  = \int_{-\infty}^\infty f(x,y) \, \mathrm{d} y}$ is the pdf of $Y$
 * Two continuous random variables $X$ and $Y$ are independent if $\mathbb{P}((X,Y)
   \in A \times B) = \mathbb{P}(X \in A) \mathbb{P}(Y \in B)$ for all $A\subset
   \mathbb{R}$ and $B \subset \mathbb{R}$. This is true if and only if $(X,Y)$ has
