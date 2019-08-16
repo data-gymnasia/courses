@@ -95,7 +95,7 @@ Many types of data do not fit naturally into the tidy data framework, like image
 > id: pandas
 ### Pandas
 
-A **data frame** is an object for storing tidy data, and the package which provides data frames in the Python ecosystem is **Pandas**. 
+A **data frame** is an object for storing tidy data, and the package which provides data frames in the Python ecosystem is **Pandas**. Pandas is built on NumPy, which is the Python library for multi-dimensional [arrays](gloss:array). If you aren't comfortable with the basics of NumPy, a brief detour through [this interactive notebook](https://colab.research.google.com/github/jakevdp/PythonDataScienceHandbook/blob/master/notebooks/02.02-The-Basics-Of-NumPy-Arrays.ipynb) is recommended. 
 
     pre(python-executable)
       | import pydataset

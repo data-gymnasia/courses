@@ -581,6 +581,13 @@ python-sets:
   title: Sets
   text: In Python, a `{py} set` is a data structure with efficient support for insertion, deletion, and membership checking. As in math, elements of a sets are unordered and repetitions are ignored. The basic set operations for two sets `{py} s` and `{py} t` are `{py} s & t` for intersection, `{py} s | t` for union, `{py} s - t` for set difference (elements in the first set but not the second), and `{py} s ^ t` for symmetric difference (elements in exactly one of the two sets).
   
+array:
+  title: Array
+  text: |
+    An array is a grid of values, indexed by a tuple of integers. The length of the indexing tuple is called the **dimension** of the array. 
+    
+    A one-dimensional array is a vector, a two-dimensional aray is a matrix, and so on. 
+  
 allocation:
   title: Allocation
   text: To store an array or other data structure, the computer must **allocate** memory for it and insert the appropriate data. For example, when you execute `{py} pos_inds = (a > 0)` where `{py} a` is a NumPy array of length 1,000,000, one million new memory addresses are dedicated to storing the entries of `{py} pos_inds`, and those bytes are filled with `{py} True`s and `{py} False`s. Depending on what you want to do with `{py} pos_inds`, this operation might be wasteful.
