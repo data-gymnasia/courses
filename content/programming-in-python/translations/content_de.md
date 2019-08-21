@@ -190,57 +190,57 @@ x = y
 
 ::: .exercise
 **Übung**.  
-Verwenden Sie den folgenden Codeblock, um herauszufinden, was passiert, wenn Sie versuchen, eine Variable zu verwenden, der kein Objekt zugewiesen wurde: Sie erhalten einen [[Namensfehler]].
+Verwende den folgenden Codeblock, um herauszufinden, was passiert, wenn du versuchst, eine Variable zu verwenden, der kein Objekt zugewiesen wurde: Du erhältst einen [[Name]]Error, wobei Error Fehler bedeutet.
 
 :::
 
     pre(python-executable)
-      | num_carrots = 4
-      | num_Carrots
+      | anzahl_karotten = 4
+      | anzahl_Karrotten
 
 ---
 > id: step-20
 
-Note that when an error occurs in your code, you get a **traceback** which helps you identify the source of the error.
+Beachte, dass du bei Auftreten eines Fehlers in deinem Code einen **Traceback** erhältst, der dir hilft, die Fehlerquelle zurückzuverfolgen. ("trace back" bedeutet zurückverfolgen)
 
 ### Funktionen
 
-A **function** performs a particular task. For example, _{code.language-python}print(x)_ writes a string representation of the value of the variable _{code.language-python}x_ to the screen. 
+Eine **Funktion** führt eine bestimmte Aufgabe aus. Beispielsweise_ schreibt _{code.language-python}print(x) den Wert der Variablen _{code.language-python}x_ als String (Zeichenkette) auf den Bildschirm. (Wenn hier von einer Zeichenkette oder einem Text die Rede ist werden wir von nun an immer den englischen Begriff String verwenden!) 
 
-Prompting a function to perform its task is referred to as **calling** the function. Functions are called using parentheses following the function's name, and any objects which are needed by the function are supplied between these parentheses, separated by commas. These objects are called **arguments**. 
+Die Aufforderung an eine Funktion, ihre Aufgabe auszuführen, wird als **Aufruf** der Funktion bezeichnet. Funktionen werden mit Klammern hinter dem Funktionsnamen aufgerufen, und alle Objekte, die von der Funktion benötigt werden, werden zwischen diesen Klammern bereitgestellt, getrennt durch Kommas. Diese Objekte werden als **Argumente** bezeichnet. 
 
 [Weiter](btn:next)
 
 ---
 > id: step-21
 
-Some functions, like _{code.language-python}print_ are built into the language and are always available. You may also define your own functions using _{code.language-python}def_:
+Einige Funktionen, wie z.B. _{code.language-python}print_, sind schon in die Sprache integriert und immer verfügbar. Du kannst auch eigene Funktionen definieren, indem du _{code.language-python}def_ verwendest:
 
     pre(python-executable)
-      | def print_twice(x):
+      | def drucke_zweimal(x):
       |     print(x)
       |     print(x)
       |
-      | print_twice("hey")
+      | drucke_zweimal("hey")
 
 [Weiter](btn:next)
 
 ---
 > id: step-22
 
-_{code.language-python}def_ is an example of a **keyword**: a name with a special meaning in the language. Since it has a special meaning, a keyword may not be used as a variable name. 
+_{code.language-python}def_ ist ein Beispiel für ein **Schlüsselwort**: ein Name mit einer besonderen Bedeutung in der Sprache. Da es eine besondere Bedeutung hat, darf ein Schlüsselwort nicht als Variablenname verwendet werden. 
 
 [Weiter](btn:next)
 
 ---
 > id: step-23
 
-Note that the lines of code to be executed when the function is called **must** be indented four spaces relative to _{code.language-python}def_. For example, *{code.language-python}print_twice("hey")* [[is not|is]] part of the definition of the function in the example above.
+Beachte, dass die Codezeilen, die ausgeführt werden sollen, wenn die Funktion **** aufgerufen wird, vier Leerzeichen in Bezug auf _{code.language-python}def_ eingerückt sein müssen. Zum Beispiel *{code.language-python}drucke_zweimal("hey")* [[ist nicht|ist]] Teil der Definition der Funktion im obigen Beispiel.
 
 ---
 > id: step-24
 
-A function may perform an action, like *{code.language-python}print_twice*, or it may **return** an object. For example, after the following code block is run, the object _{code.language-python}28_ will be assigned to the variable _{code.language-python}y_. 
+Eine Funktion kann eine Aktion ausführen, wie z.B.{code.language-python}*drucke_zweimal*, oder sie kann ein Objekt **zurückgeben** . So wird beispielsweise nach dem Ausführen des folgenden Codeblocks das Objekt _{code.language-python}28_ der Variablen _{code.language-python}y_zugeordnet. 
 
     pre(python-executable)
       | def add_one(x):
@@ -249,21 +249,21 @@ A function may perform an action, like *{code.language-python}print_twice*, or i
       | y = 20 + add_one(7)
       | y
 
-(_Note_: we put _{code.language-python}y_ by itself on the last line so that we can see the value of _{code.language-python}y_ in the output area. If an assignment (like **{code.language-python}y = 20 + add_one(7)**) is the last line in the cell, then no value will be printed, and we will get the _{code.language-markup}Loading or None returned_ message.)
+(_Hinweis:_Wir setzen _{code.language-python}y_ allein auf die letzte Zeile, damit wir den Wert von _{code.language-python}y_ im Ausgabebereich sehen können. Wenn eine Zuweisung (wie **{code.language-python}y = 20 + add_one(7)**) die letzte Zeile in der Zelle ist, dann wird kein Wert gedruckt, und wir erhalten die_ Meldung _{code.language-markup}Loading or None returned.)
       
 [Weiter](btn:next)
 
 ---
 > id: step-25
             
-The variable name _{code.language-python}x_ in the above block is called a **parameter**. Parameters play the same role as dummy variables in the definition of a mathematical function (for example, when the squaring function is defined using the notation `f(x) = x^2`).
+Der Variablenname _{code.language-python}x_ im obigen Block wird als **Parameter** bezeichnet. Parameter spielen bei der Definition einer mathematischen Funktion die gleiche Stellvertreterrolle einer Variablen (z.B. wenn die Quadratfunktion mit der Schreibweise `f(x) = x^2`) definiert wird.
 
 [Weiter](btn:next)
 
 ---
 > id: step-26 
 
-An **operator** is a special kind of function that can be called in a special way. For example, the multiplication operator _{code.language-python}*_ is called using the mathematically familiar *infix notation* _{code.language-python}3 * 5_.
+Ein **Operator** ist eine spezielle Art von Funktion, die auf besondere Weise aufgerufen werden kann. So wird beispielsweise der Multiplikationsoperator _{code.language-python}*_ wie in der Mathematik üblich aufgerufen: _{code.language-python}3 * 5_.
 
 [Weiter](btn:next)
 
@@ -271,15 +271,15 @@ An **operator** is a special kind of function that can be called in a special wa
 > id: step-27 
 
 ::: .exercise
-**Exercise**  
-Arrange the operation descriptions below in order, according the corresponding Python operator in the list _{code.language-python}+, **, *, //, /_. You might need to experiment using the code block below. 
+*Übung**  
+Ordne die folgenden Operatorbeschreibungen in der Reihenfolge an, wie der entsprechende Python-Operator in der Liste _{code.language-python}+, **, *, //, /_. Möglicherweise musst du mit dem untenstehenden Codeblock etwas herumprobieren. 
 
     x-sortable
-      .item.md(data-index="4") division (ordinary real-number division)
-      .item.md(data-index="3") integer division (quotient only; no remainder)
-      .item.md(data-index="0") addition      
-      .item.md(data-index="2") multiplication
-      .item.md(data-index="1") exponentiation
+      .item.md(data-index="4") Division (gewöhnliche Division mit reellen Zahlen)
+      .item.md(data-index="3") ganzzahlige Division (nur Quotient; kein Rest)
+      .item.md(data-index="0") Addition .item      
+      .md(data-index="2") Multiplikation
+      .item.md(data-index="1") Potenzieren
       
 :::
 
@@ -293,9 +293,9 @@ Arrange the operation descriptions below in order, according the corresponding P
 ---
 > id: step-28
 
-### Statements and expressions
+### Anweisungen und Ausdrücke
 
-An individual executable unit of code in Python is called a **statement**. For example, the assignment _{code.language-python}age = 41_ is a statement. Statements may include **expressions**, which are combinations of values, variables, operators, and function calls that a language interprets and **evaluates** to a value. For example, _{code.language-python}1 + age + abs(3*-4)_ is an expression which evaluates to [[54]] (note that _{code.language-python}abs_ is the absolute value function, and assume _{code.language-python}age_ is set to the value specified earlier in the paragraph). 
+Eine einzelne ausführbare Codeeinheit in Python wird als **Statement** bezeichnet. For example, the assignment _{code.language-python}age = 41_ is a statement. Statements may include **expressions**, which are combinations of values, variables, operators, and function calls that a language interprets and **evaluates** to a value. For example, _{code.language-python}1 + age + abs(3*-4)_ is an expression which evaluates to [[54]] (note that _{code.language-python}abs_ is the absolute value function, and assume _{code.language-python}age_ is set to the value specified earlier in the paragraph). 
 
 ---
 > id: step-29
