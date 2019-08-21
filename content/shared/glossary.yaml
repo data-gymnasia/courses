@@ -101,7 +101,7 @@ function:
 dictionary:
   title: Dictionary
   text: |
-    An unordered, mutable data type used for encoding a function whose domain is a finite set
+    An unordered, mutable data type used for encoding a function whose domain is a finite set.
 
     For example, if we set
 
@@ -195,7 +195,7 @@ vectorspace:
 
 basis:
   title: Basis
-  text: A **basis** of a vector space $V$ is a linearly independent spanning list of $V$
+  text: A **basis** of a vector space $V$ is a linearly independent spanning list of $V$.
 
 dimension:
   title: Dimension
@@ -264,7 +264,7 @@ productcolumnrule:
 transpose:
   title: Transpose
   text: |
-    The **transpose** $A'$ of a matrix $A$ to be the matrix which results from switching the rows and columns of $A$.
+    The **transpose** $A'$ of a matrix $A$ is the matrix obtained by switching the rows and columns of $A$.
 
     For example, if $A = \begin{bmatrix}
       	1 & 2 & 3 \\\\\\
@@ -297,7 +297,7 @@ blockmatrixproduct:
 
 gram:
   title: Gram matrix
-  text: The **Gram matrix** of a matrix $A$ is $A'A$
+  text: The **Gram matrix** of a matrix $A$ is $A'A$. The Gram matrix is analogous to the square of a real number: a square is nonnegative, while a Gram matrix is positive semidefinite. You can square root a number's square to get a number which is either the same as the original number or the same after multiplication by $-1$, and you can square root the Gram matrix of $A$ to get a matrix which is the same as $A$ after multiplication by some rotation/reflection matrix (that is, an orthogonal matrix).
 
 diagonalize:
   title: Diagonalize
@@ -305,7 +305,7 @@ diagonalize:
 
 spectraltheorem:
   title: Spectral Theorem
-  text: A matrix is orthogonally diagonalizable if and only if it's symmetric
+  text: A matrix is orthogonally diagonalizable if and only if it's symmetric.
 
 orthogonal-complement:
   title: Orthogonal Complement
@@ -398,7 +398,7 @@ partial-sum:
 
 linearize:
   title: Linearize
-  text: To **linearize** a differentiable function at a point is to treat it as though it were a linear function (specifically, the best linear approximation) near that point.
+  text: To **linearize** a differentiable function at a point is to treat it as though it were a linear function (specifically, its best linear approximation) near that point.
 
 clairaut:
   title: Clairaut's theorem
