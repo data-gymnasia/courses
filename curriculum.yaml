@@ -102,3 +102,17 @@ data-and-society:
   author:
     name: Sarah M. Brown
     link: http://sarahmbrown.org
+
+programming-in-julia:
+  name: Programming in Julia
+  topics:
+    - Types
+    - Functions
+    - Multidimsional arrays
+    - Lists and Tuples
+    - Sets and Dictionaries
+    - Flow Control
+    - Plotting
+  author:
+    name: Samuel S. Watson
+    link: http://sswatson.com
