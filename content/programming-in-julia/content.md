@@ -266,7 +266,7 @@ A function may perform an action, like `{jl} print_twice`, or it may **return** 
 ---
 > id: step-omit-return-keyword
 
-In Julia, the `{jl} return` keyword can be omitted if the expression to be returned is the last expression in the body of the function. The block above would more commonly be written 
+In Julia, the `{jl} return` keyword can be omitted if the value to be returned appears at the end of the body of the function. The block above would more commonly be written 
 
     pre(julia-executable)
       | function add_one(x)
@@ -628,7 +628,7 @@ Does Julia convert types when doing equality comparison? In other words, does `{
 
 ::: .exercise
 **Exercise**  
-Write a one-line [function](gloss:function-julia which takes 3 bools as arguments and returns `{jl} true` if and only if either 
+Write a one-line [function](gloss:function-julia) which takes 3 bools as arguments and returns `{jl} true` if and only if either 
 
 1. Both of the first two arguments are `{jl} true` , or 
 2. The third argument is `{jl} false`
@@ -1218,10 +1218,10 @@ Suppose you want to write a program which keeps track of the albums you own. Eac
 ---
 > id: step-85
 
-What you want is to be able to treat each album as its own Julia object, with all its associated data stored inside. In other words, you want an `{jl} Album` type. You can do that with the `{jl} struct` keyword. We want to be able to change the album type, so we'll define it as a `{jl} mutable struct`: 
+What you want is to be able to treat each album as its own Julia object, with all its associated data stored inside. In other words, you want an `{jl} Album` type. You can do that with the `{jl} struct` keyword. 
 
     pre(julia-executable)
-      | mutable struct Album
+      | struct Album
       |     name
       |     artist
       |     year
@@ -1264,7 +1264,7 @@ One reason it's helpful to be able to specify type information when defining a f
       | num_years_ago(A, 2019) # returns 50
       | num_years_ago(1986, 2019) # returns 33
 
-We say that `{jl} num_years_ago` has two **methods**: one which accepts an `{jl} Album` as its first argument and an `{jl} Integer` as its second argument, and one which accepts `{jl} Integer`s for both arguments. Julia is responsible for correctly dispatching each function call to the correct method. This feature of Julia is called **multiple dispatch**. 
+We say that `{jl} num_years_ago` now has two **methods**: one which accepts an `{jl} Album` as its first argument and an `{jl} Integer` as its second argument, and one which accepts `{jl} Integer`s for both arguments. Julia is responsible for correctly dispatching each function call to the correct method. This feature of Julia is called **multiple dispatch**. 
 
 [Continue](btn:next)
 
@@ -2293,7 +2293,8 @@ Note that $10^{-8}$ can be represented in Julia using scientific notation `{jl} 
       | function newtonsqrt(n)
       |     """Use Newton's algorithm to approximate √n"""
       |     # add code here
-      |
+      | end
+      | 
       | @assert abs(newtonsqrt(2) - 1.4142135623730951) < 1e-6
       | @assert abs(newtonsqrt(9) - 3) < 1e-6
       |     return "Tests passed!"
@@ -2420,7 +2421,12 @@ _Note_: there's no solution to this one, but you can do it on your own!
 > id: multidimensional-arrays
 ## Multidimensional Arrays
 
-We've seen a couple exercises that involve dealing with matrices as an array of arrays. This gets quite tedious if you have to deal with matrices often, because many common tasks require custom methods with this approach (for example, simply selecting a column). 
+We've seen a couple exercises that involve dealing with matrices as an array of arrays. This gets quite tedious if you have to deal with matrices often, because many common tasks require custom methods with this approach (for example, simply selecting a column).
+
+[Continue](btn:next)
+
+---
+> id: step-multidim
 
 Since multidimensional arrays are very common in scientific computing, Julia has a built-in multidimensional array type. In other words, Julia arrays can be arranged in a rectangle or a cube, etc. The syntax for inputting a rectangular array involves separating rows with semicolons and row elements with spaces: `{jl} A = [1 2 3; 4 5 6; 7 8 9]`. Alternatively, you can use the newline character to separate rows: 
 
