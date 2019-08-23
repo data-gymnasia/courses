@@ -72,6 +72,15 @@ listcomp:
             if x % 2 == 0]_
 
     returns _{code}[0, 4, 16]_
+    
+arraycomp:
+  title: Array Comprehension
+  text: |
+    Special syntax for generating lists by mapping and filtering. To remove the elements of `{jl} A` not satisfying a condition `{jl} cond` and apply a function `{jl} f` to the remaining elements:
+
+    ```julia
+    [f(x) for x in L if cond(x)]
+    ```
 
 tuple:
   title: tuple
@@ -97,17 +106,43 @@ function:
 
     _{pre}add(3,2) # returns 5
     add(3,2,z=7) # returns 12_
+    
+function-julia:
+  title: Function
+  text: |
+    A packaged block of related code for performing a specific computation or action. Values to be input are called **parameters**, and they can be given default values:
+
+    ``` julia
+    function add(x, y; z=0)
+        x + y + z
+    end
+    add(3,2) # returns 5
+    add(3,2,z=7) # returns 12
+    ```
 
 dictionary:
   title: Dictionary
   text: |
-    An unordered, mutable data type used for encoding a function whose domain is a finite set
+    An unordered, mutable data type used for encoding a function whose domain is a finite set.
 
     For example, if we set
 
     _{code}D = {'a': 1, 'b': 2, 'c': 3}_,
 
     then the expression _{code}D['b']_ returns _{code}2_.
+
+dictionary-julia:
+  title: Dictionary
+  text: |
+    An unordered, mutable data type used for encoding a function whose domain is a finite set.
+
+    For example, if we set
+
+    ``` julia
+    D = Dict("a" => 1, "b" => 2, "c" => 3)
+    ```
+
+    then the expression `{jl} D["b"]` returns `{jl} 2`.
 
 method:
   title: method
@@ -195,7 +230,7 @@ vectorspace:
 
 basis:
   title: Basis
-  text: A **basis** of a vector space $V$ is a linearly independent spanning list of $V$
+  text: A **basis** of a vector space $V$ is a linearly independent spanning list of $V$.
 
 dimension:
   title: Dimension
@@ -264,7 +299,7 @@ productcolumnrule:
 transpose:
   title: Transpose
   text: |
-    The **transpose** $A'$ of a matrix $A$ to be the matrix which results from switching the rows and columns of $A$.
+    The **transpose** $A'$ of a matrix $A$ is the matrix obtained by switching the rows and columns of $A$.
 
     For example, if $A = \begin{bmatrix}
       	1 & 2 & 3 \\\\\\
@@ -297,7 +332,7 @@ blockmatrixproduct:
 
 gram:
   title: Gram matrix
-  text: The **Gram matrix** of a matrix $A$ is $A'A$
+  text: The **Gram matrix** of a matrix $A$ is $A'A$. The Gram matrix is analogous to the square of a real number: a square is nonnegative, while a Gram matrix is positive semidefinite. You can square root a number's square to get a number which is either the same as the original number or the same after multiplication by $-1$, and you can square root the Gram matrix of $A$ to get a matrix which is the same as $A$ after multiplication by some rotation/reflection matrix (that is, an orthogonal matrix).
 
 diagonalize:
   title: Diagonalize
@@ -305,7 +340,7 @@ diagonalize:
 
 spectraltheorem:
   title: Spectral Theorem
-  text: A matrix is orthogonally diagonalizable if and only if it's symmetric
+  text: A matrix is orthogonally diagonalizable if and only if it's symmetric.
 
 orthogonal-complement:
   title: Orthogonal Complement
@@ -398,7 +433,7 @@ partial-sum:
 
 linearize:
   title: Linearize
-  text: To **linearize** a differentiable function at a point is to treat it as though it were a linear function (specifically, the best linear approximation) near that point.
+  text: To **linearize** a differentiable function at a point is to treat it as though it were a linear function (specifically, its best linear approximation) near that point.
 
 clairaut:
   title: Clairaut's theorem
@@ -657,6 +692,10 @@ monomial:
 geron:
   title: Hands-on ML
   text: This section draws some ideas from chapter *End-to-End Machine Learning Project* in the (highly recommended) book *Hands on Machine Learning with Scikit-Learn and TensorFlow* by Aurélien Geron. In that chapter, California housing prices are considered.
+
+anaconda:
+  title: Anaconda
+  text: Anaconda is a distribution of Python which is designed to alleviate some of the difficulties with Python's main package manager `{py} pip` when it comes to managing the sorts of extensive binary dependencies that are common in data science packages. 
 
 rpy2:
   title: rpy2

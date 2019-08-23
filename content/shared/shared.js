@@ -21,22 +21,22 @@ script('/resources/shared/static/juniper.min.js').then(() => {
     isolateCells: false,
     msgLoading: 'Loading or nothing returned', 
     kernelType: 'bash',
-    defaultLang: 'bash'
+    language: 'shell'
   });
   new window.Juniper({
     selector: '[julia-executable]',
     repo: 'data-gymnasia/julia-binder',
     isolateCells: false,
     msgLoading: 'Loading or nothing returned', 
-    kernelType: 'julia',
-    defaultLang: 'julia'
+    kernelType: 'julia-1.1',
+    language: 'julia'
   });
   new window.Juniper({
     selector: '[r-executable]',
     repo: 'data-gymnasia/r-binder',
     isolateCells: false,
     msgLoading: 'Loading or NULL returned',
-    kernelType: 'r',
-    defaultLang: 'r'
+    kernelType: 'ir',
+    language: 'r'
   });
 });

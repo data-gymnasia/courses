@@ -390,10 +390,8 @@ We can create new columns in a data frame using the `{py} assign` method. For ex
 If the name of the data frame is quite long, you can avoid having to type it repeatedly by supplying an anonymous function to be applied to the data frame: 
 
     pre(python-executable)
-      | ri.assign(density = lambda d: d.population / d.area) \\ 
+      | ri.assign(density = lambda d: d.population / d.area) \
       |   .assign(**{'inverse density': lambda d: 1/d.density})
-
-Oops! There was a spurious space after the line continuation backslash. Delete it and run the cell again.
 
 We are using two `{py} assign` calls to create a column called `{py} density` and then a second new column called `{py} inverse density`. (Note how we used [splatting](gloss:splat) to get a space in the column name.)
 
@@ -530,18 +528,16 @@ Hint: make a new column to group by.
 
 ---
 
-*Solution*. Delete the spaces after each line continuation backslash before running the following block:
+*Solution*. We create a new column using the `{py} np.floor` function. Then we perform the grouping, select the column we want, and aggregate using the `{py} mean` function:
 
     pre(python-executable)
       | import pydataset
       | import numpy as np
       | iris = pydataset.data('iris') 
-      | iris.assign(sepal_length_floor = np.floor(iris["Sepal.Length"])) \\ 
-      |     .groupby('sepal_length_floor') \\ 
-      |     [['Sepal.Width']] \\ 
+      | iris.assign(sepal_length_floor = np.floor(iris["Sepal.Length"])) \
+      |     .groupby('sepal_length_floor') \
+      |     [['Sepal.Width']] \
       |     .agg('mean')
-
-Line by line, starting from the fourth: we create a new column to group by using the floor function. Then we perform the grouping, select the column we want, and aggregate using the `{py} mean` function. 
 
 [Continue](btn:next)
 

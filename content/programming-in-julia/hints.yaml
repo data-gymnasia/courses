@@ -1,0 +1,3 @@
+expression-1: Don't forget there's an assignment involved!
+not-a-variable: That's an object that can be assigned to a variable
+mutable: Variables can be changed!

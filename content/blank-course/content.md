@@ -36,3 +36,12 @@ This figure illustrates the relationship between a matrix and its **Gram** matri
 Is the orthogonal transformation relating $A$ and $\sqrt{A' A}$ always a rotation? Explain below.
 
     x-quill
+
+```python
+a = '1' + '2' + '3' + \
+    '4' + '5'
+```
+    
+    pre(python-executable)
+      | np.array([[1,2,3],
+      |           [4,5,6]])
