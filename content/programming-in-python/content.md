@@ -420,7 +420,7 @@ A number typed directly into a Python program is stored as a float or integer ac
 ---
 > id: step-36
 
-Numbers can be compared using the operators `{py} ==,>,<,<=,>=`. 
+Numbers can be compared using the operators `{py} ==,>,<,<=,>=,!=`. 
 
 ::: .exercise
 **Exercise**  
@@ -481,7 +481,7 @@ We can return the first character in a string `{py} s` using the expression `{py
 
 ::: .exercise
 **Exercise**  
-For which values of `{py} a` and `{py} b` does the expression `{py} "Hello World"[i:j] == "o Wo"` return `{py} True`? i = [[4]] and j = [[8]]
+For which values of `{py} i` and `{py} j` does the expression `{py} "Hello World"[i:j] == "o Wo"` return `{py} True`? i = [[4]] and j = [[8]]
 :::
 
     pre(python-executable)
