@@ -1,8 +1,10 @@
 
 # Programming in Python
 
-> id: intro
 ## Introduction
+
+> id: intro
+> section: introduction
 
 This chapter is an introduction to programming in **Python**, which is a general-purpose language with a very large user base in the software engineering world. With the emergence of a powerful stack of scientific computing [packages](gloss:package) since the early 2000s, it has emerged as the most popular language for data science.
 
@@ -100,8 +102,10 @@ Sort the following Python interaction modes in the order in which they appear in
 
 ---
 
-> id: basics
 ## Basics
+
+> id: basics
+> section: basics
 
 Let's begin by developing some basic vocabulary for the elements of a program. This section is an overview: will develop some of these ideas in greater depth in later sections.
 
@@ -388,8 +392,10 @@ Select the true statements.
 
 ---
 
-> id: types
 ## Types
+
+> id: types
+> section: types
 
 Python, like most programming languages, has built-in types for handling common data like numbers and text.
 
@@ -643,8 +649,11 @@ If we set `{py} s = "Bruno"`, then `{py} s[:j] == "Bru"` when `{py} j =` [[3]].
 :::
 
 ---
-> id: conditionals
+
 ## Conditionals
+
+> id: conditionals
+> section: conditionals
 
 Consider a simple computational task performed by commonplace software, like highlighting the rows in a spreadsheet which have a value larger than 10 in the third column. We need a new programming language feature to do this, because we need to conditionally execute code (namely, the code which highlights a row) based on the [[boolean|int|float]] value returned by the comparison operator. Python provides `{py} if` statements for this purpose.
 
@@ -769,8 +778,10 @@ Consider nesting `{py} if...else` blocks inside of an `{py} if...else` block.
 
 ---
 
-> id: functions
 ## Functions
+
+> id: functions
+> section: functions
 
 [Functions](gloss:function) can be used to organize code and achieve *separation of concerns*: once a function is written, it may be relied upon to perform its designated task without the programmer having to think about *how* it accomplishes that task. This conceptual aid is crucial for writing maintainable code to solve large, complex problems. 
 
@@ -1061,8 +1072,10 @@ _Hint_: Make a guess about which operator can be used to compare strings alphabe
 
 ---
 
-> id: packages
 ## Packages
+
+> id: packages
+> section: packages
 
 A [**package**](gloss:package) is a collection of Python files that provide functionality beyond the core functionality available in every Python program. Packages achieve separation of concerns at the community level: someone else solves a problem of general interest, and then you can leverage their work and focus on applying it to the problem at hand.
 
@@ -1188,9 +1201,11 @@ To import the standard library package `{py} itertools` (with no alias), we woul
 [Continue](btn:next)
 
 ---
-      
-> id: classes
+
 ## Classes
+
+> id: classes
+> section: classes
 
 Many Python functions use the usual function [syntax](gloss:syntax), like `{py} len("hello")`. However, many other functions are called using a different syntax where an *object* comes first: 
 
@@ -1325,8 +1340,10 @@ Implement a class called `{py} Fraction` which represents a ratio of two positiv
 
 ---
 
-> id: lists-and-tuples
 ## Lists and Tuples
+
+> id: lists-and-tuples
+> section: lists-and-tuples
 
 Let's revisit the spreadsheet example we discussed earlier: suppose you're writing a spreadsheet application and you want to introduce some functionality for highlighting every row whose third-column value is greater than 10: 
 
@@ -1994,8 +2011,10 @@ _Hint_: The string methods `{py} join` and `{py} split` might be helpful. You ca
       |     return " ".join(sentence.split(" ")[::-1])
 
 ---
-> id: sets-and-dictionaries
 ## Sets and Dictionaries
+
+> id: sets-and-dictionaries
+> section: sets-and-dictionaries
 
 ### Sets
 
@@ -2224,8 +2243,10 @@ Suppose you want to store student IDs in a part of a web application where the m
 
 ---
 
-> id: iteration
 ## Iteration
+
+> id: iteration
+> section: iteration
 
 We have already seen one way of doing something to each element in a collection: the [*list comprehension*](gloss:listcomp).
 
@@ -2518,8 +2539,10 @@ _Note_: there's no solution to this one, but you can do it on your own!
 
 ---
 
-> id: project-1
 ## Project 1: Spotify
+
+> id: project-1
+> section: project-1-spotify
 
 One of the most challenging aspects of learning to program is the difficulty of synthesizing individual skills in the service of a larger project. This section provides a stepping stone on that path by progressively solving a real-world problem. 
 
@@ -2720,8 +2743,10 @@ Add more features to the function *`{py} track_modifier`* to modify playlists in
 
 ---
 
-> id: project-2
 ## Project 2: Mail Merge
+
+> id: project-2
+> section: project-2-mail-merge
 
 Suppose you want to send an email to dozens of people, with some elements of the message varying by recipient. For example, you'd like to insert the recipient's first name in the salutation, and you might also need to insert a personal URL or passcode, information on the recipient's status, etc.
 

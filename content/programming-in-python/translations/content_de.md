@@ -1,8 +1,10 @@
 
-# Programmierung in Python
+# Programmieren mit Python
+
+## Einführung
 
 > id: intro
-## Einführung
+> section: introduction
 
 Dieses Kapitel ist eine Einführung in die Programmierung in **Python**, einer vielseitig einsetzbaren Sprache die unter Softwareentwicklern sehr beliebt ist. Vor allem auch im wissenschaftlichen Bereich aufgrund der  seit Anfang der 2000er Jahre entwickelten [Pakete](gloss:package) ist sie zur beliebtesten Sprache im Zusammenhang mit Data Science (Datenwissenschaft) geworden.
 
@@ -101,7 +103,6 @@ Sortiere die folgenden Python-Interaktionsmöglichkeiten in der Reihenfolge, in 
 
 ---
 
-> id: basics
 ## Grundlagen
 
 Beginnen wir damit uns einen Grundwortschatz für die Elemente eines Programms zu erarbeiten. Viele der Begriffe stammen aus dem Englischen. Auch wenn es für die meisten dieser Begriffe deutsche Übersetzungen gibt ist es oft einfacher, bei den englischen zu bleiben, nachdem sie einmal erklärt wurden, da sie auch so in Python (bzw. in anderen Programmiersprachen) verwendet werden. Dieser Abschnitt bietet einen Überblick: Einige dieser Begriffe werden in späteren Abschnitten genauer behandelt.
@@ -390,6 +391,7 @@ Wähle die wahren Aussagen aus.
 ---
 
 > id: types
+> section: types
 ## Typen
 
 Python hat, wie die meisten Programmiersprachen, eingebaute Typen für die Verarbeitung gängiger Daten wie Zahlen und Text.
@@ -644,10 +646,13 @@ If we set `{py} s = "Bruno"`, then `{py} s[:j] == "Bru"` when `{py} j =` [[3]].
 :::
 
 ---
-> id: conditionals
+
 ## Konditionals
 
-Consider a simple computational task performed by commonplace software, like highlighting the rows in a spreadsheet which have a value larger than 10 in the third column. We need a new programming language feature to do this, because we need to conditionally execute code (namely, the code which highlights a row) based on the [[boolean|int|float]] value returned by the comparison operator. Python provides `{py} if` statements for this purpose.
+> id: conditionals
+> section: conditionals
+
+Consider a simple computational task performed by commonplace software, like highlighting the rows in a spreadsheet which have a value larger than 10 in the third column. We need a new programming language feature to do this, because we need to conditionally execute code (namely, the code which highlights a row) based on the [[boolean|int|float]] value returned by the comparison operator. Python provides _{code.language-python}if_ statements for this purpose.
 
 ---
 > id: step-56
@@ -770,8 +775,10 @@ Consider nesting `{py} if...else` blocks inside of an `{py} if...else` block.
 
 ---
 
-> id: functions
 ## Funktionen
+
+> id: functions
+> section: functions
 
 [Functions](gloss:function) can be used to organize code and achieve *separation of concerns*: once a function is written, it may be relied upon to perform its designated task without the programmer having to think about *how* it accomplishes that task. This conceptual aid is crucial for writing maintainable code to solve large, complex problems. 
 
@@ -1062,8 +1069,10 @@ _Hint_: Make a guess about which operator can be used to compare strings alphabe
 
 ---
 
-> id: packages
 ## Pakete
+
+> id: packages
+> section: packages
 
 A [**package**](gloss:package) is a collection of Python files that provide functionality beyond the core functionality available in every Python program. Packages achieve separation of concerns at the community level: someone else solves a problem of general interest, and then you can leverage their work and focus on applying it to the problem at hand.
 
@@ -1190,10 +1199,12 @@ To import the standard library package `{py} itertools` (with no alias), we woul
 
 ---
       
-> id: classes
-## Workshops
+## CSS-Klassen
 
-Many Python functions use the usual function [syntax](gloss:syntax), like `{py} len("hello")`. However, many other functions are called using a different syntax where an *object* comes first: 
+> id: classes
+> section: classes
+
+Many Python functions use the usual function [syntax](gloss:syntax), like _{code.language-python}len("hello")_. However, many other functions are called using a different syntax where an *object* comes first: 
 
     pre(python-executable)
       | "hello".capitalize()
@@ -1326,8 +1337,10 @@ Implement a class called `{py} Fraction` which represents a ratio of two positiv
 
 ---
 
-> id: lists-and-tuples
 ## Lists and Tuples
+
+> id: lists-and-tuples
+> section: lists-and-tuples
 
 Let's revisit the spreadsheet example we discussed earlier: suppose you're writing a spreadsheet application and you want to introduce some functionality for highlighting every row whose third-column value is greater than 10: 
 
@@ -1995,8 +2008,11 @@ _Hint_: The string methods `{py} join` and `{py} split` might be helpful. You ca
       |     return " ".join(sentence.split(" ")[::-1])
 
 ---
-> id: sets-and-dictionaries
+
 ## Sets and Dictionaries
+
+> id: sets-and-dictionaries
+> section: sets-and-dictionaries
 
 ### Pinselsätze
 
@@ -2225,8 +2241,10 @@ Suppose you want to store student IDs in a part of a web application where the m
 
 ---
 
-> id: iteration
 ## Wiederkehrend
+
+> id: iteration
+> section: iteration
 
 We have already seen one way of doing something to each element in a collection: the [*list comprehension*](gloss:listcomp).
 
@@ -2519,8 +2537,10 @@ _Note_: there's no solution to this one, but you can do it on your own!
 
 ---
 
+## Projekt 1: Spotify
+
 > id: project-1
-## Project 1: Spotify
+> section: project-1-spotify
 
 One of the most challenging aspects of learning to program is the difficulty of synthesizing individual skills in the service of a larger project. This section provides a stepping stone on that path by progressively solving a real-world problem. 
 
@@ -2721,8 +2741,10 @@ Add more features to the function *`{py} track_modifier`* to modify playlists in
 
 ---
 
+## Projekt 2: Seriendruck
+
 > id: project-2
-## Project 2: Mail Merge
+> section: project-2-mail-merge
 
 Suppose you want to send an email to dozens of people, with some elements of the message varying by recipient. For example, you'd like to insert the recipient's first name in the salutation, and you might also need to insert a personal URL or passcode, information on the recipient's status, etc.
 
