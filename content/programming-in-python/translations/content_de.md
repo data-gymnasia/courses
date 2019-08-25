@@ -105,6 +105,9 @@ Sortiere die folgenden Python-Interaktionsmöglichkeiten in der Reihenfolge, in 
 
 ## Grundlagen
 
+> id: basics
+> section: basics
+
 Beginnen wir damit uns einen Grundwortschatz für die Elemente eines Programms zu erarbeiten. Viele der Begriffe stammen aus dem Englischen. Auch wenn es für die meisten dieser Begriffe deutsche Übersetzungen gibt ist es oft einfacher, bei den englischen zu bleiben, nachdem sie einmal erklärt wurden, da sie auch so in Python (bzw. in anderen Programmiersprachen) verwendet werden. Dieser Abschnitt bietet einen Überblick: Einige dieser Begriffe werden in späteren Abschnitten genauer behandelt.
 
 [Weiter](btn:next)
@@ -390,9 +393,10 @@ Wähle die wahren Aussagen aus.
 
 ---
 
+## Typen
+
 > id: types
 > section: types
-## Typen
 
 Python hat, wie die meisten Programmiersprachen, eingebaute Typen für die Verarbeitung gängiger Daten wie Zahlen und Text.
 
