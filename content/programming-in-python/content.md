@@ -868,7 +868,7 @@ We can give parameters **default values** and supply arguments for those paramet
 ---
 > id: step-67
 
-The arguments 1, 2, and 3 in this example are called **positional** arguments, and `{py} 5` is a **keyword argument**. 
+The arguments 2, 3, 4 and 5 in this example are called **positional** arguments, and `{py} b=2` is a **keyword argument**. 
 
 [Continue](btn:next)
 

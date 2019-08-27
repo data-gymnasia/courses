@@ -8,14 +8,14 @@
 
 Dieses Kapitel ist eine Einführung in die Programmierung in **Python**, einer vielseitig einsetzbaren Sprache die unter Softwareentwicklern sehr beliebt ist. Vor allem auch im wissenschaftlichen Bereich aufgrund der  seit Anfang der 2000er Jahre entwickelten [Pakete](gloss:package) ist sie zur beliebtesten Sprache im Zusammenhang mit Data Science (Datenwissenschaft) geworden.
 
-Mit dem Programmieren steht uns ein mächtiges Werkzeug zur Verfügung. Beim Erlernen der Programmierung verbessert man aber auch ganz allgemein die Fähigkeit, Probleme zu lösen und systematisch an Strukturen und Berechnungen heranzugehen. Du wirst wahrscheinlich feststellen, dass Ideen aus der Informatik deine Fähigkeit, über komplexe Systeme nachzudenken, verbessern werden, selbst in Situationen, die nichts Programmieren zu tun haben. Es ist ganz einfach eine nützliche Art zu denken, die dir beim Lernen weiterhelfen kann.
+Mit dem Programmieren steht uns ein mächtiges Werkzeug zur Verfügung. Beim Erlernen der Programmierung verbessert man aber auch ganz allgemein die Fähigkeit, Probleme zu lösen und systematisch an Strukturen und Berechnungen heranzugehen. Du wirst wahrscheinlich feststellen, dass Ideen aus der Informatik deine Fähigkeit, über komplexe Systeme nachzudenken, verbessern werden, selbst in Situationen, die nichts mit Programmieren zu tun haben. Es ist ganz einfach eine nützliche Art zu denken, die dir beim Lernen weiterhelfen kann.
 
 [Weiter](btn:next)
 
 ---
 > id: step-1
 
-Dieser Kurs enthält viele Übungen. Sie gewissenhaft zu machen ist für die Aneignung von neuem Wissen und das Erlernen neuer Fähigkeiten unerlässlich. Du solltest jede Übung lösen, bevor du auf die Schaltfläche "Fortfahren" klickst, um eine mögliche Lösung anzuzeigen.
+Dieser Kurs enthält viele Übungen. Sie gewissenhaft zu machen ist für die Aneignung von neuem Wissen und das Erlernen neuer Fähigkeiten unerlässlich. Du solltest jede Übung lösen, bevor du auf die Schaltfläche "Weiter" klickst, um eine mögliche Lösung anzuzeigen.
 
 [Weiter](btn:next)
 
@@ -67,14 +67,14 @@ Sobald du Python installiert hast, gibt es mehrere Möglichkeiten, damit zu arbe
 ---
 > id: step-7
 
-**Script**. Speichere eine Datei namens _{code}example.py_ und führe _{code}python example.py_ von der [Befehlszeile](gloss:command-line) aus (im gleichen Verzeichnis wie die Datei), um den gesamten Code im Skript auszuführen. Du kannst das in Binder tun, indem du *New > Text File* auswählst und dann den Namen der Textdatei so änderst, dass sie mit _{code}.py_ endet. 
+**Script**. Speichere eine Datei namens _{code}example.py_ und führe _{code}python example.py_ auf der [Befehlszeile](gloss:command-line) aus (im gleichen Verzeichnis wie die Datei), um den gesamten Code im Skript auszuführen. Du kannst das in Binder tun, indem du *New > Text File* auswählst und dann den Namen der Textdatei so änderst, dass sie mit _{code}.py_ endet. 
 
 [Weiter](btn:next)
 
 ---
 > id: step-8
 
-**Jupyter**. Wie ein REPL, aber erlaubt das Einfügen von Text und mathematischen Ausdrücken, das Gruppieren von Code in Blöcken, etc. Dies ist die standardmäßig in [Binder](https://mybinder.org/v2/gh/data-gymnasia/python-binder/master) bereitgestellte Schnittstelle. Lokal kannst du ein Notebook starten, indem du `{py}jupyter notebook` auf der [Befehlszeile](gloss:command-line) ausführst (vorausgesetzt, du hast Anaconda installiert). 
+**Jupyter**. Wie ein REPL, aber erlaubt das Einfügen von Text und mathematischen Ausdrücken, das Gruppieren von Code in Blöcke, etc. Dies ist die standardmäßig in [Binder](https://mybinder.org/v2/gh/data-gymnasia/python-binder/master) bereitgestellte Schnittstelle. Lokal kannst du ein Notebook starten, indem du `{py}jupyter notebook` auf der [Befehlszeile](gloss:command-line) ausführst (vorausgesetzt, du hast Anaconda installiert; im Fall von WinPython geht das über *WinPython Command Prompt*). 
 
 [Weiter](btn:next)
 
@@ -117,14 +117,14 @@ Beginnen wir damit uns einen Grundwortschatz für die Elemente eines Programms z
 
 ### Objekte
 
-Ein **Objekt** ist eine grundlegende Einheit, die von einem Programm manipuliert werden kann. Objekte haben **Typen**; zum Beispiel ist `{py} 5` ein `{py} int` (kurz für "integer", eine Ganzzahl) und `{py} "Hello world!"` ist ein `{py} str` (kurz für "string", eine Zeichenkette bzw. Text). Typen sind für den Computer wichtig, um den Überblick zu behalten, da Objekte je nach Typ unterschiedlich gespeichert werden. 
+Ein **Objekt** ist eine grundlegende Einheit, die von einem Programm manipuliert werden kann. Objekte haben **Typen**; zum Beispiel ist `{py} 5` ein `{py} int` (kurz für "integer", eine Ganzzahl) und `{py} "Hallo Welt!"` ist ein `{py} str` (kurz für "string", eine Zeichenkette bzw. Text). Typen sind für den Computer wichtig, um den Überblick zu behalten, da Objekte je nach Typ unterschiedlich gespeichert werden. 
 
 [Weiter](btn:next)
 
 ---
 > id: step-12
 
-Du kannst den Typ eines Objekts mit dem Befehl `{py} type` überprüfen. Zum Beispiel gibt `{py} type("hello")` als Ergebnis `{py} str` zurück.
+Du kannst den Typ eines Objekts mit dem Befehl `{py} type` überprüfen. Zum Beispiel gibt `{py} type("Hallo")` als Ergebnis `{py} str` zurück.
 
 [Weiter](btn:next)
 
@@ -137,7 +137,7 @@ Verwende den folgenden Codeblock, um den Typ von `{py} 1.0` zu bestimmen. Hat `{
 :::
 
     pre(python-executable)
-      | # ersetze diesen Text durch Code und drücke zum auszuführen die Eingabetaste mit gedrückter Umschalttaste. 
+      | # ersetze diesen Text durch Code und drücke zum Ausführen die Eingabetaste mit gedrückter Umschalttaste.
 
 ---
 > id: step-14
@@ -186,7 +186,7 @@ x = y
 ---
 > id: step-18
 
-*Lösung*. Der Wert 3 wird `{py} x` und dann in der zweiten Zeile auch `{py} y` zugewiesen. Nach der dritten Zeile ist der Wert von `{py} x` gleich 4, da sich die rechte Seite zu 4 ergibt und *dann* der Variablen `{py} x` zugeordnet wird. Nach der vierten Zeile ist `{py} 3` wieder der Wert von `{py} x`, da der Wert von `{py} y` bei der Ausführung der vierten Zeile immer noch 3 ist. 
+*Lösung*. Der Wert 3 wird `{py} x` und dann auch `{py} y` in der zweiten Zeile zugewiesen. Nach der dritten Zeile ist der Wert von `{py} x` gleich 4, da sich die rechte Seite zu 4 ergibt und *dann*  der Variablen `{py} x` zugeordnet wird. Nach der vierten Zeile ist `{py} 3` wieder der Wert von `{py} x` , da der Wert von `{py} y` bei der Ausführung der vierten Zeile immer noch 3 ist. 
 
 [Weiter](btn:next)
 
@@ -206,7 +206,7 @@ Verwende den folgenden Codeblock, um herauszufinden, was passiert, wenn du versu
 ---
 > id: step-20
 
-Beachte, dass du bei Auftreten eines Fehlers in deinem Code einen **Traceback** erhältst, der dir hilft, die Fehlerquelle zurückzuverfolgen ("trace back" bedeutet zurückverfolgen). Damit kein Fehler ausgelöst wird müsste die Variable 'anzahl_Karotten' [[anzahl_karotten|Anzahl_Karotten|anzahl karotten]] geschrieben werden.
+Beachte, dass du bei Auftreten eines Fehlers in deinem Code einen **Traceback** erhältst, der dir hilft, die Fehlerquelle zurückzuverfolgen. ("trace back" bedeutet zurückverfolgen). Damit kein Fehler ausgelöst wird müsste die Variable 'anzahl_Karotten' anders geschrieben werden, nämlich [[anzahl_karotten|Anzahl_Karotten|anzahl karotten]].
 
 ### Funktionen
 
@@ -226,7 +226,7 @@ Einige Funktionen, wie z.B. `{py} print`, sind schon in die Sprache integriert u
       |     print(x)
       |     print(x)
       |
-      | schreibe_zweimal("hey")
+      | schreibe_zweimal("Holladaroh!")
 
 [Weiter](btn:next)
 
@@ -240,7 +240,7 @@ Einige Funktionen, wie z.B. `{py} print`, sind schon in die Sprache integriert u
 ---
 > id: step-23
 
-Beachte, dass die Codezeilen, die ausgeführt werden sollen, wenn die Funktion aufgerufen wird, vier Leerzeichen in Bezug auf `{py} def` **eingerückt sein müssen** . Zum Beispiel *{py} schreibe_zweimal("hey")` [[ist nicht|ist]] Teil der Definition der Funktion im obigen Beispiel.
+Beachte, dass die Codezeilen, die ausgeführt werden sollen wenn die Funktion aufgerufen wird, vier Leerzeichen in Bezug auf `{py} def` **eingerückt sein müssen** . Zum Beispiel die Zeile `{py} schreibe_zweimal("Holladaroh")` [[ist nicht|ist]] Teil der Definition der Funktion im obigen Beispiel.
 
 ---
 > id: step-24
@@ -282,7 +282,7 @@ Ordne die folgenden Operatorbeschreibungen in der Reihenfolge an, wie der entspr
     x-sortable
       .item.md(data-index="4") Division (gewöhnliche Division mit reellen Zahlen)
       .item.md(data-index="3") ganzzahlige Division (nur Quotient; kein Rest)
-      .item.md(data-index="0") Addition      
+      .item.md(data-index="0") Addition       
       .item.md(data-index="2") Multiplikation
       .item.md(data-index="1") Potenzieren
       
@@ -290,7 +290,7 @@ Ordne die folgenden Operatorbeschreibungen in der Reihenfolge an, wie der entspr
 
     pre(python-executable)
       | print(6 + 11)
-      | print(2**5)
+      | print(2**3)
       | print(3 * 4)
       | print(7//2)
       | print(7/2)
@@ -333,7 +333,7 @@ Eine einzelne ausführbare Codeeinheit in Python wird als **Anweisung** bezeichn
 
 ::: .exercise
 **Übung**  
-(Versuche es ohne den Code auszuführen.) Der Ausdruck `{py} 11/2-11//2-3` ergibt [[-2,5]], ausgedrückt als Dezimalzahl (gewöhne dich hier gleich daran, als Dezimalzeichen einen **Punkt** (zB 4.2) anstelle eines Beistrichs (zB 4,2) zu verwenden).
+(Versuche es ohne den Code auszuführen.) Der Ausdruck `{py} 11/2-11//2-3` ergibt [[-2.5]], ausgedrückt als Dezimalzahl (gewöhne dich hier gleich daran, als Dezimalzeichen einen **Punkt** (zB 4.2) anstelle eines Beistrichs (zB 4,2) zu verwenden).
 :::
 
 ---
@@ -407,7 +407,7 @@ Python hat, wie die meisten Programmiersprachen, eingebaute Typen für die Verar
 
 ### Zahlen
 
-Wie im vorherigen Abschnitt erläutert, kann ein numerischer Wert entweder ein `{py} int` oder ein `{py} float` sein. Wir können ganze Zahlen genau darstellen, während die Speicherung einer Gleitkommazahl als Float [oft eine leichteRundung erfordert](gloss:rounding).
+Wie im vorherigen Abschnitt erläutert, kann eine Zahl entweder einen Wert vom Typ `{py} int` oder `{py} float` haben. Wir können ganze Zahlen genau darstellen, während die Speicherung einer Gleitkommazahl als Float [oft eine leichte Rundung erfordert](gloss:rounding).
 
 [Weiter](btn:next)
 
@@ -438,7 +438,7 @@ Was ist der Typ des Objekts, das von `{py} 1 == 2` zurückgegeben wird? [[bool]]
       
 ::: .exercise
 **Übung**  
-`{py} x == 1` ist [[ein Ausdruck|eine Anweisung]], die `{py} True` ("wahr") oder `{py} False` ("falsch") zurückgibt, je nachdem, ob [[das x zugewiesene Objekt gleich 1|der String "x" gleich 1]] ist. Andererseits ist `{py} x = 1` [[eine Anweisung|ein Ausdruck]], der [[dem Objekt x den Wert 1 zuweist|x mit 1 vergleicht]].
+`{py} x == 1` ist [[ein Ausdruck, der|eine Anweisung, die]] `{py} True` ("wahr") oder `{py} False` ("falsch") zurückgibt, je nachdem, ob [[das x zugewiesene Objekt gleich 1|der String "x" gleich 1]] ist. Andererseits ist `{py} x = 1` [[eine Anweisung, die|ein Ausdruck, der]] [[dem Objekt x den Wert 1 zuweist|x mit 1 vergleicht]].
 :::
 
 ---
@@ -454,7 +454,8 @@ Textdaten werden durch eine Folge von Zeichen dargestellt, die als **String** be
       | Sie kann sogar "Anführungszeichen" enthalten, kein Problem.
       | """
       | 
-      | "Das ist eine gewöhnliche Zeichenkette. \"Anführungszeichen\" erfordern hier einen Backslash."
+      | "pre(python-executable)
+      | Das ist eine gewöhnliche Zeichenkette. \"Anführungszeichen\" erfordern hier einen Backslash."
 
 [Weiter](btn:next)
 
@@ -473,7 +474,7 @@ Wir können zwei Strings mit dem Additionsoperator (`{py} +`) verknüpfen: `{py}
 ---
 > id: step-41
 
-Wir können das erste Zeichen in einem String `{py} s` mit dem Ausdruck `{py} s[0]`zurückgeben, das zweite Element mit `{py} s[1]`, und so weiter. Die Zahl in den eckigen Klammern wird Index genannt. Der Index der 1. Stelle ist also 0! Wir können den Teilstring vom dritten bis zum achten Zeichen mit `{py} s[3:9]` erhalten. Beachte, dass die 9 um eins **größer** ist als der Index an dem wir stoppen (bzw. 3 um 1 vor der Stelle, an der wir starten) wollen. 
+Wir können das erste Zeichen in einem String `{py} s` mit dem Ausdruck `{py} s[0]`zurückgeben, das zweite Element mit `{py} s[1]`, und so weiter. Wir können den Teilstring vom vierten bis zum achten Zeichen mit `{py} s[3:9]` erhalten. Beachte, dass die 9 um eins **größer** ist als der Index an dem wir stoppen (bzw. 3 um 1 vor der Stelle, an der wir starten) wollen. 
 
 [Weiter](btn:next)
 
@@ -521,7 +522,7 @@ Wir können den Wert einer Variablen mit Hilfe der sogenannten *String-Interpola
 
 ::: .exercise
 **Übung**  
-Verwende eine String-Interpolation um eine einzelne Codezeile zu schreiben, die `{py} mit 6,2 multipliziert ergibt 12,4` ausgibt, wenn die Variable `{py} A` auf `{py} 2` gesetzt, und `{py} mit 6,2 multipliziert ergibt 18,6`, wenn `{py} A` auf `{py} 3` gesetzt wird. 
+Verwende eine String-Interpolation um eine einzelne Codezeile zu schreiben, die `{py} mit 6.2 multipliziert ergibt 12.4` ausgibt, wenn die Variable `{py} A` auf `{py} 2` gesetzt, und `{py} mit 6.2 multipliziert ergibt 18,6`, wenn `{py} A` auf `{py} 3` gesetzt wird. 
 :::
 
     pre(python-executable)
@@ -533,7 +534,7 @@ Verwende eine String-Interpolation um eine einzelne Codezeile zu schreiben, die 
 ---
 > id: step-46
 
-*Lösung*. Der Ausdruck `{py} print(f"multiplying by 6.2 yields {6.2*A}")` funktioniert. 
+*Lösung*. Der Ausdruck `{py} print(f"mit 6.2 multipliziert ergibt {6.2*A}")` funktioniert. 
 
 [Weiter](btn:next)
 
@@ -542,7 +543,7 @@ Verwende eine String-Interpolation um eine einzelne Codezeile zu schreiben, die 
 
 ### Boolesche Variablen
 
-Ein **bool** ist ein spezieller Typ, dessen einzige Werte `{py} True` und `{py} False` sind. Die grundlegenden Operatoren, die verwendet werden können, um boolesche Werte zu kombinieren, sind `{py} and` ("und"), `{py} or` ("oder"), und `{py} not` ("nicht"). 
+Ein **bool** ist ein spezieller Typ, dessen einzige Werte `{py} True` ("Wahr") und `{py} False` ("Falsch") sind. Die grundlegenden Operatoren, die verwendet werden können, um boolesche Werte zu kombinieren, sind `{py} and` ("und"), `{py} or` ("oder") und `{py} not` ("nicht"). 
 
 [Weiter](btn:next)
 
@@ -555,7 +556,7 @@ Wandelt Python Typen um wenn man sie miteinander vergleicht? Mit anderen Worten,
 :::
 
     pre(python-executable)
-      | 1 == 1.0
+      | 1 == 1,0
 
 ---
 > id: step-49
@@ -569,10 +570,10 @@ Wandelt Python Typen um wenn man sie miteinander vergleicht? Mit anderen Worten,
 
 ::: .exercise
 **Übung**  
-Schreiben Sie eine einzeilige [Funktion](gloss:function) , die 3 Bools als Argumente nimmt und `{py} True` zurückgibt, wenn und nur wenn einer von beiden 
+Schreibe eine einzeilige [Funktion](gloss:function) , die 3 Boolwerte als Argumente nimmt und `{py} True` zurückgibt, wenn und nur wenn folgendes zutrifft: 
 
-1. Both of the first two arguments are `{py} True` , or 
-2. The third argument is `{py} False`
+1. Die beiden ersten beiden Argumente sind `{py} True`, oder 
+2. Das dritte Argument ist `{py} False`
 :::
 
 
@@ -581,10 +582,10 @@ Schreiben Sie eine einzeilige [Funktion](gloss:function) , die 3 Bools als Argum
       |     pass # hier Code einfügen
       |
       | def test_f():
-      |     assert f(True, True, True)
+      |     assert f(True, True, True, True)
       |     assert f(False, True, False)
-      |     assert not f(False, True, True)
-      |     return "Tests passed!"
+      |     assert not f(False, True, True, True)
+      |     return "Tests erfolgreich abgeschlossen!"
       |
       | test_f()
 
@@ -593,14 +594,14 @@ Schreiben Sie eine einzeilige [Funktion](gloss:function) , die 3 Bools als Argum
 ---
 > id: step-51
 
-*Lösung*. Here's an example of a simple way to do it: 
+*Lösung*. Hier ist ein Beispiel für eine einfache Möglichkeit, das umzusetzen: 
 
 ``` python
 def f(a,b,c):
     return a and b or not c
 ```
 
-Be wary of comparisons of the form `{py} a == True` or `{py} b == False`. These are equivalent to `{py} a` and `{py} not b`, [respectively](gloss:respectively), assuming `{py} a` and `{py} b` are both bools. The more succinct versions are preferred. 
+Sei vorsichtig mit Vergleichen der Form `{py} a == True` oder `{py} b == False`. Sie sind [jeweils](gloss:respectively) äquivalent zu einfach nur `{py} a` bzw. `{py} not b`, vorausgesetzt, `{py} a` und `{py} b` sind beide vom Typ bool, da die gesuchte Antwort ja schon von den Variablen selbst geliefert wird. Die kürzeren Versionen werden bevorzugt. 
 
 [Weiter](btn:next)
 
@@ -610,9 +611,9 @@ Be wary of comparisons of the form `{py} a == True` or `{py} b == False`. These 
 ### Übungen
 
 ::: .exercise
-**Exercise**  
+**Übung**  
 
-Write some code for computing $\frac{1}{a+\frac{2}{3}}$ where $a$ is equal to the number of characters in the string `{py} "The quick brown fox jumped over the lazy dog"`
+Schreibe einen Code zur Berechnung von $\frac }${1}{a+\frac{2}{3}. $a$ ist dabei gleich der Anzahl der Zeichen im String `{py} "Semriacher Sennenhunde sind sehr selten selber senil"`
 
 :::
 
@@ -624,10 +625,10 @@ Write some code for computing $\frac{1}{a+\frac{2}{3}}$ where $a$ is equal to th
 ---
 > id: step-53
 
-*Lösung*. We store the length of the given string in a variable `{py} a` and evaluate the given expression as follows: 
+*Lösung*. Wir speichern die Länge des angegebenen Strings in einer Variablen `{py} a` und werten den gegebenen Ausdruck wie folgt aus: 
 
 ``` python
-a = len("The quick brown fox jumped over the lazy dog")
+a = len("Semriacher Sennenhunde sind sehr selten selber senil")
 1/(a+2/3)
 ```
 
@@ -637,33 +638,33 @@ a = len("The quick brown fox jumped over the lazy dog")
 > id: step-54
 
 ::: .exercise
-**Exercise**  
-The expression `{py} 1 < 3` returns [[True]], which is an object of type [[bool]]. 
+**Übung**  
+Der Ausdruck `{py} 1 < 3` gibt [[True]] zurück, also ein Objekt vom Typ [[bool]]. 
 :::
 
 ---
 > id: step-55
 
 ::: .exercise
-**Exercise**  
-If we set `{py} s = "Bruno"`, then `{py} s[:j] == "Bru"` when `{py} j =` [[3]]. 
+**Übung**  
+Wenn wir s = "Bruno"` setzen `{py}, dann ist `{py} s[:j] == "Bru"` für `{py} j =` [[3]]. 
 :::
 
 ---
 
-## Konditionals
+## Bedingungen
 
 > id: conditionals
 > section: conditionals
 
-Consider a simple computational task performed by commonplace software, like highlighting the rows in a spreadsheet which have a value larger than 10 in the third column. We need a new programming language feature to do this, because we need to conditionally execute code (namely, the code which highlights a row) based on the [[boolean|int|float]] value returned by the comparison operator. Python provides _{code.language-python}if_ statements for this purpose.
+Betrachten wir eine einfache Aufgabe, die von irgendeiner Software am Computer ausgeführt wird, wie z.B. das Hervorheben aller Zeilen in einer Tabelle, die in der dritten Spalte einen Wert größer als 10 haben. Dazu benötigen wir eine neue Funktion die von Programmiersprachen zur Verfügung gestellt wird: wir wollen Code (nämlich den Code, der eine Zeile markiert) nur dann ausführen wenn eine bestimmte Bedingung erfüllt ist, also je nachdem welchen [[bool|int|float]]-Wert von einem Vergleichsoperator (==, <, <=, ...) zurückgegeben wird. Python stellt zu diesem Zweck `{py} if`-Anweisungen zur Verfügung.
 
 ---
 > id: step-56
 
-### Konditionals
+### Bedingungen
 
-We can use an `{py} if` statement to specify different blocks to be executed depending on the value of a boolean expression. For example, the following function calculates the sign of the input value `{py} x`.
+Wir können eine `{py} if`-Anweisung verwenden, um verschiedene Blöcke anzugeben, die abhängig vom Wert eines booleschen Ausdrucks ausgeführt werden sollen. *Wenn* der Wert True ist mache das, *sonst* (`{py} else`) mache etwas anderes. Die folgende Funktion berechnet beispielsweise das Vorzeichen des eingegebenen Wertes `{py} x`.
 
     pre(python-executable)
       | def sgn(x):
@@ -681,7 +682,7 @@ We can use an `{py} if` statement to specify different blocks to be executed dep
 ---
 > id: step-57
 
-Conditional expressions can be written using *ternary conditional* `{py} «truevalue» if «condition» else «falsevalue»`. For example, the following version of the `{py} sgn` function returns the same values as the one above except when `{py} x == 0`. 
+Bedingte Ausdrücke können auch als *ternäre (dreigeteilte) Bedingungen*  geschrieben werden.`{py} «Wahr-Wert» if «Bedingung» else «Falsch-Wert»`. Die folgende Version der Funktion `{py} sgn` gibt beispielsweise die gleichen Werte wie die obige zurück, außer für `{py} x == 0`. 
 
     pre(python-executable)
       | def sgn(x): 
@@ -697,8 +698,8 @@ Conditional expressions can be written using *ternary conditional* `{py} «truev
 ### Übungen
 
 ::: .exercise
-**Exercise**  
-Can the `{py} else` part of an `{py} if` statement be omitted? [[Yes|No]] Try running the example below. 
+**Übung**  
+Kann der `{py} else` Teil einer `{py} if`-Anweisung weggelassen werden? [[Ja|Nein]] Versuche, das folgende Beispiel auszuführen. 
 :::
 
     pre(python-executable)
@@ -708,25 +709,25 @@ Can the `{py} else` part of an `{py} if` statement be omitted? [[Yes|No]] Try ru
       | elif x < 1: 
       |     print("x is between 0 and 1")
       
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-59
 
 ::: .exercise
-**Exercise**  
-Write a function called `{py} my_abs` which computes the absolute value of its input. Replace the keyword `{py} pass` below with an appropriate block of code.
+**Übung**  
+Schreibe eine Funktion namens `{py} my_abs` , die den Absolutbetrag der eingegebenen Zahl berechnet. Ersetze das Schlüsselwort `{py} pass` durch einen entsprechenden Codeblock.
 :::
 
     pre(python-executable)
       | def my_abs(x):
-      |     pass # add code here
+      |     pass # hier Code einfügen
       |
       | def test_abs():
       |     assert my_abs(-3) == 3
       |     assert my_abs(5.0) == 5.0
       |     assert my_abs(0.0) == 0.0
-      |     return "Tests passed!"
+      |     return "Test erfolgreich ausgeführt!"
       |
       | test_abs()
 
@@ -736,22 +737,22 @@ Write a function called `{py} my_abs` which computes the absolute value of its i
 > id: step-60
 
 ::: .exercise
-**Exercise**  
-Write a function which returns the quadrant number (1, 2, 3, or 4) in which the point `{py} (x,y)` is located. Recall that the quadrants are numbered counter-clockwise: the northeast quadrant is quadrant 1, the northwest quadrant is 2, and so on. For convenience, you may assume that both `{py} x` and `{py} y` are nonzero.
+**Übung**  
+Schreibe eine Funktion, die den Quadranten (1, 2, 3 oder 4) zurückgibt, in dem sich der Punkt `{py} (x,y)` befindet. Beachte, dass die Quadranten gegen den Uhrzeigersinn nummeriert sind: Der nordöstliche Quadrant ist Quadrant 1, der nordwestliche Quadrant ist 2, und so weiter. Der Einfachheit halber kannst du davon ausgehen, dass sowohl `{py} x` als auch `{py} y` ungleich Null sind.
 
-Consider nesting `{py} if...else` blocks inside of an `{py} if...else` block. 
+Tipp: Dabei solltest du vielleicht verschachtelte `{py} if...else` Blöcke innerhalb eines anderen `{py} if...else` Blocks verwenden. Beachte dabei die unterschiedlichen Einzüge der Blöcke! 
 :::
 
     pre(python-executable)
       | def quadrant(x,y):
-      |     pass # add code here
+      |     pass # hier Code einfügen
       |
       | def test_quadrant():
       |     assert quadrant(1.0, 2.0) == 1
       |     assert quadrant(-13.0, -2) == 3
       |     assert quadrant(4, -3) == 4
       |     assert quadrant(-2, 6) == 2
-      |     return "Tests passed!"
+      |     return "Tests bestanden!"
       |
       | test_quadrant()
 
@@ -760,7 +761,7 @@ Consider nesting `{py} if...else` blocks inside of an `{py} if...else` block.
 ---
 > id: step-61
 
-*Lösung*. Here's an example solution: 
+*Lösung*. Eine mögliche Lösung: 
 
     pre(python-executable)
       | 
@@ -784,33 +785,33 @@ Consider nesting `{py} if...else` blocks inside of an `{py} if...else` block.
 > id: functions
 > section: functions
 
-[Functions](gloss:function) can be used to organize code and achieve *separation of concerns*: once a function is written, it may be relied upon to perform its designated task without the programmer having to think about *how* it accomplishes that task. This conceptual aid is crucial for writing maintainable code to solve large, complex problems. 
+[Funktionen](gloss:function) können verwendet werden, um Code zu organisieren und *Aufgaben auszulagern*: Sobald eine Funktion geschrieben ist, kann man sich darauf verlassen, dass sie ihre vorgesehene Aufgabe erfüllt, ohne dass der Programmierer darüber nachdenken muss, *wie* sie das macht. Diese konzeptionelle Hilfe ist entscheidend für das Schreiben von wartbarem Code zur Lösung großer, komplexer Probleme. 
 
 [Weiter](btn:next)
 
 ---
 > id: step-62
 
-A good rule of thumb is that a function should be sufficiently general to be re-usable without duplicating internal logic, but specific enough that you can actually implement it. 
+Eine gute Faustregel ist, dass eine Funktion ausreichend allgemein sein sollte, um wiederverwendbar zu sein, ohne schon vorhandene Logik zu duplizieren, aber auch so speziell, dass man sie wirklich einsetzen kann. 
 
 ::: .exercise
-**Exercise**  
-How could the design of the following code be improved?
+**Übung**  
+Wie könnte das Design des folgenden Codes verbessert werden?
 
 ``` python
-def remove_one_leading_space(S):
+def loesche_ein_anfangs_leerzeichen(S):
     if S[0] == " ":
         return S[1:]
     else:
         return S
 
-def remove_two_leading_spaces(S):
+def loesche_zwei_anfangs_leerzeichen(S):
     if S[0:2] == "  ":
         return S[2:]
     else:
         return S
 
-def remove_three_leading_spaces(S):
+def loesche_drei_anfangs_leerzeichen(S):
     if S[0:3] == "  ":
         return S[3:]
     else:
@@ -823,7 +824,7 @@ def remove_three_leading_spaces(S):
 ---
 > id: step-63
 
-*Lösung*. We should have a single function to remove whatever number of leading spaces the string happens to have. The design above has the problem that we have to figure out how many leading spaces there are before we can call the appropriate function, which means that most of the work that should be performed by the function will have to be performed when the function is called. Thus separation of concerns is not achieved.
+*Lösung*. Wir sollten eine einzige Funktion haben, um die Anzahl der überflüssigen Leerzeichen am Anfang eines Strings zu entfernen. Das obige Design hat das Problem, dass wir herausfinden müssen, wie viele führende Leerzeichen es gibt, bevor wir die entsprechende Funktion aufrufen können, was bedeutet, dass die meiste Arbeit, die eigentlich von der Funktion ausgeführt werden sollte, schon vor dem Aufruf der Funktion ausgeführt werden muss. Dadurch wird die Auslagerung der Arbeit nicht umgesetzt.
 
 [Weiter](btn:next)
 
@@ -832,7 +833,7 @@ def remove_three_leading_spaces(S):
 
 ### Argumente
 
-The objects supplied to a function when it's called are referred to as the function's **arguments**. The variables which represent the arguments in the function definition are called **parameters**. The indented block of code that runs when the function is called is the **body** of the function.
+Die Objekte, die einer Funktion beim Aufruf übergeben werden, werden als **Argumente** der Funktion bezeichnet. Die Variablen, die die Argumente in der Funktionsdefinition darstellen, werden **Parameter** genannt. Der eingerückte Codeblock, der beim Aufruf der Funktion ausgeführt wird, ist der **Body** der Funktion (Funktionsrumpf).
 
 [Weiter](btn:next)
 
@@ -840,60 +841,60 @@ The objects supplied to a function when it's called are referred to as the funct
 > id: step-65
 
 ::: .exercise
-**Exercise**  
-In the following block of code, `{py} s` is [[a parameter|an argument]], while `{py} "hello"` is [[an argument | a parameter]].
+**Übung**  
+Im folgenden Codeblock ist `{py} s` ein [[Parameter|Argument]], während `{py} "hello"` ein [[Argument|Parameter]] ist.
 
 ``` python
-def duplicate(s):
+def dupliziere(s):
     return s + s
 
-duplicate("hello")
+dupliziere("hello")
 ```
 :::
 
 ---
 > id: step-66
 
-We can give parameters **default values** and supply arguments for those parameters optionally when calling the function.
+Wir können Parametern **Standardwerte** zuweisen und für diese Parameter die Argumente dann optional (nicht zwingend) beim Aufruf der Funktion angeben.
 
     pre(python-executable)
       | 
-      | def line(m, x, b=0):
-      |     return m * x + b
+      | def gerade(k, x, d=0):
+      |     return k * x + d
       |
-      | line(2,3) # returns 6
-      | line(5,4,b=2) # returns 22
+      | gerade(2,3) # ergibt 6
+      | gerade(5,4,d=2) # ergibt 22
 
 [Weiter](btn:next)
 
 ---
 > id: step-67
 
-The arguments 1, 2, and 3 in this example are called **positional** arguments, and `{py} 5` is a **keyword argument**. 
+Die Argumente 2, 3, 4 und 5 in diesem Beispiel werden **Positionsargumente** genannt, und `{py} b=2` ist ein **Schlüsselwort-Argument**. 
 
 [Weiter](btn:next)
 
 ---
 > id: step-68
 
-If the function body begins with a string literal, that string will be interpreted as documentation for the function. This **docstring** helps you and other users of your functions quickly ascertain how they are meant to be used. A function's docstring can accessed in a Python session using the function `{py} help`. For example, `{py} help(print)` pulls up the docstring for the built-in `{py} print` function.
+Wenn der Funktionsteil mit einem String-Literal beginnt, wird dieser String als Dokumentation für die Funktion interpretiert. Dieser **DocString** hilft dir und anderen Benutzern deiner Funktionen, schnell festzustellen, wie sie verwendet werden sollen. Auf die Dokumentation einer Funktion kann in einer Python-Sitzung über die Funktion `{py} help`zugegriffen werden. Beispielsweise gibt `{py} help(print)` den DocString für die eingebaute `{py} print`-Funktion aus.
 
 [Weiter](btn:next)
 
 ---
 > id: step-69
 
-### Anonymous functions
+### Anonyme Funktionen
 
-A function may be defined without assigning a name to it. Such a function is said to be *anonymous*. Python's anonymous function [syntax](gloss:syntax) uses the keyword `{py} lambda`. A common situation where anonymous functions can be useful is when supplying one function to another as an argument. For example:
+Eine Funktion kann definiert werden, ohne ihr einen Namen zu geben. Eine solche Funktion gilt als *anonym*. Die Python-[Syntax](gloss:syntax) für anonyme Funktionen verwendet das Schlüsselwort `{py} lambda`. Eine häufige Situation, in der anonyme Funktionen nützlich sein können, ist die Bereitstellung einer Funktion an eine andere als Argument. Zum Beispiel:
 
     pre(python-executable)
-      | def apply_three_times(f, x):
+      | def mache_drei_mal(f, x):
       |     return f(f(f(x)))
       |
-      | apply_three_times(lambda x: x*x, 2)
+      | mache_drei_mal(lambda x: x*x, 2)
       
-A multi-argument function works similarly, with the parameters separated by commas: the addition operator can be written as `{py} lambda x,y: x + y`. 
+Eine Funktion mit mehreren Argumenten funktioniert ähnlich, wobei die Parameter durch Kommas getrennt sind: Der Additionsoperator + könnte folgendermaßen geschrieben werden `{py} lambda x,y: x + y`. 
 
 [Weiter](btn:next)
 
@@ -901,8 +902,8 @@ A multi-argument function works similarly, with the parameters separated by comm
 > id: step-70      
       
 ::: .exercise
-**Exercise**  
-Write a function that takes two arguments `{py} a` and `{py} b` and a function `{py} f` and returns `{py} a` if `{py} f(a) < f(b)` and `{py} b` otherwise. Then use anonymous function syntax to call your function with two numbers and the negation function $x\mapsto -x$. 
+**Übung**  
+Schreibe eine Funktion, die zwei Argumente `{py} a` und `{py} b` und eine Funktion `{py} f` übernimmt und `{py} a` zurückgibt, wenn `{py} f(a) < f(b)` und `{py} b` ansonsten. Verwende dann die anonyme Funktionssyntax, um deine Funktion mit zwei Zahlen und der Negationsfunktion $x\mapsto -x$ aufzurufen. 
 :::
 
     pre(python-executable)
@@ -913,7 +914,7 @@ Write a function that takes two arguments `{py} a` and `{py} b` and a function `
 ---
 > id: step-71
 
-*Lösung*. Here's an example solution:
+*Lösung*. Eine mögliche Lösung:
 
 ``` python
 def which_smaller(a, b, f):
@@ -924,18 +925,18 @@ def which_smaller(a, b, f):
 
 which_smaller(4, 6, lambda x: -x)
 ```
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-72
       
-### Anwendungsbereich
+### Gültigkeitsbereich
 
-The **scope** of a variable is the region in the program where it is accessible. For example, if you define `{py} x` to be `{py} 47` on line 413 of your file and get an error because you tried to use `{py} x` on line 35, the problem is that the variable wasn't *in scope* yet. 
+Der **Gültigkeitsbereich** einer Variablen ist der Bereich im Programm, in man sie aufrufen kann. Wenn du beispielsweise `{py} x` in Zeile 413 deiner Datei so definierst, dass es auf `{py} 47` gesetzt wird und einen Fehler erhältst, weil du versucht hast, `{py} x` in Zeile 35 zu verwenden, dann besteht das Problem darin, dass die Variable hier noch nicht *gültig*  ist. 
 
-A variable defined in the main body of a file has **global scope**, meaning that it is visible throughout the program from its point of definition. 
+Eine Variable, die im Hauptteil (main body) einer Datei definiert ist, hat **globalen Gültigkeitsbereich**, was bedeutet, dass sie von ihrem Definitionspunkt aus im gesamten Programm sichtbar ist. 
 
-A variable defined in the body of a function is in that function's **local scope**. For example: 
+Eine im Funktionsrumpf definierte Variable befindet sich im **lokalen Gültigkeitsbereich** dieser Funktion. Zum Beispiel: 
 
     pre(python-executable)
       | def f(x):
@@ -946,8 +947,8 @@ A variable defined in the body of a function is in that function's **local scope
 
 
 ::: .exercise
-**Exercise**  
-Try nesting one function definition inside another. Are variables in the enclosing function body available in the inner function. What about vice versa?
+**Übung**  
+Versuche, eine Funktionsdefinition in eine andere zu verschachteln. Sind Variablen im äußeren Funktionsrumpf in der inneren Funktion verfügbar? Wie ist das im umgekehrten Fall?
 :::
 
     pre(python-executable)
@@ -966,25 +967,25 @@ Try nesting one function definition inside another. Are variables in the enclosi
 ---
 > id: step-73
 
-*Lösung*. The variable defined in the inner function is not in scope in the body of the outer function, but the variable defined in the body of the outer function is in scope in the body of the inner function.
+*Lösung*. Die in der inneren Funktion definierte Variable ist nicht im Gültigkeitsbereich des Funktionsrumpfs der äußeren Funktion, aber die im Funktionsrumpf der äußeren Funktion definierte Variable ist im Gültigkeitsbereich der inneren Funktion.
     
 [Weiter](btn:next)
 
 ---
 > id: step-74
 
-### Testing
+### Testen
 
-It's highly recommended to write tests to accompany your functions, so you can confirm that each function behaves as expected. This is especially important as your codebase grows, because changes in one function can lead to problems in other functions that use it. Having a way to test functions throughout your codebase helps you discover these breakages quickly, before they cause harm.
+Es wird dringend empfohlen, Tests zu deinen Funktionen zu schreiben und zur Verfügung zu stellen. Damit wird bestätigt, dass sich jede Funktion wie erwartet verhält. Dies ist besonders wichtig, wenn deine Codebasis immer größer wird, da Änderungen in einer Funktion zu Problemen in anderen Funktionen führen können, die sie verwenden. Eine Möglichkeit zum Testen der Funktionen in deiner gesamten Codebasis hilft dir dabei, diese Fehler schnell zu entdecken, bevor sie zu Schäden führen.
 
-One common way to do this (which you have already seen several times in this course) is to write functions whose names begin with *`{py} test_`* and which contain `{py} assert` statements. An `{py} assert` statement throws an error if the following expression evaluates to `{py} False`. You can run the test functions directly, or you can use a tool like [pytest](https://pytest.org) to find and run all of the test functions in your codebase. 
+Eine gängige Methode dazu (die du in diesem Kurs bereits mehrfach gesehen hast) ist das Schreiben von Funktionen, deren Namen mit *`{py} test_`* beginnen und die `{py} assert`-Anweisungen enthalten. Eine `{py} assert`-Anweisung löst einen Fehler aus, wenn der darauf folgende Ausdruck `{py} False` zurück gibt. Man kann die Testfunktionen direkt ausführen, oder man kann ein Tool wie [pytest](https://pytest.org) verwenden, um alle Testfunktionen in der Codebasis zu finden und auszuführen. 
 
     pre(python-executable)
       | def space_concat(s,t):
       |     """
-      |     Concatenate strings s and t, ensuring a space
-      |     between them if s ends with a non-space character
-      |     and t begins with a non-space character
+      |     Verkettung der Strings s und t, wobei ein Leerzeichen
+      |     zwischen ihnen eingefügt wird, wenn s mit einem Nicht-Leerzeichen endet
+      |     und t mit einem Nicht-Leerzeichen beginnt
       |     """
       |     if s[-1] == " " or t[0] == " ":
       |         return s + t
@@ -999,8 +1000,8 @@ One common way to do this (which you have already seen several times in this cou
       | space_concat("foo", "bar")
       
 ::: .exercise
-**Exercise**  
-The test cases above don't cover the *degenerate* situation where one of the strings is empty. Does the function return correct values for these degenerate cases? [[No|Yes]] Add test cases for this, and fix the function so that they pass.
+**Übung**  
+Die obigen Testfälle decken nicht die *ungünstige* Situation ab, dass einer der Strings leer ist. Liefert die Funktion korrekte Werte für diese ungünstigen Fälle? [[Nein|Ja]] Füge dafür Testfälle hinzu und verbessere die Funktion so, dass diese bestanden werden.
 :::
 
     x-quill
@@ -1008,14 +1009,14 @@ The test cases above don't cover the *degenerate* situation where one of the str
 ---
 > id: step-75
 
-*Lösung*. We check the empty string conditions prior to checking the last/first characters. This solves the problem because `{py} or` is **short-circuiting**: if the first bool is `{py} True` in an `{py} or` operation, the second is never evaluated.
+*Lösung*. Wir überprüfen ob die Strings leer sind bevor wir die letzten bzw. ersten Zeichen überprüfen. Mit `{py} or` kann das Problem schnell gelöst werden, weil wenn der erste bool-Wert in einer `{py} or` Operation `{py} True` ist, wird der zweite erst gar nicht ausgewertet.
 
     pre(python-executable)
       | def space_concat(s,t):
       |     """
-      |     Concatenate strings s and t, ensuring a space
-      |     between them if s ends with a non-space character 
-      |     and t begins with a non-space character.
+      |     Verkettung der Strings s und t, wobei ein Leerzeichen
+      |     zwischen ihnen eingefügt wird, wenn s mit einem Nicht-Leerzeichen endet
+      |     und t mit einem Nicht-Leerzeichen beginnt.
       |     """
       |     if s == "" or t == "" or s[-1] == " " or t[0] == " ":
       |         return s + t
@@ -1031,20 +1032,20 @@ The test cases above don't cover the *degenerate* situation where one of the str
 ### Übungen
 
 ::: .exercise
-**Exercise**  
-Write a function which accepts two strings as input and returns the concatenation of those two strings in alphabetical order.
+**Übung**  
+Schreibe eine Funktion, die zwei Strings als Eingabe akzeptiert und die Verkettung dieser beiden Strings in alphabetischer Reihenfolge zurückgibt.
 
-_Hint_: Make a guess about which operator can be used to compare strings alphabetically.
+_Tipp_: Was meinst du, mit welchem Operator Strings alphabetisch verglichen werden können.
 :::
 
     pre(python-executable)
       | def alphabetical_concat(s,t):
-      |     pass # add code here
+      |     pass # hier Code einfügen
       |
       | def test_concat(): 
-      |     assert alphabetical_concat("alphabet", "soup") == "alphabetsoup"
-      |     assert alphabetical_concat("socks", "red") == "redsocks"
-      |     return "Tests passed!"
+      |     assert alphabetical_concat("buchstaben", "suppe") == "buchstabensuppe"
+      |     assert alphabetical_concat("socken", "rote") == "rotesocken"
+      |     return "Tests erfolgreich bestanden!"
       |
       | test_concat()
 
@@ -1065,7 +1066,7 @@ _Hint_: Make a guess about which operator can be used to compare strings alphabe
       |         return t + s
       |
       | def test_concat(): 
-      |     alphabetical_concat("alphabet", "soup") == "alphabetsoup"
+      |     alphabetical_concat("buchstaben", "suppe") == "buchstabensuppe"
       |     alphabetical_concat("food", "brain") == "brainfood"
       |     return "Tests passed!"
       |
@@ -1078,7 +1079,7 @@ _Hint_: Make a guess about which operator can be used to compare strings alphabe
 > id: packages
 > section: packages
 
-A [**package**](gloss:package) is a collection of Python files that provide functionality beyond the core functionality available in every Python program. Packages achieve separation of concerns at the community level: someone else solves a problem of general interest, and then you can leverage their work and focus on applying it to the problem at hand.
+Ein [**Paket**](gloss:package) ist eine Sammlung von Python-Dateien, die Funktionen zur Verfügung stellen, die über die Kernfunktionen hinausgehen, die in jedem Python-Programm verfügbar sind. Pakete bewirken eine Trennung der Anliegen auf Gemeindeebene: Jemand anderes löst ein Problem von allgemeinem Interesse, und dann können Sie seine Arbeit nutzen und sich darauf konzentrieren, es auf das anstehende Problem anzuwenden.
 
 Many Python packages are available in every standard distribution of Python and can be used without having to worry about whether they're installed. These packages make up the **standard library**. To see a list of standard library packages, visit the standard library page of the [Python documentation](https://docs.python.org/3/library/). Here's an example showing how to import the  `{py} math` package and use the `{py} sqrt` function it contains: 
 
@@ -1202,13 +1203,13 @@ To import the standard library package `{py} itertools` (with no alias), we woul
 [Weiter](btn:next)
 
 ---
-      
-## CSS-Klassen
+
+## Klassen
 
 > id: classes
 > section: classes
 
-Many Python functions use the usual function [syntax](gloss:syntax), like _{code.language-python}len("hello")_. However, many other functions are called using a different syntax where an *object* comes first: 
+Viele Python-Funktionen verwenden die übliche Funktions[syntax](gloss:syntax), wie `{py} len("hello")`. Viele andere Funktionen werden jedoch mit einer anderen Syntax aufgerufen, wobei zuerst ein *Objekt* kommt: 
 
     pre(python-executable)
       | "hello".capitalize()
@@ -1470,14 +1471,14 @@ Let's revisit the spreadsheet example we discussed earlier: suppose you're writi
         td: .pill.blue 19
         td: .pill.blue 7
 
-We definitely don't want to think of 100 variable names for the 100 values in the table, and we don't want to write a line of code for each row. What we need is a way to store all of the rows (or columns) in an object designed to contain many objects. Python provides several such **compound data structures**, and in this section we will learn about two: **lists** and **tuples**. 
+We definitely don't want to think of 100 variable names for the 100 values in the table, and we don't want to write a line of code for each row. What we need is a way to store all of the rows (or columns) in an object designed to contain many objects. Python provides several such **compound data structures**, and in this section we will learn about two: **Listen** und **Tupel**. 
 
 [Weiter](btn:next)
 
 ---
 > id: step-91
 
-### Lists
+### Listen
 
 A `{py} list` in Python is a compound data type for storing a finite ordered sequence of Python objects. Lists are **mutable**, meaning that they can be changed.
 
@@ -1748,7 +1749,7 @@ Write a list comprehension which returns a list whose kth entry is the last digi
 ---
 > id: step-108
 
-*Lösung*. Here's an example solution:
+*Lösung*. Eine mögliche Lösung:
 
     pre(python-executable)
       | from sympy import isprime
@@ -1986,7 +1987,7 @@ Write a function which takes a matrix `{py} M` and an index `{py} i` and returns
 **Exercise**  
 Write a function which reverses the words in a sentence. For simplicity, you may assume that the sentence does not contain punctuation.
 
-_Hint_: The string methods `{py} join` and `{py} split` might be helpful. You can see the documentation for these methods with `{py} help(str.join)` and `{py} help(str.split)`. 
+_TIPP: The string methods `{py} join` and `{py} split` might be helpful. You can see the documentation for these methods with `{py} help(str.join)` and `{py} help(str.split)`. 
 :::
 
     pre(python-executable)
@@ -2012,13 +2013,12 @@ _Hint_: The string methods `{py} join` and `{py} split` might be helpful. You ca
       |     return " ".join(sentence.split(" ")[::-1])
 
 ---
-
-## Sets and Dictionaries
+## Sets und Dictionaries
 
 > id: sets-and-dictionaries
 > section: sets-and-dictionaries
 
-### Pinselsätze
+### Sets
 
 **Sets** are unordered collections of unique values. The main advantage of having a special type for sets is that the design of the data structure can be optimized for membership checking. Figuring out whether a given value is in a list requires going through each element in the list, so the amount of time it takes increases with the length of the list. By contrast, checking membership in a set can be done very quickly even if the set is large. 
 
@@ -2034,7 +2034,7 @@ _Hint_: The string methods `{py} join` and `{py} split` might be helpful. You ca
 **Exercise**  
 Make a set which contains the first 10,000 prime numbers.
 
-_Hint_: It suffices to look for primes among the first 110,000 integers. Compare how long it takes to check whether a given number is in that set to the time it takes to compute whether the number is prime using `{py} sympy.isprime`. 
+_TIPP: It suffices to look for primes among the first 110,000 integers. Compare how long it takes to check whether a given number is in that set to the time it takes to compute whether the number is prime using `{py} sympy.isprime`. 
 
 _Note 1_: The most reliable and efficient way to figure out how the `{py} timeit` function works is to [[run help(timeit)|try it on different examples and guess|ask on StackOverflow]]. 
 
@@ -2245,7 +2245,7 @@ Suppose you want to store student IDs in a part of a web application where the m
 
 ---
 
-## Wiederkehrend
+## Wiederholung (Schleifen)
 
 > id: iteration
 > section: iteration
@@ -2465,13 +2465,13 @@ Note that $10^{-8}$ can be represented in Python using scientific notation `{py}
 ---
 > id: step-142
 
-### Exercises 
+### Übungen 
 
 ::: .exercise
 **Exercise**  
 Write a function which prints an $n \times n$ checkerboard pattern of `{py} x`'s and `{py} o`'s. 
 
-_Anmerkung: `{py} \\n` in a string literal represents the "newline" character. You'll need to print this character after each row you've printed.
+_Note_: `{py} \\n` in a string literal represents the "newline" character. You'll need to print this character after each row you've printed.
 :::
 
     pre(python-executable)
@@ -2642,7 +2642,7 @@ That second line is there because you decided that function's name was so long i
 ---
 > id: step-151
 
-Hmm. Error. Specifically, a `{py} SpotifyException`, which suggests that you didn't use the API in the intended way. You'll have to dig into this to figure out what went wrong. But first, it's a bit untidy to have those four lines of code loose in our program. Let's wrap them in a function. The playlist id should be an argument, and we should also take as an argument a track-modifying function that we'll start using once we get to that part. 
+Hmm. Fehler. Specifically, a `{py} SpotifyException`, which suggests that you didn't use the API in the intended way. You'll have to dig into this to figure out what went wrong. But first, it's a bit untidy to have those four lines of code loose in our program. Let's wrap them in a function. The playlist id should be an argument, and we should also take as an argument a track-modifying function that we'll start using once we get to that part. 
 
 ``` python
 def modify_playlist_tracks(playlist_id, track_modifier):
@@ -2734,7 +2734,7 @@ def track_modifier(tracks):
 modify_playlist_tracks(playlist_id, track_modifier)
 ```
 
-This works! You can check that the order of the playlist was reversed. 
+Das funktioniert! You can check that the order of the playlist was reversed. 
 
 ::: .exercise
 **Exercise**  
@@ -2812,7 +2812,7 @@ You save the file and proceed to figuring out how to load it into Python.
 ---
 > id: step-161
 
-### Pandas
+### Panda
 
 You google "enter CSV in Python" and scan the first several search results. The first couple show examples with a dozen or so lines of code, which seems more complicated than necessary. Going back to the search results, you see a function called *`{py} pandas.read_csv`*, and you remember that Pandas is the recommended package for handling spreadsheet data in Python. So you do 
 
