@@ -3127,8 +3127,8 @@ Let $X = A' A$ be a Gram matrix, and let $\mathbf{v}$ be a vector. Which of the 
 
     x-picker.list
       .item.bblue.pill.md $|A\mathbf{v}|^2$. 
-      .item.bblue.pill.md $A^{2}\mathbf{v}$. 
-      .item.bblue.pill.md $\mathbf{v}' A^2\mathbf{v}$. 
+      .item.bblue.pill.md(data-error="incorrect") $A^{2}\mathbf{v}$. 
+      .item.bblue.pill.md(data-error="incorrect") $\mathbf{v}' A^2\mathbf{v}$. 
 
 Using your answer above, explain why a Gram matrix is always positive semidefinite, but not necessarily positive definite. 
 :::
