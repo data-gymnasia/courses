@@ -3011,7 +3011,7 @@ does not send any nonzero vector $\vec{v} \in \mathbb{R}^2$ to a multiple of its
 
 ::: .exercise
 **Exercise**  
-Suppose that we have diagonalized $A$ as $A = VDV^{-1}$. Then $A^{3}$ is equal to [[`V^3DV^(-3)`|`V^3D^3V^(-3)`|`VD^3V^(-1)`]]
+Suppose that we have diagonalized $A$ as $A = VDV^{-1}$. Then $A^{3}$ is equal to [[`VD^3V^(-1)`|`V^3DV^(-3)`|`V^3D^3V^(-3)`|]]
  
 Let $B$ be another matrix, with eigenpairs $(\mathbf{v}\_1,3)$ and $(\mathbf{v}\_{2},-2)$. Let $\mathbf{u} = 2\mathbf{v}\_{1} + \mathbf{v}\_{2}$. Which of the following is equal to $B^{n}(\mathbf{u})$? 
 
