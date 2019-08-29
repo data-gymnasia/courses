@@ -1,95 +1,96 @@
 
-# Programming in Python
+# Programmieren mit Python
 
-## Introduction
+## Einführung
 
 > id: intro
 > section: introduction
 
-This chapter is an introduction to programming in **Python**, which is a general-purpose language with a very large user base in the software engineering world. With the emergence of a powerful stack of scientific computing [packages](gloss:package) since the early 2000s, it has emerged as the most popular language for data science.
+Dieses Kapitel ist eine Einführung in die Programmierung in **Python**, einer vielseitig einsetzbaren Sprache die unter Softwareentwicklern sehr beliebt ist. Vor allem auch im wissenschaftlichen Bereich aufgrund der  seit Anfang der 2000er Jahre entwickelten [Pakete](gloss:package) ist sie zur beliebtesten Sprache im Zusammenhang mit Data Science (Datenwissenschaft) geworden.
 
-Although programming is a powerful tool, learning to program is also about honing your problem solving skills and thinking in an organized way about structure and computation. You are likely to find that computer science ideas support your ability to reason about complex systems, even in situations where you won't be programming anything. This is a useful frame of mind to bring to the learning process.
+Mit dem Programmieren steht uns ein mächtiges Werkzeug zur Verfügung. Beim Erlernen der Programmierung verbessert man aber auch ganz allgemein die Fähigkeit, Probleme zu lösen und systematisch an Strukturen und Berechnungen heranzugehen. Du wirst wahrscheinlich feststellen, dass Ideen aus der Informatik deine Fähigkeit, über komplexe Systeme nachzudenken, verbessern werden, selbst in Situationen, die nichts mit Programmieren zu tun haben. Es ist ganz einfach eine nützliche Art zu denken, die dir beim Lernen weiterhelfen kann.
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-1
 
-This course contains many exercises. Doing them in earnest is essential for knowledge and skill retention. You should solve each exercise prior to clicking the "Continue" button to see an example solution.
+Dieser Kurs enthält viele Übungen. Sie gewissenhaft zu machen ist für die Aneignung von neuem Wissen und das Erlernen neuer Fähigkeiten unerlässlich. Du solltest jede Übung lösen, bevor du auf die Schaltfläche "Weiter" klickst, um eine mögliche Lösung anzuzeigen.
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-2
 
 ### Installation
 
-There are several ways to access Python:
+Es gibt mehrere Möglichkeiten, Python anzuwenden:
 
-**Inline**. This course will let you execute Python code blocks in the webpage (thanks to [Juniper](https://github.com/ines/juniper) and [Binder](https://mybinder.org)). So if you don't want to install anything yet, you don't have to. (However, the first cell you run will be slow with this method, like up to 30 seconds, since your environment has to be launched behind the scenes on Binder's servers. If it's taking too long, reload the page.)
+**Inline**. In diesem Kurs kannst du Python-Codeblöcke direkt auf der Webseite ausführen (wir verdanken das [Juniper](https://github.com/ines/juniper) und [Binder](https://mybinder.org)). Wenn du also noch nichts installieren willst, musst du es nicht tun. (Die erste sogenannte Zelle, die du mit dieser Methode ausführst, wird jedoch etwas lange auf sich warten lassen - bis zu 30 Sekunden - da zuerst einmal die Programmierumgebung hinter den Kulissen auf den Servern von Binder gestartet werden muss. Wenn es zu lange dauert, lade die Seite neu.)
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-3
 
-**Binder**. You can also run Python code in a notebook on the Binder website. To launch with a set of packages tailored to this course, [click here](https://mybinder.org/v2/gh/data-gymnasia/python-binder/master). Then, select *New* (top right corner and *Python 3*). It is highly recommended that you keep a tab with a Binder notebook open while working through this course, because it can serve as a space for scratch work, and it provides more features than the blocks which appear in-page. 
+**Binder**. Du kannst Python-Code auch in einem sogenannten Notebook auf der Binder-Website ausführen. Um mit einer Reihe von Paketen zu starten, die auf diesen Kurs zugeschnitten sind, [klicke hier](https://mybinder.org/v2/gh/data-gymnasia/python-binder/master). Wähle dann *New* (rechte obere Ecke) und *Python 3* aus. Es wird dringend empfohlen, während der Arbeit an diesem Kurs eine Registerkarte mit einem Binder-Notebook offen zu halten, da es als Platz für Notizen und eigene Versuche dienen kann. Außerdem bietet es mehr Funktionen als die Blöcke, die direkt auf dieser Seite eingebunden sind. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-4
 
-**Anaconda**. Python is bundled with its system of scientific computing packages and for managing Python environments in a distribution called [Anaconda](https://www.anaconda.com/). This is the recommended way to install Python on your own computer. [Download](https://www.anaconda.com/distribution) and launch the installer to set it up on your computer. 
+**Anaconda**. Eine Pythonvariante mit vorinstallierten wissenschaftlichen Rechenpaketen und Tools zur Verwaltung von Python-Umgebungen ist die Distribution [Anaconda](https://www.anaconda.com/). Das ist die empfohlene Methode, um Python auf deinem eigenen Computer zu installieren. [Lade das Installationsprogramm herunter](https://www.anaconda.com/distribution) und starte es, um es auf deinem Computer einzurichten.
+Wer auf einem PC keine Rechte hat, Software zu installieren, kann auch [WinPython](http://winpython.sourceforge.net/) verwenden. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-5
 
-**CoCalc**. If you want a complete environment without having to install anything locally, [CoCalc](https://cocalc.com) is a batteries-included, community-oriented platform for open-source mathematical and scientific computing. You can use it for free with limited functionality, and it's $14 per month to support the project and get paid account features.
+**CoCalc**. Wenn du eine komplette Umgebung benötigst, ohne etwas lokal installieren zu müssen, ist [CoCalc](https://cocalc.com) eine Community-Plattform mit allem Drum und Dran für mathematisches und wissenschaftliches Open-Source-Computing. Man kann sie mit eingeschränkter Funktionalität kostenlos nutzen, und sie kostet $14 pro Monat, um das Projekt zu unterstützen und kostenpflichtige Zusatzfunktionen zu erhalten.
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-6
 
 
-### Usage
+### Anwendung
 
-Once you have Python installed, there are several ways to interact with it. 
+Sobald du Python installiert hast, gibt es mehrere Möglichkeiten, damit zu arbeiten. 
 
-**REPL**. Launch a read-eval-print loop from the [command line](gloss:command-line). Any code you enter will be executed immediately, and any values returned by your code will be displayed. To start a session, open your operating system's Terminal and run `{py} python` or `{py} ipython` (the latter being more colorful and having more features). You can do this in Binder by selecting *New > Terminal*. 
+**REPL**. Starte einen sogenannten Read-Eval-Print Loop (eine Lesen-Auswerten-Anzeigen Schleife) über die [Befehlszeile](gloss:command-line). Jeder von dir eingegebene Code wird sofort ausgeführt, und alle von deinem Code zurückgegebenen Werte werden angezeigt. Um eine Sitzung zu starten, öffne das Terminal (Befehlszeile) deines Betriebssystems und führe `{py} python` oder `{py} ipython` aus (letzteres ist bunter und hat mehr Funktionen). Du kannst das auch in Binder tun, indem du *New > Terminal* auswählst. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-7
 
-**Script**. Save a file called _{code}example.py_ and run _{code}python example.py_ from the [command line](gloss:command-line) (in the same directory as the file) to execute all the code in the script. You can do this in Binder by selecting *New > Text File* and then changing the name of the text file to something that ends in _{code}.py_. 
+**Script**. Speichere eine Datei namens _{code}example.py_ und führe _{code}python example.py_ auf der [Befehlszeile](gloss:command-line) aus (im gleichen Verzeichnis wie die Datei), um den gesamten Code im Skript auszuführen. Du kannst das in Binder tun, indem du *New > Text File* auswählst und dann den Namen der Textdatei so änderst, dass sie mit _{code}.py_ endet. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-8
 
-**Jupyter**. Like a REPL, but allows inserting text and math expressions, grouping code into blocks, etc. This is the interface provided by default in [Binder](https://mybinder.org/v2/gh/data-gymnasia/python-binder/master), and you can launch a notebook locally by running `{py} jupyter notebook` from the [command line](gloss:command-line) (assuming you have [Anaconda](gloss:anaconda) installed). 
+**Jupyter**. Wie ein REPL, aber erlaubt das Einfügen von Text und mathematischen Ausdrücken, das Gruppieren von Code in Blöcke, etc. Dies ist die standardmäßig in [Binder](https://mybinder.org/v2/gh/data-gymnasia/python-binder/master) bereitgestellte Schnittstelle. Lokal kannst du ein Notebook starten, indem du `{py}jupyter notebook` auf der [Befehlszeile](gloss:command-line) ausführst (vorausgesetzt, du hast Anaconda installiert; im Fall von WinPython geht das über *WinPython Command Prompt*). 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-9
 
-**Integrated development environment (IDE)**. Essential for extensive software development projects, an IDE provides an editor for writing code, conveniences to help you code more efficiently, and a debugger to help you fix your mistakes. There are many IDEs for Python, including Visual Studio Code, Atom, and PyCharm.
+**Integrierte Entwicklungsumgebung (IDE)**. Eine IDE ist unerlässlich für umfangreiche Softwareentwicklungsprojekte und bietet einen Editor zum komfortablen und effizienten Schreiben von Code und einen Debugger, der dir dabei hilft, deine Fehler zu beheben. Es gibt viele IDEs für Python, darunter Visual Studio Code, Atom und PyCharm.
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-10
 
 ::: .exercise
-**Exercise**.  
-Sort the following Python interaction modes in the order in which they appear in this video. 
+**Übung**.  
+Sortiere die folgenden Python-Interaktionsmöglichkeiten in der Reihenfolge, in der sie in diesem Video erscheinen. 
 
     figure: center: video(src="images/jupyter-script-repl.mp4" width="75%" controls)
 
@@ -102,77 +103,77 @@ Sort the following Python interaction modes in the order in which they appear in
 
 ---
 
-## Basics
+## Grundlagen
 
 > id: basics
 > section: basics
 
-Let's begin by developing some basic vocabulary for the elements of a program. This section is an overview: will develop some of these ideas in greater depth in later sections.
+Beginnen wir damit uns einen Grundwortschatz für die Elemente eines Programms zu erarbeiten. Viele der Begriffe stammen aus dem Englischen. Auch wenn es für die meisten dieser Begriffe deutsche Übersetzungen gibt ist es oft einfacher, bei den englischen zu bleiben, nachdem sie einmal erklärt wurden, da sie auch so in Python (bzw. in anderen Programmiersprachen) verwendet werden. Dieser Abschnitt bietet einen Überblick: Einige dieser Begriffe werden in späteren Abschnitten genauer behandelt.
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-11
 
-### Objects
+### Objekte
 
-An **object** is a fundamental entity that may be manipulated by a program. Objects have **types**; for example, `{py} 5` is an `{py} int` (short for "integer") and `{py} "Hello world!"` is a `{py} str` (short for "string"). Types are important for the computer to keep track of, since objects are stored differently depending on their type. 
+Ein **Objekt** ist eine grundlegende Einheit, die von einem Programm manipuliert werden kann. Objekte haben **Typen**; zum Beispiel ist `{py} 5` ein `{py} int` (kurz für "integer", eine Ganzzahl) und `{py} "Hallo Welt!"` ist ein `{py} str` (kurz für "string", eine Zeichenkette bzw. Text). Typen sind für den Computer wichtig, um den Überblick zu behalten, da Objekte je nach Typ unterschiedlich gespeichert werden. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-12
 
-You can check the type of an object using `{py} type`. For example, running `{py} type("hello")` gives `{py} str`.
+Du kannst den Typ eines Objekts mit dem Befehl `{py} type` überprüfen. Zum Beispiel gibt `{py} type("Hallo")` als Ergebnis `{py} str` zurück.
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-13
 
 ::: .exercise
-**Exercise**.  
-Use the code block below to find the type of `{py} 1.0`. Does `{py} 1.0` have the same type as `{py} 1`? [[No|Yes]]
+**Übung**.  
+Verwende den folgenden Codeblock, um den Typ von `{py} 1.0` zu bestimmen. Hat `{py} 1.0` den gleichen Typ wie `{py} 1`? [[Nein|Ja]]
 :::
 
     pre(python-executable)
-      | # replace this text with code and press enter while holding shift to run
+      | # ersetze diesen Text durch Code und drücke zum Ausführen die Eingabetaste mit gedrückter Umschalttaste.
 
 ---
 > id: step-14
 
-(_Note_: you probably noticed the `{code} Loading or None returned` message that appeared briefly when you ran the cell. If that message appears for more than 10 seconds or so, it's likely that the cell has run successfully but doesn't have anything to show as a result. We will discuss this in more detail soon.)
+(_Hinweis_: du hast wahrscheinlich die Meldung `{code} Loading or None returned` bemerkt, die kurz beim Ausführen der Zelle angezeigt wurde. Wenn diese Meldung für mehr als 10 Sekunden erscheint, ist es wahrscheinlich, dass die Zelle erfolgreich ausgeführt wurde, aber als Ergebnis nichts zu zeigen hat. Wir werden das in Kürze näher besprechen.)
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-15
 
-### Variables
+### Variablen
 
-A **variable** is a name used to refer to an object. We can **assign** an object (say `{py} 41`) to a variable (say `{py} age`) as follows: 
+Eine **Variable** ist ein Name, der verwendet wird, um auf ein Objekt zu verweisen. Wir können ein Objekt (z.B. `{py} 41`) wie folgt einer Variablen (z.B. `{py} Alter`) **zuweisen** : 
 
 ``` python
-age = 41
+Alter = 41
 ```
 
-We say that `{py} 41` is the **value** of the variable `{py} age`.
+Wir sagen, dass `{py} 41` der **Wert** der Variablen `{py} Alter` ist.
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-16
 
-Variable names must begin with an underscore or letter and contain only letters, digits, underscores after that. Letters may be uppercase or lowercase, and the case matters. For example `{py} extractValues0` is [[a valid|an invalid]] variable name, and `{py} stop!` is [[an invalid|a valid]] variable name. 
+Variablennamen müssen mit einem Unterstrich oder Buchstaben beginnen und dürfen danach nur Buchstaben, Zahlen und Unterstriche enthalten. Buchstaben können in Groß- oder Kleinschreibung sein, wobei die Groß- und Kleinschreibung einen Unterschied macht. Zum Beispiel ist `{py} extractValues0` ein [[gültiger|ungültiger]] Variablenname, und `{py} stop!` ist ein [[ungültiger|gültiger]] Variablenname. 
 
 ---
 > id: step-17
 
-The object assigned to a given variable may be changed as many times as desired with further assignments.
+Das einer Variablen zugeordnete Objekt kann durch weitere Zuweisungen beliebig oft geändert werden.
 
 ::: .exercise
-**Exercise**.  
-Find the value of `{py} x` at the end of the following block of code. [[3]]
+**Übung**.  
+Finde den Wert den `{py} x` am Ende des folgenden Codeblocks hat. [[3]]
 
 ``` python
 x = 3
@@ -185,111 +186,111 @@ x = y
 ---
 > id: step-18
 
-*Solution*. The value 3 is assigned to `{py} x` and then also to `{py} y` on the second line. After the third line, the value of `{py} x` is 4, since the right-hand side works out to 4 an is *then* assigned to the variable `{py} x`. After the fourth line `{py} 3` is of `{py} x` again, since the value of `{py} y` is still 3 when the fourth line is executed. 
+*Lösung*. Der Wert 3 wird `{py} x` und dann auch `{py} y` in der zweiten Zeile zugewiesen. Nach der dritten Zeile ist der Wert von `{py} x` gleich 4, da sich die rechte Seite zu 4 ergibt und *dann*  der Variablen `{py} x` zugeordnet wird. Nach der vierten Zeile ist `{py} 3` wieder der Wert von `{py} x` , da der Wert von `{py} y` bei der Ausführung der vierten Zeile immer noch 3 ist. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-19
 
 ::: .exercise
-**Exercise**.  
-Use the code block below to find out what happens when you try to use a variable that hasn't had any object assigned to it: you get a [[Name]]Error.
+**Übung**.  
+Verwende den folgenden Codeblock, um herauszufinden, was passiert, wenn du versuchst, eine Variable zu verwenden, der kein Objekt zugewiesen wurde: Du erhältst einen [[Name]]Error, wobei Error Fehler bedeutet.
 
 :::
 
     pre(python-executable)
-      | num_carrots = 4
-      | num_Carrots
+      | anzahl_karotten = 4
+      | anzahl_Karrotten
 
 ---
 > id: step-20
 
-Note that when an error occurs in your code, you get a **traceback** which helps you identify the source of the error.
+Beachte, dass du bei Auftreten eines Fehlers in deinem Code einen **Traceback** erhältst, der dir hilft, die Fehlerquelle zurückzuverfolgen. ("trace back" bedeutet zurückverfolgen). Damit kein Fehler ausgelöst wird müsste die Variable 'anzahl_Karotten' anders geschrieben werden, nämlich [[anzahl_karotten|Anzahl_Karotten|anzahl karotten]].
 
-### Functions
+### Funktionen
 
-A **function** performs a particular task. For example, `{py} print(x)` writes a string representation of the value of the variable `{py} x` to the screen. 
+Eine **Funktion** führt eine bestimmte Aufgabe aus. Beispielsweise schreibt `{py} print(x)` den Wert der Variablen `{py} x` als String (Zeichenkette) auf den Bildschirm. (Wenn hier von einer Zeichenkette oder einem Text die Rede ist werden wir von nun an immer den englischen Begriff String verwenden!) 
 
-Prompting a function to perform its task is referred to as **calling** the function. Functions are called using parentheses following the function's name, and any objects which are needed by the function are supplied between these parentheses, separated by commas. These objects are called **arguments**. 
+Die Aufforderung an eine Funktion, ihre Aufgabe auszuführen, wird als **Aufruf** der Funktion bezeichnet. Funktionen werden mit Klammern hinter dem Funktionsnamen aufgerufen, und alle Objekte, die von der Funktion benötigt werden, werden zwischen diesen Klammern bereitgestellt, getrennt durch Kommas. Diese Objekte werden als **Argumente** bezeichnet. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-21
 
-Some functions, like `{py} print` are built into the language and are always available. You may also define your own functions using `{py} def`:
+Einige Funktionen, wie z.B. `{py} print`, sind schon in die Sprache integriert und immer verfügbar. Du kannst auch eigene Funktionen definieren, indem du `{py} def` verwendest:
 
     pre(python-executable)
-      | def print_twice(x):
+      | def schreibe_zweimal(x):
       |     print(x)
       |     print(x)
       |
-      | print_twice("hey")
+      | schreibe_zweimal("Holladaroh!")
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-22
 
-`{py} def` is an example of a **keyword**: a name with a special meaning in the language. Since it has a special meaning, a keyword may not be used as a variable name. 
+`{py} def` ist ein Beispiel für ein **Schlüsselwort**: ein Name mit einer besonderen Bedeutung in der Sprache. Da es eine besondere Bedeutung hat, darf ein Schlüsselwort nicht als Variablenname verwendet werden. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-23
 
-Note that the lines of code to be executed when the function is called **must** be indented four spaces relative to `{py} def`. For example, `{py} print_twice("hey")` [[is not|is]] part of the definition of the function in the example above.
+Beachte, dass die Codezeilen, die ausgeführt werden sollen wenn die Funktion aufgerufen wird, vier Leerzeichen in Bezug auf `{py} def` **eingerückt sein müssen** . Zum Beispiel die Zeile `{py} schreibe_zweimal("Holladaroh")` [[ist nicht|ist]] Teil der Definition der Funktion im obigen Beispiel.
 
 ---
 > id: step-24
 
-A function may perform an action, like `{py} print_twice`, or it may **return** an object. For example, after the following code block is run, the object `{py} 28` will be assigned to the variable `{py} y`. 
+Eine Funktion kann eine Aktion ausführen, wie z.B. `{py} schreibe_zweimal`, oder sie kann ein Objekt **zurückgeben** . So wird beispielsweise nach dem Ausführen des folgenden Codeblocks das Objekt `{py} 28` der Variablen `{py} y` zugeordnet. 
 
     pre(python-executable)
-      | def add_one(x):
+      | def addiere_eins(x):
       |     return x + 1
       |
-      | y = 20 + add_one(7)
+      | y = 20 + addiere_eins(7)
       | y
 
-(_Note_: we put `{py} y` by itself on the last line so that we can see the value of `{py} y` in the output area. If an assignment (like `{py} y = 20 + add_one(7)`) is the last line in the cell, then no value will be printed, and we will get the `{code} Loading or None returned` message.)
+(_Hinweis:_ Wir setzen `{py} y` allein auf die letzte Zeile, damit wir den Wert von `{py} y` im Ausgabebereich sehen können. Wenn eine Zuweisung (wie `{py} y = 20 + addiere_eins(7)`) die letzte Zeile in der Zelle ist, dann wird kein Wert gedruckt, und wir erhalten die Meldung `{code} Loading or None returned.`)
       
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-25
             
-The variable name `{py} x` in the above block is called a **parameter**. Parameters play the same role as dummy variables in the definition of a mathematical function (for example, when the squaring function is defined using the notation `f(x) = x^2`).
+Der Variablenname `{py} x` im obigen Block wird als **Parameter** bezeichnet. Variablen spielen bei der Definition einer mathematischen Funktion die gleiche Stellvertreterrolle wie Parameter (z.B. wenn die Quadratfunktion in der Schreibweise `f(x) = x^2` definiert wird).
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-26 
 
-An **operator** is a special kind of function that can be called in a special way. For example, the multiplication operator `{py} *` is called using the mathematically familiar *infix notation* `{py} 3 * 5`.
+Ein **Operator** ist eine spezielle Art von Funktion, die auf besondere Weise aufgerufen werden kann. So wird beispielsweise der Multiplikationsoperator `{py} *` wie in der Mathematik üblich aufgerufen: `{py} 3 * 5`.
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-27 
 
 ::: .exercise
-**Exercise**  
-Arrange the operation descriptions below in order, according the corresponding Python operator in the list `{py} +, **, *, //, /`. You might need to experiment using the code block below. 
+**Übung**  
+Ordne die folgenden Operatorbeschreibungen in der Reihenfolge an, wie der entsprechende Python-Operator in der Liste `{py} +, **, *, //, /`. Möglicherweise musst du mit dem untenstehenden Codeblock etwas herumprobieren. 
 
     x-sortable
-      .item.md(data-index="4") division (ordinary real-number division)
-      .item.md(data-index="3") integer division (quotient only; no remainder)
-      .item.md(data-index="0") addition      
-      .item.md(data-index="2") multiplication
-      .item.md(data-index="1") exponentiation
+      .item.md(data-index="4") Division (gewöhnliche Division mit reellen Zahlen)
+      .item.md(data-index="3") ganzzahlige Division (nur Quotient; kein Rest)
+      .item.md(data-index="0") Addition       
+      .item.md(data-index="2") Multiplikation
+      .item.md(data-index="1") Potenzieren
       
 :::
 
     pre(python-executable)
       | print(6 + 11)
-      | print(2**5)
+      | print(2**3)
       | print(3 * 4)
       | print(7//2)
       | print(7/2)
@@ -297,50 +298,50 @@ Arrange the operation descriptions below in order, according the corresponding P
 ---
 > id: step-28
 
-### Statements and expressions
+### Anweisungen und Ausdrücke
 
-An individual executable unit of code in Python is called a **statement**. For example, the assignment `{py} age = 41` is a statement. Statements may include **expressions**, which are combinations of values, variables, operators, and function calls that a language interprets and **evaluates** to a value. For example, `{py} 1 + age + abs(3*-4)` is an expression which evaluates to [[54]] (note that `{py} abs` is the absolute value function, and assume `{py} age` is set to the value specified earlier in the paragraph). 
+Eine einzelne ausführbare Codeeinheit in Python wird als **Anweisung** bezeichnet. Beispielsweise ist die Zuordnung`{py} alter = 41` eine Anweisung. Anweisungen können **Ausdrücke** beinhalten, d.h. Kombinationen von Werten, Variablen, Operatoren und Funktionsaufrufen, die eine Sprache interpretiert, **auswertet**  und als Wert zurückgibt. Beispielsweise ist `{py} 1 + alter + abs(3*-4)` ein Ausdruck, der zu [[54]] ausgewertet wird (beachte, dass `{py} abs` die Absolutbetragsfunktion ist und dass `{py} alter` auf den zuvor im Absatz angegebenen Wert gesetzt wurde). 
 
 ---
 > id: step-29
 
 ::: .exercise
-**Exercise**  
-`{py} def f(x): return x*x` is [[a statement|an expression]]
+**Übung**  
+`{py} def f(x): return x*x` ist [[eine Anweisung|ein Ausdruck]]
 
-`{py} 2 + 3*f(4)` is [[an expression|a statement]]
+`{py} 2 + 3*f(4)` ist [[ein Ausdruck|eine Anweisung]]
 
-`{py} y = 13` is [[a statement|an expression]]
+`{py} y = 13` ist [[eine Anweisung|ein Ausdruck]]
 
-`{py} myName = "John" + "Doe"` is
+`{py} myName = "John" + "Doe"` ist
 
     x-picker.list
-      .item.pill.bblue(data-error="expression-1") an expression
-      .item.pill.bblue a statement whose execution involves evaluating an expression
+      .item.pill.bblue(data-error="expression-1") ein Ausdruck      
+      .item.pill.bblue eine Anweisung, die beim Ausführen einen Ausdrucks auswertet
 
 :::
 
-### Exercises
+### Übungen
 
 ::: .exercise
-**Exercise**  
-(Try doing this without executing the code.) The expression `{py} 1 + 5//3 + 2**3` evaluates to [[10]].
+**Übung**  
+(Versuche es ohne den Code auszuführen.) Der Ausdruck `{py} 1 + 5//3 + 2**3` ergibt [[10]].
 :::
 
 ---
 > id: step-30
 
 ::: .exercise
-**Exercise**  
-(Try doing this without executing the code.) The expression `{py} 11/2-11//2-3` evaluates to [[-2.5]], expressed as a decimal.
+**Übung**  
+(Versuche es ohne den Code auszuführen.) Der Ausdruck `{py} 11/2-11//2-3` ergibt [[-2.5]], ausgedrückt als Dezimalzahl (gewöhne dich hier gleich daran, als Dezimalzeichen einen **Punkt** (zB 4.2) anstelle eines Beistrichs (zB 4,2) zu verwenden).
 :::
 
 ---
 > id: step-31
 
 ::: .exercise
-**Exercise**  
-Find the value of `{py} x` at the end of the following block of code. [[25]]
+**Übung**  
+Finde den Wert den `{py} x` am Ende des folgenden Codeblocks hat. [[25]]
 
 ``` python
 x = 3**2
@@ -356,21 +357,21 @@ z = 2*x
 > id: step-32
 
 ::: .exercise
-**Exercise**  
-Write a function `{py} f` which takes a positive integer `{py} n` as input and returns the $n$th positive odd integer. You should replace the line with the keyword `{py} pass` in the code block below (the rest of the code, starting from the fourth line, checks that your function works).
+**Übung**  
+Schreib eine Funktion `{py} f`, die eine positive ganze Zahl `{py} n` als Eingabe annimmt und die $n$te positive ungerade Zahl zurückgibt. Du solltest die ganze Zeile mit dem Schlüsselwort `{py} pass` im folgenden Codeblock ersetzen (der Rest des Codes prüft ab der vierten Zeile, ob deine Funktion funktioniert).
 
-Also, note that you have *two* boxes: the first is for scratch, and the second is for saving your answer. Once you're happy with your code, copy and paste it into the second box.
+Beachte auch, dass du *zwei*  Felder zur Verfügung hast: das erste ist zum Ausprobieren und das zweite zum Speichern deiner Antwort. Wenn du mit deinem Code zufrieden bist, kopiere ihn und füge ihn in das zweite Feld ein.
 :::
 
     pre(python-executable)
       | def f(n):
-      |     pass # add code here
+      |     pass # hier Code einfügen
       |
       | def test_f():
       |     assert f(3) == 5
       |     assert f(1) == 1
       |     assert f(100) == 199
-      |     return "Tests passed!"
+      |     return "Tests bestanden!"
       |
       | test_f()
 
@@ -380,51 +381,51 @@ Also, note that you have *two* boxes: the first is for scratch, and the second i
 > id: step-33
 
 ::: .exercise
-**Exercise**  
-Select the true statements.
+**Übung**  
+Wähle die wahren Aussagen aus.
 
     x-picker.list
-      .item.pill.bblue.md The statement `{py} balance = 46.04` assigns the value `{py} 46.04` to the variable `{py} balance`. 
-      .item.pill.bblue.md(data-error="not-a-variable") The object `{py} 33` is a variable. 
-      .item.pill.bblue(data-error="mutable") The value of a variable cannot be changed. 
-      .item.pill.bblue Variable names in Python are case-sensitive.
+      .item.item.pill.bblue.md Die Anweisung `{py} kontostand = 46.04` weist der Variablen `{py} kontostand` den Wert `{py} 46.04` zu. 
+      .item.pill.bblue.md(data-error="not-a-variable") Das Objekt `{py} 33` ist eine Variable. 
+      .item.pill.bblue(data-error="mutable") Der Wert einer Variablen kann nicht geändert werden. 
+      .item.pill.bblue Variablennamen in Python unterscheiden Groß- und Kleinschreibung.
 :::
 
 ---
 
-## Types
+## Typen
 
 > id: types
 > section: types
 
-Python, like most programming languages, has built-in types for handling common data like numbers and text.
+Python hat, wie die meisten Programmiersprachen, eingebaute Typen für die Verarbeitung gängiger Daten wie Zahlen und Text.
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-34
 
-### Numbers
+### Zahlen
 
-As discussed in the previous section, a numerical value can be either an `{py} int` or a `{py} float`. We can represent integers exactly, while storing a real number as a float [often requires rounding slightly](gloss:rounding).
+Wie im vorherigen Abschnitt erläutert, kann eine Zahl entweder einen Wert vom Typ `{py} int` oder `{py} float` haben. Wir können ganze Zahlen genau darstellen, während die Speicherung einer Gleitkommazahl als Float [oft eine leichte Rundung erfordert](gloss:rounding).
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-35
 
-A number typed directly into a Python program is stored as a float or integer according to whether it contains a decimal point, so if you want the value 6 to be stored as a `{py} float`, you should write it as `{py} 6.0`. 
+Eine Zahl, die direkt in ein Python-Programm eingegeben wird, wird als float oder integer gespeichert, je nachdem, ob sie einen Dezimalpunkt enthält. Wenn du also möchtest, dass der Wert 6 als `{py} float` gespeichert wird, musst du `{py} 6.0` schreiben. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-36
 
-Numbers can be compared using the operators `{py} ==,>,<,<=,>=,!=`. 
+Zahlen können mit den Operatoren `{py} ==,>,<,<=,>=,!=` miteinander verglichen werden. 
 
 ::: .exercise
-**Exercise**  
-What is the type of the object returned by `{py} 1 == 2`? [[bool]]
+**Übung**  
+Was ist der Typ des Objekts, das von `{py} 1 == 2` zurückgegeben wird? [[bool]]
 :::
 
     pre(python-executable)
@@ -436,63 +437,64 @@ What is the type of the object returned by `{py} 1 == 2`? [[bool]]
 
       
 ::: .exercise
-**Exercise**  
-`{py} x == 1` is [[an expression|a statement]] which returns `{py} True` or `{py} False` according to whether [[the object assigned to x is equal to 1|the string "x" is equal to 1]]. Meanwhile, `{py} x = 1` is [[a statement|an expression]] that [[assigns the object 1 to x|compares x to 1]].
+**Übung**  
+`{py} x == 1` ist [[ein Ausdruck, der|eine Anweisung, die]] `{py} True` ("wahr") oder `{py} False` ("falsch") zurückgibt, je nachdem, ob [[das x zugewiesene Objekt gleich 1|der String "x" gleich 1]] ist. Andererseits ist `{py} x = 1` [[eine Anweisung, die|ein Ausdruck, der]] [[dem Objekt x den Wert 1 zuweist|x mit 1 vergleicht]].
 :::
 
 ---
 > id: step-38
 
-### Strings
+### Strings (Zeichenketten)
 
-Textual data is represented using a sequence of characters called a **string**. We can create a string object by enclosing the desired sequence of characters in quotation marks: `{py} a = "this is a string"`. Such a quote-enclosed string of characters in a Python program is called a **string literal**. String literals can also be delimited by triple quotes, which can be useful for multi-line strings and for strings containing quotes. 
+Textdaten werden durch eine Folge von Zeichen dargestellt, die als **String** bezeichnet wird. Wir können ein Stringobjekt erstellen, indem wir die gewünschte Zeichenfolge in Anführungszeichen einschließen: `{py} a = "das ist ein String"`. Eine solche in Anführungszeichen eingeschlossene Zeichenkette in einem Python-Programm wird als **string literal** bezeichnet - wir bleiben aber auch hier bei unserer Bezeichnung **String**. Strings können auch durch dreifache Anführungszeichen begrenzt werden, was für mehrzeilige Zeichenketten und für Zeichenketten mit Anführungszeichen nützlich sein kann. 
 
     pre(python-executable)
       | """
-      | This is a multiline string. 
-      | It can have "quotes", no problem.
+      | Das ist eine mehrzeilige Zeichenkette. 
+      | Sie kann sogar "Anführungszeichen" enthalten, kein Problem.
       | """
       | 
-      | "This is an ordinary string. \"Quotes\" require a backslash."
+      | "pre(python-executable)
+      | Das ist eine gewöhnliche Zeichenkette. \"Anführungszeichen\" erfordern hier einen Backslash."
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-39
 
-We can find the number of characters in a string with the `{py} len` function: `{py} len("hello")` returns [[5]]. 
+Wir können die Anzahl der Zeichen in einem String mit der `{py} len`-Funktion abfragen: `{py} len("Hallo")` gibt [[5]] zurück. 
 
 ---
 > id: step-40
  
-We can concatenate two strings with the addition operator (`{py} +`): `{py} "Hello " + "World"`. 
+Wir können zwei Strings mit dem Additionsoperator (`{py} +`) verknüpfen: `{py} "Hallo " + "Welt"`. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-41
 
-We can return the first character in a string `{py} s` using the expression `{py} s[0]`, the second element using `{py} s[1]`, and so on. We can get the substring from the third to the eighth character using `{py} s[3:9]`. Note that the 9 is one **past** the index where we want to stop. 
+Wir können das erste Zeichen in einem String `{py} s` mit dem Ausdruck `{py} s[0]`zurückgeben, das zweite Element mit `{py} s[1]`, und so weiter. Wir können den Teilstring vom vierten bis zum achten Zeichen mit `{py} s[3:9]` erhalten. Beachte, dass die 9 um eins **größer** ist als der Index an dem wir stoppen (bzw. 3 um 1 vor der Stelle, an der wir starten) wollen. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-42
 
 ::: .exercise
-**Exercise**  
-For which values of `{py} i` and `{py} j` does the expression `{py} "Hello World"[i:j] == "o Wo"` return `{py} True`? i = [[4]] and j = [[8]]
+**Übung**  
+Für welche Werte von `{py} i` und `{py} j` wird der Ausdruck `{py} "Hallo Welt"[i:j] == "o We"` den Wert `{py} True` zurückgeben? i = [[4]] und j = [[8]]
 :::
 
     pre(python-executable)
-      | "Hello World"[i:j]
+      | "Hallo Welt"[i:j]
 
 ---
 > id: step-43
       
 ::: .exercise
-**Exercise**  
-If either `{py} i` or `{py} j` is omitted in the expression `{py} s[i:j]` (where `{py} s` is a string), what happens? Experiment using the code block above. 
+**Übung**  
+Wenn entweder `{py} i` oder `{py} j` im Ausdruck `{py} s[i:j]` weggelassen wird (wobei `{py} s` ein String ist), was passiert dann? Experimentiere mit dem obigen Codeblock. 
 :::
 
     x-quill
@@ -500,27 +502,27 @@ If either `{py} i` or `{py} j` is omitted in the expression `{py} s[i:j]` (where
 ---
 > id: step-44
 
-*Solution*. Omitting `{py} i` or `{py} j` has the effect of setting `{py} i = 0` or `{py} j = len(s)`. 
+*Lösung*. Das Weglassen von `{py} i` oder `{py} j` bewirkt dass `{py} i = 0` oder `{py} j = len(s)` gesetzt werden. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-45
 
-### String interpolation
+### String-Interpolation (Zeichenketteneinfügung)
 
-We can insert the value of a variable into a string using *string interpolation*. There are several ways to do this in Python, but perhaps the simplest is to place an `{py} f` character immediately before the opening quotation mark. A string literal modified in this way is called an *f-string*, or *formatted string literal*. Any parts of an f-string between curly braces are evaluated, and their string representations are inserted into the string at that point. 
+Wir können den Wert einer Variablen mit Hilfe der sogenannten *String-Interpolation* in einen String einfügen. Es gibt mehrere Möglichkeiten, das in Python zu bewerkstelligen, aber die wahrscheinlich einfachste Methode ist, den Buchstaben `{py} f` unmittelbar vor das öffnende Anführungszeichen zu setzen. Ein so veränderter String wird als *f-string* ("formattierter String") bezeichnet. Alle Teile eines f-Strings die zwischen geschweiften Klammern stehen werden ausgewertet, und ihre Stringdarstellungen werden an dieser Stelle in den String eingefügt. 
 
     pre(python-executable)
       | x = 19
       | print(f"""
-      | The quotient when x is divided by 3 
-      | is {x//3}, and the remainder is {x % 3}.
+      | Der Wert des Quotienten x durch 3, 
+      | ist {x//3}, und der Rest beträgt {x % 3}.
       | """)
 
 ::: .exercise
-**Exercise**  
-Use string interpolation to write a single line of code which prints `{py} multiplying by 6.2 yields 12.4` if `{py} 2` is assigned to the variable `{py} A` and prints `{py} multiplying by 6.2 yields 18.6` if `{py} 3` is assigned to `{py} A`. 
+**Übung**  
+Verwende eine String-Interpolation um eine einzelne Codezeile zu schreiben, die `{py} mit 6.2 multipliziert ergibt 12.4` ausgibt, wenn die Variable `{py} A` auf `{py} 2` gesetzt, und `{py} mit 6.2 multipliziert ergibt 18,6`, wenn `{py} A` auf `{py} 3` gesetzt wird. 
 :::
 
     pre(python-executable)
@@ -532,58 +534,58 @@ Use string interpolation to write a single line of code which prints `{py} multi
 ---
 > id: step-46
 
-*Solution*. The expression `{py} print(f"multiplying by 6.2 yields {6.2*A}")` works. 
+*Lösung*. Der Ausdruck `{py} print(f"mit 6.2 multipliziert ergibt {6.2*A}")` funktioniert. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-47
 
-### Booleans
+### Boolesche Variablen
 
-A **bool** is a special type whose only values are `{py} True` and `{py} False`. The fundamental operators that can be used to combine boolean values are `{py} and`, `{py} or`, and `{py} not`. 
+Ein **bool** ist ein spezieller Typ, dessen einzige Werte `{py} True` ("Wahr") und `{py} False` ("Falsch") sind. Die grundlegenden Operatoren, die verwendet werden können, um boolesche Werte zu kombinieren, sind `{py} and` ("und"), `{py} or` ("oder") und `{py} not` ("nicht"). 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-48
       
 ::: .exercise
-**Exercise**  
-Does Python convert types when doing equality comparison? In other words, does `{py} 1 == 1.0` return `{py} True` or `{py} False`? [[True|False]]
+**Übung**  
+Wandelt Python Typen um wenn man sie miteinander vergleicht? Mit anderen Worten, gibt `{py} 1 == 1.0` (also der Vergleich von zwei eigentlich gleich großen Integer- und ein Float-Werten) `{py} True` oder `{py} False` zurück? [[True|False]]
 :::
 
     pre(python-executable)
-      | 1 == 1.0
+      | 1 == 1,0
 
 ---
 > id: step-49
 
-*Solution*. Yes, Python does convert types for equality comparison. So `{py} 1 == 1.0` returns `{py} True`. 
+*Lösung*. Ja, Python wandelt die Typen für den Gleichheitsvergleich um. Deshalb `{py} gibt 1 == 1.0` den Wert `{py} True` zurück. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-50
 
 ::: .exercise
-**Exercise**  
-Write a one-line [function](gloss:function) which takes 3 bools as arguments and returns `{py} True` if and only if either 
+**Übung**  
+Schreibe eine einzeilige [Funktion](gloss:function) , die 3 Boolwerte als Argumente nimmt und `{py} True` zurückgibt, wenn und nur wenn folgendes zutrifft: 
 
-1. Both of the first two arguments are `{py} True` , or 
-2. The third argument is `{py} False`
+1. Die beiden ersten beiden Argumente sind `{py} True`, oder 
+2. Das dritte Argument ist `{py} False`
 :::
 
 
     pre(python-executable)
       | def f(a,b,c):
-      |     pass # add code here
+      |     pass # hier Code einfügen
       |
       | def test_f():
-      |     assert f(True, True, True)
+      |     assert f(True, True, True, True)
       |     assert f(False, True, False)
-      |     assert not f(False, True, True)
-      |     return "Tests passed!"
+      |     assert not f(False, True, True, True)
+      |     return "Tests erfolgreich abgeschlossen!"
       |
       | test_f()
 
@@ -592,26 +594,26 @@ Write a one-line [function](gloss:function) which takes 3 bools as arguments and
 ---
 > id: step-51
 
-*Solution*. Here's an example of a simple way to do it: 
+*Lösung*. Hier ist ein Beispiel für eine einfache Möglichkeit, das umzusetzen: 
 
 ``` python
 def f(a,b,c):
     return a and b or not c
 ```
 
-Be wary of comparisons of the form `{py} a == True` or `{py} b == False`. These are equivalent to `{py} a` and `{py} not b`, [respectively](gloss:respectively), assuming `{py} a` and `{py} b` are both bools. The more succinct versions are preferred. 
+Sei vorsichtig mit Vergleichen der Form `{py} a == True` oder `{py} b == False`. Sie sind [jeweils](gloss:respectively) äquivalent zu einfach nur `{py} a` bzw. `{py} not b`, vorausgesetzt, `{py} a` und `{py} b` sind beide vom Typ bool, da die gesuchte Antwort ja schon von den Variablen selbst geliefert wird. Die kürzeren Versionen werden bevorzugt. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-52
 
-### Exercises
+### Übungen
 
 ::: .exercise
-**Exercise**  
+**Übung**  
 
-Write some code for computing $\frac{1}{a+\frac{2}{3}}$ where $a$ is equal to the number of characters in the string `{py} "The quick brown fox jumped over the lazy dog"`
+Schreibe einen Code zur Berechnung von $\frac }${1}{a+\frac{2}{3}. $a$ ist dabei gleich der Anzahl der Zeichen im String `{py} "Semriacher Sennenhunde sind sehr selten selber senil"`
 
 :::
 
@@ -623,46 +625,46 @@ Write some code for computing $\frac{1}{a+\frac{2}{3}}$ where $a$ is equal to th
 ---
 > id: step-53
 
-*Solution*. We store the length of the given string in a variable `{py} a` and evaluate the given expression as follows: 
+*Lösung*. Wir speichern die Länge des angegebenen Strings in einer Variablen `{py} a` und werten den gegebenen Ausdruck wie folgt aus: 
 
 ``` python
-a = len("The quick brown fox jumped over the lazy dog")
+a = len("Semriacher Sennenhunde sind sehr selten selber senil")
 1/(a+2/3)
 ```
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-54
 
 ::: .exercise
-**Exercise**  
-The expression `{py} 1 < 3` returns [[True]], which is an object of type [[bool]]. 
+**Übung**  
+Der Ausdruck `{py} 1 < 3` gibt [[True]] zurück, also ein Objekt vom Typ [[bool]]. 
 :::
 
 ---
 > id: step-55
 
 ::: .exercise
-**Exercise**  
-If we set `{py} s = "Bruno"`, then `{py} s[:j] == "Bru"` when `{py} j =` [[3]]. 
+**Übung**  
+Wenn wir s = "Bruno"` setzen `{py}, dann ist `{py} s[:j] == "Bru"` für `{py} j =` [[3]]. 
 :::
 
 ---
 
-## Conditionals
+## Bedingungen
 
 > id: conditionals
 > section: conditionals
 
-Consider a simple computational task performed by commonplace software, like highlighting the rows in a spreadsheet which have a value larger than 10 in the third column. We need a new programming language feature to do this, because we need to conditionally execute code (namely, the code which highlights a row) based on the [[boolean|int|float]] value returned by the comparison operator. Python provides `{py} if` statements for this purpose.
+Betrachten wir eine einfache Aufgabe, die von irgendeiner Software am Computer ausgeführt wird, wie z.B. das Hervorheben aller Zeilen in einer Tabelle, die in der dritten Spalte einen Wert größer als 10 haben. Dazu benötigen wir eine neue Funktion die von Programmiersprachen zur Verfügung gestellt wird: wir wollen Code (nämlich den Code, der eine Zeile markiert) nur dann ausführen wenn eine bestimmte Bedingung erfüllt ist, also je nachdem welchen [[bool|int|float]]-Wert von einem Vergleichsoperator (==, <, <=, ...) zurückgegeben wird. Python stellt zu diesem Zweck `{py} if`-Anweisungen zur Verfügung.
 
 ---
 > id: step-56
 
-### Conditionals
+### Bedingungen
 
-We can use an `{py} if` statement to specify different blocks to be executed depending on the value of a boolean expression. For example, the following function calculates the sign of the input value `{py} x`.
+Wir können eine `{py} if`-Anweisung verwenden, um verschiedene Blöcke anzugeben, die abhängig vom Wert eines booleschen Ausdrucks ausgeführt werden sollen. *Wenn* der Wert True ist mache das, *sonst* (`{py} else`) mache etwas anderes. Die folgende Funktion berechnet beispielsweise das Vorzeichen des eingegebenen Wertes `{py} x`.
 
     pre(python-executable)
       | def sgn(x):
@@ -675,12 +677,12 @@ We can use an `{py} if` statement to specify different blocks to be executed dep
       |
       | sgn(-5)
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-57
 
-Conditional expressions can be written using *ternary conditional* `{py} «truevalue» if «condition» else «falsevalue»`. For example, the following version of the `{py} sgn` function returns the same values as the one above except when `{py} x == 0`. 
+Bedingte Ausdrücke können auch als *ternäre (dreigeteilte) Bedingungen*  geschrieben werden.`{py} «Wahr-Wert» if «Bedingung» else «Falsch-Wert»`. Die folgende Version der Funktion `{py} sgn` gibt beispielsweise die gleichen Werte wie die obige zurück, außer für `{py} x == 0`. 
 
     pre(python-executable)
       | def sgn(x): 
@@ -688,16 +690,16 @@ Conditional expressions can be written using *ternary conditional* `{py} «truev
       |
       | sgn(-5)
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-58
 
-### Exercises
+### Übungen
 
 ::: .exercise
-**Exercise**  
-Can the `{py} else` part of an `{py} if` statement be omitted? [[Yes|No]] Try running the example below. 
+**Übung**  
+Kann der `{py} else` Teil einer `{py} if`-Anweisung weggelassen werden? [[Ja|Nein]] Versuche, das folgende Beispiel auszuführen. 
 :::
 
     pre(python-executable)
@@ -707,25 +709,25 @@ Can the `{py} else` part of an `{py} if` statement be omitted? [[Yes|No]] Try ru
       | elif x < 1: 
       |     print("x is between 0 and 1")
       
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-59
 
 ::: .exercise
-**Exercise**  
-Write a function called `{py} my_abs` which computes the absolute value of its input. Replace the keyword `{py} pass` below with an appropriate block of code.
+**Übung**  
+Schreibe eine Funktion namens `{py} my_abs` , die den Absolutbetrag der eingegebenen Zahl berechnet. Ersetze das Schlüsselwort `{py} pass` durch einen entsprechenden Codeblock.
 :::
 
     pre(python-executable)
       | def my_abs(x):
-      |     pass # add code here
+      |     pass # hier Code einfügen
       |
       | def test_abs():
       |     assert my_abs(-3) == 3
       |     assert my_abs(5.0) == 5.0
       |     assert my_abs(0.0) == 0.0
-      |     return "Tests passed!"
+      |     return "Test erfolgreich ausgeführt!"
       |
       | test_abs()
 
@@ -735,22 +737,22 @@ Write a function called `{py} my_abs` which computes the absolute value of its i
 > id: step-60
 
 ::: .exercise
-**Exercise**  
-Write a function which returns the quadrant number (1, 2, 3, or 4) in which the point `{py} (x,y)` is located. Recall that the quadrants are numbered counter-clockwise: the northeast quadrant is quadrant 1, the northwest quadrant is 2, and so on. For convenience, you may assume that both `{py} x` and `{py} y` are nonzero.
+**Übung**  
+Schreibe eine Funktion, die den Quadranten (1, 2, 3 oder 4) zurückgibt, in dem sich der Punkt `{py} (x,y)` befindet. Beachte, dass die Quadranten gegen den Uhrzeigersinn nummeriert sind: Der nordöstliche Quadrant ist Quadrant 1, der nordwestliche Quadrant ist 2, und so weiter. Der Einfachheit halber kannst du davon ausgehen, dass sowohl `{py} x` als auch `{py} y` ungleich Null sind.
 
-Consider nesting `{py} if...else` blocks inside of an `{py} if...else` block. 
+Tipp: Dabei solltest du vielleicht verschachtelte `{py} if...else` Blöcke innerhalb eines anderen `{py} if...else` Blocks verwenden. Beachte dabei die unterschiedlichen Einzüge der Blöcke! 
 :::
 
     pre(python-executable)
       | def quadrant(x,y):
-      |     pass # add code here
+      |     pass # hier Code einfügen
       |
       | def test_quadrant():
       |     assert quadrant(1.0, 2.0) == 1
       |     assert quadrant(-13.0, -2) == 3
       |     assert quadrant(4, -3) == 4
       |     assert quadrant(-2, 6) == 2
-      |     return "Tests passed!"
+      |     return "Tests bestanden!"
       |
       | test_quadrant()
 
@@ -759,7 +761,7 @@ Consider nesting `{py} if...else` blocks inside of an `{py} if...else` block.
 ---
 > id: step-61
 
-*Solution*. Here's an example solution: 
+*Lösung*. Eine mögliche Lösung: 
 
     pre(python-executable)
       | 
@@ -778,38 +780,38 @@ Consider nesting `{py} if...else` blocks inside of an `{py} if...else` block.
 
 ---
 
-## Functions
+## Funktionen
 
 > id: functions
 > section: functions
 
-[Functions](gloss:function) can be used to organize code and achieve *separation of concerns*: once a function is written, it may be relied upon to perform its designated task without the programmer having to think about *how* it accomplishes that task. This conceptual aid is crucial for writing maintainable code to solve large, complex problems. 
+[Funktionen](gloss:function) können verwendet werden, um Code zu organisieren und *Aufgaben auszulagern*: Sobald eine Funktion geschrieben ist, kann man sich darauf verlassen, dass sie ihre vorgesehene Aufgabe erfüllt, ohne dass der Programmierer darüber nachdenken muss, *wie* sie das macht. Diese konzeptionelle Hilfe ist entscheidend für das Schreiben von wartbarem Code zur Lösung großer, komplexer Probleme. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-62
 
-A good rule of thumb is that a function should be sufficiently general to be re-usable without duplicating internal logic, but specific enough that you can actually implement it. 
+Eine gute Faustregel ist, dass eine Funktion ausreichend allgemein sein sollte, um wiederverwendbar zu sein, ohne schon vorhandene Logik zu duplizieren, aber auch so speziell, dass man sie wirklich einsetzen kann. 
 
 ::: .exercise
-**Exercise**  
-How could the design of the following code be improved?
+**Übung**  
+Wie könnte das Design des folgenden Codes verbessert werden?
 
 ``` python
-def remove_one_leading_space(S):
+def loesche_ein_anfangs_leerzeichen(S):
     if S[0] == " ":
         return S[1:]
     else:
         return S
 
-def remove_two_leading_spaces(S):
+def loesche_zwei_anfangs_leerzeichen(S):
     if S[0:2] == "  ":
         return S[2:]
     else:
         return S
 
-def remove_three_leading_spaces(S):
+def loesche_drei_anfangs_leerzeichen(S):
     if S[0:3] == "  ":
         return S[3:]
     else:
@@ -817,91 +819,91 @@ def remove_three_leading_spaces(S):
 ```
 :::
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-63
 
-*Solution*. We should have a single function to remove whatever number of leading spaces the string happens to have. The design above has the problem that we have to figure out how many leading spaces there are before we can call the appropriate function, which means that most of the work that should be performed by the function will have to be performed when the function is called. Thus separation of concerns is not achieved.
+*Lösung*. Wir sollten eine einzige Funktion haben, um die Anzahl der überflüssigen Leerzeichen am Anfang eines Strings zu entfernen. Das obige Design hat das Problem, dass wir herausfinden müssen, wie viele führende Leerzeichen es gibt, bevor wir die entsprechende Funktion aufrufen können, was bedeutet, dass die meiste Arbeit, die eigentlich von der Funktion ausgeführt werden sollte, schon vor dem Aufruf der Funktion ausgeführt werden muss. Dadurch wird die Auslagerung der Arbeit nicht umgesetzt.
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-64
 
-### Arguments
+### Argumente
 
-The objects supplied to a function when it's called are referred to as the function's **arguments**. The variables which represent the arguments in the function definition are called **parameters**. The indented block of code that runs when the function is called is the **body** of the function.
+Die Objekte, die einer Funktion beim Aufruf übergeben werden, werden als **Argumente** der Funktion bezeichnet. Die Variablen, die die Argumente in der Funktionsdefinition darstellen, werden **Parameter** genannt. Der eingerückte Codeblock, der beim Aufruf der Funktion ausgeführt wird, ist der **Body** der Funktion (Funktionsrumpf).
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-65
 
 ::: .exercise
-**Exercise**  
-In the following block of code, `{py} s` is [[a parameter|an argument]], while `{py} "hello"` is [[an argument | a parameter]].
+**Übung**  
+Im folgenden Codeblock ist `{py} s` ein [[Parameter|Argument]], während `{py} "hello"` ein [[Argument|Parameter]] ist.
 
 ``` python
-def duplicate(s):
+def dupliziere(s):
     return s + s
 
-duplicate("hello")
+dupliziere("hello")
 ```
 :::
 
 ---
 > id: step-66
 
-We can give parameters **default values** and supply arguments for those parameters optionally when calling the function.
+Wir können Parametern **Standardwerte** zuweisen und für diese Parameter die Argumente dann optional (nicht zwingend) beim Aufruf der Funktion angeben.
 
     pre(python-executable)
       | 
-      | def line(m, x, b=0):
-      |     return m * x + b
+      | def gerade(k, x, d=0):
+      |     return k * x + d
       |
-      | line(2,3) # returns 6
-      | line(5,4,b=2) # returns 22
+      | gerade(2,3) # ergibt 6
+      | gerade(5,4,d=2) # ergibt 22
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-67
 
-The arguments 2, 3, 4 and 5 in this example are called **positional** arguments, and `{py} b=2` is a **keyword argument**. 
+Die Argumente 2, 3, 4 und 5 in diesem Beispiel werden **Positionsargumente** genannt, und `{py} b=2` ist ein **Schlüsselwort-Argument**. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-68
 
-If the function body begins with a string literal, that string will be interpreted as documentation for the function. This **docstring** helps you and other users of your functions quickly ascertain how they are meant to be used. A function's docstring can accessed in a Python session using the function `{py} help`. For example, `{py} help(print)` pulls up the docstring for the built-in `{py} print` function.
+Wenn der Funktionsteil mit einem String-Literal beginnt, wird dieser String als Dokumentation für die Funktion interpretiert. Dieser **DocString** hilft dir und anderen Benutzern deiner Funktionen, schnell festzustellen, wie sie verwendet werden sollen. Auf die Dokumentation einer Funktion kann in einer Python-Sitzung über die Funktion `{py} help`zugegriffen werden. Beispielsweise gibt `{py} help(print)` den DocString für die eingebaute `{py} print`-Funktion aus.
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-69
 
-### Anonymous functions
+### Anonyme Funktionen
 
-A function may be defined without assigning a name to it. Such a function is said to be *anonymous*. Python's anonymous function [syntax](gloss:syntax) uses the keyword `{py} lambda`. A common situation where anonymous functions can be useful is when supplying one function to another as an argument. For example:
+Eine Funktion kann definiert werden, ohne ihr einen Namen zu geben. Eine solche Funktion gilt als *anonym*. Die Python-[Syntax](gloss:syntax) für anonyme Funktionen verwendet das Schlüsselwort `{py} lambda`. Eine häufige Situation, in der anonyme Funktionen nützlich sein können, ist die Bereitstellung einer Funktion an eine andere als Argument. Zum Beispiel:
 
     pre(python-executable)
-      | def apply_three_times(f, x):
+      | def mache_drei_mal(f, x):
       |     return f(f(f(x)))
       |
-      | apply_three_times(lambda x: x*x, 2)
+      | mache_drei_mal(lambda x: x*x, 2)
       
-A multi-argument function works similarly, with the parameters separated by commas: the addition operator can be written as `{py} lambda x,y: x + y`. 
+Eine Funktion mit mehreren Argumenten funktioniert ähnlich, wobei die Parameter durch Kommas getrennt sind: Der Additionsoperator + könnte folgendermaßen geschrieben werden `{py} lambda x,y: x + y`. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-70      
       
 ::: .exercise
-**Exercise**  
-Write a function that takes two arguments `{py} a` and `{py} b` and a function `{py} f` and returns `{py} a` if `{py} f(a) < f(b)` and `{py} b` otherwise. Then use anonymous function syntax to call your function with two numbers and the negation function $x\mapsto -x$. 
+**Übung**  
+Schreibe eine Funktion, die zwei Argumente `{py} a` und `{py} b` und eine Funktion `{py} f` übernimmt und `{py} a` zurückgibt, wenn `{py} f(a) < f(b)` und `{py} b` ansonsten. Verwende dann die anonyme Funktionssyntax, um deine Funktion mit zwei Zahlen und der Negationsfunktion $x\mapsto -x$ aufzurufen. 
 :::
 
     pre(python-executable)
@@ -912,7 +914,7 @@ Write a function that takes two arguments `{py} a` and `{py} b` and a function `
 ---
 > id: step-71
 
-*Solution*. Here's an example solution:
+*Lösung*. Eine mögliche Lösung:
 
 ``` python
 def which_smaller(a, b, f):
@@ -923,18 +925,18 @@ def which_smaller(a, b, f):
 
 which_smaller(4, 6, lambda x: -x)
 ```
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-72
       
-### Scope
+### Gültigkeitsbereich
 
-The **scope** of a variable is the region in the program where it is accessible. For example, if you define `{py} x` to be `{py} 47` on line 413 of your file and get an error because you tried to use `{py} x` on line 35, the problem is that the variable wasn't *in scope* yet. 
+Der **Gültigkeitsbereich** einer Variablen ist der Bereich im Programm, in man sie aufrufen kann. Wenn du beispielsweise `{py} x` in Zeile 413 deiner Datei so definierst, dass es auf `{py} 47` gesetzt wird und einen Fehler erhältst, weil du versucht hast, `{py} x` in Zeile 35 zu verwenden, dann besteht das Problem darin, dass die Variable hier noch nicht *gültig*  ist. 
 
-A variable defined in the main body of a file has **global scope**, meaning that it is visible throughout the program from its point of definition. 
+Eine Variable, die im Hauptteil (main body) einer Datei definiert ist, hat **globalen Gültigkeitsbereich**, was bedeutet, dass sie von ihrem Definitionspunkt aus im gesamten Programm sichtbar ist. 
 
-A variable defined in the body of a function is in that function's **local scope**. For example: 
+Eine im Funktionsrumpf definierte Variable befindet sich im **lokalen Gültigkeitsbereich** dieser Funktion. Zum Beispiel: 
 
     pre(python-executable)
       | def f(x):
@@ -945,8 +947,8 @@ A variable defined in the body of a function is in that function's **local scope
 
 
 ::: .exercise
-**Exercise**  
-Try nesting one function definition inside another. Are variables in the enclosing function body available in the inner function. What about vice versa?
+**Übung**  
+Versuche, eine Funktionsdefinition in eine andere zu verschachteln. Sind Variablen im äußeren Funktionsrumpf in der inneren Funktion verfügbar? Wie ist das im umgekehrten Fall?
 :::
 
     pre(python-executable)
@@ -965,25 +967,25 @@ Try nesting one function definition inside another. Are variables in the enclosi
 ---
 > id: step-73
 
-*Solution*. The variable defined in the inner function is not in scope in the body of the outer function, but the variable defined in the body of the outer function is in scope in the body of the inner function.
+*Lösung*. Die in der inneren Funktion definierte Variable ist nicht im Gültigkeitsbereich des Funktionsrumpfs der äußeren Funktion, aber die im Funktionsrumpf der äußeren Funktion definierte Variable ist im Gültigkeitsbereich der inneren Funktion.
     
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-74
 
-### Testing
+### Testen
 
-It's highly recommended to write tests to accompany your functions, so you can confirm that each function behaves as expected. This is especially important as your codebase grows, because changes in one function can lead to problems in other functions that use it. Having a way to test functions throughout your codebase helps you discover these breakages quickly, before they cause harm.
+Es wird dringend empfohlen, Tests zu deinen Funktionen zu schreiben und zur Verfügung zu stellen. Damit wird bestätigt, dass sich jede Funktion wie erwartet verhält. Dies ist besonders wichtig, wenn deine Codebasis immer größer wird, da Änderungen in einer Funktion zu Problemen in anderen Funktionen führen können, die sie verwenden. Eine Möglichkeit zum Testen der Funktionen in deiner gesamten Codebasis hilft dir dabei, diese Fehler schnell zu entdecken, bevor sie zu Schäden führen.
 
-One common way to do this (which you have already seen several times in this course) is to write functions whose names begin with *`{py} test_`* and which contain `{py} assert` statements. An `{py} assert` statement throws an error if the following expression evaluates to `{py} False`. You can run the test functions directly, or you can use a tool like [pytest](https://pytest.org) to find and run all of the test functions in your codebase. 
+Eine gängige Methode dazu (die du in diesem Kurs bereits mehrfach gesehen hast) ist das Schreiben von Funktionen, deren Namen mit *`{py} test_`* beginnen und die `{py} assert`-Anweisungen enthalten. Eine `{py} assert`-Anweisung löst einen Fehler aus, wenn der darauf folgende Ausdruck `{py} False` zurück gibt. Man kann die Testfunktionen direkt ausführen, oder man kann ein Tool wie [pytest](https://pytest.org) verwenden, um alle Testfunktionen in der Codebasis zu finden und auszuführen. 
 
     pre(python-executable)
       | def space_concat(s,t):
       |     """
-      |     Concatenate strings s and t, ensuring a space
-      |     between them if s ends with a non-space character
-      |     and t begins with a non-space character
+      |     Verkettung der Strings s und t, wobei ein Leerzeichen
+      |     zwischen ihnen eingefügt wird, wenn s mit einem Nicht-Leerzeichen endet
+      |     und t mit einem Nicht-Leerzeichen beginnt
       |     """
       |     if s[-1] == " " or t[0] == " ":
       |         return s + t
@@ -998,8 +1000,8 @@ One common way to do this (which you have already seen several times in this cou
       | space_concat("foo", "bar")
       
 ::: .exercise
-**Exercise**  
-The test cases above don't cover the *degenerate* situation where one of the strings is empty. Does the function return correct values for these degenerate cases? [[No|Yes]] Add test cases for this, and fix the function so that they pass.
+**Übung**  
+Die obigen Testfälle decken nicht die *ungünstige* Situation ab, dass einer der Strings leer ist. Liefert die Funktion korrekte Werte für diese ungünstigen Fälle? [[Nein|Ja]] Füge dafür Testfälle hinzu und verbessere die Funktion so, dass diese bestanden werden.
 :::
 
     x-quill
@@ -1007,14 +1009,14 @@ The test cases above don't cover the *degenerate* situation where one of the str
 ---
 > id: step-75
 
-*Solution*. We check the empty string conditions prior to checking the last/first characters. This solves the problem because `{py} or` is **short-circuiting**: if the first bool is `{py} True` in an `{py} or` operation, the second is never evaluated.
+*Lösung*. Wir überprüfen ob die Strings leer sind bevor wir die letzten bzw. ersten Zeichen überprüfen. Mit `{py} or` kann das Problem schnell gelöst werden, weil wenn der erste bool-Wert in einer `{py} or` Operation `{py} True` ist, wird der zweite erst gar nicht ausgewertet.
 
     pre(python-executable)
       | def space_concat(s,t):
       |     """
-      |     Concatenate strings s and t, ensuring a space
-      |     between them if s ends with a non-space character 
-      |     and t begins with a non-space character.
+      |     Verkettung der Strings s und t, wobei ein Leerzeichen
+      |     zwischen ihnen eingefügt wird, wenn s mit einem Nicht-Leerzeichen endet
+      |     und t mit einem Nicht-Leerzeichen beginnt.
       |     """
       |     if s == "" or t == "" or s[-1] == " " or t[0] == " ":
       |         return s + t
@@ -1027,23 +1029,23 @@ The test cases above don't cover the *degenerate* situation where one of the str
       |     assert space_concat("foo", "") == "foo"
       |     assert space_concat("", "bar") == "bar"
 
-### Exercises
+### Übungen
 
 ::: .exercise
-**Exercise**  
-Write a function which accepts two strings as input and returns the concatenation of those two strings in alphabetical order.
+**Übung**  
+Schreibe eine Funktion, die zwei Strings als Eingabe akzeptiert und die Verkettung dieser beiden Strings in alphabetischer Reihenfolge zurückgibt.
 
-_Hint_: Make a guess about which operator can be used to compare strings alphabetically.
+_Tipp_: Was meinst du, mit welchem Operator Strings alphabetisch verglichen werden können.
 :::
 
     pre(python-executable)
       | def alphabetical_concat(s,t):
-      |     pass # add code here
+      |     pass # hier Code einfügen
       |
       | def test_concat(): 
-      |     assert alphabetical_concat("alphabet", "soup") == "alphabetsoup"
-      |     assert alphabetical_concat("socks", "red") == "redsocks"
-      |     return "Tests passed!"
+      |     assert alphabetical_concat("buchstaben", "suppe") == "buchstabensuppe"
+      |     assert alphabetical_concat("socken", "rote") == "rotesocken"
+      |     return "Tests erfolgreich bestanden!"
       |
       | test_concat()
 
@@ -1054,7 +1056,7 @@ _Hint_: Make a guess about which operator can be used to compare strings alphabe
 ---
 > id: step-76
 
-*Solution*. 
+*Lösung*. 
 
     pre(python-executable)
       | def alphabetical_concat(s,t):
@@ -1064,7 +1066,7 @@ _Hint_: Make a guess about which operator can be used to compare strings alphabe
       |         return t + s
       |
       | def test_concat(): 
-      |     alphabetical_concat("alphabet", "soup") == "alphabetsoup"
+      |     alphabetical_concat("buchstaben", "suppe") == "buchstabensuppe"
       |     alphabetical_concat("food", "brain") == "brainfood"
       |     return "Tests passed!"
       |
@@ -1072,12 +1074,12 @@ _Hint_: Make a guess about which operator can be used to compare strings alphabe
 
 ---
 
-## Packages
+## Pakete
 
 > id: packages
 > section: packages
 
-A [**package**](gloss:package) is a collection of Python files that provide functionality beyond the core functionality available in every Python program. Packages achieve separation of concerns at the community level: someone else solves a problem of general interest, and then you can leverage their work and focus on applying it to the problem at hand.
+Ein [**Paket**](gloss:package) ist eine Sammlung von Python-Dateien, die Funktionen zur Verfügung stellen, die über die Kernfunktionen hinausgehen, die in jedem Python-Programm verfügbar sind. Pakete bewirken eine Trennung der Anliegen auf Gemeindeebene: Jemand anderes löst ein Problem von allgemeinem Interesse, und dann können Sie seine Arbeit nutzen und sich darauf konzentrieren, es auf das anstehende Problem anzuwenden.
 
 Many Python packages are available in every standard distribution of Python and can be used without having to worry about whether they're installed. These packages make up the **standard library**. To see a list of standard library packages, visit the standard library page of the [Python documentation](https://docs.python.org/3/library/). Here's an example showing how to import the  `{py} math` package and use the `{py} sqrt` function it contains: 
 
@@ -1150,7 +1152,7 @@ The example above solves the system of equations:
 ```
 for $x$ and $y$.
 
-### Exercises 
+### Übungen 
 
 ::: .exercise
 **Exercise**  
@@ -1164,7 +1166,7 @@ for $x$ and $y$.
 
 *Solution.* `{py} from numpy import arcsin`
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-79
@@ -1181,7 +1183,7 @@ for $x$ and $y$.
 
 *Solution* `{py} import sympy as sp`
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-81
@@ -1198,30 +1200,30 @@ To import the standard library package `{py} itertools` (with no alias), we woul
 
 *Solution* `{py} import itertools`
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 
-## Classes
+## Klassen
 
 > id: classes
 > section: classes
 
-Many Python functions use the usual function [syntax](gloss:syntax), like `{py} len("hello")`. However, many other functions are called using a different syntax where an *object* comes first: 
+Viele Python-Funktionen verwenden die übliche Funktions[syntax](gloss:syntax), wie `{py} len("hello")`. Viele andere Funktionen werden jedoch mit einer anderen Syntax aufgerufen, wobei zuerst ein *Objekt* kommt: 
 
     pre(python-executable)
       | "hello".capitalize()
 
 These functions are called **methods**. For example, `{py} capitalize` is a string method. To understand how methods work in the language, it's helpful to see what they look like at the point of definition. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-84
 
 Suppose you want to write a program which keeps track of the albums you own. Each album is associated with several data, like the name of the album, the year it came out, the number of tracks, etc. You could store all these data by assigning them to different variables, but that becomes untidy very quickly. For example, you will frequently want to pass an album to a function, and you don't want that function to require a long list of parameters just because the album has a lot of data associated with it. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-85
@@ -1272,7 +1274,7 @@ Confirm that `{py} "hello".capitalize()` does give the same value as `{py} str.c
     pre(python-executable)
       | 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-87
@@ -1285,9 +1287,9 @@ In the expression `{py} "".join("hello")`, the method `{py} join` has [[2|1|0|3]
 ---
 > id: step-88
 
-*Solution*. There are two arguments: the first is the empty string, and the second is `{py} "hello"`. 
+*Lösung*. There are two arguments: the first is the empty string, and the second is `{py} "hello"`. 
       
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-89
@@ -1313,7 +1315,7 @@ Implement a class called `{py} Fraction` which represents a ratio of two positiv
 ---
 > id: step-90
 
-*Solution*. We divide by the gcd in the init method, and we define the other two methods according to the rules of arithmetic:
+*Lösung*. We divide by the gcd in the init method, and we define the other two methods according to the rules of arithmetic:
 
     pre(python-executable)
       | from math import gcd
@@ -1469,14 +1471,14 @@ Let's revisit the spreadsheet example we discussed earlier: suppose you're writi
         td: .pill.blue 19
         td: .pill.blue 7
 
-We definitely don't want to think of 100 variable names for the 100 values in the table, and we don't want to write a line of code for each row. What we need is a way to store all of the rows (or columns) in an object designed to contain many objects. Python provides several such **compound data structures**, and in this section we will learn about two: **lists** and **tuples**. 
+We definitely don't want to think of 100 variable names for the 100 values in the table, and we don't want to write a line of code for each row. What we need is a way to store all of the rows (or columns) in an object designed to contain many objects. Python provides several such **compound data structures**, and in this section we will learn about two: **Listen** und **Tupel**. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-91
 
-### Lists
+### Listen
 
 A `{py} list` in Python is a compound data type for storing a finite ordered sequence of Python objects. Lists are **mutable**, meaning that they can be changed.
 
@@ -1496,9 +1498,9 @@ What happens to `{py} myOtherList` in the example above if a different value is 
 ---
 > id: step-92
 
-*Solution*. The list doesn't change. The object associated with the variable `{py} x` is retrieved when the list is created, and after that point the list is no longer connected to the name `{py} x`. 
+*Lösung*. The list doesn't change. The object associated with the variable `{py} x` is retrieved when the list is created, and after that point the list is no longer connected to the name `{py} x`. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-93
@@ -1573,14 +1575,14 @@ What step value can be used to *reverse* a list? [[-1]] (Hint: you can reason it
     pre(python-executable)
       | [2,4,6,8][::k]
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-99
 
-*Solution*. Going in reverse order through a list corresponds to stepping by $-1$ each time. Setting `{py} k = -1` in the code block above, we see that `{py} [::-1]` does indeed reverse the list. Apparently the start and stop values for a list `{py} L` implicitly are implicitly set to `{py} -1` and `{py} -len(L)` when a negative step value is used. 
+*Lösung*. Going in reverse order through a list corresponds to stepping by $-1$ each time. Setting `{py} k = -1` in the code block above, we see that `{py} [::-1]` does indeed reverse the list. Apparently the start and stop values for a list `{py} L` implicitly are implicitly set to `{py} -1` and `{py} -len(L)` when a negative step value is used. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-100
@@ -1613,7 +1615,7 @@ Write a [function](gloss:function) which takes as arguments a list `{py} L` and 
 ---
 > id: step-101
 
-*Solution*. We figure out where the list needs to be split and concatenate the two resulting sublists in the opposite order:
+*Lösung*. We figure out where the list needs to be split and concatenate the two resulting sublists in the opposite order:
 
     pre(python-executable)
       | def rotate(L, n):
@@ -1621,7 +1623,7 @@ Write a [function](gloss:function) which takes as arguments a list `{py} L` and 
       |     k = len(L) - n % len(L)
       |     return L[k:] + L[:k]
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-102
@@ -1647,9 +1649,9 @@ Write a line of code which sets every even-indexed entry of a list `{py} L` to z
 ---
 > id: step-103
 
-*Solution*. `{py} L[::2] = [0] * (len(L)//2)`
+*Lösung*. `{py} L[::2] = [0] * (len(L)//2)`
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-104
@@ -1697,9 +1699,9 @@ print(remove_fives(["1", "5", "5", "10"]))
 ---
 > id: step-105
 
-*Solution*. The `{py} remove` method only removes one instances of `{py} "5"` (the first one). Also, this method modifies the argument supplied to the function; it does not return new list with the `{py} "5"` removed.
+*Lösung*. The `{py} remove` method only removes one instances of `{py} "5"` (the first one). Also, this method modifies the argument supplied to the function; it does not return new list with the `{py} "5"` removed.
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-106
@@ -1727,7 +1729,7 @@ Python provides a convenient [syntax](gloss:syntax) for both mapping *and* filte
     pre(python-executable)
       | [x**2 for x in range(5) if x % 2 == 0]
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-107
@@ -1747,13 +1749,13 @@ Write a list comprehension which returns a list whose kth entry is the last digi
 ---
 > id: step-108
 
-*Solution*. Here's an example solution:
+*Lösung*. Eine mögliche Lösung:
 
     pre(python-executable)
       | from sympy import isprime
       | [str(k)[-1] for k in range(100,1000) if isprime(k)]
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-109
@@ -1771,17 +1773,17 @@ Write a list comprehension which takes a list of lists and returns only those li
 ---
 > id: step-110
 
-*Solution*. Here's one solution:
+*Lösung*. Here's one solution:
 
     pre(python-executable)
       | [record for record in records if len(record[1]) >= 5]
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-111
 
-### Tuples
+### Tupel
 
 Tuples are very similar to lists, except that tuples are [immutable](gloss:immutable).
 
@@ -1793,7 +1795,7 @@ Tuples are very similar to lists, except that tuples are [immutable](gloss:immut
 
 Programmers tend to use tuples instead of lists in situations where **position** in the tuple carries more meaning than **order**. For example, perhaps the tuple assigned to `{py} row` above describes a row of plants in a garden, with the three numbers indicating the number of plants, the number of weeks since they were planted, and the type of plant. We could have chosen some other order for those three values, as long as we're consistent about which position corresponds to which value. By contrast, the 22 heights of the plants on that row would typically be stored in a *list*, since the list order corresponds to something meaningful in that case (namely, the order of the plants in the row).
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-112
@@ -1808,7 +1810,7 @@ Functions often return multiple values by returning a tuple containing those val
 
 The convention in Python for values you don't want to store is to assign them to the variable whose name is just an underscore. That way you don't have to think of names for those variables, and you signal to anyone reading your code that you are not using those values.
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-113
@@ -1834,13 +1836,13 @@ Write a list comprehension which adds the first two elements of each tuple in `{
 ---
 > id: step-114
 
-*Solution*. Same idea: 
+*Lösung*. Same idea: 
 
     pre(python-executable)
       | L = [(1,2,3),(4,5,6),(7,8,9)]
       | [a+b for (a,b,_) in L]
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-115
@@ -1871,7 +1873,7 @@ Find the fractional parts of the first 100 positive integer multiples of $\pi$. 
 ---
 > id: step-116
 
-*Solution*. We use tuple unpacking to extract the min and max values from the tuple returned by the `{py} extrema` function.
+*Lösung*. We use tuple unpacking to extract the min and max values from the tuple returned by the `{py} extrema` function.
 
     pre(python-executable)
       | m,M = extrema([pi*k-int(pi*k) for k in range(1,101)])
@@ -1879,12 +1881,12 @@ Find the fractional parts of the first 100 positive integer multiples of $\pi$. 
 
 The result is about 56.08. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-117
 
-A common pattern for generating new arrays combines list comprehension, tuple unpacking, and the function `{py} zip`. The `{py} zip` function takes two arrays and returns a single array of pairs of corresponding entries (or three arrays, in which case it returns an array of triples, etc.). For example, 
+A common pattern for generating new arrays combines list comprehension, tuple unpacking, and the function `{py} zip`. The `{py} zip` function takes two arrays and returns a single array of pairs of corresponding entries (or three arrays, in which case it returns an array of triples, etc.). Zum Beispiel, 
 
 ``` python 
 zip(["a", "b", "c"], [1, 2, 3])
@@ -1908,7 +1910,7 @@ Suppose that $H$ is a list which stores the heights of 100 cylinders and $R$ is 
 ---
 > id: step-118
 
-*Solution*. We zip `{py} H` and `{py} R` and use the volume formula $\pi r^2 h$: 
+*Lösung*. We zip `{py} H` and `{py} R` and use the volume formula $\pi r^2 h$: 
 
     pre(python-executable)
       | from numpy import pi
@@ -1916,12 +1918,12 @@ Suppose that $H$ is a list which stores the heights of 100 cylinders and $R$ is 
       | R = [0.8, 1.0, 1.2]
       | [pi*r*r*h for (h,r) in zip(H,R)]
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-119
       
-### Exercises 
+### Übungen 
 
 ::: .exercise
 **Exercise**  
@@ -1937,7 +1939,7 @@ L = tuple(L)
 ```
 :::
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-120
@@ -1963,7 +1965,7 @@ Write a function which takes a matrix `{py} M` and an index `{py} i` and returns
 ---
 > id: step-121
 
-*Solution*. We use a list comprehension to select the appropriate entry from each row. 
+*Lösung*. We use a list comprehension to select the appropriate entry from each row. 
 
     pre(python-executable)
       | def select_col(M, i):
@@ -1976,7 +1978,7 @@ Write a function which takes a matrix `{py} M` and an index `{py} i` and returns
       |
       | test_select_col()
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-122      
@@ -1985,7 +1987,7 @@ Write a function which takes a matrix `{py} M` and an index `{py} i` and returns
 **Exercise**  
 Write a function which reverses the words in a sentence. For simplicity, you may assume that the sentence does not contain punctuation.
 
-_Hint_: The string methods `{py} join` and `{py} split` might be helpful. You can see the documentation for these methods with `{py} help(str.join)` and `{py} help(str.split)`. 
+_TIPP: The string methods `{py} join` and `{py} split` might be helpful. You can see the documentation for these methods with `{py} help(str.join)` and `{py} help(str.split)`. 
 :::
 
     pre(python-executable)
@@ -2004,14 +2006,14 @@ _Hint_: The string methods `{py} join` and `{py} split` might be helpful. You ca
 ---
 > id: step-123
 
-*Solution*. We use the string method `{py} split`, which splits a string on a given character. This gives us a list of the words in the sentence, which we can reverse by indexing with a negative step and rejoin with the `{py} join` method.
+*Lösung*. We use the string method `{py} split`, which splits a string on a given character. This gives us a list of the words in the sentence, which we can reverse by indexing with a negative step and rejoin with the `{py} join` method.
 
     pre(python-executable)
       | def reverse_words(sentence):
       |     return " ".join(sentence.split(" ")[::-1])
 
 ---
-## Sets and Dictionaries
+## Sets und Dictionaries
 
 > id: sets-and-dictionaries
 > section: sets-and-dictionaries
@@ -2032,7 +2034,7 @@ _Hint_: The string methods `{py} join` and `{py} split` might be helpful. You ca
 **Exercise**  
 Make a set which contains the first 10,000 prime numbers.
 
-_Hint_: It suffices to look for primes among the first 110,000 integers. Compare how long it takes to check whether a given number is in that set to the time it takes to compute whether the number is prime using `{py} sympy.isprime`. 
+_TIPP: It suffices to look for primes among the first 110,000 integers. Compare how long it takes to check whether a given number is in that set to the time it takes to compute whether the number is prime using `{py} sympy.isprime`. 
 
 _Note 1_: The most reliable and efficient way to figure out how the `{py} timeit` function works is to [[run help(timeit)|try it on different examples and guess|ask on StackOverflow]]. 
 
@@ -2056,7 +2058,7 @@ _Note 2_: The computation below takes some time to run (20 seconds, say). It ret
 ---
 > id: step-124
 
-*Solution*. To get exactly 10,000 primes, we index the list obtained by filtering out the composite numbers:
+*Lösung*. To get exactly 10,000 primes, we index the list obtained by filtering out the composite numbers:
 
     pre(python-executable)
       | import timeit
@@ -2080,7 +2082,7 @@ Put the three methods in order from fastest to slowest:
 ---
 > id: step-125
 
-### Dictionaries
+### Wörterbücher
 
 The internal mechanism that sets use to check membership extremely fast is also useful when the information you want to retrieve is more complex than just `{py} True` or `{py} False`. 
 
@@ -2122,7 +2124,7 @@ dict([
 ])
 ```
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-128
@@ -2148,7 +2150,7 @@ The `{py} dict` [methods](gloss:method), `{py} keys` and `{py} values`, may be u
       | }
       | rgb.keys()
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-129
@@ -2186,19 +2188,19 @@ Implement this idea in the block below. Check that your dictionary works by inde
 
     x-quill
 
-_{button.next-step} Submit_
+_{button.next-step} Absenden_
 
 ---
 > id: step-130
 
-*Solution*. We use the `{py} dict` function to convert the list of pairs back into a dictionary: `{py} dict(map(reversed, arrival_times.items()))`. 
+*Lösung*. We use the `{py} dict` function to convert the list of pairs back into a dictionary: `{py} dict(map(reversed, arrival_times.items()))`. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-131
 
-### Exercises 
+### Übungen 
 
 ::: .exercise
 **Exercise**  
@@ -2219,12 +2221,12 @@ Use a dict comprehension to make a dictionary which maps each of the first 100 p
 ---
 > id: step-132
 
-*Solution*. We convert to a string, get the last character, and convert back to an integer: 
+*Lösung*. We convert to a string, get the last character, and convert back to an integer: 
 
     pre(python-executable)
       |   {2**k: int(str(2**k)[-1]) for k in range(100)}
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-133
@@ -2234,16 +2236,16 @@ Use a dict comprehension to make a dictionary which maps each of the first 100 p
 Suppose you want to store student IDs in a part of a web application where the main thing you need to do is check whether an ID input by a student is a valid student ID (so you can flag it if it has been mistyped). Among the given options, the best data structure for this purpose would be a [[set|list|tuple|dictionary]]. 
 :::
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-134
 
-*Solution*. This is an ideal use case for sets. Lists and tuples will be slower for checking membership, and dictionaries aren't quite appropriate because it isn't clear what the values would be.
+*Lösung*. This is an ideal use case for sets. Lists and tuples will be slower for checking membership, and dictionaries aren't quite appropriate because it isn't clear what the values would be.
 
 ---
 
-## Iteration
+## Wiederholung (Schleifen)
 
 > id: iteration
 > section: iteration
@@ -2257,7 +2259,7 @@ We have already seen one way of doing something to each element in a collection:
 
 In this list comprehension, we **iterate** over the pairs of the [dictionary](gloss:dictionary) to produce a new list. Although list comprehensions are very useful, they are not flexible enough to cover all our iteration needs. A much more flexible tool is the **for loop**.
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-135
@@ -2276,7 +2278,7 @@ The code above could also be rewritten as follows:
 
 The statement `{py} for item in collection:` works as follows: the first element of `{py} collection` is assigned to `{py} item`, and the block indented below the `{py} for` statement is executed. Then, the second element of `{py} collection` is assigned to `{py} item`, the indented block is executed again, etc., until the end of the collection is reached. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-136
@@ -2302,7 +2304,7 @@ We can nest `{py} for` statements. For example, suppose we have a matrix represe
       |
       | test_sum()
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-137
@@ -2328,13 +2330,13 @@ Suppose you have imported a function `{py} file_bug_report` with two parameters:
 ---
 > id: step-137a
 
-*Solution*. We loop over the items: 
+*Lösung*. We loop over the items: 
 
     pre(python-executable)
       | for id, desc in bugs.items():
       |     file_bug_report(id, desc)
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-138
@@ -2362,7 +2364,7 @@ Write a [function](gloss:function) called `{py} factorial` which takes a positiv
 ---
 > id: step-139
 
-*Solution*. We loop through `{py} range(1, n+1)` and multiply as we go. 
+*Lösung*. We loop through `{py} range(1, n+1)` and multiply as we go. 
 
     pre(python-executable)
       | def factorial(n):
@@ -2381,7 +2383,7 @@ Write a [function](gloss:function) called `{py} factorial` which takes a positiv
       |
       | test_factorial()
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-140
@@ -2446,7 +2448,7 @@ Note that $10^{-8}$ can be represented in Python using scientific notation `{py}
 ---
 > id: step-141
 
-*Solution*. We keep up with two separate variables, which we call `{py} x` and *`{py} old_x`*, to compare the most recent two iterates: 
+*Lösung*. We keep up with two separate variables, which we call `{py} x` and *`{py} old_x`*, to compare the most recent two iterates: 
 
     pre(python-executable)
       | def newtonsqrt(n):
@@ -2458,12 +2460,12 @@ Note that $10^{-8}$ can be represented in Python using scientific notation `{py}
       |         if abs(x - old_x)/old_x < 1e-8:
       |             return x
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-142
 
-### Exercises 
+### Übungen 
 
 ::: .exercise
 **Exercise**  
@@ -2488,7 +2490,7 @@ _Note_: `{py} \\n` in a string literal represents the "newline" character. You'l
 ---
 > id: step-143
 
-*Solution*. We loop through the rows and use an `{py} if` statement to print a different output depending on whether the row is even-numbered or odd-numbered.
+*Lösung*. We loop through the rows and use an `{py} if` statement to print a different output depending on whether the row is even-numbered or odd-numbered.
 
     pre(python-executable)
       | def checkerboard(n):
@@ -2539,7 +2541,7 @@ _Note_: there's no solution to this one, but you can do it on your own!
 
 ---
 
-## Project 1: Spotify
+## Projekt 1: Spotify
 
 > id: project-1
 > section: project-1-spotify
@@ -2548,7 +2550,7 @@ One of the most challenging aspects of learning to program is the difficulty of 
 
 You'll want to follow along either on your own computer or in [Binder](https://mybinder.org/v2/gh/data-gymnasia/python-binder/master). You can't use code blocks in this page, because there's an authentication step which requires a feature which isn't supported here.
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-144
@@ -2559,14 +2561,14 @@ As an avid Spotify listener, you find that you'd prefer more flexibility in the 
 
 This is not the sort of capability that Spotify is ever going to provide through its app, but Spotify *does* support interaction through a programming language. Such an interface is called an **API** (application programming interface). 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-145
 
 You decide to google *Spotify API* to see what the deal is. That takes you to the [main Spotify API page](https://developer.spotify.com/documentation/web-api/), where you read about how the API uses standard HTTPS requests (these are the requests that your browser is using in the background load webpages, enter information into forms on the internet, etc.). Rather than proceeding along this route, you think to yourself "surely someone in the vast Python world has made a Python package to handle these HTTPS requests". So you google "Spotify Python API". 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-146
@@ -2579,7 +2581,7 @@ _Note_: if you're working in a Jupyter notebook, you can send code from a cell t
 !pip install spotipy
 ```
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-147
@@ -2618,7 +2620,7 @@ token = util.prompt_for_user_token(username,
 sp = spotipy.Spotify(auth=token)
 ```
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-150
@@ -2635,12 +2637,12 @@ sp.user_playlist_add_tracks(username, playlist_id, original_tracks)
 
 That second line is there because you decided that function's name was so long it was getting unwieldy. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-151
 
-Hmm. Error. Specifically, a `{py} SpotifyException`, which suggests that you didn't use the API in the intended way. You'll have to dig into this to figure out what went wrong. But first, it's a bit untidy to have those four lines of code loose in our program. Let's wrap them in a function. The playlist id should be an argument, and we should also take as an argument a track-modifying function that we'll start using once we get to that part. 
+Hmm. Fehler. Specifically, a `{py} SpotifyException`, which suggests that you didn't use the API in the intended way. You'll have to dig into this to figure out what went wrong. But first, it's a bit untidy to have those four lines of code loose in our program. Let's wrap them in a function. The playlist id should be an argument, and we should also take as an argument a track-modifying function that we'll start using once we get to that part. 
 
 ``` python
 def modify_playlist_tracks(playlist_id, track_modifier):
@@ -2666,7 +2668,7 @@ original_tracks
 
 The output from that expression prints all over the screen, and it looks like it has a lot more data than just a list of id's. That's actually pretty helpful, because we'll need that data to modify the list appropriately. But in the meantime, we need to extract the actual playlist ids. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-152
@@ -2705,9 +2707,9 @@ Write a [list comprehension](gloss:listcomp) to calculate the list of all of the
 ---
 > id: step-155
 
-*Solution*. *`{py} [item for item in original_tracks['items']]`* would return the `{py} 'items'` list. To map each item to its playlist id, we index it with `{py} 'track'` and then with `{py} 'id'` as above. So we get *`{py} [item['track']['id'] for item in original_tracks['items']]`* 
+*Lösung*. *`{py} [item for item in original_tracks['items']]`* would return the `{py} 'items'` list. To map each item to its playlist id, we index it with `{py} 'track'` and then with `{py} 'id'` as above. So we get *`{py} [item['track']['id'] for item in original_tracks['items']]`* 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-156
@@ -2732,7 +2734,7 @@ def track_modifier(tracks):
 modify_playlist_tracks(playlist_id, track_modifier)
 ```
 
-This works! You can check that the order of the playlist was reversed. 
+Das funktioniert! You can check that the order of the playlist was reversed. 
 
 ::: .exercise
 **Exercise**  
@@ -2743,7 +2745,7 @@ Add more features to the function *`{py} track_modifier`* to modify playlists in
 
 ---
 
-## Project 2: Mail Merge
+## Projekt 2: Seriendruck
 
 > id: project-2
 > section: project-2-mail-merge
@@ -2752,7 +2754,7 @@ Suppose you want to send an email to dozens of people, with some elements of the
 
 This problem is called *mail merge*, and there are many commercial software solutions available. However, in this section you'll implement a simple and flexible mail merge in Python. You will want to do this on your computer, because the authorization step involves using your operating system keychain. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-157
@@ -2763,7 +2765,7 @@ The first hurdle is to securely authorize your Python program to access your ema
 
 Following the installation instructions on the project GitHub page, you run `{py} pip3 install yagmail[all]` from the [command line](gloss:command-line) to install `{py} yagmail`. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-158
@@ -2777,7 +2779,7 @@ yagmail.register('mygmailusername')
 
 and enter the password for the Gmail account in the resulting password prompt. This stores the password in the operating system keychain so you don't have to keep entering it. (Note: if you're using dual authentication on your Google account, you'll need to generate and enter a special app password instead of your regular password; see [this info page](https://support.google.com/accounts/answer/185833?p=InvalidSecondFactor) for instructions.)
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-159
@@ -2805,12 +2807,12 @@ Before sending the message, you have to figure out to store the data for each re
 
 You save the file and proceed to figuring out how to load it into Python. 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-161
 
-### Pandas
+### Panda
 
 You google "enter CSV in Python" and scan the first several search results. The first couple show examples with a dozen or so lines of code, which seems more complicated than necessary. Going back to the search results, you see a function called *`{py} pandas.read_csv`*, and you remember that Pandas is the recommended package for handling spreadsheet data in Python. So you do 
 
@@ -2821,7 +2823,7 @@ mailData = pd.read_csv("mail-merge-data.csv")
 
 You check `{py} type(mailData)` and see that `{py} mailData` is a `{py} DataFrame`, which is the general Pandas type for tabular data. 
       
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-162
@@ -2833,7 +2835,7 @@ Now you have to figure out how to loop over the rows of a `{py} DataFrame`. You 
 
 You do `{py} list(mailData.itertuples())[0]` to get an example row from the `{py} DataFrame`, and you call `{py} dir` on it to look for the right method for extracting each column value. You see that `{py} Name`, `{py} Email`, and `{py} Status` are attributes of the row, so you can access them using dot syntax (like `{py} row.Email`). 
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-164
@@ -2870,7 +2872,7 @@ Tie all of the above together to write a couple more lines of code that will act
 ---
 > id: step-166
 
-*Solution*. We supply the `{py} Email` attribute of `{py} row` to the `{py} to` argument, and  `{py} message(row)` to `{py} contents`:
+*Lösung*. We supply the `{py} Email` attribute of `{py} row` to the `{py} to` argument, and  `{py} message(row)` to `{py} contents`:
 
 ``` python
 for row in mailData.itertuples():
@@ -2879,9 +2881,8 @@ for row in mailData.itertuples():
              contents = message(row))
 ```
 
-[Continue](btn:next)
+[Weiter](btn:next)
 
 ---
 > id: step-167
 
-Congratulations! You have finished the Data Gymnasia *Programming with Python* course.

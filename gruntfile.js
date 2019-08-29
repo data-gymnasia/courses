@@ -71,7 +71,7 @@ grunt.initConfig({
   },
 
   textbooks: {
-    options: {languages: ['en'], cache: true},
+    options: {languages: ['en', 'de'], cache: true},
     app: {
       files: [{
         expand: true,
