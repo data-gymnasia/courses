@@ -1319,31 +1319,9 @@ We will close this section by mentioning two other solutions for the reproducibi
 [Continue](btn:next)
 
 ---
-> id: docker
+> id: docker-tease
 
-A much more general-purpose tool for achieving reproducibility is **Docker**. To oversimplify a bit, using Docker involves figuring out how to build your desired computational environment by running a sequence of shell commands starting from a bare-bones Linux operating system. You store this sequence of commands in a text file called **Dockerfile**, and the results achieved by performing the specified installation steps are stored as a Docker **image**. Docker (the company) provides a free cross-platform application called Docker Desktop which allows any user to download Docker images from a repository of published Dockerfiles and run them on their own machine. These image instances, called **containers**, run in their own isolated filesystem on the user's computer. 
-
-[Continue](btn:next)
-
-Since no assumptions are made about anything else on the user's system, Docker applications reliably run the same way for everyone. Furthermore, Docker containers are *not* virtual machines, so they are lightweight and can run code with near-native performance. Because of their flexibility and reliability, Docker containers have become very popular in the software engineering world. They are especially useful in cloud computing contexts, because you can debug a system on your computer and deploy it to the cloud without worrying about how to configure everything to work in the cloud the same way it works on your personal machine. 
-
-[Continue](btn:next)
-
-
-To give you a sense of how profound this can be, if you install Docker Desktop and run 
-
-``` code
-docker run -p 8888:8888 jupyter/datascience-notebook
-```
-
-then several Docker images that are a part of the `{code} datascience-notebook` stack published by the Jupyter team will be downloaded to your machine. The download takes a while, but when it's complete, you will have a running Jupyter instance accessible at `{code} localhost:8888` in your browser (the `{code} -p 8888:8888` part of the command connects the port 8888 in the container to the port 8888 in the host operating system). This notebook will have Python, R, and Julia kernels, each complete with curated sets of data science packages. It would take much more work to follow a list of installation instructions to achieve the same setup using native installations. Furthermore, the time cost of downloading images is incurred only the first time you run the command, because downloaded images are saved on your computer for fast loading in the future. 
-
-[Continue](btn:next)
-
----
-> id: docker-disadvantages
-
-Disadvantages of using Docker include (1) running a given piece of software both through Docker and natively on your operating system requires having two installations of it, and (2) care must be taken to connect the container to your operating system so you can interact with it (for example, using Jupyter notebooks, or saving files from within the container and having them show up in your primary file system). 
+A much more general-purpose tool for achieving reproducibility is **Docker**. We'll discuss Docker more extensively in the final section in this course. 
 
 ---
 > id: markdown
@@ -1908,3 +1886,221 @@ clean :
 .PHONY all clean
 
 ```
+
+---
+> id: docker
+## Docker
+
+If you've had the experience of trying to get programs and configuration files installed the same way on multiple computers, then you can appreciate the appeal of Docker: what Conda and Pip provide to Python in environment reproducibility, Docker achieves for *anything you can run on Linux*. This is a big deal in the software engineering world, because wrangling an installation can suck up a lot of developer time. It's also valuable to scientists, because research can be reproduced with rock solid reliability with the execution of a single OS-independent command. These benefits have enabled Docker to rise sharply and steadily in popularity since it was introduced in 2013. 
+
+[Continue](btn:next)
+
+---
+> id: step-docker-overview
+
+To oversimplify a bit, using Docker involves figuring out how to build your desired computational environment by running a sequence of shell commands starting from a bare-bones Linux operating system. You store this sequence of commands in a text file called **Dockerfile**, and the results achieved by performing the specified installation steps are stored as a Docker **image**. Docker (the company) provides a free cross-platform application called Docker Desktop which allows any user to download Docker images from a repository of published Dockerfiles and run them on their own machine. These image instances, called **containers**, run in their own isolated filesystem on the user's computer. 
+
+[Continue](btn:next)
+
+Since no assumptions are made about anything else on the user's system, Docker applications reliably run the same way for everyone. Furthermore, Docker containers are *not* virtual machines, so they are lightweight and can run code with near-native performance. They are especially useful in cloud computing contexts, because you can debug a system on your computer and deploy it to the cloud without worrying about how to configure everything to work in the cloud the same way it works on your personal machine. 
+
+[Continue](btn:next)
+
+
+To give you a sense of how profound this can be, if you install Docker Desktop and run 
+
+``` code
+docker run -p 8888:8888 jupyter/datascience-notebook
+```
+
+then several Docker images that are a part of the `{code} datascience-notebook` stack published by the Jupyter team will be downloaded to your machine. The download takes a while, but when it's complete, you will have a running Jupyter instance accessible at `{code} localhost:8888` in your browser (the `{code} -p 8888:8888` part of the command connects the port 8888 in the container to the port 8888 in the host operating system). This notebook will have Python, R, and Julia kernels, each complete with curated sets of data science packages. It would take much more work to follow a list of installation instructions to achieve the same setup using native installations. Furthermore, the time cost of downloading images is incurred only the first time you run the command, because downloaded images are saved on your computer for fast loading in the future. 
+
+[Continue](btn:next)
+
+---
+> id: docker-disadvantages
+
+Disadvantages of using Docker include: (1) running a given piece of software both through Docker and natively on your operating system requires having two installations of it, and (2) care must be taken to connect the container to your operating system so you can interact with it (for example, using Jupyter notebooks, or saving files from within the container and having them show up in your primary file system). 
+
+[Continue](btn:next)
+
+---
+> id: step-docker-example
+
+To see how Docker works and how we might use it in practice, let's take a closer look at the Jupyter data-science notebook. When we run `{code} docker run -p 8888:8888 jupyter/datascience-notebook` from the command line, we're telling Docker that we want a container running the `{code} jupyter/datascience-notebook` image. Docker Desktop is able to find that image because it's registered on [**Docker Hub**](https://hub.docker.com/r/jupyter/datascience-notebook/). If we take a look at the [Dockerfile](https://hub.docker.com/r/jupyter/datascience-notebook/dockerfile) used to build that image, we see a sequence of Dockerfile commands beginning with all-caps instructions. The most important ones are:
+
+* **FROM**. Specifies an image to build on top of. This can be an image from Docker Hub or one you've built locally from another Dockerfile.
+* **RUN**. Executes shell commands. Useful for downloading files from the internet and performing other installation steps. 
+* **COPY**. Copy files from the directory containing the Dockerfile into the image. Useful for configuration files or shell scripts (so you don't have to put all of the instructions into the Dockerfile). 
+* **CMD**. Specifies a default command to run when executing a container. The most common default is `{code} bash` (so running a container drops you into a shell session), but the Jupyter notebook images launch Jupyter Lab so you can connect to the container using your browser.
+* **EXPOSE**. Make a container port available for the host operating system to connect to. For Jupyter, it's customary to use port `{code} 8888`. 
+* **USER**. Some installation steps require enhanced filesystem permissions; the Dockerfile solution is to switch to the root user with the line `{code} USER root`. 
+
+Let's use some of these command to make our own Docker image for a [toy](gloss:toy) data science project. We'll structure our project using a simplified version of the [Data Science Cookiecutter](https://github.com/drivendata/cookiecutter-data-science). We begin by creating a directory structure like this: 
+
+``` code
+.
+├── README.md ← Explanation of the project and instructions on how to use
+├── Dockerfile ← Script to build the Docker image
+├── Makefile ← Encode project dependency structure for reproducibility
+├── data 
+│   ├── raw ← stores original data (untouched)
+│   └── processed ← stores files computed from original data
+├── models ← stores Python objects for trained models
+├── reports ← final writeup
+│   ├── figures
+│   └── report.tex
+└── src ← source code for processing data and models
+    ├── features ← data processing
+    │   └── build_features.py
+    ├── models ← model training and prediction
+    │   ├── predict_model.py
+    │   └── train_model.py
+    └── visualization ← generate figures
+        └── visualize.R
+```
+
+You can do this by running `{code} git clone git@github.com:data-gymnasia/data-science-docker.git`. 
+
+In our Dockerfile we begin with the following contents: 
+
+``` code
+FROM jupyter/datascience-notebook
+
+# set working directory to home directory
+WORKDIR /home/jovyan
+
+# copy whole current directory into the image
+COPY . project
+
+# Get data from GitHub
+RUN cd project/data/raw && \
+    wget https://browndsi.github.io/data/iris.csv
+
+# Enter bash session in the project directory when 
+# the container is run
+WORKDIR project
+CMD /bin/bash
+```
+
+We build on the Jupyter `{code} datascience-notebook` image, copy our local files into the image, acquire the data from the internet, and start the container in a `{code} bash` session. Then we build the docker image by running 
+
+``` code
+docker build -t myproject .
+```
+
+The `{code} -t myproject` part **tags** the image with the name `{code} myproject`, and the dot means "the current directory" (which is the folder containing the Dockerfile). 
+
+Unfortunately, this image won't build, because of permissions issues. Looking at Jupyter's Dockerfiles, we find some inspiration: a script called `{code} fix-permissions`. This script can only be run as the `{code} root` user, so we amend our Dockerfile to get this:
+
+``` code
+FROM jupyter/datascience-notebook
+
+# set working directory to home directory
+WORKDIR /home/jovyan
+
+# copy whole current directory into the image
+COPY . project
+
+# Get data from GitHub
+USER root
+RUN fix-permissions project && \
+    cd project/data/raw && \
+    wget https://browndsi.github.io/data/iris.csv
+USER jovyan
+
+# Enter bash session in the project directory when 
+# the container is run
+WORKDIR project
+CMD /bin/bash
+```
+
+Then when we run `{code} docker build -t myproject .`, we get a successfully built image. We can see a list of our images by running `{code} docker images` at the command line, and we can run the image we just made with
+
+``` code
+docker run -i -t myproject
+```
+
+The `{code} -i` and `{code} -t` flags are for 'interactive' and 'terminal', indicating that we want to begin a shell session when we run the container.
+
+[Continue](btn:next)
+
+---
+> id: step-docker-makefile
+
+After running this command, we have a command prompt inside our running container. We can do `{code} cat Makefile` to see how the Makefile encodes dependencies among the project components, as well as providing instructions for processing. Its contents are:
+
+``` {code}
+
+.PHONY: features train predict figures reports all
+
+all: reports
+
+features: src/features/build_features.py
+	python src/features/build_features.py data/raw/ data/processed/
+
+train: features src/models/train_model.py
+	python src/models/train_model.py data/processed/ models/trained_model.joblib
+
+predict: train src/models/predict_model.py
+	python src/models/predict_model.py data/processed/ models/trained_model.joblib reports/
+
+figures: src/visualization/visualize.R
+	Rscript src/visualization/visualize.R data/processed/ reports/figures/
+
+reports: reports/report.tex predict figures
+	cd reports && \
+	pdflatex report.tex && \
+	pdflatex report.tex
+```
+
+We can visualize the dependency structure described by this Makefile as a directed graph: 
+
+    center: figure: img(src="images/project-dag.svg")
+
+We can build the whole project from the Docker container with `{code} make all`. However, when we do that we realize that the `{code} joblib` package (which is being used by some of the Python files) isn't available in the Jupyter `{code} datascience-notebook` docker image. Therefore, we need to put that insstallation step into our Dockerfile and rebuild. We add the lines
+
+``` code
+# Install joblib for storing Python models. The 
+# '--yes' option preempts "proceed?" questions
+RUN conda install joblib --yes
+```
+
+[Continue](btn:next)
+
+---
+> id: step-docker-cp
+
+Building and running again, we can do `{code} make all` from inside the running container to produce a PDF in the `{code} reports` directory. We won't be able to view that file directly since it's inside the container. We'll need to copy it from the container to our operating system so that our OS's PDF viewing app can read it. 
+
+The command for transferring files out of containers is `{code} docker cp`. We'll need to know the name of the container, which we can get using `{code} docker ps` (note that this has to be run from your OS, so you should open a separate Terminal tab). In the last column of the `{code} docker ps` output, we see a random name like `{code} great_mayer`. Then you can copy the file to `{code} ~/Desktop` (for example) using 
+
+``` code
+docker cp great_mayer:/home/jovyan/project/reports/ ~/Desktop
+```
+
+We could have given our project a name with the `{code} --name` option when we did `{code} docker run`, and that would have allowed us to skip the `{code} docker ps` step.
+
+[Continue](btn:next)
+
+---
+> id: step-docker-volumes
+
+The `{code} docker cp` utility can be inadequate for extensive file transferring between the container and host OS. Docker supports a more robust approach using **volumes**, which are directories shared between the container and host. You can read more about volumes [here](https://docs.docker.com/engine/reference/builder/#volume). 
+
+[Continue](btn:next)
+
+::: .exercise
+**Exercise**  
+1. To get files into a Docker image during its build, we use [[COPY|docker cp]]
+2. To see a list of all of the Docker images we have on our machine, we use [[docker images|docker ps]].
+3. To see a list of running containers, we do [[docker ps|docker images|docker cp]]
+4. Jupyter uses the Dockerfile command [[EXPOSE|PORT|RUN]] to connect the Jupyter server on the container to the browser on the host OS.
+5. The Dockerfile command `{code} FROM` is used to build an image on top of an existing image. [[True|False]]
+6. The Dockerfile command `{code} CMD` can be used to specify what executable should run when the container is started [[True|False]]
+:::
+
+---
+> id: step-all-done
+
+Congratulations! You have completed the Data Gymnasia course on Data Science Utilities.

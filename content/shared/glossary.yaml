@@ -714,3 +714,7 @@ rpy2:
 dataframe-head:
   title: Head
   text: The **head** of a dataframe is the first several rows. Pandas data frame objects have a `{py} head` method which returns the head. This method is useful when you want to have a look at the data frame but don't want to fill the screen with its many rows.
+  
+toy:
+  title: Toy
+  text: A **toy** example is one which is deliberatively oversimplified for illustrative purposes.
