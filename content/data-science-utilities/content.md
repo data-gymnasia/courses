@@ -1319,7 +1319,7 @@ We will close this section by mentioning two other solutions for the reproducibi
 [Continue](btn:next)
 
 ---
-> id: docker-tease
+> id: docker
 
 A much more general-purpose tool for achieving reproducibility is **Docker**. We'll discuss Docker more extensively in the final section in this course. 
 
@@ -1888,10 +1888,10 @@ clean :
 ```
 
 ---
-> id: docker
+> id: docker-section
 ## Docker
 
-If you've had the experience of trying to get programs and configuration files installed the same way on multiple computers, then you can appreciate the appeal of Docker: what Conda and Pip provide to Python in environment reproducibility, Docker achieves for *anything you can run on Linux*. This is a big deal in the software engineering world, because wrangling an installation can suck up a lot of developer time. It's also valuable to scientists, because research can be reproduced with rock solid reliability with the execution of a single OS-independent command. These benefits have enabled Docker to rise sharply and steadily in popularity since it was introduced in 2013. 
+If you've had the experience of trying to get programs and configuration files installed the same way on multiple computers, then you can appreciate the appeal of Docker: what Conda and Pip provide to Python in environment reproducibility, Docker achieves for *anything you can run on Linux*. This is a big deal in the software engineering world, because installation wrangling can suck up a lot of developer time. It's also valuable to scientists and data scientists, because research can be reproduced with rock solid reliability with the execution of a single OS-independent command. These benefits have driven the steady rise in popularity that Docker has enjoyed since it was introduced in 2013. 
 
 [Continue](btn:next)
 
@@ -1902,10 +1902,15 @@ To oversimplify a bit, using Docker involves figuring out how to build your desi
 
 [Continue](btn:next)
 
+---
+> id: docker-no-assumptions
+
 Since no assumptions are made about anything else on the user's system, Docker applications reliably run the same way for everyone. Furthermore, Docker containers are *not* virtual machines, so they are lightweight and can run code with near-native performance. They are especially useful in cloud computing contexts, because you can debug a system on your computer and deploy it to the cloud without worrying about how to configure everything to work in the cloud the same way it works on your personal machine. 
 
 [Continue](btn:next)
 
+---
+> id: docker-desktop-example
 
 To give you a sense of how profound this can be, if you install Docker Desktop and run 
 
@@ -1926,6 +1931,7 @@ Disadvantages of using Docker include: (1) running a given piece of software bot
 
 ---
 > id: step-docker-example
+### Using Docker
 
 To see how Docker works and how we might use it in practice, let's take a closer look at the Jupyter data-science notebook. When we run `{code} docker run -p 8888:8888 jupyter/datascience-notebook` from the command line, we're telling Docker that we want a container running the `{code} jupyter/datascience-notebook` image. Docker Desktop is able to find that image because it's registered on [**Docker Hub**](https://hub.docker.com/r/jupyter/datascience-notebook/). If we take a look at the [Dockerfile](https://hub.docker.com/r/jupyter/datascience-notebook/dockerfile) used to build that image, we see a sequence of Dockerfile commands beginning with all-caps instructions. The most important ones are:
 
@@ -1935,6 +1941,11 @@ To see how Docker works and how we might use it in practice, let's take a closer
 * **CMD**. Specifies a default command to run when executing a container. The most common default is `{code} bash` (so running a container drops you into a shell session), but the Jupyter notebook images launch Jupyter Lab so you can connect to the container using your browser.
 * **EXPOSE**. Make a container port available for the host operating system to connect to. For Jupyter, it's customary to use port `{code} 8888`. 
 * **USER**. Some installation steps require enhanced filesystem permissions; the Dockerfile solution is to switch to the root user with the line `{code} USER root`. 
+
+[Continue](btn:next)
+
+---
+> id: step-docker-our-own-Dockerfile
 
 Let's use some of these command to make our own Docker image for a [toy](gloss:toy) data science project. We'll structure our project using a simplified version of the [Data Science Cookiecutter](https://github.com/drivendata/cookiecutter-data-science). We begin by creating a directory structure like this: 
 
@@ -1960,7 +1971,10 @@ Let's use some of these command to make our own Docker image for a [toy](gloss:t
         └── visualize.R
 ```
 
-You can do this by running `{code} git clone git@github.com:data-gymnasia/data-science-docker.git`. 
+You can do this by cloning a Git repo prepared for this purpose: 
+``` code
+git clone git@github.com:data-gymnasia/data-science-docker.git
+```
 
 In our Dockerfile we begin with the following contents: 
 
@@ -1983,13 +1997,18 @@ WORKDIR project
 CMD /bin/bash
 ```
 
-We build on the Jupyter `{code} datascience-notebook` image, copy our local files into the image, acquire the data from the internet, and start the container in a `{code} bash` session. Then we build the docker image by running 
+We build on the Jupyter `{code} datascience-notebook` image, copy our local files into the image, acquire the data from the internet, and start the container in a `{code} bash` session. Then we build the docker image by running (from the top level of the directory) 
 
 ``` code
 docker build -t myproject .
 ```
 
-The `{code} -t myproject` part **tags** the image with the name `{code} myproject`, and the dot means "the current directory" (which is the folder containing the Dockerfile). 
+The `{code} -t myproject` part **tags** the image with the name `{code} myproject`, and the dot means "the current directory" in Unix.
+
+[Continue](btn:next)
+
+---
+> id: step-docker-broken-build
 
 Unfortunately, this image won't build, because of permissions issues. Looking at Jupyter's Dockerfiles, we find some inspiration: a script called `{code} fix-permissions`. This script can only be run as the `{code} root` user, so we amend our Dockerfile to get this:
 
@@ -2056,7 +2075,7 @@ reports: reports/report.tex predict figures
 
 We can visualize the dependency structure described by this Makefile as a directed graph: 
 
-    center: figure: img(src="images/project-dag.svg")
+    center: figure: img(src="images/project-dag.svg" width="200px")
 
 We can build the whole project from the Docker container with `{code} make all`. However, when we do that we realize that the `{code} joblib` package (which is being used by some of the Python files) isn't available in the Jupyter `{code} datascience-notebook` docker image. Therefore, we need to put that insstallation step into our Dockerfile and rebuild. We add the lines
 
@@ -2069,14 +2088,19 @@ RUN conda install joblib --yes
 [Continue](btn:next)
 
 ---
-> id: step-docker-cp
+> id: step-docker-extract-file
 
-Building and running again, we can do `{code} make all` from inside the running container to produce a PDF in the `{code} reports` directory. We won't be able to view that file directly since it's inside the container. We'll need to copy it from the container to our operating system so that our OS's PDF viewing app can read it. 
+Building and running again, we can do `{code} make all` from inside the running container to produce a PDF in the `{code} reports` directory. We won't be able to view that file directly since it's inside the container. We'll need to copy it from the container to our operating system so that our OS's PDF viewing app can read it.
+
+[Continue](btn:next)
+
+---
+> id: step-docker-cp 
 
 The command for transferring files out of containers is `{code} docker cp`. We'll need to know the name of the container, which we can get using `{code} docker ps` (note that this has to be run from your OS, so you should open a separate Terminal tab). In the last column of the `{code} docker ps` output, we see a random name like `{code} great_mayer`. Then you can copy the file to `{code} ~/Desktop` (for example) using 
 
 ``` code
-docker cp great_mayer:/home/jovyan/project/reports/ ~/Desktop
+docker cp great_mayer:/home/jovyan/project/reports/report.pdf ~/Desktop
 ```
 
 We could have given our project a name with the `{code} --name` option when we did `{code} docker run`, and that would have allowed us to skip the `{code} docker ps` step.
