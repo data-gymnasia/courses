@@ -149,7 +149,7 @@ We could address that problem by making $\epsilon$ smaller, but we encounter a t
 One way to represent numbers more densely near zero is to put equally spaced tick marks between 1 and 2, and then scale that interval up repeatedly into $[2,4)$, then $[4,8)$, then $[8,16)$, and so on, and also scale it down to $[1/2,1)$, $[1/4,1/2)$, and so on. Here's an example of such a scheme: we place 8 tick marks between 1 and 2, and then we scale that interval's worth of tick marks four times by a factor of 2, and also 3 times by a factor of $\frac{1}{2}$.
 
     figure
-      img(src="images/minifloat.png")
+      img(src="images/minifloat.svg")
 
 We can see on the left edge of the (top) picture that we didn't cover zero! There is also quite a large gap between 0 and the smallest representable number in this system. So we replace the leftmost interval between successive powers of 2 with ticks twice as far apart so that they reach down to 0. The locations of these new ticks are called *subnormal numbers*.
 

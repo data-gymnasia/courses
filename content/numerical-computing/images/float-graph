@@ -1,9 +1,0 @@
-
-SIGNBITS = 1
-EXPONENT_BITS = 3
-MANTISSA_BITS = 4
-
-function value(s)
-    
-end
-
