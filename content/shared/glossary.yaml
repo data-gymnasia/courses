@@ -718,3 +718,19 @@ dataframe-head:
 toy:
   title: Toy
   text: A **toy** example is one which is deliberatively oversimplified for illustrative purposes.
+  
+bit64:
+  title: 64-bit numeric representations
+  text: The most common numeric types use 64 bits. The number 64 represents a tradeoff how many numbers these systems can represent and the amount of space required to store each one.
+  
+bit8:
+  title: Storage of boolean values
+  text: The smallest unit of addressable memory on most computers is one byte (that is, 8 bits). Therefore, even values like booleans which could be stored using fewer bits are usually stored using a full byte.
+  
+in-software:
+  title: In software
+  text: A computation can be done *in hardware* if it's programmed in the microprocessor and can be handed to the CPU as an instruction. A computation is done *in software* if it involves orchestrating many such CPU instructions. For example, the calculation `{jl} 144 + 217` in Julia compiles down to a hardware computation. But if you completed a programming exercise that involved parsing an integer value written as a string, expanding according to place value, and adding using the arithmetic rules you learned as a kid, then you'd be doing the same calculation in software.
+
+model-accuracy:
+  title: Model
+  text: Of course, it is always reasonable to question how thoroughly and accurately a given model actually reflects all the relevant considerations.
