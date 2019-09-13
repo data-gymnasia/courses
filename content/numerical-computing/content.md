@@ -12,8 +12,8 @@ Computers store all information, including numerical values, as sequences of [[b
 You can access the bit representation of a numerical value in Julia using the function `{jl} bitstring`. For example, we can inspect how boolean values are represented in Julia: 
 
     pre(julia-executable)
-      | print(bitstring(true))
-      | print(bitstring(false))
+      | println(bitstring(true))
+      | println(bitstring(false))
       
 You might think that boolean values would be stored using a single bit. However, as you can see from the output above, in fact they use [eight bits](gloss:bit8). 
 
@@ -103,7 +103,7 @@ Show that if $1 \leq n \leq 2^{63}-1$, then you can find `{jl} bitstring(-n)` fr
 ---
 > id: solution-2
 
-*Solution*. Recall that for $1 \leq n \leq 2^{63},$ $-n$ is represented by the binary representation of $2^{64} - n.$ Representing $2^{64} - n$ in binary is not straightforward but $2^{64} - 1 - n$ is easier because $2^{64} - 1$ in binary is just $64$ ones. This means that for any $1 \leq n \leq 2^{63} - 1,$ we can get $2^{64} - 1 - n$ in binary by changing a $1$ to a $0$ in the binary representaion of $2^{64} - 1$ at every position where $n$ in binary has a $1$. In other words, to get $2^{64} - 1 - n$ in binary, we just flip the binary representation of $n.$ Since
+*Solution*. Recall that for $1 \leq n \leq 2^{63},$ $-n$ is represented by the binary representation of $2^{64} - n.$ Representing $2^{64} - n$ in binary is not straightforward but $2^{64} - 1 - n$ is easier because $2^{64} - 1$ in binary is just $64$ ones. This means that for any $1 \leq n \leq 2^{63} - 1,$ we can get $2^{64} - 1 - n$ in binary by changing a $1$ to a $0$ in the binary representation of $2^{64} - 1$ at every position where $n$ in binary has a $1$. In other words, to get $2^{64} - 1 - n$ in binary, we just flip the binary representation of $n.$ Since
 
 ``` latex
 
@@ -182,6 +182,8 @@ Another way to visualize the floating point number system is to graph the floati
 
     center: #plotly-float64-graph(width='400px')
 
+[Continue](btn:next)
+
 ---
 > id: step-nan-and-inf
 
@@ -202,6 +204,11 @@ The leading `{jl} 1` indicates that the number is negative, the next eleven digi
 ```
 Thus $-0.75$ can be represented exactly as a `{jl} Float64`.
 :::
+
+[Continue](btn:next)
+
+---
+> id: step-shown-as-tick-marks
 
 The nonnegative representable numbers are laid out as shown (figure not drawn to scale!):
 
@@ -300,7 +307,7 @@ Sometimes you might want store a number without being constrained to 64 bits, or
 
 ::: .exercise
 **Exercise**  
-(i) Arbitrary-precision arithmetic is helpful for inspecting the behavior of lower precision formats. Find the exact value of the difference between 1.1 the `{jl} Float64`value nearest 1.1. (Hint: `{jl} big(1.1)`interprets 1.1 as a Float64 value—look at that value and mentally subtract 1.1).
+(i) Arbitrary-precision arithmetic is helpful for inspecting the behavior of lower precision formats. Find the exact value of the difference between 1.1 and the `{jl} Float64` value nearest 1.1. (Hint: `{jl} big(1.1)` interprets 1.1 as a Float64 value—look at that value and mentally subtract 1.1).
 
 (ii) Confirm that calculating the decimal representation of $2^{100,000}$ is no problem with big number arithmetic. Convert the resulting sequence of decimal digits to a string and find its length.
 :::
@@ -327,7 +334,12 @@ To obtain numerical values of other types in Julia, use `{jl} parse` or `{jl} bi
     pre(julia-executable)
           | parse(BigInt,"1267650600228229401496703205376")^(big(1)/100)
 
-`{jl} Float64` and `{jl} Int64`operations are performed *in hardware*, meaning that they use instructions programmed directly into the computer's microprocessor. They are much faster and more memory efficient than arbitrary precision arithmetic, which has to be done [in software](gloss:in-software).
+[Continue](btn:next)
+
+---
+> id: step-in-hardware
+
+`{jl} Float64` and `{jl} Int64` operations are performed *in hardware*, meaning that they use instructions programmed directly into the computer's microprocessor. They are much faster and more memory efficient than arbitrary precision arithmetic, which has to be done [in software](gloss:in-software).
 
 ::: .exercise
 **Exercise**
@@ -337,8 +349,8 @@ Run the cell below to figure out about how many times slower BigInt addition is 
     pre(julia-executable)
       | a = big.(collect(1:100_000))
       | b = collect(1:100_000)
-      | s = @elapsed(sum(b))
-      | t = @elapsed(sum(a))
+      | s = @elapsed(sum(a))
+      | t = @elapsed(sum(b))
       | s/t
 
     x-quill
@@ -683,6 +695,11 @@ More generally, if the initial data is in $\mathbb{R}^n$ and the solution is in 
 ```
 where $J(\mathbf{a})$ is the Jacobian matrix of $\mathbf{S}$ and $\|J(\mathbf{a})\|$ is its operator norm. The operator norm of the Jacobian is the appropriate generalization of the norm of the derivative of $\mathbf{S}$ since it measures how $\mathbf{S}$ stretches space near $\mathbf{a}$. 
 
+[Continue](btn:next)
+
+---
+> id: step-condition-number-large
+
 If the condition number of a problem is very large, then small errors in the problem data lead to large changes in the result. A problem with large condition number is said to be **ill-conditioned**. Unless the initial data can be specified with correspondingly high precision, it will not be possible to solve the problem meaningfully.
 
 ::: .example
@@ -742,6 +759,7 @@ If $a$ is very close to $2$, then $\kappa(a)$ is very large, and the matrix is i
 
 ---
 > id: machine epsilon
+#### Machine epsilon
 
 **Machine epsilon**, denoted $\epsilon\_{\text{mach}}$, is the maximum relative error associated with rounding a real number to the nearest value representable as a given floating point type. For `{jl} Float64`, this value is $\epsilon\_{\text{mach}} = 2^{-53} \approx 1.11 \times 10^{-16}$. 
 
@@ -751,6 +769,7 @@ A competing convention—more widely used outside academia—defines $\epsilon\_
 
 ---
 > id: step-definition-stable
+#### Algorithm stability
 
 An algorithm used to solve a problem is **stable** if it is approximately as accurate as the condition number of the problem allows. In other words, an algorithm is *unstable* if the answers it produces have relative error many times larger than $\kappa \epsilon\_{\text{mach}}$.
 
@@ -792,6 +811,7 @@ which can be obtained by multiplying by $\frac{\sqrt{1+x} + 1}{\sqrt{1+x} + 1}$ 
 
 ---
 > id: step-condition-number-matrix
+#### Matrix condition number
 
 The condition number of an $m\times n$ matrix $A$ is defined to be the maximum condition number of the function $\mathbf{x} \mapsto A \mathbf{x}$ as $\mathbf{x}$ ranges over $\mathbb{R}^n$. The condition number of $A$ can be computed using its singular value decomposition:
 
@@ -900,15 +920,15 @@ It is often more appropriate to compare real numbers using `{jl} ≈`( `{jl} \ap
 Guess what value the following code block returns. Run it and see what happens. Discuss why your initial guess was correct or incorrect, and suggest a value near 0.1 that you could use in place of 0.1 to get the expected behavior.
 :::
 
-pre(julia-executable)
-  | function increment_till(t,step=0.1)
-  |   x = 0.0
-  |     while x < t
-  |       x += step
-  |     end
-  |   x    
-  | end
-  | increment_till(1.0)
+    pre(julia-executable)
+      | function increment_till(t,step=0.1)
+      |   x = 0.0
+      |     while x < t
+      |       x += step
+      |     end
+      |   x    
+      | end
+      | increment_till(1.0)
 
     x-quill
 
@@ -1135,14 +1155,14 @@ which in turn is equal to $\begin{bmatrix} f(x)g(x) & (f(x)g(x))' \\\ 0 & f(x)g(
 ---
 > id: step-analytic-functions
 
-While the exercise above only addresses polynomial functions $f$, the relationship $f\left(\begin{bmatrix} x & 1 \\ 0 & x \end{bmatrix}\right) =
-\begin{bmatrix} f(x) & f'(x) \\ 0 & f(x) \end{bmatrix}$ actually holds for many more functions, because many common functions may be described as limits of polynomials: 
+While the exercise above only addresses polynomial functions $f$, the relationship $f\left(\begin{bmatrix} x & 1 \\\ 0 & x \end{bmatrix}\right) =
+\begin{bmatrix} f(x) & f'(x) \\\ 0 & f(x) \end{bmatrix}$ actually holds for many more functions, because many common functions may be described as limits of polynomials: if $A$ is a matrix, then 
 
 ``` latex
 \operatorname{e}^A = 1 + A + \frac{1}{2}A^2 + \frac{1}{6}A^3 + \cdots 
 ```
 
-Since the identity is true for every truncation of the sum on the right-hand side, it's true for the matrix exponential $\operatorname{e}^A$ as well. 
+Since the identity $f\left(\begin{bmatrix} x & 1 \\\ 0 & x \end{bmatrix}\right) = \begin{bmatrix} f(x) & f'(x) \\\ 0 & f(x) \end{bmatrix}$ is true for every truncation of the sum on the right-hand side, it's true for the exponential function as well. 
 
 [Continue](btn:next)
 
@@ -1177,7 +1197,7 @@ df(t) = (-t^5 + 2*t^4 + 9*t^3 - 15*t^2 - 3*t + 6) * exp(-t^2/4)/2
 
 *Solution*. We define $f$ as suggested and then calculate `{jl} f([2 1; 0 2])[1,2]`. The result is *exactly the same* as `{jl} df(2)` and $7.46 \times 10^{-17}$ different from `{jl} df(big(2))`. So we see that automatic differentiation gives a major improvement over the difference quotient approach in this instance.
 
-In practice, you will usually want to use a library to perform automatic differentiation, because ensuring suitable dual-number-awareness of all of the functions called by $f$ can be a daunting task. Julia has several packages for this purpose, including `{jl} ForwardDiff`. In Python you can use `{py} autograd` (which works for all of the NumPy functions).
+In practice, you will usually want to use a library to perform automatic differentiation, because ensuring suitable dual-number-awareness of all of the functions called by $f$ can be a daunting task. Julia has several packages for this purpose, including `{jl} ForwardDiff`. In Python you can use `{py} autograd`, which works for all of the NumPy functions. (We note that these libraries don't actually use $2 \times 2$ matrices to represent dual numbers; they introduce a custom type which has the same behavior.)
 
 ---
 
@@ -1269,12 +1289,13 @@ Common optimizers in deep learning include **Nesterov accelerated gradient**, wh
 
 ::: .exercise
 **Exercise**  
+
+    img(src="images/rosenbrock.svg" alt="figure" width="250px" style="float: right;")
+
 (a) By inspection, find the minimum of the **Rosenbrock** function
 ```latex
 f(x,y) = (x-1)^2 + 100(y-x^2)^2
 ```
-
-    img(src="images/rosenbrock.svg" alt="figure" width="300px" style="float: right;")
 
 (b) Use the code cell below to find how many iterations the GradientDescent algorithm runs for on the Rosenbrock function, starting from the origin. 
 
@@ -1320,6 +1341,11 @@ If $f: A \to \mathbb{R}$ is convex and $A \subset \mathbb{R}^n$ is convex, then 
 
 Convex optimization problems play an important role in applied math and data science, because (1) many optimization problems of interest can be expressed in the form of a convex optimization problem, and (2) specialized, fast numerical methods are available for such problems.
 
+[Continue](btn:next)
+
+---
+> id: step-ipopt-example
+
 ::: .example
 **Example**  
 Use the Julia package `{jl} JuMP` with the `{jl} Ipopt` solver to find the minimum of the function $f(x,y) = x^2 + 2y^2$ on the half-plane $x + y \geq 1$.
@@ -1350,6 +1376,9 @@ The last line returns `{jl} (0.6666, 0.3333)`. You can confirm using the method 
 Use JuMP to find the line of best fit for the points $(1,2), (2, 5),
   (4, 4)$. In other words, find the values $m$ and $b$ such that the sum of squared vertical distances from these three points to the line $y = mx + b$ is minimized.
 :::
+
+    pre(julia-executable)
+      | 
 
     x-quill
 
