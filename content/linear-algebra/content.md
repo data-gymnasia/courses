@@ -712,8 +712,6 @@ The three coordinates are [[2]], [[2]], [[0]].
     pre(python-executable)
       | import numpy as np
 
-<p></p>
-
 ---
 > id: step-56
 
@@ -1116,7 +1114,7 @@ Find the rank of the linear transformation $L$ which maps each vector $[x,y]$ to
 ---
 > id: step-89
 
-*Solution*. The range of $L$ is clearly the line $y = 2x$, since every point in the plane maps to a point on this line, and every point on the line is the image under $L$ of infinitely many points in the plane (all of the points on the line [[orthogonal|parallel]] to $y=2x$ through that point). Since a line is a one-dimensional vector space, the rank is $\boxed{1}$.
+*Solution*. The range of $L$ is the line $y = 2x$, since every point in the plane maps to a point on this line, and every point on the line is the image under $L$ of infinitely many points in the plane (all of the points on the line [[orthogonal|parallel]] to $y=2x$ through that point). Since a line is a one-dimensional vector space, the rank is $\boxed{1}$.
 
 [Continue](btn:next)
 
@@ -2707,8 +2705,7 @@ Note: _{code.language-python}np.linalg.solve(A,b)_ solves the equation $A\mathbf
 
     pre(python-executable)
       | import numpy as np
-      | A = np.random.randint(0,2,(100,5))
-      | b = np.random.randint(0,2,(100,))
+      | A = np.random.randint(0,2,(100,6))
       | A[:,4] = A[:,3] + A[:,2]
 
     x-quill
@@ -2719,6 +2716,8 @@ Note: _{code.language-python}np.linalg.solve(A,b)_ solves the equation $A\mathbf
 *Solution* We try 
 
     pre(python-executable)
+      | b = A[:,5]
+      | A = A[:,:-1]
       | np.linalg.solve(A.T @ A, A.T @ b)
 
 and we get an error telling us that $A'A$ is not invertible. This makes sense, because $A'A$ has the same rank as $A$, and we know $A$ is [rank deficient](gloss:rankdeficient). Since there are different ways of combining the columns of $A$ to get the vector in its column space which is as close as possible to $\mathbf{b}$, it is not possible that we would have gotten a unique answer using this method.
