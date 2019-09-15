@@ -1,8 +1,8 @@
 
 # Numerical Computation
 
-> id: intro
-## Introduction
+> id: machine-arithmetic
+## Machine Arithmetic
 
 Computers store all information, including numerical values, as sequences of [[bits|cookies|chips]]. The **type** of a numeric value specifies how the underlying sequence of bits should be interpreted as a number. 
 
