@@ -391,7 +391,7 @@ Without using a computer, perform the operations in the expression $(1.0 + 0.4/2
 [Continue](btn:next)
 
 ---
-> id: step-8.5
+> id: step-8-1
 
 A *numeric literal* is a sequence of characters to be parsed and interpreted as a numerical value.
 * Numeric literals with a decimal point are *real literals*.
