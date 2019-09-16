@@ -213,7 +213,7 @@ Thus $-0.75$ can be represented exactly as a `{jl} Float64`.
 The nonnegative representable numbers are laid out as shown (figure not drawn to scale!):
 
     figure
-      img(src="images/Float64.svg")
+      img(src="images/float64.svg")
       p.caption.md The tick marks indicate the positive values which are representable as 64-bit floating point numbers. There are $2^{52}$ of them between any two successive powers of 2 from $2^{-1022}$ up to $2^{1024}$, and the interval from 0 to $2^{-1022}$ also contains $2^{52}$ representable values (these are the subnormal numbers, indicated in blue).
 
 
@@ -802,7 +802,7 @@ There are stable algorithms for approximating $f(x)$ near $x=0$. For example, we
 and approximate $f(x)$ as a sum of the first several terms on the right-hand side. Since power functions are well-conditioned (and performing the subtractions is also well-conditioned as long as $x$ is small enough that each term is much smaller than the preceding one), this algorithm is stable. Alternatively, we can use the identity
 
 ``` latex
-\sqrt{1+x} - 1 = \frac{1}{\sqrt{1+x}+1},
+\sqrt{1+x} - 1 = \frac{x}{\sqrt{1+x}+1},
 ```
 
 which can be obtained by multiplying by $\frac{\sqrt{1+x} + 1}{\sqrt{1+x} + 1}$ and simplifying the numerator. Substituting into this expression is stable, because adding 1, square rooting, and reciprocating are well-conditioned.
