@@ -1108,7 +1108,7 @@ Suppose $A$ is an $m\times n$ matrix and $\mathbf{b} \in \mathbb{R}^m$. Use matr
 |A \mathbf{x} - \mathbf{b}|^2 &= (A \mathbf{x} -
                                 \mathbf{b})' (A \mathbf{x} - \mathbf{b}) \\\ 
 &= \mathbf{x}' A' A \mathbf{x} -
-  \mathbf{b}' A' \mathbf{x} + \mathbf{x}' A
+  \mathbf{b}' A \mathbf{x} + \mathbf{x}' A'
   \mathbf{b} + |\mathbf{b}|^2.
 ```
 
