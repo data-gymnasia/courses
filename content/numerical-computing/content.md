@@ -38,7 +38,7 @@ Find the binary representations of each of the following numbers: 2, 16, 20, and
 ---
 > id: solution-1
 
-*Solution*. The binary representation of 2 is $10$, of 16 is $10000$, of is $1010$, and of 100 is $1100100$.
+*Solution*. The binary representation of 2 is $10$, of 16 is $10000$, of 20 is $10100$, and of 100 is $1100100$.
 
 [Continue](btn:next)
 
@@ -479,7 +479,7 @@ There are a few categories of numerical error.
 
 ::: .example
 **Example**  
-`{jl} 0.2 + 0.1`is equal to $3.000000000000000444089209850062616169452667236328125\overline{0}$ in `{jl} Float64` arithmetic. The discrepancy between 3 and this value is roundoff error.
+`{jl} 0.2 + 0.1`is equal to $0.300000000000000444089209850062616169452667236328125\overline{0}$ in `{jl} Float64` arithmetic. The discrepancy between 3 and this value is roundoff error.
 :::
 
 [Continue](btn:next)
