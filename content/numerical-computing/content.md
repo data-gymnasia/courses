@@ -699,6 +699,7 @@ where $\| \cdot \|$ denotes the [operator norm](gloss:operatornorm). The operato
 
 ---
 > id: step-condition-number-large
+#### Well conditioned and ill-conditioned problems
 
 If the condition number of a problem is very large, then small errors in the problem data lead to large changes in the result. A problem with large condition number is said to be **ill-conditioned**. Unless the initial data can be specified with correspondingly high precision, it will not be possible to solve the problem meaningfully.
 
@@ -720,7 +721,7 @@ x \\ y
 \end{bmatrix}
 ```
 
-Find the values of $a$ for which this matrix is ill-conditioned.
+Find the values of $a$ for which solving this equation for $[x,y]$ is ill-conditioned.
 :::
 
 [Continue](btn:next)
@@ -741,7 +742,7 @@ Find the values of $a$ for which this matrix is ill-conditioned.
         \frac{5 a - 24}{9 \left(a - 2\right)}
       \end{bmatrix}
 ```
-Using the formula for $\kappa$ above, we can work out that
+Using the formula for $\kappa$ above, we can work out (after several steps) that
 
 ``` latex
 \kappa(a) = \frac{7|a|\sqrt{13}}{|a-2|\sqrt{(5a-24)^2+441}}.
@@ -839,6 +840,34 @@ Interpret your results by explaining how to choose two vectors with small relati
 *Solution*. The derivative of the transformation $\mathbf{x} \mapsto A \mathbf{x}$ is the matrix $A$ itself, and the operator norm of $A$ is equal to its largest singular value. Therefore, to maximize $\kappa$, we minimize the ratio $|S(\mathbf{a})|/|\mathbf{a}|$. This ratio is minimized when $\mathbf{a}$ is the right singular vector with the least singular value. Therefore, the maximum possible value of $\kappa$ is the ratio of the largest singular value of $A$ to the smallest singular value of $A$.
 
 [Continue](btn:next)
+
+::: .exercise
+**Exercise**  
+Find the condition number of the function $\mathbf{x}\mapsto A\mathbf{x}$, where `{jl} A = [1 2; 3 4]` and show that there is a vector $\mathbf{v}$ and an error $\mathbf{e}$ for which the relative error is indeed magnified by approximately the condition number of $A$.
+:::
+
+    pre(julia-executable)
+      | using LinearAlgebra
+      | A = [1 2; 3 4]
+    x-quill
+
+---
+> id: step-condition-matrix-solution
+
+*Solution*. We choose `{jl} v` and `{jl} e` to be the columns of $V$ in the singular value decomposition of `{jl} A`:
+
+    pre(julia-executable)
+      | using LinearAlgebra
+      | A = [1 2; 3 4]
+      | U, S, V = svd(A)
+      | σmax, σmin = S
+      | κ = σmax/σmin
+      | v = V[:,2]
+      | e = V[:,1]
+      | rel_error_output = norm(A*(v+e) - A*v)/norm(A*v)
+      | rel_error_input = norm(v + e - v) / norm(v)
+      | rel_error_output / rel_error_input, κ
+
 
 ---
 > id: step-hazards
