@@ -1234,7 +1234,7 @@ Gradient descent is fundamentally local: it is not guaranteed to find the global
 
 ::: .exercise
 **Exercise**  
-Consider the function $f(x) = (x^4 - 2x^3 - x^2 + 3x -1)e^{-x^2/4}$. Implement the gradient descent algorithm for finding the minimum of this function.
+Consider the function $f(x) = (x^4 - 2x^3 - x^2 + 3x -1)e^{-x^2/4}$. Implement the gradient descent algorithm for finding the minimum of this function. To take derivatives, you can define a derivative function like `df(x) = ForwardDiff.derivative(f,x)`. 
 
     img(src="images/polynomial-minimize.svg" alt="figure" width="400px" style="float: right;")
 
@@ -1243,6 +1243,7 @@ Consider the function $f(x) = (x^4 - 2x^3 - x^2 + 3x -1)e^{-x^2/4}$. Implement t
 :::
 
     pre(julia-executable)
+      | using ForwardDiff
       | 
 
     x-quill
@@ -1253,17 +1254,17 @@ Consider the function $f(x) = (x^4 - 2x^3 - x^2 + 3x -1)e^{-x^2/4}$. Implement t
 *Solution*. The following is an implementation of gradient descent:
 
     pre(julia-executable)
-      | using LinearAlgebra
+      | using LinearAlgebra, ForwardDiff
       |
       | function graddescent(f,x₀,ϵ,threshold)
-      |     df(x) = f([x 1; 0 x])[1,2] # auto diff
+      |     df(x) = ForwardDiff.derivative(f,x)
       |     x = x₀
       |     while abs(df(x)) > threshold
       |         x = x - ϵ*df(x)
       |     end
       |     x
       | end
-      | f(t) = exp(-t^2/4) * (t^4 - 2t^3 - t^2 + 3t - I)
+      | f(t) = exp(-t^2/4) * (t^4 - 2t^3 - t^2 + 3t - 1)
 
 Trying various values of $x\_0$, and looking at the graph, we conjecture that the global minimum is reached when the starting value $x\_0$ is between the first two points where $f$ has a local maximum (approximately $-2.83$ and $0.145$). Between $0.145$ and the next local maximum (approximately $2.94$), the algorithm leads us to the local minimum around $x = 1.45$. Outside the interval from the first local maximum the last, the sequence of iterates appears to head off to $-\infty$ or $+\infty$.
 
