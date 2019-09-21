@@ -691,9 +691,9 @@ and the relative change in input is $\Delta a / a$. Dividing these two quantitie
 More generally, if the initial data is in $\mathbb{R}^n$ and the solution is in $\mathbb{R}^m$, then the condition number is defined to be
 
 ``` latex
-\kappa(\mathbf{a}) = \frac{|\mathbf{a}|\|J(\mathbf{a})\|}{|\mathbf{S}(\mathbf{a})|},
+\kappa(\mathbf{a}) = \frac{|\mathbf{a}|\|\frac{\partial S}{\partial \mathbf{a}}(\mathbf{a})\|}{|\mathbf{S}(\mathbf{a})|},
 ```
-where $J(\mathbf{a})$ is the Jacobian matrix of $\mathbf{S}$ and $\|J(\mathbf{a})\|$ is its operator norm. The operator norm of the Jacobian is the appropriate generalization of the norm of the derivative of $\mathbf{S}$ since it measures how $\mathbf{S}$ stretches space near $\mathbf{a}$. 
+where $\| \cdot \|$ denotes the [operator norm](gloss:operatornorm). The operator norm of the derivative is the appropriate generalization of the norm of the derivative of $\mathbf{S}$ since it measures the maximum stretching factor of $\mathbf{S}$ near $\mathbf{a}$. 
 
 [Continue](btn:next)
 
@@ -836,7 +836,7 @@ Interpret your results by explaining how to choose two vectors with small relati
 ---
 > id: solution-12
 
-*Solution*. The Jacobian of the transformation $\mathbf{x} \mapsto A \mathbf{x}$ is the matrix $A$ itself, and the operator norm of $A$ is equal to its largest singular value. Therefore, to maximize $\kappa$, we minimize the ratio $|S(\mathbf{a})|/|\mathbf{a}|$. This ratio is minimized when $\mathbf{a}$ is the right singular vector with the least singular value. Therefore, the maximum possible value of $\kappa$ is the ratio of the largest singular value of $A$ to the smallest singular value of $A$.
+*Solution*. The derivative of the transformation $\mathbf{x} \mapsto A \mathbf{x}$ is the matrix $A$ itself, and the operator norm of $A$ is equal to its largest singular value. Therefore, to maximize $\kappa$, we minimize the ratio $|S(\mathbf{a})|/|\mathbf{a}|$. This ratio is minimized when $\mathbf{a}$ is the right singular vector with the least singular value. Therefore, the maximum possible value of $\kappa$ is the ratio of the largest singular value of $A$ to the smallest singular value of $A$.
 
 [Continue](btn:next)
 
@@ -1234,7 +1234,7 @@ Gradient descent is fundamentally local: it is not guaranteed to find the global
 
 ::: .exercise
 **Exercise**  
-Consider the function $f(x) = (x^4 - 2x^3 - x^2 + 3x -1)e^{-x^2/4}$. Implement the gradient descent algorithm for finding the minimum of this function. To take derivatives, you can define a derivative function like `df(x) = ForwardDiff.derivative(f,x)`. 
+Consider the function $f(x) = (x^4 - 2x^3 - x^2 + 3x -1)e^{-x^2/4}$. Implement the gradient descent algorithm for finding the minimum of this function. To take derivatives, you can define a derivative function like `{jl} df(x) = ForwardDiff.derivative(f,x)`. 
 
     img(src="images/polynomial-minimize.svg" alt="figure" width="400px" style="float: right;")
 

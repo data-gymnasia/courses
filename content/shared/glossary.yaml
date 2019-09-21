@@ -734,3 +734,7 @@ in-software:
 model-accuracy:
   title: Model
   text: Of course, it is always reasonable to question how thoroughly and accurately a given model actually reflects all the relevant considerations.
+
+operatornorm:
+  title: Operator Norm
+  text: The operator norm of a matrix is the maximum factor by which it stretches vectors. It's equal to the largest singular value of the matrix

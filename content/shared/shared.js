@@ -28,7 +28,7 @@ script('/resources/shared/static/juniper.min.js').then(() => {
     repo: 'data-gymnasia/julia-binder',
     isolateCells: false,
     msgLoading: 'Loading or nothing returned', 
-    kernelType: 'julia-1.1',
+    kernelType: 'julia-1.2',
     language: 'julia'
   });
   new window.Juniper({
