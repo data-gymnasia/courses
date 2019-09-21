@@ -737,4 +737,4 @@ model-accuracy:
 
 operatornorm:
   title: Operator Norm
-  text: The operator norm of a matrix is the maximum factor by which it stretches vectors. It's equal to the largest singular value of the matrix
+  text: The operator norm of a matrix is the maximum factor by which it stretches vectors. It's equal to the largest singular value of the matrix.
