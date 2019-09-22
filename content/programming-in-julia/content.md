@@ -403,11 +403,11 @@ Also, note that you have *two* boxes: the first is for scratch, and the second i
       |     # add code here
       | end
       |
-      | @assert f(3) == 5
-      | @assert f(1) == 1
-      | @assert f(100) == 199
-      | "Tests passed!"
-
+      | using Test
+      | @test f(3) == 5
+      | @test f(1) == 1
+      | @test f(100) == 199
+      
     x-quill
     
 [Continue](btn:next)
@@ -422,17 +422,17 @@ Also, note that you have *two* boxes: the first is for scratch, and the second i
       | function f(n)
       |     2n-1
       | end
-      |
-      | @assert f(3) == 5
-      | @assert f(1) == 1
-      | @assert f(100) == 199
-      | "Tests passed!"
-
+      | 
+      | using Test
+      | @test f(3) == 5
+      | @test f(1) == 1
+      | @test f(100) == 199
+      
     
 ---
 > id: step-macro-note
 
-The `{jl} @` in the name `{jl} @assert` has a special meaning in Julia: it indicates that `{jl} @assert` is a **macro**. This means that the code that `{jl} @assert` operates on is not evaluated right away. Rather, the code is passed directly to `{jl} @assert` to be processed in a manner specified by the definition of the macro `{jl} @assert`. 
+The `{jl} @` in the name `{jl} @test` has a special meaning in Julia: it indicates that `{jl} @test` is a **macro**. This means that the code that `{jl} @test` operates on is not evaluated right away. Rather, the code is passed directly to `{jl} @test` to be processed in a manner specified by the definition of the macro `{jl} @test`. 
 
 The following example sheds some light on the difference between evaluating code to pass values to a function and passing the code directly to a macro: if `{jl} x` is not defined, then `{jl} f(x)` *always* throws an error, since the value assigned to `{jl} x` cannot be looked up and passed to the function `{jl} f`. However, `{jl} @f(x)` might not throw an error, because a literal `{jl} x` symbol is what's being passed to the macro `{jl} @f`. As long as `{jl} @f` doesn't try to evaluate `{jl} x`, there might be no problem. 
 
@@ -637,11 +637,11 @@ Write a one-line [function](gloss:function-julia) which takes 3 bools as argumen
     pre(julia-executable)
       | f(a,b,c) = # add code here
       |
-      | @assert f(true, true, true)
-      | @assert f(false, true, false)
-      | @assert !f(false, true, true)
-      | "Tests passed!"
-
+      | using Test
+      | @test f(true, true, true)
+      | @test f(false, true, false)
+      | @test !f(false, true, true)
+      
     x-quill
 
 ---
@@ -774,12 +774,12 @@ Write a function called `{jl} my_abs` which computes the absolute value of its i
       | function my_abs(x)
       |     # add code here
       | end
-      |     
-      | @assert my_abs(-3) == 3
-      | @assert my_abs(5.0) == 5.0
-      | @assert my_abs(0.0) == 0.0
-      | "Tests passed!"
-
+      | 
+      | using Test
+      | @test my_abs(-3) == 3
+      | @test my_abs(5.0) == 5.0
+      | @test my_abs(0.0) == 0.0
+      
     x-quill
 
 ---
@@ -812,11 +812,11 @@ Consider nesting if-else blocks inside of an if-else block.
       |     # add code here
       | end
       | 
-      | @assert quadrant(1.0, 2.0) == 1
-      | @assert quadrant(-13.0, -2) == 3
-      | @assert quadrant(4, -3) == 4
-      | @assert quadrant(-2, 6) == 2
-      | "Tests passed!"
+      | using Test
+      | @test quadrant(1.0, 2.0) == 1
+      | @test quadrant(-13.0, -2) == 3
+      | @test quadrant(4, -3) == 4
+      | @test quadrant(-2, 6) == 2
       |
 
     x-quill
@@ -1061,7 +1061,7 @@ Try nesting one function definition inside another. Are variables in the enclosi
 
 It's highly recommended to write tests to accompany your functions, so you can confirm that each function behaves as expected. This is especially important as your codebase grows, because changes in one function can lead to problems in other functions that use it. Having a way to test functions throughout your codebase helps you discover these breakages quickly, before they cause harm.
 
-One common way to do this (which you have already seen several times in this course) is write `{jl} @assert` statements. An `{jl} @assert` statement throws an error if the following expression evaluates to `{jl} false`. In a full-fledged Julia project, these tests typically go in a directory called `{jl} test` so that tests can be run for the whole project.
+The standard way to do this in Julia (which you have already seen several times in this course) is write `{jl} @test` statements. An `{jl} @test` statement throws an error if the following expression evaluates to `{jl} false`. In a full-fledged Julia project, these tests typically go in a directory called `{jl} test` so that tests can be run for the whole project.
 
     pre(julia-executable)
       | """
@@ -1077,8 +1077,9 @@ One common way to do this (which you have already seen several times in this cou
       |     end
       | end
       |
-      | @assert space_concat("foo", "bar") == "foo bar"
-      | @assert space_concat("foo ", "bar") == "foo bar"
+      | using Test
+      | @test space_concat("foo", "bar") == "foo bar"
+      | @test space_concat("foo ", "bar") == "foo bar"
       |
       | test_space_concat()
       | space_concat("foo", "bar")
@@ -1104,12 +1105,12 @@ The test cases above don't cover the *degenerate* situation where one of the str
       |     end
       | end
       |
-      | @assert space_concat("foo", "bar") == "foo bar"
-      | @assert space_concat("foo ", "bar") == "foo bar"
-      | @assert space_concat("foo", "") == "foo"
-      | @assert space_concat("", "bar") == "bar"
-      | "Tests passed!"
-
+      | using Test
+      | @test space_concat("foo", "bar") == "foo bar"
+      | @test space_concat("foo ", "bar") == "foo bar"
+      | @test space_concat("foo", "") == "foo"
+      | @test space_concat("", "bar") == "bar"
+      
 [Continue](btn:next)
 
 ---
@@ -1129,8 +1130,9 @@ _Hint_: Make a guess about which operator can be used to compare strings alphabe
       |     # add code here
       | end
       |
-      | @assert alphabetical_concat("alphabet", "soup") == "alphabetsoup"
-      | @assert alphabetical_concat("socks", "red") == "redsocks"
+      | using Test
+      | @test alphabetical_concat("alphabet", "soup") == "alphabetsoup"
+      | @test alphabetical_concat("socks", "red") == "redsocks"
       |
 
     x-quill
@@ -1571,11 +1573,11 @@ Write a [function](gloss:function-julia) which takes as arguments an array `{jl}
       |     # add code here
       | end
       |
-      | @assert rotate([1,2,3],1) == [3,1,2]
-      | @assert rotate([1,2,3],2) == [2,3,1]      
-      | @assert rotate([1,2,3,4,5],8) == [3,4,5,1,2]
-      | "Tests passed!"
-
+      | using Test
+      | @test rotate([1,2,3],1) == [3,1,2]
+      | @test rotate([1,2,3],2) == [2,3,1]      
+      | @test rotate([1,2,3,4,5],8) == [3,4,5,1,2]
+      
     x-quill
 
 ---
@@ -1831,10 +1833,10 @@ Write a function which takes a matrix `{jl} M` and an index `{jl} i` and returns
       | function select_col(M, i)
       |     # add code
       | end
-      |     
-      | @assert select_col([[1,2],[3,4]],1) == [1,3]
-      | @assert select_col([[7,8],[8,-2],[3,4]],2) == [8,-2,4]
-      | "Tests passed!"
+      | 
+      | using Test
+      | @test select_col([[1,2],[3,4]],1) == [1,3]
+      | @test select_col([[7,8],[8,-2],[3,4]],2) == [8,-2,4]
       |
 
     x-quill
@@ -1866,9 +1868,9 @@ _Hint_: The functions `{jl} join` and `{jl} split` might be helpful.
       |     # add code
       | end
       |
-      | @assert reverse_words("The quick brown fox") == "fox brown quick The"
-      | @assert reverse_words("") == ""
-      | "Tests passed!"
+      | using Test
+      | @test reverse_words("The quick brown fox") == "fox brown quick The"
+      | @test reverse_words("") == ""
       |
 
     x-quill
@@ -2157,9 +2159,10 @@ We can nest `{jl} for` statements. For example, suppose we have a matrix represe
       |     s
       | end
       |
+      | using Test
       | M = [[1,2,3],[4,5,6],[7,8,9]]
-      | @assert sum_matrix_entries(M) == 45
-      | "Test passed!"
+      | @test sum_matrix_entries(M) == 45
+
 
 [Continue](btn:next)
 
@@ -2213,11 +2216,11 @@ Write a [function](gloss:function-julia) called `{jl} sumorial` which takes a po
       |     # add code here
       | end
       |
-      | @assert sumorial(3) == 6
-      | @assert sumorial(8) == 36
-      | @assert sumorial(200) == 20100
-      | "Tests passed!"
-
+      | using Test
+      | @test sumorial(3) == 6
+      | @test sumorial(8) == 36
+      | @test sumorial(200) == 20100
+      
     x-quill
 
 ---
@@ -2234,10 +2237,10 @@ Write a [function](gloss:function-julia) called `{jl} sumorial` which takes a po
       |     total
       | end
       | 
-      | @assert sumorial(3) == 6
-      | @assert sumorial(8) == 36
-      | @assert sumorial(200) == 20100
-      | "Tests passed!"      
+      | using Test
+      | @test sumorial(3) == 6
+      | @test sumorial(8) == 36
+      | @test sumorial(200) == 20100     
 
 [Continue](btn:next)
 
@@ -2267,11 +2270,10 @@ If we want to write a Julia function which returns the Collatz sequence for any 
       |     sequence
       | end
       |
-      | @assert collatz_sequence(17) == [17, 52, 26, 13, 
+      | using Test
+      | @test collatz_sequence(17) == [17, 52, 26, 13, 
       |                                 40, 20, 10, 5, 
       |                                 16, 8, 4, 2, 1]
-      | "Test passed!"
-      |
       
 
 The expression which appears immediately following the `{jl} while` keyword is called the **condition**, and the block indented below the `{jl} while` statement is the **body** of the loop. The rules of the language stipulate the following execution sequence for a `{jl} while` statement: the condition is evaluated, and if it's true, then the body is executed, then condition is evaluated again, and so on. When the condition returns `{jl} false`, the loop is exited. An exit can also be forced from within the body of the while loop with the keyword `{jl} break`. 
@@ -2295,11 +2297,10 @@ Note that $10^{-8}$ can be represented in Julia using scientific notation `{jl} 
       |     # add code here
       | end
       | 
-      | @assert abs(newtonsqrt(2) - 1.4142135623730951) < 1e-6
-      | @assert abs(newtonsqrt(9) - 3) < 1e-6
-      |     return "Tests passed!"
+      | using Test
+      | @test abs(newtonsqrt(2) - 1.4142135623730951) < 1e-6
+      | @test abs(newtonsqrt(9) - 3) < 1e-6
       |
-      | test_newton()
 
     x-quill
 
