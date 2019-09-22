@@ -950,8 +950,8 @@ Guess what value the following code block returns. Run it and see what happens. 
 :::
 
     pre(julia-executable)
-      | function increment_till(t,step=0.1)
-      |   x = 0.0
+      | function increment_till(t, step=0.1)
+      |   x = 0.5
       |     while x < t
       |       x += step
       |     end
@@ -964,7 +964,12 @@ Guess what value the following code block returns. Run it and see what happens. 
 ---
 > id: solution-14
 
-*Solution*. It's reasonable to guess that the returned value will be 1.0. However, it's actually approximately 1.1. The reason is that adding the Float64 representation of 0.1 to 0.0 ten times results in a number slightly smaller than 1.0.
+*Solution*. It's reasonable to guess that the returned value will be 1.0. However, it's actually approximately 1.1. The reason is that adding the Float64 representation of 0.1 ten times starting from 0.0 results in a number slightly *smaller* than 1.0. It turns out that 0.6 (the real number) is 20% of the way from the Float64 tick before it to the Float64 tick after it:
+
+    pre(julia-executable)
+      | (1//10 - floor(2^53 * 1//10) // 2^53) * 2^53
+
+This means that the Float64 sum is $\frac{1}{5}2^{-53}$ less than the mathematical sum after adding 0.1 once, then $\frac{2}{5}2^{-53}$ less after adding 0.1 again, and so on. By the time we we get to $1$, we've lost a full tick spacing so after 5 iterations, $x$ is equal to $1-2^{-53}$. 
 
 We could use 1/8 = 0.125 instead of 0.1 to get the expected behavior, since small inverse powers of 2 and their sums with small integers can be represented exactly as 64-bit floating points numbers.
 
