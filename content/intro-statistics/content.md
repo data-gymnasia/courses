@@ -434,11 +434,11 @@ One idea, which we will find is applicable in many statistical contexts, is to r
 
 ::: .exercise
 **Exercise**  
-Experiment with the sliders below to adjust the bandwidth $\lambda$ and the omitted point `i` to find a value of $\lambda$ you find satisfactory.
+Experiment with the sliders below to adjust the bandwidth $\lambda$ and the omitted point `i` to find a value of $\lambda$ you find satisfactory (set `i` to `7` to include all six points).
 
 {.text-center} `λ =`${λ}{λ|1|0.3,20,0.1} 
 
-{.text-center} `i = `${i}{i|1|1,4,1}
+{.text-center} `i = `${i}{i|1|1,7,1}
 
     x-coordinate-system(x-axis="-5|10|2" y-axis="0|1.5|0.25")
 
