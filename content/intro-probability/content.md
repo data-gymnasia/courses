@@ -2489,6 +2489,818 @@ Find the expected number of particles extant just after time $t = 2$. Hint: defi
 ``` latex
 \mathbb{E}[Y] = \mathbb{E}[\mathbb{E}[Y | X]] = (1+p)(1+\mathbb{E}[X]) = (1+p)^2.
 ```
+---
+> id: common-distributions
+## Common Distributions
+
+There are several specific probability distributions which arise commonly in real-world applications. Learning the properties of these distributions and how those properties lead to their frequent appearance can help us build random models and reason about properties about random systems that involve these distributions. In this section, we will explore several such distributions. 
+
+[Continue](btn:next)
+
+---
+> id: bernoulli-distribution 
+### Bernoulli distribution
+
+Suppose we conduct an experiment with exactly two outcomes, which we will encode as 0 and 1. For example, consider the following scenarios 
+* You flip a coin and it comes up heads (1) or tails (0)
+* Someone's position on a political issue is either positive (1) or negative (0)}
+* Someone can either be healthy (1) or sick (0)
+* In an online survey, a user answers either true (1) or false (0)
+
+[Continue](btn:next)
+
+---
+> id: step-bernoulli-setup
+
+The distribution of the result of such an experiment is governed by a single parameter $p\in [0,1]$, which is the probability of the outcome encoded as 1. The probability of the other outcome is $1-p$, since one of the two outcomes must occur. It is customary to think of the outcomes 1 and 0 as success and failure, respectively, in which case $p$ may be referred to as the success probability. A sequence of independent Bernoulli random variables with the same success probability $p$ is referred to as a sequence of **Bernoulli trials**. 
+
+
+[Continue](btn:next)
+
+---
+> id: step-mean-bernoulli
+ 
+We write $X \sim \text{Bernoulli}(p)$ to mean that $X$ is Bernoulli distributed with success probability $p$. The expected value of a $\text{Bernoulli}(p)$ random variable $X$ is 
+
+``` latex
+  \mathbb{E}[X] &= \sum_{x \in \{0,1\}} xp_X(x) \\
+         &= (0)(1-p) + (1)(p) \\
+         &= p, 
+```
+
+and its variance is 
+
+``` latex
+  \mathbb{E}[X^2] - \mathbb{E}[X]^2 &= p - p^2 = p(1-p). 
+```
+ 
+::: .exercise
+**Exercise**  
+Consider a sum $X$ of 10 independent Bernoulli random variables with success probability $p = 0.36$. 
+
+* Find the mean and variance of $X$. 
+* Find the value of $k \in \mathbb{Z}$ which maximizes $\mathbb{P}(X=k)$. Hint: write down an expression for $\mathbb{P}(X=k)$ and then use Julia to find its maximum value. 
+:::
+
+    x-quill
+    
+---
+> id: sum-bernoull-solution    
+
+*Solution*.  
+* For $i \in \\{1, 2, \dots, 10\\}$ let $X\_i \thicksim \text{Bernoulli}(0.36),$ then $X = X\_1 + X\_2 + \cdots +X\_{10}.$ Therefore, 
+
+``` latex
+
+\mathbb{E}[X] &= \mathbb{E}[X_1] + \mathbb{E}[X_2] + \cdots + \mathbb{E}[X_{10}] & \text{(Linearity)} \\
+&= \mathbb{E}[X_1]  = 0.36 & \text{(Identical distribution)}
+
+```
+ and 
+
+``` latex
+
+\operatorname{Var}(X) &= \operatorname{Var}(X_1) + \operatorname{Var}(X_2)+ \cdots + \operatorname{Var}(X_{10}) & \text{(Independence)} \\
+&= \operatorname{Var}(X_1) = 0.36(1 - 0.36) = 0.2304. & \text{(Identical distribution)}
+
+```
+ 
+
+
+* Observe that for $k \in \{0, 1, 2, \dots, 10\},$ we have $X = k$ if and only if there are $k$ successes. Now, there are $\binom{10}{k}$ ways in which we can have $k$ success and each of them occurs with probability $(0.36)^k(1 - 0.36)^{10 - k}$, by independence. Therefore 
+
+``` latex
+\mathbb{P}(X = k) = \binom{10}{k}(0.36)^k(1 - 0.36)^{10 - k}. 
+```
+ 
+We can use Julia's built-in `{jl} binomial` function and an array comprehension as follows 
+
+    pre(julia-executable)
+      | 
+      | maximum([binomial(10, k)*0.36^k*(1 - 0.36)^(10 - k) for k in 0:10])
+      | 
+      
+to find that the value of $k$ that maximizes $\mathbb{P}(X = k)$ is $4$ and the maximum is approximately $0.246.$ 
+
+[Continue](btn:next)
+
+---
+> id: binomial-distribution
+### The binomial distribution
+ 
+::: .example
+**Example**  
+What is the probability of rolling exactly 18 sixes in 100 independent rolls of a fair die? 
+:::
+
+    x-quill
+
+---
+> id: step-sixes-binomial-solution
+
+*Solution*. There are many ways to roll 18 sixes. We could roll 18 sixes followed by 82 non-sixes, and that happens with probability 
+
+``` latex
+(1/6)^{18}(5/6)^{82}, 
+```
+
+by independence. Similarly, the probability of rolling 2 non-sixes, then 9 sixes, then 14 non-sixes, then 9 more sixes, and finally 66 non-sixes also has probability given by <a name=eq:sixes></a>. In fact, for every choice of 18 positions in which the sixes may fall, there is a an outcome with exactly 18 sixes whose probability is $(1/6)^{18}(5/6)^{82}$. Since there are $\binom{100}{18}$ of these outcomes, the probability that one of them occurs is 
+
+``` latex
+\binom{100}{18}(1/6)^{18}(5/6)^{82}. 
+```
+
+Generally, $n$ independent trials with success probability $p$ will lead to $k$ total successes with probability 
+
+``` latex
+\binom{n}{k}p^k(1-p)^{n-k}.
+```
+
+This distribution is called the **binomial distribution** and is denoted $\text{Binomial}(n,p)$. 
+
+[Continue](btn:next)
+
+---
+> id: step-stirling-approximation
+
+::: .exercise
+**Exercise**  
+**Stirling's approximation** allows us to more easily manipulate factorial expressions algebraically. It says that 
+
+``` latex
+\lim_{n\to\infty}\frac{n!}{(n/e)^n\sqrt{2\pi n}} = 1. 
+```
+
+Suppose that $n$ is even and that $p = \frac{1}{2}$. Use Stirling's approximation to show that $\sqrt{n}$ times the probability mass assigned to 0 by the distribution $\text{Binomial}(n,p)$ converges to a finite, positive constant as $n\to\infty$. Find the value of this constant. 
+:::
+
+    x-quill
+
+---
+> id: step-binom-approx-solution
+
+*Solution*. Let $p\_n = \binom{n}{n/2}2^{-n}$ be the probability mass at 0. Substituting Stirling's approximation for the factorial expressions in $\binom{n}{n/2} = \frac{n!}{(n/2)!^2}$ tells us that 
+
+``` latex
+\frac{\binom{n}{n/2}2^{-n}}{\frac{(n/e)^n\sqrt{2\pi
+          n}}{\left(\left(\frac{n}{2e}\right)^{n/2}\sqrt{2\pi
+              n/2}\right)^2}2^{-n}} \to 1
+```
+
+as $n\to\infty$. Simplifying the big mess of an expression on the left hand side tells us that $p\_n/\sqrt{\frac{2}{\pi n}} \to 1$ as $n\to\infty$. Therefore, $\sqrt{n} p\_n \to \sqrt{2/\pi}$ as $n\to\infty$. 
+
+[Continue](btn:next)
+
+---
+> id: geometric-distribution
+### Geometric distribution
+
+The **geometric distribution** with parameter $p \in (0,1]$ is the distribution of the index of the first success in a sequence of independent Bernoulli trials. 
+
+The probability that the first success occurs on trial $k$ is equal to the probability that the first $k-1$ trials fail and the $k$ th trial succeeds. The probability of this event is $p(1-p)^{k-1}$. Therefore, the probability mass function of the geometric distribution is 
+
+``` latex
+m(k) = p(1-p)^{k-1}. 
+```
+ 
+::: .exercise
+**Exercise**  
+Use Monte Carlo to find the mean and variance of the geometric distribution with parameter $p = 1/3$. 
+
+ Hint: you can sample from the geometric distribution using the definition: count the number of times you have to run `{jl} rand()` until you get a result less than $\frac{1}{3}$. 
+:::
+
+    x-quill
+
+---
+> id: step-monte-carlo-geometric-solution    
+
+*Solution*. Here's an example solution: 
+
+    pre(julia-executable)
+      | 
+      | using Statistics
+      | 
+      | function sample_geometric(p)
+      |     k = 1
+      |     while true 
+      |         if rand() < p
+      |             return k
+      |         else
+      |             k += 1
+      |         end
+      |     end
+      | end
+      | 
+      | samples = [sample_geometric(1/3) for i=1:1_000_000]
+      | 
+      | m = mean(samples)
+      | σ² = mean(x^2 for x in samples) - m^2
+      | 
+      | (m, σ²)
+      | 
+ 
+
+The pair returned by this block is very close to $(3,6)$, leading us to conjecture that the mean and variance are 3 and 6, respectively. 
+
+Note: the superscript of 2 is part of the variable name. You can get this symbol at the Julia prompt using `{jl} \^2«tab»`
+
+ 
+
+We can use Taylor series to work out exact expressions for the mean and variance. The mean is equal to 
+
+``` latex
+p + 2p(1-p) + 3p(1-p)^2 + 4p(1-p)^3 + \cdots, 
+```
+
+and we recognize all the terms except the first as $-p$ times the derivative of 
+
+``` latex
+(1-p)^2 + (1-p)^3 + (1-p)^4 + \cdots 
+```
+
+By the formula for the sum of a geometric series, this expression is equal to 
+
+``` latex
+\frac{(1-p)^2}{1-(1-p)}, 
+```
+ and so the mean of the geometric distribution is 
+
+``` latex
+p - p \frac{\mathrm{d}}{\mathrm{d} p}\left(\frac{(1-p)^2}{p}\right) = \frac{1}{p}. 
+```
+ The variance can be worked in a similar but more tedious way, and the result is 
+
+``` latex
+\operatorname{Var} X = \frac{1-p}{p^2}. 
+```
+ These expressions do indeed evaluate to 3 and 6, respectively, when $p = \frac{1}{3}$ is substituted. 
+
+
+[Continue](btn:next)
+
+---
+> id: step-exercise-exponential-expectation
+ 
+::: .exercise
+**Exercise**  
+Suppose that $X$ is geometric with success probability $\frac{1}{2}$, and consider the random variable $Y = 2^X$. What is the expected value of $Y$? 
+:::
+
+
+    x-quill
+
+---
+> id: step-expected-value-geometric-solution
+
+*Solution*. The random variable $Y$ is equal to $2^n$ with probability $2^{-n}$, for all positive integers $n$. Therefore, the expected value is 
+
+``` latex
+2 \cdot \frac{1}{2} + 4 \cdot \frac{1}{4} + 8 \cdot \frac{1}{8} +
+  \cdots = 1 + 1 + 1 + \cdots = \infty. 
+```
+
+So $Y$ has infinite mean. 
+ 
+::: .exercise
+**Exercise**  
+Explain why `{jl} ceil(log(rand())/log(1-p))` returns a random variable whose distribution is geometric with success probability $p$. 
+:::
+
+    x-quill
+
+---
+> id: step-ceiling-geometric-solution 
+
+*Solution*. Let $\lceil x \rceil = \min\\{k \in \mathbb{Z} : k \geq x\\}$ define the ceiling function on $\mathbb{R}.$ The question is asking to show that if $U$ is uniformly distributed in $[0, 1]$, then 
+
+``` latex
+\left\lceil \frac{\log(U)}{\log(1 - p)} \right\rceil
+```
+ is geometrically distributed with success probability $p$. 
+
+This is true because of the inverse cdf trick of Exercise <a name=exer:inverse-cdf></a>. To show that this is indeed the case, it suffices to show that if $F$ is the cdf of a geometrically distributed random variable with success probability $p,$ then the generalized inverse of $F$ is 
+
+``` latex
+F^{-1}(U) = \left\lceil \frac{\log(U)}{\log(1 - p)} \right\rceil
+```
+for all $U \in [0, 1].$ Now, let $F$ be the cdf of a geometric random variable with success probability $p$ and $\lfloor x \rfloor = \max\\{k \in \mathbb{Z} : k \leq x\\}$ denote the floor function on $\mathbb{R}.$ Then 
+
+``` latex
+F(x) &= \sum_{k=1}^{\lfloor x\rfloor}p(1-p)^{k - 1} \\
+&=p\sum_{k=0}^{\lfloor x\rfloor - 1} (1 - p)^k \\
+&= 1 - (1 - p)^{\lfloor x \rfloor},
+```
+
+where the last line follows from evaluating the geometric sum. The jumps in $F$ clearly occur at positive integer values. Therefore, if we let $\mathbb{Z}\_+ = \\{1, 2, 3, \dots\\},$ we find that the generalized inverse of $F$ is given by 
+
+``` latex
+F^{-1}(u) = \min\{x : F(x) \geq u\} = \min\{k \in \mathbb{Z}_+ : 1 - (1
+-p)^k \geq u \}
+```
+ for all $u \in [0, 1].$ But if $1 - (1 -p)^k \geq u,$ then $k \geq \frac{\log(1- u)}{\log(1 - p)}$ because $\log(1 - p) \leq 0.$ Therefore, for all $u \in [0, 1]$ 
+
+``` latex
+F^{-1}(u) = \min\left\{k \in \mathbb{Z}_+ : k \geq \frac{\log(1- u)}{\log(1
+    - p)} \right\} = \left\lceil \frac{\log(1 -u )}{\log(1 - p)}
+\right\rceil.
+```
+Now if $U$ is uniformly distributed in $[0, 1],$ then $1 - U$ is also uniformly distributed in $[0, 1]$ so $\left\lceil \frac{\log(U)}{\log(1 - p)} \right\rceil$ is indeed geometrically distributed with success probability $p.$
+ 
+::: .exercise
+**Exercise**  
+Every time you visit your favorite restaurant, you choose a meal uniformly at random from the 10 available meals. How many visits will it take on average before you've tried all 10 meals? 
+
+Hint: try letting $X\_k$ be the number of visits from the time you try the $k$ th unique meal to the time when you try the $(k+1)$ st unique meal. 
+:::
+
+    x-quill
+
+---
+> id: step-coupon-collector-solution
+
+*Solution*. For $k \in \\{1, 2, \dots, 9\\}$ let $X\_k$ be the number of visits it takes to try the $(k+1)$ th unique meal after trying the $k$ th unique meal. Then the number of visits it takes to try all the meals is $1 + X\_1 + X\_2 + \cdots X\_9.$ Now, for any non-negative integer $n,$ $X\_k = n$ if all the previous $n - 1$ visits yielded the $k$ meals that have already been tried. Because the meals are chosen independently and uniformly at random, we find that 
+
+``` latex
+\mathbb{P}(X_k = n) = \left(1 -
+      \frac{k}{10}\right)\left(\frac{k}{10}\right)^{n - 1}  
+```
+ for all $k \in \\{1, 2, \dots, 9\\}$ and any non-negative integer $n.$ For notational simplicity, let $p\_k = 1 - \frac{k}{10}.$ Then 
+
+``` latex
+    \mathbb{E}[X_k] &= \sum_{n=1}^{\infty}np_k (1 - p_k)^{n-1} \\
+            &= p_k \left(-\sum_{n=1}^{\infty} - n (1 - p_k)^{n-1}\right) \\
+            &= p_k\left(-\sum_{n=1}^{\infty}\frac{d}{dp_k} (1 - p_k)^{n}\right)
+```
+
+for all $k \in \\{1, 2, \dots, 9\\}.$ Now, as we recall from elementary calculus, the term-by-term differentiation theorem gives 
+
+``` latex
+\sum_{n=1}^{\infty}\frac{d}{dp_k} (1 - p_k)^{n} &= \frac{d}{dp_k}\sum_{n=1}^{\infty} (1 - p_k)^{n} \\
+&= \frac{d}{dp_k}\frac{1 -p_k}{p_k} \\ &= \frac{-1}{p_k^2}.
+```
+ Therefore, 
+
+``` latex
+\mathbb{E}[X_k] = \frac{1}{p_k} = \frac{10}{10 - k}
+```
+ for all $k \in \\{1, 2, \dots, 9\\}$ and thus 
+
+``` latex
+\mathbb{E}[1 + X_1 + X_2 + \cdots + X_9] = 1 + \sum_{k=1}^{9}\mathbb{E}[X_k] &= 1 + \sum_{k=1}^{9} \frac{10}{10 - k} \\
+                                                                 &= 1 + 10 \sum_{k=1}^9 \frac{1}{k} \\
+                                                                 &= 1 + \frac{7129}{252} \approx 29.23.
+```
+
+We find that, on average, about $30$ visits are needed to try all the different meals. 
+
+[Continue](btn:next)
+
+---
+> id: poisson-distribution
+### Poisson Distribution
+
+The *Poisson distribution* arises as the number of 1's observed in a large number of low-probability Bernoulli random variables. This situation models a surprising variety of real-world scenarios: 
+* The number of calls received at a call center in a given hour. Each potential caller has a low probability of calling during that particular hour, and there are many potential callers who are acting independently. 
+* The number of meteorites which strike earth in a given year. There are many meteorites which might hit earth, and each one does so with low probability. 
+* The number of mutations on a strand of DNA. Each mutation occurs with low probability, but there are many potential sites for a mutation. 
+* The number of claims filed with an insurance company in a given month. There are many customers, and they file claims independently and with low probability each month. 
+
+::: .exercise
+**Exercise**  
+
+* Find the expected value of $S$, where $S$ is a sum of 1000 independent Bernoulli random variables with success probability $p = \frac{3}{1000}$. 
+* Find the probability mass function of $S$. Hint: find an expression representing the probability mass at each $k$ from 0 to 1000, and then use Julia to evaluate it. You will need to define `{jl} n = big(1000)` and `{jl} p = big(3)/1000` because arbitrary precision arithmetic is required to avoid overflow issues. 
+* Compare your results to the probability mass function $m(k) =
+  \frac{3^k}{k!}e^{-3}$ defined on $\\{0,1,2,\ldots\\}$. 
+:::
+
+    x-quill
+
+---
+> id: step-overshoot-solution
+
+*Solution*. (i) The expected value of each Bernoulli random variable is $\frac{3}{1000}$, so by linearity of expectation the expected value of $S$ is $3$. 
+
+(ii) Consider all $2^{1000}$ possible length-1000 strings of 0's or 1's. Of these, there are $\binom{1000}{k}$ with $k$ ones and $1000-k$ zeros, and each of those $\binom{1000}{k}$ strings has a probability of $p^k(1-p)^{1000-k}$ of being the result of independent sequence of $\text{Bernoulli}(p)$ random variables (where $p = \frac{3}{1000}$). Therefore, the probability of the event $\\{S = k\\}$ is $\binom{1000}{k}p^k(1-p)^{1000-k}$. We can obtain a vector of these probabilities as follows: 
+
+    pre(julia-executable)      
+      | n = big(1000)
+      | p = big(3)/1000
+      | massfunction = [binomial(n,k)*p^k*(1-p)^(n-k) for k=0:1000]
+ 
+
+(iii) We can run `{jl} [3^big(k)/factorial(big(k))*exp(-3) for k=0:1000]` to get the first 1001 values of the given probability mass function. We see that the values are quite similar. The first ten pairs of values are 
+
+``` julia
+(0.0495631, 0.0497871)
+(0.149137, 0.149361)    
+(0.224154, 0.224042)    
+(0.224379, 0.224042)    
+(0.168284, 0.168031)    
+(0.100869, 0.100819)    
+(0.0503334, 0.0504094)  
+(0.0215065, 0.021604)   
+(0.00803259, 0.00810151)
+(0.0026641, 0.0027005)  
+```
+
+Inspired by this exercise, we make the following definition: 
+
+::: .definition
+**Definition** (Poisson distribution)  
+The Poisson distribution with mean $\lambda$ is the distribution whose probability mass function is 
+
+``` latex
+m(k) = \frac{\lambda^k}{k!}e^{-\lambda}. 
+```
+:::
+
+    center
+      figure
+        img(src="images/poisson.svg" width=400)
+        p.caption.md The probability mass function $m_\lambda$ for $\lambda \in \{1,3,5\}$ 
+
+The expression $\frac{\lambda^k}{k!}e^{-\lambda}$ in the definition of the Poisson distribution arises as a limit of the expression 
+
+``` latex
+\binom{n}{k}
+ \left(\frac{\lambda}{n}\right)^k\left(1-\frac{\lambda}{n}\right)^{n-k}. 
+```
+
+In other words, we use a success probability of $\frac{\lambda}{n}$ so that the expected number of successes remains constant as $n\to\infty$. 
+
+The connection between the Poisson and Bernoulli random variables may be used to obtain the mean and variance of the Poisson distribution. The average number of successes in $n$ Bernoulli($\lambda/n$) trials is $(n)(\lambda/n) = \lambda$, by linearity of expectation. Therefore, we expect that the mean of a Poisson random variable with parameter $\lambda$ is equal to $\lambda$. Similarly, the variance of the number of successes in $n$ Bernoulli( $\lambda/n$) trials is equal to $n\frac{\lambda}{n}\left(1-\frac{\lambda}{n}\right) =
+\lambda(1-\lambda/n)$. Taking $n\to\infty$, we predict that the variance of a Poisson random variable with parameter $\lambda$ is also equal to $\lambda$. Both of these predictions are accurate: 
+
+::: .theorem
+**Theorem**  
+The mean and variance of a Poisson random variable with parameter $\lambda$ are $\lambda$ and $\lambda$, respectively. 
+:::
+ 
+::: .exercise
+**Exercise**  
+Suppose that the number of typos on a page is a Poisson random variable with mean $\lambda = \frac{1}{3}$. 
+
+* Provide an explanation for why the Poisson distribution might be a good approximation for the distribution of typos on a page. 
+* Find the probability that a particular page is typo-free. 
+:::
+
+    x-quill
+
+---
+> id: step-poisson-explanation-solution
+
+*Solution*. (i) A typo opportunities on a page convert to actual typos with a small but roughly constant probability, there are quite a few of them, and different typos are (roughly) independent of one another. Thus the number of typos is a sum of independent Bernoulli random variables. (ii) The probability that a Poisson random variable with parameter $\lambda= \frac{1}{3}$ is equal to 0 is 
+
+``` latex
+\frac{\lambda^0}{0!}e^{-\lambda} = e^{-1/3} \approx 71.6\%.  
+```
+
+---
+> id: exponential-distribution
+### Exponential distribution
+
+The exponential distribution also emerges as a limit involving Bernoulli random variables: imagine placing a light bulbs activated by independent $\text{Bernoulli}(\lambda/n)$ random variables at every multiple of $1/n$ on the positive real number line. Consider the position $X$ of the **leftmost lit bulb**. The probability that it occurs to the right of a point $t > 0$ is equal to the probability that all of the $\lfloor nt \rfloor$ bulbs to the left remain unlit: 
+
+``` latex
+\mathbb{P}(X > t) = \left(1 - \frac{\lambda}{n}\right)^{nt} 
+```
+
+This probability converges to $e^{-\lambda t}$ as $n\to\infty$. 
+         
+    center
+      figure
+        img(src="images/lightbulbs.svg" width=600)
+
+ 
+::: .definition
+**Definition** (Exponential distribution)  
+Let $\lambda > 0$. The exponential distribution with parameter $\lambda$ is the probability measure on $\mathbb{R}$ which assigns mass $e^{-\lambda t}$ to the interval $(t,\infty)$, for all $t \geq 0$. 
+
+Equivalently, the exponential distribution with parameter $\lambda$ is the probability measure whose density is 
+
+``` latex
+f(x) = \boldsymbol{1}_{x \geq 0} \lambda e^{-\lambda x}
+```
+:::
+
+
+::: .exercise
+**Exercise**  
+Find the mean of the exponential distribution with parameter $\lambda$. 
+:::
+
+    x-quill
+
+---
+> id: step-mean-exponential-solution
+
+*Solution*. We calculate 
+
+``` latex
+\int_{0}^\infty x \lambda e^{-\lambda x} \, \mathrm{d} x =
+    \left. -\left(\frac{1}{\lambda}-x\right)e^{-\lambda x} \right|_{0}^{\infty}
+    = \frac{1}{\lambda}. 
+```
+ 
+::: .exercise
+**Exercise**  
+Suppose that $X$ is an exponentially distributed random variable with mean $\lambda$. Show that 
+
+``` latex
+\mathbb{P}(X > s + t | X > t) = \mathbb{P}(X > s). 
+```
+:::
+
+*Solution*. Observing that $(s + t, \infty) \subset (t, \infty),$ we use the definition of conditional probability to get 
+
+``` latex
+\mathbb{P}(X > s + t | X > t) &= \frac{\mathbb{P}(X > s+t \; \text{and} \; X > t)}{\mathbb{P}(X > t)} \\
+                          &= \frac{\mathbb{P}(X > s+t)}{\mathbb{P}(X > t)} \\
+                          &= e^{-\lambda(s + t)} \cdot e^{\lambda t} & \left(\mathbb{P}(X > x) = e^{-\lambda x}\right)\\
+                          &= e^{-\lambda s} \\
+                          &= \mathbb{P}(X > s)
+```
+as required. 
+
+---
+> id: cauchy-distribution
+### Cauchy distribution
+
+The Cauchy distribution spreads probability mass *way* out on the real number line. 
+
+::: .definition
+
+    img(src="images/cauchy.svg" width=300 style="float: right;")
+
+**Definition** (Cauchy distribution) 
+    
+The **Cauchy distribution** is the probability measure on $\mathbb{R}$ whose density function is 
+
+``` latex
+f(x) = \frac{1}{\pi}\frac{1}{1+x^2}. 
+```
+:::
+
+The amount of probability mass assigned by the Cauchy distribution to the interval $(x,\infty)$ is 
+
+``` latex
+\int_x^\infty \frac{1}{\pi}\frac{1}{1+t^2} \, \mathrm{d} t = \frac{\pi}{2}
+  - \arctan(x) \approx \frac{1}{x}.
+```
+
+This mass goes to 0 so slowly that the Cauchy distribution doesn't even have a well-defined mean, let alone a variance. We say that the Cauchy distribution is **heavy-tailed**, and we will use it as an example when we want to study the effects of heavy tails on results like the law of large numbers or the central limit theorem. 
+
+ 
+::: .exercise
+**Exercise**  
+Show that the mean of the Cauchy distribution is not well-defined. 
+:::
+
+    x-quill
+
+---
+> id: step-cauchy-distribution-mean 
+
+*Solution*. Let $X$ be Cauchy-distributed. Then 
+
+``` latex
+\mathbb{E}[X] &= \int_{-\infty}^{\infty}\frac{1}{\pi}\frac{x}{1 + x^2} dx \\
+& = \frac{1}{2\pi}\int_{-\infty}^{\infty} \frac{\mathrm{d}}{\mathrm{d}x}\ln\left(1 + x^2\right) dx \\
+&= \frac{1}{2\pi}\left[\lim\limits_{b \to \infty} \ln\left(1 + b^2\right) - \lim\limits_{a \to -\infty}\ln\left(1 + a^2\right)\right].
+```
+
+Therefore $\mathbb{E}[X]$ is undefined because the term in the square brackets is undefined. 
+ 
+::: .exercise
+**Exercise**  
+Choose $\theta$ uniformly at random from the interval $[0,\pi]$ and fire a ray from the origin at angle $\theta$ with respect to the positive $x$-axis. Let $(X,1)$ be the point where this ray intersects the line $y = 1$. Show that $X$ is Cauchy-distributed. 
+:::
+
+    x-quill
+
+---
+> id: step-cauchy-fire-ray
+
+*Solution*. Let $F$ and $f$ be the cdf and pdf of $X,$ respectively. We need to show that $f(x) = \frac{1}{\pi} \frac{1}{1 + x^2}.$ Now, for all $X \neq 0,$ a ray from the origin that intersects the line $y = 1$ at $(X, 1)$ has slope $\frac{1}{X},$ giving $\theta = \arctan\left(\frac{1}{X}\right).$ If the ray intersects $y = 1$ at $(0, 1)$ then $\theta = \frac{\pi}{2}.$ Let $g : \mathbb{R} \to [0, \pi]$ be defined by 
+
+``` latex
+g(x) = 
+    \begin{cases}
+      \frac{\pi}{2} & \text{if}\; x = 0 \\
+      \arctan\left(\frac{1}{x}\right) & \text{otherwise.}
+    \end{cases}
+```
+ Then for all $x \in \mathbb{R},$ we observe that $X \leq x$ if and only if $\theta \geq g(x).$ Therefore, 
+
+``` latex
+F(x) = \mathbb{P}(X \leq x) = \mathbb{P}\left(\theta \geq g(x) \right).
+```
+ Since $\theta$ is uniformly distributed in $[0, \pi],$ it follows that 
+
+``` latex
+F(x) = \frac{1}{\pi} \left[\pi - g(x)\right].
+```
+ Now, by the fundamental theorem of calculus, we know that if $F'(x)$ exists for all $x \in \mathbb{R},$ then $f(x) = F'(x).$ But $F'(x) = \frac{\mathrm{d}}{\mathrm{d}x} \frac{1}{\pi}[\pi - g(x)] = -\frac{1}{\pi}
+  \cdot g'(x).$ Now, by construction, $g$ is a continuous strictly decreasing function with 
+
+``` latex
+g'(x) &= \frac{\mathrm{d}}{\mathrm{d}x} \arctan\left(\frac{1}{x}\right) \\
+&= \frac{-1}{x^2}\frac{1}{1 + \frac{1}{x^2}} & (\text{Chain rule})\\
+&= \frac{-1}{x^2 + 1}
+```
+ 
+for all $x \neq 0.$ Since $g'(0) = -1,$ it follows that $g'(x) = \frac{-1}{1 + x^2}$ for all $x \in \mathbb{R},$ and thus $F'(x)$ exists. Therefore, 
+
+``` latex
+f(x)= \frac{1}{\pi} \cdot g'(x)  = \frac{1}{\pi}\frac{1}{1 + x^2}  
+```
+and $X$ is Cauchy-distributed. 
+
+ 
+---
+> id: normal-distribution
+### Normal distribution
+
+Because of the *central limit theorem*, which we will discuss in the next section, the normal distribution plays a central role in probability and statistics. 
+
+ 
+::: .definition
+**Definition** (Normal distribution)  
+
+    img(src="images/gaussian-density.svg" width=280 style="float: right;")
+
+For $\mu \in \mathbb{R}$ and $\sigma \geq 0$, we define the **normal distribution**, denoted $\mathcal{N}(\mu,\sigma)$, to be the probability measure on $\mathbb{R}$ whose density function is 
+
+``` latex
+f_{\mu,\sigma}(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{-(x-\mu)^2/(2\sigma^2)}.     
+```
+ 
+The **standard normal distribution** is $\mathcal{N}(0,1)$. 
+:::
+
+
+::: .exercise
+**Exercise**  
+Show that if $Z$ is a standard normal random variable and $\sigma > 0$, then the distribution of $\sigma Z + \mu$ is $\mathcal{N}(\mu,\sigma)$. 
+:::
+
+    x-quill
+
+---
+> id: step-shift-variable
+
+*Solution*. Let $F$ and $f$ be the CDF and PDF of $\sigma Z + \mu,$ respectively. We need to show that 
+
+``` latex
+f(x) = \frac{1}{\sigma \sqrt{2\pi}}e ^{-(x - \mu)^2/ (2\sigma^2)} 
+```
+ for all $x \in \mathbb{R}.$ Now, for any $x \in \mathbb{R},$ we have 
+
+``` latex
+F(x) = \mathbb{P}(\sigma Z + \mu \leq x) &= \mathbb{P}\left(Z \leq \frac{x - \mu}{\sigma} \right) \\
+  & = \int_{-\infty}^{\frac{x - \mu}{\sigma}}\frac{1}{\sqrt{2\pi}} e^{-t^2 / 2} dt.
+```
+
+But $f(x) = \frac{\mathrm{d}}{\mathrm{d}x} F(x)$ whenever the derivative exists. Therefore 
+
+``` latex
+f(x) &= \frac{\mathrm{d}}{\mathrm{d}x} \int_{-\infty}^{\frac{x - \mu}{\sigma}}\frac{1}{\sqrt{2\pi}} e^{-t^2 / 2} dt \\
+& = \frac{1}{\sqrt{2\pi}} e^{-\left(\frac{x - \mu}{\sigma}\right)^2 / 2} \cdot \frac{\mathrm{d}}{\mathrm{d}x} \left({\frac{x - \mu}{\sigma}} \right) & (Chain \; rule) \\
+&= \frac{1}{\sigma \sqrt{2\pi}}e ^{-(x - \mu)^2/ (2\sigma^2)}
+```
+
+and thus $\sigma Z + \mu \thicksim \mathcal{N}(\mu, \sigma).$
+
+ 
+::: .example
+**Example**  
+In terms of the cumulative distribution function $\Phi$ of the standard normal, express the probability that a normally distributed random variable with mean 1 and variance 3 is between 2 and 4. 
+:::
+
+[Continue](btn:next)
+
+---
+> id: step-cdf
+
+
+*Solution*. Let's denote by $X$ a random variable with mean $1$ and variance $3$. Then $Z = (X-1)/\sqrt{3}$ is a standard normal random variable. Furthermore, $X$ is between 2 and 4 if and only if $Z$ is between $(2-1)/\sqrt{3} = 1/\sqrt{3}$ and $(4-1)/\sqrt{3} = 3/\sqrt{3}$. 
+
+Therefore, the desired probability is 
+
+``` latex
+\mathbb{P}(Z \in (1/\sqrt{3}, 3/\sqrt{3}) = \Phi(3/\sqrt{3}) -
+    \Phi(1/\sqrt{3}). 
+```
+
+We can compute this probability in Julia as follows: 
+
+    pre(julia-executable)
+      | using Distributions
+      | Φ(x) = cdf(Normal(),x)
+      | Φ(3/sqrt(3)) - Φ(1/sqrt(3))
+
+We find that the probability is approximately $0.24$. 
+
+[Continue](btn:next)
+
+---
+> id: step-sum-two-normals
+ 
+If we sum two independent random variables with means $\mu\_1$ and $\mu\_2$ and variances $\sigma\_1^2$ and $\sigma\_2^2$, respectively, then the mean and variance of the resulting sum are $\mu\_1 + \mu\_2$ and $\sigma\_1^2 + \sigma\_2^2$. Remarkably, if the random variables being summed are normal, then the sum is *also normal*: 
+
+ 
+::: .theorem
+**Theorem**  
+If $X\_1$ and $X\_2$ are independent normal random variables with distributions $\mathcal{N}(\mu\_1, \sigma\_1^2)$ and $\mathcal{N}(\mu\_2, \sigma\_2^2)$, respectively, then the sum $X\_1 + X\_2$ has distribution $\mathcal{N}(\mu\_1 + \mu\_2, \sigma\_1^2 + \sigma\_2^2)$. 
+:::
+
+ 
+::: .exercise
+**Exercise**  
+Suppose that $n\geq 1$ and that $X\_1, X\_2, \ldots, X\_n$ are independent standard normal random variables. Find the distribution of $\frac{X\_1 + X\_2 + \cdots + X\_n}{\sqrt{n}}$. 
+:::
+
+    x-quill
+
+---
+> id: step-distribution-normal-mean
+
+*Solution*. We know that $X\_1+X\_2$ is normal with mean 0 and variance $1+1 = 2$. Then $X\_1+X\_2+X\_3$, which is a sum of $X\_1+X\_2$ and $X\_3$ is normal with mean 0 and variance $2 + 1 = 3$. 
+
+Continuing in this way, we find that $X\_1 + \cdots + X\_n$ is a normal random variable with mean 0 and variance $n$. Dividing this random variable by $\sqrt{n}$ divides its variance by $\sqrt{n}^2 = n$, so we find that the distribution of $\frac{X\_1 + X\_2 + \cdots + X\_n}{\sqrt{n}}$ is $\mathcal{N}(0,1)$. 
+
+ 
+--- 
+> id: multivariate-normal-distribution
+### The multivariate normal distribution
+
+If $\boldsymbol{Z} = (Z\_{1},Z\_{2},\ldots,Z\_{n})$ is an independent sequence of standard normal random variables, $A$ is an $m\times n$ matrix of constants, and $\boldsymbol{\mu}$ is an $m\times 1$ vector of constants, then the vector 
+
+``` latex
+\boldsymbol{X} = A\boldsymbol{Z} + \boldsymbol{\mu} 
+```
+is said to have **multivariate normal distribution**. 
+
+If $\Sigma$ is invertible, then the pdf of $\boldsymbol{X}$ is given by 
+
+``` latex
+f_{\boldsymbol{X}}(\boldsymbol{x}) = \frac{1}{\sqrt{\det(2\pi \Sigma)}}
+    \exp\left(-\frac{1}{2}(\boldsymbol{x} - \boldsymbol{\mu})^T \Sigma^{-1}
+      (\boldsymbol{x} - \boldsymbol{\mu})\right).
+```
+
+The figure below shows a graph of this density as well as 1000 samples from the distribution of $A\boldsymbol{Z} + \boldsymbol{\mu}$, where $A = \begin{bmatrix} 1 & \frac{1}{2} \\ \frac{1}{2} & 1 \end{bmatrix}$ and $\boldsymbol{\mu} = \begin{bmatrix} 3 \\ 3 \end{bmatrix}$
+    
+    center
+      figure
+        img(src="images/multinormal.svg" width=380)
+
+        p.caption A graph of a multivariable normal density 
+
+ 
+::: .exercise
+**Exercise**  
+Show that the covariance matrix of a multivariate normal random vector $\boldsymbol{X} = A\boldsymbol{Z} + \boldsymbol{\mu}$ is $\Sigma = A A^T$ and that its mean is $\boldsymbol{\mu}$. 
+
+Note: you may use the following properties: $\operatorname{Cov}(Y\_1, Y\_2 + c) = \operatorname{Cov}(Y\_1, Y\_2)$ for any constant $c$ and any random variables $Y\_1$ and $Y\_2$, and if $\mathbf{Y}$ is an $n \times p$ random matrix and $M$ is an $m \times n$ matrix of constants, then $\mathbb{E}[M\mathbf{Y}] = M\mathbb{E}[\mathbf{Y}]$. 
+:::
+
+    x-quill
+
+---
+> id: step-multivariate-covariance-solution
+
+*Solution*. Before showing that $\Sigma = AA',$ we first make two observations. First, for any $c \in \mathbb{R}$ and two real-valued random variables $Y\_1$ and $Y\_2,$ we have 
+
+``` latex
+\operatorname{Cov}(Y_1, Y_2 + c) &= \mathbb{E}[Y_1(Y_2 + a)] - \mathbb{E}[Y_1](\mathbb{E}[Y_2 + c])\\
+&= \mathbb{E}[Y_1Y_2 + cY_1] - \mathbb{E}[Y_1](\mathbb{E}[Y_2 + c]) \\
+&= \mathbb{E}[Y_1 Y_2] + c\mathbb{E}[Y_1] -  \mathbb{E}[Y_1](\mathbb{E}[Y_2] + c) & \text{(Linearity)} \\
+&= \mathbb{E}[Y_1 Y_2] - \mathbb{E}[Y_1] \mathbb{E}[Y_2] = \operatorname{Cov}(Y_1,Y_2).
+```
+
+Second, if $\mathbf{Y}$ is an $n \times p$ random matrix and $M$ is an $m \times n$ matrix of real constants, then $\mathbb{E}[M\mathbf{Y}] = M\mathbb{E}[\mathbf{Y}]$ because 
+
+``` latex
+\mathbb{E}[(M\mathbf{Y})_{ij}] &= \mathbb{E}\left[\sum_{k=1}^nM_{ik}\mathbf{Y}_{kj}\right] \\
+&= \sum_{k=1}^nM_{ik}\mathbb{E}[\mathbf{Y}_{kj}] & \text{(Linearity)}\\
+&=(M\mathbb{E}[\mathbf{Y}])_{ij}.
+```
+
+A similar argument also shows that $\mathbb{E}[\mathbf{Y}B] = \mathbb{E}[\mathbf{Y}]B$ for any $p \times r$ matrix $B$ of real constants. 
+
+Now, from the first observation, we deduce that $\Sigma$ is the same as the covariance matrix of $A\mathbf{Z}.$ By the second observation, we find $\mathbb{E}[A\mathbf{Z}] = A\mathbb{E}[\mathbf{Z}]= \mathbf{0}$ because $\mathbb{E}[\mathbf{Z}] = \mathbf{0}$. Combining these with Exercise <a name=exer:cov-mat></a>, we find that 
+
+``` latex
+\Sigma &= \mathbb{E}[(A\mathbf{Z}) (A\mathbf{Z})'] \\
+&= \mathbb{E}[A\mathbf{Z}\mathbf{Z}' A'] \\
+&= A \mathbb{E}[\mathbf{Z}\mathbf{Z}'] A'.
+```
+
+Now, $\mathbb{E}[\mathbf{Z}\mathbf{Z}']$ is the covariance matrix of $\mathbf{Z},$ which is the identity matrix in $\mathbb{R}^n$ because the components of $\mathbf{Z}$ are independent standard normals. Therefore, $\Sigma = AA'$ required. 
+
 
 ---
 > id: central-limit-theorem
@@ -2737,19 +3549,19 @@ Suppose that the percentage of residents in favor of a particular policy is 64%.
 
 *Solution*. Let $X\_i$ be the $i$ th sample from the population (1 if the resident is in favor, and 0 otherwise). Then the proportion of the residents in favor of the policy is $\overline{X} = \frac{X\_1+X\_2 + \cdots +X\_n}{n}.$ Each $X\_i$ is a Bernoulli $(0.64)$ random variable with $\mathbb{E}[X\_i] = 0.64$ and $\sigma(X\_i)= \sqrt{0.64(1 - 0.64)} = 0.48$. 
 
-We need to find $\varepsilon > 0$ such that $\mathbb{P}\left(0.64 - \varepsilon \leq \overline{X} \leq 0.64 + \varepsilon\right) = 0.95.$ Equivalently, we need to find $\varepsilon > 0$ such that $\mathbb{P}\left(\frac{-n\varepsilon}{\sigma(X\_1)\sqrt{n}} \leq \frac{X\_1+X\_2+ \cdots + X\_n - 0.64n}{\sigma(X\_1)\sqrt{n}} \leq \frac{n\varepsilon}{\sigma(X\_1)\sqrt{n}}\right) = 0.95.$ Now by the Central Limit Theorem, $\frac{X\_1+X\_2+ \cdots + X\_n - 0.64n}{\sigma(X\_1)\sqrt{n}} \thicksim \mathcal{N}(0, 1)$ for $n$ large. Since $\mathbb{P}(-1.96 \leq Z \leq 1.96) \approx 0.95$ for $Z \thicksim \mathcal{N}(0, 1),$ we look to solve 
+We need to find $\operatorname{Var}epsilon > 0$ such that $\mathbb{P}\left(0.64 - \operatorname{Var}epsilon \leq \overline{X} \leq 0.64 + \operatorname{Var}epsilon\right) = 0.95.$ Equivalently, we need to find $\operatorname{Var}epsilon > 0$ such that $\mathbb{P}\left(\frac{-n\operatorname{Var}epsilon}{\sigma(X\_1)\sqrt{n}} \leq \frac{X\_1+X\_2+ \cdots + X\_n - 0.64n}{\sigma(X\_1)\sqrt{n}} \leq \frac{n\operatorname{Var}epsilon}{\sigma(X\_1)\sqrt{n}}\right) = 0.95.$ Now by the Central Limit Theorem, $\frac{X\_1+X\_2+ \cdots + X\_n - 0.64n}{\sigma(X\_1)\sqrt{n}} \thicksim \mathcal{N}(0, 1)$ for $n$ large. Since $\mathbb{P}(-1.96 \leq Z \leq 1.96) \approx 0.95$ for $Z \thicksim \mathcal{N}(0, 1),$ we look to solve 
 
 ``` latex
-\frac{n\varepsilon}{\sigma(X_1)\sqrt{n}} \approx 1.96.
+\frac{n\operatorname{Var}epsilon}{\sigma(X_1)\sqrt{n}} \approx 1.96.
 ```
 
 Therefore, 
 
 ``` latex
-\varepsilon = 1.96 \frac{\sigma(X_1)}{\sqrt{n}} = \frac{0.9408}{\sqrt{n}}
+\operatorname{Var}epsilon = 1.96 \frac{\sigma(X_1)}{\sqrt{n}} = \frac{0.9408}{\sqrt{n}}
 ```
       
-and with probability 95%, the proportion of polled residents in favor of the policy will be in $I = [0.64 - \varepsilon, 0.64 + \varepsilon].$ 
+and with probability 95%, the proportion of polled residents in favor of the policy will be in $I = [0.64 - \operatorname{Var}epsilon, 0.64 + \operatorname{Var}epsilon].$ 
 
 For the second part, we want to find $n$ such that $\mathbb{P}(0.64 - 0.02 \leq \overline{X} \leq 0.64 + 0.02) \geq 0.95.$ From above, we find that $0.02 \geq \frac{0.9408}{\sqrt{n}}$ and thus $n \geq \left(\frac{0.9408}{0.02}\right)^2  \approx 2212.8.$ Therefore at least 2,213 residents must be polled, according to the normal approximation. 
 

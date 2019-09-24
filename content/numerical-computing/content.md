@@ -691,14 +691,15 @@ and the relative change in input is $\Delta a / a$. Dividing these two quantitie
 More generally, if the initial data is in $\mathbb{R}^n$ and the solution is in $\mathbb{R}^m$, then the condition number is defined to be
 
 ``` latex
-\kappa(\mathbf{a}) = \frac{|\mathbf{a}|\|J(\mathbf{a})\|}{|\mathbf{S}(\mathbf{a})|},
+\kappa(\mathbf{a}) = \frac{|\mathbf{a}|\|\frac{\partial S}{\partial \mathbf{a}}(\mathbf{a})\|}{|\mathbf{S}(\mathbf{a})|},
 ```
-where $J(\mathbf{a})$ is the Jacobian matrix of $\mathbf{S}$ and $\|J(\mathbf{a})\|$ is its operator norm. The operator norm of the Jacobian is the appropriate generalization of the norm of the derivative of $\mathbf{S}$ since it measures how $\mathbf{S}$ stretches space near $\mathbf{a}$. 
+where $\| \cdot \|$ denotes the [operator norm](gloss:operatornorm). The operator norm of the derivative is the appropriate generalization of the norm of the derivative of $\mathbf{S}$ since it measures the maximum stretching factor of $\mathbf{S}$ near $\mathbf{a}$. 
 
 [Continue](btn:next)
 
 ---
 > id: step-condition-number-large
+#### Well conditioned and ill-conditioned problems
 
 If the condition number of a problem is very large, then small errors in the problem data lead to large changes in the result. A problem with large condition number is said to be **ill-conditioned**. Unless the initial data can be specified with correspondingly high precision, it will not be possible to solve the problem meaningfully.
 
@@ -720,7 +721,7 @@ x \\ y
 \end{bmatrix}
 ```
 
-Find the values of $a$ for which this matrix is ill-conditioned.
+Find the values of $a$ for which solving this equation for $[x,y]$ is ill-conditioned.
 :::
 
 [Continue](btn:next)
@@ -741,7 +742,7 @@ Find the values of $a$ for which this matrix is ill-conditioned.
         \frac{5 a - 24}{9 \left(a - 2\right)}
       \end{bmatrix}
 ```
-Using the formula for $\kappa$ above, we can work out that
+Using the formula for $\kappa$ above, we can work out (after several steps) that
 
 ``` latex
 \kappa(a) = \frac{7|a|\sqrt{13}}{|a-2|\sqrt{(5a-24)^2+441}}.
@@ -836,9 +837,37 @@ Interpret your results by explaining how to choose two vectors with small relati
 ---
 > id: solution-12
 
-*Solution*. The Jacobian of the transformation $\mathbf{x} \mapsto A \mathbf{x}$ is the matrix $A$ itself, and the operator norm of $A$ is equal to its largest singular value. Therefore, to maximize $\kappa$, we minimize the ratio $|S(\mathbf{a})|/|\mathbf{a}|$. This ratio is minimized when $\mathbf{a}$ is the right singular vector with the least singular value. Therefore, the maximum possible value of $\kappa$ is the ratio of the largest singular value of $A$ to the smallest singular value of $A$.
+*Solution*. The derivative of the transformation $\mathbf{x} \mapsto A \mathbf{x}$ is the matrix $A$ itself, and the operator norm of $A$ is equal to its largest singular value. Therefore, to maximize $\kappa$, we minimize the ratio $|S(\mathbf{a})|/|\mathbf{a}|$. This ratio is minimized when $\mathbf{a}$ is the right singular vector with the least singular value. Therefore, the maximum possible value of $\kappa$ is the ratio of the largest singular value of $A$ to the smallest singular value of $A$.
 
 [Continue](btn:next)
+
+::: .exercise
+**Exercise**  
+Find the condition number of the function $\mathbf{x}\mapsto A\mathbf{x}$, where `{jl} A = [1 2; 3 4]` and show that there is a vector $\mathbf{v}$ and an error $\mathbf{e}$ for which the relative error is indeed magnified by approximately the condition number of $A$.
+:::
+
+    pre(julia-executable)
+      | using LinearAlgebra
+      | A = [1 2; 3 4]
+    x-quill
+
+---
+> id: step-condition-matrix-solution
+
+*Solution*. We choose `{jl} v` and `{jl} e` to be the columns of $V$ in the singular value decomposition of `{jl} A`:
+
+    pre(julia-executable)
+      | using LinearAlgebra
+      | A = [1 2; 3 4]
+      | U, S, V = svd(A)
+      | σmax, σmin = S
+      | κ = σmax/σmin
+      | v = V[:,2]
+      | e = V[:,1]
+      | rel_error_output = norm(A*(v+e) - A*v)/norm(A*v)
+      | rel_error_input = norm(v + e - v) / norm(v)
+      | rel_error_output / rel_error_input, κ
+
 
 ---
 > id: step-hazards
@@ -921,8 +950,8 @@ Guess what value the following code block returns. Run it and see what happens. 
 :::
 
     pre(julia-executable)
-      | function increment_till(t,step=0.1)
-      |   x = 0.0
+      | function increment_till(t, step=0.1)
+      |   x = 0.5
       |     while x < t
       |       x += step
       |     end
@@ -935,7 +964,12 @@ Guess what value the following code block returns. Run it and see what happens. 
 ---
 > id: solution-14
 
-*Solution*. It's reasonable to guess that the returned value will be 1.0. However, it's actually approximately 1.1. The reason is that adding the Float64 representation of 0.1 to 0.0 ten times results in a number slightly smaller than 1.0.
+*Solution*. It's reasonable to guess that the returned value will be 1.0. However, it's actually approximately 1.1. The reason is that adding the Float64 representation of 0.1 ten times starting from 0.0 results in a number slightly *smaller* than 1.0. It turns out that 0.6 (the real number) is 20% of the way from the Float64 tick before it to the Float64 tick after it:
+
+    pre(julia-executable)
+      | (1//10 - floor(2^53 * 1//10) // 2^53) * 2^53
+
+This means that the Float64 sum is $\frac{1}{5}2^{-53}$ less than the mathematical sum after adding 0.1 once, then $\frac{2}{5}2^{-53}$ less after adding 0.1 again, and so on. By the time we we get to $1$, we've lost a full tick spacing so after 5 iterations, $x$ is equal to $1-2^{-53}$. 
 
 We could use 1/8 = 0.125 instead of 0.1 to get the expected behavior, since small inverse powers of 2 and their sums with small integers can be represented exactly as 64-bit floating points numbers.
 
@@ -1234,7 +1268,7 @@ Gradient descent is fundamentally local: it is not guaranteed to find the global
 
 ::: .exercise
 **Exercise**  
-Consider the function $f(x) = (x^4 - 2x^3 - x^2 + 3x -1)e^{-x^2/4}$. Implement the gradient descent algorithm for finding the minimum of this function.
+Consider the function $f(x) = (x^4 - 2x^3 - x^2 + 3x -1)e^{-x^2/4}$. Implement the gradient descent algorithm for finding the minimum of this function. To take derivatives, you can define a derivative function like `{jl} df(x) = ForwardDiff.derivative(f,x)`. 
 
     img(src="images/polynomial-minimize.svg" alt="figure" width="400px" style="float: right;")
 
@@ -1243,6 +1277,7 @@ Consider the function $f(x) = (x^4 - 2x^3 - x^2 + 3x -1)e^{-x^2/4}$. Implement t
 :::
 
     pre(julia-executable)
+      | using ForwardDiff
       | 
 
     x-quill
@@ -1253,17 +1288,17 @@ Consider the function $f(x) = (x^4 - 2x^3 - x^2 + 3x -1)e^{-x^2/4}$. Implement t
 *Solution*. The following is an implementation of gradient descent:
 
     pre(julia-executable)
-      | using LinearAlgebra
+      | using LinearAlgebra, ForwardDiff
       |
       | function graddescent(f,x₀,ϵ,threshold)
-      |     df(x) = f([x 1; 0 x])[1,2] # auto diff
+      |     df(x) = ForwardDiff.derivative(f,x)
       |     x = x₀
       |     while abs(df(x)) > threshold
       |         x = x - ϵ*df(x)
       |     end
       |     x
       | end
-      | f(t) = exp(-t^2/4) * (t^4 - 2t^3 - t^2 + 3t - I)
+      | f(t) = exp(-t^2/4) * (t^4 - 2t^3 - t^2 + 3t - 1)
 
 Trying various values of $x\_0$, and looking at the graph, we conjecture that the global minimum is reached when the starting value $x\_0$ is between the first two points where $f$ has a local maximum (approximately $-2.83$ and $0.145$). Between $0.145$ and the next local maximum (approximately $2.94$), the algorithm leads us to the local minimum around $x = 1.45$. Outside the interval from the first local maximum the last, the sequence of iterates appears to head off to $-\infty$ or $+\infty$.
 
