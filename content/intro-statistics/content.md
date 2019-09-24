@@ -429,6 +429,22 @@ Since we only know the density function in this case because we're in the contro
 
 One idea, which we will find is applicable in many statistical contexts, is to reserve one sample point and form an estimator which only uses the other $n-1$ samples. We evaluate this density approximation at the reserved sample point, and we repeat all of these steps for each sample in the data set. If the resulting density value is consistently very small, then our density estimator is being consistently "surprised" by the location of the reserved sample. This suggests that our $\lambda$ value is too large or too small. This idea is called **cross-validation**.
 
+---
+> id: kdecrossvalidate
+
+::: .exercise
+**Exercise**  
+Experiment with the sliders below to adjust the bandwidth $\lambda$ and the omitted point `i` to find a value of $\lambda$ you find satisfactory.
+
+{.text-center} `λ =`${λ}{λ|1|0.3,20,0.1} 
+
+{.text-center} `i = `${i}{i|1|1,4,1}
+
+    x-coordinate-system(x-axis="-5|10|2" y-axis="0|1.5|0.25")
+
+The density value at the omitted point is small when $\lambda$ is too small because [[the density is too concentrated at other points|the density is too spread out]], and the value is small when $\lambda$ is too large because [[the density is too spread out|the density is zero everywhere]]. 
+:::
+
 [Continue](btn:next)
 
 ---

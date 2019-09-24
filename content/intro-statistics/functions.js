@@ -49,3 +49,21 @@ export function tricubegraph($step) {
     $chart.setFunctions(fn);
   });
 }
+
+function estimator(xs, i, λ) {
+  const fn = tricube(λ);
+  return x => xs.filter((_,j) => j != i-1).map(xi=>fn(x-xi)).reduce((a,b)=>a+b,0)/5.0;
+}
+
+export function kdecrossvalidate($step) {
+  const $chart = $step.$("x-coordinate-system");
+  
+  const xs = [-3.2, 0.1, 0.2, 3.015, 4.5, 7.2];
+  const points = xs.map(p => new Point(p, 0));
+  
+  $step.model.watch(s => {
+    const fn = estimator(xs, s.i, s.λ);
+    $chart.setFunctions(fn);
+    $chart.drawPoints(points); 
+  });
+}
