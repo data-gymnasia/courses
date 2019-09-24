@@ -166,3 +166,75 @@ If you're looking for more inspiration, [Massive Science](https://massivesci.com
 - [Artificial intelligence isn’t a ‘black box.’ It’s a key to studying the brain](https://massivesci.com/articles/artificial-intelligence-human-brain-black-box-algorithm/)
 
 Hopefully now you feel prepared to write and [submit](https://forms.gle/G9BRkw9KunZSbyAN9) your summary of the paper.
+
+
+---
+> id: writing-technical
+
+## Technical Writing
+
+For this, choose a problem from another data gymnasia course or a Fall DSI course and submit:
+
+<!--  what length do we want?-->
+
+---
+> id: read-intro
+
+## Weapons of Math Destruction
+
+Prior to the start of classes in January, please read Weapons of Math Destruction by Cathy O'Neil.  
+There are copies in the DSI library and the book is available on amazon for a low price.  
+Contact the DSI staff if you have trouble obtaining a copy of the book.
+
+The next few parts will help you confirm your understanding of the book and the key takeaways from it that the course will rely on.
+Start by reading the introduction and chapter 1.
+
+[Continue](btn:next)
+
+---
+> id: wmd
+
+Cathy O'Neil defines three elements of a Big Data System that make it a WMD, those are:
+
+```
+    x-picker.list
+      .item.pill.bblue.md Scale
+      .item.pill.bblue.md(data-error="property of big data") Speed
+      .item.pill.bblue(data-error="property of big data")  Volume
+      .item.pill.bblue.md Damage
+      .item.pill.bblue.md Opacity
+      .item.pill.bblue(data-error="property of big data") Heterogeneity
+```
+
+---
+> id: healthymodel
+
+Describe what differentiates a healthy model from a WMD using the examples in chapter 1.
+
+```
+    x-quill
+```
+
+
+---
+> id: apply-wmd
+
+Now read through chapter 3 and address the following.
+
+
+Describe how the university ranking system is a WMD in terms of each of the components.
+
+Scale
+```
+    x-quill
+```
+
+Opacity
+```
+    x-quill
+```
+
+Damage
+```
+    x-quill
+```
