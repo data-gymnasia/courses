@@ -5,7 +5,7 @@ Data Gymnasia is a free [website](https://mathigon.org/data-gymnasia) for learni
 ## Getting started
 
 1. Run `npm` (the package manager for Javascript) from the command line to see if you have it installed already. If not, [download Node.js](https://nodejs.org/en/), which includes `npm`. 
-2. Clone this repo by running `git clone git@github.com:BrownDSI/data-gymnasia.git` from the command line.
+2. Clone this repo by running `git clone git@github.com:data-gymnasia/courses.git` from the command line.
 3. Run `cd data-gymnasia` to navigate into the directory, and then run `npm install` to install the Javascript dependencies. 
 4. Run `npm start`. Wait for the assets to be compiled, and then open [localhost:8081](http://localhost:8081) to view the website. The server will automatically watch for file changes and recompile. 
 5. Every course is a subfolder in the [content](content) directory. The URL of the
