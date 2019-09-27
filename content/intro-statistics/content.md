@@ -1184,14 +1184,42 @@ Suppose that $\nu$ is the uniform distribution on $[0,1]$. Generate 75 samples f
       | X = rand(75)
       | std(median(sample(X, 75)) for _ in 1:10^6) # estimate T(ν̂)
       | std(median(rand(75)) for _ in 1:10^6) # estimate T(ν)
-
+      
 ---
 > id: maximum-likelihood-estimation
 ## Maximum Likelihood Estimation
 
-So far we've only had one idea for building an estimator for a statistical functional $T$, which is to plug $\widehat{\nu}$ into $T$. In this section, we'll learn another approach which is quite general and has some compelling properties. 
+So far we've had two ideas for building an estimator for a statistical functional $T$: one is to plug $\widehat{\nu}$ into $T$, and the other—kernel density estimation—is closely related (we just smear the probability mass out around each observed data point before substituting into $T$). In this section, we'll learn another approach which is suitable for parametric models and has some compelling properties.
 
-Consider a parametric family $\\{f\_{\boldsymbol{\theta}}(x) :  \boldsymbol{\theta} \in \mathbb{R}^d\\}$ of PDFs or PMFs. Given $\mathbf{x} \in \mathbb{R}^n$, the **likelihood** $\mathcal{L}\_{\mathbf{x}}: \mathbb{R}^d \to \mathbb{R}$ is defined by 
+[Continue](btn:next)
+
+---
+> id: step-intro-log-likelihood
+
+Let's revisit the example from the first section where we looked for the Gaussian distribution which best fits the available data. This time, we'll include a "goodness score" so you can get a lot more precise. The goodness function we'll use is called the **log likelihood** function, which we define to be the log of the product of the density function evaluated at each of the observed data points. This function rewards density functions which have larger values at the observed data points and penalizes functions which have very small values at some of the points. This is a rigorous way of capturing the idea that the a given density function is consonant with the observed data.
+
+Adjust the knobs to get the goodness score as high as possible (hint: you can get it up to about $-135.8$). 
+
+---
+> id: gaussiandensity_mle
+
+{.text-center} `μ =`${μ}{μ|60|55,75,0.1}
+
+{.text-center} `σ =`${σ}{σ|2|2,8,0.05}
+
+{.text-center} log likelihood = ${Math.round(100*LL)/100}
+
+    x-coordinate-system(x-axis="55|100|5" y-axis="0|0.3|0.1")
+    
+The best μ value is [[66±0.4]], and the best σ value is [[3.7±0.2]]. 
+
+---
+> id: step-explanation-intro-MLE
+#### Definitions
+
+Consider a parametric family $\\{f\_{\boldsymbol{\theta}}(x) :  \boldsymbol{\theta} \in \mathbb{R}^d\\}$ of PDFs or PMFs. For example, the parametric family might consist of all Gaussian distributions, all geometric distributions, or all discrete distributions on a particular finite set. 
+
+Given $\mathbf{x} \in \mathbb{R}^n$, the **likelihood** $\mathcal{L}\_{\mathbf{x}}: \mathbb{R}^d \to \mathbb{R}$ is defined by 
 
 ``` latex
 \mathcal{L}_{\mathbf{x}}(\boldsymbol{\theta}) = f_{\boldsymbol{\theta}}(x_{1})f_{\boldsymbol{\theta}}(x_{2})\cdots
@@ -1199,6 +1227,18 @@ f_{\boldsymbol{\theta}}(x_{n}).
 ```
 
 The idea is that if $\mathbf{X}$ is a vector of $n$ independent samples drawn from $f\_{\boldsymbol{\theta}}(x)$, then $\mathcal{L}\_{\mathbf{X}}(\boldsymbol{\theta})$ is small or zero when $\boldsymbol{\theta}$ is not in concert with the observed data. 
+
+[Continue](btn:next)
+
+Because likelihood is defined to a product of many factors, its values are often extremely small, and we often encounter overflow issues. Furthermore, sums are often easier to reason about than products. For both of these reasons, we often compute the logarithm of the likelihood instead: 
+``` latex
+\log(\mathcal{L}_{\mathbf{x}}(\boldsymbol{\theta}) )= \log(f_{\boldsymbol{\theta}}(x_{1})) + \log(f_{\boldsymbol{\theta}}(x_{2})) + \cdots
++ \log(f_{\boldsymbol{\theta}}(x_{n})).
+```
+Maximizing the likelihood is the same as maximizing the log likelihood because the natural logarithm is a monotonically increasing function. 
+
+---
+> id: step-mle-examples
 
 ::: .example
 **Example**  
@@ -1208,6 +1248,7 @@ Suppose $x\mapsto f(x;\theta)$ is the density of a uniform random variable on $[
 [Continue](btn:next)
 
 ---
+
 > id: step-basic-likelihood-solution
 
 *Solution*. The likelihood at 5 is zero, since $f\_{5}(x\_{3}) = 0$. The likelihood at $10^6$ is very small, since $\mathcal{L}(10^6) = (1/10^6)^4 = 10^{-24}$. The likelihood at 7 is larger: $(1/7)^4 = 1/2401$. 
@@ -1217,20 +1258,29 @@ Suppose $x\mapsto f(x;\theta)$ is the density of a uniform random variable on $[
 ---
 > id: step-propose-MLE
 
-We can see from this example that likelihood has the property of being zero or small at implausible values of $\boldsymbol{\theta}$, and larger at more reasonable values. Thus we propose the **maximum likelihood estimator** 
+As illustrated in this example, likelihood has the property of being zero or small at implausible values of $\boldsymbol{\theta}$, and larger at more reasonable values. Thus we propose the **maximum likelihood estimator** 
 
 ``` latex
 \widehat{\boldsymbol{\theta}}_{\mathrm{MLE}} = \operatorname{argmax}_{\boldsymbol{\theta} \in
 \mathbb{R}^d}\mathcal{L}_{\mathbf{X}}(\boldsymbol{\theta}).
 ```
+
+[Continue](btn:next)
+
+---
+> id: step-gaussian-mle-example
  
 ::: .example
 **Example**  
 Suppose that $x\mapsto f(x;\mu,\sigma^2)$ is the normal density with mean $\mu$ and variance $\sigma^2$. Find the maximum likelihood estimator for $\mu$ and $\sigma^2$. 
 :::
 
+[Continue](btn:next)
 
-*Solution*. The maximum likelihood estimator is the minimizer of the logarithm of the likelihood function, which is 
+---
+> id: step-gaussian-mle-solution
+
+*Solution*. The maximum likelihood estimator is the minimizer of the logarithm of the likelihood function, which works out to
 
 ``` latex
 -\frac{n}{2}\log 2\pi - n \log \sigma - \frac{n}{2}\log 2\pi - n
@@ -1243,20 +1293,106 @@ Setting the derivatives with respect to $\mu$ and $\sigma^2$ equal to zero, we f
 [Continue](btn:next)
 
 ---
+> id: step-mle-poisson
+
+::: .exercise
+**Exercise**  
+Suppose $x$ follows a Poisson distribution with parameter $\lambda$; that is, $x\mapsto P(X = x) = \frac{\lambda^x e^{-\lambda}}{x!}$. 
+
+Verify that
+``` latex
+\log (\mathcal{L}_{\mathbf{X}}(\lambda)) = \log(\lambda) \sum_{i = 1}^n X_i - n\lambda - \sum_{i = 1}^n \log(X_i!).
+``` 
+Show that it follows the maximum likelihood estimator $\hat{\lambda} = \bar{X}$, the mean of the observations, and explain why this makes sense intuitively.
+:::
+
+
+::: .example
+**Example**  
+Suppose  $y_i = \beta_1 x_i + \epsilon_i$ for $i = 1, 2, \cdots, n$, where $\epsilon_i \overset{\text{i.i.d}}{\sim} \mathcal{N}(0, \sigma^2)$, and $\beta_i$ is the only unknown parameter ($\sigma$ is known, and $x_i$'s are given).  Show that the least squares estimator for $\beta_1$ is the same as the MLE for $\beta_1$ by making observations about your log likelihood.
+:::
+*Solution*. 
+Verify that
+```latex
+\log (\mathcal{L}_{\mathbf{X}}(\beta_1)) = \sum_{i = 1}^n \log(\frac{1}{\sqrt{2\pi \sigma^2}}) - \frac{(y_i - x_i\beta_1)^2}{2\sigma^2}. 
+```
+Reason that the only terms you need to care about are quantities involving $\beta$. Complete the proof by observing that one quantity of interest in least squares estimation shows up in this expression,  and hence the estimators from least squares and maximum likelihood methods agree.
+
+
+::: .exercise
+**Exercise**  
+Suppose we have data points $x_1, x_2, \cdots , x_n$. Give an intuitive argument for why it's not surprising that the MLE for a uniform distribution $\mathcal{U}(0,a)$ is $\hat{a} = \text{max}({x_1, x_2, ..., x_n})$. Do the same for the statement that the MLE for a binomial distribution with parameter $p$is $\hat{p} = \frac{\sum x_i} {n}$, or the empirical rate of success. Prove the first statement.
+
+:::
+
+
+[Continue](btn:next)
+
+---
 > id: step-MLE-properties
 #### Properties of the Maximum Likelihood Estimator
 
 MLE enjoys several nice properties: under certain regularity conditions, we have  
-* **Consistency**: $\mathbb{E}[(\widehat{\theta}\_{\mathrm{MLE}} - \theta)^2] \to 0$ as the number of samples goes to $\infty$. 
-* **Asymptotic normality**: $(\widehat{\theta}\_{\mathrm{MLE}} - \theta)/\sqrt{\operatorname{Var} \widehat{\theta}\_{\mathrm{MLE}}}$ converges to $\mathcal{N}(0,1)$ as the number of samples goes to $\infty$. 
-* **Asymptotic optimality**: the MSE of the MLE converges to 0 approximately as fast as the MSE of any other consistent estimator. 
+* **Consistency**: $\mathbb{E}[(\widehat{\theta}\_{\mathrm{MLE}} - \theta)^2] \to 0$ as the number of samples goes to $\infty$. In other words, the average squared difference between the maximum likelihood estimator and the parameter it's estimating converges to zero. 
+* **Asymptotic normality**: $(\widehat{\theta}\_{\mathrm{MLE}} - \theta)/\sqrt{\operatorname{Var} \widehat{\theta}\_{\mathrm{MLE}}}$ converges to $\mathcal{N}(0,1)$ as the number of samples goes to $\infty$. This means that we can calculate good confidence intervals for the maximum likelihood estimator, assuming we can accurately approximate its mean and variance. 
+* **Asymptotic optimality**: the MSE of the MLE converges to 0 approximately as fast as the MSE of any other consistent estimator. Thus the MLE is not wasteful in its use of data to produce an estimate. 
 
-Potential difficulties with MLE:  
-* **Computational difficulties**. It might be difficult to work out where the maximum of the likelihood occurs, either analytically or numerically. 
-* **Misspecification**. The MLE may be inaccurate if the distribution of the samples is not in the specified parametric family. 
-* **Unbounded likelihood**. If the likelihood function is not bounded, then $\widehat{\theta}\_{\mathrm{MLE}}$ is not well-defined. 
+::: .example
+**Example**  
+Show that the plug-in variance estimator for a sequence of i.i.d.\ samples from a Gaussian distribution $\mathcal{N}(\mu, \sigma^2)$ converges to $\sigma^2$ as $n\to\infty$. 
+:::
 
+[Continue](btn:next)
+
+---
+> id: step-MLE-consistency-solution
  
+*Solution*. We've seen that the plug-in variance estimator is the maximum likelihood estimator for variance. Therefore, it converges to $\sigma^2$ by MLE consistency. 
+
+[Continue](btn:next)
+
+---
+> id: step-MLE-optimality
+
+::: .exercise
+**Exercise**  
+Show that it is not possible to estimate the mean of a distribution in a way that converges to the true mean at a rate asymptotically faster than $1/\sqrt{n}$, where $n$ is the number of observations. 
+:::
+
+    x-quill
+
+---
+> id: step-MLE-optimality-solution
+
+*Solution*. The sample mean is the maximum likelihood estimator, and it converges to the mean at a rate proportional to the inverse square root of the number of observations. Therefore, there is not another estimator which converges with an asymptote rate faster than that. 
+
+[Continue](btn:next)
+
+---
+> id: step-MLE-caution
+
+The maximum likelihood estimator is not a panacea. There are several challenges that using MLE can lead to: 
+
+* **Computational difficulties**. It might be difficult to work out where the maximum of the likelihood occurs, either analytically or numerically. This would be a particular concern in high dimensions (that is, if we have many parameters) and if the maximum likelihood function is [[nonconvex|convex|differentiable]].
+* **Misspecification**. The MLE may be inaccurate if the distribution of the samples is not in the specified parametric family. For example, if we assume the underlying distribution is Gaussian, when in fact its shape is not even close to that of a Gaussian, we very well might get unreasonable results. 
+* **Unbounded likelihood**. If the likelihood function is not bounded, then $\widehat{\theta}\_{\mathrm{MLE}}$ is not even defined: 
+
+::: .exercise
+**Exercise**  
+Consider the family of distributions on $\mathb{R}$ given by the set of density functions 
+``` latex
+\gamma \mathbf{1}_{[a,b]} + \delta \mathbf{1}_{[c,d]}, 
+```
+where $a < b < c < d$, and where $\gamma$ and $\delta$ are nonnegative real numbers such that $\gamma(b-a) + \delta(d-c) = 1$. Show that the likelihood function has no maximum for this family of functions.
+:::
+
+    x-quill
+
+---
+> id: mle-unbounded-example-solution
+
+*Solution*. We identify the largest value in our data set and choose $c$ to be $\epsilon$ less than tha value and $d$ to be $\epsilon$ more. We choose $a$ and $b$ so that the interval $[a,b]$ contains all of the other observations. Then we can send $\epsilon$ to zero and $\delta$ to $\infty$ to obtain an arbitrarily large likelihood value. 
+
 ---
 > id: hypothesis-testing
 ## Hypothesis Testing
@@ -1285,7 +1421,17 @@ We posit a null hypothesis that she isn't able to discern the pouring method, an
 
 *Solution*. Under the null hypothesis, the number of cups identified correctly is 4 with probability $1/\binom{8}{4} \approx 1.4\%$ and at least 3 with probability $17/70 \approx 24\%$. Therefore, at the 5% significance level, only a correct identification of all the cups would give us grounds to reject the null hypothesis. The $p$-value in that case would be 1.4%. 
 
- Failure to reject the null hypothesis is not necessarily evidence *for* the null hypothesis. The **power** of a hypothesis test is the conditional probability of rejecting the null hypothesis given that the alternative hypothesis is true. A $p$-value may be low either because the null hypothesis is true or because the test has low power. 
+[Continue](btn:next)
+
+---
+> id: step-failure-to-reject
+
+Failure to reject the null hypothesis is not necessarily evidence *for* the null hypothesis. The **power** of a hypothesis test is the conditional probability of rejecting the null hypothesis given that the alternative hypothesis is true. A $p$-value may be low either because the null hypothesis is true or because the test has low power. 
+
+[Continue](btn:next)
+
+---
+> id: step-wald-test
 
 ::: .definition
 **Definition**  
@@ -1295,9 +1441,7 @@ The **Wald test** is based on the normal approximation. Consider a null hypothes
 ::: .example
 **Example**  
 Consider the alternative hypothesis that 8-cylinder engines have lower fuel economy than 6-cylinder engines (with null hypothesis that they are the same). Apply the Wald test, using the `{r} mtcars` dataset available in R. 
-:::
-
- 
+::: 
 
 *Solution*. We frame the problem as a question about whether the *difference in means* between the distribution of 8-cylinder `{r} mpg` values and the distribution of 6-cylinder `{r} mpg` values is zero. We use the difference between the sample means $\overline{X}$ and $\overline{Y}$ of the two populations as an estimator of the difference in means. If we think of the records in the data frame as independent, then $\overline{X}$ and $\overline{Y}$ are independent. Since each is approximately normally distributed by the central limit theorem, their difference is therefore also approximately normal. So, let's calculate the sample mean and sample variance for the 8-cylinder cars and for the 6-cylinder cars. 
 
