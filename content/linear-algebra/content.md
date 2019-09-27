@@ -947,7 +947,7 @@ Hint: consider two two-dimensional spaces in $\mathbb{R}^3$: what are the possib
 ---
 > id: step-78
 
-However, the dimension of $V \cap W$ cannot be 1. To see this, assume that the dimension of $V \cap W$ is 1 and fix a basis $\\{\mathbf{v}\_1\\}$ for $V \cap W$ and extend it to a basis for $V$, and (separately) also extend it to a basis for $W$. By the [multiple extension principle](gloss:multiple-extension), this would give us a total of $1 + 8 + 3 = 12$ linearly independent vectors in $\mathbb{R}^{10}$, which is impossible. Likewise, the dimension of $V \cap W$ cannot be zero. 
+However, the dimension of $V \cap W$ cannot be 1. To see this, assume that the dimension of $V \cap W$ is 1 and fix a basis $\\{\mathbf{v}\_1\\}$ for $V \cap W$ and extend it to a basis for $V$, and (separately) also extend it to a basis for $W$. By the [multiple extension principle](gloss:multiple-extension), this would give us a total of $1 + 7 + 3 = 11$ linearly independent vectors in $\mathbb{R}^{10}$, which is impossible. Likewise, the dimension of $V \cap W$ cannot be zero. 
 
 ---
 > id: step-79
