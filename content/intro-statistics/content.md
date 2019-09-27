@@ -26,6 +26,8 @@ Each observation provides some evidence about where the probability mass of the 
 Brainstorm at least two ways to come up with a plausible density function given a list of observations like the one given above. 
 :::
 
+    x-quill
+
 [Continue](btn:next)
 
 ---
@@ -46,6 +48,11 @@ A simple way to obtain a probability distribution from a list of observations is
       |           xlabel="height (inches)",
       |           ylabel="count")
       
+[Continue](btn:next)
+
+---
+> id: step-histogram-distribution
+
 You might think of a histogram as just a visualization of the data, but it does give an actual distribution: we consider the function whose graph consists of the tops of the histogram bars, and we divide that function by the total number of observations: 
 
     pre(julia-executable)
@@ -57,6 +64,11 @@ You might think of a histogram as just a visualization of the data, but it does 
       |           ylabel="count",
       |           normed=true)
       
+[Continue](btn:next)
+
+---
+> id: step-bin-arbitrariness
+
 The arbitrariness in the density function we obtain by normalizing the histogram is hardly disguised: we would have gotten a different result if we'd used a different number of bins, and we could have even decided to use bins of different widths. Nevertheless, the histogram density approximates the actual distribution quite well if we have a lot of data: 
 
 ::: .exercise
@@ -113,7 +125,7 @@ Another way to come up with a density function for some data is to assume that t
 
 ::: .exercise
 **Exercise**  
-Use the sliders to find the μ and σ values for which the normal distribution $\mathcal{N}(\mu, \sigma)$ does the best job of fitting the data. Compare your results to the values obtained using standard methods for this problem by entering your choices for μ and σ in the last line below. 
+Use the sliders to find the μ and σ values for which the normal distribution $\mathcal{N}(\mu, \sigma)$ does the best job of fitting the data. (The meaning of the term "best" here is deliberately left to your discretion). Compare your results to the values obtained using standard methods for this problem by entering your choices for μ and σ in the last line below. 
 
 {.text-center} `μ =`${μ}{μ|60|55,75,0.5}
 
@@ -126,7 +138,10 @@ The best μ value is [[66±2]], and the best σ value is [[3.69±0.3]].
 
 [Continue](btn:next)
 
-Later in this course, we will discuss some approaches to choosing parameters optimally, and we'll leave behind the eyeball-it strategy we used in this exercise. 
+---
+> id: step-nonparametric-meaning
+
+Later in this course, we will discuss some approaches to choosing parameters optimally, and we'll leave behind the "eyeball-it" strategy we used in this exercise. 
 
 The histogram estimator is called a [[**nonparametric**|**parametric**]] estimation method, because it doesn't involve assuming that the distribution comes from a particular parametric family. The advantage is that histograms are flexible to represent a variety of density shapes, while parametric methods have the advantage of making more efficient use of data in the situations where the parametric assumption happens to be valid. 
 
@@ -143,7 +158,7 @@ For example, if we're able to collect the heights of many adults together along 
 ---
 > id: step-preview-joint-density-estimation
 
-In the next section, we will develop some intuitive techniques for estimating density functions for joint distributions. 
+In the next section, we will develop some intuitive techniques for estimating density functions for joint distributions. We'll close this section with an exercise involving the estimation of a *discrete* distribution.
 
 ::: .exercise
 **Exercise**  
@@ -274,7 +289,7 @@ In the context of Figure 1.3, why doesn't it work to approximate the conditional
 > id: kernel-density-estimation
 #### Kernel Density Estimation
 
-The **empirical** distribution of $(X,Y)$ is the probability measure which assigns mass $\frac{1}{n}$ to each of the $n$ observed samples from $(X,Y)$. The previous exercise illustrated shortcomings of using the empirical distribution directly for this problem: the mass is not appropriately spread out in the rectangle. It makes more sense to conclude from the presence of a sample at a point $(x,y)$ that the unknown distribution of $(X,Y)$ has some mass *near* $(x,y)$, not necessarily exactly *at* $(x,y)$.
+The **empirical** distribution associated with a collection of observations $(x,y)$ from two random variables $X$ and $Y$ is the probability measure which assigns mass $\frac{1}{n}$ to each of them. The previous exercise illustrated shortcomings of using the empirical distribution directly for this problem: the mass is not appropriately spread out in the rectangle. It makes more sense to conclude from the presence of an observation at a point $(x,y)$ that the unknown distribution of $(X,Y)$ has some mass *near* $(x,y)$, not necessarily exactly *at* $(x,y)$.
 
 We can capture this idea mathematically by spreading out $\frac{1}{n}$ units of probability mass around each sample $(x\_i,y\_i)$. We have to choose a function—called the **kernel**—to specify how the mass is spread out. 
 
@@ -442,7 +457,7 @@ Experiment with the sliders below to adjust the bandwidth $\lambda$ and the omit
 
     x-coordinate-system(x-axis="-5|10|2" y-axis="0|0.5|0.1")
 
-The density value at the omitted point is small when $\lambda$ is too small because [[the density is too concentrated at other points|the density is too spread out]], and the value is small when $\lambda$ is too large because [[the density is too spread out|the density is zero everywhere]]. 
+The density value at the omitted point is small when $\lambda$ is too small because [[the mass is too concentrated at other points|the mass is too spread out]], and the value is small when $\lambda$ is too large because [[the mass is too spread out|the mass is zero everywhere]]. 
 :::
 
 [Continue](btn:next)
@@ -450,7 +465,9 @@ The density value at the omitted point is small when $\lambda$ is too small beca
 ---
 > id: step-kde-cv
 
-Let's flesh this out mathematically. We are aiming to minimize the **loss** (or **error**, or **risk**) of our estimator, which we define to be the integrated squared difference between $\widehat{f}\_\lambda$ and the true density $f$. We can write this integral as
+We've decided we want the densities at the omitted points to be not too small, but we haven't specified an objective function to say exactly what we mean by that. It turns out that we can do this in a principled way, starting from the idea of *integrated squared error*. 
+
+Let's aim to minimize the **loss** (or **error**, or **risk**) of our estimator, which we define to be the integrated squared difference between $\widehat{f}\_\lambda$ and the true density $f$. We can write this integral as
 
 ``` latex
 \int (\widehat{f}_\lambda - f)^2 = \int \widehat{f}_\lambda^{2} - 2
@@ -468,7 +485,7 @@ Recalling the expectation formula
 ``` latex
 \mathbb{E}[g(X,Y)] = \int g(x,y) f_{X,Y}(x,y) \, \mathrm{d} x \, \mathrm{d} y,
 ```
-we recognize the second term in the top equation as $-2\mathbb{E}[\widehat{f}\_\lambda(X,Y)]$, where $(X,Y)$ is a sample from the true density $f$ which is *independent* of $\widehat{f}\_\lambda$. To get samples which are independent of the estimator, we will define $\widehat{f}\_{\lambda}^{(-i)}$ to be the density estimator obtained using the samples other than the $i$th one. Since the samples $(X\_i,Y\_i)$ are drawn from the joint density of $(X,Y)$ and are assumed to be independent, we can suggest the approximation
+we recognize the second term in the top equation as [[$-2\mathbb{E}[\widehat{f}\_\lambda(X,Y)]$|$-2\mathbb{E}[g(X,Y)]$|$-2\mathbb{E}[\widehat{f}\_\lambda(X,Y)g(X,Y)]$]], where $(X,Y)$ is a sample from the true density $f$ which is *independent* of $\widehat{f}\_\lambda$. To get samples which are independent of the estimator, we will define $\widehat{f}\_{\lambda}^{(-i)}$ to be the density estimator obtained using the samples other than the $i$th one. Since the samples $(X\_i,Y\_i)$ are drawn from the joint density of $(X,Y)$ and are assumed to be independent, we can suggest the approximation
 
 ``` latex
 \mathbb{E}[\widehat{f}_\lambda(X,Y)]  \approx  
@@ -519,6 +536,8 @@ Suppose that $f$ is a bounded probability density function. Let $\widehat{f}^{\m
 ```
  converges in probability to 1 as $n\to\infty$. Furthermore, there are constants $C\_1$ and $C\_2$ such that $\int (f-\widehat{f}\_n)^2\approx C_1n^{-4/5}$ and $\lambda^{\mathrm{min}}\_n \approx C_2n^{-1/5}$ for large $n$.
 :::
+
+[Continue](btn:next)
 
 ---
 > id: nonparametric regression
@@ -632,7 +651,7 @@ Draw 500 independent samples from an exponential distribution with parameter 1. 
       | n = 500
       | xs = range(0, 8, length=100)
       | plot(xs, x-> 1-exp(-x), label = "true CDF", legend = :bottomright)
-      | step!(sort(rand(Exponential(1),n)), (1:n)/n, 
+      | plot!(sort(rand(Exponential(1),n)), (1:n)/n, 
       |       seriestype = :steppre, label = "empirical CDF")
       
     pre.rblock(r-executable)
@@ -675,6 +694,8 @@ S^2 = \frac{1}{n}\left( (X_1 - \overline{X})^2 + (X_2 -
 
 Ideally, an estimator $\widehat{\theta}$ is close to $\theta$ with high probability. We will see that we can decompose the question of whether $\widehat{\theta}$ is close to $\theta$ into two sub-questions: is the *mean* of $\widehat{\theta}$ close to $\theta$, and is $\widehat{\theta}$ close to its mean with high probability? 
 
+[Continue](btn:next)
+
 ---
 > id: bias-section
 #### Bias
@@ -698,7 +719,7 @@ Consider the estimator
 \widehat{\theta} = \max(X_1, \ldots, X_n) 
 ```
 
-of the maximum functional. Assuming that the distribution has a density function, show that $\widehat{\theta}$ is biased. 
+of the maximum functional. Assuming that the distribution is described by a density function (in other words, it's a continuous rather than a discrete random variable), show that $\widehat{\theta}$ is biased. 
 :::
 
 [Continue](btn:next)
@@ -726,7 +747,10 @@ The standard error $\operatorname{se}(\widehat{\theta})$ of an estimator $\wideh
 Find the standard error of the sample mean if the distribution $\nu$ with variance $\sigma^2$. 
 :::
 
- 
+[Continue](btn:next)
+
+---
+> id: step-standard-error-sample-mean
 
 *Solution*. We have 
 
@@ -735,6 +759,12 @@ Find the standard error of the sample mean if the distribution $\nu$ with varian
            \frac{1}{n^2}(n\operatorname{Var} X_1) = \frac{\sigma^2}{n}. 
 ```
 Therefore, the standard error is $\sigma/\sqrt{n}$. 
+
+[Continue](btn:next)
+
+---
+> id: mean-squared-error
+#### Mean Squared Error
 
 If the expectation of an estimator of $\theta$ is close to $\theta$ and if the estimator close to its average with high probability, then it makes sense that $\widehat{\theta}$ and $\theta$ are close to each other with high probability. We can measure the discrepancy between $\widehat{\theta}$ and $\theta$ directly by computing their average squared difference: 
 
@@ -796,6 +826,13 @@ Show that the plug-in maximum estimator $\widehat{\theta}\_n = \max(X\_1, \ldots
 
 This converges to 0 as $n \to \infty$, since $\frac{\theta - \epsilon}{\theta} < 1$. 
 
+[Continue](btn:next)
+
+---
+> id: step-figure-four-examples
+
+The figure below summarizes the four possibilities for combinations of high or low bias and variance. 
+
     figure
       img(src="images/biasvariance.svg" width=400)
       p.caption.md An estimator of $\theta$ has high or low bias depending on whether its mean is far from or close to $\theta$. It has high or low variance depending on whether its mass is spread out or concentrated. 
@@ -833,8 +870,13 @@ If we repeat the above calculation with $n$ in place of 3, we find that the resu
 Motivated by this example, we define the **unbiased sample variance** 
 
 ``` latex 
-\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\overline{X})^2
+\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\overline{X})^2.
 ```
+
+[Continue](btn:next)
+
+---
+> id: step-adult-height-distribution-redux
 
 ::: .exercise
 **Exercise**  
@@ -871,31 +913,118 @@ We could also write our own:
       | μ = sum(heights)/length(heights)
       | σ̂² = 1/(length(heights)-1) * sum((h-μ)^2 for h in heights)
 
+[Continue](btn:next)
+
+---
+> id: step-point-estimation-conclusion
+
+In the next section, we will develop an important extension of point estimation which supplies additional information about how accurate we expect our point estimate to be.
+
 ---
 > id: confidence-intervals
 ## Confidence Intervals
 
-It is often of limited use to know the value of an estimator given an observed collection of samples, since the single value does not indicate how close we should expect $\theta$ to be to $\widehat{\theta}$. For example, if a poll estimates that a randomly selected voter has 46% probability of being a supporter of candidate A and a 42% probability of being a supporter of candidate B, then knowing more information about the distributions of the estimators is essential if we want to know the probability of winning for each candidate. Thus we introduce the idea of a *confidence interval*. 
+It is often of limited use to know the value of an estimator given an observed collection of samples, since the single value does not indicate how close we should expect $\theta$ to be to $\widehat{\theta}$. For example, if a poll estimates that a randomly selected voter has 46% probability of being a supporter of candidate A and a 42% probability of being a supporter of candidate B, then knowing more information about the distributions of the estimators is essential if we want to know [[the probability of winning for each candidate|which candidate is more likely to win]]. Thus we introduce the idea of a *confidence interval*. 
+
+---
+> id: step-confidence-interval-definition
 
 ::: .definition
 **Definition** (Confidence interval)  
 Consider an unknown probability distribution $\nu$ from which we get $n$ independent samples $X\_1, \ldots, X\_n$, and suppose that $\theta$ is the value of some statistical functional of $\nu$. A **confidence interval** for $\theta$ is an interval-valued function of the sample data $X\_1, \ldots, X\_n$. A confidence interval has **confidence level** $1-\alpha$ if it contains $\theta$ with probability at least $1-\alpha$. 
 :::
 
+::: .example
+**Example**  
+Consider a distribution $\nu$ of the form $\operatorname{Unif}([0,b])$, and let $T$ be the maximum functional (so [[$T(\nu) = b$|$T(\nu) = b/2$]]). Consider the max estimator $\widehat{b} = \operatorname{max}(X_1, \ldots, X_{10})$ of 10 observations. Find a 90% confidence interval for $b$. 
+:::
+
+[Continue](btn:next)
+
+---
+> id: step-simple-conf-interval-solution
+
+*Solution*. We expect $b$ to be a little larger than the largest observation, so we look for a confidence interval of the form $(b, b+\text{something})$. We'd like to make the interval short so that it's [[more informative|more likely to trap $b$]], but we can't make it too short or else [[it won't be likely to trap $b$|it won't be informative]]. 
+
+[Continue](btn:next)
+
+---
+> id: step-simple-conf-example-90-percent
+
+For example, the probability that all 10 observations will be less than 90% of $b$ is $(0.9)^{10} = $ 34.9%. So with probability about 65.1%, we will trap the value of $b$ in the interval [[$(\widehat{b}, \widehat{b}/0.9)$|$(\widehat{b},1.1\widehat{b})$|$(0.9\widehat{b},\widehat{b})$]]. 
+
+[Continue](btn:next)
+
+---
+> id: step-solve-for-k-conf-interval
+
+We can replace 90% with a variable $k$ and solve the equation $k^{10} = 0.1$ to find that $(b, \widehat{b}/0.794)$ is the shortest 90% confidence interval. 
+
+[Continue](btn:next)
+
+---
+> id: step-chebyshev-example
+
+This first example was exceptionally amenable to analysis because we can solve exactly for the relevant probabilities. Estimators based on *sums* of observations are more typical, and in those cases we usually use the normal approximation: 
 
 ::: .exercise
 **Exercise**  
-Use Chebyshev's inequality to show that if $\widehat{\theta}$ is unbiased, then $(\widehat{\theta} - k \operatorname{se}(\widehat{\theta}), \widehat{\theta} + k \operatorname{se}(\widehat{\theta}))$ is a $1 - \frac{1}{k^2}$ confidence interval. 
+Show that if $\widehat{\theta}$ is unbiased and approximately normally distributed, then $(\widehat{\theta} - k \operatorname{se}(\widehat{\theta}), \widehat{\theta} + k \operatorname{se}(\widehat{\theta}))$ is an approximate $1 - 2\Phi(-k)$ confidence interval, where $\Phi$ is the CDF of the standard normal distribution.
 :::
 
-If $\widehat{\theta}$ is approximately normally distributed, then we can give tighter confidence intervals using the normal approximation: 
+    x-quill
+
+---
+> id: step-normal-confidence-interval
+
+*Solution*. A normal random variable is within $k$ standard deviations of its mean with probability $\Phi(k) - \Phi(-k) = 1-\Phi(-k) - \Phi(-k) = 1 - 2\Phi(-k)$. Since the mean of $\widehat{\theta}$ is $\theta$, this implies that $(\widehat{\theta} - k \operatorname{se}(\widehat{\theta}), \widehat{\theta} + k \operatorname{se}(\widehat{\theta}))$ includes $\theta$ with probability approximately $1 - 2\Phi(-k)$. 
+
+[Continue](btn:next)
+
+---
+> id: normal-approximation-concrete-example
 
 ::: .exercise
 **Exercise**  
-Show that if $\widehat{\theta}$ is approximately normally distributed, then $(\widehat{\theta} - k \operatorname{se}(\widehat{\theta}), \widehat{\theta} + k \operatorname{se}(\widehat{\theta}))$ is a $1 - 2(1 - \Phi(k))$ confidence interval, where $\Phi$ is the CDF of the standard normal distribution. 
+One thousand people are polled, and 462 of them express a preference for candidate A, while 417 express a preference for candidate B. Suppose that the 1000 preferences are chosen independently from a distribution $\nu$ on $\\{\text{A}, \text{B}, \text{no preference}\\}$ which assigns probability mass $m_{\text{A}}$ and $m_{\text{B}}$ to the first two outcomes. Use the normal approximation to find 95\% confidence intervals for the functionals $T_A(\nu) = m_{\text{A}}$ and $T_B(\nu) = m_{\text{B}}$.
+
+Note: although it is a bit of a cheat, you can approximate $m_{\text{A}}$ with $\widehat{m}_{\text{A}}$ when you calculate the standard error (and similarly for B). 
 :::
 
-If we are estimating a *function*-valued feature of $\nu$ rather than a single number (for example, a regression function), then we might want to provide a confidence *band* which traps the whole graph of the function with specified probability (see the DKW theorem for an example). 
+    x-quill
+
+---
+> id: example-solution
+
+*Solution*. The standard deviation of a Bernoulli random variable with parameter $m_\text{A}$ is $\sqrt{m_\text{A}(1-m_\text{A})}$. Therefore, the average of 1000 independent samples from such a distribution is within $1.96\sqrt{m_\text{A}(1-m_\text{A})/1000}$ units of $m_\text{A}$ (on the number line) with probability about 95%. 
+
+Although we don't know the value of $m_\text{A}$ in this expression, we don't lose too much by approximating it with $\widehat{m}_\text{A} = 0.462$. Making this substitution, we get a confidence interval of $46.2\\% \pm 3.1\\%$. The standard deviation for B works out to the same value to the nearest tenth, so we get $41.7\\% \pm 3.1\\%$ as a 95% confidence interval for $m_\text{B}$. 
+
+[Continue](btn:next)
+
+---
+> id: step-confidence-interval-warning
+
+**Warning**. In the standard confidence interval framework (as described above), the value $\theta$ of the statistical functional $T$ is *not random*. Furthermore, the values of our estimators *are* random, even though they will realize concrete real-number values once the data are collected. This is opposite to the way probability questions are usually framed (asking for a given random variable how much of its probability mass lies in a particular, fixed interval). 
+
+One way to avoid the pitfall of thinking of the parameter as random is to speak of the random confidence interval *trapping* the value of the statistical functional, rather than speaking of the unknown parameter as falling into the given interval.
+
+::: .exercise
+**Exercise**  
+Suppose we have a 95% confidence interval $[A, B]$ for $\theta = T(\nu)$. For each of the following statements, determine whether it's true or false.
+
+1. Given observed values $A$ and $B$, $\theta$ has a 95% chance of falling within $[A,B]$. [[False|True]]
+
+2. Suppose we have a large number of draws from the distribution, and we progressively update $A$ and $B$ according to the observations we've made so far. Then $\theta$ falls within about 95% of these intervals. [[False|True]]
+
+3. Suppose we have a large number of draws from the distribution, and we progressively update $A$ and $B$ according to the observations we've made so far. Then the sequence of confidence intervals $[A,B]$ contains $\theta$ 95% of the time.
+:::
+
+---
+> id: step-confidence-bands
+#### Confidence bands
+
+If we are estimating a *function*-valued feature of $\nu$ rather than a single number (for example, a regression function), then we might want to provide a confidence *band* which traps the whole graph of the function with specified probability (we'll see an example, the *DKW theorem*, in the next section).
 
 ::: .definition
 **Definition** (Confidence band)  
@@ -906,17 +1035,14 @@ Let $I \subset \mathbb{R}$, and suppose that $T$ is a function from the set of d
 > id: empirical-cdf-convergence
 ## Empirical CDF Convergence
 
-
 Let's revisit the observation from the first section that the CDF of the empirical distribution of an independent list of samples from a distribution tends to be close to the CDF of the distribution itself. The **Glivenko-Cantelli** theorem is a mathematical formulation of the idea that these two functions are indeed close.
 
 ::: .theorem
 **Theorem** (Glivenko-Cantelli)  
-  If $F$ is the CDF of a distribution $\nu$ and $\widehat{F}_n$ is the
-  CDF of the empirical distribution $\widehat{\nu}_n$ of $n$ samples
-  from $\nu$, then $F_n$ converges to $F$ along the whole number line:
-  ``` latex
-  \max_{x\in \mathbb{R}} |F(x) - \widehat{F}_n(x)| \to 0 \quad \text{as }n \to \infty, 
-  ```
+If $F$ is the CDF of a distribution $\nu$ and $\widehat{F}_n$ is the CDF of the empirical distribution $\widehat{\nu}_n$ of $n$ samples from $\nu$, then $F_n$ converges to $F$ along the whole number line:
+``` latex
+\max_{x\in \mathbb{R}} |F(x) - \widehat{F}_n(x)| \to 0 \quad \text{as }n \to \infty, 
+```
 :::
 
 [Continue](btn:next)
@@ -941,29 +1067,77 @@ If $X_1, X_2, \ldots$ are independent random variables with common CDF $F$, then
 In other words, the probability that the graph of $\widehat{F}_n$ lies in the $\epsilon$-band around $F$ (or vice versa) is at least $1 - 2 \operatorname{e}^{-2n\epsilon^2}$.
 :::
 
+::: .exercise
+**Exercise**  
+Use the code cell below to experiment with various values of $n$, and confirm that the
+
+Hint: after running the cell once, you can comment out the first plot command and run the cell repeatedly to get lots of empirical CDFs to show up on the same graph. 
+:::
+
+    pre(julia-executable)
+      | using Plots, Distributions, Roots
+      | pyplot()
+      | n = 50
+      | ϵ = find_zero(ϵ -> 2exp(-2n*ϵ^2) - 0.1, 0.05)
+      | xs = range(0, 8, length=100)
+      | plot(xs, x-> 1-exp(-x) + ϵ, fillrange = x-> 1-exp(-x) - ϵ, 
+      |      label = "true CDF", legend = :bottomright, 
+      |      fillalpha = 0.2, linewidth = 0)
+      | plot!(sort(rand(Exponential(1),n)), (1:n)/n, 
+      |       seriestype = :steppre, label = "empirical CDF")
+
+As $n$ increases, the confidence band [[narrows|widens]]. Yet the proportion of CDFs that lie in the band stays [[higher than 90%|higher than 99.9%]]. 
+
+[Continue](btn:next)
+
+---
+> id: step-dkw-analytic-exercise
 
 ::: .exercise
 **Exercise**  
-  Show that if $\epsilon_n = \sqrt{\frac{1}{2n}\log(\frac{2}{\alpha})}$, then with probability at least $1 - \alpha$, we have
-  $|F(x) - F_n(x)| \leq \epsilon$ for all $x \in \mathbb{R}$.
+Show that if $\epsilon_n = \sqrt{\frac{1}{2n}\log(\frac{2}{\alpha})}$, then with probability at least $1 - \alpha$, we have $|F(x) - F_n(x)| \leq \epsilon$ for all $x \in \mathbb{R}$.
 :::
+
+    x-quill
+
+[Continue](btn:next)
+
+---
+> id: step-dkw-analytic-solution
+
+*Solution*. If we substitute the given value of $\epsilon$, the right-hand side reduces to $\epsilon$. So the desired equation follows from the DKW inequality.
 
 ---
 > id: Bootstrapping
 ## Bootstrapping
 
-**Bootstrapping** is the use of simulation to approximate the value of the plug-in estimator of a statistical functional $T$ which is expressed in terms of independent samples from the input distribution $\nu$. The key idea is that drawing $k$ samples from $\widehat{\nu}$ is the same as drawing $k$ times with replacement from the list of samples. 
+**Bootstrapping** is the use of simulation to approximate the value of the plug-in estimator of a statistical functional $T$ which is expressed in terms of independent observations from the input distribution $\nu$. The key point is that drawing $k$ samples from the empirical distribution $\widehat{\nu}$ is the same as drawing $k$ times [[**with replacement**|**without replacement**]] from the list of samples.
+
+[Continue](btn:next)
+
+---
+> id: step-bootstrap-simple-example
 
 ::: .example
 **Example**  
 Consider the statistical functional $T(\nu) = $ the expected difference between the greatest and least of 10 independent samples from $\nu$. Suppose that 50 samples $X_1, \ldots , X_{50}$ from $\nu$ are observed, and that $\widehat{\nu}$ is the associated empirical CDF. Explain how $T(\widehat{\nu})$ may be estimated with arbitrarily small error.
 :::
 
+[Continue](btn:next)
+
+---
+> id: step-boostrap-simple-example-solution
+
 *Solution*. The value of $T(\widehat{\nu})$ is defined to be the expectation of a distribution that we have instructions for how to sample from. So we sample 10 times with replacement from $X_1, \ldots , X_{50}$, identify the largest and smallest of the 10 samples, and record the difference. We repeat $B$ times for some large integer $B$, and we return the sample mean of these $B$ values.
 
 By the law of large numbers, the result can be made arbitrarily close to $T(\widehat{\nu})$ with arbitrarily high probability by choosing $B$ sufficiently large. 
 
-Although this example might seem a bit contrived, bootstrapping is useful in practice because of a common source of statistical functionals that fit the bootstrap form: \textit{standard errors}.
+[Continue](btn:next)
+
+---
+> id: step-why-bootstrap-important
+
+Although this example might seem a bit contrived, bootstrapping is useful in practice because of a common source of statistical functionals that fit the bootstrap form: **standard errors**.
 
 ::: .example
 **Example**  
@@ -982,9 +1156,16 @@ Suppose that we estimate the median $\theta$ of a distribution using the plug-in
       
 returns a very accurate approximation of $T(\widehat{\nu})$. 
 
+[Continue](btn:next)
+
+---
+> id: step-bootstrap-warning
+
+Perhaps the most important caution regarding bootstrapping is that the bootstrap only approximates $T(\widehat{\nu})$. It only approximates $T(\nu)$ (where $\nu$ is the underlying true distribution from which the observations are sampled) insofar as we have enough observations for $T(\widehat{\nu})$ to approximate $T(\nu)$ well. 
+
 ::: .exercise
 **Exercise**  
-Suppose that $\nu$ is the uniform distribution on $[0,1]$. Generate 75 samples from $\nu$, store them in a vector $X$, and compute the bootstrap estimate of $T(\widehat{\nu})$. Use Monte Carlo simulation to directly estimate $T(\nu)$. Can the gap between your approximations of $T(\widehat{\nu})$ and $T(\nu)$ be made arbitrarily small by using more bootstrap samples?
+Suppose that $\nu$ is the uniform distribution on $[0,1]$. Generate 75 samples from $\nu$, store them in a vector $X$, and compute the bootstrap estimate of $T(\widehat{\nu})$, where $T(\nu)$ is the standard deviation of 75 independent observations from $\nu$. Use Monte Carlo simulation to directly estimate $T(\nu)$. Can the gap between your approximations of $T(\widehat{\nu})$ and $T(\nu)$ be made arbitrarily small by using more bootstrap samples?
 :::
 
     pre(julia-executable)
@@ -995,12 +1176,22 @@ Suppose that $\nu$ is the uniform distribution on $[0,1]$. Generate 75 samples f
 [Continue](btn:next)
 
 ---
+> id: step-bootstrap-warning-solution
+
+*Solution*. The gap cannot be made arbitrarily small. We would need to get more than 75 samples from the distribution to get closer to the exact value of $T(\operatorname{Unif}([0,1]))$.
+
+    pre(julia-executable)
+      | X = rand(75)
+      | std(median(sample(X, 75)) for _ in 1:10^6) # estimate T(ν̂)
+      | std(median(rand(75)) for _ in 1:10^6) # estimate T(ν)
+
+---
 > id: maximum-likelihood-estimation
 ## Maximum Likelihood Estimation
 
 So far we've only had one idea for building an estimator for a statistical functional $T$, which is to plug $\widehat{\nu}$ into $T$. In this section, we'll learn another approach which is quite general and has some compelling properties. 
 
-Consider a parametric family $\\{f\_{\boldsymbol{\theta}}(x)\,:\, \boldsymbol{\theta} \in \mathbb{R}^d\\}$ of PDFs or PMFs. Given $\mathbf{x} \in \mathbb{R}^n$, the **likelihood** $\mathcal{L}\_{\mathbf{x}}: \mathbb{R}^d \to \mathbb{R}$ is defined by 
+Consider a parametric family $\\{f\_{\boldsymbol{\theta}}(x) :  \boldsymbol{\theta} \in \mathbb{R}^d\\}$ of PDFs or PMFs. Given $\mathbf{x} \in \mathbb{R}^n$, the **likelihood** $\mathcal{L}\_{\mathbf{x}}: \mathbb{R}^d \to \mathbb{R}$ is defined by 
 
 ``` latex
 \mathcal{L}_{\mathbf{x}}(\boldsymbol{\theta}) = f_{\boldsymbol{\theta}}(x_{1})f_{\boldsymbol{\theta}}(x_{2})\cdots
@@ -1014,7 +1205,17 @@ The idea is that if $\mathbf{X}$ is a vector of $n$ independent samples drawn fr
 Suppose $x\mapsto f(x;\theta)$ is the density of a uniform random variable on $[0,\theta]$. We observe four samples drawn from this distribution: $1.41, 2.45, 6.12$, and $4.9$. Find $\mathcal{L}(5)$, $\mathcal{L}(10^6)$, and $\mathcal{L}(7)$. 
 :::
 
+[Continue](btn:next)
+
+---
+> id: step-basic-likelihood-solution
+
 *Solution*. The likelihood at 5 is zero, since $f\_{5}(x\_{3}) = 0$. The likelihood at $10^6$ is very small, since $\mathcal{L}(10^6) = (1/10^6)^4 = 10^{-24}$. The likelihood at 7 is larger: $(1/7)^4 = 1/2401$. 
+
+[Continue](btn:next)
+
+---
+> id: step-propose-MLE
 
 We can see from this example that likelihood has the property of being zero or small at implausible values of $\boldsymbol{\theta}$, and larger at more reasonable values. Thus we propose the **maximum likelihood estimator** 
 
@@ -1039,12 +1240,17 @@ Suppose that $x\mapsto f(x;\mu,\sigma^2)$ is the normal density with mean $\mu$ 
 
 Setting the derivatives with respect to $\mu$ and $\sigma^2$ equal to zero, we find $\mu = \overline{X} = \frac{1}{n}(X\_1+\cdots+X\_n)$ and $\sigma^2 = \frac{1}{n}((X\_1-\overline{X})^2 + \cdots + (X\_n-\overline{X})^2)$. So the maximum likelihood estimator agrees with the plug-in estimator for $\mu$ and $\sigma^2$. 
 
+[Continue](btn:next)
+
+---
+> id: step-MLE-properties
+#### Properties of the Maximum Likelihood Estimator
+
 MLE enjoys several nice properties: under certain regularity conditions, we have  
 * **Consistency**: $\mathbb{E}[(\widehat{\theta}\_{\mathrm{MLE}} - \theta)^2] \to 0$ as the number of samples goes to $\infty$. 
 * **Asymptotic normality**: $(\widehat{\theta}\_{\mathrm{MLE}} - \theta)/\sqrt{\operatorname{Var} \widehat{\theta}\_{\mathrm{MLE}}}$ converges to $\mathcal{N}(0,1)$ as the number of samples goes to $\infty$. 
 * **Asymptotic optimality**: the MSE of the MLE converges to 0 approximately as fast as the MSE of any other consistent estimator. 
 
- 
 Potential difficulties with MLE:  
 * **Computational difficulties**. It might be difficult to work out where the maximum of the likelihood occurs, either analytically or numerically. 
 * **Misspecification**. The MLE may be inaccurate if the distribution of the samples is not in the specified parametric family. 
@@ -1071,6 +1277,11 @@ Muriel Bristol claims that she can tell by taste whether the tea or the milk was
 
 We posit a null hypothesis that she isn't able to discern the pouring method, and an alternative hypothesis that she can tell the difference. How many cups does she have to identify correctly to reject the null hypothesis with 95% confidence? 
 :::
+
+[Continue](btn:next)
+
+---
+> id: step-MLE-solution
 
 *Solution*. Under the null hypothesis, the number of cups identified correctly is 4 with probability $1/\binom{8}{4} \approx 1.4\%$ and at least 3 with probability $17/70 \approx 24\%$. Therefore, at the 5% significance level, only a correct identification of all the cups would give us grounds to reject the null hypothesis. The $p$-value in that case would be 1.4%. 
 
