@@ -1301,7 +1301,7 @@ Suppose $x$ follows a Poisson distribution with parameter $\lambda$; that is, $x
 
 Verify that
 ``` latex
-\log (\mathcal{L}_{\mathbf{X}}(\lambda)) = \log(\lambda) \sum_{i = 1}^n X_i - n\lambda - \sum_{i = 1}^n \log(X_i!).
+\log \left(\mathcal{L}_{\mathbf{X}}(\lambda)\right) = \log(\lambda) \sum_{i = 1}^n X_i - n\lambda - \sum_{i = 1}^n \log(X_i!).
 ``` 
 Show that it follows the maximum likelihood estimator $\hat{\lambda} = \bar{X}$, the mean of the observations, and explain why this makes sense intuitively.
 :::
@@ -1369,7 +1369,7 @@ Show that it is not possible to estimate the mean of a distribution in a way tha
 [Continue](btn:next)
 
 ---
-> id: step-MLE-caution
+> id: mle-caution
 
 The maximum likelihood estimator is not a panacea. There are several challenges that using MLE can lead to: 
 
@@ -1379,12 +1379,20 @@ The maximum likelihood estimator is not a panacea. There are several challenges 
 
 ::: .exercise
 **Exercise**  
-Consider the family of distributions on $\mathb{R}$ given by the set of density functions 
+Consider the family of distributions on $\mathbb{R}$ given by the set of density functions 
+
 ``` latex
 \gamma \mathbf{1}_{[a,b]} + \delta \mathbf{1}_{[c,d]}, 
 ```
+
 where $a < b < c < d$, and where $\gamma$ and $\delta$ are nonnegative real numbers such that $\gamma(b-a) + \delta(d-c) = 1$. Show that the likelihood function has no maximum for this family of functions.
 :::
+
+{.text-center} `a =`${a}{a|-3|-3,5,0.01} `b =`${b}{b|-1|-3,5,0.01} `c =`${c}{c|2|-3,5,0.005} `d =`${d}{d|3|-3,5,0.005} `γ =`${γ}{γ|0.2|0,1.0,0.01}
+
+{.text-center} `likelihood` = ${likelihood}
+
+    x-coordinate-system(x-axis="-4|5|1" y-axis="0|13|1")
 
     x-quill
 
