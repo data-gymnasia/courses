@@ -28,8 +28,6 @@ Brainstorm at least two ways to come up with a plausible density function given 
 
     x-quill
 
-[Continue](btn:next)
-
 ---
 > id: step-histogram-density
 ### Nonparametric estimation
@@ -136,8 +134,6 @@ Use the sliders to find the μ and σ values for which the normal distribution $
 The best μ value is [[66±2]], and the best σ value is [[3.69±0.3]]. 
 :::
 
-[Continue](btn:next)
-
 ---
 > id: step-nonparametric-meaning
 
@@ -151,7 +147,7 @@ The histogram estimator is called a [[**nonparametric**|**parametric**]] estimat
 
 Statistics is not limited to estimating the distribution of a single real-valued random variable like human height. Typically we want to have information about the *joint* distribution of such a variable with other variables whose values we are in a position to know. Such joint information allows us to make more accurate predictions, and that increased accuracy is usually critical for the business or research purposes that motivated the inquiry. 
 
-For example, if we're able to collect the heights of many adults together along the heights of each of their parents, then we can aim to understand the *conditional* expectation of a person's height, conditioned on the heights of their parents. Since we can measure the heights of a child's parents, we can use this information to make a better prediction for how tall the child will grow up to be. The problem of estimating the conditional expectation of one random variable given others is called **regression**. 
+For example, if we're able to collect the heights of many adults together along the heights of each of their parents, then we can aim to understand the *conditional* expectation of a person's height, given the heights of their parents. Since we can measure the heights of a child's parents, we can use this information to make a better prediction for how tall the child will grow up to be. The problem of estimating the conditional expectation of one random variable given others is called **regression**. 
 
 [Continue](btn:next)
 
@@ -230,7 +226,7 @@ The following scenario will be our running example throughout this section. We w
 A graph of this function is shown in red in the figure below:
 
     figure
-      img(src="images/exam-density-line.png" width=240)
+      img(src="images/exam-density-line.png" width=350)
 
       p.caption.md Figure 1.2: The conditional expectation of $Y$ given $\\{X = x\\}$, as a function of $x$.
 
@@ -358,7 +354,7 @@ Graphs of $\widehat{f}\_\lambda$ for various values of $\lambda$ are shown below
 
     figure
       img(src="images/kde-figures.png" width="80%")
-      p.caption.md The density estimator $\widehat{f}_\lambda$ for $\lambda = 0.25, 1, 3,$ and $10$. The last figure shows the actual density function.
+      p.caption.md Figure 1.5: The density estimator $\widehat{f}_\lambda$ for $\lambda = 0.25, 1, 3,$ and $10$. The last figure shows the actual density function.
 
 ::: .exercise
 **Exercise**  
@@ -483,7 +479,7 @@ The third term does not involve $\widehat{f}$, so minimizing $\int (\widehat{f}\
 Recalling the expectation formula
 
 ``` latex
-\mathbb{E}[g(X,Y)] = \int g(x,y) f_{X,Y}(x,y) \, \mathrm{d} x \, \mathrm{d} y,
+\mathbb{E}[g(X,Y)] = \int g(x,y) f_{X,Y}(x,y) \mathrm{d} x \mathrm{d} y,
 ```
 
 we recognize the second term in the top equation as 
@@ -551,7 +547,7 @@ With an estimate of the joint density of $X$ and $Y$ in hand, we can turn to the
 
     \widehat{f}_{Y | X = x}(y) = \frac{\displaystyle{\frac{1}{n}\sum_{i=1}^n
         K_\lambda(x-X_i,y-Y_i)}}{\displaystyle{
-        \int \frac{1}{n}\sum_{i=1}^n K_\lambda(x-X_i,y-Y_i)\, \mathrm{d} y}}.
+        \int \frac{1}{n}\sum_{i=1}^n K_\lambda(x-X_i,y-Y_i) \mathrm{d} y}}.
 
 ```
 
@@ -565,10 +561,10 @@ So the conditional expectation of $Y$ given $\\{X = x\\}$ is
 ``` latex
 
 
-  \widehat{r}(x) = \int y \widehat{f}_{Y | X = x}(y) \, \mathrm{d} y =
+  \widehat{r}(x) = \int y \widehat{f}_{Y | X = x}(y)  \mathrm{d} y =
   \frac{\displaystyle{\int y \frac{1}{n}\sum_{i=1}^n
-    K_\lambda(x-X_i,y-Y_i)\, \mathrm{d} y}}{\displaystyle{
-    \int \frac{1}{n}\sum_{i=1}^n K_\lambda(x-X_i,y-Y_i)\, \mathrm{d} y}}.
+    K_\lambda(x-X_i,y-Y_i) \mathrm{d} y}}{\displaystyle{
+    \int \frac{1}{n}\sum_{i=1}^n K_\lambda(x-X_i,y-Y_i) \mathrm{d} y}}.
 
 ```
 
@@ -576,8 +572,8 @@ Let's try to simplify this expression. Looking at Figure 1.6, we can see by the 
 
 ``` latex
 
-  \int \frac{1}{n}\sum_{i=1}^n K_\lambda(x-X_i,y-Y_i) \, \mathrm{d} y =
-  \frac{1}{n} \sum_{i=1}^n D_\lambda(x-X_i) \int yD_\lambda(y-Y_i) \,
+  \int \frac{1}{n}\sum_{i=1}^n K_\lambda(x-X_i,y-Y_i)  \mathrm{d} y =
+  \frac{1}{n} \sum_{i=1}^n D_\lambda(x-X_i) \int yD_\lambda(y-Y_i) 
   \mathrm{d} y.
 
 ```
@@ -608,7 +604,7 @@ The graph of this function is shown in Figure 1.7. We see that it matches the gr
       | λ = first(λ_best_cv.minimizer)
       | r̂(x) = sum(D(λ,x-Xi)*Yi for (Xi,Yi) in samples)/sum(D(λ,x-Xi) for (Xi,Yi) in samples)
       | pyplot()
-      | plot(0:0.2:20, r̂)
+      | plot(0:0.2:20, r̂, label = "Nadaraya-Watson estimator", ylims = (0,10))
 
 The approximate integrated squared error of this estimator is `{jl} sum((r(x)-r̂(x))^2 for x in xs)*step(xs) = 1.90`.
 
@@ -738,6 +734,21 @@ of the maximum functional. Assuming that the distribution is described by a dens
 
 *Solution*. If $\nu$ is a continuous distribution, then the probability of the event $\\{X\_i < T(\nu)\\}$ is $1$ for all $i=1,2,\ldots,n$. This implies that $\widehat{\theta} < T(\nu)$ with probability 1. Taking expectation of both sides, we find that $\mathbb{E}[\widehat{\theta}] < T(\nu)$. Therefore, this estimator has negative bias. 
 
+We can numerically experiment to approximate the bias of this estimator in a specific instance. For example, if we estimate the maximum of a uniform distribution on $[0,b]$ with the sample maximum of 100 observations, we get a bias of approximately
+
+    pre(julia-executable)
+      | using Statistics
+      | mean(maximum(rand() for _ in 1:100) - 1 for _ in 1:10_000)
+
+which is about -0.0098. We can visualize these sample maximum estimates with a histogram: 
+
+    pre(julia-executable)
+      | using Plots
+      | pyplot()
+      | histogram([maximum(rand() for _ in 1:100) for _ in 1:10_000], 
+      |           label = "sample maximum", xlims = (0,1), 
+      |           legend = :topleft)
+
 [Continue](btn:next)
 
 ---
@@ -768,6 +779,14 @@ Find the standard error of the sample mean if the distribution $\nu$ with varian
            \frac{1}{n^2}(n\operatorname{Var} X_1) = \frac{\sigma^2}{n}. 
 ```
 Therefore, the standard error is $\sigma/\sqrt{n}$. 
+
+We can see how the standard error decreases with $n$ by computing the sample mean for many independent datasets and plotting the resulting histogram:
+
+    pre(julia-executable)
+      | n = 100
+      | histogram([mean(rand() for _ in 1:n) for _ in 1:10_000], 
+      |           label = "sample mean, $n observations", 
+      |           xlims = (0,1), size = (600,400))
 
 [Continue](btn:next)
 
@@ -805,7 +824,7 @@ The mean squared error of an estimator $\theta$ is equal to its variance plus it
   (\mathbb{E}[\widehat{\theta}] -  \theta)^2. 
 ```
 
-The middle term is zero by [[linearity of expectation|the symmetry of $\theta$]]. 
+The middle term is zero by [[linearity of expectation|the symmetry of $\theta$]]. The first and third terms represent the variance and squared bias respectively, of $\widehat{\theta}$, so this concludes the proof.
 
 ---
 > id: step-bias-variance-both-converge
@@ -819,7 +838,7 @@ An estimator is **consistent** if $\widehat{\theta}$ converges to $\theta$ in pr
 
 ::: .example
 **Example**  
-Show that the plug-in maximum estimator $\widehat{\theta}\_n = \max(X\_1, \ldots, X\_n)$ of $\theta = T(\nu) = F^{-1}(1)$ is consistent, assuming that the distribution belongs to the parametric family $\\{\operatorname{Unif}([0,b]) \,: \, b \in \mathbb{R}\\}$. 
+Show that the plug-in maximum estimator $\widehat{\theta}\_n = \max(X\_1, \ldots, X\_n)$ of $\theta = T(\nu) = F^{-1}(1)$ is consistent, assuming that the distribution belongs to the parametric family $\\{\operatorname{Unif}([0,b]) : b \in \mathbb{R}\\}$. 
 :::
 
 [Continue](btn:next)
@@ -843,7 +862,7 @@ This converges to 0 as $n \to \infty$, since $\frac{\theta - \epsilon}{\theta} <
 The figure below summarizes the four possibilities for combinations of high or low bias and variance. 
 
     figure
-      img(src="images/biasvariance.svg" width=400)
+      img(src="images/biasvariance.svg" width=500)
       p.caption.md An estimator of $\theta$ has high or low bias depending on whether its mean is far from or close to $\theta$. It has high or low variance depending on whether its mass is spread out or concentrated. 
 
 ::: .example
@@ -948,26 +967,20 @@ Consider an unknown probability distribution $\nu$ from which we get $n$ indepen
 Consider a distribution $\nu$ of the form $\operatorname{Unif}([0,b])$, and let $T$ be the maximum functional (so [[$T(\nu) = b$|$T(\nu) = b/2$]]). Consider the max estimator $\widehat{b} = \operatorname{max}(X_1, \ldots, X_{10})$ of 10 observations. Find a 90% confidence interval for $b$. 
 :::
 
-[Continue](btn:next)
-
 ---
 > id: step-simple-conf-interval-solution
 
 *Solution*. We expect $b$ to be a little larger than the largest observation, so we look for a confidence interval of the form $(b, b+\text{something})$. We'd like to make the interval short so that it's [[more informative|more likely to trap $b$]], but we can't make it too short or else [[it won't be likely to trap $b$|it won't be informative]]. 
-
-[Continue](btn:next)
 
 ---
 > id: step-simple-conf-example-90-percent
 
 For example, the probability that all 10 observations will be less than 90% of $b$ is $(0.9)^{10} = $ 34.9%. So with probability about 65.1%, we will trap the value of $b$ in the interval [[$(\widehat{b}, \widehat{b}/0.9)$|$(\widehat{b},1.1\widehat{b})$|$(0.9\widehat{b},\widehat{b})$]]. 
 
-[Continue](btn:next)
-
 ---
 > id: step-solve-for-k-conf-interval
 
-We can replace 90% with a variable $k$ and solve the equation $k^{10} = 0.1$ to find that $(b, \widehat{b}/0.794)$ is the shortest 90% confidence interval. 
+We can replace 90% with a variable $k$ and solve the equation $k^{10} = 0.1$ to find that $(\widehat{b}, \widehat{b}/0.794)$ is the shortest 90% confidence interval. 
 
 [Continue](btn:next)
 
@@ -1024,7 +1037,7 @@ Suppose we have a 95% confidence interval $[A, B]$ for $\theta = T(\nu)$. For ea
 
 1. Given observed values $A$ and $B$, $\theta$ has a 95% chance of falling within $[A,B]$. [[False|True]]
 
-2. Suppose we have a large number of draws from the distribution, and we progressively update $A$ and $B$ according to the observations we've made so far. Then the sequence of confidence intervals $[A,B]$ contains $\theta$ 95% of the time. [[True|False]]
+2. Suppose we have a large number of draws from the distribution, and we progressively update $A$ and $B$ according to the observations we've made so far. Then the sequence of confidence intervals $[A,B]$ contains $\theta$ at least 95% of the time, on average. [[True|False]]
 :::
 
 ---
@@ -1035,7 +1048,9 @@ If we are estimating a *function*-valued feature of $\nu$ rather than a single n
 
 ::: .definition
 **Definition** (Confidence band)  
-Let $I \subset \mathbb{R}$, and suppose that $T$ is a function from the set of distributions to the set of real-valued functions on $I$. A $1-\alpha$ **confidence band** for $T(\nu)$ is pair of random functions $y\_{\textrm{min}}$ and $y\_{\textrm{max}}$ from $I$ to $\mathbb{R}$ defined in terms of $n$ independent samples from $\nu$ and having $y\_{\textrm{min}} \leq T(\nu) \leq y\_{\textrm{max}}$ everywhere on $I$ with probability at least $1-\alpha$. 
+Let $I \subset \mathbb{R}$, and suppose that $T$ is a function from the set of distributions to the set of real-valued functions on $I$. 
+
+A $1-\alpha$ **confidence band** for $T(\nu)$ is pair of random functions $y\_{\textrm{min}}$ and $y\_{\textrm{max}}$ from $I$ to $\mathbb{R}$ defined in terms of $n$ independent samples from $\nu$ and having $y\_{\textrm{min}} \leq T(\nu) \leq y\_{\textrm{max}}$ everywhere on $I$ with probability at least $1-\alpha$. 
 :::
 
 ---
@@ -1095,8 +1110,6 @@ Hint: after running the cell once, you can comment out the first plot command an
 
 As $n$ increases, the confidence band [[narrows|widens]]. Yet the proportion of CDFs that lie in the band stays [[higher than 90%|higher than 99.9%]]. 
 
-[Continue](btn:next)
-
 ---
 > id: step-dkw-analytic-exercise
 
@@ -1106,8 +1119,6 @@ Show that if $\epsilon_n = \sqrt{\frac{1}{2n}\log(\frac{2}{\alpha})}$, then with
 :::
 
     x-quill
-
-[Continue](btn:next)
 
 ---
 > id: step-dkw-analytic-solution
@@ -1119,8 +1130,6 @@ Show that if $\epsilon_n = \sqrt{\frac{1}{2n}\log(\frac{2}{\alpha})}$, then with
 ## Bootstrapping
 
 **Bootstrapping** is the use of simulation to approximate the value of the plug-in estimator of a statistical functional $T$ which is expressed in terms of independent observations from the input distribution $\nu$. The key point is that drawing $k$ samples from the empirical distribution $\widehat{\nu}$ is the same as drawing $k$ times [[**with replacement**|**without replacement**]] from the list of samples.
-
-[Continue](btn:next)
 
 ---
 > id: step-bootstrap-simple-example
@@ -1179,8 +1188,6 @@ Suppose that $\nu$ is the uniform distribution on $[0,1]$. Generate 75 samples f
       | 
 
     x-quill
-
-[Continue](btn:next)
 
 ---
 > id: step-bootstrap-warning-solution
@@ -1328,8 +1335,6 @@ Show that it follows the maximum likelihood estimator $\widehat{\lambda}$ is equ
 
     x-quill
 
-[Continue](btn:next)
-
 ---
 > id: step-poisson-mle-solution
 
@@ -1373,8 +1378,6 @@ The only term that depends on $\beta$ is the second one, so maximizing the log l
 :::
 
     x-quill
-
-[Continue](btn:next)
 
 ---
 > id: step-mle-binomial-solution
@@ -1435,10 +1438,11 @@ Show that it is not possible to estimate the mean of a distribution in a way tha
 
 ---
 > id: mle-caution
+#### Drawbacks of maximum likelihood estimation
 
-The maximum likelihood estimator is not a panacea. In the above example with uniform distribution, we see an example of an MLE that is always biased--smaller than the true value ($\widehat{a} < x_{(n)}$) . There are several challenges that using MLE can lead to: 
+The maximum likelihood estimator is not a panacea. We've already seen that the maximum likelihood estimator can be biased (the sample maximum for the family of uniform distributions on $[0,b]$, where $b \in \mathbb{R}$). There are several other issues that can arise when maximizing likelihoods.
 
-* **Computational difficulties**. It might be difficult to work out where the maximum of the likelihood occurs, either analytically or numerically. This would be a particular concern in high dimensions (that is, if we have many parameters) and if the maximum likelihood function is [[nonconvex|convex|differentiable]].
+* **Computational difficulties**. It might be difficult to work out where the maximum of the likelihood occurs, either analytically or numerically. This would be a particular concern in high dimensions (that is, if we have many parameters) and if the maximum likelihood function is [[concave|nonconcave|differentiable]].
 * **Misspecification**. The MLE may be inaccurate if the distribution of the samples is not in the specified parametric family. For example, if we assume the underlying distribution is Gaussian, when in fact its shape is not even close to that of a Gaussian, we very well might get unreasonable results. 
 * **Unbounded likelihood**. If the likelihood function is not bounded, then $\widehat{\theta}\_{\mathrm{MLE}}$ is not even defined: 
 
@@ -1464,7 +1468,7 @@ where $a < b < c < d$, and where $\gamma$ and $\delta$ are nonnegative real numb
 ---
 > id: mle-unbounded-example-solution
 
-*Solution*. We identify the largest value in our data set and choose $c$ to be $\epsilon$ less than tha value and $d$ to be $\epsilon$ more. We choose $a$ and $b$ so that the interval $[a,b]$ contains all of the other observations. Then we can send $\epsilon$ to zero and $\delta$ to $\infty$ to obtain an arbitrarily large likelihood value. 
+*Solution*. We identify the largest value in our data set and choose $c$ to be $\epsilon$ less than that value and $d$ to be $\epsilon$ more than it. We choose $a$ and $b$ so that the interval $[a,b]$ contains all of the other observations (since otherwise we would get a likelihood value of zero). Then we can send $\epsilon$ to zero while holding $a,b$ and $\gamma$ fixed. That sends $\delta$ to $\infty$, which in turn causes the likelihood to grow without bound. 
 
 [Continue](btn:next)
 
@@ -1522,10 +1526,21 @@ The **Wald test** is based on the normal approximation. Consider a null hypothes
 
 ::: .example
 **Example**  
-Consider the alternative hypothesis that 8-cylinder engines have lower fuel economy than 6-cylinder engines (with null hypothesis that they are the same). Apply the Wald test, using the `{r} mtcars` dataset available in R. 
-::: 
+Consider the alternative hypothesis that 8-cylinder engines have lower fuel economy than 6-cylinder engines (with null hypothesis that they are the same). Apply the Wald test, using the data below from the R dataset `{jl} mtcars`. 
+
+```julia
+six_cyl_mpgs = [21.0, 21.0, 21.4, 18.1, 19.2, 17.8, 19.7]
+eight_cyl_mpgs = [18.7, 14.3, 16.4, 17.3, 15.2, 10.4, 10.4, 14.7, 15.5, 15.2, 13.3, 19.2, 15.8, 15.0]
+```
+:::
 
 *Solution*. We frame the problem as a question about whether the *difference in means* between the distribution of 8-cylinder `{r} mpg` values and the distribution of 6-cylinder `{r} mpg` values is zero. We use the difference between the sample means $\overline{X}$ and $\overline{Y}$ of the two populations as an estimator of the difference in means. If we think of the records in the data frame as independent, then $\overline{X}$ and $\overline{Y}$ are independent. Since each is approximately normally distributed by the central limit theorem, their difference is therefore also approximately normal. So, let's calculate the sample mean and sample variance for the 8-cylinder cars and for the 6-cylinder cars. 
+
+    pre(julia-executable)
+      | using Statistics
+      | six = [21.0, 21.0, 21.4, 18.1, 19.2, 17.8, 19.7]
+      | eight = [18.7, 14.3, 16.4, 17.3, 15.2, 10.4, 10.4, 14.7, 15.5, 15.2, 13.3, 19.2, 15.8, 15.0]
+      | m₁, m₂, σ₁, σ₂ = mean(six), mean(eight), std(six), std(eight)
 
     pre.rblock(r-executable)
       | 
@@ -1549,6 +1564,9 @@ Under the null hypothesis, therefore, $\overline{X} - \overline{Y}$ has mean zer
 
     pre.rblock(r-executable)
       | z <- (stats$m[1] - stats$m[2]) / sqrt(sum(stats$se^2))
+      
+    pre(julia-executable)
+      | (m₁ - m₂) / sqrt(σ₁^2 + σ₂^2)
 
 returns $5.29$, so we do reject the null hypothesis at the 95% confidence level. The $p$-value of this test is `{jl} 1-cdf(Normal(0,1),z)` $= 6.08 \times 10^{-6}$. 
 
@@ -1592,6 +1610,8 @@ Suppose the heights of the Romero sons are 72, 69, 68, and 66 inches, and the he
       |    
 
 Since 68% < 95%, we retain the null hypothesis. 
+
+[Continue](btn:next)
 
 ---
 > id: multiple-testing
