@@ -184,13 +184,13 @@ Consider a random variable $X$ that you know takes values in $\\{0,1,2\\}$. Supp
 ---
 > id: step-discrete-solution
 
-**Solution**. Since 70% of the observations are 2's, we posit that the probability of the event $\\{X = 2\\}$ is 70%. Likewise, the probabilities of the events $\\{X = 1\\}$ and $\\{X = 0\\}$ we estimate to be 13% and 17%, respectively. 
+*Solution*. Since 70% of the observations are 2's, we posit that the probability of the event $\\{X = 2\\}$ is 70%. Likewise, the probabilities of the events $\\{X = 1\\}$ and $\\{X = 0\\}$ we estimate to be 13% and 17%, respectively. 
 
 ---
 > id: joint-density-estimation
 ## Estimating Joint Densities
 
-The following setup will be our running example throughout this section. We will begin by assuming that we know the joint distribution of the two random variables $X$ and $Y$, and then we will explore what happens when we drop that assumption. 
+The following scenario will be our running example throughout this section. We will begin by assuming that we know the joint distribution of two random variables $X$ and $Y$, and then we will explore what happens when we drop that assumption. 
 
 ::: .example
 **Example**  
@@ -289,7 +289,7 @@ In the context of Figure 1.3, why doesn't it work to approximate the conditional
 > id: kernel-density-estimation
 #### Kernel Density Estimation
 
-The **empirical** distribution associated with a collection of observations $(x,y)$ from two random variables $X$ and $Y$ is the probability measure which assigns mass $\frac{1}{n}$ to each of them. The previous exercise illustrated shortcomings of using the empirical distribution directly for this problem: the mass is not appropriately spread out in the rectangle. It makes more sense to conclude from the presence of an observation at a point $(x,y)$ that the unknown distribution of $(X,Y)$ has some mass *near* $(x,y)$, not necessarily exactly *at* $(x,y)$.
+The **empirical** distribution associated with a collection of observations $(x,y)$ from two random variables $X$ and $Y$ is the probability measure which assigns mass $\frac{1}{n}$ to each location $(x,y)$. The previous exercise illustrated shortcomings of using the empirical distribution directly for this problem: the mass is not appropriately spread out in the rectangle. It makes more sense to conclude from the presence of an observation at a point $(x,y)$ that the unknown distribution of $(X,Y)$ has some mass *near* $(x,y)$, not necessarily exactly *at* $(x,y)$.
 
 We can capture this idea mathematically by spreading out $\frac{1}{n}$ units of probability mass around each sample $(x\_i,y\_i)$. We have to choose a function—called the **kernel**—to specify how the mass is spread out. 
 
@@ -380,7 +380,7 @@ Estimate the best value of $\lambda$ by eyeballing the figure above (the values 
 We can take advantage of our knowledge of the density function to determine which $\lambda$ value works best. In practice, we would not have access to this information, but let's postpone dealing with that issue till the next section.
 
 We measure the difference between $f$ and $\widehat{f}\_\lambda$ by evaluating both functions at each point in a square grid and finding the sum of the squares of these differences. This sum is approximately proportional to 
-[[$\int (f - \hat{f})^2$|$\nabla f$|$\int f$]].
+[[$\int (f - \widehat{f})^2$|$\nabla f$|$\int f$]].
 
 ---
 > id: step-julia-best-lambda
@@ -432,7 +432,7 @@ We measure the difference between $f$ and $\widehat{f}\_\lambda$ by evaluating b
       |
 
 
-We find that the best $\lambda$ value comes out to about $\lambda = 1.92$.
+We find that the best $\lambda$ value comes out to about $\lambda = 1.92$. This is significantly smaller than our "eyeball" value of 3 from earlier, but not terribly far off.
 
 [Continue](btn:next)
 
@@ -485,7 +485,9 @@ Recalling the expectation formula
 ``` latex
 \mathbb{E}[g(X,Y)] = \int g(x,y) f_{X,Y}(x,y) \, \mathrm{d} x \, \mathrm{d} y,
 ```
-we recognize the second term in the top equation as [[$-2\mathbb{E}[\widehat{f}\_\lambda(X,Y)]$|$-2\mathbb{E}[g(X,Y)]$|$-2\mathbb{E}[\widehat{f}\_\lambda(X,Y)g(X,Y)]$]], where $(X,Y)$ is a sample from the true density $f$ which is *independent* of $\widehat{f}\_\lambda$. To get samples which are independent of the estimator, we will define $\widehat{f}\_{\lambda}^{(-i)}$ to be the density estimator obtained using the samples other than the $i$th one. Since the samples $(X\_i,Y\_i)$ are drawn from the joint density of $(X,Y)$ and are assumed to be independent, we can suggest the approximation
+
+we recognize the second term in the top equation as 
+[[$-2\mathbb{E}(\widehat{f}\_\lambda(X,Y))$ | $-2\mathbb{E}(g(X,Y))$ | $-2\mathbb{E}(g(X,Y)\widehat{f}\_\lambda(X,Y))$]], where $(X,Y)$ is a sample from the true density $f$ which is *independent* of $\widehat{f}\_\lambda$. To get samples which are independent of the estimator, we will define $\widehat{f}\_{\lambda}^{(-i)}$ to be the density estimator obtained using the samples other than the $i$th one. Since the samples $(X\_i,Y\_i)$ are drawn from the joint density of $(X,Y)$ and are assumed to be independent, we can suggest the approximation
 
 ``` latex
 \mathbb{E}[\widehat{f}_\lambda(X,Y)]  \approx  
@@ -630,12 +632,19 @@ A **statistical functional** is any function $T$ from the set of distributions t
 
 For example, if we define $T\_1(\nu)$ to be the mean of the distribution $\nu$, then $T\_1$ is a statistical functional. Similarly, consider the *maximum* functional $T\_2(\nu) = F^{-1}(1)$ where $F$ is the CDF of $\nu$. To give a more complicated example, we can define $T\_3(\nu)$ to be the expected value of the difference between the greatest and least of 10 independent random variables with common distribution $\nu$. Then $T\_3$ also a statistical functional. 
 
+[Continue](btn:next)
+
+---
+> id: step-definition-estimator
+
 Given a statistical functional, our goal will be to use a list of independent samples from $\nu$ to estimate $T(\nu)$. 
 
 ::: .definition
 **Definition** (Estimator)  
 An **estimator** $\widehat{\theta}$ is a random variable which is a function of $n$ i.i.d.\ random variables.
 :::
+
+For example, the random variable $X_1 + \cdots + X_n$ is an estimator, if $X_1, \ldots, X_n$ are independent and identically distributed. Let's develop a general approach for defining estimators. We begin by observing a large independent sample from a distribution gives us direct information information about the CDF of the distribution. 
 
 ::: .example
 **Example**  
@@ -1015,9 +1024,7 @@ Suppose we have a 95% confidence interval $[A, B]$ for $\theta = T(\nu)$. For ea
 
 1. Given observed values $A$ and $B$, $\theta$ has a 95% chance of falling within $[A,B]$. [[False|True]]
 
-2. Suppose we have a large number of draws from the distribution, and we progressively update $A$ and $B$ according to the observations we've made so far. Then $\theta$ falls within about 95% of these intervals. [[False|True]]
-
-3. Suppose we have a large number of draws from the distribution, and we progressively update $A$ and $B$ according to the observations we've made so far. Then the sequence of confidence intervals $[A,B]$ contains $\theta$ 95% of the time.
+2. Suppose we have a large number of draws from the distribution, and we progressively update $A$ and $B$ according to the observations we've made so far. Then the sequence of confidence intervals $[A,B]$ contains $\theta$ 95% of the time. [[True|False]]
 :::
 
 ---
@@ -1147,7 +1154,7 @@ Suppose that we estimate the median $\theta$ of a distribution using the plug-in
 *Solution*. By definition, the standard error of $\widehat{\theta}$ is the square root of the variance of the median of 75 independent draws from $\nu$. Therefore, the plug-in estimator of the standard error is the square root of the variance of the median of 75 independent draws from $\widehat{\nu}$. This can be readily simulated. If the samples are stored in a vector `{jl} X`, then 
 
     pre(julia-executable)
-      | using Random
+      | using Random, Statistics, StatsBase
       | X = rand(75)
       | std(median(sample(X, 75)) for _ in 1:10^5)
       
@@ -1189,14 +1196,16 @@ Suppose that $\nu$ is the uniform distribution on $[0,1]$. Generate 75 samples f
 > id: maximum-likelihood-estimation
 ## Maximum Likelihood Estimation
 
-So far we've had two ideas for building an estimator for a statistical functional $T$: one is to plug $\widehat{\nu}$ into $T$, and the other—kernel density estimation—is closely related (we just smear the probability mass out around each observed data point before substituting into $T$). In this section, we'll learn another approach which is suitable for parametric models and has some compelling properties.
+So far we've had two ideas for building an estimator for a statistical functional $T$: one is to plug $\widehat{\nu}$ into $T$, and the other—kernel density estimation—is closely related (we just smear the probability mass out around each observed data point before substituting into $T$). In this section, we'll learn another approach which has some compelling properties and is suitable for choosing from a parametric family of densities or mass functions.
 
 [Continue](btn:next)
 
 ---
 > id: step-intro-log-likelihood
 
-Let's revisit the example from the first section where we looked for the Gaussian distribution which best fits the available data. This time, we'll include a "goodness score" so you can get a lot more precise. The goodness function we'll use is called the **log likelihood** function, which we define to be the log of the product of the density function evaluated at each of the observed data points. This function rewards density functions which have larger values at the observed data points and penalizes functions which have very small values at some of the points. This is a rigorous way of capturing the idea that the a given density function is consonant with the observed data.
+Let's revisit the example from the first section where we looked for the Gaussian distribution which best fits a given set of measurements of the heights of 50 adults. This time, we'll include a goodness score for each choice of $\mu$ and $\sigma^2$, so we don't have to select a best fit subjectively. 
+
+The goodness function we'll use is called the **log likelihood** function, which we define to be the log of the product of the density function evaluated at each of the observed data points. This function rewards density functions which have larger values at the observed data points and penalizes functions which have very small values at some of the points. This is a rigorous way of capturing the idea that the a given density function is consonant with the observed data.
 
 Adjust the knobs to get the goodness score as high as possible (hint: you can get it up to about $-135.8$). 
 
@@ -1217,7 +1226,7 @@ The best μ value is [[66±0.4]], and the best σ value is [[3.7±0.2]].
 > id: step-explanation-intro-MLE
 #### Definitions
 
-Consider a parametric family $\\{f\_{\boldsymbol{\theta}}(x) :  \boldsymbol{\theta} \in \mathbb{R}^d\\}$ of PDFs or PMFs. For example, the parametric family might consist of all Gaussian distributions, all geometric distributions, or all discrete distributions on a particular finite set. 
+Consider a parametric family $\\{f\_{\boldsymbol{\theta}}(x) :  \boldsymbol{\theta} \in \mathbb{R}^d\\}$ of [PDFs](gloss:pdf) or [PMFs](gloss:pmf). For example, the parametric family might consist of all Gaussian distributions, all geometric distributions, or all discrete distributions on a particular finite set. 
 
 Given $\mathbf{x} \in \mathbb{R}^n$, the **likelihood** $\mathcal{L}\_{\mathbf{x}}: \mathbb{R}^d \to \mathbb{R}$ is defined by 
 
@@ -1226,15 +1235,17 @@ Given $\mathbf{x} \in \mathbb{R}^n$, the **likelihood** $\mathcal{L}\_{\mathbf{x
 f_{\boldsymbol{\theta}}(x_{n}).
 ```
 
-The idea is that if $\mathbf{X}$ is a vector of $n$ independent samples drawn from $f\_{\boldsymbol{\theta}}(x)$, then $\mathcal{L}\_{\mathbf{X}}(\boldsymbol{\theta})$ is small or zero when $\boldsymbol{\theta}$ is not in concert with the observed data. 
+The idea is that if $\mathbf{X}$ is a vector of $n$ independent observations drawn from $f\_{\boldsymbol{\theta}}(x)$, then $\mathcal{L}\_{\mathbf{X}}(\boldsymbol{\theta})$ is small or zero when $\boldsymbol{\theta}$ is not in concert with the observed data. 
 
 [Continue](btn:next)
 
-Because likelihood is defined to a product of many factors, its values are often extremely small, and we often encounter overflow issues. Furthermore, sums are often easier to reason about than products. For both of these reasons, we often compute the logarithm of the likelihood instead: 
+Because likelihood is defined to a product of many factors, its values are often extremely small, and we may encounter [overflow](gloss:overflow) issues. Furthermore, sums are often easier to reason about than products. For both of these reasons, we often compute the logarithm of the likelihood instead: 
+
 ``` latex
 \log(\mathcal{L}_{\mathbf{x}}(\boldsymbol{\theta}) )= \log(f_{\boldsymbol{\theta}}(x_{1})) + \log(f_{\boldsymbol{\theta}}(x_{2})) + \cdots
 + \log(f_{\boldsymbol{\theta}}(x_{n})).
 ```
+
 Maximizing the likelihood is the same as maximizing the log likelihood because the natural logarithm is a monotonically increasing function. 
 
 ---
@@ -1283,12 +1294,21 @@ Suppose that $x\mapsto f(x;\mu,\sigma^2)$ is the normal density with mean $\mu$ 
 *Solution*. The maximum likelihood estimator is the minimizer of the logarithm of the likelihood function, which works out to
 
 ``` latex
--\frac{n}{2}\log 2\pi - n \log \sigma - \frac{n}{2}\log 2\pi - n
-\log \sigma - \frac{(X_1-\mu)^2}{2\sigma^2} - \cdots - \frac{(X_n
-  - \mu)^2}{2\sigma^2}
+- \frac{n}{2}\log 2\pi - \frac{n}{2}
+\log \sigma^2 - \frac{(X_1-\mu)^2}{2\sigma^2} - \cdots - \frac{(X_n
+  - \mu)^2}{2\sigma^2}, 
 ```
 
-Setting the derivatives with respect to $\mu$ and $\sigma^2$ equal to zero, we find $\mu = \overline{X} = \frac{1}{n}(X\_1+\cdots+X\_n)$ and $\sigma^2 = \frac{1}{n}((X\_1-\overline{X})^2 + \cdots + (X\_n-\overline{X})^2)$. So the maximum likelihood estimator agrees with the plug-in estimator for $\mu$ and $\sigma^2$. 
+since $\log f(X_i; \mu, \sigma^2) = \log\left(\frac{1}{\sigma \sqrt{2\pi}}\operatorname{e}^{-(X_i-\mu^2)/2\sigma^2}\right) = -\frac{\log 2\pi}{2} - \log \sigma - \frac{1}{2\sigma^2}(X_i - \mu)^2$, for each $i$. 
+
+Setting the derivatives with respect to $\mu$ and $v = \sigma^2$ equal to zero, we find 
+``` latex
+\frac{\partial \log \mathcal{L}_\mathbf{X}(\boldsymbol{\theta})}{\partial v} &= -\frac{n}{2v} + \frac{1}{2v^2}\sum_{i=1}^n(X_i-\mu)^2 = 0 \\
+\frac{\partial \log \mathcal{L}_\mathbf{X}(\boldsymbol{\theta})}{\partial \mu}&= -\frac{1}{2v}\sum_{i=1}^n2(X_i - \mu) = 0, 
+```
+which implies $\mu = \overline{X} = \frac{1}{n}(X\_1+\cdots+X\_n)$ (from solving the second equation) as well as $v = \sigma^2 = \frac{1}{n}((X\_1-\overline{X})^2 + \cdots + (X\_n-\overline{X})^2)$ (from solving the first equation). Since there's only one critical point, and since we can observe that the log likelihood goes to $-\infty$ as $(\mu, \sigma^2) \to\infty$, there must be a local maximum at this critical point. 
+
+So we may conclude that the maximum likelihood estimator agrees with the plug-in estimator for $\mu$ and $\sigma^2$. 
 
 [Continue](btn:next)
 
@@ -1297,34 +1317,77 @@ Setting the derivatives with respect to $\mu$ and $\sigma^2$ equal to zero, we f
 
 ::: .exercise
 **Exercise**  
-Suppose $x$ follows a Poisson distribution with parameter $\lambda$; that is, $x\mapsto P(X = x) = \frac{\lambda^x e^{-\lambda}}{x!}$. 
+Consider a Poisson random variable $X$ with parameter $\lambda$. In other words, $\mathbb{P}(X = x) = \frac{\lambda^x \operatorname{e}^{-\lambda}}{x!}$. 
 
 Verify that
 ``` latex
 \log \left(\mathcal{L}_{\mathbf{X}}(\lambda)\right) = \log(\lambda) \sum_{i = 1}^n X_i - n\lambda - \sum_{i = 1}^n \log(X_i!).
 ``` 
-Show that it follows the maximum likelihood estimator $\hat{\lambda} = \bar{X}$, the mean of the observations, and explain why this makes sense intuitively.
+Show that it follows the maximum likelihood estimator $\widehat{\lambda}$ is equal to the sampel mean $\bar{X}$, and explain why this makes sense intuitively.
 :::
 
+    x-quill
+
+[Continue](btn:next)
+
+---
+> id: step-poisson-mle-solution
+
+*Solution*.  When we take the derivative with respect to $\lambda$ and set it equal to zero, we get 
+
+```latex
+\frac{\sum_{i = 1}^n X_i }{\widehat{\lambda}} - n = 0 ,
+```
+
+which gives us $\widehat{\lambda} = \frac{\sum X_i}{n} = \bar{\mathbf{X}}$, the sample mean.
+
+Taking a second derivative gives $-\frac{\sum_{i = 1}^n X_i }{\widehat{\lambda}^2}$. Since this quantity is everywhere negative, the likelihood is [concave](gloss:convex). Therefore, the MLE has a local maximum at the critical point $\widehat{\lambda}$, and that local maximum is also a global maximum. 
+
+[Continue](btn:next)
+
+---
+> id: step-least-squares-estimator-example
 
 ::: .example
 **Example**  
-Suppose  $y_i = \beta_1 x_i + \epsilon_i$ for $i = 1, 2, \cdots, n$, where $\epsilon_i \overset{\text{i.i.d}}{\sim} \mathcal{N}(0, \sigma^2)$, and $\beta_i$ is the only unknown parameter ($\sigma$ is known, and $x_i$'s are given).  Show that the least squares estimator for $\beta_1$ is the same as the MLE for $\beta_1$ by making observations about your log likelihood.
-:::
-*Solution*. 
-Verify that
-```latex
-\log (\mathcal{L}_{\mathbf{X}}(\beta_1)) = \sum_{i = 1}^n \log(\frac{1}{\sqrt{2\pi \sigma^2}}) - \frac{(y_i - x_i\beta_1)^2}{2\sigma^2}. 
-```
-Reason that the only terms you need to care about are quantities involving $\beta$. Complete the proof by observing that one quantity of interest in least squares estimation shows up in this expression,  and hence the estimators from least squares and maximum likelihood methods agree.
+Suppose  $Y = X\beta + \epsilon$ for $i = 1, 2, \cdots, n$, where $\epsilon$ has distribution $\mathcal{N}(0, \sigma^2)$. Treat $\sigma$ as known and $\beta$ as the only unknown parameter. Suppose that $n$ observations $(X_1, Y_1), \ldots, (X_n, Y_n)$ are made. 
 
+Show that the least squares estimator for $\beta$ is the same as the MLE for $\beta$ by making observations about your log likelihood.
+:::
+*Solution*. The log likelihood is 
+```latex
+\log \left(\mathcal{L}_{\mathbf{X}}(\beta)\right) = \sum_{i = 1}^n\left[ \log\left(\frac{1}{\sqrt{2\pi \sigma^2}}\right) - \frac{(Y_i - X_i\beta)^2}{2\sigma^2}\right]. 
+```
+The only term that depends on $\beta$ is the second one, so maximizing the log likelihood is the same as maximizing $- \sum_{i=1}^n \frac{(Y_i - X_i\beta)^2}{2\sigma^2}$, which in turn is the same as minimizing $\sum_{i=1}^n(Y_i - X_i\beta)^2$. 
+
+[Continue](btn:next)
+
+---
+> id: step-mle-binomial
 
 ::: .exercise
 **Exercise**  
-Suppose we have data points $x_1, x_2, \cdots , x_n$. Give an intuitive argument for why it's not surprising that the MLE for a uniform distribution $\mathcal{U}(0,a)$ is $\hat{a} = \text{max}({x_1, x_2, ..., x_n})$. Do the same for the statement that the MLE for a binomial distribution with parameter $p$is $\hat{p} = \frac{\sum x_i} {n}$, or the empirical rate of success. Prove the first statement.
+(a) Consider the family of distributions which are uniform on $[0,b]$, where $b \in (0,\infty)$. Explain why the MLE for the distribution maximum $b$ is the sample maximum. 
 
+(b) Show that the MLE for a binomial distribution with parameter $p$ is the empirical success rate $\frac{1}{n} \sum_{i=1}^n X_i$. 
 :::
 
+    x-quill
+
+[Continue](btn:next)
+
+---
+> id: step-mle-binomial-solution
+
+(a) The likelihood associated with any value of $b$ smaller than the sample maximum is zero, since at least one of the density values is zero in that case. The likelihood is a decreasing function of $b$ as $b$ ranges from the sample maximum to $\infty$, since it's equal to $(1/b)^n$. Therefore, the maximal value is at the sample maximum. 
+
+(b) The derivative of the log likelihood function is 
+
+```latex
+\frac{\operatorname{d}}{\operatorname{d} p}\log \frac{p^s}{(1-p)^{n-s}} =  \frac{s}{p} - \frac{n-s}{1-p}, 
+```
+
+where $s$ is the number of successes. Setting the derivative equal to zero and solving for $p$, we find $p = s/n$. 
 
 [Continue](btn:next)
 
@@ -1337,9 +1400,11 @@ MLE enjoys several nice properties: under certain regularity conditions, we have
 * **Asymptotic normality**: $(\widehat{\theta}\_{\mathrm{MLE}} - \theta)/\sqrt{\operatorname{Var} \widehat{\theta}\_{\mathrm{MLE}}}$ converges to $\mathcal{N}(0,1)$ as the number of samples goes to $\infty$. This means that we can calculate good confidence intervals for the maximum likelihood estimator, assuming we can accurately approximate its mean and variance. 
 * **Asymptotic optimality**: the MSE of the MLE converges to 0 approximately as fast as the MSE of any other consistent estimator. Thus the MLE is not wasteful in its use of data to produce an estimate. 
 
+* **Equivariance**: Suppose $\widehat{\theta}$ is the MLE of $\theta$ for $f(\theta)$. Then the MLE for $g(\theta)$ is $g(\widehat{\theta})$. This is a useful property; it states that transformation on the parameter (say, shifting the mean of a normal distribution by a number, or taking the square of the standard deviation) of interest is not an inconvenience for our MLE estimate for the parameter because we can simply apply the transformation on the MLE as well.
+
 ::: .example
 **Example**  
-Show that the plug-in variance estimator for a sequence of i.i.d.\ samples from a Gaussian distribution $\mathcal{N}(\mu, \sigma^2)$ converges to $\sigma^2$ as $n\to\infty$. 
+Show that the plug-in variance estimator for a sequence of $n$ i.i.d.\ samples from a Gaussian distribution $\mathcal{N}(\mu, \sigma^2)$ converges to $\sigma^2$ as $n\to\infty$. 
 :::
 
 [Continue](btn:next)
@@ -1371,7 +1436,7 @@ Show that it is not possible to estimate the mean of a distribution in a way tha
 ---
 > id: mle-caution
 
-The maximum likelihood estimator is not a panacea. There are several challenges that using MLE can lead to: 
+The maximum likelihood estimator is not a panacea. In the above example with uniform distribution, we see an example of an MLE that is always biased--smaller than the true value ($\widehat{a} < x_{(n)}$) . There are several challenges that using MLE can lead to: 
 
 * **Computational difficulties**. It might be difficult to work out where the maximum of the likelihood occurs, either analytically or numerically. This would be a particular concern in high dimensions (that is, if we have many parameters) and if the maximum likelihood function is [[nonconvex|convex|differentiable]].
 * **Misspecification**. The MLE may be inaccurate if the distribution of the samples is not in the specified parametric family. For example, if we assume the underlying distribution is Gaussian, when in fact its shape is not even close to that of a Gaussian, we very well might get unreasonable results. 
@@ -1400,6 +1465,15 @@ where $a < b < c < d$, and where $\gamma$ and $\delta$ are nonnegative real numb
 > id: mle-unbounded-example-solution
 
 *Solution*. We identify the largest value in our data set and choose $c$ to be $\epsilon$ less than tha value and $d$ to be $\epsilon$ more. We choose $a$ and $b$ so that the interval $[a,b]$ contains all of the other observations. Then we can send $\epsilon$ to zero and $\delta$ to $\infty$ to obtain an arbitrarily large likelihood value. 
+
+[Continue](btn:next)
+
+---
+> id: step-final-note-mle
+
+One further disadvantage of the maximum likelihood estimator is that it doesn't provide for a smooth mechanism to account for prior knowledge. For example, if we flip a coin twice and see heads both times, our (real-world) beliefs about the coin's heads probability would be that it's about 50%. Only once we saw quite a few heads in a row would we begin to use that as evidence move the needle on our strong prior belief that coins encountered in daily life are not heavily weighted to one side or the other.
+
+*Bayesian* statistics provides an alternative framework which addresses this shortcoming of maximum likelihood estimation. 
 
 ---
 > id: hypothesis-testing
@@ -1552,3 +1626,13 @@ Which results are reported as significant at the 5% level, according to the Bonf
 ::: 
 
 *Solution*. At the 5% level, only $p$ values less than 5%/10 = 0.5% are reported as significant (since we ran ten hypothesis tests). Since none of the $p$ values are below 0.5%, none of the genes will be considered significant. 
+
+
+[Continue](btn:next)
+
+---
+> id: step-parting-thoughts
+
+Hypothesis testing is often viewed by learners of statistics as potentially misleading. In fact, this thought is not uncommon among professional statisticians and other scientists as well. See, for example, this [comment in Nature](https://www.nature.com/articles/d41586-019-00857-9), which was part of a widespread discussion of $p$-values in the statistics community in early 2019. 
+
+Despite these concerns, it's useful to be understand the basics of hypothesis testing, because it remains a widely used framework, and conveys a critical lesson about the hazards of extracting hypotheses from data rather the other way around (using data to scrutinize hypotheses). 

@@ -738,3 +738,22 @@ model-accuracy:
 operatornorm:
   title: Operator Norm
   text: The operator norm of a matrix is the maximum factor by which it stretches vectors. It's equal to the largest singular value of the matrix.
+  
+pdf:
+  title: Probability Density Function
+  text: Given a continuous probability measure, its **density function** (PDF) is the function that you integrate over each set to find the amount of probability mass associated with that set. For example, the exponential distribution has PDF $f(x) = \operatorname{e}^{-x}$ on $[0,\infty)$.
+  
+pmf:
+  title: Probability Mass Function
+  text: Given a discrete probability measure, its probability mass function (PMF) is the function that maps each point $\mathbf{x}$ to the amount of probability mass at that point. For example, the fair coin flip PMF maps 0 and 1 to $\frac{1}{2}$ and every other point to zero. 
+  
+overflow:
+  title: Overflow
+  text: In 64-bit floating point arithmetic, the largest representable number is $2^{1024} - 2^{971}$, which is about $1.8 \times 10^{308}$. The smallest representable positive number is $2^{-1074} \approx 5 \times 10^{-324}$. When calculations lead to results which are too large or small to be represented, we call those errors *underflow* or *overflow*, respectively.
+  
+convex:
+  title: Convex
+  text: |
+    A function is convex if every line segment connecting two points on its graph lies on or above the graph of the function. A function is concave every line segment connecting two points on its graph lies on or *below* the graph of the function. 
+
+    Convexity is a desirable property for minimization problems, because any local minimum of a convex function is also a global minimum. Efficient and accurate numerical methods are available for convex optimization.

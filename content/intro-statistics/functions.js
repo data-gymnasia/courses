@@ -108,7 +108,6 @@ export function mleCaution($step) {
   $step.model.watch(s => {
     const fn = twoStep(s.a, s.b, s.c, s.d, s.γ); 
     s.$step.model.set('likelihood', xs.map(fn).reduce((a,b)=>a*b));
-    //$chart.mathBounds = new Bounds(55, 75, 0, 0.5);
     $chart.setFunctions(fn);
     $chart.drawPoints(points);
   });
