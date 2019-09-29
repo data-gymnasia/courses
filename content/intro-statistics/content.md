@@ -1550,7 +1550,7 @@ Under the null hypothesis, therefore, $\overline{X} - \overline{Y}$ has mean zer
     pre.rblock(r-executable)
       | z <- (stats$m[1] - stats$m[2]) / sqrt(sum(stats$se^2))
 
-returns $5.29$, so we do reject the null hypothesis at the 95% confidence level. The $p$-value of this test is `{r} 1-pnorm(z)` $= 6.08 \times 10^{-6}$. 
+returns $5.29$, so we do reject the null hypothesis at the 95% confidence level. The $p$-value of this test is `{jl} 1-cdf(Normal(0,1),z)` $= 6.08 \times 10^{-6}$. 
 
 [Continue](btn:next)
 
