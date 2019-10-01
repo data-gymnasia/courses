@@ -193,9 +193,7 @@ The following scenario will be our running example throughout this section. We w
  Suppose that $X$ is a random variable which represents the number of hours a student studies for an exam, and $Y$ is a random variable which represents their performance on the exam. Suppose that the joint density of $X$ and $Y$ is given by
 
 ``` latex
-
-    f(x,y) = \frac{3}{4000(3/2)\sqrt{2\pi}}x(20-x)e^{-\frac{1}{2(3/2)^2}\left(y - 2 - \frac{1}{50}x(30-x)\right)^2}.
-
+  f(x,y) = \frac{3}{4000(3/2)\sqrt{2\pi}}x(20-x)e^{-\frac{1}{2(3/2)^2}\left(y - 2 - \frac{1}{50}x(30-x)\right)^2}.
 ```
  Given that a student's number of hours of preparation is known to be $x$, what is the best prediction for $Y$ (as measured by mean squared error)?
 :::
@@ -209,8 +207,6 @@ The following scenario will be our running example throughout this section. We w
 
 ---
 > id: example-solution-1
-
-<!--TODO: fix caption and images (exam-density and exam-density-line)-->
 
 *Solution*.  The best guess of a random variable (as measured by mean squared error) is the expectation of the random variable. Likewise, the best guess of $Y$ given $\\{X=x\\}$ is the *conditional* expectation of $Y$ given $\\{X=x\\}$. Inspecting the density function, we recognize that restricting it to a vertical line at position $x$ gives an expression which is proportional to the Gaussian density centered at $2 + \frac{1}{50}x(30-x)$. Therefore,
 
@@ -1518,6 +1514,7 @@ Failure to reject the null hypothesis is not necessarily evidence *for* the null
 
 ---
 > id: step-wald-test
+#### The Wald test and the t-test
 
 ::: .definition
 **Definition**  
@@ -1540,7 +1537,9 @@ eight_cyl_mpgs = [18.7, 14.3, 16.4, 17.3, 15.2, 10.4, 10.4, 14.7, 15.5, 15.2, 13
       | using Statistics
       | six = [21.0, 21.0, 21.4, 18.1, 19.2, 17.8, 19.7]
       | eight = [18.7, 14.3, 16.4, 17.3, 15.2, 10.4, 10.4, 14.7, 15.5, 15.2, 13.3, 19.2, 15.8, 15.0]
-      | m₁, m₂, σ₁, σ₂ = mean(six), mean(eight), std(six), std(eight)
+      | m₁, m₂ = mean(six), mean(eight)
+      | s₁, s₂ = std(six), std(eight)
+      | n₁, n₂ = length(six), length(eight)
 
     pre.rblock(r-executable)
       | 
@@ -1559,16 +1558,123 @@ Given that the distribution of 8-cylinder `{r} mpg` values has variance $\sigma\
   \sigma_{\mathrm{six}}^2/n_{\mathrm{six}}. 
 ```
 
-Under the null hypothesis, therefore, $\overline{X} - \overline{Y}$ has mean zero and standard error $\sqrt{\sigma\_{\mathrm{eight}}^2/n\_{\mathrm{eight}} +
-\sigma\_{\mathrm{six}}^2/n\_{\mathrm{six}}}$. We therefore reject the null hypothesis with 95% confidence if the value of $\overline{X} - \overline{Y}$ divided by its estimated standard error exceeds 1.96. We find that 
+Under the null hypothesis, therefore, $\overline{X} - \overline{Y}$ has mean zero and standard error $\sqrt{\sigma\_{\mathrm{eight}}^2/n\_{\mathrm{eight}} + \sigma\_{\mathrm{six}}^2/n\_{\mathrm{six}}}$. We therefore reject the null hypothesis with 95% confidence if the value of $\overline{X} - \overline{Y}$ divided by its estimated standard error exceeds 1.96. We find that 
 
     pre.rblock(r-executable)
       | z <- (stats$m[1] - stats$m[2]) / sqrt(sum(stats$se^2))
       
     pre(julia-executable)
-      | (m₁ - m₂) / sqrt(σ₁^2 + σ₂^2)
+      | z = (m₁ - m₂) / sqrt(s₁^2/n₁ + s₂^2/n₂)
 
 returns $5.29$, so we do reject the null hypothesis at the 95% confidence level. The $p$-value of this test is `{jl} 1-cdf(Normal(0,1),z)` $= 6.08 \times 10^{-6}$. 
+
+[Continue](btn:next)
+
+The Wald test can be overconfident because it doesn't account for the fact that the standard deviation values are estimated from the data:
+
+::: .exercise
+**Exercise**  
+Experiment with the code block below to see how, even when the initial distribution is normal, standardizing the mean using the *estimated* standard deviation results in a non-normal distribution. How is this distribution different? Around what value of $n$ does the graph become visually indistinguishable from the normal distribution (in this visualization)?
+:::
+
+    pre(julia-executable)
+      | using Plots, Distributions
+      | pyplot()
+      | n = 6
+      | μ = 3
+      | sample(n) = [μ + 0.5randn() for _ in 1:n]
+      | standardize(X) = (mean(X) - μ)/(std(X)/√(length(X)))
+      | histogram([standardize(sample(n)) for _ in 1:1_000_000], 
+      |            xlims = (-6,6), normed=true, label="standardized mean")
+      | plot!(-6:0.05:6, x-> pdf(Normal(0,1),x), linewidth = 3, 
+      |       label = "standard normal density", opacity = 0.75)
+
+    x-quill
+
+---
+> id: step-t-dist-solution
+
+*Solution*. The distribution of $\frac{A_n - \mu}{S/\sqrt{n}}$ apparently has heavier tails that the normal distribution. Based on the graph, it appears that this effect is more noticeable for $n$ less than 30 than for $n$ greater than 100. (Both of these numbers are arbitrary; the main point is that it doesn't take huge values of $n$ for the distribution to start looking fairly normal.)
+
+[Continue](btn:next)
+
+---
+> id: step-t-test-previous-example
+
+If $X_1, X_2, \ldots, X_n$ is a sequence of normal random variables with mean $\mu$ and variance $\sigma^2$, let's define $\overline{X}$ to be the average of $X_i$'s, and $S$ to be the sample variance, so $S^{2}=\frac{1}{n-1} \sum_{i=1}^{n}\left(X_{i}-\overline{X}\right)^{2}$. Then the distribution of $(\overline{X} - \mu)/(S/\sqrt{n})$ is called the **t-distribution** with $n-1$ **degrees of freedom**. 
+
+::: .exercise
+**Exercise**  
+Use your knowledge of the t-distribution to test the hypothesis that the mean of the distribution used to generate the following list of numbers has mean greater than 4. 
+:::
+
+    pre(julia-executable)
+      | X = [4.1, 5.12, 3.39, 4.97, 3.07, 4.17, 4.46, 5.53, 3.28, 3.62]
+
+    x-quill
+    
+[Continue](btn:next)
+
+---
+> id: step-t-basic-solution
+
+*Solution*. We define the statistic $t = (X - 4)/(S/\sqrt{n})$, which under the null hypothesis is $t$-distributed with 9 degrees of freedom. We compute
+
+    pre(julia-executable)
+      | t = (mean(X) - 4) / (std(X)/length(X))
+
+which is approximately 2.029, and then 
+
+    pre(julia-executable)
+      | 1 - cdf(TDist(length(X)-1), t)
+
+which is about 3.7\%. So we are able to reject the null hypothesis at the 5\% significance level. 
+
+[Continue](btn:next)
+
+---
+> id: step-redo-mpg-t-test
+
+There are a variety of $t$-tests, including one appropriate to the mpg problem discussed above:
+
+::: .exercise
+**Exercise**  
+Redo the mpg problem above with the *Welch's* t-test instead of the Wald test. This test says that the statistic
+``` latex
+t = \frac{\overline{X}_{1}-\overline{X}_{2}}{\sqrt{\frac{s_{1}^{2}}{n_{1}}+\frac{s_{2}^{2}}{n_{2}}}}
+```
+is, under the null hypothesis, $t$-distributed with 
+``` latex
+\frac{\left(\frac{s_{1}^{2}}{n_{1}}+\frac{s_{2}^{2}}{n_{2}}\right)^{2}}{\frac{\left(s_{1}^{2} / n_{1}\right)^{2}}{n_{1}-1}+\frac{\left(s_{2}^{2} / n_{2}\right)^{2}}{n_{2}-1}}
+```
+degrees of freedom. 
+:::
+
+    pre(julia-executable)
+      | using Statistics
+      | six = [21.0, 21.0, 21.4, 18.1, 19.2, 17.8, 19.7]
+      | eight = [18.7, 14.3, 16.4, 17.3, 15.2, 10.4, 10.4, 14.7, 15.5, 15.2, 13.3, 19.2, 15.8, 15.0]
+      | m₁, m₂ = mean(six), mean(eight)
+      | s₁, s₂ = std(six), std(eight)
+      | n₁, n₂ = length(six), length(eight)
+
+    x-quill
+    
+[Continue](btn:next)
+
+---
+> id: step-solution-redo-mpg
+
+*Solution*. We calculate 
+
+    pre(julia-executable)
+      | a = s₁^2/n₁
+      | b = s₂^2/n₂
+      | ν = (a + b)^2 / (a^2/(n₁-1) + b^2/(n₂-1))
+      | t = (m₁ - m₂)/sqrt(a+b)
+      | ccdf(TDist(ν), t)
+
+(Note that `{jl} ccdf` is the same as `{jl} 1-cdf`.) The value returned is $2.27 \times 10^{-5}$, so we still reject the null hypothesis, but the $p$-value is higher than what we got previously.
 
 [Continue](btn:next)
 
