@@ -158,13 +158,37 @@ We can see on the left edge of the (top) picture that we didn't cover zero! Ther
 ---
 > id: step-float64-system
 
-If we have 64 bits, we can do the same thing but on a grander scale. We define $\sigma$ to be the first bit of the string, $e$ to be the next 11 bits interpreted as a binary integer, and $f$ to be the remaining 52 bits interpreted as a binary integer. If $0 &lt; e &lt; 2047$, then the string represents the number
+If we have 64 bits, we can do the same thing but on a grander scale. Rather than subdividing the interval $[1,2)$ into $2^3 = 8$ equal-length intervals, we use $2^{52} = 4503599627370496$ intervals. Rather than scaling than interval up and down just a few times in each direction, we scale up 1023 times—covering every binary interval up to $[2^{1023}, 2^{1024})$—and down 1022 times—covering every binary interval down to $[2^{-1022}, 2^{-1021})$. Finally, the subnormal numbers will be equally spaced between 0 and $2^{-1022}$. 
+
+We can accomplish all of this if we dedicate 11 bits to indicating the index $e$ of the binary interval we're in—starting from $e=0$ for numbers in the subnormal range and going up to $e=2046 = 2^{11}-2$ for the last interval $[2^{1023}, 2^{1024})$—and 52 bits for indicating the index $f$ of the tick within that interval. For example, the number $4 + 18\cdot 2^{-50}$ would correspond to [[$e = 1024$|$e = 1023$|$e = 2$]] and [[$f = 18$|$f = 0$|$f = 1$]]. 
+
+---
+> id: step-shown-as-tick-marks
+
+The nonnegative representable numbers are laid out as shown (figure not drawn to scale!):
+
+    figure
+      img(src="images/float64.svg")
+      p.caption.md The tick marks indicate the positive values which are representable as 64-bit floating point numbers. There are $2^{52}$ of them between any two successive powers of 2 from $2^{-1022}$ up to $2^{1024}$, and the interval from 0 to $2^{-1022}$ also contains $2^{52}$ representable values (these are the subnormal numbers, indicated in blue).
+
+
+[Continue](btn:next)
+
+---
+> id: step-sigma-bit
+
+That leaves us with one bit, which we call $\sigma$, to indicate the sign of the value we're representing. Also, note that we're leaving out one possible $e$ value (the last one, $e = 2047$); more on that later. 
+
+---
+> id: step-formula-float64
+
+We can use this description to write down formulas for the real number values represented by each string of 64 bits. We define $\sigma$ to be the first bit of the string, $e$ to be the next 11 bits interpreted as a binary integer, and $f$ to be the remaining 52 bits interpreted as a binary integer. If $0 &lt; e &lt; 2047$, then the string represents the number
 
 ``` latex
 (-1)^\sigma\left(1+\left(\frac{1}{2}\right)^{52}f\right)\cdot2^{e-1023}.
 ```
 
-Note that the exponent $e -1023$ ranges from $-1022$ up to $1023$ as $e$ ranges from 1 to $2046$. If $e = 0$, then the string represents
+Note that the exponent $e-1023$ ranges from $-1022$ up to $1023$ as $e$ ranges from 1 to $2046$. If $e = 0$, then the string represents
 
 ``` latex
 
@@ -187,7 +211,7 @@ Another way to visualize the floating point number system is to graph the floati
 ---
 > id: step-nan-and-inf
 
-We also appropriate the *last* value of $e$ for a special meaning: if $e = 2047$, then the string represents one of the special values `{jl} Inf` or `{jl} NaN`, depending on the value of $f$.
+We appropriate the *last* value of $e$ for a special meaning: if $e = 2047$, then the string represents one of the special values `{jl} Inf` or `{jl} NaN`, depending on the value of $f$.
 
 ::: .example
 **Example**  
@@ -207,17 +231,7 @@ Thus $-0.75$ can be represented exactly as a `{jl} Float64`.
 
 [Continue](btn:next)
 
----
-> id: step-shown-as-tick-marks
 
-The nonnegative representable numbers are laid out as shown (figure not drawn to scale!):
-
-    figure
-      img(src="images/float64.svg")
-      p.caption.md The tick marks indicate the positive values which are representable as 64-bit floating point numbers. There are $2^{52}$ of them between any two successive powers of 2 from $2^{-1022}$ up to $2^{1024}$, and the interval from 0 to $2^{-1022}$ also contains $2^{52}$ representable values (these are the subnormal numbers, indicated in blue).
-
-
-[Continue](btn:next)
 
 ---
 > id: exercise-3
@@ -241,15 +255,18 @@ Show that $0.1$ cannot be represented exactly as a `{jl} Float64`.
 
 ::: .exercise
 **Exercise**  
-Show that there are $2^{52}$ representable numbers in each interval of the form $[2^{k},2^{k+1})$, where $-1022 \leq k &lt; 1024$.
+The Julia function `{jl} nextfloat` returns the smallest representable value which is larger than its argument. What value will be returned by the code below? 
 :::
+
+    pre(julia-executable)
+      | log2(nextfloat(11.0) - 11.0)
 
     x-quill
 
 ---
 > id: solution-4
 
-*Solution*. For $0 &lt; e &lt; 2047,$ let $k = e - 1023.$ Then $-1022 \leq k &lt; 1024.$ Notice that $2^k \leq (1 + f)\cdot 2^{k} &lt; 2^{k+1}$ if and only if $0 \leq f &lt; 1.$ Since $f$ in the Float64 system attains its maximun when all the $52$ bits are $1$'s, we can use geometric sums to show that $0 \leq f \leq 1 - 2^{-52} &lt; 1.$ Therefore if $e$ is fixed, each value of $f$ uniquely identifies a number $(1+ f)\cdot 2^{e - 1023}$ in the interval $\left[2^k, 2^{k+1}\right).$ Since there are $2^{52}$ possible values of $f,$ there are $2^{52}$ representable numbers in each interval.
+*Solution*. The difference between 11 and the next Float64 is $2^{-52 + 3} = 2^{-49}$, since 11 is in the binary interval $[2^{3}, 2^4)$, which is 3 binary intervals to the right of $[1,2]$. So the value returned will be $-49$. 
 
 [Continue](btn:next)
 
