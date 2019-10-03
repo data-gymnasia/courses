@@ -757,3 +757,8 @@ convex:
     A function is convex if every line segment connecting two points on its graph lies on or above the graph of the function. A function is concave every line segment connecting two points on its graph lies on or *below* the graph of the function. 
 
     Convexity is a desirable property for minimization problems, because any local minimum of a convex function is also a global minimum. Efficient and accurate numerical methods are available for convex optimization.
+    
+degrees-of-freedom:
+  title: Degrees of freedom
+  text: |
+    *Degrees of freedom* is the name given to the parameter of the χ²-distribution (which is the distribution of the sum of the squares of $d$ independent standard normal random variables, where $d$ is the number of degrees of freedom) and the t-distribution (which is the distribution of the average of $d$ independent standard normal random variables divided by $S/\sqrt{n}$, where $S$ is the sample variance of the random variables). 
