@@ -1087,7 +1087,7 @@ In other words, the probability that the graph of $\widehat{F}_n$ lies in the $\
 
 ::: .exercise
 **Exercise**  
-Use the code cell below to experiment with various values of $n$, and confirm that the
+Use the code cell below to experiment with various values of $n$, and confirm that the DKW inequality holds for the Exponential distribution with with parameter $\lambda = 1$.
 
 Hint: after running the cell once, you can comment out the first plot command and run the cell repeatedly to get lots of empirical CDFs to show up on the same graph. 
 :::
