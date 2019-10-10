@@ -1352,7 +1352,7 @@ Taking a second derivative gives $-\frac{\sum_{i = 1}^n X_i }{\widehat{\lambda}^
 
 ::: .example
 **Example**  
-Suppose  $Y = X\beta + \epsilon$ for $i = 1, 2, \cdots, n$, where $\epsilon$ has distribution $\mathcal{N}(0, \sigma^2)$. Treat $\sigma$ as known and $\beta$ as the only unknown parameter. Suppose that $n$ observations $(X_1, Y_1), \ldots, (X_n, Y_n)$ are made. 
+Suppose  $Y = X\beta + \epsilon$ for $i = 1, 2, \cdots, n$, where $\epsilon$ has distribution $\mathcal{N}(0, I \sigma^2)$. Treat $\sigma$ as known and $\beta$ as the only unknown parameter. Suppose that $n$ observations $(X_1, Y_1), \ldots, (X_n, Y_n)$ are made. 
 
 Show that the least squares estimator for $\beta$ is the same as the MLE for $\beta$ by making observations about your log likelihood.
 :::
