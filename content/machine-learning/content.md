@@ -807,19 +807,54 @@ The graph in the example above suggests modeling $r$ parametrically as a composi
 
 To select the parameters $\boldsymbol{\beta}$ and $\alpha$, we penalize lack of confident correctness for each training sample. We give a sample of class 1 the penalty $\log\left(\frac{1}{r\_i(x)}\right)$ (which is [[large|negative]] if $r\_i(x)$ is close to zero and [[nearly zero|very large]] if $r\_i(x)$ is close to 1). Likewise, we penalize a sample of class 0 by $\log\left(\frac{1}{1-r\_i(x)}\right)$. 
 
+---
+> id: logistic-animation-exercise
+
+::: .exercise
+**Exercise**  
+Experiment with the sliders below and get the loss value below 2.45.
+:::
+
+{.text-center} `α =`${α}{α|0|-3,3,0.05}
+
+{.text-center} `β =`${β}{β|1|-5,5,0.05}
+
+{.text-center} loss = ${loss}
+
+    x-coordinate-system(x-axis="-5|5|0.5" y-axis="0|1|0.25")
+    
+    pre(julia-executable)
+      | using Optim
+      | 
+      | Z = [-1.2, -0.8, -0.7, 0.4, -2.4, 1.13]
+      | O = [2.2, 1.3, 0.8, 2.5, 2.62]
+      | 
+      | f(α, β, x) = 1/(1+exp(-α-β*x))
+      |     
+      | function loss(Z, O, θ)
+      |     α, β = θ
+      |     sum(log(1/(1-f(α, β, x))) for x in Z) + 
+      |         sum(log(1-f(α, β, x)) for x in O)
+      | end
+      | 
+      | optimize(θ->loss(Z,O,θ), [0.0, 1.0])
+
 [Continue](btn:next)
+
+---
+> id: step-min-logistic-regression
 
 ::: .example
 **Example**  
-Sample 1000 points by choosing one of the two distributions uniformly at random and then sampling from the selected distribution. Find the function of the form $\sigma(\boldsymbol{\beta} \cdot
-  \mathbf{x} + \alpha)$ which minimizes 
+Sample 1000 points by choosing one of the two multivariate Gaussian distributions uniformly at random and then sampling from the selected distribution. Find the function of the form $\sigma(\boldsymbol{\beta} \cdot \mathbf{x} + \alpha)$ which minimizes 
 
 ``` latex
-    L(r) = \sum_{i=1}^{n} \left[y_i \log \frac{1}{r(x_i)} +
-      (1-y_i)\log\frac{1}{1-r(x_i)}\right].
+L(r) = \sum_{i=1}^{n} \left[y_i \log \frac{1}{r(x_i)} + 
+       (1-y_i)\log\frac{1}{1-r(x_i)}\right].
 ```
-
 :::
+
+    center: img(src="images/two-densities.svg" style="float: right;" width=260)
 
 [Continue](btn:next)
 
@@ -2259,4 +2294,3 @@ Use the Julia package `{jl} TSne` to plot a two-dimensional $t$-SNE embedding of
       | scatter(Y[:,1],Y[:,2],
       |         group=labels[1:n],
       |         ms=2,msw=0)
-
