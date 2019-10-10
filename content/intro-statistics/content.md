@@ -39,7 +39,7 @@ A simple way to obtain a probability distribution from a list of observations is
 
     pre(julia-executable)
       | using Plots
-      | pyplot()
+
       | histogram(heights,
       |           nbins=12,
       |           label="",
@@ -51,7 +51,7 @@ A simple way to obtain a probability distribution from a list of observations is
 ---
 > id: step-histogram-distribution
 
-You might think of a histogram as just a visualization of the data, but it does give an actual distribution: we consider the function whose graph consists of the tops of the histogram bars, and we divide that function by the total number of observations: 
+You might think of a histogram as just a visualization of the data, but it does give an actual distribution: we consider the piecewise constant function whose graph consists of the tops of the histogram bars, and we divide it by the sum of the areas of the bars (to obtain a new function which integrates to 1):
 
     pre(julia-executable)
       | using Plots
@@ -200,7 +200,6 @@ The following scenario will be our running example throughout this section. We w
 
     figure
       img(src="images/exam-density.png" width=350)
-
       p.caption.md Figure 1.1: The probability density function of the joint distribution of $(X,Y)$, where $X$ is the number of hours of studying and $Y$ is the exam score.
 
 [Continue](btn:next)
@@ -414,7 +413,7 @@ We measure the difference between $f$ and $\widehat{f}\_\lambda$ by evaluating b
       | D(u) = abs(u) < 1 ? 70/81*(1-abs(u)^3)^3 : 0 # tri-cube function
       | D(λ,u) = 1/λ*D(u/λ) # scaled tri-cube
       | K(λ,x,y) = D(λ,x) * D(λ,y) # kernel
-      | kde(λ,x,y,sample) = sum(K(λ,x-Xi,y-Yi) for (Xi,Yi) in sample)/length(sample)
+      | kde(λ,x,y,observations) = sum(K(λ,x-Xi,y-Yi) for (Xi,Yi) in observations)/length(observations)
       | # `optimize` takes functions which accept vector arguments, so we treat
       | # λ as a one-entry vector
       | L(λ) = sum((f(x,y) - kde(λ,x,y,sample))^2 for x=xs,y=ys)*step(xs)*step(ys)
@@ -479,7 +478,7 @@ Recalling the expectation formula
 ```
 
 we recognize the second term in the top equation as 
-[[$-2\mathbb{E}(\widehat{f}\_\lambda(X,Y))$ | $-2\mathbb{E}(g(X,Y))$ | $-2\mathbb{E}(g(X,Y)\widehat{f}\_\lambda(X,Y))$]], where $(X,Y)$ is a sample from the true density $f$ which is *independent* of $\widehat{f}\_\lambda$. To get observations which are independent of the estimator, we will define $\widehat{f}\_{\lambda}^{(-i)}$ to be the density estimator obtained using the samples other than the $i$th one. Since the observations $(X\_i,Y\_i)$ are drawn from the joint density of $(X,Y)$ and are assumed to be independent, we can suggest the approximation
+[[$-2\mathbb{E}(\widehat{f}\_\lambda(X,Y))$ | $-2\mathbb{E}(g(X,Y))$ | $-2\mathbb{E}(g(X,Y)\widehat{f}\_\lambda(X,Y))$]], where $(X,Y)$ is an observation from the true density $f$ which is *independent* of $\widehat{f}\_\lambda$. To get observations which are independent of the estimator, we will define $\widehat{f}\_{\lambda}^{(-i)}$ to be the density estimator obtained using the observations other than the $i$th one. Since the observations $(X\_i,Y\_i)$ are drawn from the joint density of $(X,Y)$ and are assumed to be independent, we can suggest the approximation
 
 ``` latex
 \mathbb{E}[\widehat{f}_\lambda(X,Y)]  \approx  
@@ -502,16 +501,16 @@ the **cross-validation loss estimator**. Let's find the value of $\lambda$ which
 
     pre(julia-executable)
       | "Evaluate the summation Σᵢ f⁽⁻ⁱ⁾(Xᵢ,Yᵢ) in J(λ)'s second term"
-      | function kdeCV(λ,i,sample)
-      |     x,y = sample[i]
-      |     newsample = copy(sample)
-      |     deleteat!(newsample,i)
-      |     kde(λ,x,y,newsample)
+      | function kdeCV(λ,i,observations)
+      |     x,y = observations[i]
+      |     newobservations = copy(observation)
+      |     deleteat!(newobservations,i)
+      |     kde(λ,x,y,newobservations)
       | end
       |
       | # first line approximates ∫f̂², the second line approximates -(2/n)∫f̂f
-      | J(λ) = sum([kde(λ,x,y,sample)^2 for x=xs,y=ys])*step(xs)*step(ys) -
-      |         2/length(sample)*sum(kdeCV(λ,i,sample) for i=1:length(sample))
+      | J(λ) = sum([kde(λ,x,y,observations)^2 for x=xs,y=ys])*step(xs)*step(ys) -
+      |         2/length(observations)*sum(kdeCV(λ,i,observations) for i=1:length(observations))
       | λ_best_cv = optimize(λ->J(first(λ)),[1.0],BFGS())
       |
 
@@ -550,7 +549,7 @@ With an estimate of the joint density of $X$ and $Y$ in hand, we can turn to the
     figure
       img(src="images/kde-slice.png" width=350)
 
-      p.caption.md Figure 1.6: A kernel density estimator with 16 samples and $\lambda = 1$.
+      p.caption.md Figure 1.6: A kernel density estimator with 16 observations and $\lambda = 1$.
 
 So the conditional expectation of $Y$ given $\\{X = x\\}$ is
 
@@ -564,7 +563,7 @@ So the conditional expectation of $Y$ given $\\{X = x\\}$ is
 
 ```
 
-Let's try to simplify this expression. Looking at Figure 1.6, we can see by the symmetry of the function $D$ that each sample $(X\_i,Y\_i)$ contributes $Y\_iD\_\lambda(x-X\_i)$ to the numerator of the above equation. To arrive at the same conclusion by manipulating the formula directly, we write
+Let's try to simplify this expression. Looking at Figure 1.6, we can see by the symmetry of the function $D$ that each observation $(X\_i,Y\_i)$ contributes $Y\_iD\_\lambda(x-X\_i)$ to the numerator of the above equation. To arrive at the same conclusion by manipulating the formula directly, we write
 
 ``` latex
 
@@ -598,9 +597,11 @@ The graph of this function is shown in Figure 1.7. We see that it matches the gr
 
     pre(julia-executable)
       | λ = first(λ_best_cv.minimizer)
-      | r̂(x) = sum(D(λ,x-Xi)*Yi for (Xi,Yi) in sample)/sum(D(λ,x-Xi) for (Xi,Yi) in sample)
-      | pyplot()
-      | plot(0:0.2:20, r̂, label = "Nadaraya-Watson estimator", ylims = (0,10))
+      | r̂(x) = sum(D(λ,x-Xi)*Yi for (Xi,Yi) in observations)/sum(D(λ,x-Xi) for (Xi,Yi) in observations)
+      | scatter([x for (x,y) in observations], 
+      |         [y for (x,y) in observations],label="observations",
+      |         markersize=2, legend = :bottomright)
+      | plot!(0:0.2:20, r̂, label = L"\hat{r}", ylims = (0,10), linewidth = 3)
 
 The approximate integrated squared error of this estimator is `{jl} sum((r(x)-r̂(x))^2 for x in xs)*step(xs) = 1.90`.
 
@@ -648,7 +649,7 @@ Draw 500 independent observations from an exponential distribution with paramete
 
     pre(julia-executable)
       | using Plots, Distributions
-      | pyplot()
+
       | n = 500
       | xs = range(0, 8, length=100)
       | plot(xs, x-> 1-exp(-x), label = "true CDF", legend = :bottomright)
@@ -740,7 +741,7 @@ which is about -0.0098. We can visualize these sample maximum estimates with a h
 
     pre(julia-executable)
       | using Plots
-      | pyplot()
+
       | histogram([maximum(rand() for _ in 1:100) for _ in 1:10_000], 
       |           label = "sample maximum", xlims = (0,1), 
       |           legend = :topleft)
@@ -1087,14 +1088,14 @@ In other words, the probability that the graph of $\widehat{F}_n$ lies in the $\
 
 ::: .exercise
 **Exercise**  
-Use the code cell below to experiment with various values of $n$, and confirm that the
+Use the code cell below to experiment with various values of $n$, and confirm that the graph usually falls inside the DKW confidence band.
 
 Hint: after running the cell once, you can comment out the first plot command and run the cell repeatedly to get lots of empirical CDFs to show up on the same graph. 
 :::
 
     pre(julia-executable)
       | using Plots, Distributions, Roots
-      | pyplot()
+
       | n = 50
       | ϵ = find_zero(ϵ -> 2exp(-2n*ϵ^2) - 0.1, 0.05)
       | xs = range(0, 8, length=100)
@@ -1579,7 +1580,7 @@ Experiment with the code block below to see how, even when the initial distribut
 
     pre(julia-executable)
       | using Plots, Distributions
-      | pyplot()
+
       | n = 6
       | μ = 3
       | sample(n) = [μ + 0.5randn() for _ in 1:n]

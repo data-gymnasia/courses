@@ -762,3 +762,23 @@ degrees-of-freedom:
   title: Degrees of freedom
   text: |
     *Degrees of freedom* is the name given to the parameter of the χ²-distribution (which is the distribution of the sum of the squares of $d$ independent standard normal random variables, where $d$ is the number of degrees of freedom) and the t-distribution (which is the distribution of the average of $d$ independent standard normal random variables divided by $S/\sqrt{n}$, where $S$ is the sample variance of the random variables). 
+    
+statistical-learning:
+  title: Statistical Learning
+  text: |
+    The goal of *machine learning* is to use data to build predictive models. Statistical learning theory is a framework for machine learning which is aimed at drawing conclusions about machine learning models. The terms *machine learning* and *statistical learning* are sometimes used interchangeably, although *machine learning* tends to be associated more with getting models to work well, while *statistical learning* places more emphasis on understanding how and when models can be expected to work well.
+    
+dichotomize:
+  title: Dichotomize
+  text: To *dichotomize* a random variable is to map each of its values to one of two categories. For example, if $X$ is the number of cigarettes a person has smoked in the past year, we can split our data points into an $X = 0$ "nonsmoker" category and an $X > 0$ "smoker" category.
+  
+inductive-bias:
+  title: Inductive Bias
+  text: |
+    The **inductive bias** of a learner is the set of (implicit or explicit) assumptions that it uses to make predictions based on observed data. 
+  
+    If the inductive bias is compatible with the underlying probability measure (for example, if a regression function is assumed to be linear and is in fact linear), then it helps the model use data more efficiently. However, inductive bias which is incompatible with the underlying probability measure can lead to large prediction error even as the sample size tends to infinity.
+    
+functional:
+  title: Functional
+  text: A **functional** is a function whose domain is a set of functions and whose codomain is $\mathbb{R}$. In other words, a functional takes a function as input and returns a number as output.
