@@ -142,8 +142,8 @@ intro-statistics:
     name: Samuel S. Watson
     link: http://sswatson.com
  
- machine-learning:
-   name: Machine Learning
+machine-learning:
+  name: Machine Learning
    topics: 
      - Statistical Learning Theory
      - Linear Regression
