@@ -467,10 +467,10 @@ Let's build a visualization for the optimal classifier for the flowers by colori
 Next, let's make a classifier and color all of the points in a fine-mesh grid according to their predicted classifications. 
 
     pre(julia-executable)
-      | classify(x,p,Ns) = argmax([p[i]*pdf(Ns[i],x) for i=1:3])
+      | predict(x,p,Ns) = argmax([p[i]*pdf(Ns[i],x) for i=1:3])
       | function classificationplot(flowers,p,Ns)
       |     rgb = [:red,:green,:blue]
-      |     P = heatmap(xs,ys,(x,y) -> classify([x,y],p,Ns),
+      |     P = heatmap(xs,ys,(x,y) -> predict([x,y],p,Ns),
       |           fillcolor = cgrad(rgb), opacity = 0.4, 
       |           aspect_ratio = 1, legend = false)
       | for c in ["red","green","blue"]
@@ -478,8 +478,8 @@ Next, let's make a classifier and color all of the points in a fine-mesh grid ac
       | end
       |     P
       | end
-      | correct(flowers,p,Ns) = count(colors[classify(F.X,p,Ns)] == F.color for F in flowers)
-      | classificationplot(flowers,p,Ns)
+      | correct(flowers,p,Ns) = count(colors[predict(F.X,p,Ns)] == F.color for F in flowers)
+      | classificationplot(flowers, p, Ns)
       | 
  
 
