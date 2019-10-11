@@ -454,7 +454,7 @@ Let's build a visualization for the optimal classifier for the flowers by colori
       | ys = 0:1/2^4:15
       | As = [[1.5 -1; 0 1],[1/2 1/4; 0 1/2], [2 0; 0 2]]
       | μs = [[9,5],[4,10],[7,9]]
-      | Ns = [MNormal(μ,A*A') for (μ,A) in zip(μs,As)]
+      | Ns = [MvNormal(μ,A*A') for (μ,A) in zip(μs,As)]
       | p = Weights([1/3,1/6,1/2])
       | colors = ["red","green","blue"]
       | function randflower(μs,As)
@@ -519,7 +519,7 @@ which evaluates the covariance matrix formula $\mathbb{E}[(\mathbf{X}-\boldsymbo
       |     flowers_subset = [F.X for F in flowers if F.color == color]
       |     μ̂ = mean(flowers_subset)
       |     Σ̂ = mean([(X - μ̂)*(X - μ̂)' for X in flowers_subset])
-      |     MNormal(μ̂,Σ̂)
+      |     MvNormal(μ̂,Σ̂)
       | end
       | colorcounts = countmap([F.color for F in flowers]) 
       | p̂ = [colorcounts[c]/length(flowers) for c in colors]
