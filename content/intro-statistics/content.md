@@ -39,7 +39,7 @@ A simple way to obtain a probability distribution from a list of observations is
 
     pre(julia-executable)
       | using Plots
-      | pyplot()
+
       | histogram(heights,
       |           nbins=12,
       |           label="",
@@ -51,7 +51,7 @@ A simple way to obtain a probability distribution from a list of observations is
 ---
 > id: step-histogram-distribution
 
-You might think of a histogram as just a visualization of the data, but it does give an actual distribution: we consider the function whose graph consists of the tops of the histogram bars, and we divide that function by the total number of observations: 
+You might think of a histogram as just a visualization of the data, but it does give an actual distribution: we consider the piecewise constant function whose graph consists of the tops of the histogram bars, and we divide it by the sum of the areas of the bars (to obtain a new function which integrates to 1):
 
     pre(julia-executable)
       | using Plots
@@ -200,7 +200,6 @@ The following scenario will be our running example throughout this section. We w
 
     figure
       img(src="images/exam-density.png" width=350)
-
       p.caption.md Figure 1.1: The probability density function of the joint distribution of $(X,Y)$, where $X$ is the number of hours of studying and $Y$ is the exam score.
 
 [Continue](btn:next)
@@ -409,15 +408,15 @@ We measure the difference between $f$ and $\widehat{f}\_\lambda$ by evaluating b
       | end
       |
       | # Sample n observations
-      | samples = [sampleXY(r,σy) for i=1:n]
+      | sample = [sampleXY(r,σy) for i=1:n]
       |
       | D(u) = abs(u) < 1 ? 70/81*(1-abs(u)^3)^3 : 0 # tri-cube function
       | D(λ,u) = 1/λ*D(u/λ) # scaled tri-cube
       | K(λ,x,y) = D(λ,x) * D(λ,y) # kernel
-      | kde(λ,x,y,samples) = sum(K(λ,x-Xi,y-Yi) for (Xi,Yi) in samples)/length(samples)
+      | kde(λ,x,y,observations) = sum(K(λ,x-Xi,y-Yi) for (Xi,Yi) in observations)/length(observations)
       | # `optimize` takes functions which accept vector arguments, so we treat
       | # λ as a one-entry vector
-      | L(λ) = sum((f(x,y) - kde(λ,x,y,samples))^2 for x=xs,y=ys)*step(xs)*step(ys)
+      | L(λ) = sum((f(x,y) - kde(λ,x,y,sample))^2 for x=xs,y=ys)*step(xs)*step(ys)
       |
       | # minimize L using the BFGS method
       | λ_best = optimize(λ->L(first(λ)),[1.0],BFGS())
@@ -434,7 +433,7 @@ We find that the best $\lambda$ value comes out to about $\lambda = 1.92$. This 
 
 Since we only know the density function in this case because we're in the controlled environment of an exercise, we need to think about how we could have chosen the optimal $\lambda$ value without that information. 
 
-One idea, which we will find is applicable in many statistical contexts, is to reserve one sample point and form an estimator which only uses the other $n-1$ samples. We evaluate this density approximation at the reserved sample point, and we repeat all of these steps for each sample in the data set. If the resulting density value is consistently very small, then our density estimator is being consistently "surprised" by the location of the reserved sample. This suggests that our $\lambda$ value is too large or too small. This idea is called **cross-validation**.
+One idea, which we will find is applicable in many statistical contexts, is to reserve one observation and form an estimator which only uses the other $n-1$ observations. We evaluate this density approximation at the reserved sample point, and we repeat all of these steps for each sample in the data set. If the resulting density value is consistently very small, then our density estimator is being consistently "surprised" by the location of the reserved sample. This suggests that our $\lambda$ value is too large or too small. This idea is called **cross-validation**.
 
 ---
 > id: kdecrossvalidate
@@ -479,7 +478,7 @@ Recalling the expectation formula
 ```
 
 we recognize the second term in the top equation as 
-[[$-2\mathbb{E}(\widehat{f}\_\lambda(X,Y))$ | $-2\mathbb{E}(g(X,Y))$ | $-2\mathbb{E}(g(X,Y)\widehat{f}\_\lambda(X,Y))$]], where $(X,Y)$ is a sample from the true density $f$ which is *independent* of $\widehat{f}\_\lambda$. To get samples which are independent of the estimator, we will define $\widehat{f}\_{\lambda}^{(-i)}$ to be the density estimator obtained using the samples other than the $i$th one. Since the samples $(X\_i,Y\_i)$ are drawn from the joint density of $(X,Y)$ and are assumed to be independent, we can suggest the approximation
+[[$-2\mathbb{E}(\widehat{f}\_\lambda(X,Y))$ | $-2\mathbb{E}(g(X,Y))$ | $-2\mathbb{E}(g(X,Y)\widehat{f}\_\lambda(X,Y))$]], where $(X,Y)$ is an observation from the true density $f$ which is *independent* of $\widehat{f}\_\lambda$. To get observations which are independent of the estimator, we will define $\widehat{f}\_{\lambda}^{(-i)}$ to be the density estimator obtained using the observations other than the $i$th one. Since the observations $(X\_i,Y\_i)$ are drawn from the joint density of $(X,Y)$ and are assumed to be independent, we can suggest the approximation
 
 ``` latex
 \mathbb{E}[\widehat{f}_\lambda(X,Y)]  \approx  
@@ -502,16 +501,16 @@ the **cross-validation loss estimator**. Let's find the value of $\lambda$ which
 
     pre(julia-executable)
       | "Evaluate the summation Σᵢ f⁽⁻ⁱ⁾(Xᵢ,Yᵢ) in J(λ)'s second term"
-      | function kdeCV(λ,i,samples)
-      |     x,y = samples[i]
-      |     newsamples = copy(samples)
-      |     deleteat!(newsamples,i)
-      |     kde(λ,x,y,newsamples)
+      | function kdeCV(λ,i,observations)
+      |     x,y = observations[i]
+      |     newobservations = copy(observation)
+      |     deleteat!(newobservations,i)
+      |     kde(λ,x,y,newobservations)
       | end
       |
       | # first line approximates ∫f̂², the second line approximates -(2/n)∫f̂f
-      | J(λ) = sum([kde(λ,x,y,samples)^2 for x=xs,y=ys])*step(xs)*step(ys) -
-      |         2/length(samples)*sum(kdeCV(λ,i,samples) for i=1:length(samples))
+      | J(λ) = sum([kde(λ,x,y,observations)^2 for x=xs,y=ys])*step(xs)*step(ys) -
+      |         2/length(observations)*sum(kdeCV(λ,i,observations) for i=1:length(observations))
       | λ_best_cv = optimize(λ->J(first(λ)),[1.0],BFGS())
       |
 
@@ -550,7 +549,7 @@ With an estimate of the joint density of $X$ and $Y$ in hand, we can turn to the
     figure
       img(src="images/kde-slice.png" width=350)
 
-      p.caption.md Figure 1.6: A kernel density estimator with 16 samples and $\lambda = 1$.
+      p.caption.md Figure 1.6: A kernel density estimator with 16 observations and $\lambda = 1$.
 
 So the conditional expectation of $Y$ given $\\{X = x\\}$ is
 
@@ -564,7 +563,7 @@ So the conditional expectation of $Y$ given $\\{X = x\\}$ is
 
 ```
 
-Let's try to simplify this expression. Looking at Figure 1.6, we can see by the symmetry of the function $D$ that each sample $(X\_i,Y\_i)$ contributes $Y\_iD\_\lambda(x-X\_i)$ to the numerator of the above equation. To arrive at the same conclusion by manipulating the formula directly, we write
+Let's try to simplify this expression. Looking at Figure 1.6, we can see by the symmetry of the function $D$ that each observation $(X\_i,Y\_i)$ contributes $Y\_iD\_\lambda(x-X\_i)$ to the numerator of the above equation. To arrive at the same conclusion by manipulating the formula directly, we write
 
 ``` latex
 
@@ -598,9 +597,11 @@ The graph of this function is shown in Figure 1.7. We see that it matches the gr
 
     pre(julia-executable)
       | λ = first(λ_best_cv.minimizer)
-      | r̂(x) = sum(D(λ,x-Xi)*Yi for (Xi,Yi) in samples)/sum(D(λ,x-Xi) for (Xi,Yi) in samples)
-      | pyplot()
-      | plot(0:0.2:20, r̂, label = "Nadaraya-Watson estimator", ylims = (0,10))
+      | r̂(x) = sum(D(λ,x-Xi)*Yi for (Xi,Yi) in observations)/sum(D(λ,x-Xi) for (Xi,Yi) in observations)
+      | scatter([x for (x,y) in observations], 
+      |         [y for (x,y) in observations],label="observations",
+      |         markersize=2, legend = :bottomright)
+      | plot!(0:0.2:20, r̂, label = L"\hat{r}", ylims = (0,10), linewidth = 3)
 
 The approximate integrated squared error of this estimator is `{jl} sum((r(x)-r̂(x))^2 for x in xs)*step(xs) = 1.90`.
 
@@ -615,7 +616,7 @@ Kernel density estimation is just one approach to estimating a joint density, an
 > id: point-estimation
 ## Point Estimation
 
-In the previous section, we discussed the problem of estimating a distribution given a list of independent samples from it. Now we turn to the simpler task of **point estimation**: estimating a single real-valued feature (such as the mean, variance, or maximum) of a distribution. We begin by formalizing the notion of a real-valued feature of a distribution. 
+In the previous section, we discussed the problem of estimating a distribution given a list of independent observations from it. Now we turn to the simpler task of **point estimation**: estimating a single real-valued feature (such as the mean, variance, or maximum) of a distribution. We begin by formalizing the notion of a real-valued feature of a distribution. 
 
 ::: .definition
 **Definition** (Statistical functional)  
@@ -629,7 +630,7 @@ For example, if we define $T\_1(\nu)$ to be the mean of the distribution $\nu$, 
 ---
 > id: step-definition-estimator
 
-Given a statistical functional, our goal will be to use a list of independent samples from $\nu$ to estimate $T(\nu)$. 
+Given a statistical functional, our goal will be to use a list of independent observations from $\nu$ to estimate $T(\nu)$. 
 
 ::: .definition
 **Definition** (Estimator)  
@@ -640,7 +641,7 @@ For example, the random variable $X_1 + \cdots + X_n$ is an estimator, if $X_1, 
 
 ::: .example
 **Example**  
-Draw 500 independent samples from an exponential distribution with parameter 1. Plot the function $\widehat{F}$ which maps $x$ to the proportion of samples at or to the left of $x$ on the number line. We call $\widehat{F}$ the **empirical CDF**. Compare the graph of the empirical CDF to the graph of the CDF of the exponential distribution with parameter 1. 
+Draw 500 independent observations from an exponential distribution with parameter 1. Plot the function $\widehat{F}$ which maps $x$ to the proportion of observations at or to the left of $x$ on the number line. We call $\widehat{F}$ the **empirical CDF**. Compare the graph of the empirical CDF to the graph of the CDF of the exponential distribution with parameter 1. 
 :::
 
 
@@ -648,7 +649,7 @@ Draw 500 independent samples from an exponential distribution with parameter 1. 
 
     pre(julia-executable)
       | using Plots, Distributions
-      | pyplot()
+
       | n = 500
       | xs = range(0, 8, length=100)
       | plot(xs, x-> 1-exp(-x), label = "true CDF", legend = :bottomright)
@@ -668,7 +669,7 @@ Draw 500 independent samples from an exponential distribution with parameter 1. 
 ---
 > id: step-empirical-measure
 
-This example suggests an idea for estimating $\widehat{\theta}$: since the unknown distribution $\nu$ is typically close to the measure $\widehat{\nu}$ which places mass $\frac{1}{n}$ at each of the observed samples, we can build an estimator of $T(\nu)$ by plugging $\widehat{\nu}$ into $T$. 
+This example suggests an idea for estimating $\widehat{\theta}$: since the unknown distribution $\nu$ is typically close to the measure $\widehat{\nu}$ which places mass $\frac{1}{n}$ at each of the observed observations, we can build an estimator of $T(\nu)$ by plugging $\widehat{\nu}$ into $T$. 
 
 ::: .definition
 **Definition** (Plug-in estimator)  
@@ -680,7 +681,7 @@ The plug-in estimator of $\theta = T(\nu)$ is $\widehat{\theta} = T(\widehat{\nu
 Find the plug-in estimator of the mean of a distribution. Find the plug-in estimator of the variance. 
 :::
 
-*Solution*. The plug-in estimator of the mean is the mean of the empirical distribution, which is the average of the locations of the samples. We call this the **sample mean**: 
+*Solution*. The plug-in estimator of the mean is the mean of the empirical distribution, which is the average of the locations of the observations. We call this the **sample mean**: 
 
 ``` latex
 \overline{X} = \frac{X_1 + \cdots + X_n}{n}. 
@@ -740,7 +741,7 @@ which is about -0.0098. We can visualize these sample maximum estimates with a h
 
     pre(julia-executable)
       | using Plots
-      | pyplot()
+
       | histogram([maximum(rand() for _ in 1:100) for _ in 1:10_000], 
       |           label = "sample maximum", xlims = (0,1), 
       |           legend = :topleft)
@@ -948,14 +949,14 @@ In the next section, we will develop an important extension of point estimation 
 > id: confidence-intervals
 ## Confidence Intervals
 
-It is often of limited use to know the value of an estimator given an observed collection of samples, since the single value does not indicate how close we should expect $\theta$ to be to $\widehat{\theta}$. For example, if a poll estimates that a randomly selected voter has 46% probability of being a supporter of candidate A and a 42% probability of being a supporter of candidate B, then knowing more information about the distributions of the estimators is essential if we want to know [[the probability of winning for each candidate|which candidate is more likely to win]]. Thus we introduce the idea of a *confidence interval*. 
+It is often of limited use to know the value of an estimator given an observed collection of observations, since the single value does not indicate how close we should expect $\theta$ to be to $\widehat{\theta}$. For example, if a poll estimates that a randomly selected voter has 46% probability of being a supporter of candidate A and a 42% probability of being a supporter of candidate B, then knowing more information about the distributions of the estimators is essential if we want to know [[the probability of winning for each candidate|which candidate is more likely to win]]. Thus we introduce the idea of a *confidence interval*. 
 
 ---
 > id: step-confidence-interval-definition
 
 ::: .definition
 **Definition** (Confidence interval)  
-Consider an unknown probability distribution $\nu$ from which we get $n$ independent samples $X\_1, \ldots, X\_n$, and suppose that $\theta$ is the value of some statistical functional of $\nu$. A **confidence interval** for $\theta$ is an interval-valued function of the sample data $X\_1, \ldots, X\_n$. A confidence interval has **confidence level** $1-\alpha$ if it contains $\theta$ with probability at least $1-\alpha$. 
+Consider an unknown probability distribution $\nu$ from which we get $n$ independent observations $X\_1, \ldots, X\_n$, and suppose that $\theta$ is the value of some statistical functional of $\nu$. A **confidence interval** for $\theta$ is an interval-valued function of the sample data $X\_1, \ldots, X\_n$. A confidence interval has **confidence level** $1-\alpha$ if it contains $\theta$ with probability at least $1-\alpha$. 
 :::
 
 ::: .example
@@ -1014,7 +1015,7 @@ Note: although it is a bit of a cheat, you can approximate $m_{\text{A}}$ with $
 ---
 > id: example-solution
 
-*Solution*. The standard deviation of a Bernoulli random variable with parameter $m_\text{A}$ is $\sqrt{m_\text{A}(1-m_\text{A})}$. Therefore, the average of 1000 independent samples from such a distribution is within $1.96\sqrt{m_\text{A}(1-m_\text{A})/1000}$ units of $m_\text{A}$ (on the number line) with probability about 95%. 
+*Solution*. The standard deviation of a Bernoulli random variable with parameter $m_\text{A}$ is $\sqrt{m_\text{A}(1-m_\text{A})}$. Therefore, the average of 1000 independent observations from such a distribution is within $1.96\sqrt{m_\text{A}(1-m_\text{A})/1000}$ units of $m_\text{A}$ (on the number line) with probability about 95%. 
 
 Although we don't know the value of $m_\text{A}$ in this expression, we don't lose too much by approximating it with $\widehat{m}_\text{A} = 0.462$. Making this substitution, we get a confidence interval of $46.2\\% \pm 3.1\\%$. The standard deviation for B works out to the same value to the nearest tenth, so we get $41.7\\% \pm 3.1\\%$ as a 95% confidence interval for $m_\text{B}$. 
 
@@ -1046,18 +1047,18 @@ If we are estimating a *function*-valued feature of $\nu$ rather than a single n
 **Definition** (Confidence band)  
 Let $I \subset \mathbb{R}$, and suppose that $T$ is a function from the set of distributions to the set of real-valued functions on $I$. 
 
-A $1-\alpha$ **confidence band** for $T(\nu)$ is pair of random functions $y\_{\textrm{min}}$ and $y\_{\textrm{max}}$ from $I$ to $\mathbb{R}$ defined in terms of $n$ independent samples from $\nu$ and having $y\_{\textrm{min}} \leq T(\nu) \leq y\_{\textrm{max}}$ everywhere on $I$ with probability at least $1-\alpha$. 
+A $1-\alpha$ **confidence band** for $T(\nu)$ is pair of random functions $y\_{\textrm{min}}$ and $y\_{\textrm{max}}$ from $I$ to $\mathbb{R}$ defined in terms of $n$ independent observations from $\nu$ and having $y\_{\textrm{min}} \leq T(\nu) \leq y\_{\textrm{max}}$ everywhere on $I$ with probability at least $1-\alpha$. 
 :::
 
 ---
 > id: empirical-cdf-convergence
 ## Empirical CDF Convergence
 
-Let's revisit the observation from the first section that the CDF of the empirical distribution of an independent list of samples from a distribution tends to be close to the CDF of the distribution itself. The **Glivenko-Cantelli** theorem is a mathematical formulation of the idea that these two functions are indeed close.
+Let's revisit the observation from the first section that the CDF of the empirical distribution of an independent list of observations from a distribution tends to be close to the CDF of the distribution itself. The **Glivenko-Cantelli** theorem is a mathematical formulation of the idea that these two functions are indeed close.
 
 ::: .theorem
 **Theorem** (Glivenko-Cantelli)  
-If $F$ is the CDF of a distribution $\nu$ and $\widehat{F}_n$ is the CDF of the empirical distribution $\widehat{\nu}_n$ of $n$ samples from $\nu$, then $F_n$ converges to $F$ along the whole number line:
+If $F$ is the CDF of a distribution $\nu$ and $\widehat{F}_n$ is the CDF of the empirical distribution $\widehat{\nu}_n$ of $n$ observations from $\nu$, then $F_n$ converges to $F$ along the whole number line:
 ``` latex
 \max_{x\in \mathbb{R}} |F(x) - \widehat{F}_n(x)| \to 0 \quad \text{as }n \to \infty, 
 ```
@@ -1087,14 +1088,14 @@ In other words, the probability that the graph of $\widehat{F}_n$ lies in the $\
 
 ::: .exercise
 **Exercise**  
-Use the code cell below to experiment with various values of $n$, and confirm that the
+Use the code cell below to experiment with various values of $n$, and confirm that the graph usually falls inside the DKW confidence band.
 
 Hint: after running the cell once, you can comment out the first plot command and run the cell repeatedly to get lots of empirical CDFs to show up on the same graph. 
 :::
 
     pre(julia-executable)
       | using Plots, Distributions, Roots
-      | pyplot()
+
       | n = 50
       | ϵ = find_zero(ϵ -> 2exp(-2n*ϵ^2) - 0.1, 0.05)
       | xs = range(0, 8, length=100)
@@ -1125,14 +1126,14 @@ Show that if $\epsilon_n = \sqrt{\frac{1}{2n}\log(\frac{2}{\alpha})}$, then with
 > id: Bootstrapping
 ## Bootstrapping
 
-**Bootstrapping** is the use of simulation to approximate the value of the plug-in estimator of a statistical functional $T$ which is expressed in terms of independent observations from the input distribution $\nu$. The key point is that drawing $k$ samples from the empirical distribution $\widehat{\nu}$ is the same as drawing $k$ times [[**with replacement**|**without replacement**]] from the list of samples.
+**Bootstrapping** is the use of simulation to approximate the value of the plug-in estimator of a statistical functional $T$ which is expressed in terms of independent observations from the input distribution $\nu$. The key point is that drawing $k$ observations from the empirical distribution $\widehat{\nu}$ is the same as drawing $k$ times [[**with replacement**|**without replacement**]] from the list of observations.
 
 ---
 > id: step-bootstrap-simple-example
 
 ::: .example
 **Example**  
-Consider the statistical functional $T(\nu) = $ the expected difference between the greatest and least of 10 independent samples from $\nu$. Suppose that 50 samples $X_1, \ldots , X_{50}$ from $\nu$ are observed, and that $\widehat{\nu}$ is the associated empirical CDF. Explain how $T(\widehat{\nu})$ may be estimated with arbitrarily small error.
+Consider the statistical functional $T(\nu) = $ the expected difference between the greatest and least of 10 independent observations from $\nu$. Suppose that 50 observations $X_1, \ldots , X_{50}$ from $\nu$ are observed, and that $\widehat{\nu}$ is the associated empirical CDF. Explain how $T(\widehat{\nu})$ may be estimated with arbitrarily small error.
 :::
 
 [Continue](btn:next)
@@ -1140,7 +1141,7 @@ Consider the statistical functional $T(\nu) = $ the expected difference between 
 ---
 > id: step-boostrap-simple-example-solution
 
-*Solution*. The value of $T(\widehat{\nu})$ is defined to be the expectation of a distribution that we have instructions for how to sample from. So we sample 10 times with replacement from $X_1, \ldots , X_{50}$, identify the largest and smallest of the 10 samples, and record the difference. We repeat $B$ times for some large integer $B$, and we return the sample mean of these $B$ values.
+*Solution*. The value of $T(\widehat{\nu})$ is defined to be the expectation of a distribution that we have instructions for how to sample from. So we sample 10 times with replacement from $X_1, \ldots , X_{50}$, identify the largest and smallest of the 10 observations, and record the difference. We repeat $B$ times for some large integer $B$, and we return the sample mean of these $B$ values.
 
 By the law of large numbers, the result can be made arbitrarily close to $T(\widehat{\nu})$ with arbitrarily high probability by choosing $B$ sufficiently large. 
 
@@ -1153,10 +1154,10 @@ Although this example might seem a bit contrived, bootstrapping is useful in pra
 
 ::: .example
 **Example**  
-Suppose that we estimate the median $\theta$ of a distribution using the plug-in estimator $\widehat{\theta}$ for 75 observed samples, and we want to produce a confidence interval for $\theta$. Show how to use bootstrapping to estimate the standard error of the estimator.
+Suppose that we estimate the median $\theta$ of a distribution using the plug-in estimator $\widehat{\theta}$ for 75 observations, and we want to produce a confidence interval for $\theta$. Show how to use bootstrapping to estimate the standard error of the estimator.
 :::
 
-*Solution*. By definition, the standard error of $\widehat{\theta}$ is the square root of the variance of the median of 75 independent draws from $\nu$. Therefore, the plug-in estimator of the standard error is the square root of the variance of the median of 75 independent draws from $\widehat{\nu}$. This can be readily simulated. If the samples are stored in a vector `{jl} X`, then 
+*Solution*. By definition, the standard error of $\widehat{\theta}$ is the square root of the variance of the median of 75 independent draws from $\nu$. Therefore, the plug-in estimator of the standard error is the square root of the variance of the median of 75 independent draws from $\widehat{\nu}$. This can be readily simulated. If the observations are stored in a vector `{jl} X`, then 
 
     pre(julia-executable)
       | using Random, Statistics, StatsBase
@@ -1177,7 +1178,7 @@ Perhaps the most important caution regarding bootstrapping is that the bootstrap
 
 ::: .exercise
 **Exercise**  
-Suppose that $\nu$ is the uniform distribution on $[0,1]$. Generate 75 samples from $\nu$, store them in a vector $X$, and compute the bootstrap estimate of $T(\widehat{\nu})$, where $T(\nu)$ is the standard deviation of 75 independent observations from $\nu$. Use Monte Carlo simulation to directly estimate $T(\nu)$. Can the gap between your approximations of $T(\widehat{\nu})$ and $T(\nu)$ be made arbitrarily small by using more bootstrap samples?
+Suppose that $\nu$ is the uniform distribution on $[0,1]$. Generate 75 observations from $\nu$, store them in a vector $X$, and compute the bootstrap estimate of $T(\widehat{\nu})$, where $T(\nu)$ is the standard deviation of 75 independent observations from $\nu$. Use Monte Carlo simulation to directly estimate $T(\nu)$. Can the gap between your approximations of $T(\widehat{\nu})$ and $T(\nu)$ be made arbitrarily small by using more bootstrap samples?
 :::
 
     pre(julia-executable)
@@ -1351,7 +1352,7 @@ Taking a second derivative gives $-\frac{\sum_{i = 1}^n X_i }{\widehat{\lambda}^
 
 ::: .example
 **Example**  
-Suppose  $Y = X\beta + \epsilon$ for $i = 1, 2, \cdots, n$, where $\epsilon$ has distribution $\mathcal{N}(0, \sigma^2)$. Treat $\sigma$ as known and $\beta$ as the only unknown parameter. Suppose that $n$ observations $(X_1, Y_1), \ldots, (X_n, Y_n)$ are made. 
+Suppose  $Y = X\beta + \epsilon$ for $i = 1, 2, \cdots, n$, where $\epsilon$ has distribution $\mathcal{N}(0, I \sigma^2)$. Treat $\sigma$ as known and $\beta$ as the only unknown parameter. Suppose that $n$ observations $(X_1, Y_1), \ldots, (X_n, Y_n)$ are made. 
 
 Show that the least squares estimator for $\beta$ is the same as the MLE for $\beta$ by making observations about your log likelihood.
 :::
@@ -1579,7 +1580,7 @@ Experiment with the code block below to see how, even when the initial distribut
 
     pre(julia-executable)
       | using Plots, Distributions
-      | pyplot()
+
       | n = 6
       | μ = 3
       | sample(n) = [μ + 0.5randn() for _ in 1:n]
@@ -1601,15 +1602,18 @@ Experiment with the code block below to see how, even when the initial distribut
 ---
 > id: step-t-test-previous-example
 
-If $X_1, X_2, \ldots, X_n$ is a sequence of normal random variables with mean $\mu$ and variance $\sigma^2$, let's define $\overline{X}$ to be the average of $X_i$'s, and $S$ to be the sample variance, so $S^{2}=\frac{1}{n-1} \sum_{i=1}^{n}\left(X_{i}-\overline{X}\right)^{2}$. Then the distribution of $(\overline{X} - \mu)/(S/\sqrt{n})$ is called the **t-distribution** with $n-1$ **degrees of freedom**. 
+If $X_1, X_2, \ldots, X_n$ is a sequence of normal random variables with mean $\mu$ and variance $\sigma^2$, let's define $\overline{X}$ to be the average of $X_i$'s, and $S$ to be the sample variance, so $S^{2}=\frac{1}{n-1} \sum_{i=1}^{n}\left(X_{i}-\overline{X}\right)^{2}$. Then the distribution of $(\overline{X} - \mu)/(S/\sqrt{n})$ is called the **t-distribution** with $n-1$ [**degrees of freedom**](gloss:degrees-of-freedom). 
 
 ::: .exercise
 **Exercise**  
 Use your knowledge of the t-distribution to test the hypothesis that the mean of the distribution used to generate the following list of numbers has mean greater than 4. 
+
+Note: you can create an object to represent the t-distribution with `{jl} ν` degrees of freedom using the expression `{jl} TDist(ν)`. To evaluate its cumulative distribution function at `{jl} x`, use `{jl} cdf(TDist(ν), x)`. 
 :::
 
     pre(julia-executable)
       | X = [4.1, 5.12, 3.39, 4.97, 3.07, 4.17, 4.46, 5.53, 3.28, 3.62]
+      | 
 
     x-quill
     
