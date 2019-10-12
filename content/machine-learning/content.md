@@ -528,7 +528,7 @@ Next, let's make a classifier and color all of the points in a fine-mesh grid ac
       |           fillcolor = cgrad(rgb), opacity = 0.4, 
       |           aspect_ratio = 1, legend = false)
       |     for c in ["red","green","blue"]
-      |         scatter!(P,[(F.X[1],F.X[2]) for F in flowers if F.color ==c], |                 color=c)
+      |         scatter!(P,[(F.X[1],F.X[2]) for F in flowers if F.color==c], color=c)
       |     end
       |     P
       | end
