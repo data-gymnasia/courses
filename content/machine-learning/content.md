@@ -66,7 +66,7 @@ Once a set $\mathcal{H}$ of candidate functions and a loss functional $L$ are sp
 Given a statistical learning problem, a space $\mathcal{H}$ of candidate prediction functions, and a loss functional $L: \mathcal{H} \to \mathbb{R}$, we define the **target function** to be $\operatorname{argmin}_{h \in \mathcal{H}}L(h)$. 
 :::
 
-(Note: *argmin* means *the value which minimizes*. So for example, $\operatorname{argmin}){x \in \mathbb{R}} (x-14)^2$ is equal to 14.)
+(Note: *argmin* means *the value which minimizes*. So for example, $\operatorname{argmin}\_{x \in \mathbb{R}} (x-14)^2$ is equal to 14.)
 
 [Continue](btn:next)
 
@@ -266,12 +266,11 @@ Let's apply this formula to find the linear regression estimate for the [exam-sc
 
     pre(julia-executable)
       | include("data-gymnasia/exam-studying.jl")
-      | observations = sample
       | y = [Y for (X,Y) in observations]
       | X = [ones(n) [X for (X,Y) in observations]]
       | β = (X'*X) \ X'*y # (computes (X'X)⁻¹X'y)
-      | scatter(observations)
-      | plot!(xs,[β'*[1,x] for x in xs])
+      | scatter(observations, label = "observations")
+      | plot!(xs, [β'*[1,x] for x in xs], label = "empirical risk minimizer")
 
 [Continue](btn:next)
 
@@ -326,11 +325,13 @@ We perform the quadratic regression by doing the same calculation as for the lin
     pre(julia-executable)
       | y = [Y for (X,Y) in observations]
       | X = [ones(n) [X for (X,Y) in observations] [X^2 for (X,Y) in observations]]
+      | quaderr = sum((r(x)-βq'*[1,x,x^2])^2 for x in xs)*step(xs)
+      | print("error for quadratic estimator is $quaderr")
+      | linerr = sum((r(x)-β'*[1,x])^2 for x in xs)*step(xs) 
+      | print("error for linear estimator is $linerr")
       | βq = (X'*X) \ X'*y
-      | scatter(observations) 
-      | plot!(xs,[βq⋅[1,x,x^2] for x in xs])
-      | quaderr = sum((r(x)-βq⋅[1,x,x^2])^2 for x in xs)*step(xs)
-      | linerr = sum((r(x)-β⋅[1,x])^2 for x in xs)*step(xs)      
+      | scatter(observations, label = "observations") 
+      | plot!(xs, [βq'*[1,x,x^2] for x in xs], label = "quadratic regression estimator")
 
 [Continue](btn:next)
 
@@ -338,6 +339,58 @@ We perform the quadratic regression by doing the same calculation as for the lin
 > id: step-quad-regression-reflection
  
 The results of this example are telling: the true regression function was quadratic for this example, and assuming quadraticness enabled us to achieve more than three times lower error than for the nonparametric estimator. On the other hand, the assumption that the regression function is linear resulted in significantly *greater* error. Thus we see that [inductive bias](gloss:inductive-bias) is a double-edged sword: it tends to enhance accuracy if the assumptions applied are correct or approximately correct, and it can result in lower accuracy if not. 
+
+::: .exercise
+**Exercise**  
+Despite their simplicity, linear models are quite capable of overfitting. **Ridge** and **Lasso** regression address this problem by adding a term to the loss functional which penalizes large coefficients. In this problem, we will explore how these methods behave on a simulated example where the response variable is defined to be a linear combination of some of the feature variables, while other features are nearly linearly dependent.
+
+(a) Execute this cell to see what happens if there is nearly a linear dependence relationship among the features. Note that the loss minimizer is `{jl} [3, 1, -4, 0, 0, 0, 0, 0, 0, 0]`, since we are defining the response variable so that it has a conditional expectation given $X$ which is equal to a linear combination of the features with those weights.
+
+    pre(julia-executable)
+      | using Plots, Random
+      | Random.seed!(12)
+      | function groupedbar(β)
+      | 	bar([3; 1; -4; zeros(7)], bar_width = 0.4,
+      |         label = "actual coefficients", legend = :topleft)
+      |     bar!((1:length(β)) .+ 0.4, β, bar_width = 0.4, 
+      |          label = "coefficients from fit")
+      | end
+      | 
+      | n = 10
+      | # generate n-1 features, together with a column of ones: 
+      | X = [ones(n) randn(n, n-1)]
+      | # make the last two columns nearly parallel
+      | X[:,10] = 3X[:,9] .+ 0.01randn(n)
+      | # response variable depends on first two features: 
+      | y = 3.0 .+ X[:,2] .- 4X[:,3] + 0.1randn(n) 
+      | β = X \ y
+      | groupedbar(β)
+
+(b) Execute this cell to see how ridge regression mitigates the problems you observed in (a):
+
+    pre(julia-executable)
+      | using Optim, LinearAlgebra
+      | λ = 1
+      | o = optimize(β -> sum((y - X*β).^2) + λ*β[2:end]'*β[2:end], ones(10))
+      | groupedbar(o.minimizer)
+      
+(c) Execute this cell to see how lasso regression compares to ridge regression. 
+
+    pre(julia-executable)
+      | λ = 1
+      | o = optimize(β -> sum((y - X*β).^2) + λ*norm(β[2:end],1), ones(10))
+      | groupedbar(o.minimizer) 
+      
+Which model does the best job of zeroing out the coefficients that should be zero, in this example?
+
+:::
+
+    x-quill
+    
+---
+> id: ridge-lasso-solution
+
+*Solution*. With no regularization, the coefficients for the last two features are very large. Ridge and lasso both reduce this problem substantially, although lasso does a better job of getting the coefficients that should be zero very close to zero. An explanation for this phenomenon is discussed in the [optimization section of the Multivariable Calculus course](https://mathigon.org/course/multivariable-calculus/optimization). 
 
 ---
 > id: classification-example
@@ -409,7 +462,7 @@ shown in the figure below.
       img(src="images/flower-points.svg" width=320)
       p.caption.md Colors and petal dimensions of 300 randomly selected flowers. 
       
-Find the best predictor of $Y$ given $(X\_1,X\_2) = (x\_1, x\_2)$ (using the 0-1 loss function), and find a way to estimate that predictor using the given observations.     
+Find the best predictor of $Y$ given $(X\_1,X\_2) = (x\_1, x\_2)$ (using the 0-1 loss function), and find a way to estimate that predictor using the given observations.
       
 :::
 
@@ -425,7 +478,7 @@ Find the best predictor of $Y$ given $(X\_1,X\_2) = (x\_1, x\_2)$ (using the 0-1
   
 *Solution*. As in the regression example, we can do a decent job of classification with our eyes. If $(X\_1,X\_2)$ is located where there are lots of green observations, we would predict its classification as green, and similarly for blue and red. Let's think about how to approach this task mathematically. 
 
-To start, let's proceed using our knowledge of the joint distribution of $(X\_1,X\_2,Y)$. The predictor which has minimal misclassification probability is the one which maps $(x\_1,x\_2)$ to the classification with maximal conditional probability given $(x\_1,x\_2)$. For example, if the conditional distribution on $\\{\mathrm{R},\mathrm{G},\mathrm{B}\\}$ given $(x\_1,x\_2)$ were $\\{45\%, 30\%, 25\%\\}$, then we would guess a classification of [[R|G|B]] for the point $(x\_1, x\_2)$. 
+To start, let's proceed using our knowledge of the joint distribution of $(X\_1,X\_2,Y)$. The predictor which has minimal misclassification probability is the one which maps $(x\_1,x\_2)$ to the classification with maximal conditional probability given $(x\_1,x\_2)$. For example, if the conditional distribution on $\\{\mathrm{R},\mathrm{G},\mathrm{B}\\}$ given $(x\_1,x\_2)$ were $\\\{45\\%, 30\\%, 25\\%\\\}$, then we would guess a classification of [[R|G|B]] for the point $(x\_1, x\_2)$. 
 
 [Continue](btn:next)
 
@@ -444,18 +497,19 @@ for $c \in \\{\mathrm{R},\mathrm{G},\mathrm{B}\\}$; in other words, we compute t
 Let's build a visualization for the optimal classifier for the flowers by coloring each point in the plane according to its classification. First, let's get 300 observations from the joint distribution of $(X\_1, X\_2, Y)$: 
 
     pre(julia-executable)
-      | using Plots, Distributions, Random; Random.seed!(1234)
+      | using Plots, StatsBase Distributions, Random
+      | Random.seed!(1234)
       | struct Flower
       |     X::Vector
       |     color::String
       | end
       | # density function for the normal distribution N
-      | xs = 0:1/2^4:15
-      | ys = 0:1/2^4:15
+      | xgrid = 0:0.01:15
+      | ygrid = 0:0.01:15
       | As = [[1.5 -1; 0 1],[1/2 1/4; 0 1/2], [2 0; 0 2]]
       | μs = [[9,5],[4,10],[7,9]]
       | Ns = [MvNormal(μ,A*A') for (μ,A) in zip(μs,As)]
-      | p = Weights([1/3,1/6,1/2])
+      | p = ProbabilityWeights([1/3,1/6,1/2])
       | colors = ["red","green","blue"]
       | function randflower(μs,As)
       |     i = sample(p)
@@ -470,12 +524,12 @@ Next, let's make a classifier and color all of the points in a fine-mesh grid ac
       | predict(x,p,Ns) = argmax([p[i]*pdf(Ns[i],x) for i=1:3])
       | function classificationplot(flowers,p,Ns)
       |     rgb = [:red,:green,:blue]
-      |     P = heatmap(xs,ys,(x,y) -> predict([x,y],p,Ns),
+      |     P = heatmap(xgrid,ygrid,(x,y) -> predict([x,y],p,Ns),
       |           fillcolor = cgrad(rgb), opacity = 0.4, 
       |           aspect_ratio = 1, legend = false)
-      | for c in ["red","green","blue"]
-      |     scatter!(P,[(F.X[1],F.X[2]) for F in flowers if F.color ==c], color=c)
-      | end
+      |     for c in ["red","green","blue"]
+      |         scatter!(P,[(F.X[1],F.X[2]) for F in flowers if F.color ==c], |                 color=c)
+      |     end
       |     P
       | end
       | correct(flowers,p,Ns) = count(colors[predict(F.X,p,Ns)] == F.color for F in flowers)
@@ -783,11 +837,10 @@ Find the regression function $r(\mathbf{x}) = \mathbb{E}[Y | \mathbf{X} = \mathb
       | gr(aspect_ratio=1,fillcolor=mycgrad) # Plots.jl defaults
       | A = MvNormal([0,0],[1.0 0; 0 1])
       | B = MvNormal([1,1],[1.0 0; 0 1])
-      | xs = -5:1/2^5:5
-      | ys = -5:1/2^5:5
+      | xgrid = -5:1/2^5:5
+      | ygrid = -5:1/2^5:5
       | r(x,y) = 0.5pdf(B,[x,y])/(0.5pdf(A,[x,y])+0.5pdf(B,[x,y]))
-      | rs = [r(x,y) for x=xs,y=ys]
-      | heatmap(xs,ys,rs)
+      | heatmap(xgrid,ygrid,r)
 
 We can see from the heatmap that restricting $r(\mathbf{x})$ to any line of slope 1 yields a function which asymptotes to 0 in the southwest direction and to 1 in the northeast direction, increasing smoothly in between. Such a function is called a **sigmoid** function. 
 
@@ -815,7 +868,7 @@ To select the parameters $\boldsymbol{\beta}$ and $\alpha$, we penalize lack of 
 Experiment with the sliders below and get the loss value below 2.45.
 :::
 
-{.text-center} `α =`${α}{α|0|-3,3,0.05}
+{.text-center} `α =`${α}{α|0|-5,5,0.05}
 
 {.text-center} `β =`${β}{β|1|-5,5,0.05}
 
@@ -834,7 +887,7 @@ Experiment with the sliders below and get the loss value below 2.45.
       | function loss(Z, O, θ)
       |     α, β = θ
       |     sum(log(1/(1-f(α, β, x))) for x in Z) + 
-      |         sum(log(1-f(α, β, x)) for x in O)
+      |         sum(log(1/f(α, β, x)) for x in O)
       | end
       | 
       | optimize(θ->loss(Z,O,θ), [0.0, 1.0])
@@ -854,7 +907,9 @@ L(r) = \sum_{i=1}^{n} \left[y_i \log \frac{1}{r(x_i)} +
 ```
 :::
 
-    center: img(src="images/two-densities.svg" style="float: right;" width=260)
+    figure
+      img(src="images/two-densities.svg" width=260)
+      p.caption The decision boundary between two Gaussian class conditional densities with equal covariance is a straight line. 
 
 [Continue](btn:next)
 
@@ -866,13 +921,13 @@ L(r) = \sum_{i=1}^{n} \left[y_i \log \frac{1}{r(x_i)} +
     pre(julia-executable)
       | observations = [rand(Bool) ? (rand(A),0) : (rand(B),1) for i=1:1000]
       | cs =  [c for ((x,y),c) in observations]
-      | scatter([(x,y) for ((x,y),c) in observations],group=cs)
+      | scatter([(x,y) for ((x,y),c) in observations], group=cs, markersize=2)
 
 Next, we define the loss function and minimize it: 
 
     pre(julia-executable)
       | σ(u) = 1/(1 + exp(-u)) 
-      | r(β,x) = σ(β⋅[1;x])
+      | r(β,x) = σ(β'*[1;x])
       | C(β,xᵢ,yᵢ) = yᵢ*log(1/r(β,xᵢ))+(1-yᵢ)*log(1/(1-r(β,xᵢ)))
       | L(β) = sum(C(β,xᵢ,yᵢ) for (xᵢ,yᵢ) in observations)
       | β̂ = optimize(L,ones(3),BFGS()).minimizer
@@ -1005,7 +1060,7 @@ Constrained optimization is a ubiquitous problem in applied mathematics, and num
 
     pre(julia-executable)
       | using Plots, JuMP, Ipopt, Random; Random.seed!(1234); 
-      | gr(aspect_ratio=1)
+      | gr(aspect_ratio=1, size=(500,500))
  
 Let's sample the points from each class from a multivariate normal distribution. We'll make the mean of the second distribution a parameter of the sampling function so we can change it in the next example. 
 
@@ -1022,7 +1077,7 @@ Let's sample the points from each class from a multivariate normal distribution.
       | n = 100
       | observations = [samplepoint() for i=1:n]
       | ys = [y for (x,y) in observations]
-      | scatter([(x₁,x₂) for ((x₁,x₂),y) in observations],group=ys)
+      | scatter([(x₁,x₂) for ((x₁,x₂),y) in observations], group=ys)
  
 Next we describe our constrained optimization problem in `{jl} JuMP`. The data for the optimization is stored in a `{jl} Model` object, and the solver can be specified when the model is instantiated. 
 
@@ -1035,15 +1090,15 @@ We add variables to the model with the `{jl} @variable` macro, and we add constr
       | @variable(m,β[1:2]) # adds β[1] and β[2] at the same time
       | @variable(m,α)
       | for (x,y) in observations
-      |     @constraint(m,y*(β⋅x - α) ≥ 1)
+      |     @constraint(m,y*(β'*x - α) ≥ 1)
       | end
       | @objective(m,Min,β[1]^2+β[2]^2)
       
-When we call `{jl} solve` on the model, it makes the optimizing values of the variables retrievable via `{jl} getvalue`. 
+When we call `{jl} solve` on the model, it makes the optimizing values of the variables retrievable via `{jl} JuMP.value`. 
 
     pre(julia-executable)
       | optimize!(m)
-      | β,α = JuMP.value(β), JuMP.value(α)
+      | β, α = JuMP.value.(β), JuMP.value(α)
  
 
 Now we can plot our separating line. 
@@ -1051,7 +1106,7 @@ Now we can plot our separating line.
     pre(julia-executable)
       | l(x₁) = (α - β[1]*x₁)/β[2]
       | xs = [-2,5]
-      | plot!(xs,[l(x₁) for x₁ in xs],label="")
+      | plot!(xs,[l(x₁) for x₁ in xs], label="")
 
 We can see that there are necessarily observations of each class which lie on the boundary of the separating slab. These observations are called **support vectors**. If a sample is not a support vector, then moving it slightly or removing it does not change the separating hyperplane we find. 
 
@@ -1103,13 +1158,13 @@ Next we define our loss function, including a version that takes $\boldsymbol{\b
 
     pre(julia-executable)
       | L(λ,β,α,observations) = 
-      |     λ*norm(β)^2 + 1/n*sum(max(0,1-y*(β⋅x - α)) for (x,y) in observations)
+      |     λ*norm(β)^2 + 1/n*sum(max(0,1-y*(β'*x - α)) for (x,y) in observations)
       | L(λ,params,observations) = L(λ,params[1:end-1],params[end],observations)
 
 Since this optimization problem is unconstrained, we can use `{jl} Optim` to do the optimization. We define a function `{jl} SVM` which returns the values of $\boldsymbol{\beta}$ and $\alpha$ which minimize the empirical loss: 
 
     pre(julia-executable)
-      | using Optim
+      | using Statistics, LinearAlgebra, Optim
       | function SVM(λ,observations)
       |     params = optimize(params->L(λ,params,observations), ones(3), BFGS()).minimizer
       |     params[1:end-1], params[end]
@@ -1119,12 +1174,12 @@ To choose $\lambda$, we write some functions to perform cross-validation:
 
     pre(julia-executable)
       | function errorrate(β,α,observations)
-      |     count(y*(β⋅x-α) < 0 for (x,y) in observations)
+      |     count(y*(β'*x-α) < 0 for (x,y) in observations)
       | end
       | function CV(λ,observations,i)
       |     β,α = SVM(λ,[observations[1:i-1];observations[i+1:end]])
       |     x,y = observations[i]
-      |     y*(β⋅x - α) < 0 
+      |     y*(β'*x - α) < 0 
       | end
       | function CV(λ,observations)
       |     mean(CV(λ,observations,i) for i=1:length(observations))
@@ -1133,13 +1188,13 @@ To choose $\lambda$, we write some functions to perform cross-validation:
 Finally, we optimize over $\lambda$: 
 
     pre(julia-executable)
-      |   λ₁, λ₂ = 0.001, 0.25        
-      |   λ = optimize(λ->CV(first(λ),observations),
-      |                λ₁,λ₂).minimizer
-      |   β,α = SVM(λ,observations)
-      |   l(x₁) = (α - β[1]x₁)/β[2]
-      |   xs = [-1.5,2]
-      |   plot!(xs,[l(x₁) for x₁ in xs],label="")
+      | λ₁, λ₂ = 0.001, 0.25        
+      | λ = optimize(λ->CV(first(λ),observations),
+      |              λ₁,λ₂).minimizer
+      | β,α = SVM(λ,observations)
+      | l(x₁) = (α - β[1]x₁)/β[2]
+      | xs = [-1.5,2]
+      | plot!(xs,[l(x₁) for x₁ in xs],label="")
 
 [Continue](btn:next)
 
@@ -1439,7 +1494,7 @@ Use the cell below to generate data in $[0,1]^2$ for which most of the points in
 We define `{code} p1, p2, G1` and `{jl} G2` and plot the result: 
 
     pre(julia-executable)
-      | using LaTeXStrings
+      | using Statistics, LaTeXStrings
       | p1(x) = mean(row[1] < x for row in eachrow(X))
       | p2(x) = mean(row[1] ≥ x for row in eachrow(X))
       | function G(x, op) # op will be either < or ≥
@@ -1476,8 +1531,7 @@ Use the code block below to train and visualize a decision tree on the iris data
       | fit!(model, features, labels)
       | print_tree(model, 5)
       | 
-      | predict(model, features) .== labels
-      | 
+      | sum(predict(model, features) .== labels)
 
     x-quill
 
@@ -1495,7 +1549,7 @@ We can also solve regression problems with decision trees. Rather than outputtin
 ::: .exercise
 **Exercise**  
   
-    img(src="images/regression-tree-1d.svg" style="float: right;" width=250)
+    img(src="images/regression-tree-1D.svg" style="float: right;" width=250)
 
 Consider a set of data points in the unit square which fall close to the diagonal line $y = x$. Among the functions on $[0,1]$ which are piecewise constant and have a single jump, which one (approximately) would you expect to minimize the sum of squared vertical distances to the data points? Confirm your intuition by running the code block below to plot MSE as a function of the jump location. (You can increase the value of $n$ to make the graph smoother.)
 :::
@@ -1529,14 +1583,14 @@ Consider a set of data points in the unit square which fall close to the diagona
 
 ::: .exercise
 
-    img(src="images/decision-tree-surface.png" style="float: right;" width=75)
+    img(src="images/decision-tree-surface.png" style="float: right;" width=60)
 
 **Exercise**  
 Experiment with the depth in the code block below to see how the graph of the decision tree changes. The rectangles on which the prediction function is constant are always [[parallel to the coordinate axes|squares|equal in area]].
 :::
 
     pre(julia-executable)
-      | using DecisionTree, Plots; pyplot()      
+      | using DecisionTree, Plots; pyplot()
       | n = 1000 # number of points
       | X = [rand(n) rand(n)] # features
       | y = [2 - x[1]^2 - (1-x[2])^2 + 0.1randn() for x in eachrow(X)] # response
@@ -1559,8 +1613,6 @@ Experiment with the depth in the code block below to see how the graph of the de
 Humans making important decisions often consult a *panel* of experts, rather than a single expert. While one individual might have biases that affect their ability to make the right decision, the hope is that these idiosyncrasies tend to cancel when aggregated across the group. In this way, the collection of experts might be able to make better decisions than even the best individual expert. 
 
 One crucial assumption is that the agents' decision-making processes exhibit some independence. If they're all constrained to approach problems in very similar ways, then the wisdom of the group will closely reflect the wisdom of each individual. This phenomenon is called [[groupthink|doublethink]]. 
-
-[Continue](btn:next)
 
 ---
 > id: step-ensemble-methods-intro
