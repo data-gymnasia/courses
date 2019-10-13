@@ -611,7 +611,7 @@ for $c \in \\{\mathrm{R},\mathrm{G},\mathrm{B}\\}$; in other words, we compute t
 Let's build a visualization for the optimal classifier for the flowers by coloring each point in the plane according to its classification. First, let's get 300 observations from the joint distribution of $(X\_1, X\_2, Y)$: 
 
     pre(julia-executable)
-      | using Plots, StatsBase Distributions, Random
+      | using Plots, StatsBase, Distributions, Random
       | Random.seed!(1234)
       | struct Flower
       |     X::Vector
@@ -642,7 +642,7 @@ Next, let's make a classifier and color all of the points in a fine-mesh grid ac
       |           fillcolor = cgrad(rgb), opacity = 0.4, 
       |           aspect_ratio = 1, legend = false)
       |     for c in ["red","green","blue"]
-      |         scatter!(P,[(F.X[1],F.X[2]) for F in flowers if F.color ==c], |                 color=c)
+      |         scatter!(P,[(F.X[1],F.X[2]) for F in flowers if F.color==c], color=c)
       |     end
       |     P
       | end
