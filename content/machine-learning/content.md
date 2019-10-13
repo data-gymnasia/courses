@@ -20,7 +20,7 @@ Do you expect the prediction function to be more sensitive to changes in $X_1$ o
 ---
 > id: step-banana-solution
 
-*Solution*. Presumably $X_1$ has more influence on $Y$, since bananas can taste great whether small or large, while green or dark brown bananas generally taste very bad and yellow bananas mostly taste good. 
+*Solution*. We would expect $X_1$ to have more influence on $Y$, since bananas can taste great whether small or large, while green or dark brown bananas generally taste very bad and yellow bananas mostly taste good. 
 
 [Continue](btn:next)
 
@@ -47,10 +47,37 @@ A supervised learning problem is a **regression** problem if $Y$ is quantitative
 
 We can treat the banana problem above as either a regression problem (if deliciousness is a score on a spectrum) or a classification problem (if the bananas are [dichotomized](gloss:dichotomize) as "good" or "bad"). We will see that many models are specific to regression or classification, while others can be adapted to handle either type of problem. 
 
+::: .exercise
+**Exercise**  
+Explain how a machine learning task like image recognition fits into this framework. In other words, describe an appropriate feature space $\mathcal{X}$, describe in loose terms what the probability measure looks like, and describe in geometric terms what we are trying to accomplish when we define our prediction function. 
+:::
+
+    x-quill
+
+---
+> id: step-image-recognition
+
+*Solution*. We can take $\mathcal{X}$ to be $[0,1]^P$, where $P$ is the number of pixels in each image., because a grayscale image with $P$ pixels can be thought of as list of 1000 numbers in $[0,1]$, with each component indicating the darkness of a single pixel. Let's suppose $P = 10^6$, which is a fairly typical image size for modern cameras.
+
+The output set $\mathcal{Y}$ contains labels. For example, if we just have cat images and dog images to classify, then $\mathcal{Y}$ would be {"cat", "dog"}. 
+
+The probability mass occupies a very small portion of the million-dimensional cube, since the vast majority of possible images do not represent a cat or a dog. Furthermore, the geometry of the sets where mass is concentrated is presumably quite complex, since the set of changes which can be made to an image to preserve its "catness" or "dogness" is not straightforward to describe. See the figure to the right for a rough visual; that this visualization is necessarily strained, since the 3D cube and the million dimensional cube have very different geometric properties. 
+
+    figure
+      img(src="images/manifold.png" width=200)
+      p.caption Each dimension in this figure represents a pixel darkness, and the red and blue surfaces represent level sets of the conditional probability density functions given the animal genus. Cat images are likely to fall inside the red surfaces, while dog images are more likely to fall inside the blue surfaces. This visualization should be taken with a grain of salt, since real images have many more than three pixels.
+
+Still, one thing we can use this picture to think about is what our goal is when we're coming up with a prediction function: we should carve up the cube so as to separate the regions where there's more cat probability mass from regions where there's more dog probability mass. That way, any image of a cat or dog can be identified as "more likely a cat" or "more likely a dog". 
+
+    figure
+      img(src="images/manifold-separation.png" width=200)
+      p.caption The gray surface separates regions where there's more red probability mass (for cats) from regions where there's more blue probability mass (for dogs). The goal of the prediction function is to compute whether a given point falls on the cat side or the dog side.
+
 [Continue](btn:next)
 
 ---
 > id: step-definition-loss-function
+#### The loss functional
 
 To make meaningful and unambiguous statements about a proposed prediction function $h: \mathcal{X} \to \mathcal{Y}$, we need a rubric by which to assess it. This is customarily done by defining a *loss* (or *risk*, or *error*) $L(h)$, with the idea that smaller loss is better. We might wish to define $L$ only for $h$'s in a specified class $\mathcal{H}$ of candidate functions. [Since](gloss:functional) $L : \mathcal{H} \to \mathbb{R}$ is defined on a set of functions, we call $L$ the **loss functional**. 
 
@@ -81,6 +108,43 @@ L(h) = \mathbb{E}[(h(X)-Y)^2]
 
 If $\mathcal{H}$ contains the **regression function** $r(\mathbf{x}) = \mathbb{E}[Y | \mathbf{X} = \mathbf{x}]$, then $r$ is the target function. This is because the mean of a random variable $Y$ is the constant $c$ which minimizes the expression $\mathbb{E}[(Y - c)^2]$. 
 
+::: .exercise
+**Exercise**  
+Recall the exam scores example from the KDE section of the statistics course in which we know the exact density of the distribution which generates the hours-score pairs for students taking an exam (run this cell):
+
+    pre(julia-executable)
+      | using LinearAlgebra, Statistics, Roots, Optim, Plots, Random
+      | Random.seed!(1234)
+      | 
+      | # the true regression function
+      | r(x) = 2 + 1/50*x*(30-x)
+      | # the true density function
+      | σy = 3/2  
+      | f(x,y) = 3/4000 * 1/√(2π*σy^2) * x*(20-x)*exp(-1/(2σy^2)*(y-r(x))^2)
+      | 
+      | heatmap(0:0.02:20, -2:0.01:12, f, 
+      |         fillcolor = cgrad([:white, :MidnightBlue]), 
+      |         ratio = 1, fontfamily = "Palatino",
+      |         size = (600,300), xlims = (0,20), ylims = (0,12), 
+      |         xlabel = "hours studied", ylabel = "score")
+      | 
+      | scatter!([(5,2), (5,4), (7,4), (15,4.5), (18, 4), (10,6.1)], 
+      |          markersize = 3, label = "observations")
+      | 
+      | plot!(0:0.02:20, r, label = "target function", 
+      |       legend = :topleft, linewidth = 2)
+
+(a) What must be true of the class $\mathcal{H}$ of candidate functions in order for the target function to be equal to the regression function $r$?
+
+(b) Suppose we collect six observations, and we get the six data points shown in the plot above. Can the loss value of the prediction function plotted be decreased by lowering its graph a bit?
+:::
+
+    x-quill
+    
+*Solution*. (a) The class of candidate functions must contain $r$. For example, it might consistnt of all quadratic functions, or all differentiable functions. If it only contained linear functions, then the target function would be different from the regression function.
+
+(b) No, the loss value of the prediction function depends on the actual probability measure, not on training observations. If we know the probability measure, then we have the best possible information for making future predictions, and we can write off a handful of training samples as anomolous.
+
 [Continue](btn:next)
 
 ---
@@ -94,12 +158,46 @@ L(h) = \mathbb{E}\left[\boldsymbol{1}_{\{h(\mathbf{X}) \neq Y\}}\right] = \mathb
 
 If $\mathcal{H}$ contains $G(\mathbf{x}) = \operatorname{argmax}_c\mathbb{P}(Y=c | \mathbf{X} = \mathbf{x})$, then $G$ is the target function for this loss functional. 
 
-[Continue](btn:next)
+::: .exercise
+**Exercise**  
+Find the target function for the misclassification loss in the case where $\mathcal{X} = \mathbb{R}$, $\mathcal{Y} = \{0,1\}$ and the probability mass on $\mathcal{X} \times \mathcal{Y}$ is spread out according to the **one**-dimensional density function 
+
+``` latex
+f(x,y) = \begin{cases}
+\frac{1}{3}\mathbf{1}_{\{x \in [0,2]\}} & \text{if }y = 0 \\
+\frac{1}{6}\mathbf{1}_{\{x \in [1,3]\}} & \text{if }y = 1 \\
+\end{cases}
+```
+
+    pre(julia-executable)
+      | plot([(0,0),(2,0)], linewidth = 4, color = :MidnightBlue, 
+      |       label = "probability mass", xlims = (-2,5), ylims = (-1,2))
+      | plot!([(1,1),(3,1)], linewidth = 2, color = :MidnightBlue, 
+      |       label = "")
+
+:::
+
+    x-quill
+
+---
+> id: one-dim-classification-example
+
+*Solution*. If $x$ is between 0 and 1, the target prediction function will return 0. If $x$ is between 2 and 3, the target predition function will return 1. If $x$ is betwen 1 and 2, then the more likely outcome is 0, so $r$ should return 0 for those values as well. 
+
+    pre(julia-executable)
+      | 
+      | plot([(0,0),(2,0)], linewidth = 4, label = "probability mass",
+      |      xlims = (-2,5), ylims = (-1,2))
+      | plot!([(1,1),(3,1)], linewidth = 2, label = "")
+      | plot!([(0,0),(2,1),(3,1)], seriestype = :steppost, 
+      |       label = "target function", linewidth = 2)
+
 
 ---
 > id: step-intro-empirical-risk
+#### Empirical Risk Minimization
 
-Note that neither of these loss functionals can be computed directly unless the probability measure $\mathbb{P}$ on $\mathcal{X} \times \mathcal{Y}$ is known. Since the goal of statistical learning is to make inferences about $\mathbb{P}$ when it is *not* known, we must approximate $L$ (and likewise also the target function $h$) using the training data. 
+Note that neither the mean squared error nor the misclassification probability can be computed directly unless the probability measure $\mathbb{P}$ on $\mathcal{X} \times \mathcal{Y}$ is known. Since the goal of statistical learning is to make inferences about $\mathbb{P}$ when it is *not* known, we must approximate $L$ (and likewise also the target function $h$) using the training data. 
 
 The most straightforward way to do this is to replace $\mathbb{P}$ with the **empirical probability measure** associated with the training data $\\{(\mathbf{X}\_i, Y\_i)\\}\_{i=1}^n$. This is the probability measure which places $\frac{1}{n}$ units of probability mass at $(\mathbf{X}\_i, Y\_i)$, for each $i$ from $1$ to $n$. The **empirical risk** of a candidate function $h \in \mathcal{H}$ is the risk functional evaluated with respect to the empirical measure of the training data. 
 
@@ -134,6 +232,21 @@ Since there is exactly one monic polynomial of degree 6 or less which passes thr
         img(src="images/overfit.svg" width=350)
         p.caption.md The risk minimizer and empirical risk minimizer can be quite different. 
 
+Run this cell to see the true density, the observations, the risk minimizer and the empirical risk minimizer in the same figure:
+        
+    pre(julia-executable)
+      |         
+      | using Plots, Distributions, Polynomials, Random
+      | Random.seed!(123)
+      | X = rand(6)
+      | Y = X/2 .+ 1 .+ randn(6)
+      | p = polyfit(X,Y)
+      | heatmap(0:0.01:1, -4:0.01:4, (x,y) -> pdf(Normal(x/2+1),y), opacity = 0.8, fontfamily = "Palatino",
+      |         color = cgrad([:white, :MidnightBlue]), xlabel = "x", ylabel = "y")
+      | plot!(0:0.01:1, x->p(x), label = "empirical risk minimizer", color = :purple)
+      | plot!(0:0.01:1, x->x/2 + 1, label = "actual risk minimizer", color = :Gold)
+      | scatter!(X, Y, label = "training points", ylims = (-1,4), color = :red)
+
 [Continue](btn:next)
 
 ---
@@ -165,6 +278,7 @@ We mitigate overfitting by building [**inductive bias**](gloss:inductive-bias) i
 
 ---
 > id: step-bias-complexity-tradeoff
+#### The Bias-Complexity Tradeoff
 
 Inductive bias can lead to **underfitting**: relevant relations are missed, so both training and test error are larger than necessary. The tension between underfitting and overfitting is the **bias-complexity** (or *bias-variance*) **tradeoff**. 
 
@@ -755,6 +869,34 @@ The advantage of LDA over QDA stems from the difficulty of estimating the $p^2$ 
 
 The terms *quadratic* and *linear* refer to the resulting decision boundaries: solution sets of equations of the form $p\_1f\_1(\mathbf{x})=p\_2f\_2(\mathbf{x})$ are quadric hypersurfaces or hyperplanes if $p\_1$ and $p\_2$ are real numbers and $f\_1$ and $f\_2$ are distinct multivariate normal densities. If the covariances of $f\_1$ and $f\_2$ are equal, then the solution set $p\_1f\_1(\mathbf{x})=p\_2f\_2(\mathbf{x})$ is a hyperplane. 
 
+::: .exercise
+**Exercise**  
+Use the code cell below to confirm for the given covariance matrix and mean vectors that the solution set of $p\_1f\_1(\mathbf{x})=p\_2f\_2(\mathbf{x})$ is indeed a plane in three-dimensional space. (Hint: call `{jl} simplify` on the expression returned in the last line.)
+
+    pre(julia-executable)
+      | using SymPy
+      | @vars x y z real=true
+      | p₁ = 1/5
+      | p₂ = 2/5
+      | Σ = [2 1 0 
+      |      1 1 0
+      |      0 0 1]
+      | f(μ, Σ, x) = 1/((2π)^2 * sqrt(det(Σ))) * exp(-1/2 * (x-μ)' * inv(Σ) * (x-μ))
+      | f([2,0,1], Σ, [x,y,z]) / f([1,1,-3], Σ, [x,y,z]) 
+
+:::
+
+    x-quill
+    
+---
+> id: solution-hyperplane      
+
+*Solution*. The last line returns $12.182 \operatorname{e}^{2x - 3y + 4z}$, so the set of points where this ratio is equal to $p\_1/p\_2$ is the solution set of $2x - 3y + 4z = \log(p\_1/(12.182p\_2))$, which is a plane. 
+
+Although we used specific numbers in this example, it does illustrate the general point: the only quadratic term in the argument of the exponential in the formula for the multivariate normal distribution is $\mathbf{x}' \Sigma^{-1} \mathbf{x}$. Thus if we divide two such densities with the same $\Sigma$, the quadratic terms will cancel, and the only remaining variables will appear in the form of a linear combination in the exponent. When such expressions are set equal to a constant, the equation can be rearranged by dividing and taking logs to obtain a linear equation. 
+
+[Continue](btn:next)
+
 ---
 > id: naive-bayes
 #### Naive Bayes
@@ -780,17 +922,88 @@ in accordance with the conditional independence assumption. The method for estim
 **Exercise**  
 Each scatter plot shows a set of sample points for a three-category classification problem. Match each data set to the best-suited model: Naive Bayes, LDA, QDA. 
 
-    figure: img(src="images/LDA.svg" width=400)
+    figure: img(src="images/LDA.svg" width=600)
 
 :::
 
-*Solution*. The correct order is (c), (a), (b) since the third plot shows class conditional densities which factor as a product of marginals, the first plot shows Gaussian class conditional probabilities with the same covariance matrices, and the second plot shows Gaussian class conditional probabilities with distinct covariance matrices.
+    x-quill
+    
+---
+> id: three-categories-bayes-lda-qda    
+
+*Solution*. The correct order is (c), (a), (b), since the third plot shows class conditional densities which factor as a product of marginals, the first plot shows Gaussian class conditional probabilities with the same covariance matrices, and the second plot shows Gaussian class conditional probabilities with distinct covariance matrices.
+
+::: .exercise
+**Exercise**  
+Consider a classification problem where the features $X_1$ and $X_2$ have the property that $X_1$ is uniformly distributed on $[0,1]$ and $X_2$ is equal to $1 - X_1$. Suppose further that the conditional distribution of $Y$ given $X\_1$ and $X\_2$ assigns probability mass 80% to class 1 and 20\% to class 0 when the observation is left of the vertical line $x_1 = \frac{1}{2}$, and assigns probability mass 75% to class 0 and 25% to class 1 when the observation is right of the vertical line $x_1 = \frac{1}{2}$. 
+
+(a) Find the prediction function which minimizes the misclassification probability.
+
+(b) Show that the Naive Bayes assumption leads to the optimal prediction function, even though the relationship between $X\_1$ and $X\_2$ is modeled incorrectly.
+:::
+
+    pre(julia-executable)
+      | 
+
+    x-quill
+    
+*Solution*. (a) The classifier which minimizes the misclassification probability predicts class 1 for points in the northwest quadrant of the square (since the class-1 density is larger there), and class 0 for points in the southeast quadrant (since the class-0 density is larger there).
+
+(b) The probability of the event $\\{Y = 1\\}$ is 
+
+``` latex
+\mathbb{P}(Y = 1 \cap \{X_1 \le 1/2\}) + \mathbb{P}(Y = 1 \cap \{X_1 > 1/2\})
+ = (1/2)(80\%) + (1/2)(25\%) = 52.5\%. 
+```
+
+Therefore, the conditional density of $X_1$ given $Y = 1$ is 
+
+``` latex
+f_{X_1|Y = 1}(x_1) = 
+\begin{cases}
+\frac{80\%}{52.5\%} = \frac{32}{21} & \text{if }x_1 \le 1/2 \\
+\frac{25\%}{52.5\%} = \frac{10}{21} & \text{if }x_1 > 1/2
+\end{cases}
+```
+
+Likewise, the conditional density of $X_2$ given $Y = 1$ is 
+
+``` latex
+f_{X_2|Y = 1}(x_2) = 
+\begin{cases}
+\frac{80\%}{52.5\%} = \frac{32}{21} & \text{if }x_2 \ge 1/2 \\
+\frac{25\%}{52.5\%} = \frac{10}{21} & \text{if }x_2 < 1/2
+\end{cases}
+```
+
+Under the (erroneous) assumption that $X_1$ and $X_2$ are conditionally independent given $Y = 1$, we would get a joint conditional density function (given the event $\\{Y = 1\\}$) which is constant on each quadrant of the unit square, with value $(32/21)^2$ throughout the northwest quadrant, $(10/21)^2$ on the southeast quadrant, and $(32/21)(10/21)$ on each of the other two quadrants. To emphasize the distinction between the actual measures and the naive Bayes measure, here's a visualization of each: 
+
+    pre(julia-executable)
+      | using Plots
+      | ϵ = 0.015
+      | plot([(0,1),(1/2,1/2)], linewidth = 3, color = :red, 
+      |     legend = false, ratio = 1, size = (400,400))
+      | plot!([(0,1+ϵ),(1/2,1/2+ϵ)], linewidth = 1, color = :blue)
+      | plot!([(1/2,1/2),(1,0)], linewidth = 1, color = :red)
+      | plot!([(1/2,1/2+ϵ),(1,ϵ)], linewidth = 4, color = :blue)
+
+    pre(julia-executable)
+      | function bayes_density(x1,x2)
+      |     (x1 < 0.5 ? 32/21 : 10/21) * (x2 < 0.5 ? 10/21 : 32/21)
+      | end
+      | heatmap(0:0.01:1, 0:0.01:1, bayes_density,
+      |         color = cgrad([:blue, :red]), legend = false, 
+      |         ratio = 1, size = (400,400))
+
+Likewise the probability density of $(X\_1, X\_2)$ conditioned on $\\{Y = 0\\}$ is $(20\\%)/(47.5\\%) = 8/19$ in the northwest quadrant of the square and $(75\\%)/(47.5\\%) = 30/19$ in the southeast quadrant of the square. Since $(30/21)^2 > (8/19)^2$, the naive Bayes classifier predicts 1 in the northwest quadrant of the square. Likewise, it predicts 0 in the southeast corner. 
+
+Therefore, despite modeling the relationship between the features incorrectly, the naive Bayes classifier does yield the optimal prediction function. 
 
 ---
 > id: logistic-regression
 ## Logistic Regression
 
-In this section we discuss *logistic regression*, which is a discriminative model for binary classification. 
+In this section we discuss *logistic regression*, which is a discriminative model for binary classification.
  
 ::: .example
 **Example**  
@@ -1200,6 +1413,7 @@ Finally, we optimize over $\lambda$:
 
 ---
 > id: step-SVM-kernel-trick
+#### Kernelized support vector machines
  
 ::: .exercise
 **Exercise**  
@@ -1233,42 +1447,59 @@ We can see that the points can be separated by a plane in $\mathbb{R}^3$, so we 
 ---
 > id: step-general-kernel-trick
 
-This example might have seemed a bit fortuitious, and it is structured so as to apparently rely on human insight to choose the appropriate map to $\mathbb{R}^3$. We can come up with a more general approach which leads to a new geometric perspective on kernelized support vector machines.
+This example might have seemed a bit fortuitous, and it is structured so as to apparently rely on human insight to choose the appropriate map to $\mathbb{R}^3$. We can come up with a more general approach which leads to a new geometric perspective on kernelized support vector machines.
 
 We begin with an overview of the mathematical theory underlying the
-support vector machine. This content tends to get heavy notationally, so we will adopt a vectorized notation which is more condensed and which also supports convenient translation to code. 
+support vector machine. This content tends to get notationally heavy, so we will adopt a vectorized notation which is more condensed and which also supports convenient translation to code. 
 
-A **support vector machine** is a binary classifier of the form
+[Continue](btn:next)
+
+---
+> id: step-reformulate-soft-SVM
+
+We begin by slightly reformulating the soft-margin support vector machine. The SVM is a prediction function of the form
 
 ``` latex
-\mathbf{x}\mapsto \operatorname{sign}(\mathbf{x}\cdot \mathbf{w}+ b),
+\mathbf{x}\mapsto \operatorname{sign}(\mathbf{x}\cdot \boldsymbol{\beta}+ \alpha),
 ```
 
-where $\mathbf{w} \in \mathbb{R}^d$ and $b \in \mathbb{R}$. To train a support vector machine on a set of training data $(X, \mathbf{y})$, with $X \in \mathbb{R}^{n \times d}$ and $\mathbf{y} \in \{-1,1\}^n$, we choose a value $C > 0$ and solve the optimization problem
+where $\boldsymbol{\beta} \in \mathbb{R}^d$ and $\alpha \in \mathbb{R}$. To train a support vector machine on a set of training data $(X, \mathbf{y})$, with $X \in \mathbb{R}^{n \times d}$ and $\mathbf{y} \in \\{-1,1\\}^n$, we choose a value $C > 0$ and solve the optimization problem
+
 ``` latex
-  &\text{minimize} \quad \frac{1}{2}\|\mathbf{w}\|^2 + C \operatorname{sum}(\boldsymbol{\zeta})\\
-  &\text{subject to} \quad \mathbf{y} \odot (X\mathbf{w} \oplus b)
+  &\text{minimize} \quad \frac{1}{2}\|\boldsymbol{\beta}\|^2 + C \operatorname{sum}(\boldsymbol{\zeta})\\
+  &\text{subject to} \quad \mathbf{y} \odot (X\boldsymbol{\beta} \oplus \alpha)
     \succcurlyeq 1 \ominus \boldsymbol{\zeta} \text{ and } \boldsymbol{\zeta} \succcurlyeq 0.
 ```
 
 where $\odot$ and $\oplus$ indicate elementwise multiplication and
-addition, respectively, and $\succcurlyeq$ indicates that the elementwise comparison holds for every element. The parameter $C$ governs the tradeoff between the margin width term $\frac{1}{2}\|\mathbf{w}\|^2$ and the classification penalty $\operatorname{sum}(\boldsymbol{\zeta})$.
+addition, respectively, and $\succcurlyeq$ indicates that the elementwise comparison holds for every element. The parameter $C$ governs the tradeoff between the margin width term $\frac{1}{2}\|\boldsymbol{\beta}\|^2$ and the classification penalty $\operatorname{sum}(\boldsymbol{\zeta})$. Note that this is equivalent to minimizing 
+
+``` latex
+L(\boldsymbol{\beta},\alpha) = \lambda |\boldsymbol{\beta}|^2
++  \frac{1}{n}\sum_{i=1}^{n}\big[1-y_i(\boldsymbol{\beta}\cdot \mathbf{x}_i
+- \alpha)\big]_+, 
+```
+
+because we can multiply through by $\frac{1}{2\lambda}$ and set $C = \frac{1}{2\lambda n}$, and we can define $\boldsymbol{\zeta}$ to be the vector whose $i$th component is $[1-y_i(w \cdot x_i - \alpha))]_{+}$. 
+
+[Continue](btn:next)
+
+---
+> id: step-lagrange-multiplier-SVM
 
 It can be shown, using Lagrange multipliers, that this problem can be solved by instead solving the *dual* problem: 
 
 ``` latex
-  &\text{minimize} \quad \frac{1}{2}(\boldsymbol{\alpha} \odot \mathbf{y})'XX'
-    (\boldsymbol{\alpha} \odot \mathbf{y}) - \operatorname{sum}(\boldsymbol{\alpha}) \\
-  &\text{subject to} \quad 0 \preccurlyeq \boldsymbol{\alpha} \preccurlyeq C \text{ and }
-    \boldsymbol{\alpha} \cdot \mathbf{y} = 0,
+  &\text{minimize} \quad \frac{1}{2}(\boldsymbol{\eta} \odot \mathbf{y})'XX'
+    (\boldsymbol{\eta} \odot \mathbf{y}) - \operatorname{sum}(\boldsymbol{\eta}) \\
+  &\text{subject to} \quad 0 \preccurlyeq \boldsymbol{\eta} \preccurlyeq C \text{ and }
+    \boldsymbol{\eta} \cdot \mathbf{y} = 0,
 ```
 
-where the optimizing value $\widehat{\boldsymbol{\alpha}}$ for the dual problem
-is related to the optimizing value $\widehat{w}$ for the original
-problem via
+where the optimizing value $\widehat{\boldsymbol{\eta}}$ for the dual problem is related to the optimizing value $\widehat{\boldsymbol{\beta}}$ for the original problem via
 
 ``` latex
-  \widehat{\mathbf{w}} = X'(\widehat{\boldsymbol{\alpha}} \odot y).
+  \widehat{\boldsymbol{\beta}} = X'(\widehat{\boldsymbol{\eta}} \odot y).
 ```
 
 The optimizing value of $b$ in the original problem may also be
@@ -1276,50 +1507,54 @@ obtained using the solution of the dual problem by looking at any
 entry of
 
 ``` latex
-  \mathbf{y} - X\widehat{\mathbf{w}}
+  \mathbf{y} - X\widehat{\boldsymbol{\beta}}
 ```
 
-for which the corresponding entry of $\boldsymbol{\alpha}$ is strictly between 0 and $C$. All such entries can be proved to be equal mathematically, but when working with numerical approximations, (i) a small tolerance should be included when determining which entries of $\boldsymbol{\alpha}$ are between 0 and $C$, and (ii) the appropriate entries of $\mathbf{y} - X\widehat{\mathbf{w}}$ should be averaged.
+for which the corresponding entry of $\boldsymbol{\eta}$ is strictly between 0 and $C$. All such entries can be proved to be equal mathematically, but when working with numerical approximations, (i) a small tolerance should be included when determining which entries of $\boldsymbol{\eta}$ are between 0 and $C$, and (ii) the appropriate entries of $\mathbf{y} - X\widehat{\boldsymbol{\beta}}$ should be averaged.
 
 The reason for formulating the dual problem is that it permits the application of a useful and extremely common technique called the kernel trick. The idea is that if we apply a transformation $\phi:\mathbb{R}^d \to \mathbb{R}^d$ each row of $X$ and call the resulting matrix $\phi(X)$, then the resulting change to the dual problem is just to replace $XX'$ with $\phi(X) \phi(X)'$. This matrix's entries consist entirely of dot products of rows of $\phi(X)$ with rows of $\phi(X)$, so we can solve the problem as long as we can calculate $\phi(\mathbf{x})\cdot \phi(\mathbf{y})$ for all $\mathbf{x}$ and $\mathbf{y}$ in $\mathbb{R}^d$. The function $K = (\mathbf{x}, \mathbf{y}) \mapsto \phi(\mathbf{x})\cdot \phi(\mathbf{y})$ is called the *kernel* associated with the transformation $\phi$. Typically we ignore $\phi$ and use one of the following kernel functions:
 
 ``` latex
   \text{linear} \quad K(\mathbf{x},\mathbf{y}) &= \mathbf{x}' \mathbf{y} \\
   \text{degree-$d$ polynomial} \quad K(\mathbf{x},\mathbf{y}) &= (\gamma \mathbf{x}' \mathbf{y} + r)^d \\
-  \text{Gaussian radial basis function} \quad K(\mathbf{x},\mathbf{y}) &= \exp(-\gamma \|\mathbf{x} -
-                             \mathbf{y}\|^2) \\
+  \text{Gaussian radial basis function} \quad K(\mathbf{x},\mathbf{y}) &= \exp(-\gamma \|\mathbf{x} - \mathbf{y}\|^2) \\
   \text{sigmoid} \quad K(\mathbf{x},\mathbf{y}) &= \tanh(\gamma \mathbf{x}'\mathbf{y}+ r),
 ```
 
-where $\gamma$ and $r$ are parameters that may be tuned.
+where $\gamma$ and $r$ are [hyperparameters](gloss:hyperparameter).
 
-To bring it all together, suppose that $K$ is a kernel function and $\mathcal{K} = \{K(\mathbf{x}\_i, \mathbf{x}\_j)\}\_{1 \leq i,j \leq n}$ is the resulting matrix of kernel values (where $\mathbf{x}_i$ is the $i$th row of $X$). Then the support vector machine with kernel $K$ is obtained by letting $\widehat{\boldsymbol{\alpha}}$ be the optimizing vector $\boldsymbol{\alpha}$ in the optimization problem
+[Continue](btn:next)
+
+---
+> id: step-bring-SVM-kernel-together
+
+To bring it all together, suppose that $K$ is a kernel function and $\mathcal{K} = \{K(\mathbf{x}\_i, \mathbf{x}\_j)\}\_{1 \leq i,j \leq n}$ is the resulting matrix of kernel values (where $\mathbf{x}_i$ is the $i$th row of $X$). Then the support vector machine with kernel $K$ is obtained by letting $\widehat{\boldsymbol{\eta}}$ be the optimizing vector $\boldsymbol{\eta}$ in the optimization problem
 
 ``` latex
-  &\text{minimize} \quad \frac{1}{2}(\boldsymbol{\alpha} \odot \mathbf{y})'\mathcal{K}
-    (\boldsymbol{\alpha} \odot \mathbf{y}) - \operatorname{sum}(\boldsymbol{\alpha}) \\
-  &\text{subject to} \quad 0 \preccurlyeq \boldsymbol{\alpha} \preccurlyeq C \text{ and }
-    \boldsymbol{\alpha} \cdot \mathbf{y} = 0.
+  &\text{minimize} \quad \frac{1}{2}(\boldsymbol{\eta} \odot \mathbf{y})'\mathcal{K}
+    (\boldsymbol{\eta} \odot \mathbf{y}) - \operatorname{sum}(\boldsymbol{\eta}) \\
+  &\text{subject to} \quad 0 \preccurlyeq \boldsymbol{\eta} \preccurlyeq C \text{ and }
+    \boldsymbol{\eta} \cdot \mathbf{y} = 0.
 ```
 
 The prediction vector for an $n_{\mathrm{test}} \times n$ feature
 matrix $X_{\mathrm{test}}$ is
 
 ``` latex
-  \operatorname{sign}(\phi(X) \widehat{\mathbf{w}} \oplus b) =
-  \operatorname{sign}(\phi(X) \phi(X)' (\widehat{\boldsymbol{\alpha}}
+  \operatorname{sign}(\phi(X) \widehat{\boldsymbol{\beta}} \oplus b) =
+  \operatorname{sign}(\phi(X) \phi(X)' (\widehat{\boldsymbol{\eta}}
   \odot \mathbf{y}) \oplus \widehat{b}) =
-  \operatorname{sign}(\mathcal{K}_{\mathrm{test}}(\widehat{\boldsymbol{\alpha}}
+  \operatorname{sign}(\mathcal{K}_{\mathrm{test}}(\widehat{\boldsymbol{\eta}}
   \odot \mathbf{y}) \oplus \widehat{b}),
 ```
 
 where $\mathcal{K}\_{\mathrm{test}}$ is the $n\_{\mathrm{test}} \times n$ matrix whose $(i,j)$th entry is obtained by applying $K$ to the $i$th row of $X\_{\mathrm{test}}$ and the $j$th row of $X$, and where $\widehat{b}$ is any entry of
 
 ``` latex
-  \mathbf{y} - \mathcal{K}(\widehat{\boldsymbol{\alpha}} \odot \mathbf{y})
+  \mathbf{y} - \mathcal{K}(\widehat{\boldsymbol{\eta}} \odot \mathbf{y})
 ```
 
-for which the corresponding entry in $\widehat{\boldsymbol{\alpha}}$ is strictly
+for which the corresponding entry in $\widehat{\boldsymbol{\eta}}$ is strictly
 between 0 and $C$.
 
 ::: .exercise
@@ -1334,6 +1569,8 @@ Consider applying an SVM with Gaussian kernel $K(\mathbf{x},\mathbf{y}) = \mathr
 
 (In the scatter plot, the two axes represent features, and class is indicated with $+$ or $\times$. In the surface plot, the vertical axis represents predicted class (before the signum function is applied), while the other two axes represent features.)
 :::
+
+    x-quill
 
 ---
 > id: decision-trees
@@ -1440,7 +1677,7 @@ We were able to train a decision tree for the toy dataset above, but only by inc
 ---
 > id: step-CART
 
-The most commonly used decision-tree training algorithm, called **CART**, is greedy. At each node in the decision tree, we choose the next decision based on which feature and threshold do the best job of splitting the classes in the training data. To measure how will the classes have been divided, we define the *Gini impurity* of a list of labeled objects to be the probability that two independent random elements from the list have different labels: if $p_1, \ldots, p_k$ are the proportions for the $k$ labels, then 
+The most commonly used decision-tree training algorithm, called **CART**, is greedy. At each node in the decision tree, we choose the next decision based on which feature and threshold do the best job of splitting the classes in the training data. To measure how well the classes have been divided, we define the *Gini impurity* of a list of labeled objects to be the probability that two independent random elements from the list have different labels: if $p_1, \ldots, p_k$ are the proportions for the $k$ labels, then 
 
 ``` latex
 G = 1 - (p_1^2 + \cdots + p_k^2).
@@ -1604,7 +1841,7 @@ Experiment with the depth in the code block below to see how the graph of the de
     pre(julia-executable)
       | heatmap(0:0.01:1, 0:0.01:1, 
       |         (x,y) -> predict(model, [x,y]),
-      |         aspect_ratio = 1)
+      |         aspect_ratio = 1, size = (500,500))
 
 ---
 > id: ensemble-methods
@@ -1697,7 +1934,7 @@ The core idea of adaptive boosting is to *weight* observations in the training o
 
 For simplicity, let's consider a binary classification problem with $n$ training observations $(\mathbf{X}_1, Y_1), \ldots, (\mathbf{X}_n, Y_n)$. Let's suppose that the $\mathbf{X}_i$'s are points in the plane, while the $Y_i$'s are elements of $\{-1,+1\}$. 
 
-We begin by training a decision tree on the training data in the usual way, and we call the resulting predictor $h_1$. We associate $h_1$ with a value $\alpha_1$ which indicates $h_1$'s overall effectiveness: it's defined to be $\frac{1}{2}\log\left(\frac{1-\epsilon_1}{\epsilon_1}\right)$, where $\epsilon_1$ is the proportion of misclassified training data. The relationship between $\epsilon$ and $\alpha$ is shown here:
+We begin by training a decision tree on the training data in the usual way, and we call the resulting predictor $h_1$. We associate $h_1$ with a value $\alpha_1$ which indicates $h_1$'s overall effectiveness: it's defined to be $\frac{1}{2}\log\left(\frac{1-\epsilon_1}{\epsilon_1}\right)$, where $\epsilon_1$ is the proportion of misclassified training data. The relationship between $\epsilon$ and $\alpha$ is shown here (running the cell twice is recommended):
 
     pre(julia-executable)      
       | using Plots, LaTeXStrings
@@ -1833,7 +2070,7 @@ Suppose that $A\_1(\mathbf{x}) = \left[\begin{smallmatrix} 3 & -2 \\ 1 &
 ---
 > id: step-cost-function-neural-net
 
-We will use a diagram to visualize our neural net as a composition of maps. We include the sequence of alternating affine and activation maps, and we also include one final map which associates a real-valued *cost* with each output vector. Given a training sample $(\mathbf{x}\_i, \mathbf{y}\_i)$, let's consider the cost $C\_i(\mathbf{y}) = |\mathbf{y} - \mathbf{y}\_i|^2$ (which measures squared distance from the vector $\mathbf{y}$ output by the neural net and the desired vector $\mathbf{y}\_i$). Our goal will be to find values for the weights and biases which yield a small average value for $C(N(\mathbf{x}\_i), \mathbf{y}\_i)$ as $(\mathbf{x}\_i, \mathbf{y}\_i)$ ranges over the set of training observations. 
+We will use a diagram to visualize our neural net as a composition of maps. We include the sequence of alternating affine and activation maps, and we also include one final map which associates a real-valued *cost* with each output vector. Given a training observation $(\mathbf{x}\_i, \mathbf{y}\_i)$, let's consider the cost $C\_i(\mathbf{y}) = |\mathbf{y} - \mathbf{y}\_i|^2$ (which measures squared distance from the vector $\mathbf{y}$ output by the neural net and the desired vector $\mathbf{y}\_i$). Our goal will be to find values for the weights and biases which yield a small average value for $C(N(\mathbf{x}\_i), \mathbf{y}\_i)$ as $(\mathbf{x}\_i, \mathbf{y}\_i)$ ranges over the set of training observations. 
 
 [Continue](btn:next)
 
@@ -1856,7 +2093,7 @@ In principle, we have fully specified a neural network learner: given a set of t
 ---
 > id: step-stochatic-gradient-descent
 
-Neural networks are typically trained using *stochastic gradient descent*. The idea is to determine for each training sample the desired nudges to each weight and bias to reduce the cost for that sample. Rather than performing this calculation for every sample in the training set (which is, ideally, enormous), we do it for a randomly selected subset of the training data. 
+Neural networks are typically trained using *stochastic gradient descent*. The idea is to determine for each training observation the desired nudges to each weight and bias to reduce the cost for that observation. Rather than performing this calculation for every observation in the training set (which is, ideally, enormous), we do it for a randomly selected subset of the training data. 
 
 The main challenge in implementing stochastic gradient descent is the bookkeeping associated with all the nodes in the neural net diagram. We will use matrix differentiation to simplify that process. Let's begin by defining a neural net data type and writing some basic methods for it. 
 
@@ -1873,6 +2110,7 @@ Create data types in Julia to represent affine maps and neural net functions. Wr
 *Solution*. We supply a `{jl} NeuralNet` with the sequence of affine maps, the activation function, and also the activation function's derivative. We write call methods for the `{jl} AffineMap` and `{jl} NeuralNet` types so they can be applied as functions to appropriate inputs. (One of these methods refers to a function we will define in the next example.) 
 
     pre(julia-executable)
+      | using LinearAlgebra, StatsBase
       | struct AffineMap
       |     W::Matrix
       |     b::Vector
@@ -2128,8 +2366,8 @@ Next, we sample our data.
     pre(julia-executable)
       | using Random; Random.seed!(123)
       | xs = [rand(2) for i=1:1000]
-      | ys = [[1-norm(x)^2] for x in xs]
-      | sample = collect(zip(xs,ys))
+      | ys = [[1-x'*x] for x in xs]
+      | observations = collect(zip(xs,ys))
 
  Then we choose an architecture, a batch size, and a learning rate, and we train our model on the data: 
 
@@ -2137,7 +2375,7 @@ Next, we sample our data.
       | arch = [2,5,1]
       | batchsize = 100
       | ϵ = 0.005
-      | N = train(arch, K, K̇, sample, batchsize, ϵ, 10_000)
+      | N = train(arch, K, K̇, observations, batchsize, ϵ, 10_000)
 
  Finally, we inspect the result. 
 
@@ -2146,7 +2384,7 @@ Next, we sample our data.
       | xgrid = 0:1/2^8:1
       | ygrid = 0:1/2^8:1
       | zs = [first(N([x,y])) for x=xgrid,y=ygrid]
-      | using Plots; 
+      | using Plots; pyplot()
       | surface(xgrid,ygrid,zs)
 
 [Continue](btn:next)
@@ -2210,6 +2448,7 @@ Apply principal component analysis to project the handwritten digit images in th
 
     pre(julia-executable)
       | using MLDatasets, Images, Plots
+      | MNIST.download(i_accept_the_terms_of_use = true)
       | features, labels = MNIST.traindata(Float64)
       | A = reshape(features[:],28^2,60_000)'
 
@@ -2217,17 +2456,20 @@ Next, we define a custom function for displaying images. This function accepts a
 
     pre(julia-executable)
       | function imshow(v)
-      |   if any(v .< 0)
-      |       (x -> x > 0 ? RGB(x,0,0) : RGB(0,0,-x)).(reshape(v./maximum(abs.(v)),(28,28))')
-      |   else
-      |       Gray.(reshape(v./maximum(abs.(v)),(28,28))')
-      |   end
+      |     if any(v .< 0)
+      |         (x -> x > 0 ? RGB(x,0,0) : RGB(0,0,-x)).(reshape(v./maximum(abs.(v)),(28,28))')
+      |     else
+      |         Gray.(reshape(v./maximum(abs.(v)),(28,28))')
+      |     end
       | end
+      | "Done!"
 
 To perform principal component analysis, we take the column-wise mean with `{jl} mean(A,dims=1)` and subtract it from the matrix before performing the singular value decomposition. 
-
     pre(julia-executable)
+      | using Statistics, LinearAlgebra
+      | A = A[1:10_000,:] # make this computationally feasible on Binder
       | U, Σ, V = svd(A .- mean(A,dims=1))
+      | imshow(V[:,1])
 
  We can see the first principal component with `{jl} imshow(V[:,1])`, and similarly for the second principal component
 
@@ -2245,8 +2487,8 @@ Finally, we project onto each of the first two principal components and make a s
       | scatter(A[1:n,:]*V[:,1],
       |         A[1:n,:]*V[:,2],
       |         group=labels[1:n],
-      |         ms=2,
-      |         msw=0)
+      |         markersize=2,
+      |         markerstrokewidth=0)
 
 
 We can see that some digits cluster apart from the other digits (like `{jl} 1`), while others remain heavily overlapping. 
