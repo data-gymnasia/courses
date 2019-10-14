@@ -1452,7 +1452,7 @@ The simplest way to produce an array in a Julia program is with a **array litera
       
 ::: .exercise
 **Exercise**  
-What happens to `{jl} myOtherArray` in the example above if a different value is assigned to `{jl} x` *after* `{jl} myOtherList` is created? [[the list doesn't change|the list changes]]
+What happens to `{jl} myOtherArray` in the example above if a different value is assigned to `{jl} x` *after* `{jl} myOtherArray` is created? [[the list doesn't change|the list changes]]
 :::
 
 ---
