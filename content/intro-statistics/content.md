@@ -1370,7 +1370,7 @@ The only term that depends on $\beta$ is the second one, so maximizing the log l
 **Exercise**  
 (a) Consider the family of distributions which are uniform on $[0,b]$, where $b \in (0,\infty)$. Explain why the MLE for the distribution maximum $b$ is the sample maximum. 
 
-(b) Show that the MLE for a binomial distribution with parameter $p$ is the empirical success rate $\frac{1}{n} \sum_{i=1}^n X_i$. 
+(b) Show that the MLE for a Bernoulli distribution with parameter $p$ is the empirical success rate $\frac{1}{n} \sum_{i=1}^n X_i$. 
 :::
 
     x-quill
