@@ -38,4 +38,5 @@ content/conv-architectures/julia
 
 tmp.csv
 tmp.jl
+convert.jl
 package-lock.json

@@ -116,3 +116,47 @@ programming-in-julia:
   author:
     name: Samuel S. Watson
     link: http://sswatson.com
+
+numerical-computing:
+  name: Numerical Computing
+  topics:
+    - Machine Arithmetic
+    - Numerical Error
+    - Pseudorandom Number Generation
+    - Automatic Differentiation
+    - Gradient Descent
+  author:
+    name: Samuel S. Watson
+    link: http://sswatson.com
+
+intro-statistics:
+  name: Statistics
+  topics:
+    - Kernel density estimation
+    - Point estimation
+    - Confidence intervals
+    - Bootstrapping
+    - Maximum Likelihood Estimation
+    - Hypothesis Testing
+  author:
+    name: Samuel S. Watson
+    link: http://sswatson.com
+ 
+machine-learning:
+  name: Machine Learning
+   topics: 
+     - Statistical Learning Theory
+     - Linear Regression
+     - Quadratic Discriminant Analysis
+     - Linear Discriminant Analysis
+     - Naive Bayes
+     - Logistic Regression
+     - Support Vector Machines
+     - Ensemble Methods
+     - Neural Networks
+     - Principal Component Analysis
+     - Stochastic Neighbor Embedding
+  author:
+    name: Samuel S. Watson
+    link: http://sswatson.com
+     
