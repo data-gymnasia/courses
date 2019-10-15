@@ -280,16 +280,15 @@ We mitigate overfitting by building [**inductive bias**](gloss:inductive-bias) i
 > id: step-bias-complexity-tradeoff
 #### The Bias-Complexity Tradeoff
 
-Inductive bias can lead to **underfitting**: relevant relations are missed, so both training and test error are larger than necessary. The tension between underfitting and overfitting is the **bias-complexity** (or *bias-variance*) **tradeoff**. 
+Inductive bias can lead to **underfitting**: relevant relations are missed, so both training and actual error are larger than necessary. The tension between underfitting and overfitting is the **bias-complexity** (or *bias-variance*) **tradeoff**. 
 
 This tension is fundamentally unresolvable, in the sense that *all learners are equal on average* (!!). 
 
 ::: .theorem
 **Theorem** (No free lunch)  
-  Suppose $\mathcal{X}$ and $\mathcal{Y}$ are finite sets, and let $f$ denote a probability distribution on $\mathcal{X} \times \mathcal{Y}$. Let $D$ be a collection of $n$ independent observations from $f$, and let $h_1$ and $h_2$ be prediction functions (which associate a prediction $h_j(d,\mathbf{x}) \in \mathcal{Y}$ to each pair $(d,\mathbf{x})$ where $d$ is a set of training observations and $\mathbf{x} \in \mathcal{X}$). Consider the cost random variable $C_j = (h_j(D,X) - Y)^2$ (or $C_j = \boldsymbol{1}_{\\{h_j(D,X) - Y\\}}$) for
-  $j \in \{1,2\}$. 
+  Suppose $\mathcal{X}$ and $\mathcal{Y}$ are finite sets, and let $f$ denote a probability distribution on $\mathcal{X} \times \mathcal{Y}$. Let $D$ be a collection of $n$ independent observations from $f$, and let $h_1$ and $h_2$ be prediction functions (which associate a prediction $h_j(d,\mathbf{x}) \in \mathcal{Y}$ to each pair $(d,\mathbf{x})$ where $d$ is a set of training observations and $\mathbf{x} \in \mathcal{X}$). Consider the cost random variable $C_j = (h_j(D,X) - Y)^2$ (or $C_j = \boldsymbol{1}_{\\{h_j(D,X) - Y\\}}$) for $j \in \{1,2\}$. 
   
-  The average over all distributions $f$ of $C\_1$ is equal to the average over all distributions $f$ of $C\_2$. 
+  The average over all distributions $f$ of the distribution of $C\_1$ is equal to the average over all distributions $f$ of the distribution of $C\_2$. (Note that it makes sense to average distributions in this context, because the distributions of $C_1$ and $C_2$ are both functions on a finite set.)
 :::
 
 [Continue](btn:next)
@@ -439,11 +438,11 @@ We perform the quadratic regression by doing the same calculation as for the lin
     pre(julia-executable)
       | y = [Y for (X,Y) in observations]
       | X = [ones(n) [X for (X,Y) in observations] [X^2 for (X,Y) in observations]]
+      | βq = (X'*X) \ X'*y
       | quaderr = sum((r(x)-βq'*[1,x,x^2])^2 for x in xs)*step(xs)
       | print("error for quadratic estimator is $quaderr")
       | linerr = sum((r(x)-β'*[1,x])^2 for x in xs)*step(xs) 
       | print("error for linear estimator is $linerr")
-      | βq = (X'*X) \ X'*y
       | scatter(observations, label = "observations") 
       | plot!(xs, [βq'*[1,x,x^2] for x in xs], label = "quadratic regression estimator")
 
@@ -1466,13 +1465,12 @@ We begin by slightly reformulating the soft-margin support vector machine. The S
 where $\boldsymbol{\beta} \in \mathbb{R}^d$ and $\alpha \in \mathbb{R}$. To train a support vector machine on a set of training data $(X, \mathbf{y})$, with $X \in \mathbb{R}^{n \times d}$ and $\mathbf{y} \in \\{-1,1\\}^n$, we choose a value $C > 0$ and solve the optimization problem
 
 ``` latex
-  &\text{minimize} \quad \frac{1}{2}\|\boldsymbol{\beta}\|^2 + C \operatorname{sum}(\boldsymbol{\zeta})\\
-  &\text{subject to} \quad \mathbf{y} \odot (X\boldsymbol{\beta} \oplus \alpha)
-    \succcurlyeq 1 \ominus \boldsymbol{\zeta} \text{ and } \boldsymbol{\zeta} \succcurlyeq 0.
+  &\text{minimize} \quad \frac{1}{2}\|\boldsymbol{\beta}\|^2 + C \mathbf{1}'\boldsymbol{\zeta}\\
+  &\text{subject to} \quad \mathbf{y} \odot (X\boldsymbol{\beta} + \alpha\mathbf{1})
+    \succcurlyeq \mathbf{1} - \boldsymbol{\zeta} \text{ and } \boldsymbol{\zeta} \succcurlyeq 0.
 ```
 
-where $\odot$ and $\oplus$ indicate elementwise multiplication and
-addition, respectively, and $\succcurlyeq$ indicates that the elementwise comparison holds for every element. The parameter $C$ governs the tradeoff between the margin width term $\frac{1}{2}\|\boldsymbol{\beta}\|^2$ and the classification penalty $\operatorname{sum}(\boldsymbol{\zeta})$. Note that this is equivalent to minimizing 
+where $\odot$ indicates elementwise multiplication and $\succcurlyeq$ indicates that the elementwise comparison holds for every element. The parameter $C$ governs the tradeoff between the margin width term $\frac{1}{2}\|\boldsymbol{\beta}\|^2$ and the classification penalty $\operatorname{sum}(\boldsymbol{\zeta})$. Note that this is equivalent to minimizing 
 
 ``` latex
 L(\boldsymbol{\beta},\alpha) = \lambda |\boldsymbol{\beta}|^2
@@ -1480,37 +1478,66 @@ L(\boldsymbol{\beta},\alpha) = \lambda |\boldsymbol{\beta}|^2
 - \alpha)\big]_+, 
 ```
 
-because we can multiply through by $\frac{1}{2\lambda}$ and set $C = \frac{1}{2\lambda n}$, and we can define $\boldsymbol{\zeta}$ to be the vector whose $i$th component is $[1-y_i(w \cdot x_i - \alpha))]_{+}$. 
+because if we multiply this expression by $\frac{1}{2\lambda}$ and set $C = \frac{1}{2\lambda n}$, and we can define $\boldsymbol{\zeta}$ to be the vector whose $i$th component is $[1-y_i(w \cdot x_i - \alpha))]\_{+}$. 
 
 [Continue](btn:next)
 
 ---
 > id: step-lagrange-multiplier-SVM
 
-It can be shown, using Lagrange multipliers, that this problem can be solved by instead solving the *dual* problem: 
+Next, we fold the constraints into the objective function by defining a function $H$ so that $H(\mathbf{x}) = 0$ when $\mathbf{x} \preccurlyeq 0$ and $H(\mathbf{x}) = \infty$ otherwise. Then our optimization problem is equivalent to 
 
 ``` latex
-  &\text{minimize} \quad \frac{1}{2}(\boldsymbol{\eta} \odot \mathbf{y})'XX'
-    (\boldsymbol{\eta} \odot \mathbf{y}) - \operatorname{sum}(\boldsymbol{\eta}) \\
-  &\text{subject to} \quad 0 \preccurlyeq \boldsymbol{\eta} \preccurlyeq C \text{ and }
-    \boldsymbol{\eta} \cdot \mathbf{y} = 0,
+\frac{1}{2}\|\boldsymbol{\beta}\|^2 + C \mathbf{1}'\boldsymbol{\zeta} + H(\mathbf{1} - \boldsymbol{\zeta} -  \mathbf{y} \odot (X\boldsymbol{\beta} + \alpha\mathbf{1})) + H(-\boldsymbol{\zeta}), 
 ```
 
-where the optimizing value $\widehat{\boldsymbol{\eta}}$ for the dual problem is related to the optimizing value $\widehat{\boldsymbol{\beta}}$ for the original problem via
+since the terms involving $H$ enforce the constraints by returning $\infty$ when the constraints are not satisfied. Note that whenever $\boldsymbol{\eta} \succcurlyeq 0$, we have $H(\mathbf{x}) \geq \boldsymbol{\eta}' \mathbf{x}$. Furthermore, if we take the maximum of $\boldsymbol{\eta}' \mathbf{x}$ over all $\boldsymbol{\eta} \succcurlyeq 0$, we get $H(\mathbf{x})$. Therefore, the optimization problem can be rewritten as 
 
 ``` latex
-  \widehat{\boldsymbol{\beta}} = X'(\widehat{\boldsymbol{\eta}} \odot y).
+\min_{\alpha, \boldsymbol{\beta}, \boldsymbol{\zeta}} \max_{\boldsymbol{\eta}, \boldsymbol{\theta}}\left[\frac{1}{2}\|\boldsymbol{\beta}\|^2 + C \mathbf{1}'\boldsymbol{\zeta}  + \boldsymbol{\eta}'(\mathbf{1} - \boldsymbol{\zeta} -  \mathbf{y} \odot (X\boldsymbol{\beta} + \alpha\mathbf{1})) - \boldsymbol{\theta}'\zeta\right].
 ```
 
-The optimizing value of $b$ in the original problem may also be
-obtained using the solution of the dual problem by looking at any
-entry of
+Next, we swap the min and max operations. The resulting optimization problem is different, but the maximal value of the objective function in the new optimization problem does provide a lower bound for the first function. Here's the general idea (with $F$ as a real-valued function of two variables):
+
+```latex
+F(x,y) &\leq \max_{y} F(x,y)\text{ for all $x,y$}\implies \\ \min_{x}F(x,y) &\leq \min_x\max_{y} F(x,y) \text{ for all $y$} 
+\implies \\ \max_{y}\min_{x}F(x,y) &\leq \min_x\max_{y} F(x,y). 
+```
+
+Performing the max/min swap and re-arranging terms a bit, we get
+
+``` latex
+\max_{\boldsymbol{\eta}, \boldsymbol{\theta}}\min_{\alpha, \boldsymbol{\beta}, \boldsymbol{\zeta}} \Bigg[
+&\frac{1}{2}\|\boldsymbol{\beta}\|^2 - \boldsymbol{\eta}' (\mathbf{y} \odot X\boldsymbol{\beta})
++ \boldsymbol{\eta}' \mathbf{1} + \\
+&(C \mathbf{1}' - \boldsymbol{\eta}' - \boldsymbol{\theta}') \boldsymbol{\zeta} \\
+&-\alpha\boldsymbol{\eta}'\mathbf{y}\Bigg]. 
+```
+
+The first line depends only on $\boldsymbol{\beta}$, the second only on $\boldsymbol{\zeta}$, and the third only on $\alpha$. So we can minimize the function over $\alpha, \boldsymbol{\beta}, \boldsymbol{\zeta}$ by minimizing each line indivudally. To minimize the first term, we differentiate with respect to $\boldsymbol{\beta}$ to get $\boldsymbol{\beta}' - (\boldsymbol{\eta}'\odot \boldsymbol{y}')X$, which we can solve to find that $\boldsymbol{\beta} = X'(\boldsymbol{\eta} \odot \boldsymbol{y})$. 
+
+The minimum of the second term is $-\infty$ unless $\boldsymbol{\theta} + \boldsymbol{\eta} = C\mathbf{1}$. Likewise, the minimum of the third term is $-\infty$ unless $\boldsymbol{\eta}'\boldsymbol{y} = 0$. Therefore, the outside maximization over $\boldsymbol{\eta}$ and $\boldsymbol{\theta}$ will set $\boldsymbol{\theta} = C\mathbf{1} - \boldsymbol{\eta}$ and ensure that the equation $\boldsymbol{\eta}'\boldsymbol{y} = 0$ is satisfied. All together, substituting $\boldsymbol{\beta} = X'(\boldsymbol{\eta} \odot \boldsymbol{y})$  into the objective function, we get the **dual problem** 
+
+``` latex
+&\text{maximize} \quad -\frac{1}{2}(\boldsymbol{\eta} \odot \mathbf{y})'XX'
+  (\boldsymbol{\eta} \odot \mathbf{y}) + \boldsymbol{1}'\boldsymbol{\eta} \\
+&\text{subject to} \quad 0 \preccurlyeq \boldsymbol{\eta} \preccurlyeq C \text{ and }
+  \boldsymbol{\eta} \cdot \mathbf{y} = 0,
+```
+
+If we solve this problem, we can substitute $\boldsymbol{\beta} = X'(\widehat{\boldsymbol{\eta}} \odot \boldsymbol{y})$ to find the optimizing value of $\boldsymbol{\beta}$ in the original problem. The optimizing value of $\alpha$ in the original problem may also be obtained using the solution of the dual problem by looking at any entry of
 
 ``` latex
   \mathbf{y} - X\widehat{\boldsymbol{\beta}}
 ```
 
 for which the corresponding entry of $\boldsymbol{\eta}$ is strictly between 0 and $C$. All such entries can be proved to be equal mathematically, but when working with numerical approximations, (i) a small tolerance should be included when determining which entries of $\boldsymbol{\eta}$ are between 0 and $C$, and (ii) the appropriate entries of $\mathbf{y} - X\widehat{\boldsymbol{\beta}}$ should be averaged.
+
+[Continue](btn:next)
+
+---
+> id: the-kernel-trick
+### The Kernel Trick
 
 The reason for formulating the dual problem is that it permits the application of a useful and extremely common technique called the kernel trick. The idea is that if we apply a transformation $\phi:\mathbb{R}^d \to \mathbb{R}^d$ each row of $X$ and call the resulting matrix $\phi(X)$, then the resulting change to the dual problem is just to replace $XX'$ with $\phi(X) \phi(X)'$. This matrix's entries consist entirely of dot products of rows of $\phi(X)$ with rows of $\phi(X)$, so we can solve the problem as long as we can calculate $\phi(\mathbf{x})\cdot \phi(\mathbf{y})$ for all $\mathbf{x}$ and $\mathbf{y}$ in $\mathbb{R}^d$. The function $K = (\mathbf{x}, \mathbf{y}) \mapsto \phi(\mathbf{x})\cdot \phi(\mathbf{y})$ is called the *kernel* associated with the transformation $\phi$. Typically we ignore $\phi$ and use one of the following kernel functions:
 
