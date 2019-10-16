@@ -454,8 +454,8 @@ Textdaten werden durch eine Folge von Zeichen dargestellt, die als **String** be
       | Sie kann sogar "Anführungszeichen" enthalten, kein Problem.
       | """
       | 
-      | "pre(python-executable)
-      | Das ist eine gewöhnliche Zeichenkette. \"Anführungszeichen\" erfordern hier einen Backslash."
+    pre(python-executable)
+      | "Das ist eine gewöhnliche Zeichenkette. \"Anführungszeichen\" erfordern hier einen Backslash."
 
 [Weiter](btn:next)
 
@@ -556,7 +556,7 @@ Wandelt Python Typen um wenn man sie miteinander vergleicht? Mit anderen Worten,
 :::
 
     pre(python-executable)
-      | 1 == 1,0
+      | 1 == 1.0
 
 ---
 > id: step-49
