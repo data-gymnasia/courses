@@ -986,7 +986,7 @@ Write a function that takes two arguments `{jl} a` and `{jl} b` and a function `
 *Solution*. Here's an example solution:
 
     pre(julia-executable)
-      | function which_smaller(a, b, f)
+      | function which_bigger(a, b, f)
       |     if f(a) < f(b)
       |         a
       |     else
@@ -994,7 +994,7 @@ Write a function that takes two arguments `{jl} a` and `{jl} b` and a function `
       |     end
       | end
       | 
-      | which_smaller(4, 6, x->-x)
+      | which_bigger(4, 6, x->-x)
 
 [Continue](btn:next)
 
