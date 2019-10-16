@@ -379,7 +379,7 @@ An individual executable unit of code in Julia is called a **statement**. For ex
 Find the value of `{jl} x` at the end of the following block of code. [[25]]
 
 ``` julia
-x = 3**2
+x = 3^2
 x = x + 1
 x = x + 1
 y = x÷2
@@ -532,7 +532,7 @@ We can concatenate two strings with the multiplication operator (`{jl} *`): `{jl
 ---
 > id: step-41
 
-We can return the first character in a string `{jl} s` using the expression `{jl} s[1]`, the second element using `{jl} s[2]`, and so on. We can get the substring from the third to the eighth character using `{jl} s[3::8]`. 
+We can return the first character in a string `{jl} s` using the expression `{jl} s[1]`, the second element using `{jl} s[2]`, and so on. We can get the substring from the third to the eighth character using `{jl} s[3:8]`. 
 
 [Continue](btn:next)
 
@@ -699,7 +699,7 @@ The expression `{jl} 1 < 3` returns [[true]], which is an object of type [[Bool]
 
 ::: .exercise
 **Exercise**  
-If we set `{jl} s = "Bruno"`, then `{jl} s[1::j] == "Bru"` when `{jl} j =` [[3]]. 
+If we set `{jl} s = "Bruno"`, then `{jl} s[1:j] == "Bru"` when `{jl} j =` [[3]]. 
 :::
 
 ---
@@ -1568,7 +1568,7 @@ Write a [function](gloss:function-julia) which takes as arguments an array `{jl}
 :::
 
     pre(julia-executable)
-      | "Cyclically shift the elements of L by n positions"
+      | "Cyclically shift the A by n positions"
       | function rotate(A, n)
       |     # add code here
       | end
@@ -2085,7 +2085,7 @@ Use a dictionary comprehension to make a dictionary which maps each of the first
 *Solution*. We convert to a string, get the last character, and convert back to an integer: 
 
     pre(julia-executable)
-      |   Dict(2^k => Int64(string(big(2)^k)[end]) for k in 1:100)
+      |   Dict([big(2)^k => parse(Int64, string(big(2)^k)[end]) for k in 1:100])
 
 [Continue](btn:next)
 
