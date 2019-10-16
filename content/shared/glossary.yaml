@@ -782,3 +782,7 @@ inductive-bias:
 functional:
   title: Functional
   text: A **functional** is a function whose domain is a set of functions and whose codomain is $\mathbb{R}$. In other words, a functional takes a function as input and returns a number as output.
+  
+hyperparameter:
+  title: Hyperparameter
+  text: A model *hyperparameter* is a parameter which is not adjusted as a part of the model's training. For example, we might fit a degree-$d$ polynomial to a set of training data by finding the coefficents which minimize the empirical mean squared error. The coefficients are parameters, while $d$ is a hyperparameter.
