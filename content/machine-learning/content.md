@@ -1459,14 +1459,14 @@ support vector machine. This content tends to get notationally heavy, so we will
 We begin by slightly reformulating the soft-margin support vector machine. The SVM is a prediction function of the form
 
 ``` latex
-\mathbf{x}\mapsto \operatorname{sign}(\mathbf{x}\cdot \boldsymbol{\beta}+ \alpha),
+\mathbf{x}\mapsto \operatorname{sign}(\mathbf{x}\cdot \boldsymbol{\beta}- \alpha),
 ```
 
 where $\boldsymbol{\beta} \in \mathbb{R}^d$ and $\alpha \in \mathbb{R}$. To train a support vector machine on a set of training data $(X, \mathbf{y})$, with $X \in \mathbb{R}^{n \times d}$ and $\mathbf{y} \in \\{-1,1\\}^n$, we choose a value $C > 0$ and solve the optimization problem
 
 ``` latex
   &\text{minimize} \quad \frac{1}{2}\|\boldsymbol{\beta}\|^2 + C \mathbf{1}'\boldsymbol{\zeta}\\
-  &\text{subject to} \quad \mathbf{y} \odot (X\boldsymbol{\beta} + \alpha\mathbf{1})
+  &\text{subject to} \quad \mathbf{y} \odot (X\boldsymbol{\beta} - \alpha\mathbf{1})
     \succcurlyeq \mathbf{1} - \boldsymbol{\zeta} \text{ and } \boldsymbol{\zeta} \succcurlyeq 0.
 ```
 
@@ -1488,21 +1488,31 @@ because if we multiply this expression by $\frac{1}{2\lambda}$ and set $C = \fra
 Next, we fold the constraints into the objective function by defining a function $H$ so that $H(\mathbf{x}) = 0$ when $\mathbf{x} \preccurlyeq 0$ and $H(\mathbf{x}) = \infty$ otherwise. Then our optimization problem is equivalent to 
 
 ``` latex
-\frac{1}{2}\|\boldsymbol{\beta}\|^2 + C \mathbf{1}'\boldsymbol{\zeta} + H(\mathbf{1} - \boldsymbol{\zeta} -  \mathbf{y} \odot (X\boldsymbol{\beta} + \alpha\mathbf{1})) + H(-\boldsymbol{\zeta}), 
+\frac{1}{2}\|\boldsymbol{\beta}\|^2 + C \mathbf{1}'\boldsymbol{\zeta} + H(\mathbf{1} - \boldsymbol{\zeta} -  \mathbf{y} \odot (X\boldsymbol{\beta} - \alpha\mathbf{1})) + H(-\boldsymbol{\zeta}), 
 ```
 
-since the terms involving $H$ enforce the constraints by returning $\infty$ when the constraints are not satisfied. Note that whenever $\boldsymbol{\eta} \succcurlyeq 0$, we have $H(\mathbf{x}) \geq \boldsymbol{\eta}' \mathbf{x}$. Furthermore, if we take the maximum of $\boldsymbol{\eta}' \mathbf{x}$ over all $\boldsymbol{\eta} \succcurlyeq 0$, we get $H(\mathbf{x})$. Therefore, the optimization problem can be rewritten as 
+since the terms involving $H$ enforce the constraints by returning [[$\infty$|0]] when the constraints are not satisfied. Note that whenever $\boldsymbol{\eta} \succcurlyeq 0$, we have $H(\mathbf{x}) \geq \boldsymbol{\eta}' \mathbf{x}$. Furthermore, if we take the maximum of $\boldsymbol{\eta}' \mathbf{x}$ over all $\boldsymbol{\eta} \succcurlyeq 0$, we get $H(\mathbf{x})$. Therefore, the optimization problem can be rewritten as 
 
 ``` latex
-\min_{\alpha, \boldsymbol{\beta}, \boldsymbol{\zeta}} \max_{\boldsymbol{\eta}, \boldsymbol{\theta}}\left[\frac{1}{2}\|\boldsymbol{\beta}\|^2 + C \mathbf{1}'\boldsymbol{\zeta}  + \boldsymbol{\eta}'(\mathbf{1} - \boldsymbol{\zeta} -  \mathbf{y} \odot (X\boldsymbol{\beta} + \alpha\mathbf{1})) - \boldsymbol{\theta}'\zeta\right].
+\min_{\alpha, \boldsymbol{\beta}, \boldsymbol{\zeta}} \max_{\boldsymbol{\eta}, \boldsymbol{\theta}}\left[\frac{1}{2}\|\boldsymbol{\beta}\|^2 + C \mathbf{1}'\boldsymbol{\zeta}  + \boldsymbol{\eta}'(\mathbf{1} - \boldsymbol{\zeta} -  \mathbf{y} \odot (X\boldsymbol{\beta} - \alpha\mathbf{1})) - \boldsymbol{\theta}'\zeta\right].
 ```
 
-Next, we swap the min and max operations. The resulting optimization problem is different, but the maximal value of the objective function in the new optimization problem does provide a lower bound for the first function. Here's the general idea (with $F$ as a real-valued function of two variables):
+---
+> id: step-dual-problem
+
+Next, we swap the min and max operations. The resulting optimization problem—called the **dual problem**—is different, but the maximal value of the objective function in the new optimization problem does provide a lower bound for the first function. Here's the general idea (with $F$ as a real-valued function of two variables):
 
 ```latex
 F(x,y) &\leq \max_{y} F(x,y)\text{ for all $x,y$}\implies \\ \min_{x}F(x,y) &\leq \min_x\max_{y} F(x,y) \text{ for all $y$} 
 \implies \\ \max_{y}\min_{x}F(x,y) &\leq \min_x\max_{y} F(x,y). 
 ```
+
+Furthermore, a result called [Slater's Theorem](gloss:slaters-theorem) implies that in this case, we have [**strong duality**](gloss:strong-duality), meaning that the two sides of the equation are actually equal. 
+
+[Continue](btn:next)
+
+---
+> id: step-rearranging-dual-terms
 
 Performing the max/min swap and re-arranging terms a bit, we get
 
@@ -1511,27 +1521,55 @@ Performing the max/min swap and re-arranging terms a bit, we get
 &\frac{1}{2}\|\boldsymbol{\beta}\|^2 - \boldsymbol{\eta}' (\mathbf{y} \odot X\boldsymbol{\beta})
 + \boldsymbol{\eta}' \mathbf{1} + \\
 &(C \mathbf{1}' - \boldsymbol{\eta}' - \boldsymbol{\theta}') \boldsymbol{\zeta} \\
-&-\alpha\boldsymbol{\eta}'\mathbf{y}\Bigg]. 
+&+\alpha\boldsymbol{\eta}'\mathbf{y}\Bigg]. 
 ```
 
-The first line depends only on $\boldsymbol{\beta}$, the second only on $\boldsymbol{\zeta}$, and the third only on $\alpha$. So we can minimize the function over $\alpha, \boldsymbol{\beta}, \boldsymbol{\zeta}$ by minimizing each line indivudally. To minimize the first term, we differentiate with respect to $\boldsymbol{\beta}$ to get $\boldsymbol{\beta}' - (\boldsymbol{\eta}'\odot \boldsymbol{y}')X$, which we can solve to find that $\boldsymbol{\beta} = X'(\boldsymbol{\eta} \odot \boldsymbol{y})$. 
+The first line depends only on $\boldsymbol{\beta}$, the second only on $\boldsymbol{\zeta}$, and the third only on $\alpha$. So we can minimize the function over $\alpha, \boldsymbol{\beta}, \boldsymbol{\zeta}$ by minimizing each line individually. To minimize the first term, we differentiate with respect to $\boldsymbol{\beta}$ to get $\boldsymbol{\beta}' - (\boldsymbol{\eta}'\odot \boldsymbol{y}')X$, which we can solve to find that $\boldsymbol{\beta} = X'(\boldsymbol{\eta} \odot \boldsymbol{y})$. 
 
-The minimum of the second term is $-\infty$ unless $\boldsymbol{\theta} + \boldsymbol{\eta} = C\mathbf{1}$. Likewise, the minimum of the third term is $-\infty$ unless $\boldsymbol{\eta}'\boldsymbol{y} = 0$. Therefore, the outside maximization over $\boldsymbol{\eta}$ and $\boldsymbol{\theta}$ will set $\boldsymbol{\theta} = C\mathbf{1} - \boldsymbol{\eta}$ and ensure that the equation $\boldsymbol{\eta}'\boldsymbol{y} = 0$ is satisfied. All together, substituting $\boldsymbol{\beta} = X'(\boldsymbol{\eta} \odot \boldsymbol{y})$  into the objective function, we get the **dual problem** 
+The minimum of the second term is $-\infty$ unless $\boldsymbol{\theta} + \boldsymbol{\eta} = C\mathbf{1}$. Likewise, the minimum of the third term is $-\infty$ unless $\boldsymbol{\eta}'\boldsymbol{y} = 0$. Therefore, the outside maximization over $\boldsymbol{\eta}$ and $\boldsymbol{\theta}$ will have to set $\boldsymbol{\theta} = C\mathbf{1} - \boldsymbol{\eta}$ and ensure that the equation $\boldsymbol{\eta}'\boldsymbol{y} = 0$ is satisfied. All together, substituting $\boldsymbol{\beta} = X'(\boldsymbol{\eta} \odot \boldsymbol{y})$  into the objective function, we get the **dual problem** 
 
 ``` latex
 &\text{maximize} \quad -\frac{1}{2}(\boldsymbol{\eta} \odot \mathbf{y})'XX'
   (\boldsymbol{\eta} \odot \mathbf{y}) + \boldsymbol{1}'\boldsymbol{\eta} \\
 &\text{subject to} \quad 0 \preccurlyeq \boldsymbol{\eta} \preccurlyeq C \text{ and }
-  \boldsymbol{\eta} \cdot \mathbf{y} = 0,
+  \boldsymbol{\eta}' \mathbf{y} = 0.
 ```
 
-If we solve this problem, we can substitute $\boldsymbol{\beta} = X'(\widehat{\boldsymbol{\eta}} \odot \boldsymbol{y})$ to find the optimizing value of $\boldsymbol{\beta}$ in the original problem. The optimizing value of $\alpha$ in the original problem may also be obtained using the solution of the dual problem by looking at any entry of
+::: .exercise
+
+    img(src="images/svm-center.svg" width=350 style="float: right;")
+
+**Exercise**  
+
+Show that we can give the dual problem the following interpretation, thinking of the entries of $\boldsymbol{\eta}$ as weights for the training points: 
+* Each weight must be between 0 and $C$
+* Equal amounts of weight must be assigned in total to the +1 training points and to the -1 training points. 
+* The objective function includes one term for the total amount of weight assigned and one term which is equal to $-\frac{1}{2}$ times the squared norm of the vector from the $\boldsymbol{\eta}$-weighted sum of negative training observations to the $\boldsymbol{\eta}$-weighted sum of positive training observations. 
+
+Note: the figure shows that $\boldsymbol{\eta}$ values for each point, together with the $\boldsymbol{\eta}$-weighted sums for both classes (each divided by 3, so that their relation to the original points can be more readily visualized). The vector connecting these two points is $\beta$.
+:::
+
+    x-quill
+    
+---
+> id: svm-dual-interpretation-solution
+
+*Solution*. The first statement says that $0 \preccurlyeq \boldsymbol{\eta} \preccurlyeq C$, which is indeed one of the constraints. The second statement is equivalent to $\boldsymbol{\eta}' \boldsymbol{y} = 0$, since dotting with $\boldsymbol{y}$ yields the difference between the entries corresponding to positive training examples and the entries corresponding to negative training examples. 
+
+The objective function includes one term for the total amount of weight (that's $\boldsymbol{1}'\boldsymbol{\eta}$), and one term which is $-\frac{1}{2}|\boldsymbol{\beta}|^2$, where $\boldsymbol{\beta} = X'(\boldsymbol{\eta} \odot \boldsymbol{y})$. We can see that the vector $\beta$ is in fact the difference between the $\boldsymbol{\eta}$-weighted sums of the negative and positive training examples by writing $X'(\boldsymbol{\eta} \odot \boldsymbol{y})$ as $(X'\_{+1}\boldsymbol{\eta}\_{+1} - X'\_{-1}\boldsymbol{\eta}\_{-1})$, where the subscripts mean "restrict to positive observations" and "restrict to negative observations". 
+
+[Continue](btn:next)
+
+---
+> id: step-solve-dual-problem
+
+If we solve this problem, we can substitute $\boldsymbol{\beta} = X'(\widehat{\boldsymbol{\eta}} \odot \boldsymbol{y})$ to find the optimizing value of $\boldsymbol{\beta}$ in the original problem. Although $\alpha$ got lost in the translation from the original problem to the dual problem, we can recover its value as well, using the following observation: if $\eta_i$ is strictly less than $C$ at the maximizing point for the dual problem, then that implies that $\zeta_i = 0$ (since otherwise we could increase the value of the objective function by choosing a large value for $\theta$). Likewise, if $\eta_i$ is strictly positive, then the $i$th component of $\boldsymbol{1} - \boldsymbol{\zeta} - \boldsymbol{y} \odot (X \boldsymbol{\beta} - \alpha \boldsymbol{1})$ must be zero. Putting these together, we can look at the observations for which the $i$ value is strictly between 0 and $C$, and for those observations $i$, we must have $1 = [\boldsymbol{y} \odot (X \boldsymbol{\beta} - \alpha \boldsymbol{1})]\_i$. Thus the optimizing value of $\alpha$ in the original problem may also be obtained looking at any component of
 
 ``` latex
-  \mathbf{y} - X\widehat{\boldsymbol{\beta}}
+  X\widehat{\boldsymbol{\beta}} - \mathbf{y}
 ```
 
-for which the corresponding entry of $\boldsymbol{\eta}$ is strictly between 0 and $C$. All such entries can be proved to be equal mathematically, but when working with numerical approximations, (i) a small tolerance should be included when determining which entries of $\boldsymbol{\eta}$ are between 0 and $C$, and (ii) the appropriate entries of $\mathbf{y} - X\widehat{\boldsymbol{\beta}}$ should be averaged.
+for which the corresponding entry of $\boldsymbol{\eta}$ is strictly between 0 and $C$. If we solve the dual problem numerically, we should account for numerical error by (i) including a small tolerance when determining which entries of $\boldsymbol{\eta}$ are deemed to be strictly between 0 and $C$, and (ii) averaging all entries of $\mathbf{y} - X\widehat{\boldsymbol{\beta}}$ for which $\eta_i$ is strictly between 0 and $C$.
 
 [Continue](btn:next)
 
@@ -1561,24 +1599,24 @@ To bring it all together, suppose that $K$ is a kernel function and $\mathcal{K}
   &\text{minimize} \quad \frac{1}{2}(\boldsymbol{\eta} \odot \mathbf{y})'\mathcal{K}
     (\boldsymbol{\eta} \odot \mathbf{y}) - \operatorname{sum}(\boldsymbol{\eta}) \\
   &\text{subject to} \quad 0 \preccurlyeq \boldsymbol{\eta} \preccurlyeq C \text{ and }
-    \boldsymbol{\eta} \cdot \mathbf{y} = 0.
+    \boldsymbol{\eta}' \mathbf{y} = 0.
 ```
 
 The prediction vector for an $n_{\mathrm{test}} \times n$ feature
 matrix $X_{\mathrm{test}}$ is
 
 ``` latex
-  \operatorname{sign}(\phi(X) \widehat{\boldsymbol{\beta}} \oplus b) =
+  \operatorname{sign}(\phi(X) \widehat{\boldsymbol{\beta}} - \alpha\boldsymbol{1}) =
   \operatorname{sign}(\phi(X) \phi(X)' (\widehat{\boldsymbol{\eta}}
-  \odot \mathbf{y}) \oplus \widehat{b}) =
+  \odot \mathbf{y}) - \alpha\boldsymbol{1}) =
   \operatorname{sign}(\mathcal{K}_{\mathrm{test}}(\widehat{\boldsymbol{\eta}}
-  \odot \mathbf{y}) \oplus \widehat{b}),
+  \odot \mathbf{y}) - \alpha \boldsymbol{1}),
 ```
 
 where $\mathcal{K}\_{\mathrm{test}}$ is the $n\_{\mathrm{test}} \times n$ matrix whose $(i,j)$th entry is obtained by applying $K$ to the $i$th row of $X\_{\mathrm{test}}$ and the $j$th row of $X$, and where $\widehat{b}$ is any entry of
 
 ``` latex
-  \mathbf{y} - \mathcal{K}(\widehat{\boldsymbol{\eta}} \odot \mathbf{y})
+  \mathcal{K}(\widehat{\boldsymbol{\eta}} \odot \mathbf{y}) - \mathbf{y}
 ```
 
 for which the corresponding entry in $\widehat{\boldsymbol{\eta}}$ is strictly
