@@ -223,6 +223,10 @@ $1 - \alpha$ confidence interval and $Z \sim N(0,1)$ we have
 \leq I_n + \frac{\sigma}{\sqrt{n}}z_{\frac{\alpha}{2}} \right).
 ```
 
+$\textit{Remark}$ : $z_\frac{\alpha}{2}$ above denotes the z-score corresponding
+to the $1 - \alpha$ confidence interval, e.g., for a 95% confidence interval
+$z_\frac{\alpha}{2} = 1.96$.
+
 From above, we conclude
 
 ``` latex
@@ -252,7 +256,7 @@ increase $n$ by a factor of [[4|2|0.5]].
 
 We will construct a $95$% confidence interval for the value of the integral
 $\int_{\mathbb{R}} f(x)dx$ where
-$f(x) = \frac{1}{\sqrt{2\pi}} e^{-x^2/2}\mathbb{I}_{x \geq \frac{11}{2}}$. A
+$f(x) = \frac{1}{\sqrt{2\pi}} e^{-x^2/2}\mathbf{1}_{x \geq \frac{11}{2}}$. A
 plot of $f(x)$ is shown below.
 
     figure
@@ -276,34 +280,181 @@ within our confidence interval.
 [Continue](btn:next)
 
 ---
-> id: step-1
+> id: Markov Processes
+## Markov Processes
 
-The equation $x^2 - 1 = 0$ has two roots $x = 1$ and $x = $ [[-1]].
+In this section we will move away from our previous setting of independent and
+identically distributed sequences of random variables and consider Markovian
+structures. Let $S_0, S_1, \ldots, $ be a sequence of random variables with
+state space $\chi$, then this sequence is a discrete time
+**Markov Process** if for every $n \in \\\{0,1,2,\ldots\\\}$ and
+$s_0, s_1, \ldots, s_{n+1} \in \chi$ we have
 
----
-> id: gram-matrix
-## Gram Matrix
+``` latex
+\mathbb{P}(S_{n+1} = s_{n+1}| S_0 = s_0, S_1 = s_1, \ldots, S_n = s_n) &=
+\mathbb{P}(S_{n+1} = s_{n+1}|S_n = s_n)
+```
+ In words, conditioning the next state $S_{n+1}$ on all previous other states
+ is equivalent to conditioning on only the current state $S_n$. Put simply,
+ the history of the process is irrelevant for computing the probability
+ of future events, only the current state of the process is relevant.
 
-This figure illustrates the relationship between a matrix and its **Gram** matrix:
+ In this course we will assume that $\chi$ is a discrete state space. Under
+ this assumption, the sequence $S_0, S_1, S_2, \ldots$ is called a
+ **Markov Chain**.
 
-    figure
-      img(src="images/gram.svg")
-      p.caption.md The grid-line images under $A$ and $\sqrt{A' A}$ have the same shape; they are related by an orthogonal transformation.
+ To solidify the notion of Markov chains, consider the following example.
 
-[Continue](btn:next)
+::: .example
+**Example**
 
----
-> id: step-2
+Suppose you play a game where with probability $p$ you win \$1 and with
+probability $q := 1-p$ you lose \$1. Moreover, suppose you stop playing when
+you have amassed \$N or when you have \$0 left. Let $S_n$ represent how
+much money you have at time $n$ and $S_0 = s_0$ represent how much money
+you start with. Note that $S_n$ has the Markov property, that is,
+for time $n+1$ and $0 < S_n < N$ we have that
 
-Is the orthogonal transformation relating $A$ and $\sqrt{A' A}$ always a rotation? Explain below.
-
-    x-quill
-
-```python
-a = '1' + '2' + '3' + \
-    '4' + '5'
+``` latex
+\mathbb{P}(S_{n+1} = s_n + 1| S_0 = s_0, S_1 = s_1, \ldots, S_n = s_n) &=
+\mathbb{P}(S_{n+1} = s_n + 1| S_n = s_n) = p.
 ```
 
-    pre(python-executable)
-      | np.array([[1,2,3],
-      |           [4,5,6]])
+This is intuitively true since to increase our wealth by \$1 we simply
+need to win the current game which occurs with probability $p$.
+:::
+
+We will restrict our attention to time homogeneous Markov chains.
+A Markov chain $S_0, S_1, S_2, \ldots$ is said to be
+**time homogeneous** if for all $n$ and $x,y \in \chi$ we have
+$\mathbb{P}(S_{n+1} = y|S_n = x) = \mathbb{P}(S_1 = y|S_0 = x)$.
+In words, this says that transitioning from state $x$ to state $y$
+in one step is independent of the time $n$.
+
+Suppose the state space of a time homogeneous Markov chain
+is $\chi = \\\{a_1, a_2, \ldots, a_k\\\}$. We can represent the chain
+graphically with  with nodes representing
+states and edge weights representing the probability of transitioning from one
+state to another in a single step.
+For example, setting $N = 5$ in the example above, we can have the following
+graph:
+
+    figure
+      img(src="images/mc_gamblers_ruin_graph.svg")
+
+We can also represent the chain with an $|\chi| \times |\chi|$ matrix $P$ where
+$P_{ij}$ denotes the probability of transitioning from state $i$ to state $j$
+in one step, that is, $P_{ij} = \mathbb{P}(S_{n+1} = j|S_n = i)$ for all $n$
+and $i,j \in \chi$.
+For example, again setting $N = 5$ in the example above, we have
+
+``` latex
+P &=
+\begin{bmatrix}
+1 & 0 & 0 & 0 & 0 & 0 \\
+q & 0 & p & 0 & 0 & 0 \\
+0 & q & 0 & p & 0 & 0 \\
+0 & 0 & q & 0 & p & 0 \\
+0 & 0 & 0 & q & 0 & p \\
+0 & 0 & 0 & 0 & 0 & 1 \\
+\end{bmatrix}.
+```
+Note that $P$ satisfies
+
+``` latex
+1&. \quad P_{ij} \geq 0 \\
+2&. \quad \sum_j P_{ij} = 1.
+```
+
+In words, the above says that the entries of $P$ are nonnegative and that the
+rows of $P$ sum to 1; this should make sense since the probability of
+transitioning from one state to another (maybe itself) should always be 1.
+
+
+$\textit{Remark}$ : States $i$ that satisfy $P_{ii} = 1$ are called
+**absorbing states**.
+
+::: .example
+**Example**
+
+This example is a mathematical translation of the Ehrenfest model in physics.
+Suppose we have two urns, each containing balls for a total of $N$ balls. We
+will choose one of the $N$ balls uniformly at random, grab it from whichever
+urn it is in, and move it to the other urn. Let $S_n$ represent the number of
+balls in the "left" urn (assuming one urn is labeled "left" and the other
+"right") after $n$ draws. Note that the number of balls in the left urn
+at time $n + 1$ will either be $S_n + 1$ or $S_n - 1$, so this is indeed
+a Markov chain, i.e., the states $S_0, S_1, \ldots, S_{n-1}$ are irrelevant.
+Moreover, for $0 < s_n < N$, we can compute
+
+``` latex
+\mathbb{P}(S_{n+1} = s_n + 1|S_0 = s_0, S_1 = s_1, \ldots, S_n = s_n) &=
+\mathbb{P}(S_{n+1} = s_n + 1|S_n = s_n) \\
+&= \frac{N - s_n}{N}
+```
+
+and
+
+``` latex
+\mathbb{P}(S_{n+1} = s_n - 1|S_0 = s_0, S_1 = s_1, \ldots, S_n = s_n) &=
+\mathbb{P}(S_{n+1} = s_n - 1|S_n = s_n) \\
+&= \frac{s_n}{N}.
+```
+
+The transition matrix is therefore given by $P_{i,i+1} = \frac{N-i}{N}$ and
+$P_{i,i-1} = \frac{i}{N}$ for $0 \leq i \leq N$.
+:::
+
+::: .exercise
+
+**Exercise**
+
+Consider the following social mobility Markov chain with state space
+$\chi = \\\{1,2,3\\\}$ where state 1 represents lower class, state 2
+represents middle class, and state 3 represents upper class with the
+following transition matrix:
+
+``` latex
+P &=
+\begin{bmatrix}
+.6 & .3 & .1 \\
+.4 & .4 & .2 \\
+.1 & .2 & .7
+\end{bmatrix}.
+```
+
+* If your parents are upper class, what is the probability you are lower class?
+[[0.1]]
+
+* If your parents are upper class, what is the probability that you are middle
+class and your children are lower class? [[0.08]]
+
+* If your parents are middle class, what is the probability that your children
+are upper class? [[0.26]]
+:::
+
+*Solution*
+* Let $S_0$ be the state of our parents, so $S_0 = 3$. We are interested in
+$\mathbb{P}(S_1 = 1|S_0 = 3)$ which is given by $P_{31} = .1$.
+
+* Let $S_0$ be the state of our parents, so $S_0 = 3$. We are interested in
+computing $\mathbb{P}(S_2 = 1, S_1 = 2 | S_0 = 3)$. This is given by
+``` latex
+\mathbb{P}(S_2 = 1, S_1 = 2 | S_0 = 3) &= \mathbb{P}(S_2 = 1|S_1 = 2, S_0 = 3)
+\mathbb{P}(S_1 = 2| S_0 = 3) \\
+&= \mathbb{P}(S_2 = 1|S_1 = 2)\mathbb{P}(S_1 = 2| S_0 = 3) \\
+&= (.4)(.2) \\
+&= .08.
+```
+
+* Let $S_0$ be the state of our parents, so $S_0 = 2$. We are interested in
+$\mathbb{P}(S_2 = 3|S_0 = 2)$. To compute this, we need to consider all
+possible values of $S_1$. In particular, we compute
+
+``` latex
+\mathbb{P}(S_2 = 3|S_0 = 2) &=
+\sum_{k=1}^3 \mathbb{P}(S_2 = 3, S_1 = k| S_0 = 2) \\
+&= \sum_{k=1}^3 \mathbb{P}(S_2 = 3| S_1 = k)\mathbb{P}(S_1 = k| S_0 = 2) \\
+&= (.1)(.4) + (.2)(.4) + (.7)(.2) \\
+&= .26.
+```

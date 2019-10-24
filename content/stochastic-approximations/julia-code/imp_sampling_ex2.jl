@@ -6,7 +6,7 @@ using Distributions
 using LaTeXStrings
 
 # Set working directory
-cd("/Users/elvis/Documents/DSI/courses/content/monte-carlo-methods/julia-code/")
+cd("/Users/elvis/Documents/DSI/courses/content/stochastic-approximations/julia-code/")
 
 # Set seed
 Random.seed!(123)
