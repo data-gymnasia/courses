@@ -308,6 +308,8 @@ $s_0, s_1, \ldots, s_{n+1} \in \chi$ we have
 ::: .example
 **Example**
 
+We will refer to the Markov chain in this example as the "gambler's ruin"
+Markov chain.
 Suppose you play a game where with probability $p$ you win \$1 and with
 probability $q := 1-p$ you lose \$1. Moreover, suppose you stop playing when
 you have amassed \$N or when you have \$0 left. Let $S_n$ represent how
@@ -333,8 +335,8 @@ in one step is independent of the time $n$.
 
 Suppose the state space of a time homogeneous Markov chain
 is $\chi = \\\{a_1, a_2, \ldots, a_k\\\}$. We can represent the chain
-graphically with  with nodes representing
-states and edge weights representing the probability of transitioning from one
+as a directed graph where nodes represent
+states and edge weights represent the probability of transitioning from one
 state to another in a single step.
 For example, setting $N = 5$ in the example above, we can have the following
 graph:
@@ -342,7 +344,7 @@ graph:
     figure
       img(src="images/mc_gamblers_ruin_graph.svg")
 
-We can also represent the chain with an $|\chi| \times |\chi|$ matrix $P$ where
+We can also represent the chain with a $|\chi| \times |\chi|$ matrix $P$ where
 $P_{ij}$ denotes the probability of transitioning from state $i$ to state $j$
 in one step, that is, $P_{ij} = \mathbb{P}(S_{n+1} = j|S_n = i)$ for all $n$
 and $i,j \in \chi$.
@@ -454,7 +456,292 @@ possible values of $S_1$. In particular, we compute
 ``` latex
 \mathbb{P}(S_2 = 3|S_0 = 2) &=
 \sum_{k=1}^3 \mathbb{P}(S_2 = 3, S_1 = k| S_0 = 2) \\
-&= \sum_{k=1}^3 \mathbb{P}(S_2 = 3| S_1 = k)\mathbb{P}(S_1 = k| S_0 = 2) \\
-&= (.1)(.4) + (.2)(.4) + (.7)(.2) \\
+&= \sum_{k=1}^3 \mathbb{P}(S_1 = k| S_0 = 2)\mathbb{P}(S_2 = 3| S_1 = k) \\
+&= \sum_{k=1}^3  P_{2k} P_{k3} \\
+&= (.4)(.1) + (.4)(.2) + (.2)(.7) \\
 &= .26.
 ```
+
+
+The third question in the exercise above alludes to an interesting observation.
+Note that we could have replaced the class of our parents with some class
+$i \in \chi$ and the class of our children with some class $j \in \chi$ to
+obtain
+
+``` latex
+\mathbb{P}(S_2 = j|S_0 = i) &= \sum_{i=1}^3 P_{ik}P_{kj}.
+```
+Now recall that given matrices $A \in \mathbb{R}^{m \times n}$ and
+$B \in \mathbb{R}^{n \times p}$, the $(i,j)$th entry of the matrix product
+$AB$ is given by
+
+``` latex
+(AB)_{ij} &= \sum_{k=1}^n A_{ik}B_{kj}.
+```
+
+Replacing the matrix $B$ above with $A$ we see
+
+``` latex
+A^2_{ij} &= \sum_{k=1}^n A_{ik}A_{kj}.
+```
+
+Now letting $A$ be the transition matrix $P$ we have
+
+``` latex
+P^2_{ij} &= \sum_{k=1}^n P_{ik}P_{kj}.
+```
+
+From above we observe that $\mathbb{P}(S_2 = j|S_0 = i) = P^2_{ij}$. In words,
+this says that the probability of transitioning from state $i$ to state $j$ in
+two steps is the $(i,j)$th entry of the matrix $P^2$.
+
+This observation suggests that the probability of transitioning from state $i$
+to step $j$ in $m$ steps is given by the $(i,j)$th entry of the matrix $P^m$.
+This is proved below.
+
+::: .theorem
+**Theorem** ($m$-step transition probabilities)
+
+The probability of transitioning from state $i$ to state $j$ in $m$ steps
+is given by $P^m_{ij}$, that is, the $(i,j)$th entry of the matrix $P$
+raised to the $m$th power. Mathematically, we claim
+$\mathbb{P}(S_m = j|S_0 = i) = P^m_{ij}$. Note that because we are considering
+time homogeneous Markov chains, this is equivalent to
+$\mathbb{P}(S_{n+m} = j| S_n = i) = P^m_{ij}$.
+:::
+
+*Proof.* The proof of the $m$-step transition probabilities theorem is by
+induction on $m$. Note that by definition, for $m=1$ we have
+$\mathbb{P}(S_1 = j| S_0 = i) = P_{ij}$ so the theorem holds in this case.
+Now suppose the theorem holds for a fixed but arbitrary integer $m > 1$
+so that $P^m_{ij} = \mathbb{P}(S_m = j|S_0 = i)$. We now need to show that
+$P_{ij}^{m+1} = \mathbb{P}(S_{m + 1} = j|S_0 = i)$. To show this, note that
+for the chain to transition from state $i$ to state $j$ in $m + 1$, the chain
+first needs to transition from $i$ to some state $k \in \chi$ in $m$ steps and
+then from state $k$ to state $j$ in one step. Thus we have
+
+``` latex
+\mathbb{P}(S_{m+1} = j|S_0 = i) &= \sum_{k \in \chi}
+\mathbb{P}(S_{m+1}=j,S_m=k|S_0=i) \\
+&= \sum_{k \in \chi} \frac{\mathbb{P}(S_{m+1} = j, S_m=k,
+    S_0=i)}{\mathbb{P}(S_0 = i)} \\
+&= \sum_{k \in \chi} \frac{\mathbb{P}(S_{m+1} = j| S_m=k, S_0=i)
+\mathbb{P}(S_m = k, S_0 = i)}{\mathbb{P}(S_0 = i)} \\
+&= \sum_{k \in \chi} \mathbb{P}(S_{m+1} = j | S_m = k, S_0 = i)
+\mathbb{P}(S_m = k | S_0 = i) \\
+&= \sum_{k \in \chi} \mathbb{P}(S_{m+1} = j | S_m = k) \mathbb{P}(S_m = k | S_0
+    = i) \quad (\textrm{Markov property})\\
+&= \sum_{k \in \chi} P_{kj} P^m_{ik} \quad (\textrm{Induction hypothesis}) \\
+&= (PP^m)_{ij} \\
+&= P^{m+1}_{ij}.
+```
+
+::: .exercise
+**Exercise**
+
+Consider a gambler's ruin chain with $N = 5$ and $p = .3$ Assuming you start
+with \$2, what is the probability you will have \$5 after 6 games? What is
+the probability you will have \$0 after 6 plays?
+:::
+
+*Solution.* We first construct the transition matrix $P$ and then use this to
+construct the 6-step transition matrix:
+
+``` latex
+P &=
+\begin{bmatrix}
+1 & 0 & 0 & 0 & 0 & 0 \\
+.7 & 0 & .3 & 0 & 0 & 0 \\
+0 & .7 & 0 & .3 & 0 & 0 \\
+0 & 0 & .7 & 0 & .3 & 0 \\
+0 & 0 & 0 & .7 & 0 & .3 \\
+0 & 0 & 0 & 0 & 0 & 1
+\end{bmatrix} \\
+P^6 &=
+\begin{bmatrix}
+1 & 0 & 0 & 0 & 0 & 0 \\
+0.90874 & 0.046305 & 0.0 & 0.031752 & 0.0 & 0.013203 \\
+0.803845 & 0.0 & 0.120393 & 0.0 & 0.031752 & 0.04401 \\
+0.55909 & 0.172872 & 0.0 & 0.120393 & 0.0 & 0.147645 \\
+0.391363 & 0.0 & 0.172872 & 0.0 & 0.046305 & 0.38946 \\
+0 & 0 & 0 & 0 & 0 & 1
+\end{bmatrix}
+```
+Starting with \$2, the probability of having \$5 after 6 turns is given by
+$P^6_{36} = 0.04401$
+(since the $i$th row of $P$ denotes the state where we have $i-1$ dollars).
+Similarly, the probability we will have \$0 after 6 turns is given by
+$P^6_{31} = 0.803845$.
+
+
+There are many textbooks that discuss the theory of Markov chains and other
+stochastic processes in great detail and trying to summarize these concepts
+in this course would certainly be a forlorn attempt. Instead, below we
+offer Julia code that outlines how one may simulate a Markov chain process
+which can then be used to perform computations.
+
+``` julia
+#=
+Takes one step in the Markov chain according to the given state's transition
+vector.
+Inputs:
+- transition_vector: An array of length p where the ith element denotes the
+                     probability of transitioning into state i from the current
+                     state (which is implicitly given).
+Outputs:
+- An integer in {1,2,..., p} denoting the index of the next state which occurs
+with the probability specified in transition_vector.
+=#
+function one_step(transition_vector)
+    cumulative_vector = cumsum(transition_vector)
+    state_index = 1
+    U = rand()
+    while(U > cumulative_vector[state_index])
+        state_index += 1
+    end
+
+    return state_index
+end
+
+#=
+Runs a Markov chain a fixed number of times and returns the final state.
+Inputs:
+- states: An array of length p where each element represents a state of the
+          chain. Assumes the ordering is such that the probability of
+          transitioning from state i to state j is given by P[i,j].
+          Examples:
+          [0,1,2,3,4,5]
+          ["red", "green", "blue"]
+          [0,"blue",3,2]
+- P: A (p x p) matrix denoting the transition matrix of the Markov chain.
+     Assumes the rows of P sum to 1 and P[i,j] >= 0 for all i,j.
+- S0: The initial state of the Markov chain. Assumed to be an element of the
+      state variable.
+- steps: A nonnegative integer specifying the number of steps for the Markov
+         chain to go through.
+Outputs:
+- An element of the states variable denoting the state the chain is in after
+  the specified number of steps.
+=#
+function run_fixed_simulation(states, P, S0, steps)
+
+    # Define a dictionary mapping state to their index in P
+    state_dict = Dict(states[i] => i for i = 1:length(states))
+
+    # Define the current state of the chain
+    Sn = S0
+
+    # Run through the specified number of steps
+    for i = 1:steps
+        state_index = get(state_dict, Sn, -1)
+        next_state_index = one_step(P[state_index,:])
+        Sn = states[next_state_index]
+    end
+
+    return Sn
+end
+
+#=
+Runs a Markov chain until a state is reached.
+Inputs:
+- states: Same as defined in ``run_fixed_simulation`` function
+- P: Same as defined in ``run_fixed_simulation`` function
+- S0: Same as defined in ``run_fixed_simulation`` function
+- Sf: An array of states defining a possible final state. Assumed to be a
+      subset of the states variable.
+Outputs:
+- An integer representing the number of steps it took to get to get to state
+  contained in the Sf array.
+=#
+function run_simulation(states, P, S0, Sf)
+
+    # Define a dictionary mapping state to their index in P
+    state_dict = Dict(states[i] => i for i = 1:length(states))
+
+    # Define the current state of the chain
+    Sn = S0
+
+    # Keep tracks of number of steps taken
+    steps = 0
+
+    # Run through the Markov changing
+    while !(Sn in Sf) && steps < 1000
+        state_index = get(state_dict, Sn, -1)
+        next_state_index = one_step(P[state_index,:])
+        Sn = states[next_state_index]
+        steps += 1
+    end
+
+    return steps
+end
+```
+
+Using the code above, we can simulate the gambler's ruin example to estimate
+the probability of having \$5 after 6 steps and starting with \$2 as follows:
+
+``` julia
+# Define gambler's ruin Markov chain with N = 5 and p = .3
+
+# gambler's ruin state space (χ)
+states = [0,1,2,3,4,5]
+
+# Transition matrix for gambler's ruin
+P = [1 0 0 0 0 0;
+    .7 0 .3 0 0 0;
+    0 .7 0 .3 0 0;
+    0 0 .7 0 .3 0;
+    0 0 0 .7 0 .3;
+    0 0 0 0 0 1]
+
+# Estimate probability of having $5 after 6 turns when starting with $2
+num_simulations = 100000
+mc_est = mean([run_fixed_simulation(states, P, 2, 6) ==5
+ for i = 1:num_simulations])
+```
+
+which outputs $\approx 0.0442$.
+
+::: .exercise
+**Exercise**
+
+Consider a Markov chain for a two-year master's program with state space
+$\chi = \\\{1,2,G,D\\\}$ where states 1 and 2 represent first and second
+year students, respectively, "G" represents a student has graduated and "D"
+represents a student has dropped out. Suppose the transition matrix is given by
+
+``` latex
+P &=
+\begin{bmatrix}
+.2 & .5 & 0 & .3 \\
+0 & .3 & .6 & .1 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1
+\end{bmatrix}
+```
+
+where the third and fourth rows represent the "G" and "D" states, respectively.
+Using the code above, estimate the average time it takes for a first-year
+student to graduate or drop out.
+
+:::
+
+*Solution.* The following block of code gives us the desired estimate:
+
+``` julia
+# Define masters program Markov chain
+states = [1,2,"G","D"]
+
+# Transition matrix for masters Markov chain
+P = [.4 .5 0 .1;
+     0 .3 .6 .1;
+     0 0 1 0;
+     0 0 0 1]
+
+mc_est = mean([run_simulation(states, P, 1, ["G", "D"]) for i = 1:10000])
+```
+
+which outputs $\approx 2.87$.
+
+---
+> id: Random Walks
+## Random Walks
