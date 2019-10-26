@@ -845,7 +845,7 @@ The plot below depicts a symmetric random walk in 2d with 500 steps.
 
 As in the one-dimensional case, we would expect the distribution of a state
 $S_n$ for a large $n$ to be centered around the origin since we are considering
-a symmetric walk. The plots below depicts 500 simulated walks followed by a
+a symmetric walk. The plots below depict 500 simulated walks followed by a
 histogram of the distribution of the state $S_{100}$ superimposed over
 the plot of the walks.
 
@@ -855,3 +855,20 @@ the plot of the walks.
     figure
       img(src="images/symmetric_random_walks_2d_hist.svg")
 :::
+
+The histograms above allude to an interesting question: if a particle begins
+at state $S_0$, will it ever return to that state? Moreover, what is the
+probability it will return to this state? Mathematically, we pose the following
+question: Given a random walk $S_0, S_1, \ldots$, what is the probability that
+there exists $n \geq 1$ such that $S_n = S_0$, in other words, we want to
+compute $\mathbb{P}(\exists \\\; n \geq 1 \\\; s.t. \\\; S_n = S_0)$ where
+"s.t." here is to be read "such that." We will let
+$R := \mathbb{P}(\exists \\\; n \geq 1 \\\; s.t. \\\; S_n = S_0)$.
+
+We will say that state $S_0$ is **recurrent** if $R = 1$, otherwise we will say
+$S_0$ is a **transient** state. We will study recurrence and transience in the
+context of random walks, but these analyses will hold for any time homogeneous
+Markov chain.
+
+For ease of notation, we will assume $S_0 = 0 \in \mathbb{Z}^d$, that is,
+we will assume the particle starts at the origin. 
