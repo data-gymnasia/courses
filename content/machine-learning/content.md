@@ -160,7 +160,7 @@ If $\mathcal{H}$ contains $G(\mathbf{x}) = \operatorname{argmax}_c\mathbb{P}(Y=c
 
 ::: .exercise
 **Exercise**  
-Find the target function for the misclassification loss in the case where $\mathcal{X} = \mathbb{R}$, $\mathcal{Y} = \{0,1\}$ and the probability mass on $\mathcal{X} \times \mathcal{Y}$ is spread out according to the **one**-dimensional density function 
+Find the target function for the misclassification loss in the case where $\mathcal{X} = \mathbb{R}$, $\mathcal{Y} = \\{0,1\\}$ and the probability mass on $\mathcal{X} \times \mathcal{Y}$ is spread out in the plane according to the **one**-dimensional density function 
 
 ``` latex
 f(x,y) = \begin{cases}
@@ -182,7 +182,7 @@ f(x,y) = \begin{cases}
 ---
 > id: one-dim-classification-example
 
-*Solution*. If $x$ is between 0 and 1, the target prediction function will return 0. If $x$ is between 2 and 3, the target predition function will return 1. If $x$ is betwen 1 and 2, then the more likely outcome is 0, so $r$ should return 0 for those values as well. 
+*Solution*. If $x$ is between 0 and 1, the target prediction function will return 0. If $x$ is between 2 and 3, the target prediction function will return 1. If $x$ is between 1 and 2, then the more likely outcome is 0, so $r$ should return 0 for those values as well. 
 
     pre(julia-executable)
       | 
@@ -1457,7 +1457,7 @@ support vector machine. This content tends to get notationally heavy, so we will
 We begin by slightly reformulating the soft-margin support vector machine. The SVM is a prediction function of the form
 
 ``` latex
-\mathbf{x}\mapsto \operatorname{sign}(\mathbf{x}\cdot \boldsymbol{\beta}- \alpha),
+\mathbf{x}\mapsto \operatorname{sign}(\mathbf{x}\cdot \boldsymbol{\beta} + \alpha),
 ```
 
 where $\boldsymbol{\beta} \in \mathbb{R}^d$ and $\alpha \in \mathbb{R}$. To train a support vector machine on a set of training data $(X, \mathbf{y})$, with $X \in \mathbb{R}^{n \times d}$ and $\mathbf{y} \in \\{-1,1\\}^n$, we choose a value $C > 0$ and solve the optimization problem
