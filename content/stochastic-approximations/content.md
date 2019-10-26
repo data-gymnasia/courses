@@ -745,3 +745,113 @@ which outputs $\approx 2.87$.
 ---
 > id: Random Walks
 ## Random Walks
+
+In this section we will explore several more properties of Markov chains and
+will focus on a special kind of Markov chain. In particular, we will consider
+a **random walk** chain $S_0, S_1, S_2, \ldots$ on the integer lattice
+$\mathbb{Z}^d$. Intuitively, we can think of the state $S_n$ as the position
+of a particle at time $n$ on the lattice. The position at time $n+1$ can
+therefore be thought of as a step from state $S_n$, that is,
+$S_{n+1} = S_n + X_{n+1}$ where $X_1, X_2, \ldots$ are iid random variables
+in $\mathbb{Z}^d$.
+
+We will assume that the starting state of the particle, $S_0$, is deterministic.
+Since $S_{n+1} = S_n + X_{n+1}$ and the $X_i$ are assumed to be independent,
+it follows that the distribution of the random variable $S_{n+1}$ given the
+trajectory $S_0, S_1, \ldots, S_{n-1}$ of the particle is the same as the
+distribution of $S_{n+1}$ given the current state $S_n$; in other words,
+the sequence $S_0, S_1, S_2, \ldots $ indeed exhibits the Markov property.
+
+Two examples of random walks are given below.
+
+::: .example
+**Example**
+
+Here we will consider the random walk in $\mathbb{Z}$, that is, the random
+walk in one dimension. We will assume the particle begins at the origin so that
+$S_0 = 0$. Since the particle is in one dimension, it can only move either
+left or right. Thus, we will assume $X_i \in \chi = \\\{-1,1\\\}$ where
+$X_i = -1$ means the particle moves to the left and $X_i = 1$ means the
+particle moves to the right. We now need to assign a distribution to the set
+$\chi$. We will assume  $\mathbb{P}(X_i = 1) = p$ and
+$\mathbb{P}(X_i = -1) = 1 - p$. We can now generate a random walk as follows:
+
+* First, the particle begins at state $S_0 = 0$.
+
+* We then sample $X_1$ according to the distribution on $\chi$ and set
+$S_1 = S_0 + X_1$.
+
+* We again sample $X_2$ according to the distribution on $\chi$ and set
+$S_2 = S_1 + X_2$.
+
+* We repeat the steps indefinitely to obtain each state $S_n$.
+
+The plot below shows five symmetric random walks $(p = .5)$ where
+the y-axis represents the position of the particle at time $n$.
+
+    figure
+      img(src="images/symmetric_random_walks_1d.svg")
+
+For a symmetric random walk starting at $S_0 = 0$ we would expect that after
+many steps, the  particle will hover around the origin. More precisely, if
+we run many random walks and look at stat $S_n$ for some large $n$, we expect
+the distribution of this state to be centered around the origin.
+To elucidate this, in the plot below we have simulated 500 random
+walks for 100 steps and constructed a histogram of the particles' position
+after these 100 steps.
+
+    figure
+      img(src="images/symmetric_random_walks_1d_hist.svg")
+
+As we expected, after 100 steps, most particles are concentrated around the
+origin.
+
+Similarly, if we construct an asymmetric random walk $(p \neq .5)$ then we
+would expect the particle to drift toward the direction in which the probabilty
+is greates, i.e., if $p > .5$ we would expect the particle to drift toward the
+right and to the left if $p < .5$. Below is a plot of 500 random walk
+simulations with $p = .7$
+
+    figure
+      img(src="images/asymmetric_right_random_walks_1d_hist.svg")
+
+As expected, the particle has drifted upwards. Similarly, below is a plot
+of 500 random walk simulations with $p = .3$
+
+    figure
+      img(src="images/asymmetric_left_random_walks_1d_hist.svg")
+
+Again, we see that the particle has drifted in the direction of greater
+probability, in this case left.
+:::
+
+::: .example
+**Example**
+
+We can also visualize a random walk in $\mathbb{Z}^2$, that is, a random walk
+in two dimensions. In this case the particle can move left, right, up, or down,
+so the state space will be given by
+$\chi = \\\{(-1,0), (1,0), (0,1), (0,-1)\\\}$. We will again assume the particle
+starts at the origin so that $S_n = (0,0)$. We need to assign a probability to
+each of these. We will let $p_L, p_R, p_U, p_D \geq 0$ represent the
+probabilities that a particle moves left, right, up, or down,
+[respectively](gloss:respectively) with the assumption
+$p_L + p_R + p_U + p_D = 1$.
+
+The plot below depicts a symmetric random walk in 2d with 500 steps.
+
+    figure
+      img(src="images/symmetric_random_walk_2d.svg")
+
+As in the one-dimensional case, we would expect the distribution of a state
+$S_n$ for a large $n$ to be centered around the origin since we are considering
+a symmetric walk. The plots below depicts 500 simulated walks followed by a
+histogram of the distribution of the state $S_{100}$ superimposed over
+the plot of the walks.
+
+    figure
+      img(src="images/symmetric_random_walks_2d.svg")
+
+    figure
+      img(src="images/symmetric_random_walks_2d_hist.svg")
+:::
