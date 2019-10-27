@@ -753,7 +753,8 @@ $\mathbb{Z}^d$. Intuitively, we can think of the state $S_n$ as the position
 of a particle at time $n$ on the lattice. The position at time $n+1$ can
 therefore be thought of as a step from state $S_n$, that is,
 $S_{n+1} = S_n + X_{n+1}$ where $X_1, X_2, \ldots$ are iid random variables
-in $\mathbb{Z}^d$.
+in $\mathbb{Z}^d$. Note that we can also write
+$S_{n+1} = S_0 + \sum_{i=1}^{n+1}X_i$.
 
 We will assume that the starting state of the particle, $S_0$, is deterministic.
 Since $S_{n+1} = S_n + X_{n+1}$ and the $X_i$ are assumed to be independent,
@@ -871,4 +872,152 @@ context of random walks, but these analyses will hold for any time homogeneous
 Markov chain.
 
 For ease of notation, we will assume $S_0 = 0 \in \mathbb{Z}^d$, that is,
-we will assume the particle starts at the origin. 
+we will assume the particle starts at the origin and will study the recurrence
+or transience of this state.
+
+Note that it is not immediately obvious how to compute $R$ as there are many
+ways in which the particle can return to the origin and we are not explicitly
+considering the number of times it does so. We will develop a way to compute
+$R$ that relies on relies only on the distribution of the random variable $S_n$.
+We will begin by letting $\phi_n := \mathbb{P}(S_n = 0)$ and
+$\beta := \sum_{n=0}^{\infty} \phi_n$; note that $\phi_0 = 1$ since we
+assume the particle starts at the origin. Now we define
+$N := |\\\{n > 0 : S_n = 0\\\}|$. In words, $N$ is a random variable
+representing the number of times the particle returns to the origin after it
+leaves it. Note that we can also express $N$ as the sum of indicator variables:
+$\sum_{n=1}^{\infty} \mathbf{1}_{S_n = 0}$. The expected value of $N$ is
+therefore given by
+
+``` latex
+\mathbb{E}[N] &= \sum_{n=1}^{\infty}
+\mathbb{E}\left[\mathbf{1}_{S_n = 0}\right] \\
+&= \sum_{n=1}^{\infty} \mathbb{P}(S_n = 0) \\
+&= \sum_{n=1}^{\infty} \phi_n \\
+&= \left(\sum_{n=0}^{\infty} \phi_n\right) - \phi_0 \\
+&= \beta - 1.
+```
+
+We now seek another equation for $\mathbb{N}$ as a function of $R$ so that we
+may relate $R$ and $\beta$ using the equation above. Note that if $N \geq 1$,
+this means that the particle has returned to the origin, so
+$\mathbb{P}(N \geq 1) = R$. Also, $\mathbb{P}(N \geq 2 | N \geq = 1) = R$
+since the
+particle has the Markov property, i.e., if it has returned to the origin
+already, the future trajectory is as though the particle is just beginning
+from the origin. Applying Bayes' rule, we have
+
+``` latex
+\mathbb{P}(N \geq 1) &= \mathbb{P}(N \geq 2 | N \geq 1) \\
+&= \frac{\mathbb{P}(N \geq 1|N \geq 2)\mathbb{P}(N \geq 2)}
+{\mathbb{P}(N \geq 1)} \\
+&= \frac{\mathbb{P}(N \geq 2)}{\mathbb{P}(N \geq 1)} \\
+&\Rightarrow \mathbb{P}(N \geq 2) = [\mathbb{P}(N \geq 1)]^2 = R^2.
+```
+
+A simple inductive argument will show that $\mathbb{P}(N \geq k) = R^k.$
+Now recall that for $X \sim Geom(p)$ where $X$ represents number of failures
+until a single success and $p$ the probability of success, we have that
+$\mathbb{P}(X = k) = p(1-p)^k$ with  $k \in \\\{0,1,2,\ldots\\\}$.
+We can compute
+$\mathbb{P}(X \geq k) = (1-p)^k$ and $\mathbb{E}[X] = \frac{1-p}{p}$. It follows
+$N \sim Geom(1-R)$ and $\mathbb{E}[N] = \frac{R}{1-R}$ so that we obtain
+
+``` latex
+\frac{R}{1-R} &= \beta - 1 \\
+&\Rightarrow R = 1 - \frac{1}{\beta}.
+```
+
+Computing $R$ now reduces to computing $\beta$, though $\beta$ may still be
+difficult to compute. However, we may still be able to answer whether the
+particle will definitively return to the origin. Note that if
+$\beta$ diverges, that is, $\beta \to \infty$, then $R = 1$ which implies
+the particle will eventually return to the origin, however, if $\beta = 1$,
+then the particle will never return to the origin.
+
+::: .exercise
+**Exercise**
+
+If $\beta$ converges, then the particle
+[[may or may not return to the origin|will definitely not return to the origin
+|definitely will return to the origin]].
+
+:::
+
+::: .example
+**Example**
+
+Here we will study the recurrence of the one-dimensional random walk origin.
+Recall that $X_i \in \{-1, 1\}$ with $\mathbb{P}(X_i = 1) = p$. To compute
+$R$, we must compute $\beta$ which requires us to compute $\mathbb{P}(S_n = 0)$
+for $n > 1$. First note that because at each time step the particle either
+moves left or right (it does not stay still), it is impossible for the
+particle to be at the origin at an odd time step, i.e.,
+$\mathbb{P}(S_n = 0) = 0$ for $n$ odd. Thus we will focus on computing
+$\mathbb{P}(S_{2k} = 0)$ for $k \in \\\{1,2,3,\ldots\\\}$.
+
+Since $S_n = S_0 + \sum_{i=1}^n X_i = \sum_{i=1}^n X_i$, we have that
+$S_{2k} = \sum_{i=1}^{2k} X_i$. It follows that
+$\mathbb{P}(S_{2k} = 0) = \mathbb{P}\left(\sum_{i=1}^n X_i = 0\right)$. Now note
+that the only way $S_{2k} = 0$ is if the particle moved to the left the same
+number of times that it moved to the right, i.e., the number of times
+that $X_i = -1$ should be the equal to the number of times that $X_i = 1$.
+Since $2k$ is even, we want to compute the probability that, after $2k$ steps,
+$k$ of them are to the left and $k$ are to the right. Let $X$ be the total
+number of steps to the right by the particle after $2k$ steps so that
+$X \sim Binom(2k, p)$; we are interested in $\mathbb{P}(X = k)$:
+
+``` latex
+\mathbb{P}(S_{2k} = 0) &= \mathbb{P}\left(\sum_{i=1}^n X_i = 0\right) \\
+&= \mathbb{P}(X = k) \\
+&= {{2k} \choose k}p^k(1-p)^k \\
+&= \frac{(2k)!}{(k!)^2}p^k(1-p)^k.
+```
+
+From above we have that
+
+``` latex
+\beta &= \sum_{k=0}^{\infty} \mathbb{P}(S_{2k} = 0) \\
+&= \sum_{k=0}^{\infty} \frac{(2k)!}{(k!)^2}p^k(1-p)^k.
+```
+
+To study the asymptotic behavior of the series above, we will use
+**Stirling's approximation**, which says that
+$n! \approx n^ne^{-n}\sqrt{2\pi n}$. We thus have
+
+``` latex
+\frac{(2k)!}{(k!)^2} \approx \frac{4^k}{\sqrt{\pi k}}.
+```
+
+Since $\beta = \sum_{k=0}^{\infty} \frac{(2k)!}{(k!)^2}p^k(1-p)^k$, we have
+$\beta - 1 = \sum_{k=1}^{\infty} \frac{(2k)!}{(k!)^2}p^k(1-p)^k$ and
+invoking Sterling's approximation yields
+
+``` latex
+\beta - 1 \approx \sum_{k=1}^{\infty} \frac{[4p(1-p)]^k}{\sqrt{\pi k}}.
+```
+
+In the case of the symmetric random walk, we had $p = \frac{1}{2}$. Substituting
+this above we obtain
+
+``` latex
+\beta - 1 \approx \sum_{k=1}^{\infty} \frac{1}{\sqrt{\pi k}}
+```
+
+which diverges by the p-series test. Thus, for the symmetric random walk,
+$\beta \to \infty$ and $R = 1 - \frac{1}{\beta} = 1$ which means that the
+particle will eventually return to the origin.
+
+For the asymmetric case, we have $p \neq \frac{1}{2}$. Note that the quantity
+$p(1-p)$ is largest for $p = \frac{1}{2}$ at which the value is $\frac{1}{4}$.
+If $0 < p < 1$, then the quantity $4p(1-p) < 1$ which implies the series
+$\sum_{k=1}^{\infty} \frac{[4p(1-p)]^k}{\sqrt{\pi k}}$ converges. Thus $\beta$
+is finite which implies $R < 1$ so the particle may or may not return to the
+origin.
+
+Based on the analyses above, we would say that the origin is recurrent in the
+case of the symmetric random walk and transient in the case of the asymmetric
+walk. One can similarly show that the origin of a two-dimensional symmetric
+random walk is recurrent, and transient in the asymmetric case. However,
+for three dimensions and higher, the origin is no longer recurrent. Showing
+this, however, is out of the scope of this course.
+:::
