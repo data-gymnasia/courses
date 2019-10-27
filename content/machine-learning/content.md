@@ -1522,9 +1522,14 @@ Performing the max/min swap and re-arranging terms a bit, we get
 &-\alpha\boldsymbol{\eta}'\mathbf{y}\Bigg]. 
 ```
 
-The first line depends only on $\boldsymbol{\beta}$, the second only on $\boldsymbol{\zeta}$, and the third only on $\alpha$. So we can minimize the function over $\alpha, \boldsymbol{\beta}, \boldsymbol{\zeta}$ by minimizing each line individually. To minimize the first term, we differentiate with respect to $\boldsymbol{\beta}$ to get $\boldsymbol{\beta}' - (\boldsymbol{\eta}'\odot \boldsymbol{y}')X$, which we can solve to find that $\boldsymbol{\beta} = X'(\boldsymbol{\eta} \odot \boldsymbol{y})$. 
+The first line depends only on $\boldsymbol{\beta}$, the second only on $\boldsymbol{\zeta}$, and the third only on $\alpha$. So we can minimize the function over $\alpha, \boldsymbol{\beta}, \boldsymbol{\zeta}$ by minimizing each line individually. To minimize the first term, we rewrite $\boldsymbol{\eta}' (\mathbf{y} \odot X\boldsymbol{\beta})$ as $(\boldsymbol{\eta}' \odot \mathbf{y}') X\boldsymbol{\beta})$ differentiate with respect to $\boldsymbol{\beta}$ to get $\boldsymbol{\beta}' - (\boldsymbol{\eta}'\odot \boldsymbol{y}')X$, which we can solve to find that $\boldsymbol{\beta} = X'(\boldsymbol{\eta} \odot \boldsymbol{y})$. 
 
-The minimum of the second term is $-\infty$ unless $\boldsymbol{\theta} + \boldsymbol{\eta} = C\mathbf{1}$. Likewise, the minimum of the third term is $-\infty$ unless $\boldsymbol{\eta}'\boldsymbol{y} = 0$. Therefore, the outside maximization over $\boldsymbol{\eta}$ and $\boldsymbol{\theta}$ will have to set $\boldsymbol{\theta} = C\mathbf{1} - \boldsymbol{\eta}$ and ensure that the equation $\boldsymbol{\eta}'\boldsymbol{y} = 0$ is satisfied. All together, substituting $\boldsymbol{\beta} = X'(\boldsymbol{\eta} \odot \boldsymbol{y})$  into the objective function, we get the **dual problem** 
+The minimum of the second term is $-\infty$ unless $\boldsymbol{\theta} + \boldsymbol{\eta} = C\mathbf{1}$, because if any component of the vector multiplying $\zeta$ were nonzero, then we could achieve arbitrarily large negative values for the objective function by choosing a suitably large value for $\zeta$ in that component. Likewise, the minimum of the third term is $-\infty$ unless $\boldsymbol{\eta}'\boldsymbol{y}$ is equal to [[0|$\infty$]]. 
+
+---
+> id: step-outside-maximization
+
+Therefore, the outside maximization over $\boldsymbol{\eta}$ and $\boldsymbol{\theta}$ will have to set $\boldsymbol{\theta} = C\mathbf{1} - \boldsymbol{\eta}$ and ensure that the equation $\boldsymbol{\eta}'\boldsymbol{y} = 0$ is satisfied. All together, substituting $\boldsymbol{\beta} = X'(\boldsymbol{\eta} \odot \boldsymbol{y})$  into the objective function, we get the **dual problem** 
 
 ``` latex
 &\text{maximize} \quad -\frac{1}{2}(\boldsymbol{\eta} \odot \mathbf{y})'XX'
@@ -1554,20 +1559,57 @@ Note: the figure shows that $\boldsymbol{\eta}$ values for each point, together 
 
 *Solution*. The first statement says that $0 \preccurlyeq \boldsymbol{\eta} \preccurlyeq C$, which is indeed one of the constraints. The second statement is equivalent to $\boldsymbol{\eta}' \boldsymbol{y} = 0$, since dotting with $\boldsymbol{y}$ yields the difference between the entries corresponding to positive training examples and the entries corresponding to negative training examples. 
 
-The objective function includes one term for the total amount of weight (that's $\boldsymbol{1}'\boldsymbol{\eta}$), and one term which is $-\frac{1}{2}|\boldsymbol{\beta}|^2$, where $\boldsymbol{\beta} = X'(\boldsymbol{\eta} \odot \boldsymbol{y})$. We can see that the vector $\beta$ is in fact the difference between the $\boldsymbol{\eta}$-weighted sums of the negative and positive training examples by writing $X'(\boldsymbol{\eta} \odot \boldsymbol{y})$ as $(X'\_{+1}\boldsymbol{\eta}\_{+1} - X'\_{-1}\boldsymbol{\eta}\_{-1})$, where the subscripts mean "restrict to positive observations" and "restrict to negative observations". 
+The objective function includes one term for the total amount of weight (that's $\boldsymbol{1}'\boldsymbol{\eta}$), and one term which is $-\frac{1}{2}|\boldsymbol{\beta}|^2$, where $\boldsymbol{\beta} = X'(\boldsymbol{\eta} \odot \boldsymbol{y})$. We can see that the vector $\beta$ is in fact the difference between the $\boldsymbol{\eta}$-weighted sums of the negative and positive training examples by writing $X'(\boldsymbol{\eta} \odot \boldsymbol{y})$ as $(X'\_{+1}\boldsymbol{\eta}\_{+1} - X'\_{-1}\boldsymbol{\eta}\_{-1})$, where the +1 and -1 subscripts mean "discard rows corresponding to negative observations" and "discard rows corresponding to positive observations", respectively. 
 
 [Continue](btn:next)
 
 ---
 > id: step-solve-dual-problem
 
-If we solve this problem, we can substitute $\boldsymbol{\beta} = X'(\widehat{\boldsymbol{\eta}} \odot \boldsymbol{y})$ to find the optimizing value of $\boldsymbol{\beta}$ in the original problem. Although $\alpha$ got lost in the translation from the original problem to the dual problem, we can recover its value as well, using the following observation: if $\eta_i$ is strictly less than $C$ at the maximizing point for the dual problem, then that implies that $\zeta_i = 0$ (since otherwise we could increase the value of the objective function by choosing a large value for $\theta$). Likewise, if $\eta_i$ is strictly positive, then the $i$th component of $\boldsymbol{1} - \boldsymbol{\zeta} - \boldsymbol{y} \odot (X \boldsymbol{\beta} - \alpha \boldsymbol{1})$ must be zero. Putting these together, we can look at the observations for which the $i$ value is strictly between 0 and $C$, and for those observations $i$, we must have $1 = [\boldsymbol{y} \odot (X \boldsymbol{\beta} + \alpha \boldsymbol{1})]\_i$. Thus the optimizing value of $\alpha$ in the original problem may also be obtained looking at any component of
+If we solve this problem, we can substitute $\boldsymbol{\beta} = X'(\widehat{\boldsymbol{\eta}} \odot \boldsymbol{y})$ to find the optimizing value of $\boldsymbol{\beta}$ in the original problem. Although $\alpha$ got lost in the translation from the original problem to the dual problem, we can recover its value as well. We'll do this by identifying points on the *edge* of the separating slab, using the following observation: consider a set of values which solves the optimization problem in the form
+
+``` latex
+\min_{\alpha, \boldsymbol{\beta}, \boldsymbol{\zeta}} \max_{\boldsymbol{\eta}, \boldsymbol{\theta} \succcurlyeq \boldsymbol{0}}\left[\frac{1}{2}\|\boldsymbol{\beta}\|^2 + C \mathbf{1}'\boldsymbol{\zeta}  + \boldsymbol{\eta}'(\mathbf{1} - \boldsymbol{\zeta} -  \mathbf{y} \odot (X\boldsymbol{\beta} + \alpha\mathbf{1})) - \boldsymbol{\theta}'\zeta\right]
+```
+
+If $i$ is an index such that $\zeta_i > 0$ (in other words, the $i$th training point is inside the slab or on the wrong side of it), then $\theta_i$ must be zero, since otherwise we could lower the value of the objective function by nudging $\zeta_i$ down slightly. This implies that $\eta_i = C$. 
+
+Likewise, if $i$th component of $\boldsymbol{1} - \boldsymbol{\zeta} - \boldsymbol{y} \odot (X \boldsymbol{\beta} + \alpha \boldsymbol{1})$ is negative (in other words, the $i$th training point is safely on the correct side of the slab, and not on the edge), then we must have $\eta_i = 0$.
+
+Putting these two observations together, we conclude that points on the edge of the slab may be detected by looking for the components of $\eta$ which are strictly between $0$ and $C$. Since $y\_i((X\beta)\_i+ \alpha) = 1$ for training points $(\mathbf{x}_i, y_i)$ on the edge of the slab, we can identify the value of $\alpha$ by solving this equation for any index $i$ such that $0 < \eta\_i < C$. We multiply both sides of the equation by $y_i$ to get $(X\beta)\_i + \alpha = y\_i$, and that implies that $\alpha = (X\beta + \alpha \mathbf{1})\_i$.
+
+In summary, the optimizing value of $\alpha$ in the original problem may also be obtained looking at any component of
 
 ``` latex
   \mathbf{y} - X\widehat{\boldsymbol{\beta}} 
 ```
 
-for which the corresponding entry of $\boldsymbol{\eta}$ is strictly between 0 and $C$. If we solve the dual problem numerically, we should account for numerical error by (i) including a small tolerance when determining which entries of $\boldsymbol{\eta}$ are deemed to be strictly between 0 and $C$, and (ii) averaging all entries of $\mathbf{y} - X\widehat{\boldsymbol{\beta}}$ for which $\eta_i$ is strictly between 0 and $C$.
+for which the corresponding entry of $\boldsymbol{\eta}$ is strictly between 0 and $C$. A couple caveats when working with solutions obtained numerically: we should (i) include a small tolerance when determining which entries of $\boldsymbol{\eta}$ are deemed to be strictly between 0 and $C$, and (ii) *average* all entries of $\mathbf{y} - X\widehat{\boldsymbol{\beta}}$ for which $\eta_i$ is strictly between 0 and $C$.
+
+::: .exercise
+**Exercise**  
+Execute the code cell below to observe that the values of $\eta$ do indeed turn out to be 0 on the correct side of the slab, $C$ inside the slab or on the wrong side, and strictly between $0$ and $C$ only on the edge of the slab. Experiment with different values of $C$. 
+:::
+
+    pre(julia-executable)
+      | 
+      | include("data-gymnasia/svmplot.jl")
+      | using Random; Random.seed!(1)
+      | 
+      | # number of training points of each class
+      | n = 20
+      | # generate training observations
+      | X = [randn(n) .+ 1 randn(n) .+ 1
+      |      randn(n) .- 1 randn(n)]
+      | y = repeat([1,-1], inner = n)
+      | 
+      | # initialize and train an SVM:
+      | S = SVM(X, y)
+      | dualfit!(S, C = 0.5)
+      | 
+      | # visualize the SVM, together with annotations showing 
+      | # the η values
+      | plot(S, (S,i) -> S.η[i])
 
 [Continue](btn:next)
 
