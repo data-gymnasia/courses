@@ -1335,7 +1335,7 @@ Consider a binary classification problem in $\mathbb{R}^2$ for which the trainin
 ``` latex
     L(\boldsymbol{\beta},\alpha) = \lambda |\boldsymbol{\beta}|^2
     +  \frac{1}{n}\sum_{i=1}^{n}\big[1-y_i(\boldsymbol{\beta}\cdot \mathbf{x}_i
-    - \alpha)\big]_+
+    + \alpha)\big]_+
 ```
 
 is a reasonable quantity to minimize. 

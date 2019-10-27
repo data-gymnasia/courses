@@ -146,15 +146,3 @@ machine-learning:
   author:
     name: Samuel S. Watson
     link: http://sswatson.com
-
-stochastic-approximations:
-  title: Stochastic Approximations
-  description: ...
-  color: 000032
-  next: sets-and-functions
-  hideIcon: true
-  branding: brown
-  tile: /images/third-party/og-tile.jpg
-  author:
-    name: Elvis Nunez
-    link:
