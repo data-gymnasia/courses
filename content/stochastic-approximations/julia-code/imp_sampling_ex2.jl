@@ -19,7 +19,7 @@ f(x) = 1/sqrt(2*π)*exp(-x^2/2)*(x >= 11/2)
 # Plot of f(x)
 x_vals = 5.501:0.01:10
 f_vals = f.(x_vals)
-plot(x_vals, f_vals, legend = false, title = L"\textrm{Plot of } f(x)",
+plot(x_vals, f_vals, legend = false,
     bg = RGB(247/255, 236/255, 226/255))
 
 # Importance sampling method

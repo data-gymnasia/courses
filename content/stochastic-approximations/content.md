@@ -42,9 +42,9 @@ Pictorially, we obtain something like that shown in the figure below:
     figure
       img(src="images/area-ex1-monte-carlo.svg")
 
-Above we have sampled $n = 4000$ points and there are 2109 $(X_i, Y_i)$ pairs
+Above we have sampled $n = 4000$ points and there are 2142 $(X_i, Y_i)$ pairs
 satisfying $f_2(X_i) \leq Y_i \leq f_1(X_i)$. Hence, our estimate of the area
-is $21\left(\frac{2109}{4000}\right) \approx 11.072$.
+is $21\left(\frac{2142}{4000}\right) \approx 11.25$.
 :::
 
 On average, as $n$ increases, we expect the error of our estimate above to
@@ -273,7 +273,7 @@ After obtaining $n = 10^6$ samples $X_1, X_2, \ldots, X_n \sim N(5,1)$,
 we compute $I_n = \sum_{i=1}^n \frac{f(X_i)}{q(X_i)}$ and obtain
 $I_n \approx 1.896 \times 10^{-8}$ with a $95$% confidence interval
 of $[1.886 \times 10^{-8}, 1.907 \times 10^{-8}]$. The true value
-of the integral is approximately $1.899 \times 10^{-6}$ which is
+of the integral is approximately $1.899 \times 10^{-8}$ which is
 within our confidence interval.
 :::
 
@@ -419,9 +419,9 @@ following transition matrix:
 ``` latex
 P &=
 \begin{bmatrix}
-.6 & .3 & .1 \\
-.4 & .4 & .2 \\
-.1 & .2 & .7
+0.6 & 0.3 & 0.1 \\
+0.4 & 0.4 & 0.2 \\
+0.1 & 0.2 & 0.7
 \end{bmatrix}.
 ```
 
@@ -445,8 +445,8 @@ computing $\mathbb{P}(S_2 = 1, S_1 = 2 | S_0 = 3)$. This is given by
 \mathbb{P}(S_2 = 1, S_1 = 2 | S_0 = 3) &= \mathbb{P}(S_2 = 1|S_1 = 2, S_0 = 3)
 \mathbb{P}(S_1 = 2| S_0 = 3) \\
 &= \mathbb{P}(S_2 = 1|S_1 = 2)\mathbb{P}(S_1 = 2| S_0 = 3) \\
-&= (.4)(.2) \\
-&= .08.
+&= (0.4)(0.2) \\
+&= 0.08.
 ```
 
 * Let $S_0$ be the state of our parents, so $S_0 = 2$. We are interested in
@@ -458,8 +458,8 @@ possible values of $S_1$. In particular, we compute
 \sum_{k=1}^3 \mathbb{P}(S_2 = 3, S_1 = k| S_0 = 2) \\
 &= \sum_{k=1}^3 \mathbb{P}(S_1 = k| S_0 = 2)\mathbb{P}(S_2 = 3| S_1 = k) \\
 &= \sum_{k=1}^3  P_{2k} P_{k3} \\
-&= (.4)(.1) + (.4)(.2) + (.2)(.7) \\
-&= .26.
+&= (0.4)(0.1) + (0.4)(0.2) + (0.2)(0.7) \\
+&= 0.26.
 ```
 
 
@@ -551,10 +551,10 @@ construct the 6-step transition matrix:
 P &=
 \begin{bmatrix}
 1 & 0 & 0 & 0 & 0 & 0 \\
-.7 & 0 & .3 & 0 & 0 & 0 \\
-0 & .7 & 0 & .3 & 0 & 0 \\
-0 & 0 & .7 & 0 & .3 & 0 \\
-0 & 0 & 0 & .7 & 0 & .3 \\
+0.7 & 0 & 0.3 & 0 & 0 & 0 \\
+0 & 0.7 & 0 & 0.3 & 0 & 0 \\
+0 & 0 & 0.7 & 0 & 0.3 & 0 \\
+0 & 0 & 0 & 0.7 & 0 & 0.3 \\
 0 & 0 & 0 & 0 & 0 & 1
 \end{bmatrix} \\
 P^6 &=
@@ -687,10 +687,10 @@ states = [0,1,2,3,4,5]
 
 # Transition matrix for gambler's ruin
 P = [1 0 0 0 0 0;
-    .7 0 .3 0 0 0;
-    0 .7 0 .3 0 0;
-    0 0 .7 0 .3 0;
-    0 0 0 .7 0 .3;
+    0.7 0 0.3 0 0 0;
+    0 0.7 0 0.3 0 0;
+    0 0 0.7 0 0.3 0;
+    0 0 0 0.7 0 0.3;
     0 0 0 0 0 1]
 
 # Estimate probability of having $5 after 6 turns when starting with $2
@@ -712,8 +712,8 @@ represents a student has dropped out. Suppose the transition matrix is given by
 ``` latex
 P &=
 \begin{bmatrix}
-.2 & .5 & 0 & .3 \\
-0 & .3 & .6 & .1 \\
+0.2 & 0.5 & 0 & 0.3 \\
+0 & 0.3 & 0.6 & 0.1 \\
 0 & 0 & 1 & 0 \\
 0 & 0 & 0 & 1
 \end{bmatrix}
@@ -732,8 +732,8 @@ student to graduate or drop out.
 states = [1,2,"G","D"]
 
 # Transition matrix for masters Markov chain
-P = [.4 .5 0 .1;
-     0 .3 .6 .1;
+P = [0.4 0.5 0 0.1;
+     0 0.3 0.6 0.1;
      0 0 1 0;
      0 0 0 1]
 
@@ -787,7 +787,7 @@ $S_2 = S_1 + X_2$.
 
 * We repeat the steps indefinitely to obtain each state $S_n$.
 
-The plot below shows five symmetric random walks $(p = .5)$ where
+The plot below shows five symmetric random walks $(p = 0.5)$ where
 the y-axis represents the position of the particle at time $n$.
 
     figure
@@ -807,17 +807,17 @@ after these 100 steps.
 As we expected, after 100 steps, most particles are concentrated around the
 origin.
 
-Similarly, if we construct an asymmetric random walk $(p \neq .5)$ then we
+Similarly, if we construct an asymmetric random walk $(p \neq 0.5)$ then we
 would expect the particle to drift toward the direction in which the probabilty
-is greates, i.e., if $p > .5$ we would expect the particle to drift toward the
-right and to the left if $p < .5$. Below is a plot of 500 random walk
-simulations with $p = .7$
+is greates, i.e., if $p > 0.5$ we would expect the particle to drift toward the
+right and to the left if $p < 0.5$. Below is a plot of 500 random walk
+simulations with $p = 0.7$
 
     figure
       img(src="images/asymmetric_right_random_walks_1d_hist.svg")
 
 As expected, the particle has drifted upwards. Similarly, below is a plot
-of 500 random walk simulations with $p = .3$
+of 500 random walk simulations with $p = 0.3$
 
     figure
       img(src="images/asymmetric_left_random_walks_1d_hist.svg")
@@ -1020,4 +1020,213 @@ walk. One can similarly show that the origin of a two-dimensional symmetric
 random walk is recurrent, and transient in the asymmetric case. However,
 for three dimensions and higher, the origin is no longer recurrent. Showing
 this, however, is out of the scope of this course.
+:::
+
+We can also use Monte Carlo methods to estimate quantities of interest in
+random walks. For example, to determine whether the origin is recurrent in
+a two-dimensional random walk, we may simulate many random walks and
+compute the proportion of walks that return to the origin. Note, however,
+that the recurrence of a state is an asymptotic property, i.e., if a state is
+recurrent we can only say that the particle will *eventually* return to the
+state, but we do not know when or how long it will take to return.
+
+::: .example
+**Example**  
+
+The code below simulates 1000 two-dimensional asymmetric random walks with
+3000 steps and computes the proportion of walks that return to the origin.
+
+``` julia
+#=
+Generates a two-dimensional random walk starting at state S0  with s steps
+and probability pR of moving right and probability pU of moving up.
+Inputs:
+- S0: An integer representing the starting state of the chain.
+- pL: A number between 0 and 1 representing the probability of the particle
+moving to the left.
+- pR: A number between 0 and 1 representing the probability of the particle
+moving to the right.
+- pU: A number between 0 and 1 representing the probability of the particle
+moving up.
+- pD: A number between 0 and 1 representing the probability of the particle
+moving down.
+- s: The number of steps to run the walk for.
+=#
+function two_d_walk(S0, pL, pR, pU, pD, s)
+
+    # Matrix to save the position of the particle
+    walk = zeros(s+1,2)
+    walk[1,:] = S0
+
+    # Distribution
+    cumProb = cumsum([pR, pL, pU, pD])
+    # Possible moves in each column
+    movesMatrix = [1 0; -1 0; 0 1; 0 -1]
+
+    for i = 2:(s+1)
+        U = rand()
+        step = [0,0]
+        j = 1
+        while step == [0,0]
+            if U < cumProb[j]
+                step = movesMatrix[j,:]
+            end
+            j += 1
+        end
+        walk[i,:] = walk[i-1,:] + step
+    end
+
+    return walk
+end
+
+# Estimate proportion of walks that return to origin
+numSimulations = 1000
+particleReturned = 0
+
+for i = 1:numSimulations
+    walk2d = two_d_walk([0,0], 0.25, 0.25, 0.3, 0.2,  3000)
+    global particleReturned +=
+    (sum((walk2d[:,1] .== 0) .& (walk2d[:,2] .== 0)) > 1)
+end
+
+recurrenceEstimate = particleReturned/numSimulations
+```
+
+:::
+
+Suppose we play a game where we can either win or lose \$1 with probability $p$
+and $1-p$, [respectively](gloss:respectively). Suppose further that we decide
+to stop playing the game when we either lose all of our
+money, or when we have \$A. We can model this game as a one-dimensional random
+walk $S_0, S_1, \ldots \in \mathbb{Z}$ where $\mathbb{P}(X_i = 1) = p$ and
+$\mathbb{P}(X_i = -1) := q = 1 - p$. We will assume that
+$S_0 \in \\\{0,1, \ldots, A\\\}$, that is, we start the game with an integer
+amount of money between 0 and A. We would like to compute the probability that
+we eventually walk away with \$A. We will define
+$\tau := \\\{n \in \mathbb{N} : S_n \in \\\{0,A\\\}\\\}$.  In the
+context of our problem, $\tau$ is the time when we have depleted our financial
+resources or have a total of \$A--whichever comes first. Now let
+$D = \\\{1,2,\ldots, A-1\\\}$. Then $\tau$ is called the **exit time** from
+the region $D$ and represents the first time the walk hits the boundary of $D$.
+
+Since we are interested in computing the probability that we walk away with
+\$A, we would like to compute $\mathbb{P}(S_{\tau} = A)$. Assuming we start
+the game with \$k, that is, $S_0 = k \in \\\{0,1, \ldots, A\\\}$, we will define
+$U_k = \mathbb{P}(S_\tau = A | S_0 = k)$. We will solve for $U_k$ via a method
+commonly referred to as *first step analysis* in which we will define $U_k$
+recursively by considering $U_{k+1}$ and $U_{k-1}$.
+
+Note that $U_0 = \mathbb{P}(S_\tau = A| S_0 = k) = 0$. In words, $U_0$ is the
+probability that we eventually leave the game with \$A given that we start with
+\$0; since we stop playing when we have \$0, we will never have \$A so
+$U_0 = \mathbb{P}(S_\tau = A| S_0 = 0) = 0$. Similarly, $U_A$ is the probability
+that we leave the game with \$A assuming that we start with \$A; since we
+stop playing when we have \$A,  $U_A = \mathbb{P}(S_\tau = A| S_0 = A) = 1$.
+For $k \in D$, we assume that we are still in the game, so we may either win
+or lose \$1. Hence, we can employ the Markovian structure of the chain as
+follows:
+
+``` latex
+U_k &= \mathbb{P}(S_\tau = A | S_0 = k) \\
+&= \mathbb{P}(S_\tau = A, S_1 = k + 1 | S_0 = k) +
+\mathbb{P}(S_\tau = A, S_1 = k - 1 | S_0 = k) \\
+&= \mathbb{P}(S_\tau = A | S_1 = k + 1, S_0 = k)\mathbb{P}(S_1 = k + 1|S_0 = k)
++ \mathbb{P}(S_\tau = A | S_1 = k - 1, S_0 = k)\mathbb{P}(S_1 =k - 1|S_0 = k) \\
+&= \mathbb{P}(S_\tau = A | S_1 = k + 1)p
++ \mathbb{P}(S_\tau = A | S_1 = k - 1)q \\
+&= pU_{k+1} + qU_{k-1}.
+```
+
+Note that we defined $U_k = \mathbb{P}(S_\tau = A | S_0 = k)$, which
+implies $U_{k+1} = \mathbb{P}(S_\tau = A | S_0 = k+1)$, but above in the
+last equation above we said $\mathbb{P}(S_\tau = A | S_1 = k+1) = U_{k+1}$.
+This is because once the walk reaches the state $k+1$, computing the probability
+the walk eventually reaches state $A$ is equivalent to considering the
+probability the walk reaches state $A$ when starting at state $S_0 = k + 1$;
+note that the Markovian structure is what allows this. Thus, we have the
+following system of $A+1$ equations:
+
+``` latex
+U_0 &= 0 \\
+U_k &= pU_{k+1} + qU_{k-1}, \;\; k \in D \\
+U_A &= 1.
+```
+
+which can be written in matrix form as
+
+``` latex
+Mu = b
+```
+
+where
+
+``` latex
+M \in \mathbb{R}^{(A+1)\times (A+1)} &=
+\begin{bmatrix}
+1 & 0 & 0 & 0 & \cdots & 0 \\
+q & -1 & p & 0 & \cdots & 0 \\
+\vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+0 & \cdots & 0 & q & -1 & p \\
+0 & \cdots & 0 & 0 & 0 & 1
+\end{bmatrix} \\
+u \in \mathbb{R}^{A+1} &= [U_0, U_1, \ldots, U_{A-1}, U_A]^T \\
+b \in \mathbb{R}^{A+1} &= [0, 0, \ldots, 0, 1]^T.
+```
+
+Note that $M$ has full rank and is therefore invertible. It follows that
+the system has a unique solution given by $u = M^{-1}b$. Solving the system
+above immediately gives us the probability of walking away from the game
+with \$A starting with any amount of money $k \in \\\{1,2,\ldots, A-1\\\}$
+as illustrated below.
+
+::: .example
+**Example**  
+
+Suppose you play the game above starting with \$500 and you will play until you
+either have \$0 or \$600. We will compute the probability of walking away with
+\$600 assuming $p = 0.49$.
+
+We first construct the matrix $M \in \mathbb{R}^{751 \times 751}$ and the
+vector $b \in \mathbb{R}^{751}$ as defined above. The Julia code below
+produces these matrices and computes $M^{-1}b$.
+
+``` julia
+# Define exit time
+A = 600
+
+# Starting amount of money (S0)
+k = 500
+
+# Define probability of winning
+p = .49
+q = 1 - p
+
+# Define b vector
+b = zeros(A + 1)
+b[A+1] = 1
+
+# Define M matrix
+M = zeros(A+1, A+1)
+M[1,1] = 1
+M[A+1,A+1] = 1
+
+for i=2:A
+    global M, q, p
+    M[i,i] = -1
+    M[i,i-1] = q
+    M[i,i+1] = p
+end
+
+# Compute exit probabilities by computing M^(-1)b
+u = M\b
+
+# Get probability of interest
+using Printf
+@printf("Probability of walking away with \$%g: %f", k,
+ u[k+1])
+```
+
+Running the above yields $U_{500} \approx 0.018$: even when the probability of
+winning is close to 0.49, the probability we increase our wealth by \$100
+is still less than 2%!
 :::

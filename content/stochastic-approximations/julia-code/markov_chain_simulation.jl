@@ -108,7 +108,7 @@ P = [1 0 0 0 0 0;
 
 # Estimate probability of having $5 after 6 turns when starting with $2
 num_simulations = 100000
-mc_est = mean([run_fixed_simulation(states, P, 2, 6) ==5
+mc_est = mean([run_fixed_simulation(states, P, 2, 6) == 5
  for i = 1:num_simulations])
 
 # Define masters program Markov chain

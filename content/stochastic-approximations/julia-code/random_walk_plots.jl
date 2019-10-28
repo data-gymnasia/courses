@@ -46,27 +46,25 @@ moving down.
 function two_d_walk(S0, pL, pR, pU, pD, s)
 
     # Matrix to save the position of the particle
-    walk = zeros(2,s+1)
-    walk[:,1] = S0
+    walk = zeros(s+1,2)
+    walk[1,:] = S0
 
     # Distribution
     cumProb = cumsum([pR, pL, pU, pD])
-    println(cumProb)
     # Possible moves in each column
-    movesMatrix = [1 -1 0 0; 0 0 1 -1]
+    movesMatrix = [1 0; -1 0; 0 1; 0 -1]
 
-    for i = 1:(s+1)
+    for i = 2:(s+1)
         U = rand()
         step = [0,0]
         j = 1
         while step == [0,0]
             if U < cumProb[j]
-                step = movesMatrix[:,j]
+                step = movesMatrix[j,:]
             end
             j += 1
         end
-        println(step)
-        walk[:,i] = walk[:,i-1] + step
+        walk[i,:] = walk[i-1,:] + step
     end
 
     return walk
@@ -87,3 +85,8 @@ plot!(0:n, one_d_walk(0, .5, n), legend = false)
 plot!(0:n, one_d_walk(0, .5, n), legend = false)
 plot!(0:n, one_d_walk(0, .5, n), legend = false)
 plot!(0:n, zeros(n+1), legend = false, )
+
+# Generate and plot a symmetric 2-d walks
+walk2d = two_d_walk([0,0], .25, .25, .25, .25,  3000)
+plot(walk2d[:,1], walk2d[:,2], legend = false, grid = false,
+    bg = RGB(247/255, 236/255, 226/255))
