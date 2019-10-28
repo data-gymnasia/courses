@@ -4,7 +4,7 @@ using Pkg; Pkg.add("LaTeXStrings")
 using LaTeXStrings
 
 # Set working directory
-cd("/Users/elvis/Documents/DSI/courses/content/monte-carlo-methods/julia-code/")
+cd("/Users/elvis/Documents/DSI/courses/content/stochastic-approximations/julia-code/")
 
 # Set seed
 Random.seed!(123)
@@ -30,7 +30,6 @@ f2_x = -3*abs.(cos.(x_vals)) .+ 2*sin.(x_vals)
 # Create plot of MC points
 plot(points_x, points_y, seriestype = :scatter,
      group = .!labels,
-     title = "Monte Carlo Area Estimation",
      legend = false,
      ms = 3,
      bg = RGB(247/255, 236/255, 226/255))
