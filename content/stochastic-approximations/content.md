@@ -224,7 +224,7 @@ $1 - \alpha$ confidence interval and $Z \sim N(0,1)$ we have
 \leq I_n + \frac{\sigma}{\sqrt{n}}z_{\frac{\alpha}{2}} \right).
 ```
 
-$\textit{Remark}$ : $z_\frac{\alpha}{2}$ above denotes the z-score corresponding
+*Remark*: $z_\frac{\alpha}{2}$ above denotes the z-score corresponding
 to the $1 - \alpha$ confidence interval, e.g., for a 95% confidence interval
 $z_\frac{\alpha}{2} = 1.96$.
 
@@ -374,7 +374,7 @@ rows of $P$ sum to 1; this should make sense since the probability of
 transitioning from one state to another (maybe itself) should always be 1.
 
 
-$\textit{Remark}$ : States $i$ that satisfy $P_{ii} = 1$ are called
+*Remark*: States $i$ that satisfy $P_{ii} = 1$ are called
 **absorbing states**.
 
 ::: .example
@@ -1403,7 +1403,8 @@ $Q(a_i,a_j)$ is the probability of going from state $a_i$ to $a_j$ in one step.
 
 
 After choosing $S_0 \in \Omega$, either deterministically or probabilistically,
-the Metropolis-Hastings algorithm produces the states $S_k, k > 0$ as follows:
+the Metropolis-Hastings algorithm produces the states $S_{k+1}, k \geq 0$
+as follows:
 
 1.  Propose (sample) $Y \sim Q(S_k, \cdot)$, i.e., $Y$ is sampled from $\Omega$
 according to the distribution on $\Omega$ given by the row of $Q$ corresponding
@@ -1416,7 +1417,7 @@ to $S_k$.
     \right\}.
 ```
 
-3. Set $S_{k+1}$ to either $S_k$ or $Y$ by flipping a biased coin with
+3. Set $S_{k+1}$ to either $Y$ or $S_k$ by flipping a biased coin with
 probability $\alpha(S_k,Y)$, i.e., sample $X \sim Bernoulli(\alpha(S_k,Y))$
 and set
 ``` latex
@@ -1498,4 +1499,301 @@ P_{ij} = P(a_i, a_j) = \alpha(a_i, a_j)Q(a_i, a_j) +
 ```
 
 With the transition probability matrix at hand, we now show that it has
-invariant measure $\mu$.
+invariant measure $\mu$ by showing that $P$ satisfies the detailed balance
+theorem.
+
+We first need to show that there exists some $k \in \mathbb{N}$ such that
+$P^k_{ij} > 0$ for all $i,j$. If we assume that $Q(a_i, a_j) > 0$ for all
+$i,j$, then by the definition of $P$ we will have that $P_{i,j} > 0$ so
+the first condition of the detailed balance theorem is satisfied.
+
+The second condition of the detailed balance theorem requires
+$P(a_i,a_j)\mu(a_i) = P(a_j,a_i)\mu(a_j)$. We will show that $P$ indeed
+satisfies this condition by considering two cases:
+
+1. Here we will assume that $i=j$. Then we have
+$P(a_i,a_i)\mu(a_i) = P(a_i,a_i)\mu(a_i)$ so the second condition of the
+detailed balance theorem is trivially satisfied.
+
+2. Here we will assume that $i \neq j$.
+We would like to show that the following two equations are equal:
+```latex
+\begin{cases}
+P(a_i,a_j)\mu(a_i) &= \alpha(a_i,a_j)Q(a_i,a_j)\mu(a_i) \\
+P(a_j,a_i)\mu(a_j) &= \alpha(a_j,a_i)Q(a_j,a_i)\mu(a_j).
+\end{cases}
+```
+We will consider two subcases:
+* Here we assume that $\alpha(a_i,a_j) < 1$. By the definition of
+$\alpha(a_i,a_j)$, we have
+``` latex
+\alpha(a_i,a_j) &= \textrm{min}
+\left\{
+1, \frac{Q(a_j,a_i)\mu(a_j)}{Q(a_i,a_j)\mu(a_i)}
+\right\}
+```
+but since we assume $\alpha(a_i,a_j) < 1$, this implies
+$\alpha(a_i,a_j) = \frac{Q(a_j,a_i)\mu(a_j)}{Q(a_i,a_j)\mu(a_i)}$.
+It follows that
+``` latex
+\frac{Q(a_j,a_i)\mu(a_j)}{Q(a_i,a_j)\mu(a_i)} &< 1 \\
+\Rightarrow \frac{Q(a_i,a_j)\mu(a_i)}{Q(a_j,a_i)\mu(a_j)} &> 1.
+```
+Now, by the definition of $\alpha(a_j,a_i)$ and the above, we have
+``` latex
+\alpha(a_j,a_i) &= \textrm{min}
+\left\{
+1, \frac{Q(a_i,a_j)\mu(a_i)}{Q(a_j,a_i)\mu(a_j)}
+\right\} \\
+&= 1.
+```
+Note that because
+$\alpha(a_i,a_j) = \frac{Q(a_j,a_i)\mu(a_j)}{Q(a_i,a_j)\mu(a_i)}$, we have
+that
+``` latex
+P(a_i,a_j)\mu(a_i) &= \frac{Q(a_j,a_i)\mu(a_j)}{Q(a_i,a_j)\mu(a_i)}Q(a_i,a_j)
+\mu(a_i) \\
+&= Q(a_j,a_i)\mu(a_j)
+```
+and because $\alpha(a_j,a_i) = 1$, we have
+``` latex
+P(a_j,a_i)\mu(a_j) &= Q(a_j,a_i)\mu(a_j).
+```
+Thus we conclude that $P(a_i,a_j)\mu(a_i) = P(a_j,a_i)\mu(a_j)$ so the detailed
+balance theorem holds in this case.
+
+* Now we assume that $\alpha(a_i,a_j) = 1$. This immediately implies
+``` latex
+P(a_i,a_j)\mu(a_i) &= Q(a_i,a_j)\mu(a_i).
+```
+By the definition of $\alpha(a_i,a_j)$ we have
+``` latex
+\alpha(a_i,a_j) = \textrm{min}
+\left\{
+1, \frac{Q(a_j,a_i)\mu(a_j)}{Q(a_i,a_j)\mu(a_i)}
+\right\} &= 1 \\
+\Rightarrow \frac{Q(a_j,a_i)\mu(a_j)}{Q(a_i,a_j)\mu(a_i)} &\geq 1 \\
+\Rightarrow \frac{Q(a_i,a_j)\mu(a_i)}{Q(a_j,a_i)\mu(a_j)} &\leq 1.
+```
+From above, it follows
+``` latex
+\alpha(a_j,a_i) &= \textrm{min}
+\left\{
+1, \frac{Q(a_i,a_j)\mu(a_i)}{Q(a_j,a_i)\mu(a_j)}
+\right\} \\
+&= \frac{Q(a_i,a_j)\mu(a_i)}{Q(a_j,a_i)\mu(a_j)}.
+```
+Thus,
+``` latex
+P(a_j,a_i)\mu(a_j) &= \alpha(a_j,a_i)Q(a_j,a_i)\mu(a_j) \\
+&= \frac{Q(a_i,a_j)\mu(a_i)}{Q(a_j,a_i)\mu(a_j)}Q(a_j,a_i)\mu(a_j) \\
+&= Q(a_i,a_j)\mu(a_i)
+```
+so we see that the detailed balance theorem holds in this case.
+
+We have now shown that the detailed balance theorem holds for $P$ so $\mu$
+is indeed the invariant measure for $P$.
+
+We will now extend the discrete Metropolis-Hastings algorithm to the continuous
+setting. We will replace the discrete distribution $\mu$ with the density
+$\rho: \mathbb{R}^d \to [0, \infty)$ and the states
+$S_0, S_1, \ldots \in \mathbb{R}^d$. Our goal is now is to approximate integrals
+of the form
+``` latex
+\int_{\mathbb{R}^d} f(x)\rho(x)dx
+```
+for arbitrary function $f: \mathbb{R}^d \to \mathbb{R}$.
+
+Recall that in the discrete setting, the proposal distribution $Q(a_i,a_j)$
+gave us the probability of transitioning from state $a_i$ to state $a_j$
+in one step. We can therefore think of $Q(a_i,a_j)$ as the conditional
+probability of moving to state $a_j$ given that we are at state $a_j$.
+To this end, in the continuous setting, $Q$ can be thought of as a joint
+distribution with conditional densities $q(y|x)$. Thus, the continuous
+Metropolis-Hastings algorithm is as follows:
+
+First we define $S_0 \in \mathbb{R}^d$ either deterministically or
+probabilistically. We then obtain $S_{k+1}$ for $k \geq 0$ as follows:
+
+1. Propose (sample) $Y \sim q(\cdot | S_k)$.
+
+2. Compute acceptance probabilty:
+``` latex
+\alpha(S_k,Y) := \textrm{min}
+\left\{
+    1, \frac{q(Y|S_k)\rho(Y)}{q(S_k|Y)\rho(S_k)}
+\right\}.
+```
+
+3. Set $S_{k+1}$ to either $Y$ or $S_k$ with probability $\alpha(S_k,Y)$ and
+$1 - \alpha(S_k,Y)$, respectively. In other words, sample
+$X \sim Bernoulli(\alpha(S_k,Y))$ and set
+``` latex
+S_{k+1} &=
+\begin{cases}
+Y, & \textrm{if } X = 1 \\
+S_k, & \textrm{otherwise.}
+\end{cases}
+```
+
+
+*Remark*: A common choice of $q(y|x)$ is $N(x, b^2)$ for some $b > 0$,
+i.e., the proposal will be drawn from a normal distribution centered at the
+current value $x$ with variance $b^2$.
+
+*Remark*: Note that if the distribution $q(y|x)$ is symmetric, i.e.,
+$q(y|x) = q(x|y)$, then the acceptance probabilty simplifies to
+$\alpha(S_k,Y) = \textrm{min}
+\left\\\{
+    1, \frac{\rho(Y)}{\rho(S_k)}
+\right\\\}$.
+
+::: .example
+**Example**  
+
+Here we will draw samples from the gamma distribution with parameters
+$k, \theta > 0$ and density
+``` latex
+\rho(x) &= \frac{1}{\Gamma(x)\theta^k} x^{k-1}e^{-\frac{x}{\theta}}
+```
+
+via the Metropolis-Hastings algorithm.
+
+We will use the normal distribution suggested above for $q(y|x)$:
+``` latex
+q(y|x) &= \frac{1}{\sqrt{2\pi b^2}}e^{-\frac{(x-y)^2}{2b^2}}
+```
+Note that $q(y|x)$ is symmetric, so our acceptance probability simplifies to
+``` latex
+\alpha(S_k,Y) &= \textrm{min}
+\left\{
+    1, \frac{\rho(Y)}{\rho(S_k)}
+\right\}.
+```
+
+Also, since $Y \sim N(S_k, b^2)$, it is enough to sample $\xi \in N(0, b^2)$
+and set $Y = S_k + \xi$ (hence the reason for this flavor of
+Metropolis-Hastings sometimes being referred to as the **random walk sampler**).
+
+There is one more thing we need to do before implementing our algorithm. Note
+that by definition, $Y \in \mathbb{R}$, but the gamma distribution is undefined
+for negative values. To force $Y \in [0,\infty)$, we need to modify $\rho(x)$
+so that it is 0 for negative values. In particular, we will set
+
+``` latex
+\rho(x) &= \frac{1}{\Gamma(x)\theta^k} x^{k-1}e^{-
+    \frac{x}{\theta}}\mathbf{1}_{x \geq 0}.
+```
+
+We will begin by setting $S_0 \in \mathbb{R}$ and produce $S_{k+1}$ for
+$k \geq 0$ as follows:
+
+1. Sample $\xi \sim N(0,b^2)$ and set $Y = S_k + \xi$.
+
+2. Compute
+``` latex
+\alpha(S_k, Y) &= \textrm{min}
+\left\{
+    1, \frac{\rho(Y)}{\rho(S_k)}
+\right\}.
+```
+
+3. Sample $X \sim Bernoulli(\alpha(S_k,Y))$ and set
+``` latex
+S_{k+1} &=
+\begin{cases}
+Y, & \textrm{if } X = 1 \\
+S_k, & \textrm{otherwise.}
+\end{cases}
+```
+
+The code below produces 1000 samples with $b = 2$:
+
+``` julia
+using Distributions
+
+# Gamma distribution
+k = 3
+θ = 2
+ρ(x) = x > 0 ? 1/(2*θ^k)*x^(k-1)*exp(-x/θ) : 0
+
+#=
+Implementation of random walk sampler Metropolis-Hastings.
+Inputs:
+- n: The number of states to return
+- b: The standard deviation of the normal distribution used in the proposal     
+     distribution
+Outputs:
+- Returns an array of length n denoting states S_i in Metropolis-Hastings alg.
+=#
+function metropolis_hastings(n, b)
+
+    # Samples
+    samples = zeros(n)
+    samples[1] = rand()
+
+    # Conditional Q distribution
+    d = Normal(0,b)
+
+    for i=2:n
+        # Propose Y
+        ξ = rand(d)
+        Y = samples[i-1] + ξ
+
+        # Acceptance probability
+        α = min(1, ρ(Y)/ρ(samples[i-1]))
+
+        # Next state
+        if rand() < α
+            samples[i] = Y
+        else
+            samples[i] = samples[i-1]
+        end
+    end
+
+    return samples
+end
+
+# Obtain 1000 samples with b = 2
+S = metropolis_hastings(1000,2)
+```
+
+The choice of $b$ leads to the dilemma of "exploration vs. exploitation." A
+small $b$ would mean the sample $Y = S_k + \xi$ does not differ much from
+$S_k$; hence, the acceptance probability is large, but since the increment is
+small, this leads to poor exploration of the state space.
+Conversely, a large $b$ implies a low acceptance probability which means the
+chain tends to get "stuck" in its current state and when it does change to a
+different state, the jump tends to be large leading to low exploitation of the
+state space but large exploration.
+
+
+To determine an appropriate $b$ we will make **trace plots** of the chain, i.e.,
+a plot of $S_k$ versus $k$. Below we set $b = 0.1$ and plot a histogram of
+the obtained samples along with $\rho(x)$. We note that the samples do not
+match the gamma distribution well and the trace plot reveals the chain is not
+exploring the state space well enough as it is taking steps that are too small.
+
+    figure
+      img(src="images/mh_sampling_1_0.svg")
+
+Below we set $b = 2$. In the trace plot we see a much larger state exploration
+(the y axis varies from 0 to 17) while exhibiting good exploitation
+(the chain is not getting stuck in place). Moreover, the histogram of the
+samples matches $\rho(x)$ well.
+
+    figure
+      img(src="images/mh_sampling_1_1.svg")
+
+Below we set $b = 16$. In the trace plot we still see a large state exploration,
+but the chain tends to get stuck much more often as depicted by the flat regions
+in the plot. Moreover, the histogram of the samples does not match $\rho(x)$
+as well as it did with $b = 2$. As such, we conclude the optimal $b$ is close
+to 2.
+
+    figure
+      img(src="images/mh_sampling_1_2.svg")
+:::
+
+In the example above, a small value of $b$ would lead to
+[[more proposal acceptances|more proposal rejections]].
