@@ -1572,11 +1572,11 @@ If we solve this problem, we can substitute $\boldsymbol{\beta} = X'(\widehat{\b
 \min_{\alpha, \boldsymbol{\beta}, \boldsymbol{\zeta}} \max_{\boldsymbol{\eta}, \boldsymbol{\theta} \succcurlyeq \boldsymbol{0}}\left[\frac{1}{2}\|\boldsymbol{\beta}\|^2 + C \mathbf{1}'\boldsymbol{\zeta}  + \boldsymbol{\eta}'(\mathbf{1} - \boldsymbol{\zeta} -  \mathbf{y} \odot (X\boldsymbol{\beta} + \alpha\mathbf{1})) - \boldsymbol{\theta}'\zeta\right]
 ```
 
-If $i$ is an index such that $\zeta_i > 0$ (in other words, the $i$th training point is inside the slab or on the wrong side of it), then $\theta_i$ must be zero, since otherwise we could lower the value of the objective function by nudging $\zeta_i$ down slightly. This implies that $\eta_i = C$. 
+If $i$ is an index such that $\zeta_i > 0$ (in other words, the $i$th training point is inside the slab or on the wrong side of it), then $\theta_i$ must be zero, since otherwise we could lower the value of the objective function by nudging $\theta_i$ down slightly. This implies that $\eta_i = C$. 
 
 Likewise, if $i$th component of $\boldsymbol{1} - \boldsymbol{\zeta} - \boldsymbol{y} \odot (X \boldsymbol{\beta} + \alpha \boldsymbol{1})$ is negative (in other words, the $i$th training point is safely on the correct side of the slab, and not on the edge), then we must have $\eta_i = 0$.
 
-Putting these two observations together, we conclude that points on the edge of the slab may be detected by looking for the components of $\eta$ which are strictly between $0$ and $C$. Since $y\_i((X\beta)\_i+ \alpha) = 1$ for training points $(\mathbf{x}_i, y_i)$ on the edge of the slab, we can identify the value of $\alpha$ by solving this equation for any index $i$ such that $0 < \eta\_i < C$. We multiply both sides of the equation by $y_i$ to get $(X\beta)\_i + \alpha = y\_i$, and that implies that $\alpha = (X\beta + \alpha \mathbf{1})\_i$.
+Putting these two observations together, we conclude that points on the edge of the slab may be detected by looking for the components of $\eta$ which are strictly between $0$ and $C$. Since $y\_i((X\beta)\_i+ \alpha) = 1$ for training points $(\mathbf{x}_i, y_i)$ on the edge of the slab, we can identify the value of $\alpha$ by solving this equation for any index $i$ such that $0 < \eta\_i < C$. We multiply both sides of the equation by $y_i$ to get $(X\beta)\_i + \alpha = y\_i$, and that implies that $\alpha = (\mathbf{y} - X\boldsymbol{\beta})\_i$.
 
 In summary, the optimizing value of $\alpha$ in the original problem may also be obtained looking at any component of
 
@@ -1617,7 +1617,7 @@ Execute the code cell below to observe that the values of $\eta$ do indeed turn 
 > id: the-kernel-trick
 ### The Kernel Trick
 
-The reason for formulating the dual problem is that it permits the application of a useful and extremely common technique called the kernel trick. The idea is that if we apply a transformation $\phi:\mathbb{R}^d \to \mathbb{R}^d$ each row of $X$ and call the resulting matrix $\phi(X)$, then the resulting change to the dual problem is just to replace $XX'$ with $\phi(X) \phi(X)'$. This matrix's entries consist entirely of dot products of rows of $\phi(X)$ with rows of $\phi(X)$, so we can solve the problem as long as we can calculate $\phi(\mathbf{x})\cdot \phi(\mathbf{y})$ for all $\mathbf{x}$ and $\mathbf{y}$ in $\mathbb{R}^d$. The function $K = (\mathbf{x}, \mathbf{y}) \mapsto \phi(\mathbf{x})\cdot \phi(\mathbf{y})$ is called the *kernel* associated with the transformation $\phi$. Typically we ignore $\phi$ and use one of the following kernel functions:
+The reason for formulating the dual problem is that it permits the application of a useful and extremely common technique called the kernel trick. The idea is that if we apply a transformation $\phi:\mathbb{R}^d \to \mathbb{R}^d$ to each row of $X$ and call the resulting matrix $\phi(X)$, then the resulting change to the dual problem is just to replace $XX'$ with $\phi(X) \phi(X)'$. This matrix's entries consist entirely of dot products of rows of $\phi(X)$ with rows of $\phi(X)$, so we can solve the problem as long as we can calculate $\phi(\mathbf{x})\cdot \phi(\mathbf{y})$ for all $\mathbf{x}$ and $\mathbf{y}$ in $\mathbb{R}^d$. The function $K = (\mathbf{x}, \mathbf{y}) \mapsto \phi(\mathbf{x})\cdot \phi(\mathbf{y})$ is called the *kernel* associated with the transformation $\phi$. Typically we ignore $\phi$ and use one of the following kernel functions:
 
 ``` latex
   \text{linear} \quad K(\mathbf{x},\mathbf{y}) &= \mathbf{x}' \mathbf{y} \\
@@ -1643,7 +1643,7 @@ To bring it all together, suppose that $K$ is a kernel function and $\mathcal{K}
 ```
 
 The prediction vector for an $n_{\mathrm{test}} \times n$ feature
-matrix $X_{\mathrm{test}}$ is
+matrix $X_{\mathrm{test}}$ is 
 
 ``` latex
   \operatorname{sign}(\phi(X) \widehat{\boldsymbol{\beta}} + \alpha\boldsymbol{1}) =
