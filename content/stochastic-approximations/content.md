@@ -10,7 +10,8 @@ to compute analytically or computationally. Throughout the course we will
 assume that we have access to a random number generator capable of generating
 uniformly distributed numbers on the interval $[0,1]$.
 
-We will begin by considering **Monte Carlo Estimation**. Put simply, Monte Carlo estimation is a method of estimating
+We will begin by considering **Monte Carlo Estimation**. Put simply, Monte
+Carlo estimation is a method of estimating
 quantities by obtaining $n$ samples and computing the ratio of samples
 satisfying some property. We will be using Monte Carlo methods in the
 approximation of integrals, sometimes referred to as Monte Carlo Integration.
@@ -286,9 +287,9 @@ within our confidence interval.
 In this section we will move away from our previous setting of independent and
 identically distributed sequences of random variables and consider Markovian
 structures. Let $S_0, S_1, \ldots, $ be a sequence of random variables with
-state space $\chi$, then this sequence is a discrete time
+state space $\Omega$, then this sequence is a discrete time
 **Markov Process** if for every $n \in \\\{0,1,2,\ldots\\\}$ and
-$s_0, s_1, \ldots, s_{n+1} \in \chi$ we have
+$s_0, s_1, \ldots, s_{n+1} \in \Omega$ we have
 
 ``` latex
 \mathbb{P}(S_{n+1} = s_{n+1}| S_0 = s_0, S_1 = s_1, \ldots, S_n = s_n) &=
@@ -299,7 +300,7 @@ $s_0, s_1, \ldots, s_{n+1} \in \chi$ we have
  the history of the process is irrelevant for computing the probability
  of future events, only the current state of the process is relevant.
 
- In this course we will assume that $\chi$ is a discrete state space. Under
+ In this course we will assume that $\Omega$ is a discrete state space. Under
  this assumption, the sequence $S_0, S_1, S_2, \ldots$ is called a
  **Markov Chain**.
 
@@ -328,13 +329,13 @@ need to win the current game which occurs with probability $p$.
 
 We will restrict our attention to time homogeneous Markov chains.
 A Markov chain $S_0, S_1, S_2, \ldots$ is said to be
-**time homogeneous** if for all $n$ and $x,y \in \chi$ we have
+**time homogeneous** if for all $n$ and $x,y \in \Omega$ we have
 $\mathbb{P}(S_{n+1} = y|S_n = x) = \mathbb{P}(S_1 = y|S_0 = x)$.
 In words, this says that transitioning from state $x$ to state $y$
 in one step is independent of the time $n$.
 
 Suppose the state space of a time homogeneous Markov chain
-is $\chi = \\\{a_1, a_2, \ldots, a_k\\\}$. We can represent the chain
+is $\Omega = \\\{a_1, a_2, \ldots, a_k\\\}$. We can represent the chain
 as a directed graph where nodes represent
 states and edge weights represent the probability of transitioning from one
 state to another in a single step.
@@ -344,10 +345,10 @@ graph:
     figure
       img(src="images/mc_gamblers_ruin_graph.svg")
 
-We can also represent the chain with a $|\chi| \times |\chi|$ matrix $P$ where
+We can also represent the chain with a $|\Omega| \times |\Omega|$ matrix $P$ where
 $P_{ij}$ denotes the probability of transitioning from state $i$ to state $j$
 in one step, that is, $P_{ij} = \mathbb{P}(S_{n+1} = j|S_n = i)$ for all $n$
-and $i,j \in \chi$.
+and $i,j \in \Omega$.
 For example, again setting $N = 5$ in the example above, we have
 
 ``` latex
@@ -412,7 +413,7 @@ $P_{i,i-1} = \frac{i}{N}$ for $0 \leq i \leq N$.
 **Exercise**
 
 Consider the following social mobility Markov chain with state space
-$\chi = \\\{1,2,3\\\}$ where state 1 represents lower class, state 2
+$\Omega = \\\{1,2,3\\\}$ where state 1 represents lower class, state 2
 represents middle class, and state 3 represents upper class with the
 following transition matrix:
 
@@ -465,7 +466,7 @@ possible values of $S_1$. In particular, we compute
 
 The third question in the exercise above alludes to an interesting observation.
 Note that we could have replaced the class of our parents with some class
-$i \in \chi$ and the class of our children with some class $j \in \chi$ to
+$i \in \Omega$ and the class of our children with some class $j \in \Omega$ to
 obtain
 
 ``` latex
@@ -517,21 +518,21 @@ Now suppose the theorem holds for a fixed but arbitrary integer $m > 1$
 so that $P^m_{ij} = \mathbb{P}(S_m = j|S_0 = i)$. We now need to show that
 $P_{ij}^{m+1} = \mathbb{P}(S_{m + 1} = j|S_0 = i)$. To show this, note that
 for the chain to transition from state $i$ to state $j$ in $m + 1$, the chain
-first needs to transition from $i$ to some state $k \in \chi$ in $m$ steps and
+first needs to transition from $i$ to some state $k \in \Omega$ in $m$ steps and
 then from state $k$ to state $j$ in one step. Thus we have
 
 ``` latex
-\mathbb{P}(S_{m+1} = j|S_0 = i) &= \sum_{k \in \chi}
+\mathbb{P}(S_{m+1} = j|S_0 = i) &= \sum_{k \in \Omega}
 \mathbb{P}(S_{m+1}=j,S_m=k|S_0=i) \\
-&= \sum_{k \in \chi} \frac{\mathbb{P}(S_{m+1} = j, S_m=k,
+&= \sum_{k \in \Omega} \frac{\mathbb{P}(S_{m+1} = j, S_m=k,
     S_0=i)}{\mathbb{P}(S_0 = i)} \\
-&= \sum_{k \in \chi} \frac{\mathbb{P}(S_{m+1} = j| S_m=k, S_0=i)
+&= \sum_{k \in \Omega} \frac{\mathbb{P}(S_{m+1} = j| S_m=k, S_0=i)
 \mathbb{P}(S_m = k, S_0 = i)}{\mathbb{P}(S_0 = i)} \\
-&= \sum_{k \in \chi} \mathbb{P}(S_{m+1} = j | S_m = k, S_0 = i)
+&= \sum_{k \in \Omega} \mathbb{P}(S_{m+1} = j | S_m = k, S_0 = i)
 \mathbb{P}(S_m = k | S_0 = i) \\
-&= \sum_{k \in \chi} \mathbb{P}(S_{m+1} = j | S_m = k) \mathbb{P}(S_m = k | S_0
+&= \sum_{k \in \Omega} \mathbb{P}(S_{m+1} = j | S_m = k) \mathbb{P}(S_m = k | S_0
     = i) \quad (\textrm{Markov property})\\
-&= \sum_{k \in \chi} P_{kj} P^m_{ik} \quad (\textrm{Induction hypothesis}) \\
+&= \sum_{k \in \Omega} P_{kj} P^m_{ik} \quad (\textrm{Induction hypothesis}) \\
 &= (PP^m)_{ij} \\
 &= P^{m+1}_{ij}.
 ```
@@ -705,7 +706,7 @@ which outputs $\approx 0.0442$.
 **Exercise**
 
 Consider a Markov chain for a two-year master's program with state space
-$\chi = \\\{1,2,G,D\\\}$ where states 1 and 2 represent first and second
+$\Omega = \\\{1,2,G,D\\\}$ where states 1 and 2 represent first and second
 year students, respectively, "G" represents a student has graduated and "D"
 represents a student has dropped out. Suppose the transition matrix is given by
 
@@ -771,18 +772,18 @@ Two examples of random walks are given below.
 Here we will consider the random walk in $\mathbb{Z}$, that is, the random
 walk in one dimension. We will assume the particle begins at the origin so that
 $S_0 = 0$. Since the particle is in one dimension, it can only move either
-left or right. Thus, we will assume $X_i \in \chi = \\\{-1,1\\\}$ where
+left or right. Thus, we will assume $X_i \in \Omega = \\\{-1,1\\\}$ where
 $X_i = -1$ means the particle moves to the left and $X_i = 1$ means the
 particle moves to the right. We now need to assign a distribution to the set
-$\chi$. We will assume  $\mathbb{P}(X_i = 1) = p$ and
+$\Omega$. We will assume  $\mathbb{P}(X_i = 1) = p$ and
 $\mathbb{P}(X_i = -1) = 1 - p$. We can now generate a random walk as follows:
 
 * First, the particle begins at state $S_0 = 0$.
 
-* We then sample $X_1$ according to the distribution on $\chi$ and set
+* We then sample $X_1$ according to the distribution on $\Omega$ and set
 $S_1 = S_0 + X_1$.
 
-* We again sample $X_2$ according to the distribution on $\chi$ and set
+* We again sample $X_2$ according to the distribution on $\Omega$ and set
 $S_2 = S_1 + X_2$.
 
 * We repeat the steps indefinitely to obtain each state $S_n$.
@@ -832,7 +833,7 @@ probability, in this case left.
 We can also visualize a random walk in $\mathbb{Z}^2$, that is, a random walk
 in two dimensions. In this case the particle can move left, right, up, or down,
 so the state space will be given by
-$\chi = \\\{(-1,0), (1,0), (0,1), (0,-1)\\\}$. We will again assume the particle
+$\Omega = \\\{(-1,0), (1,0), (0,1), (0,-1)\\\}$. We will again assume the particle
 starts at the origin so that $S_n = (0,0)$. We need to assign a probability to
 each of these. We will let $p_L, p_R, p_U, p_D \geq 0$ represent the
 probabilities that a particle moves left, right, up, or down,
@@ -1227,6 +1228,274 @@ using Printf
 ```
 
 Running the above yields $U_{500} \approx 0.018$: even when the probability of
-winning is close to 0.49, the probability we increase our wealth by \$100
+winning is close to 0.5, the probability we increase our wealth by \$100
 is still less than 2%!
 :::
+
+We will now turn our attention to stochastic approximation with Markov chains.
+Let $S_0, S_1, S_2, \ldots$ be a time homogeneous Markov chain with finite
+state space  $\Omega = \\\{a_1, a_2, \ldots, a_L\\\}$. We will assume that $S_0$
+is chosen randomly based on some distribution over $\Omega$.
+
+::: .example
+**Example**  
+
+Consider the Markov chain $S_0, S_1, S_2, \ldots$ with state space
+$\Omega = \\\{a_1,a_2,a_3,a_4\\\}$ and transition matrix
+
+``` latex
+P &=
+\begin{bmatrix}
+0.1 & 0.1 & 0.4 & 0.4 \\
+0.1 & 0.2 & 0.3 & 0.4 \\
+0.4 & 0.3 & 0.15 & 0.15 \\
+0.4 & 0.4 & 0.15 & 0.05
+\end{bmatrix}.
+```
+
+Suppose the chain begins at $S_0 = a_2$. Below we simulate $10^5$ chains and
+create a histogram of the 100th state.
+
+    figure
+      img(src="images/invariant_measure_hist_1.svg")
+
+Now suppose that the chain begins at $S_0 = a_4$. We again simulate $10^5$
+chains and construct a histogram of the 100th state.
+
+    figure
+      img(src="images/invariant_measure_hist_2.svg")
+
+We see that regardless of where the chain begins, the distribution of the
+100th state is approximately uniform across all four states.
+:::
+
+In the example above we see that after the chain has ran for a sufficiently
+long time, i.e., after it has "mixed," the distribution of a given step is
+uniform across all states. The distribution $\mu(a_i) = \frac{1}{4}$ for
+$i=1,2,3,4$ is said to be an **invariant measure** for the Markov chain in the
+example above.
+
+To perform stochastic approximations with Markov chains, we will introduce a
+function $f: \Omega \to \mathbb{R}$ called a *payoff function*. Suppose we let a
+Markov chain run for $n$ steps to obtain $S_1, S_2, \ldots, S_n$ and then
+compute $\frac{1}{n}\sum_{i=1}^n f(S_i)$. What is the asymptotic behavior of
+this quantity? While it may be tempting to invoke the law of large numbers,
+note that the $S_i$ are not independent so the law of large numbers does not
+apply. However, for a Markov chain with invariant measure $\mu$, we have the
+following result:
+
+``` latex
+\lim_{n \to \infty} \frac{1}{n}\sum_{i=1}^n f(S_i) &=
+\sum_{l=1}^L f(a_l)\mu(a_l).
+```
+
+It is natural to ask if any time homogeneous Markov chain has an invariant
+measure, and if it does, is it unique? The theorem below gives the criterion
+for the existence and uniqueness of an invariant measure.
+
+::: .theorem
+**Theorem**  (Detailed Balance Theorem)
+
+Let $S_0, S_1, S_2, \ldots$ be a time homogeneous Markov chain with finite
+state space $\Omega = \\\{a_1, a_2, \ldots, a_L\\\}$. Let $P$ be the transition
+probability matrix of the chain and suppose that:
+
+* There exists $k \in \mathbb{N}$ such that $P^k_{ij} > 0$ for all $i,j$, i.e.,
+there exists some $k$ such that the matrix obtained after multiplying $P$ by
+itself $k$ times has all strictly positive entries.
+
+* There exists a distribution $\mu$
+(.i.e. a vector $[\mu(a_1), \mu(a_2), \ldots, \mu(a_L)]$ satisfying
+$\sum_{l=1}^L \mu(a_l) = 1$ and $\mu(a_i) > 0$ for all $i$) satisfying
+the detailed balance equation:
+
+``` latex
+P_{ij}\mu(a_i) &= P_{ji}\mu(a_j) \;\; \forall i,j.
+```
+
+
+Then $\mu$ is the unique invariant measure of $P$ and we have that
+
+* For all initial states $S_0$:
+``` latex
+\mathbb{P}(S_n = a_i) \to \mu(a_i).
+```
+
+* For arbitrary payoff function $f: \Omega \to \mathbb{R}$:
+``` latex
+\lim_{n \to \infty} \frac{1}{n}\sum_{i=1}^n f(S_i)
+&= \sum_{l=1}^L f(a_l)\mu(a_l).
+```
+:::
+
+::: .example
+**Example**
+
+Here we show that $\mu(a_i) = \frac{1}{4}$ for $i=1,2,3,4$ is an invariant
+measure for the Markov chain in the previous example.
+
+* First note that $P$ already has all strictly positive entries, so $P$
+satisfies the first detailed balance condition with $k = 1$.
+
+* Note that $P$ is a symmetric matrix, so $P_{ij} = P_{ji}$. Moreover, $\mu$
+is the discrete uniform distribution so $\mu(a_i) = \mu(a_j)$ for all $i,j$.
+Thus the detailed balance equation $P_{ij}\mu(a_i) = P_{ji}\mu(a_j)$ is
+satisfied.
+:::
+
+Suppose $P$ is a symmetric transition probability matrix such that there exists
+$k \in \mathbb{N}$ satisfying $P^k_{ij} > 0$ for all $i,j$. Then the uniform
+distribution over the state space is an invariant measure for $P$
+[[true|flase]].
+
+Our study of invariant measures and Markov chains allows us to estimate
+expressions of the form $\sum_{l=1}^L f(a_l)\mu(a_l)$. This is just a finite
+summation, which should be relatively easy to compute explicitly. However,
+we would like to estimate this expression for some arbitrary distribution $\mu$,
+which would require us to have a Markov chain with this invariant measure, but
+how do we obtain this chain? This is the topic of the next section. Moreover,
+we will see that what we discuss in the discrete setting extends to the
+continuous setting which will allow us to estimate integrals of the form
+$\int_{\mathbb{R}^d} f(x)\rho(x)dx$ for arbitrary
+$\rho: \mathbb{R}^d \to [0, \infty)$.
+
+---
+> id: MCMC
+## Markov Chain Monte Carlo
+
+In this section our goal will be to construct a Markov chain whose invariant
+measure is $\mu$, which we call a **target distribution**. We will then use
+the obtained Markov chain to estimate integrals. We assume we have the
+following:
+
+* A discrete, fintie state space $\Omega = \\\{a_1, a_2, \ldots, a_L\\\}$.
+
+* A target distribution $\mu = [\mu(a_1), \ldots, \mu(a_L)] \in \mathbb{R}^L$
+where
+``` latex
+\mu(a_i) &\geq 0 \;\; \forall i \in \{1,2,\ldots,L\} \\
+\sum_{i=1}^L \mu(a_i) &= 1
+```
+
+* A payoff function $f: \Omega \to \mathbb{R}$.
+
+
+After obtaining the chain with invariant measure $\mu$, our aim will be to
+estimate $\sum_{l=1}^L f(a_i)\mu(a_i)$. As mentioned in the previou section,
+our discussion here will extend to the continuous setting which will allow
+us to estimate integrals.
+
+If a given Markov chain has an invariant measure, then it is unique. However,
+given an invariant measure, there may be multiple Markov chains with this
+invariant measure. Here we will restrict our attention to Markov chains
+generated by the so-called **Metropolis-Hastings Algorithm**.
+
+The Metropolis-Hastings algorithm takes three inputs:
+
+1. A finite state space $\Omega$.
+
+2. A target distribution $\mu$ on $\Omega$.
+
+3. A transition probability matrix $Q \in \mathbb{R}^{|\Omega| \times |\Omega|}$
+called the "proposal distribution." We will use the notation
+$Q(a_i, a_j) = \mathbb{P}(S_1 = a_j | S_0 = a_i)$, that is,
+$Q(a_i,a_j)$ is the probability of going from state $a_i$ to $a_j$ in one step.
+
+
+After choosing $S_0 \in \Omega$, either deterministically or probabilistically,
+the Metropolis-Hastings algorithm produces the states $S_k, k > 0$ as follows:
+
+1.  Propose (sample) $Y \sim Q(S_k, \cdot)$, i.e., $Y$ is sampled from $\Omega$
+according to the distribution on $\Omega$ given by the row of $Q$ corresponding
+to $S_k$.
+
+2. Compute "acceptance probability" given by:
+``` latex
+\alpha(S_k, Y) := \textrm{min}\left\{
+    1, \frac{Q(Y,S_k)\mu(Y)}{Q(S_k,Y)\mu(S_k)}
+    \right\}.
+```
+
+3. Set $S_{k+1}$ to either $S_k$ or $Y$ by flipping a biased coin with
+probability $\alpha(S_k,Y)$, i.e., sample $X \sim Bernoulli(\alpha(S_k,Y))$
+and set
+``` latex
+S_{k+1} &=
+\begin{cases}
+Y, & \textrm{if } X = 1 \\
+S_k, & \textrm{otherwise.}
+\end{cases}
+```
+
+Note the following important observations about the acceptance probability:
+
+* If $\mu(Y) > \mu(S_k)$, then we would like the chain to visit $Y$ more often
+than $S_k$ so that the chain explores the region where $\mu$ is large more
+often. This is indeed the case as the probability of accepting state $Y$
+increases when $\mu(Y) > \mu(S_k)$.
+
+* When $Q(Y, S_k) > Q(S_k, Y)$, the probability of accepting state $Y$
+increases. This is favorable because this means that state $Y$ is difficult to
+reach and we would like to visit rare states as this leads to a larger state
+exploration.
+
+We claim that the transition probability matrix of the Markov chain generated
+by the Metropolis Hastings algorithm is given by
+
+``` latex
+P_{ij} = P(a_i, a_j) = \alpha(a_i, a_j)Q(a_i, a_j) +
+\left[\sum_{l=1}^L (1- \alpha(a_i,a_l))Q(a_i, a_l)\right]\mathbf{1}_{i=j}.
+```
+
+We justify this claim below.
+
+First suppose that $i \neq j$. Then to go from state $a_i$ to state $a_j$, the
+Metropolis Hastings algorithm first needs to propose state $a_j$, which occurs
+with probability $Q(a_i,a_j)$. We then need to accept the proposal which occurs
+with probability $\alpha(a_i, a_j)$. Thus, the probability of transitioning
+from state $a_i$ to state $a_j$ is given by
+``` latex
+P_{ij} &= \mathbb{P}(\textrm{accept } a_j, \textrm{propose } a_j|
+    \textrm{chain is at } a_i) \\
+&= \mathbb{P}(\textrm{accept } a_j|\textrm{propose } a_j,
+     \textrm{chain is at } a_i)\mathbb{P}(\textrm{propose } a_j|\textrm{chain is at } a_i) \\
+&= \alpha(a_i, a_j)Q(a_i, a_j).
+```
+
+Now suppose that $i=j$. Then to go from state $a_i$ to state $a_i$, there are
+two possible cases:
+
+1. In this case, we propose and accept state $a_i$ from state $a_i$, which
+occurs with probability $Q(a_i, a_i)$ and $\alpha(a_i, a_i)$, respectively.
+Thus, in this case, the probability
+of going from state $a_i$ to state $a_i$ is $\alpha(a_i,a_i)Q(a_i, a_i)$.
+
+2. In this case we propose state $a_l$ where $l \neq i$ and reject it, so we
+stay at state $a_i$. For state $a_l$, the probability of proposing it from state
+$a_i$ is $Q(a_i, a_l)$ and the probability of rejecting this proposal is
+$1 - \alpha(a_i, a_l)$. Therefore, accounting for all states, the probability
+of going from state $a_i$ to state $a_i$ in this case is given by
+``` latex
+\sum_{l=1}^L (1- \alpha(a_i,a_l))Q(a_i, a_l).
+```
+
+
+Note that $\alpha(a_i,a_i) = 1$ so for $l = i$ above the term is ignored.
+
+Thus, for $i = j$ we have
+
+``` latex
+P_{ii} &= \alpha(a_i,a_i)Q(a_i, a_i) +
+\sum_{l=1}^L (1- \alpha(a_i,a_l))Q(a_i, a_l).
+```
+
+This concludes our proof that the transition probability matrix for the
+Metropolis-Hastings algorithm is given by:
+
+``` latex
+P_{ij} = P(a_i, a_j) = \alpha(a_i, a_j)Q(a_i, a_j) +
+\left[\sum_{l=1}^L (1- \alpha(a_i,a_l))Q(a_i, a_l)\right]\mathbf{1}_{i=j}.
+```
+
+With the transition probability matrix at hand, we now show that it has
+invariant measure $\mu$.
