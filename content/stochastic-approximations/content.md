@@ -16,6 +16,11 @@ quantities by obtaining $n$ samples and computing the ratio of samples
 satisfying some property. We will be using Monte Carlo methods in the
 approximation of integrals, sometimes referred to as Monte Carlo Integration.
 
+[Continue](btn:next)
+
+---
+> id: step-1
+
 ::: .example
 **Example**  
 Consider the area between the functions
@@ -51,6 +56,11 @@ is $21\left(\frac{2142}{4000}\right) \approx 11.25$.
 On average, as $n$ increases, we expect the error of our estimate above to
 [[decrease|increase]].
 
+[Continue](btn:next)
+
+---
+> id: step-2
+
 For simplicity, we will assume the area of integration is contained in the
 hypercube $[0,1]^d$. Then, given $f: [0,1]^d \to \mathbb{R}$, to estimate
 $ I := \int_{[0,1]^d} f(x)dx$
@@ -65,7 +75,8 @@ To analyze the performance of our estimator, we will need to use the Law of
 Large Numbers.
 
 ::: .theorem
-**Theorem** (Weak Law of Large Numbers)  
+**Theorem**  (Weak Law of Large Numbers)  
+
 Let $X_1, X_2, \ldots, X_n$ be a sequence of iid random variables with finite
 variance. Suppose $\mathbb{E}[X_1] = \mu$. Then for every $\epsilon > 0$ we
 have
@@ -82,12 +93,17 @@ In words, this says that the quantity $\frac{1}{n}\sum_{i=1}^n X_i$ converges
 (in probability) to $\mu$.
 :::
 
+[Continue](btn:next)
+
+---
+> id: step-3
+
 Let $X \sim Unif([0,1]^d)$; then the law of large numbers
 guarantees $I_n \to \mathbb{E}[f(X)] = \int_{[0,1]^d} f(x)dx = I$.
-Let us be clear about what it means for a random variable to be uniformly
-distributed over a region: For a region $A \in \mathbb{R}^d$, $X \sim Unif(A)$
-if we have $\mathbb{P}(X \in B) = \frac{\textrm{area}(B)}{\textrm{area}(A)}$
-for $B \subseteq A$.
+
+*Remark*: A random variable $X$ is said to be uniformly
+distributed over a region $A$, denoted $X \sim Unif(A)$, if for $B \subseteq A$
+we have $\mathbb{P}(X \in B) = \frac{\textrm{area}(B)}{\textrm{area}(A)}$.
 
 Note that the computation of an integral is a deterministic problem for
 which deterministic methods exist. However, stochastic approximation methods
@@ -101,6 +117,11 @@ $I \approx \frac{1}{10^{30}}\sum_{i_1 = 1}^{10}\sum_{i_2 = 1}^{10}\cdots
 \sum_{i_{30} = 1}^{10}
 f\left(\frac{i_1}{10}, \frac{i_2}{10}, \ldots, \frac{i_{30}}{10}\right)$
 which requires $10^{30}$ computations.
+
+[Continue](btn:next)
+
+---
+> id: step-4
 
 As we will soon see, Monte Carlo integration is independent of the dimension
 $d$, and the law of large numbers guarantees this method works asymptotically.
@@ -123,6 +144,11 @@ Letting $\sigma^2 = \int_{[0,1]^d} f(x)^2dx - I^2$, we have that
 $\textrm{Var}(I_n) = \frac{\sigma^2}{n}$. Thus, as $\sigma^2$ increases,
 $n$ needs to be larger so that the error between $I$ and $I_n$ remains small.
 
+[Continue](btn:next)
+
+---
+> id: step-4
+
 Since the accuracy of our estimate is dependent on the variance of the
 estimator, we would like to make the variance as small as possible. The variance
 is dependent on the distribution of the samples, which we had assumed to be
@@ -130,7 +156,12 @@ uniform. It is easy to concoct examples where uniform samples rarely land in the
 region we are interested in integrating, for example, small volumes in high
 dimensions. To remedy this, we will choose the distribution of our samples
 to be more concentrated in the region of integration; this method of sampling
-is called **importance sampling**.
+is called **importance sampling**, which we will discuss next.
+
+[Continue](btn:next)
+
+---
+> id: step-5
 
 We are still interested in estimating integrals of the form
 $I = \int_{\mathbb{R}^d} f(x)dx$. Let $q: \mathbb{R}^d \to \mathbb{R}$
@@ -165,6 +196,11 @@ variance with the parameter $q(x)$. In particular, we would like to choose $q$
 so that the quantity $\int_{\mathbb{R}^d} \frac{f(x)^2}{q(x)} dx$ is as small
 as possible. Note, however, that we need to be able to efficiently sample from
 $q$; one such method for obtaining samples is **rejection sampling**.
+
+[Continue](btn:next)
+
+---
+> id: step-6
 
 To further understand how large $n$ should be to lower the error of our Monte
 Carlo estimate, we will turn to the Central Limit Theorem.
@@ -239,6 +275,11 @@ From above, we conclude
 \right)
 ```
 
+[Continue](btn:next)
+
+---
+> id: step-7
+
 Loosely speaking, the result above implies that with probability $1 - \alpha$,
 the true value of $I$ lies within a distance of
 $\frac{\sigma}{\sqrt{n}}z_{\frac{\alpha}{2}}$ from $I_n$. Note that this
@@ -251,6 +292,11 @@ converge to $\sigma^2$ as $n \to \infty$ by the law of large numbers.
 
 To decrease the length of the interval by a factor of two, we would have to
 increase $n$ by a factor of [[4|2|0.5]].
+
+[Continue](btn:next)
+
+---
+> id: step-8
 
 ::: .example
 **Example**
@@ -278,8 +324,6 @@ of the integral is approximately $1.899 \times 10^{-8}$ which is
 within our confidence interval.
 :::
 
-[Continue](btn:next)
-
 ---
 > id: Markov Processes
 ## Markov Processes
@@ -304,6 +348,11 @@ $s_0, s_1, \ldots, s_{n+1} \in \Omega$ we have
  this assumption, the sequence $S_0, S_1, S_2, \ldots$ is called a
  **Markov Chain**.
 
+ [Continue](btn:next)
+
+ ---
+ > id: step-9
+
  To solidify the notion of Markov chains, consider the following example.
 
 ::: .example
@@ -327,12 +376,22 @@ This is intuitively true since to increase our wealth by \$1 we simply
 need to win the current game which occurs with probability $p$.
 :::
 
+[Continue](btn:next)
+
+---
+> id: step-10
+
 We will restrict our attention to time homogeneous Markov chains.
 A Markov chain $S_0, S_1, S_2, \ldots$ is said to be
 **time homogeneous** if for all $n$ and $x,y \in \Omega$ we have
 $\mathbb{P}(S_{n+1} = y|S_n = x) = \mathbb{P}(S_1 = y|S_0 = x)$.
 In words, this says that transitioning from state $x$ to state $y$
 in one step is independent of the time $n$.
+
+[Continue](btn:next)
+
+---
+> id: step-11
 
 Suppose the state space of a time homogeneous Markov chain
 is $\Omega = \\\{a_1, a_2, \ldots, a_k\\\}$. We can represent the chain
@@ -344,6 +403,11 @@ graph:
 
     figure
       img(src="images/mc_gamblers_ruin_graph.svg")
+
+ [Continue](btn:next)
+
+---
+> id: step-12
 
 We can also represent the chain with a $|\Omega| \times |\Omega|$ matrix $P$ where
 $P_{ij}$ denotes the probability of transitioning from state $i$ to state $j$
@@ -377,6 +441,11 @@ transitioning from one state to another (maybe itself) should always be 1.
 *Remark*: States $i$ that satisfy $P_{ii} = 1$ are called
 **absorbing states**.
 
+[Continue](btn:next)
+
+---
+> id: step-13
+
 ::: .example
 **Example**
 
@@ -408,6 +477,11 @@ The transition matrix is therefore given by $P_{i,i+1} = \frac{N-i}{N}$ and
 $P_{i,i-1} = \frac{i}{N}$ for $0 \leq i \leq N$.
 :::
 
+[Continue](btn:next)
+
+---
+> id: step-14
+
 ::: .exercise
 
 **Exercise**
@@ -436,6 +510,11 @@ class and your children are lower class? [[0.08]]
 are upper class? [[0.26]]
 :::
 
+[Continue](btn:next)
+
+---
+> id: step-15
+
 *Solution*
 * Let $S_0$ be the state of our parents, so $S_0 = 3$. We are interested in
 $\mathbb{P}(S_1 = 1|S_0 = 3)$ which is given by $P_{31} = .1$.
@@ -463,6 +542,10 @@ possible values of $S_1$. In particular, we compute
 &= 0.26.
 ```
 
+[Continue](btn:next)
+
+---
+> id: step-16
 
 The third question in the exercise above alludes to an interesting observation.
 Note that we could have replaced the class of our parents with some class
@@ -499,6 +582,11 @@ two steps is the $(i,j)$th entry of the matrix $P^2$.
 This observation suggests that the probability of transitioning from state $i$
 to step $j$ in $m$ steps is given by the $(i,j)$th entry of the matrix $P^m$.
 This is proved below.
+
+[Continue](btn:next)
+
+---
+> id: step-17
 
 ::: .theorem
 **Theorem** ($m$-step transition probabilities)
@@ -537,6 +625,11 @@ then from state $k$ to state $j$ in one step. Thus we have
 &= P^{m+1}_{ij}.
 ```
 
+[Continue](btn:next)
+
+---
+> id: step-18
+
 ::: .exercise
 **Exercise**
 
@@ -544,6 +637,11 @@ Consider a gambler's ruin chain with $N = 5$ and $p = .3$ Assuming you start
 with \$2, what is the probability you will have \$5 after 6 games? What is
 the probability you will have \$0 after 6 plays?
 :::
+
+[Continue](btn:next)
+
+---
+> id: step-19
 
 *Solution.* We first construct the transition matrix $P$ and then use this to
 construct the 6-step transition matrix:
@@ -574,6 +672,10 @@ $P^6_{36} = 0.04401$
 Similarly, the probability we will have \$0 after 6 turns is given by
 $P^6_{31} = 0.803845$.
 
+[Continue](btn:next)
+
+---
+> id: step-20
 
 There are many textbooks that discuss the theory of Markov chains and other
 stochastic processes in great detail and trying to summarize these concepts
@@ -677,6 +779,11 @@ function run_simulation(states, P, S0, Sf)
 end
 ```
 
+[Continue](btn:next)
+
+---
+> id: step-21
+
 Using the code above, we can simulate the gambler's ruin example to estimate
 the probability of having \$5 after 6 steps and starting with \$2 as follows:
 
@@ -702,6 +809,11 @@ mc_est = mean([run_fixed_simulation(states, P, 2, 6) ==5
 
 which outputs $\approx 0.0442$.
 
+[Continue](btn:next)
+
+---
+> id: step-22
+
 ::: .exercise
 **Exercise**
 
@@ -725,6 +837,11 @@ Using the code above, estimate the average time it takes for a first-year
 student to graduate or drop out.
 
 :::
+
+[Continue](btn:next)
+
+---
+> id: step-23
 
 *Solution.* The following block of code gives us the desired estimate:
 
@@ -764,7 +881,10 @@ trajectory $S_0, S_1, \ldots, S_{n-1}$ of the particle is the same as the
 distribution of $S_{n+1}$ given the current state $S_n$; in other words,
 the sequence $S_0, S_1, S_2, \ldots $ indeed exhibits the Markov property.
 
-Two examples of random walks are given below.
+[Continue](btn:next)
+
+---
+> id: step-24
 
 ::: .example
 **Example**
@@ -827,6 +947,11 @@ Again, we see that the particle has drifted in the direction of greater
 probability, in this case left.
 :::
 
+[Continue](btn:next)
+
+---
+> id: step-25
+
 ::: .example
 **Example**
 
@@ -858,6 +983,11 @@ the plot of the walks.
       img(src="images/symmetric_random_walks_2d_hist.svg")
 :::
 
+[Continue](btn:next)
+
+---
+> id: step-26
+
 The histograms above allude to an interesting question: if a particle begins
 at state $S_0$, will it ever return to that state? Moreover, what is the
 probability it will return to this state? Mathematically, we pose the following
@@ -875,6 +1005,11 @@ Markov chain.
 For ease of notation, we will assume $S_0 = 0 \in \mathbb{Z}^d$, that is,
 we will assume the particle starts at the origin and will study the recurrence
 or transience of this state.
+
+[Continue](btn:next)
+
+---
+> id: step-27
 
 Note that it is not immediately obvious how to compute $R$ as there are many
 ways in which the particle can return to the origin and we are not explicitly
@@ -897,6 +1032,11 @@ therefore given by
 &= \left(\sum_{n=0}^{\infty} \phi_n\right) - \phi_0 \\
 &= \beta - 1.
 ```
+
+[Continue](btn:next)
+
+---
+> id: step-28
 
 We now seek another equation for $\mathbb{N}$ as a function of $R$ so that we
 may relate $R$ and $\beta$ using the equation above. Note that if $N \geq 1$,
@@ -943,6 +1083,11 @@ If $\beta$ converges, then the particle
 |definitely will return to the origin]].
 
 :::
+
+[Continue](btn:next)
+
+---
+> id: step-29
 
 ::: .example
 **Example**
@@ -1023,6 +1168,11 @@ for three dimensions and higher, the origin is no longer recurrent. Showing
 this, however, is out of the scope of this course.
 :::
 
+[Continue](btn:next)
+
+---
+> id: step-30
+
 We can also use Monte Carlo methods to estimate quantities of interest in
 random walks. For example, to determine whether the origin is recurrent in
 a two-dimensional random walk, we may simulate many random walks and
@@ -1095,6 +1245,11 @@ recurrenceEstimate = particleReturned/numSimulations
 
 :::
 
+[Continue](btn:next)
+
+---
+> id: step-31
+
 Suppose we play a game where we can either win or lose \$1 with probability $p$
 and $1-p$, [respectively](gloss:respectively). Suppose further that we decide
 to stop playing the game when we either lose all of our
@@ -1109,6 +1264,11 @@ context of our problem, $\tau$ is the time when we have depleted our financial
 resources or have a total of \$A--whichever comes first. Now let
 $D = \\\{1,2,\ldots, A-1\\\}$. Then $\tau$ is called the **exit time** from
 the region $D$ and represents the first time the walk hits the boundary of $D$.
+
+[Continue](btn:next)
+
+---
+> id: step-32
 
 Since we are interested in computing the probability that we walk away with
 \$A, we would like to compute $\mathbb{P}(S_{\tau} = A)$. Assuming we start
@@ -1137,6 +1297,11 @@ U_k &= \mathbb{P}(S_\tau = A | S_0 = k) \\
 + \mathbb{P}(S_\tau = A | S_1 = k - 1)q \\
 &= pU_{k+1} + qU_{k-1}.
 ```
+
+[Continue](btn:next)
+
+---
+> id: step-33
 
 Note that we defined $U_k = \mathbb{P}(S_\tau = A | S_0 = k)$, which
 implies $U_{k+1} = \mathbb{P}(S_\tau = A | S_0 = k+1)$, but above in the
@@ -1179,6 +1344,11 @@ the system has a unique solution given by $u = M^{-1}b$. Solving the system
 above immediately gives us the probability of walking away from the game
 with \$A starting with any amount of money $k \in \\\{1,2,\ldots, A-1\\\}$
 as illustrated below.
+
+[Continue](btn:next)
+
+---
+> id: step-34
 
 ::: .example
 **Example**  
@@ -1232,10 +1402,20 @@ winning is close to 0.5, the probability we increase our wealth by \$100
 is still less than 2%!
 :::
 
+[Continue](btn:next)
+
+---
+> id: step-35
+
 We will now turn our attention to stochastic approximation with Markov chains.
 Let $S_0, S_1, S_2, \ldots$ be a time homogeneous Markov chain with finite
 state space  $\Omega = \\\{a_1, a_2, \ldots, a_L\\\}$. We will assume that $S_0$
 is chosen randomly based on some distribution over $\Omega$.
+
+[Continue](btn:next)
+
+---
+> id: step-36
 
 ::: .example
 **Example**  
@@ -1274,6 +1454,11 @@ long time, i.e., after it has "mixed," the distribution of a given step is
 uniform across all states. The distribution $\mu(a_i) = \frac{1}{4}$ for
 $i=1,2,3,4$ is said to be an **invariant measure** for the Markov chain in the
 example above.
+
+[Continue](btn:next)
+
+---
+> id: step-37
 
 To perform stochastic approximations with Markov chains, we will introduce a
 function $f: \Omega \to \mathbb{R}$ called a *payoff function*. Suppose we let a
@@ -1328,6 +1513,11 @@ Then $\mu$ is the unique invariant measure of $P$ and we have that
 ```
 :::
 
+[Continue](btn:next)
+
+---
+> id: step-38
+
 ::: .example
 **Example**
 
@@ -1347,6 +1537,11 @@ Suppose $P$ is a symmetric transition probability matrix such that there exists
 $k \in \mathbb{N}$ satisfying $P^k_{ij} > 0$ for all $i,j$. Then the uniform
 distribution over the state space is an invariant measure for $P$
 [[true|flase]].
+
+[Continue](btn:next)
+
+---
+> id: step-39
 
 Our study of invariant measures and Markov chains allows us to estimate
 expressions of the form $\sum_{l=1}^L f(a_l)\mu(a_l)$. This is just a finite
@@ -1385,6 +1580,11 @@ estimate $\sum_{l=1}^L f(a_i)\mu(a_i)$. As mentioned in the previou section,
 our discussion here will extend to the continuous setting which will allow
 us to estimate integrals.
 
+[Continue](btn:next)
+
+---
+> id: step-40
+
 If a given Markov chain has an invariant measure, then it is unique. However,
 given an invariant measure, there may be multiple Markov chains with this
 invariant measure. Here we will restrict our attention to Markov chains
@@ -1401,6 +1601,10 @@ called the "proposal distribution." We will use the notation
 $Q(a_i, a_j) = \mathbb{P}(S_1 = a_j | S_0 = a_i)$, that is,
 $Q(a_i,a_j)$ is the probability of going from state $a_i$ to $a_j$ in one step.
 
+[Continue](btn:next)
+
+---
+> id: step-41
 
 After choosing $S_0 \in \Omega$, either deterministically or probabilistically,
 the Metropolis-Hastings algorithm produces the states $S_{k+1}, k \geq 0$
@@ -1440,6 +1644,11 @@ increases. This is favorable because this means that state $Y$ is difficult to
 reach and we would like to visit rare states as this leads to a larger state
 exploration.
 
+[Continue](btn:next)
+
+---
+> id: step-42
+
 We claim that the transition probability matrix of the Markov chain generated
 by the Metropolis Hastings algorithm is given by
 
@@ -1449,6 +1658,11 @@ P_{ij} = P(a_i, a_j) = \alpha(a_i, a_j)Q(a_i, a_j) +
 ```
 
 We justify this claim below.
+
+[Continue](btn:next)
+
+---
+> id: step-43
 
 First suppose that $i \neq j$. Then to go from state $a_i$ to state $a_j$, the
 Metropolis Hastings algorithm first needs to propose state $a_j$, which occurs
@@ -1462,6 +1676,11 @@ P_{ij} &= \mathbb{P}(\textrm{accept } a_j, \textrm{propose } a_j|
      \textrm{chain is at } a_i)\mathbb{P}(\textrm{propose } a_j|\textrm{chain is at } a_i) \\
 &= \alpha(a_i, a_j)Q(a_i, a_j).
 ```
+
+[Continue](btn:next)
+
+---
+> id: step-44
 
 Now suppose that $i=j$. Then to go from state $a_i$ to state $a_i$, there are
 two possible cases:
@@ -1497,6 +1716,11 @@ Metropolis-Hastings algorithm is given by:
 P_{ij} = P(a_i, a_j) = \alpha(a_i, a_j)Q(a_i, a_j) +
 \left[\sum_{l=1}^L (1- \alpha(a_i,a_l))Q(a_i, a_l)\right]\mathbf{1}_{i=j}.
 ```
+
+[Continue](btn:next)
+
+---
+> id: step-45
 
 With the transition probability matrix at hand, we now show that it has
 invariant measure $\mu$ by showing that $P$ satisfies the detailed balance
@@ -1594,6 +1818,11 @@ so we see that the detailed balance theorem holds in this case.
 We have now shown that the detailed balance theorem holds for $P$ so $\mu$
 is indeed the invariant measure for $P$.
 
+[Continue](btn:next)
+
+---
+> id: step-46
+
 We will now extend the discrete Metropolis-Hastings algorithm to the continuous
 setting. We will replace the discrete distribution $\mu$ with the density
 $\rho: \mathbb{R}^d \to [0, \infty)$ and the states
@@ -1603,6 +1832,11 @@ of the form
 \int_{\mathbb{R}^d} f(x)\rho(x)dx
 ```
 for arbitrary function $f: \mathbb{R}^d \to \mathbb{R}$.
+
+[Continue](btn:next)
+
+---
+> id: step-47
 
 Recall that in the discrete setting, the proposal distribution $Q(a_i,a_j)$
 gave us the probability of transitioning from state $a_i$ to state $a_j$
@@ -1647,6 +1881,11 @@ $\alpha(S_k,Y) = \textrm{min}
 \left\\\{
     1, \frac{\rho(Y)}{\rho(S_k)}
 \right\\\}$.
+
+[Continue](btn:next)
+
+---
+> id: step-48
 
 ::: .example
 **Example**  
@@ -1797,3 +2036,221 @@ to 2.
 
 In the example above, a small value of $b$ would lead to
 [[more proposal acceptances|more proposal rejections]].
+
+[Continue](btn:next)
+
+---
+> id: step-49
+
+::: .example
+**Example**  
+
+This is our first example of MCMC applied to the estimation of integrals. We
+will estimate the following integral
+
+``` latex
+\int_{-\infty}^{\infty} |\cos(x)|e^{-x^2}dx.
+```
+
+We will let $f(x) = |\cos(x)|$. Recall that the Monte Carlo estimator
+$\frac{1}{n}\sum_{k=1}^n f(S_k)$ converges to $\int_{\mathbb{R}}f(x)\rho(x)dx$
+so we need to specify $\rho(x)$ to mimic the structure of the integral of
+interest. We will choose $\rho(x) = \frac{1}{\sqrt{2\pi
+    \left(\frac{1}{\sqrt{2}}\right)^2}}e^{-
+        \frac{x^2}{2\left(\frac{1}{\sqrt{2}}\right)^2}} =
+        \frac{1}{\sqrt{\pi}}e^{-x^2}$.
+
+With this choice we will have     
+
+``` latex
+\lim_{n\to \infty} \sqrt{\pi} \frac{1}{n}\sum_{i=1}^n f(S_k) &=
+\int_{-\infty}^{\infty} |\cos(x)|e^{-x^2}dx.
+```
+
+We will recycle the code from the previous example to obtain the samples $S_k$
+according to the new $\rho(x)$ and then compute
+$\frac{\sqrt{\pi}}{n}\sum_{i=1}^n f(S_k)$. The code used is given below:
+
+``` julia
+using Distributions
+
+# ρ(x) target density
+ρ(x) = 1/sqrt(π)*exp(-x^2)
+
+#=
+Implementation of random walk sampler Metropolis-Hastings.
+Inputs:
+- n: The number of states to return
+- b: The standard deviation of the normal distribution used in the proposal
+     distribution
+Outputs:
+- Returns an array of length n denoting states S_i in Metropolis-Hastings alg.
+=#
+function metropolis_hastings(n, b)
+
+    # Samples
+    samples = zeros(n)
+    samples[1] = rand()
+
+    # Conditional Q distribution
+    d = Normal(0,b)
+
+    acceptances = 0
+
+    for i=2:n
+        # Propose Y
+        ξ = rand(d)
+        Y = samples[i-1] + ξ
+
+        # Acceptance probability
+        α = min(1, ρ(Y)/ρ(samples[i-1]))
+
+        # Next state
+        if rand() < α
+            samples[i] = Y
+        else
+            samples[i] = samples[i-1]
+        end
+    end
+
+    return samples
+end
+
+# Obtain 1000 samples with b = 2
+S = metropolis_hastings(10000,2)
+
+# f(x) in integrand
+f(x) = abs(cos(x))
+
+# Estimate integral
+int_estimate = sqrt(π)*mean([f(x) for x in S])
+```
+
+The true value of the integral is 1.40237 and our estimate after 10000 samples
+is 1.3954.
+
+Now suppose we would like to estimate the following integral:
+
+``` latex
+\int_{-\frac{1}{2}}^2 |\cos(x)|e^{-x^2}dx.
+```
+
+We can simply change $f(x) = |\cos(x)|\mathbf{1}_{-\frac{1}{2} < x < 2}$ and
+repeat the procedure above. Doing this yields an estimate of approximately
+1.15 after 10000 samples while the true value of the integral is approximately
+1.14.
+:::
+
+
+We previously alluded to the time it takes for a chain obtained from the
+Metropolis-Hastings algorithm to "mix." Indeed, the initialization bias may
+influence the error of our estimate and it is often good practice to ignore
+the first few states of the chain and use the later states in our estimator.
+Mathematically, we choose $M$ sufficiently large and our MCMC estimator becomes
+
+``` latex
+\frac{1}{n - M}\sum_{k=M+1}^{n} f(S_k).
+```
+
+[Continue](btn:next)
+
+---
+> id: step-50
+
+::: .example
+**Example**  
+
+Here we will estimate the following double integral:
+
+``` latex
+\int_0^1 \int_0^2 e^{\sin(xy)}dydx.
+```
+
+We let $f(x,y) = e^{\sin(xy)}$. We need the support of $\rho$ to contain
+the domain of integration. Moreover, since we are considering a double integral,
+we need $\rho: \mathbb{R}^2 \to \mathbb{R}$. A natural choice is to consider
+the joint density of a uniform distribution on $[0,1]$ and another uniform
+distribution on $[0,2]$ to have $\rho(x,y) = \frac{1}{2}$. Moreover, the
+random walk sampler with a normal proposal distribution will be modified so that $S_{k+1} = S_k + \xi$ where $\xi \sim N(0,b^2 I)$ and $I$ is the
+$2 \times 2$ identity matrix; in other words, $\xi$ is sampled from a
+bivariate normal distribution with covariance matrix $b^2I$. The MCMC estimator
+will there converge to
+
+``` latex
+\frac{1}{n}\sum_{k=1}^n f(S_k) \to
+\frac{1}{2}\int_0^1 \int_0^2 e^{\sin(xy)}dydx.
+```
+
+For some $M$ sufficiently large, our estimator for the integral will
+therefore be
+
+``` latex
+\frac{2}{M - n}\sum_{k=M+1}^n f(S_k).
+```
+
+The Julia code below implements this:
+
+``` julia
+using Distributions
+
+# ρ(x,y) target density
+ρ(x,y) = (0 < x < 1) && (0 < y < 2) ? 1/2 : 0
+
+#=
+Implementation of random walk sampler Metropolis-Hastings.
+Inputs:
+- n: The number of states to return
+- b: The standard deviation of the normal distribution used in the proposal
+     distribution
+Outputs:
+- Returns an array of length n denoting states S_i in Metropolis-Hastings alg.
+=#
+function metropolis_hastings(n, b)
+
+    # Samples
+    samples = zeros(n,2)
+    samples[1,:] = rand(2)
+
+    # Conditional Q distribution
+    d = Normal(0,b)
+
+    acceptances = 0
+
+    for i=2:n
+        # Propose Y
+        ξx = rand(d)
+        ξy = rand(d)
+        X = samples[i-1,1] + ξx
+        Y = samples[i-1,2] + ξy
+
+        # Acceptance probability
+        α = min(1, ρ(X,Y)/ρ(samples[i-1,1],samples[i-1,2]))
+
+        # Next state
+        if rand() < α
+            samples[i,1] = X
+            samples[i,2] = Y
+        else
+            samples[i,:] = samples[i-1,:]
+        end
+    end
+
+
+    return samples
+end
+
+# Obtain 10000 samples with b = 1
+S = metropolis_hastings(10000,1)
+
+# f(x) in integrand
+f(x,y) = exp(sin(x*y))
+
+# Estimate integral
+M = 1000
+int_estimate = 2*mean([f(x,y) for (x,y) in
+zip(S[M:end,1], S[M:end,2])])
+```
+
+The true value of the integral is approximately 3.218 while our estimator
+yields 3.214.
+:::
