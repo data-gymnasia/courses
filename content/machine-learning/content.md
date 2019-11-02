@@ -2037,7 +2037,7 @@ The core idea of adaptive boosting is to *weight* observations in the training o
 ---
 > id: step-adaboost-example
 
-For simplicity, let's consider a binary classification problem with $n$ training observations $(\mathbf{X}_1, Y_1), \ldots, (\mathbf{X}_n, Y_n)$. Let's suppose that the $\mathbf{X}_i$'s are points in the plane, while the $Y_i$'s are elements of $\{-1,+1\}$. 
+For simplicity, let's consider a binary classification problem with $n$ training observations $(\mathbf{X}_1, Y_1), \ldots, (\mathbf{X}_n, Y_n)$. Let's suppose that the $\mathbf{X}_i$'s are points in the plane, while the $Y_i$'s are elements of $\\{-1,+1\\}$. 
 
 We begin by training a decision tree on the training data in the usual way, and we call the resulting predictor $h_1$. We associate $h_1$ with a value $\alpha_1$ which indicates $h_1$'s overall effectiveness: it's defined to be $\frac{1}{2}\log\left(\frac{1-\epsilon_1}{\epsilon_1}\right)$, where $\epsilon_1$ is the proportion of misclassified training data. The relationship between $\epsilon$ and $\alpha$ is shown here (running the cell twice is recommended):
 
