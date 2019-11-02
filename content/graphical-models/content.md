@@ -246,7 +246,7 @@ p(x_1|x_2,\ldots,x_n,y_1,\ldots,y_n)p(x_2,\ldots,x_n,y_1,\ldots,y_n) \\
 &= p(x_1|y_1)p(x_2|y_2)\cdots p(x_n|y_n)p(y_1)p(y_2|y_2)\cdots p(y_n|y_{n-1}).
 ```
 
-Thus, for $n=5$, the variables $Y_1, Y_2, \ldots, Y_n, X_1, X_2, \ldots, X_n$
+Thus, for $n=4$, the variables $Y_1, Y_2, \ldots, Y_n, X_1, X_2, \ldots, X_n$
 respect the following graph:
 
     figure
