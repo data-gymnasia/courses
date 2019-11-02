@@ -1,0 +1,370 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     13973,        362]
+NotebookOptionsPosition[     13251,        343]
+NotebookOutlinePosition[     13586,        358]
+CellTagsIndexPosition[     13543,        355]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Options", "[", "svgExport", "]"}], "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "\"\<CommentString\>\"", "\[Rule]", "\"\<Created by Mathematica\>\""}], 
+     ",", 
+     RowBox[{"AspectRatio", "\[Rule]", "Automatic"}], ",", 
+     RowBox[{"Background", "\[Rule]", "Automatic"}]}], "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Clear", "[", "svgExport", "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"svgExport", "[", 
+    RowBox[{"name_String", ",", "gr_", ",", 
+     RowBox[{"opts", ":", 
+      RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"svgCode", "=", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"StringReplace", "[", 
+          RowBox[{
+           RowBox[{"ExportString", "[", 
+            RowBox[{
+             RowBox[{"First", "@", 
+              RowBox[{"ImportString", "[", 
+               RowBox[{
+                RowBox[{"ExportString", "[", 
+                 RowBox[{"gr", ",", "\"\<PDF\>\"", ",", 
+                  RowBox[{"Background", "\[Rule]", 
+                   RowBox[{"OptionValue", "[", "Background", "]"}]}]}], "]"}],
+                 ",", "\"\<PDF\>\""}], "]"}]}], ",", "\"\<SVG\>\"", ",", 
+             RowBox[{"Background", "\[Rule]", 
+              RowBox[{"OptionValue", "[", "Background", "]"}]}]}], "]"}], ",", 
+           RowBox[{"\"\<<svg \>\"", "\[Rule]", 
+            RowBox[{"\"\<<svg \>\"", "<>", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"OptionValue", "[", "AspectRatio", "]"}], "===", 
+                "Full"}], ",", "\"\< preserveAspectRatio='none' \>\"", ",", 
+               "\"\< \>\""}], "]"}]}]}]}], "]"}], "&"}], "[", 
+        RowBox[{"ToString", "/@", 
+         RowBox[{"ImageDimensions", "[", 
+          RowBox[{"Rasterize", "[", 
+           RowBox[{
+            RowBox[{"Show", "[", 
+             RowBox[{"gr", ",", 
+              RowBox[{"ImagePadding", "\[Rule]", "0"}]}], "]"}], ",", 
+            "\"\<Image\>\""}], "]"}], "]"}]}], "]"}]}], "}"}], ",", 
+     RowBox[{"Export", "[", 
+      RowBox[{"name", ",", 
+       RowBox[{"StringReplace", "[", 
+        RowBox[{"svgCode", ",", 
+         RowBox[{
+          RowBox[{
+          "RegularExpression", "[", "\"\<(<svg\\\\b[^>]*>)\>\"", "]"}], 
+          "\[RuleDelayed]", 
+          RowBox[{
+          "\"\<$1\>\"", "<>", "\"\<\\n<!-- ***Exported Comment***\\n\>\"", "<>", 
+           RowBox[{"OptionValue", "[", "\"\<CommentString\>\"", "]"}], "<>", 
+           "\"\<\\n***Exported Comment*** -->\>\""}]}]}], "]"}], ",", 
+       "\"\<Text\>\""}], "]"}]}], "]"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"edges", " ", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"1", "<->", "2"}], ",", 
+     RowBox[{"1", "<->", "3"}], ",", 
+     RowBox[{"3", "<->", "4"}], ",", 
+     RowBox[{"3", "<->", "5"}], ",", 
+     RowBox[{"5", "<->", "6"}], ",", 
+     RowBox[{"5", "<->", "7"}], ",", 
+     RowBox[{"7", "<->", "8"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"coords", " ", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", 
+       RowBox[{"-", "1"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", 
+       RowBox[{"-", "1"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", 
+       RowBox[{"-", "1"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"3", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"3", ",", 
+       RowBox[{"-", "1"}]}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"names", " ", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+    "1", ",", "1", ",", "2", ",", "2", ",", "3", ",", "3", ",", "4", ",", 
+     "4"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Graph", "[", 
+  RowBox[{"edges", ",", " ", 
+   RowBox[{"VertexCoordinates", "\[Rule]", "coords"}], ",", 
+   RowBox[{"VertexSize", "\[Rule]", "Medium"}], ",", 
+   RowBox[{"ImageSize", "\[Rule]", "400"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"VertexLabels", "\[Rule]", 
+    RowBox[{"Thread", "[", 
+     RowBox[{
+      RowBox[{"Range", "[", "8", "]"}], "\[Rule]", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Placed", "[", 
+          RowBox[{
+           RowBox[{"Style", "[", 
+            RowBox[{"#", ",", "12", ",", "\"\<Panel\>\"", ",", 
+             RowBox[{"Background", "\[Rule]", "None"}]}], "]"}], ",", 
+           "Center"}], "]"}], "&"}], "/@", "names"}], ")"}]}], "]"}]}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.781663309655431*^9, 3.781663542052844*^9}, {
+  3.7816642263311033`*^9, 3.781664227598055*^9}},
+ CellLabel->"In[2]:=",ExpressionUUID->"5edab5b5-55cf-42a4-822a-3629425dce9e"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.781664234880335*^9, 
+  3.781664234894458*^9}},ExpressionUUID->"4b43c08f-697d-47ab-bfc7-\
+3aab97edb059"],
+
+Cell[BoxData[
+ GraphicsBox[{InsetBox[
+    GraphicsBox[{
+      {Hue[0.6, 0.7, 0.5], Opacity[0.7], 
+       LineBox[{{{0., 0.}, {0., -1.}}, {{0., 0.}, {1., 0.}}, {{1., 0.}, {
+        1., -1.}}, {{1., 0.}, {2., 0.}}, {{2., 0.}, {2., -1.}}, {{2., 0.}, {
+        3., 0.}}, {{3., 0.}, {3., -1.}}}]}, 
+      {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[
+       0.7]}], {DiskBox[{0., 0.}, 0.1], InsetBox[
+         StyleBox["1", "Panel",
+          StripOnInput->False,
+          FontSize->12,
+          Background->None], {0., 0.},
+         BaseStyle->"Graphics"]}, {DiskBox[{0., -1.}, 0.1], InsetBox[
+         StyleBox["1", "Panel",
+          StripOnInput->False,
+          FontSize->12,
+          Background->None], {0., -1.},
+         BaseStyle->"Graphics"]}, {DiskBox[{1., 0.}, 0.1], InsetBox[
+         StyleBox["2", "Panel",
+          StripOnInput->False,
+          FontSize->12,
+          Background->None], {1., 0.},
+         BaseStyle->"Graphics"]}, {DiskBox[{1., -1.}, 0.1], InsetBox[
+         StyleBox["2", "Panel",
+          StripOnInput->False,
+          FontSize->12,
+          Background->None], {1., -1.},
+         BaseStyle->"Graphics"]}, {DiskBox[{2., 0.}, 0.1], InsetBox[
+         StyleBox["3", "Panel",
+          StripOnInput->False,
+          FontSize->12,
+          Background->None], {2., 0.},
+         BaseStyle->"Graphics"]}, {DiskBox[{2., -1.}, 0.1], InsetBox[
+         StyleBox["3", "Panel",
+          StripOnInput->False,
+          FontSize->12,
+          Background->None], {2., -1.},
+         BaseStyle->"Graphics"]}, {DiskBox[{3., 0.}, 0.1], InsetBox[
+         StyleBox["4", "Panel",
+          StripOnInput->False,
+          FontSize->12,
+          Background->None], {3., 0.},
+         BaseStyle->"Graphics"]}, {DiskBox[{3., -1.}, 0.1], InsetBox[
+         StyleBox["4", "Panel",
+          StripOnInput->False,
+          FontSize->12,
+          Background->None], {3., -1.},
+         BaseStyle->"Graphics"]}}},
+     Background->None,
+     FormatType->TraditionalForm,
+     FrameTicks->None,
+     ImageMargins->0.,
+     ImageSize->400], {0., 0.019199999999997885}, ImageScaled[{0., 0.}], {400., 160.},
+    
+    ContentSelectable->True], 
+   InsetBox["Y", {-7.238281250000213, 136.6171875}, {Left, Baseline},
+    Alignment->{Left, Top}], InsetBox[
+    StyleBox[
+     TagBox["X",
+      "RawBoxes"],
+     FontSlant->"Italic",
+     Background->GrayLevel[1.]], {-4.394531250000213, 18.27734375}, {
+    Left, Baseline},
+    Alignment->{Left, Top}], 
+   InsetBox["\[IndentingNewLine]", Scaled[{0.5, 0.5}], Center]},
+  AspectRatio->0.37229933011570726`,
+  Background->None,
+  ContentSelectable->True,
+  ImageMargins->{{0., 12.55078125}, {15.47265625, 6.46484375}},
+  ImagePadding->{{0., 0.}, {0., 0.}},
+  ImageSize->{429.76171875, 160.},
+  PlotRange->{{-29.761718750000227`, 400.}, {0., 160.}},
+  PlotRangePadding->Automatic]], "Input",
+ CellChangeTimes->{{3.781664114491489*^9, 3.7816641144999533`*^9}, {
+   3.781664159041336*^9, 3.781664185755108*^9}, 3.781664267212266*^9, 
+   3.7816645598247833`*^9},ExpressionUUID->"02f151f0-6b1c-4300-8e48-\
+aa1c34187250"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"svgExport", "[", 
+  RowBox[{
+  "\"\</Users/elvis/Documents/DSI/courses/content/stochastic-approximations/\
+images/hmm_graph_example.svg\>\"", ",", 
+   GraphicsBox[{InsetBox[
+      GraphicsBox[{
+        {Hue[0.6, 0.7, 0.5], Opacity[0.7], 
+         LineBox[{{{0.00442159951362453, -0.003789942440250993}, {
+          0.00442159951362453, -1.0037899424402512`}}, {{
+          0.00442159951362453, -0.003789942440250993}, {
+          1.0044215995136248`, -0.003789942440250993}}, {{
+          1.0044215995136248`, -0.003789942440250993}, {
+          1.0044215995136248`, -1.0037899424402512`}}, {{
+          1.0044215995136248`, -0.003789942440250993}, {
+          2.004421599513625, -0.003789942440250993}}, {{
+          2.004421599513625, -0.003789942440250993}, {
+          2.004421599513625, -1.0037899424402512`}}, {{
+          2.004421599513625, -0.003789942440250993}, {
+          3.004421599513625, -0.003789942440250993}}, {{
+          3.004421599513625, -0.003789942440250993}, {
+          3.004421599513625, -1.0037899424402512`}}}]}, 
+        {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[
+         0.7]}], {DiskBox[{0., 0.}, 0.1], InsetBox[
+           StyleBox["1", "Panel",
+            StripOnInput->False,
+            FontSize->12,
+            Background->None], {0., 0.},
+           BaseStyle->"Graphics"]}, {DiskBox[{0., -1.}, 0.1], InsetBox[
+           StyleBox["1", "Panel",
+            StripOnInput->False,
+            FontSize->12,
+            Background->None], {0., -1.},
+           BaseStyle->"Graphics"]}, {DiskBox[{1., 0.}, 0.1], InsetBox[
+           StyleBox["2", "Panel",
+            StripOnInput->False,
+            FontSize->12,
+            Background->None], {1., 0.},
+           BaseStyle->"Graphics"]}, {DiskBox[{1., -1.}, 0.1], InsetBox[
+           StyleBox["2", "Panel",
+            StripOnInput->False,
+            FontSize->12,
+            Background->None], {1., -1.},
+           BaseStyle->"Graphics"]}, {DiskBox[{2., 0.}, 0.1], InsetBox[
+           StyleBox["3", "Panel",
+            StripOnInput->False,
+            FontSize->12,
+            Background->None], {2., 0.},
+           BaseStyle->"Graphics"]}, {DiskBox[{2., -1.}, 0.1], InsetBox[
+           StyleBox["3", "Panel",
+            StripOnInput->False,
+            FontSize->12,
+            Background->None], {2., -1.},
+           BaseStyle->"Graphics"]}, {DiskBox[{3., 0.}, 0.1], InsetBox[
+           StyleBox["4", "Panel",
+            StripOnInput->False,
+            FontSize->12,
+            Background->None], {3., 0.},
+           BaseStyle->"Graphics"]}, {DiskBox[{3., -1.}, 0.1], InsetBox[
+           StyleBox["4", "Panel",
+            StripOnInput->False,
+            FontSize->12,
+            Background->None], {3., -1.},
+           BaseStyle->"Graphics"]}}},
+       Background->None,
+       FormatType->TraditionalForm,
+       FrameTicks->None,
+       ImageMargins->0.,
+       ImagePadding->{{0., 0.}, {0., 0.}},
+       ImageSize->400,
+       PlotRange->{{-0.16666666666666669`, 
+        3.166666666666667}, {-1.1640000000000001`, 0.164}},
+       PlotRangePadding->Automatic], {0., 0.019199999999997885}, 
+      ImageScaled[{0., 0.}], {400., 160.},
+      ContentSelectable->True], 
+     InsetBox["Y", {-7.238281250000213, 136.6171875}, {Left, Baseline},
+      Alignment->{Left, Top}], InsetBox[
+      StyleBox[
+       TagBox["X",
+        "RawBoxes"],
+       FontSlant->"Italic",
+       Background->GrayLevel[1.]], {92.94635038536002, 74.36470192324776}, {
+      Left, Baseline},
+      Alignment->{Left, Top}]},
+    AspectRatio->0.37229933011570726`,
+    Background->None,
+    ContentSelectable->True,
+    ImageMargins->{{0., 12.55078125}, {9.625, 6.46484375}},
+    ImagePadding->{{0., 0.}, {0., 0.}},
+    ImageSize->{444.47265625, 164.91015625},
+    PlotRange->{{-29.761718750000227`, 400.}, {0., 160.}},
+    PlotRangePadding->Automatic], ",", " ", 
+   RowBox[{"AspectRatio", "\[Rule]", "Full"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.7816642374649563`*^9, 3.78166424912759*^9}, {
+  3.78166431008105*^9, 3.7816643287281713`*^9}, {3.781664526692107*^9, 
+  3.78166454154359*^9}},
+ CellLabel->"In[10]:=",ExpressionUUID->"4b0dc1c1-0433-4618-9cf5-cc14ddd91492"],
+
+Cell[BoxData["\<\"/Users/elvis/Documents/DSI/courses/content/stochastic-\
+approximations/images/hmm_graph_example.svg\"\>"], "Output",
+ CellChangeTimes->{3.781664544552424*^9},
+ CellLabel->"Out[10]=",ExpressionUUID->"9e109272-257f-456f-9460-8edf03ed7bc3"]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 4960, 131, 514, "Input",ExpressionUUID->"5edab5b5-55cf-42a4-822a-3629425dce9e"],
+Cell[5521, 153, 152, 3, 30, InheritFromParent,ExpressionUUID->"4b43c08f-697d-47ab-bfc7-3aab97edb059"],
+Cell[5676, 158, 3080, 77, 195, InheritFromParent,ExpressionUUID->"02f151f0-6b1c-4300-8e48-aa1c34187250"],
+Cell[CellGroupData[{
+Cell[8781, 239, 4196, 96, 299, "Input",ExpressionUUID->"4b0dc1c1-0433-4618-9cf5-cc14ddd91492"],
+Cell[12980, 337, 255, 3, 56, "Output",ExpressionUUID->"9e109272-257f-456f-9460-8edf03ed7bc3"]
+}, Open  ]]
+}
+]
+*)
+
