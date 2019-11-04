@@ -2553,7 +2553,7 @@ Consider a sum $X$ of 10 independent Bernoulli random variables with success pro
 ``` latex
 
 \mathbb{E}[X] &= \mathbb{E}[X_1] + \mathbb{E}[X_2] + \cdots + \mathbb{E}[X_{10}] & \text{(Linearity)} \\
-&= \mathbb{E}[X_1]  = 0.36 & \text{(Identical distribution)}
+&= \mathbb{E}[X_1]  = 3.6 & \text{(Identical distribution)}
 
 ```
  and 
