@@ -250,5 +250,154 @@ Thus, for $n=4$, the variables $Y_1, Y_2, \ldots, Y_n, X_1, X_2, \ldots, X_n$
 respect the following graph:
 
     figure
-      img(src="images/hmm_graph_example.svg")
+      img(src="images/hmm_graph_example_2.svg")
+:::
+
+
+As the next example illustrates, a collection of random variables may respect
+multiple graphs.
+
+::: .example
+**Example**  
+
+Consider the joint distribution of the random variables
+$X_V = X_1, X_2, \ldots, X_5$
+given by
+
+``` latex
+p_V(x_V) &= \frac{1}{Z}x_3^{-x_5}x_1x_2x_3e^{x_1+x_4}.
+```
+
+The joint distribution can be factored into the product of clique potentials
+in multiple ways, defining different graphs.
+
+* Consider the following clique potentials:
+``` latex
+\phi_{123}(x_1,x_2,x_3) &= x_1x_2x_3 \\
+\phi_{35}(x_3,x_5) &= x_3^{-x_5} \\
+\phi_{14}(x_1,x_4) &= e^{x_1 + x_4}
+```
+
+and $\phi_C(x_C) = 1$ for all other $C \in \mathcal{C}(G)$. With these
+definitions, we have $p_V(x_V) = \frac{1}{Z} \prod_{c \in \mathcal{C}(G)} =
+\phi_C(x_C)$.
+
+Then $X_V$ respects the following graph:
+
+    figure
+      img(src="images/non_unique_graph_ex_1.svg")
+
+* Now consider these clique potentials:
+``` latex
+\phi_{35}(x_3,x_5) &= x_3^{-x_5} \\
+\phi_1(x_1) &= x_1e^{x_1} \\
+\phi_2(x_2) &= x_2 \\
+\phi_3(x_3) &= x_3 \\
+\phi_4(x_4) &= e^{x_4}
+```
+
+and $\phi_C(x_C) = 1$ for all other $C \in \mathcal{C}(G)$.
+
+Then $X_V$ respects the following graph:
+
+    figure
+      img(src="images/non_unique_graph_ex_2.svg")      
+:::
+
+The example above alludes to several important observations:
+
+1. A collection of random variables may respect multiple graphs. In fact, if
+$X_V$ respects the graph $G = (V,E)$ then $X_V$ also respects $G' = (V,E')$
+where $E \subseteq E'$. In words, if $X_V$ respects $G$, then we can add more
+edges to $G$ and $X_V$ will still respect this graph.  
+
+2. A clique potential $\phi_C(x_C)$ is not necessarily a probability
+distribution (it need not integrate to 1), but is still nonnegative over its
+state space.
+
+The first observation above suggests that if $X_V$ respects a graph $G$, it may
+also respect a (smaller) graph with some edges removed. This implies the
+existence of a graph with the fewest number of edges, i.e., if any edge is
+removed, then $X_V$ will no longer respect the graph.
+
+::: .definition
+**Definition** (Minimal Graph)
+
+Let $G$ be a graph respected by the collection $X_V$. Then we say that $G$ is
+a minimal graph for $X_V$ if for any $E' \subset E$, $X_V$ does not respect the
+graph $G' = (V,E')$.
+:::
+
+::: .exercise
+**Exercise**
+
+Consider the random variables $X_1, X_2, X_3, X_4, X_5, X_6$ with joint
+probability distribution function
+
+``` latex
+p_V(x_V) &= \frac{1}{Z} x_1^{x_2}x_2^{x_3}x_3^{x_4}x_4^{x_1}x_5x_6.
+```
+
+Find the minimal graph respected by $X_V$.
+:::
+
+<!-- Break  -->
+
+*Solution.* We seek the graph with the fewest number of edges that is still
+respected by $X_V$. Note that terms in $p_V$ such as $x_1^{x_2}$
+cannot be split into products of functions depending on only $x_1$ and $x_2$,
+so $\\\{1,2\\\}$ must be a clique of any graph respected by $X_V$. The minimal
+graph will therefore have cliques
+$\\\{1,2\\\},\\\{2,3\\\},\\\{3,4\\\},\\\{1,4\\\}$. To account for the term
+$x_5x_6$, we can either consider the clique $\\\{5,6\\\}$ with the clique
+potential $\phi_{56}(x_5,x_6)$ which would add an edge to the graph, or simply
+let $\phi_5(x_5) = x_5$ and $\phi_6(x_6) = x_6$ which would not add an extra
+edge to the graph. Hence, the minimal graph for $X_V$ is given by:
+
+    figure
+      img(src="images/minimal_graph_ex_1.svg")
+
+<!-- Break  -->
+
+A minimal graph may not necessarily be unique; however, when $p_V(x_V)$
+satisfies some conditions, the minimal graph is indeed unique.
+
+::: .theorem
+**Theorem**  (Hammersley-Clifford corollary)
+
+Let $\Omega_v$ be the state space of random variable $X_v$ and $\Omega_V$ be
+the set of all tuples $(x_v)_{v \in V}$ where $x_v \in \Omega_v$
+for every $v \in V$. Then if $p_V(x_V) > 0$ for all $x_V \in \Omega_V$, the
+collection $X_V$ has a unique minimal graph.
+
+:::
+
+
+---
+> id: rules
+## GRF Rules
+$\_{ }$ <!-- Added for Atom text rendering -->
+The point of representing a collection of random variables is to enclose the
+dependence structure of the random variables, in particular the *conditional
+dependence* structure of the random variable.
+
+Recall the example in the previous section where we considered the joint
+distribution function
+$p_V(x_V) = \frac{1}{Z} x_1^{x_2}x_2^{x_3}x_3^{x_4}x_4^{x_1}x_5x_6$.
+We saw that because the term $x_1^{x_2}$ could not be factored into the product
+of two univariate functions of $x_1$ and $x_2$, there had to be an edge between
+the nodes in the graph representing these two variables. This may suggest that
+the variables $X_1$ and $X_2$ are not independent. However, this may not
+necessarily be the case. An edge between two nodes does not imply the
+connected nodes are dependent, nor does it imply that they are independent.
+Similarly, if there does not exist an edge between two nodes, the random
+variables they represent may either be dependent or independent.
+
+<!-- Break  -->
+
+::: .example
+**Example**  
+
+Here we show that an edge does not imply dependence.
+
 :::
