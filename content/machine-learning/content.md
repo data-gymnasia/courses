@@ -1,4 +1,4 @@
-
+' 
 # Machine Learning
 
 > id: intro
@@ -160,7 +160,7 @@ If $\mathcal{H}$ contains $G(\mathbf{x}) = \operatorname{argmax}_c\mathbb{P}(Y=c
 
 ::: .exercise
 **Exercise**  
-Find the target function for the misclassification loss in the case where $\mathcal{X} = \mathbb{R}$, $\mathcal{Y} = \{0,1\}$ and the probability mass on $\mathcal{X} \times \mathcal{Y}$ is spread out according to the **one**-dimensional density function 
+Find the target function for the misclassification loss in the case where $\mathcal{X} = \mathbb{R}$, $\mathcal{Y} = \\{0,1\\}$ and the probability mass on $\mathcal{X} \times \mathcal{Y}$ is spread out in the plane according to the **one**-dimensional density function 
 
 ``` latex
 f(x,y) = \begin{cases}
@@ -182,7 +182,7 @@ f(x,y) = \begin{cases}
 ---
 > id: one-dim-classification-example
 
-*Solution*. If $x$ is between 0 and 1, the target prediction function will return 0. If $x$ is between 2 and 3, the target predition function will return 1. If $x$ is betwen 1 and 2, then the more likely outcome is 0, so $r$ should return 0 for those values as well. 
+*Solution*. If $x$ is between 0 and 1, the target prediction function will return 0. If $x$ is between 2 and 3, the target prediction function will return 1. If $x$ is between 1 and 2, then the more likely outcome is 0, so $r$ should return 0 for those values as well. 
 
     pre(julia-executable)
       | 
@@ -1143,8 +1143,7 @@ Next, we define the loss function and minimize it:
       | C(β,xᵢ,yᵢ) = yᵢ*log(1/r(β,xᵢ))+(1-yᵢ)*log(1/(1-r(β,xᵢ)))
       | L(β) = sum(C(β,xᵢ,yᵢ) for (xᵢ,yᵢ) in observations)
       | β̂ = optimize(L,ones(3),BFGS()).minimizer
-      | r̂s = [r(β̂,[x,y]) for x=xs,y=ys]
-      | heatmap(xs,ys,r̂s)
+      | heatmap(xgrid,ygrid,(x,y)->r(β̂,[x,y]))
 
 
 We can see that the resulting heatmap looks quite similar to the actual regression function. 
@@ -1234,7 +1233,7 @@ Since the value of $3x + 2y + z$ is equal to $3(4) + 2(7) + 1(1) = 27$ at the po
 
 ::: .example
 **Example**  
-Find the distance from the hyperplane $\\{\mathbf{x} \in \mathbb{R}^n :  \boldsymbol{\beta} \cdot \mathbf{x} - \alpha = 0\\}$ to the point $\mathbf{x} \in \mathbb{R}^n$. 
+Find the distance from the hyperplane $\\{\mathbf{x} \in \mathbb{R}^n :  \boldsymbol{\beta} \cdot \mathbf{x} + \alpha = 0\\}$ to the point $\mathbf{x} \in \mathbb{R}^n$. 
 :::
 
 [Continue](btn:next)
@@ -1242,7 +1241,7 @@ Find the distance from the hyperplane $\\{\mathbf{x} \in \mathbb{R}^n :  \boldsy
 ---
 > id: step-svm-yperplane-solution
 
-*Solution*. Generalizing the idea we developed in the previous problem, we can say that $\boldsymbol{\beta}$ is the normal vector to the hyperplane, and moving $t$ units directly away from the hyperplane corresponds to adding $t|\boldsymbol{\beta}|$ to the value of $\boldsymbol{\beta} \cdot \mathbf{x} - \alpha$. Therefore, we can check the value of the function $\mathbf{x} \mapsto \boldsymbol{\beta} \cdot \mathbf{x} - \alpha$ at our point $\mathbf{x}$ and divide by $|\boldsymbol{\beta}|$ to find the distance from $\mathbf{x}$ to the plane. So our distance formula is $\frac{|\boldsymbol{\beta}\cdot \mathbf{x} - \alpha|}{|\boldsymbol{\beta}|}$. 
+*Solution*. Generalizing the idea we developed in the previous problem, we can say that $\boldsymbol{\beta}$ is the normal vector to the hyperplane, and moving $t$ units directly away from the hyperplane corresponds to adding $t|\boldsymbol{\beta}|$ to the value of $\boldsymbol{\beta}' \mathbf{x} + \alpha$. Therefore, we can check the value of the function $\mathbf{x} \mapsto \boldsymbol{\beta}' \mathbf{x} + \alpha$ at our point $\mathbf{x}$ and divide by $|\boldsymbol{\beta}|$ to find the distance from $\mathbf{x}$ to the plane. So our distance formula is $\frac{|\boldsymbol{\beta}' \mathbf{x} + \alpha|}{|\boldsymbol{\beta}|}$. 
 
 [Continue](btn:next)
 
@@ -1259,9 +1258,9 @@ Simulate data for a binary classification problem in the plane for which the two
 ---
 > id: step-solution-thickest-slab
 
-*Solution*. Suppose that the observations are $\\{(\mathbf{x}\_i,y\_i)\\}\_{i=1}^n$, where $y\_i \in \\{-1,1\\}$ for each $1 \leq i \leq n$. Let us describe the separating slab as $\\{\mathbf{x} \in \mathbb{R}^2 : -1 \leq \boldsymbol{\beta} \cdot \mathbf{x} - \alpha \leq 1 \\}$. The width of this slab is $2/|\boldsymbol{\beta}|$, by the preceding example. We can check whether a point is on the correct side of the slab by checking whether $\boldsymbol{\beta} \cdot \mathbf{x} - \alpha \geq 1$ for points of class 1 and less than or equal to $-1$ for points of class $-1$. More succinctly, we can check whether $y\_i(\boldsymbol{\beta} \cdot \mathbf{x}\_i- \alpha) \geq 1$ for all $1 \leq i \leq n$. 
+*Solution*. Suppose that the observations are $\\{(\mathbf{x}\_i,y\_i)\\}\_{i=1}^n$, where $y\_i \in \\{-1,1\\}$ for each $1 \leq i \leq n$. Let us describe the separating slab as $\\{\mathbf{x} \in \mathbb{R}^2 : -1 \leq \boldsymbol{\beta}' \mathbf{x} + \alpha \leq 1 \\}$. The width of this slab is $2/|\boldsymbol{\beta}|$, by the preceding example. We can check whether a point is on the correct side of the slab by checking whether $\boldsymbol{\beta} '  \mathbf{x} + \alpha \geq 1$ for points of class 1 and less than or equal to $-1$ for points of class $-1$. More succinctly, we can check whether $y\_i(\boldsymbol{\beta} \cdot \mathbf{x}\_i + \alpha) \geq 1$ for all $1 \leq i \leq n$. 
 
-So, we are looking for the values of $\boldsymbol{\beta}$ and $\alpha$ which minimize $|\boldsymbol{\beta}|$ subject to the conditions $y\_i(\boldsymbol{\beta} \cdot \mathbf{x}\_i- \alpha) \ge 1$ for all $1 \leq i \leq n$. This is a **constrained** optimization problem, since we are looking to maximize the value of a function over a domain defined by some constraining inequalities. 
+So, we are looking for the values of $\boldsymbol{\beta}$ and $\alpha$ which minimize $|\boldsymbol{\beta}|$ subject to the conditions $y\_i(\boldsymbol{\beta}'  \mathbf{x}\_i + \alpha) \ge 1$ for all $1 \leq i \leq n$. This is a **constrained** optimization problem, since we are looking to maximize the value of a function over a domain defined by some constraining inequalities. 
 
 [Continue](btn:next)
 
@@ -1302,7 +1301,7 @@ We add variables to the model with the `{jl} @variable` macro, and we add constr
       | @variable(m,β[1:2]) # adds β[1] and β[2] at the same time
       | @variable(m,α)
       | for (x,y) in observations
-      |     @constraint(m,y*(β'*x - α) ≥ 1)
+      |     @constraint(m,y*(β'*x + α) ≥ 1)
       | end
       | @objective(m,Min,β[1]^2+β[2]^2)
       
@@ -1316,7 +1315,7 @@ When we call `{jl} solve` on the model, it makes the optimizing values of the va
 Now we can plot our separating line. 
 
     pre(julia-executable)
-      | l(x₁) = (α - β[1]*x₁)/β[2]
+      | l(x₁) = (-α - β[1]*x₁)/β[2]
       | xs = [-2,5]
       | plot!(xs,[l(x₁) for x₁ in xs], label="")
 
@@ -1336,7 +1335,7 @@ Consider a binary classification problem in $\mathbb{R}^2$ for which the trainin
 ``` latex
     L(\boldsymbol{\beta},\alpha) = \lambda |\boldsymbol{\beta}|^2
     +  \frac{1}{n}\sum_{i=1}^{n}\big[1-y_i(\boldsymbol{\beta}\cdot \mathbf{x}_i
-    - \alpha)\big]_+
+    + \alpha)\big]_+
 ```
 
 is a reasonable quantity to minimize. 
@@ -1370,7 +1369,7 @@ Next we define our loss function, including a version that takes $\boldsymbol{\b
 
     pre(julia-executable)
       | L(λ,β,α,observations) = 
-      |     λ*norm(β)^2 + 1/n*sum(max(0,1-y*(β'*x - α)) for (x,y) in observations)
+      |     λ*norm(β)^2 + 1/n*sum(max(0,1-y*(β'*x + α)) for (x,y) in observations)
       | L(λ,params,observations) = L(λ,params[1:end-1],params[end],observations)
 
 Since this optimization problem is unconstrained, we can use `{jl} Optim` to do the optimization. We define a function `{jl} SVM` which returns the values of $\boldsymbol{\beta}$ and $\alpha$ which minimize the empirical loss: 
@@ -1386,12 +1385,12 @@ To choose $\lambda$, we write some functions to perform cross-validation:
 
     pre(julia-executable)
       | function errorrate(β,α,observations)
-      |     count(y*(β'*x-α) < 0 for (x,y) in observations)
+      |     count(y * (β'*x + α) < 0 for (x,y) in observations)
       | end
       | function CV(λ,observations,i)
-      |     β,α = SVM(λ,[observations[1:i-1];observations[i+1:end]])
-      |     x,y = observations[i]
-      |     y*(β'*x - α) < 0 
+      |     β, α = SVM(λ,[observations[1:i-1];observations[i+1:end]])
+      |     x, y = observations[i]
+      |     y * (β'*x + α) < 0 
       | end
       | function CV(λ,observations)
       |     mean(CV(λ,observations,i) for i=1:length(observations))
@@ -1401,12 +1400,11 @@ Finally, we optimize over $\lambda$:
 
     pre(julia-executable)
       | λ₁, λ₂ = 0.001, 0.25        
-      | λ = optimize(λ->CV(first(λ),observations),
-      |              λ₁,λ₂).minimizer
+      | λ = optimize(λ->CV(first(λ),observations),λ₁,λ₂).minimizer
       | β,α = SVM(λ,observations)
-      | l(x₁) = (α - β[1]x₁)/β[2]
+      | l(x₁) = (-α - β[1]x₁)/β[2]
       | xs = [-1.5,2]
-      | plot!(xs,[l(x₁) for x₁ in xs],label="")
+      | plot!(xs, l, legend = false)
 
 [Continue](btn:next)
 
@@ -1459,7 +1457,7 @@ support vector machine. This content tends to get notationally heavy, so we will
 We begin by slightly reformulating the soft-margin support vector machine. The SVM is a prediction function of the form
 
 ``` latex
-\mathbf{x}\mapsto \operatorname{sign}(\mathbf{x}\cdot \boldsymbol{\beta}+ \alpha),
+\mathbf{x}\mapsto \operatorname{sign}(\mathbf{x}\cdot \boldsymbol{\beta} + \alpha),
 ```
 
 where $\boldsymbol{\beta} \in \mathbb{R}^d$ and $\alpha \in \mathbb{R}$. To train a support vector machine on a set of training data $(X, \mathbf{y})$, with $X \in \mathbb{R}^{n \times d}$ and $\mathbf{y} \in \\{-1,1\\}^n$, we choose a value $C > 0$ and solve the optimization problem
@@ -1475,10 +1473,10 @@ where $\odot$ indicates elementwise multiplication and $\succcurlyeq$ indicates 
 ``` latex
 L(\boldsymbol{\beta},\alpha) = \lambda |\boldsymbol{\beta}|^2
 +  \frac{1}{n}\sum_{i=1}^{n}\big[1-y_i(\boldsymbol{\beta}\cdot \mathbf{x}_i
-- \alpha)\big]_+, 
++ \alpha)\big]_+, 
 ```
 
-because if we multiply this expression by $\frac{1}{2\lambda}$ and set $C = \frac{1}{2\lambda n}$, and we can define $\boldsymbol{\zeta}$ to be the vector whose $i$th component is $[1-y_i(w \cdot x_i - \alpha))]\_{+}$. 
+because if we multiply this expression by $\frac{1}{2\lambda}$ and set $C = \frac{1}{2\lambda n}$, and we can define $\boldsymbol{\zeta}$ to be the vector whose $i$th component is $[1-y\_i((\boldsymbol{\beta} \boldsymbol{x})\_i + \alpha))]\_{+}$. 
 
 [Continue](btn:next)
 
@@ -1491,47 +1489,127 @@ Next, we fold the constraints into the objective function by defining a function
 \frac{1}{2}\|\boldsymbol{\beta}\|^2 + C \mathbf{1}'\boldsymbol{\zeta} + H(\mathbf{1} - \boldsymbol{\zeta} -  \mathbf{y} \odot (X\boldsymbol{\beta} + \alpha\mathbf{1})) + H(-\boldsymbol{\zeta}), 
 ```
 
-since the terms involving $H$ enforce the constraints by returning $\infty$ when the constraints are not satisfied. Note that whenever $\boldsymbol{\eta} \succcurlyeq 0$, we have $H(\mathbf{x}) \geq \boldsymbol{\eta}' \mathbf{x}$. Furthermore, if we take the maximum of $\boldsymbol{\eta}' \mathbf{x}$ over all $\boldsymbol{\eta} \succcurlyeq 0$, we get $H(\mathbf{x})$. Therefore, the optimization problem can be rewritten as 
+since the terms involving $H$ enforce the constraints by returning [[$\infty$|0]] when the constraints are not satisfied. Note that whenever $\boldsymbol{\eta} \succcurlyeq 0$, we have $H(\mathbf{x}) \geq \boldsymbol{\eta}' \mathbf{x}$. Furthermore, if we take the maximum of $\boldsymbol{\eta}' \mathbf{x}$ over all $\boldsymbol{\eta} \succcurlyeq 0$, we get $H(\mathbf{x})$. Therefore, the optimization problem can be rewritten as 
 
 ``` latex
-\min_{\alpha, \boldsymbol{\beta}, \boldsymbol{\zeta}} \max_{\boldsymbol{\eta}, \boldsymbol{\theta}}\left[\frac{1}{2}\|\boldsymbol{\beta}\|^2 + C \mathbf{1}'\boldsymbol{\zeta}  + \boldsymbol{\eta}'(\mathbf{1} - \boldsymbol{\zeta} -  \mathbf{y} \odot (X\boldsymbol{\beta} + \alpha\mathbf{1})) - \boldsymbol{\theta}'\zeta\right].
+\min_{\alpha, \boldsymbol{\beta}, \boldsymbol{\zeta}} \max_{\boldsymbol{\eta}, \boldsymbol{\theta} \succcurlyeq \boldsymbol{0}}\left[\frac{1}{2}\|\boldsymbol{\beta}\|^2 + C \mathbf{1}'\boldsymbol{\zeta}  + \boldsymbol{\eta}'(\mathbf{1} - \boldsymbol{\zeta} -  \mathbf{y} \odot (X\boldsymbol{\beta} + \alpha\mathbf{1})) - \boldsymbol{\theta}'\zeta\right].
 ```
 
-Next, we swap the min and max operations. The resulting optimization problem is different, but the maximal value of the objective function in the new optimization problem does provide a lower bound for the first function. Here's the general idea (with $F$ as a real-valued function of two variables):
+---
+> id: step-dual-problem
+
+Next, we swap the min and max operations. The resulting optimization problem—called the **dual problem**—is different, but the maximal value of the objective function in the new optimization problem does provide a lower bound for the first function. Here's the general idea (with $F$ as a real-valued function of two variables):
 
 ```latex
 F(x,y) &\leq \max_{y} F(x,y)\text{ for all $x,y$}\implies \\ \min_{x}F(x,y) &\leq \min_x\max_{y} F(x,y) \text{ for all $y$} 
 \implies \\ \max_{y}\min_{x}F(x,y) &\leq \min_x\max_{y} F(x,y). 
 ```
 
+Furthermore, a result called [Slater's Theorem](gloss:slaters-theorem) implies that in this case, we have [**strong duality**](gloss:strong-duality), meaning that the two sides of the equation are actually equal. 
+
+[Continue](btn:next)
+
+---
+> id: step-rearranging-dual-terms
+
 Performing the max/min swap and re-arranging terms a bit, we get
 
 ``` latex
-\max_{\boldsymbol{\eta}, \boldsymbol{\theta}}\min_{\alpha, \boldsymbol{\beta}, \boldsymbol{\zeta}} \Bigg[
+\max_{\boldsymbol{\eta}, \boldsymbol{\theta}\succcurlyeq \boldsymbol{0}}\min_{\alpha, \boldsymbol{\beta}, \boldsymbol{\zeta}} \Bigg[
 &\frac{1}{2}\|\boldsymbol{\beta}\|^2 - \boldsymbol{\eta}' (\mathbf{y} \odot X\boldsymbol{\beta})
 + \boldsymbol{\eta}' \mathbf{1} + \\
 &(C \mathbf{1}' - \boldsymbol{\eta}' - \boldsymbol{\theta}') \boldsymbol{\zeta} \\
 &-\alpha\boldsymbol{\eta}'\mathbf{y}\Bigg]. 
 ```
 
-The first line depends only on $\boldsymbol{\beta}$, the second only on $\boldsymbol{\zeta}$, and the third only on $\alpha$. So we can minimize the function over $\alpha, \boldsymbol{\beta}, \boldsymbol{\zeta}$ by minimizing each line indivudally. To minimize the first term, we differentiate with respect to $\boldsymbol{\beta}$ to get $\boldsymbol{\beta}' - (\boldsymbol{\eta}'\odot \boldsymbol{y}')X$, which we can solve to find that $\boldsymbol{\beta} = X'(\boldsymbol{\eta} \odot \boldsymbol{y})$. 
+The first line depends only on $\boldsymbol{\beta}$, the second only on $\boldsymbol{\zeta}$, and the third only on $\alpha$. So we can minimize the function over $\alpha, \boldsymbol{\beta}, \boldsymbol{\zeta}$ by minimizing each line individually. To minimize the first term, we rewrite $\boldsymbol{\eta}' (\mathbf{y} \odot X\boldsymbol{\beta})$ as $(\boldsymbol{\eta}' \odot \mathbf{y}') X\boldsymbol{\beta})$ differentiate with respect to $\boldsymbol{\beta}$ to get $\boldsymbol{\beta}' - (\boldsymbol{\eta}'\odot \boldsymbol{y}')X$, which we can solve to find that $\boldsymbol{\beta} = X'(\boldsymbol{\eta} \odot \boldsymbol{y})$. 
 
-The minimum of the second term is $-\infty$ unless $\boldsymbol{\theta} + \boldsymbol{\eta} = C\mathbf{1}$. Likewise, the minimum of the third term is $-\infty$ unless $\boldsymbol{\eta}'\boldsymbol{y} = 0$. Therefore, the outside maximization over $\boldsymbol{\eta}$ and $\boldsymbol{\theta}$ will set $\boldsymbol{\theta} = C\mathbf{1} - \boldsymbol{\eta}$ and ensure that the equation $\boldsymbol{\eta}'\boldsymbol{y} = 0$ is satisfied. All together, substituting $\boldsymbol{\beta} = X'(\boldsymbol{\eta} \odot \boldsymbol{y})$  into the objective function, we get the **dual problem** 
+The minimum of the second term is $-\infty$ unless $\boldsymbol{\theta} + \boldsymbol{\eta} = C\mathbf{1}$, because if any component of the vector multiplying $\zeta$ were nonzero, then we could achieve arbitrarily large negative values for the objective function by choosing a suitably large value for $\zeta$ in that component. Likewise, the minimum of the third term is $-\infty$ unless $\boldsymbol{\eta}'\boldsymbol{y}$ is equal to [[0|$\infty$]]. 
+
+---
+> id: step-outside-maximization
+
+Therefore, the outside maximization over $\boldsymbol{\eta}$ and $\boldsymbol{\theta}$ will have to set $\boldsymbol{\theta} = C\mathbf{1} - \boldsymbol{\eta}$ and ensure that the equation $\boldsymbol{\eta}'\boldsymbol{y} = 0$ is satisfied. All together, substituting $\boldsymbol{\beta} = X'(\boldsymbol{\eta} \odot \boldsymbol{y})$  into the objective function, we get the **dual problem** 
 
 ``` latex
 &\text{maximize} \quad -\frac{1}{2}(\boldsymbol{\eta} \odot \mathbf{y})'XX'
   (\boldsymbol{\eta} \odot \mathbf{y}) + \boldsymbol{1}'\boldsymbol{\eta} \\
 &\text{subject to} \quad 0 \preccurlyeq \boldsymbol{\eta} \preccurlyeq C \text{ and }
-  \boldsymbol{\eta} \cdot \mathbf{y} = 0,
+  \boldsymbol{\eta}' \mathbf{y} = 0.
 ```
 
-If we solve this problem, we can substitute $\boldsymbol{\beta} = X'(\widehat{\boldsymbol{\eta}} \odot \boldsymbol{y})$ to find the optimizing value of $\boldsymbol{\beta}$ in the original problem. The optimizing value of $\alpha$ in the original problem may also be obtained using the solution of the dual problem by looking at any entry of
+::: .exercise
+
+    img(src="images/svm-center.svg" width=350 style="float: right;")
+
+**Exercise**  
+
+Show that we can give the dual problem the following interpretation, thinking of the entries of $\boldsymbol{\eta}$ as weights for the training points: 
+* Each weight must be between 0 and $C$
+* Equal amounts of weight must be assigned in total to the +1 training points and to the -1 training points. 
+* The objective function includes one term for the total amount of weight assigned and one term which is equal to $-\frac{1}{2}$ times the squared norm of the vector from the $\boldsymbol{\eta}$-weighted sum of negative training observations to the $\boldsymbol{\eta}$-weighted sum of positive training observations. 
+
+Note: the figure shows that $\boldsymbol{\eta}$ values for each point, together with the $\boldsymbol{\eta}$-weighted sums for both classes (each divided by 3, so that their relation to the original points can be more readily visualized). The vector connecting these two points is $\beta$.
+:::
+
+    x-quill
+    
+---
+> id: svm-dual-interpretation-solution
+
+*Solution*. The first statement says that $0 \preccurlyeq \boldsymbol{\eta} \preccurlyeq C$, which is indeed one of the constraints. The second statement is equivalent to $\boldsymbol{\eta}' \boldsymbol{y} = 0$, since dotting with $\boldsymbol{y}$ yields the difference between the entries corresponding to positive training examples and the entries corresponding to negative training examples. 
+
+The objective function includes one term for the total amount of weight (that's $\boldsymbol{1}'\boldsymbol{\eta}$), and one term which is $-\frac{1}{2}|\boldsymbol{\beta}|^2$, where $\boldsymbol{\beta} = X'(\boldsymbol{\eta} \odot \boldsymbol{y})$. We can see that the vector $\beta$ is in fact the difference between the $\boldsymbol{\eta}$-weighted sums of the negative and positive training examples by writing $X'(\boldsymbol{\eta} \odot \boldsymbol{y})$ as $(X'\_{+1}\boldsymbol{\eta}\_{+1} - X'\_{-1}\boldsymbol{\eta}\_{-1})$, where the +1 and -1 subscripts mean "discard rows corresponding to negative observations" and "discard rows corresponding to positive observations", respectively. 
+
+[Continue](btn:next)
+
+---
+> id: step-solve-dual-problem
+
+If we solve this problem, we can substitute $\boldsymbol{\beta} = X'(\widehat{\boldsymbol{\eta}} \odot \boldsymbol{y})$ to find the optimizing value of $\boldsymbol{\beta}$ in the original problem. Although $\alpha$ got lost in the translation from the original problem to the dual problem, we can recover its value as well. We'll do this by identifying points on the *edge* of the separating slab, using the following observation: consider a set of values which solves the optimization problem in the form
 
 ``` latex
-  \mathbf{y} - X\widehat{\boldsymbol{\beta}}
+\min_{\alpha, \boldsymbol{\beta}, \boldsymbol{\zeta}} \max_{\boldsymbol{\eta}, \boldsymbol{\theta} \succcurlyeq \boldsymbol{0}}\left[\frac{1}{2}\|\boldsymbol{\beta}\|^2 + C \mathbf{1}'\boldsymbol{\zeta}  + \boldsymbol{\eta}'(\mathbf{1} - \boldsymbol{\zeta} -  \mathbf{y} \odot (X\boldsymbol{\beta} + \alpha\mathbf{1})) - \boldsymbol{\theta}'\zeta\right]
 ```
 
-for which the corresponding entry of $\boldsymbol{\eta}$ is strictly between 0 and $C$. All such entries can be proved to be equal mathematically, but when working with numerical approximations, (i) a small tolerance should be included when determining which entries of $\boldsymbol{\eta}$ are between 0 and $C$, and (ii) the appropriate entries of $\mathbf{y} - X\widehat{\boldsymbol{\beta}}$ should be averaged.
+If $i$ is an index such that $\zeta_i > 0$ (in other words, the $i$th training point is inside the slab or on the wrong side of it), then $\theta_i$ must be zero, since otherwise we could lower the value of the objective function by nudging $\theta_i$ down slightly. This implies that $\eta_i = C$. 
+
+Likewise, if $i$th component of $\boldsymbol{1} - \boldsymbol{\zeta} - \boldsymbol{y} \odot (X \boldsymbol{\beta} + \alpha \boldsymbol{1})$ is negative (in other words, the $i$th training point is safely on the correct side of the slab, and not on the edge), then we must have $\eta_i = 0$.
+
+Putting these two observations together, we conclude that points on the edge of the slab may be detected by looking for the components of $\eta$ which are strictly between $0$ and $C$. Since $y\_i((X\beta)\_i+ \alpha) = 1$ for training points $(\mathbf{x}_i, y_i)$ on the edge of the slab, we can identify the value of $\alpha$ by solving this equation for any index $i$ such that $0 < \eta\_i < C$. We multiply both sides of the equation by $y_i$ to get $(X\beta)\_i + \alpha = y\_i$, and that implies that $\alpha = (\mathbf{y} - X\boldsymbol{\beta})\_i$.
+
+In summary, the optimizing value of $\alpha$ in the original problem may also be obtained looking at any component of
+
+``` latex
+  \mathbf{y} - X\widehat{\boldsymbol{\beta}} 
+```
+
+for which the corresponding entry of $\boldsymbol{\eta}$ is strictly between 0 and $C$. A couple caveats when working with solutions obtained numerically: we should (i) include a small tolerance when determining which entries of $\boldsymbol{\eta}$ are deemed to be strictly between 0 and $C$, and (ii) *average* all entries of $\mathbf{y} - X\widehat{\boldsymbol{\beta}}$ for which $\eta_i$ is strictly between 0 and $C$.
+
+::: .exercise
+**Exercise**  
+Execute the code cell below to observe that the values of $\eta$ do indeed turn out to be 0 on the correct side of the slab, $C$ inside the slab or on the wrong side, and strictly between $0$ and $C$ only on the edge of the slab. Experiment with different values of $C$. 
+:::
+
+    pre(julia-executable)
+      | 
+      | include("data-gymnasia/svmplot.jl")
+      | using Random; Random.seed!(1)
+      | 
+      | # number of training points of each class
+      | n = 20
+      | # generate training observations
+      | X = [randn(n) .+ 1 randn(n) .+ 1
+      |      randn(n) .- 1 randn(n)]
+      | y = repeat([1,-1], inner = n)
+      | 
+      | # initialize and train an SVM:
+      | S = SVM(X, y)
+      | dualfit!(S, C = 0.5)
+      | 
+      | # visualize the SVM, together with annotations showing 
+      | # the η values
+      | plot(S, (S,i) -> S.η[i])
 
 [Continue](btn:next)
 
@@ -1539,7 +1617,7 @@ for which the corresponding entry of $\boldsymbol{\eta}$ is strictly between 0 a
 > id: the-kernel-trick
 ### The Kernel Trick
 
-The reason for formulating the dual problem is that it permits the application of a useful and extremely common technique called the kernel trick. The idea is that if we apply a transformation $\phi:\mathbb{R}^d \to \mathbb{R}^d$ each row of $X$ and call the resulting matrix $\phi(X)$, then the resulting change to the dual problem is just to replace $XX'$ with $\phi(X) \phi(X)'$. This matrix's entries consist entirely of dot products of rows of $\phi(X)$ with rows of $\phi(X)$, so we can solve the problem as long as we can calculate $\phi(\mathbf{x})\cdot \phi(\mathbf{y})$ for all $\mathbf{x}$ and $\mathbf{y}$ in $\mathbb{R}^d$. The function $K = (\mathbf{x}, \mathbf{y}) \mapsto \phi(\mathbf{x})\cdot \phi(\mathbf{y})$ is called the *kernel* associated with the transformation $\phi$. Typically we ignore $\phi$ and use one of the following kernel functions:
+The reason for formulating the dual problem is that it permits the application of a useful and extremely common technique called the kernel trick. The idea is that if we apply a transformation $\phi:\mathbb{R}^d \to \mathbb{R}^d$ to each row of $X$ and call the resulting matrix $\phi(X)$, then the resulting change to the dual problem is just to replace $XX'$ with $\phi(X) \phi(X)'$. This matrix's entries consist entirely of dot products of rows of $\phi(X)$ with rows of $\phi(X)$, so we can solve the problem as long as we can calculate $\phi(\mathbf{x})\cdot \phi(\mathbf{y})$ for all $\mathbf{x}$ and $\mathbf{y}$ in $\mathbb{R}^d$. The function $K = (\mathbf{x}, \mathbf{y}) \mapsto \phi(\mathbf{x})\cdot \phi(\mathbf{y})$ is called the *kernel* associated with the transformation $\phi$. Typically we ignore $\phi$ and use one of the following kernel functions:
 
 ``` latex
   \text{linear} \quad K(\mathbf{x},\mathbf{y}) &= \mathbf{x}' \mathbf{y} \\
@@ -1561,24 +1639,24 @@ To bring it all together, suppose that $K$ is a kernel function and $\mathcal{K}
   &\text{minimize} \quad \frac{1}{2}(\boldsymbol{\eta} \odot \mathbf{y})'\mathcal{K}
     (\boldsymbol{\eta} \odot \mathbf{y}) - \operatorname{sum}(\boldsymbol{\eta}) \\
   &\text{subject to} \quad 0 \preccurlyeq \boldsymbol{\eta} \preccurlyeq C \text{ and }
-    \boldsymbol{\eta} \cdot \mathbf{y} = 0.
+    \boldsymbol{\eta}' \mathbf{y} = 0.
 ```
 
 The prediction vector for an $n_{\mathrm{test}} \times n$ feature
-matrix $X_{\mathrm{test}}$ is
+matrix $X_{\mathrm{test}}$ is 
 
 ``` latex
-  \operatorname{sign}(\phi(X) \widehat{\boldsymbol{\beta}} \oplus b) =
+  \operatorname{sign}(\phi(X) \widehat{\boldsymbol{\beta}} + \alpha\boldsymbol{1}) =
   \operatorname{sign}(\phi(X) \phi(X)' (\widehat{\boldsymbol{\eta}}
-  \odot \mathbf{y}) \oplus \widehat{b}) =
+  \odot \mathbf{y}) + \alpha\boldsymbol{1}) =
   \operatorname{sign}(\mathcal{K}_{\mathrm{test}}(\widehat{\boldsymbol{\eta}}
-  \odot \mathbf{y}) \oplus \widehat{b}),
+  \odot \mathbf{y}) + \alpha \boldsymbol{1}),
 ```
 
 where $\mathcal{K}\_{\mathrm{test}}$ is the $n\_{\mathrm{test}} \times n$ matrix whose $(i,j)$th entry is obtained by applying $K$ to the $i$th row of $X\_{\mathrm{test}}$ and the $j$th row of $X$, and where $\widehat{b}$ is any entry of
 
 ``` latex
-  \mathbf{y} - \mathcal{K}(\widehat{\boldsymbol{\eta}} \odot \mathbf{y})
+  \mathcal{K}(\widehat{\boldsymbol{\eta}} \odot \mathbf{y}) - \mathbf{y}
 ```
 
 for which the corresponding entry in $\widehat{\boldsymbol{\eta}}$ is strictly
@@ -1959,7 +2037,7 @@ The core idea of adaptive boosting is to *weight* observations in the training o
 ---
 > id: step-adaboost-example
 
-For simplicity, let's consider a binary classification problem with $n$ training observations $(\mathbf{X}_1, Y_1), \ldots, (\mathbf{X}_n, Y_n)$. Let's suppose that the $\mathbf{X}_i$'s are points in the plane, while the $Y_i$'s are elements of $\{-1,+1\}$. 
+For simplicity, let's consider a binary classification problem with $n$ training observations $(\mathbf{X}_1, Y_1), \ldots, (\mathbf{X}_n, Y_n)$. Let's suppose that the $\mathbf{X}_i$'s are points in the plane, while the $Y_i$'s are elements of $\\{-1,+1\\}$. 
 
 We begin by training a decision tree on the training data in the usual way, and we call the resulting predictor $h_1$. We associate $h_1$ with a value $\alpha_1$ which indicates $h_1$'s overall effectiveness: it's defined to be $\frac{1}{2}\log\left(\frac{1-\epsilon_1}{\epsilon_1}\right)$, where $\epsilon_1$ is the proportion of misclassified training data. The relationship between $\epsilon$ and $\alpha$ is shown here (running the cell twice is recommended):
 

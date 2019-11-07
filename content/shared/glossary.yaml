@@ -786,3 +786,12 @@ functional:
 hyperparameter:
   title: Hyperparameter
   text: A model *hyperparameter* is a parameter which is not adjusted as a part of the model's training. For example, we might fit a degree-$d$ polynomial to a set of training data by finding the coefficents which minimize the empirical mean squared error. The coefficients are parameters, while $d$ is a hyperparameter.
+  
+slaters-theorem:
+  title: Slater's Theorem
+  text: Slater's theorem provides a condition under which strong duality is guaranteed to hold for a convex optimization problem: it says that strong duality holds if the optimization problem has a strictly feasible point (in other words, if the feasible region contains points which are not on its boundary).
+  
+strong-duality:
+  title: Strong Duality
+  text: |
+    *Weak duality*, which is true in general, says that $\max_{\lambda\geq 0} \min_x f(x,\lambda) \leq \min_{x} \max_{\lambda \geq 0} f(x,\lambda)$. We say that **strong duality** holds for a class of functions $f$ if the inequality above holds with no gap: $\max_{\lambda\geq 0} \min_x f(x,\lambda) = \min_{x} \max_{\lambda \geq 0} f(x,\lambda)$. 

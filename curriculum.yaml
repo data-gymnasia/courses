@@ -3,160 +3,146 @@
 # ==============================================================================
 
 sets-and-functions:
-  name: Sets and Functions
-  topics:
-    - Subsets
-    - Set Builder Notation
-    - Set Operations
-    - Lists
-    - Functions
-    - Function Properties
-    - Function Operations
+  title: Sets and Functions
+  description: Mathematical foundations for computer science, probability, and statistics.
+  color: 4d64b3
+  next: programming-in-python
+  hideIcon: true
+  branding: brown
+  tile: /images/third-party/og-tile.jpg
   author:
     name: Samuel S. Watson
     link: http://sswatson.com
 
 programming-in-python:
-  name: Programming in Python
-  topics:
-    - Types
-    - Functions
-    - Classes
-    - Lists and Tuples
-    - Sets and Dictionaries
-    - Flow Control
+  title: Programming in Python
+  description: A hands-on, test-driven introduction to programming in Python, including types, functions, classes, lists, tuples, dictionaries and flow control.
+  color: 88349a
+  next: linear-algebra
+  hideIcon: true
+  branding: brown
+  tile: /images/third-party/og-tile.jpg
+  locales: [en, de]
   author:
     name: Samuel S. Watson
     link: http://sswatson.com
 
 linear-algebra:
-  name: Linear Algebra
-  topics:
-    - Vectors
-    - Span
-    - Linear independence
-    - Vector spaces
-    - Linear transformations
-    - Matrices
-    - Dot Products
-    - Transposes
-    - Orthogonality
-    - Eigenanalysis
-    - Singular Value Decomposition
-    - Determinants
+  title: Linear Algebra
+  description: Vector spaces, orthogonality, and eigenanalysis from a data point of view.
+  color: c75f43
+  next: multivariable-calculus
+  hideIcon: true
+  branding: brown
+  tile: /images/third-party/og-tile.jpg
   author:
     name: Samuel S. Watson
     link: http://sswatson.com
 
 multivariable-calculus:
-  name: Multivariable Calculus
-  topics:
-    - Taylor Series
-    - Differentiation
-    - Optimization
-    - Matrix Differentiation
-    - The Chain Rule
-    - Integration
-    - Custom Integration
+  title: Multivariable Calculus
+  description: Review of multivariate differentiation, integration, and optimization, with applications to data science.
+  color: 679a34
+  next: intro-probability
+  hideIcon: true
+  branding: brown
+  tile: /images/third-party/og-tile.jpg
   author:
     name: Samuel S. Watson
     link: http://sswatson.com
 
-probability:
-  name: Probability
-  topics:
-    - Counting
-    - Probability Models
-    - Random Variables
-    - Probability Distributions
-    - Joint Distributions
-    - Conditional Probability
-    - Independence
-    - Expectation and Variance
-    - Covariance
-    - Continuous Distributions
-    - Conditional Expectation
-    - Central Limit Theorem
+intro-probability:
+  title: Probability
+  description: Introduction to mathematical probability, including probability models, conditional probability, expectation, and the central limit theorem.
+  color: 349a8e
+  next: data-science-utilities
+  hideIcon: true
+  branding: brown
+  tile: /images/third-party/og-tile.jpg
   author:
     name: Samuel S. Watson
     link: http://sswatson.com
 
 data-science-utilities:
-  name: Utilities
-  topics:
-    - Unix
-    - Git
-    - Conda
-    - Jupyter
-    - VS Code
-    - Markdown
+  title: Utilities
+  description: Learn about Unix, Git, Conda, Jupyter, VS Code and Markdown.
+  color: a53a5b
+  next: data-and-society
+  hideIcon: true
+  branding: brown
+  tile: /images/third-party/og-tile.jpg
   author:
     name: Samuel S. Watson
     link: http://sswatson.com
 
 data-and-society:
-  name: Data and Society
-  topics:
-    - Data Ethics
-    - Biased Word Embeddings
+  title: Data and Society
+  description: Learn about Data Ethics and Biased Word Embeddings.
+  color: ccb532
+  next: intro-data-pipeline
+  hideIcon: true
+  branding: brown
+  tile: /images/third-party/og-tile.jpg
   author:
     name: Sarah M. Brown
     link: http://sarahmbrown.org
 
+intro-data-pipeline:
+  title: The Data Science Pipeline
+  description: Learn the basics of data wrangling, visualization, and modeling in Python.
+  color: 319bbf
+  next: programming-in-julia
+  hideIcon: true
+  branding: brown
+  tile: /images/third-party/og-tile.jpg
+  author:
+    name: Samuel S. Watson
+    link: http://sswatson.com
+
 programming-in-julia:
-  name: Programming in Julia
-  topics:
-    - Types
-    - Functions
-    - Multidimsional arrays
-    - Lists and Tuples
-    - Sets and Dictionaries
-    - Flow Control
-    - Plotting
+  title: Programming in Julia
+  description: An introduction to programming, including types, functions, multidimensional arrays, tuples, dictionaries, flow control, and plotting.
+  color: bf3131
+  next: numerical-computing
+  hideIcon: true
+  branding: brown
+  tile: /images/third-party/og-tile.jpg
   author:
     name: Samuel S. Watson
     link: http://sswatson.com
 
 numerical-computing:
-  name: Numerical Computing
-  topics:
-    - Machine Arithmetic
-    - Numerical Error
-    - Pseudorandom Number Generation
-    - Automatic Differentiation
-    - Gradient Descent
+  title: Numerical Computing
+  description: Machine arithmetic, numerical error, pseudorandom numbers, automatic differentiation, and gradient descent optimization algorithms.
+  color: 31bf74
+  next: intro-statistics
+  hideIcon: true
+  branding: brown
+  tile: /images/third-party/og-tile.jpg
   author:
     name: Samuel S. Watson
     link: http://sswatson.com
 
 intro-statistics:
-  name: Statistics
-  topics:
-    - Kernel density estimation
-    - Point estimation
-    - Confidence intervals
-    - Bootstrapping
-    - Maximum Likelihood Estimation
-    - Hypothesis Testing
+  title: Statistics
+  description: Density and point estimation, confidence intervals, bootstrapping, maximum likelihood estimation, and hypothesis testing.
+  color: 6543b5
+  next: sets-and-functions
+  hideIcon: true
+  branding: brown
+  tile: /images/third-party/og-tile.jpg
   author:
     name: Samuel S. Watson
     link: http://sswatson.com
- 
+
 machine-learning:
-  name: Machine Learning
-   topics: 
-     - Statistical Learning Theory
-     - Linear Regression
-     - Quadratic Discriminant Analysis
-     - Linear Discriminant Analysis
-     - Naive Bayes
-     - Logistic Regression
-     - Support Vector Machines
-     - Ensemble Methods
-     - Neural Networks
-     - Principal Component Analysis
-     - Stochastic Neighbor Embedding
+  title: Machine Learning
+  description: A tour of statistical learning theory and classical machine learning algorithms, including linear models, logistic regression, support vector machines, decision trees, bagging and boosting, neural networks, and dimension reduction methods.
+  color: 4d64b3
+  next: sets-and-functions
+  hideIcon: true
+  branding: brown
+  tile: /images/third-party/og-tile.jpg
   author:
     name: Samuel S. Watson
     link: http://sswatson.com
-     

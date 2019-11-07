@@ -7,6 +7,7 @@ import {CustomElement, registerElement, script, $N, $, Browser} from '@mathigon/
 
 
 let promise = null;
+const MAX_LENGTH = 2500;
 
 async function loadEditorAssets() {
   if (!promise) {
@@ -33,6 +34,13 @@ export class QuillComponent extends CustomElement {
 
     const $step = this.getModel().$step;
     if (this.initialText) this.quill.setText(this.initialText);
+
+    // Set a maximum length for the editor. Significantly larger requests will
+    // be rejected by the Mathigon server.
+    this.quill.on('text-change', () => {
+      const length = this.quill.getLength();
+      if (length > MAX_LENGTH) this.quill.deleteText(MAX_LENGTH, length);
+    });
 
     const $button = $N('button', {class: 'btn btn-red', text: 'Submit'}, this);
     $button.on('click', () => {
