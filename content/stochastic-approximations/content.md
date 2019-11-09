@@ -1450,7 +1450,8 @@ We see that regardless of where the chain begins, the distribution of the
 :::
 
 In the example above we see that after the chain has ran for a sufficiently
-long time, i.e., after it has "mixed," the distribution of a given step is
+long time (this time period is sometimes called the "burn-in" period),
+the distribution of a given step is
 uniform across all states. The distribution $\mu(a_i) = \frac{1}{4}$ for
 $i=1,2,3,4$ is said to be an **invariant measure** for the Markov chain in the
 example above.
