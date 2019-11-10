@@ -72,7 +72,7 @@ listcomp:
             if x % 2 == 0]_
 
     returns _{code}[0, 4, 16]_
-    
+
 arraycomp:
   title: Array Comprehension
   text: |
@@ -106,7 +106,7 @@ function:
 
     _{pre}add(3,2) # returns 5
     add(3,2,z=7) # returns 12_
-    
+
 function-julia:
   title: Function
   text: |
@@ -595,42 +595,42 @@ reading:
 churn:
   title: Churn
   text: Customer churn refers to the cessation of a customer's relationship with a company
-  
+
 abtesting:
   title: A/B Testing
   text: An **A/B test** is a randomized experiment for assessing the difference between two variations (called A and B). For example, if you want to test whether changing the design of your credit card payment page leads to more completed transactions, you might randomly show half of the customers the new design and measure the transaction completion rates for the two groups.
-  
+
 R:
   title: R
   text: R is a popular open source programming language for data science. Python and R are by far the most prominent two programming languages used in data science in industry and academia. R is heavily geared toward statistical applications and is very popular among research statisticians. Python is becoming increasingly popular in industry, where it benefits from its closer ties to the software development world.
-  
+
 iris:
   title: Iris dataset
-  text: The Iris dataset records 4 measurements (sepal length, sepal width, petal length, and petal width) for 50 flowers from each of three different species. The data set has become a staple of introductory data analysis materials. 
-  
+  text: The Iris dataset records 4 measurements (sepal length, sepal width, petal length, and petal width) for 50 flowers from each of three different species. The data set has become a staple of introductory data analysis materials.
+
 hadley:
   title: Hadley Wickham
-  text: Hadley Wickham is the Chief Scientist at RStudio. He created an influential visualization library in R based on the *grammar of graphics* idea, which emphasizes a core set of building blocks and principled ways to combine them into more complex graphics. He also created several other packages applying similar ideas to data manipulation. This suite of packages, called the *tidyverse*, has become the de facto standard for data visualization and manipulation in R. 
-  
+  text: Hadley Wickham is the Chief Scientist at RStudio. He created an influential visualization library in R based on the *grammar of graphics* idea, which emphasizes a core set of building blocks and principled ways to combine them into more complex graphics. He also created several other packages applying similar ideas to data manipulation. This suite of packages, called the *tidyverse*, has become the de facto standard for data visualization and manipulation in R.
+
 python-sets:
   title: Sets
   text: In Python, a `{py} set` is a data structure with efficient support for insertion, deletion, and membership checking. As in math, elements of a sets are unordered and repetitions are ignored. The basic set operations for two sets `{py} s` and `{py} t` are `{py} s & t` for intersection, `{py} s | t` for union, `{py} s - t` for set difference (elements in the first set but not the second), and `{py} s ^ t` for symmetric difference (elements in exactly one of the two sets).
-  
+
 array:
   title: Array
   text: |
-    An array is a grid of values, indexed by a tuple of integers. The length of the indexing tuple is called the **dimension** of the array. 
-    
-    A one-dimensional array is a vector, a two-dimensional aray is a matrix, and so on. 
-  
+    An array is a grid of values, indexed by a tuple of integers. The length of the indexing tuple is called the **dimension** of the array.
+
+    A one-dimensional array is a vector, a two-dimensional aray is a matrix, and so on.
+
 allocation:
   title: Allocation
   text: To store an array or other data structure, the computer must **allocate** memory for it and insert the appropriate data. For example, when you execute `{py} pos_inds = (a > 0)` where `{py} a` is a NumPy array of length 1,000,000, one million new memory addresses are dedicated to storing the entries of `{py} pos_inds`, and those bytes are filled with `{py} True`s and `{py} False`s. Depending on what you want to do with `{py} pos_inds`, this operation might be wasteful.
-  
+
 splat:
   title: Splatting
   text: In Python, you can supply the contents of a list as arguments to a function by putting an asterisk in front of the list name when calling the function. For example `{py} f(*[1,2,3])` is the same as `{py} f(1,2,3)`. Likewise, you can supply the contents of a dictionary as keyword arguments. For example, `{py} f(**{'a': 1, 'b': 2})` is the same as `{py} f(a=1,b=2)`. This is useful when want to manage arguments programatically rather than having to type them in when you call the function.
-  
+
 mpl3d:
   title: 3D in Matplotlib
   text: Matplotlib does not support true 3D graphics. You can make 3D figures, but for every pair of objects in the scene, one will be rendered entirely in front of the other. This leads to inaccuracies if the scene is relatively complex. See the Matplotlib [FAQ page](https://matplotlib.org/mpl_toolkits/mplot3d/faq.html) for more details.
@@ -638,20 +638,20 @@ mpl3d:
 IQR:
   title: Inter-quartile range
   text: The inter-quartile range of a list of real numbers is the difference between the third and first quartiles.
-  
+
 expectation:
   title: Expectation
   text: |
-    The **expectation** $\mathbb{E}[X]$ (or **mean** $\mu\_X$) of a random variable $X$ is the probability-weighted average of $X$: 
+    The **expectation** $\mathbb{E}[X]$ (or **mean** $\mu\_X$) of a random variable $X$ is the probability-weighted average of $X$:
 
     ``` latex
     \mathbb{E}[X] = \sum_{\omega \in \Omega} X(\omega) m(\omega)
     ```
-    
+
     The expectation of $X$ can be thought of as the balance point of the distribution of $X$: if we think of the probability mass as physical mass, then the expectation is the location on the number line where we could support it and make it balance.
   image: expectation-midpoint.svg
-  
-expectation:
+
+variance:
   title: Variance
   text: |
     The variance of a random variable $X$ is a measure of how spread out the distribution of $X$ is:
@@ -659,74 +659,74 @@ expectation:
     ``` latex
     \operatorname{Var} X = \mathbb{E}[(X - \mathbb{E}[X])^2].
     ```
-          
-    The standard deviation $\sigma(X)$ of $X$ is the square root of the variance: 
+
+    The standard deviation $\sigma(X)$ of $X$ is the square root of the variance:
 
     ``` latex
     \sigma(X) = \sqrt{\operatorname{Var} X}.
     ```
-    
+
   image: variance-compare.svg
 
 conditional-distribution:
   title: Conditional distribution
   text: |
-    The conditional distribution of $Y$ given $X=x$ describes your knowledge of $Y$ given only the information that $X = x$. For example, if you know that $(X,Y)$ is equal to $(0,11)$, $(1,11)$, or $(1,12)$ with probabilities 1/5, 1/5, and 3/5, then the conditional distribution of $Y$ given $X = 1$ has a mass of 1/4 on 11 and 1/4 on 12. 
-    
+    The conditional distribution of $Y$ given $X=x$ describes your knowledge of $Y$ given only the information that $X = x$. For example, if you know that $(X,Y)$ is equal to $(0,11)$, $(1,11)$, or $(1,12)$ with probabilities 1/5, 1/5, and 3/5, then the conditional distribution of $Y$ given $X = 1$ has a mass of 1/4 on 11 and 1/4 on 12.
+
     Grpahically, the conditional distribution of $Y$ given $X = x$ is the probability measure which describes how the probability mass in the joint distribution of $X$ and $Y$ is distributed along the vertical line at position $x$. For example, conditional distribution of $Y$ given $X = x$ is a Gaussian distribution with variance whose mean generally increases as $x$ increases between 0 and 15 and whose variance is equal to 1.5 for all $x$.
-        
+
   image: exam-density.svg
 
 conditional-expectation:
   title: Conditional expectation
   text: The **conditional expectation** of $Y$ given $\\{X=x\\}$ is defined to be the expectation of $Y$ calculated with respect to its conditional distribution given $\\{X=x\\}$.
-  
+
 conditional-variance:
   title: Conditional variance
   text: The **conditional variance** of $Y$ given $\\{X = x\\}$ is defined to be the variance of $Y$ with respect to its conditional distribution of $Y$ given $\\{X=x\\}$. This value says how spread out the probability mass is for the joint distribution of $X$ and $Y$ along the vertical line at horizontal position $x$.
-  
+
 monomial:
   title: Monomial
   text: A monomial is a polynomial with a single term. For example, the quadratic monomials in $x$ and $y$ are $x^2$, $xy$, $y^2$ and multiples thereof.
-  
+
 geron:
   title: Hands-on ML
   text: This section draws some ideas from chapter *End-to-End Machine Learning Project* in the (highly recommended) book *Hands on Machine Learning with Scikit-Learn and TensorFlow* by Aurélien Geron. In that chapter, California housing prices are considered.
 
 anaconda:
   title: Anaconda
-  text: Anaconda is a distribution of Python which is designed to alleviate some of the difficulties with Python's main package manager `{py} pip` when it comes to managing the sorts of extensive binary dependencies that are common in data science packages. 
+  text: Anaconda is a distribution of Python which is designed to alleviate some of the difficulties with Python's main package manager `{py} pip` when it comes to managing the sorts of extensive binary dependencies that are common in data science packages.
 
 rpy2:
   title: rpy2
   text: |
-    rpy2 is the standard Python package for interfacing with R. For example, the block 
-    
+    rpy2 is the standard Python package for interfacing with R. For example, the block
+
     ```python
     from rpy2.robjects import r, pandas2ri
-    from rpy2.robjects.packages import importr 
+    from rpy2.robjects.packages import importr
     importr('nycflights13')
     pandas2ri.ri2py(r['flights'])
     ```
-    
-    loads the R package `{r} nycflights13`, accesses the `{r} flights` variable from the R environment, and converts it to a Pandas data frame. 
+
+    loads the R package `{r} nycflights13`, accesses the `{r} flights` variable from the R environment, and converts it to a Pandas data frame.
 
 dataframe-head:
   title: Head
   text: The **head** of a dataframe is the first several rows. Pandas data frame objects have a `{py} head` method which returns the head. This method is useful when you want to have a look at the data frame but don't want to fill the screen with its many rows.
-  
+
 toy:
   title: Toy
   text: A **toy** example is one which is deliberatively oversimplified for illustrative purposes.
-  
+
 bit64:
   title: 64-bit numeric representations
   text: The most common numeric types use 64 bits. The number 64 represents a tradeoff how many numbers these systems can represent and the amount of space required to store each one.
-  
+
 bit8:
   title: Storage of boolean values
   text: The smallest unit of addressable memory on most computers is one byte (that is, 8 bits). Therefore, even values like booleans which could be stored using fewer bits are usually stored using a full byte.
-  
+
 in-software:
   title: In software
   text: A computation can be done *in hardware* if it's programmed in the microprocessor and can be handed to the CPU as an instruction. A computation is done *in software* if it involves orchestrating many such CPU instructions. For example, the calculation `{jl} 144 + 217` in Julia compiles down to a hardware computation. But if you completed a programming exercise that involved parsing an integer value written as a string, expanding according to place value, and adding using the arithmetic rules you learned as a kid, then you'd be doing the same calculation in software.
@@ -738,60 +738,60 @@ model-accuracy:
 operatornorm:
   title: Operator Norm
   text: The operator norm of a matrix is the maximum factor by which it stretches vectors. It's equal to the largest singular value of the matrix.
-  
+
 pdf:
   title: Probability Density Function
   text: Given a continuous probability measure, its **density function** (PDF) is the function that you integrate over each set to find the amount of probability mass associated with that set. For example, the exponential distribution has PDF $f(x) = \operatorname{e}^{-x}$ on $[0,\infty)$.
-  
+
 pmf:
   title: Probability Mass Function
-  text: Given a discrete probability measure, its probability mass function (PMF) is the function that maps each point $\mathbf{x}$ to the amount of probability mass at that point. For example, the fair coin flip PMF maps 0 and 1 to $\frac{1}{2}$ and every other point to zero. 
-  
+  text: Given a discrete probability measure, its probability mass function (PMF) is the function that maps each point $\mathbf{x}$ to the amount of probability mass at that point. For example, the fair coin flip PMF maps 0 and 1 to $\frac{1}{2}$ and every other point to zero.
+
 overflow:
   title: Overflow
   text: In 64-bit floating point arithmetic, the largest representable number is $2^{1024} - 2^{971}$, which is about $1.8 \times 10^{308}$. The smallest representable positive number is $2^{-1074} \approx 5 \times 10^{-324}$. When calculations lead to results which are too large or small to be represented, we call those errors *underflow* or *overflow*, respectively.
-  
+
 convex:
   title: Convex
   text: |
-    A function is convex if every line segment connecting two points on its graph lies on or above the graph of the function. A function is concave every line segment connecting two points on its graph lies on or *below* the graph of the function. 
+    A function is convex if every line segment connecting two points on its graph lies on or above the graph of the function. A function is concave every line segment connecting two points on its graph lies on or *below* the graph of the function.
 
     Convexity is a desirable property for minimization problems, because any local minimum of a convex function is also a global minimum. Efficient and accurate numerical methods are available for convex optimization.
-    
+
 degrees-of-freedom:
   title: Degrees of freedom
   text: |
-    *Degrees of freedom* is the name given to the parameter of the χ²-distribution (which is the distribution of the sum of the squares of $d$ independent standard normal random variables, where $d$ is the number of degrees of freedom) and the t-distribution (which is the distribution of the average of $d$ independent standard normal random variables divided by $S/\sqrt{n}$, where $S$ is the sample variance of the random variables). 
-    
+    *Degrees of freedom* is the name given to the parameter of the χ²-distribution (which is the distribution of the sum of the squares of $d$ independent standard normal random variables, where $d$ is the number of degrees of freedom) and the t-distribution (which is the distribution of the average of $d$ independent standard normal random variables divided by $S/\sqrt{n}$, where $S$ is the sample variance of the random variables).
+
 statistical-learning:
   title: Statistical Learning
   text: |
     The goal of *machine learning* is to use data to build predictive models. Statistical learning theory is a framework for machine learning which is aimed at drawing conclusions about machine learning models. The terms *machine learning* and *statistical learning* are sometimes used interchangeably, although *machine learning* tends to be associated more with getting models to work well, while *statistical learning* places more emphasis on understanding how and when models can be expected to work well.
-    
+
 dichotomize:
   title: Dichotomize
   text: To *dichotomize* a random variable is to map each of its values to one of two categories. For example, if $X$ is the number of cigarettes a person has smoked in the past year, we can split our data points into an $X = 0$ "nonsmoker" category and an $X > 0$ "smoker" category.
-  
+
 inductive-bias:
   title: Inductive Bias
   text: |
-    The **inductive bias** of a learner is the set of (implicit or explicit) assumptions that it uses to make predictions based on observed data. 
-  
+    The **inductive bias** of a learner is the set of (implicit or explicit) assumptions that it uses to make predictions based on observed data.
+
     If the inductive bias is compatible with the underlying probability measure (for example, if a regression function is assumed to be linear and is in fact linear), then it helps the model use data more efficiently. However, inductive bias which is incompatible with the underlying probability measure can lead to large prediction error even as the sample size tends to infinity.
-    
+
 functional:
   title: Functional
   text: A **functional** is a function whose domain is a set of functions and whose codomain is $\mathbb{R}$. In other words, a functional takes a function as input and returns a number as output.
-  
+
 hyperparameter:
   title: Hyperparameter
   text: A model *hyperparameter* is a parameter which is not adjusted as a part of the model's training. For example, we might fit a degree-$d$ polynomial to a set of training data by finding the coefficents which minimize the empirical mean squared error. The coefficients are parameters, while $d$ is a hyperparameter.
-  
+
 slaters-theorem:
   title: Slater's Theorem
   text: Slater's theorem provides a condition under which strong duality is guaranteed to hold for a convex optimization problem: it says that strong duality holds if the optimization problem has a strictly feasible point (in other words, if the feasible region contains points which are not on its boundary).
-  
+
 strong-duality:
   title: Strong Duality
   text: |
-    *Weak duality*, which is true in general, says that $\max_{\lambda\geq 0} \min_x f(x,\lambda) \leq \min_{x} \max_{\lambda \geq 0} f(x,\lambda)$. We say that **strong duality** holds for a class of functions $f$ if the inequality above holds with no gap: $\max_{\lambda\geq 0} \min_x f(x,\lambda) = \min_{x} \max_{\lambda \geq 0} f(x,\lambda)$. 
+    *Weak duality*, which is true in general, says that $\max_{\lambda\geq 0} \min_x f(x,\lambda) \leq \min_{x} \max_{\lambda \geq 0} f(x,\lambda)$. We say that **strong duality** holds for a class of functions $f$ if the inequality above holds with no gap: $\max_{\lambda\geq 0} \min_x f(x,\lambda) = \min_{x} \max_{\lambda \geq 0} f(x,\lambda)$.
