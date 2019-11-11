@@ -562,8 +562,8 @@ A_{\mathrm{B}} &= \left[\begin{smallmatrix}2 & 0 \\ 0 & 2
 Suppose that the joint distribution of $X_1, X_2,$ and $Y$ is defined as follows: for any $A\subset \mathbb{R}^2$ and color $c \in \\{\mathrm{R},\mathrm{G},\mathrm{B}\\}$, we have
 
 ``` latex
-  \mathbb{P}(A \times \{c\}) = p_c\int_{\mathbb{R}^2} f_c(x_1,x_2) \operatorname{d} x_1 
-  \operatorname{d} x_2, 
+  \mathbb{P}(A \times \{c\}) = p_c\int_{\mathbb{R}^2} f_c(x_1,x_2) \mathrm{d} x_1 
+  \mathrm{d} x_2, 
 ```
 
 where $(p_R,p_G,p_B) = (1/3,1/6,1/2)$ and $f_c$ is the multivariate normal density with mean $\mu_c$ and covariance matrix $A_cA_c'$. In other words, we can sample from the joint distribution of of $X_1, X_2,$ and $Y$ by sampling $Y$ from {R, G, B} with probabilities 1/3, 1/6, and 1/2, respectively, and then generate $(X_1, X_2)$ by calculating $A_Y Z + \mu_Y$, where $Z$ is a vector of two standard normal random variables which are independent and independent of $Y$. 
@@ -628,13 +628,13 @@ Let's build a visualization for the optimal classifier for the flowers by colori
       |     i = sample(p)
       |     Flower(As[i]*randn(2)+μs[i],colors[i])
       | end
-      | flowers = [randflower(μs,As) for i=1:300]
+      | flowers = [randflower(μs,As) for i in 1:300]
       | 
  
 Next, let's make a classifier and color all of the points in a fine-mesh grid according to their predicted classifications. 
 
     pre(julia-executable)
-      | predict(x,p,Ns) = argmax([p[i]*pdf(Ns[i],x) for i=1:3])
+      | predict(x,p,Ns) = argmax([p[i]*pdf(Ns[i],x) for i in 1:3])
       | function classificationplot(flowers,p,Ns)
       |     rgb = [:red,:green,:blue]
       |     P = heatmap(xgrid,ygrid,(x,y) -> predict([x,y],p,Ns),
@@ -1131,7 +1131,7 @@ L(r) = \sum_{i=1}^{n} \left[y_i \log \frac{1}{r(x_i)} +
 *Solution*. We begin by sampling the points as suggested. 
 
     pre(julia-executable)
-      | observations = [rand(Bool) ? (rand(A),0) : (rand(B),1) for i=1:1000]
+      | observations = [rand(Bool) ? (rand(A),0) : (rand(B),1) for i in 1:1000]
       | cs =  [c for ((x,y),c) in observations]
       | scatter([(x,y) for ((x,y),c) in observations], group=cs, markersize=2)
 
@@ -1286,7 +1286,7 @@ Let's sample the points from each class from a multivariate normal distribution.
       |     (X,class)
       | end
       | n = 100
-      | observations = [samplepoint() for i=1:n]
+      | observations = [samplepoint() for i in 1:n]
       | ys = [y for (x,y) in observations]
       | scatter([(x₁,x₂) for ((x₁,x₂),y) in observations], group=ys)
  
@@ -1361,7 +1361,7 @@ Simulate some overlapping data and minimize the soft-margin loss function. Selec
 *Solution*. We begin by generating our observations. To create overlap, we make the mean of the second distribution closer to the origin. 
 
     pre(julia-executable)
-      | observations = [samplepoint([1,1]) for i=1:n]
+      | observations = [samplepoint([1,1]) for i in 1:n]
       | ys = [y for (x,y) in observations]
       | scatter([(x₁,x₂) for ((x₁,x₂),y) in observations],group=ys)
 
@@ -1393,7 +1393,7 @@ To choose $\lambda$, we write some functions to perform cross-validation:
       |     y * (β'*x + α) < 0 
       | end
       | function CV(λ,observations)
-      |     mean(CV(λ,observations,i) for i=1:length(observations))
+      |     mean(CV(λ,observations,i) for i in 1:length(observations))
       | end
 
 Finally, we optimize over $\lambda$: 
@@ -2146,12 +2146,7 @@ Given an affine map $\mathbf{x}\mapsto W \mathbf{x} + \mathbf{b}$, we call $W$ t
 
 ::: .example
 **Example**  
-Suppose that $A\_1(\mathbf{x}) = \left[\begin{smallmatrix} 3 & -2 \\ 1 &
-      4 \end{smallmatrix}\right]\mathbf{x} + \left[\begin{smallmatrix} 1 \\
-      1 \end{smallmatrix}\right]$ and $A\_2(\mathbf{x}) = \left[\begin{smallmatrix} -4 & 0 \\ 3 &
-      1 \end{smallmatrix}\right]\mathbf{x} + \left[\begin{smallmatrix} -2 \\
-      2 \end{smallmatrix}\right]$. Find $(A\_2 \circ K. \circ A\_1)\left(\left[\begin{smallmatrix} -2 \\
-        -4 \end{smallmatrix}\right]\right)$, where $K$ is the ReLU activation function. 
+Suppose that $A\_1(\mathbf{x}) = \left[\begin{smallmatrix} 3 & -2 \\\\ 1 & 4 \end{smallmatrix}\right]\mathbf{x} + \left[\begin{smallmatrix} 1 \\\\ 1 \end{smallmatrix}\right]$ and $A\_2(\mathbf{x}) = \left[\begin{smallmatrix} -4 & 0 \\\\ 3 & 1 \end{smallmatrix}\right]\mathbf{x} + \left[\begin{smallmatrix} -2 \\\\ 2 \end{smallmatrix}\right]$. Find $(A\_2 \circ K. \circ A\_1)\left(\left[\begin{smallmatrix} -2 \\\\ -4 \end{smallmatrix}\right]\right)$, where $K$ is the ReLU activation function. 
 :::
 
 [Continue](btn:next)
@@ -2159,9 +2154,8 @@ Suppose that $A\_1(\mathbf{x}) = \left[\begin{smallmatrix} 3 & -2 \\ 1 &
 ---
 > id: step-basic-affine-example 
 
-*Solution*. We have $A\_1(\mathbf{x}) = \left[\begin{smallmatrix} 3 \\
-      -17 \end{smallmatrix}\right]$. Applying $K$ to each component yields $\left[\begin{smallmatrix} 3 \\
-      0 \end{smallmatrix}\right]$. Finally, applying $A\_2$ yields 
+*Solution*. We have $A\_1(\mathbf{x}) = \left[\begin{smallmatrix} 3 \\\\
+-17 \end{smallmatrix}\right]$. Applying $K$ to each component yields $\left[\begin{smallmatrix} 3 \\\\ 0 \end{smallmatrix}\right]$. Finally, applying $A\_2$ yields 
 
 ``` latex
   \left[\begin{smallmatrix} -4 & 0 \\ 3 & 1 \end{smallmatrix}\right]
@@ -2215,7 +2209,7 @@ Create data types in Julia to represent affine maps and neural net functions. Wr
 *Solution*. We supply a `{jl} NeuralNet` with the sequence of affine maps, the activation function, and also the activation function's derivative. We write call methods for the `{jl} AffineMap` and `{jl} NeuralNet` types so they can be applied as functions to appropriate inputs. (One of these methods refers to a function we will define in the next example.) 
 
     pre(julia-executable)
-      | using LinearAlgebra, StatsBase
+      | using LinearAlgebra, StatsBase, Test
       | struct AffineMap
       |     W::Matrix
       |     b::Vector
@@ -2226,9 +2220,20 @@ Create data types in Julia to represent affine maps and neural net functions. Wr
       |     K̇::Function # derivative of K
       | end
       | (A::AffineMap)(x) = A.W * x + A.b
-      | (N::NeuralNet)(x) = forwardprop(N,x)[end]
-      | architecture(N::NeuralNet) = [[size(A.W,2) for A in N.maps]; size(last(N.maps).W,1)]
-      |   
+      | (NN::NeuralNet)(x) = forwardprop(NN,x)[end]
+      | architecture(NN::NeuralNet) = [[size(A.W,2) for A in NN.maps];
+      |                                 size(last(NN.maps).W,1)]
+
+Now we can set up an example neural network to use for tests later. 
+
+    pre(julia-executable)
+      | W₁ = [3.0 -4; -2 4]
+      | W₂ = [1.0 -1]
+      | b₁ = [1.0, -4]
+      | b₂ = [0.0];
+      | K(x) = x > 0 ? x : 0
+      | K̇(x) = x > 0 ? 1 : 0 
+      | NN = NeuralNet([AffineMap(W₁, b₁), AffineMap(W₂, b₂)], K, K̇)
 
 Successively applying the maps in the neural network is called **forward propagation**. 
 
@@ -2236,7 +2241,7 @@ Successively applying the maps in the neural network is called **forward propaga
  
 ::: .example
 **Example**  
-Write a Julia function `{jl} forwardprop` which calculates the sequence of vectors obtained by applying each successive map in the neural net. 
+Write a Julia function `{jl} forwardprop` which calculates the sequence of vectors obtained by applying each successive map in the neural net (in other words, the vectors which are output from each map and input into the next one).
 ::: 
 
 ---
@@ -2245,14 +2250,18 @@ Write a Julia function `{jl} forwardprop` which calculates the sequence of vecto
 *Solution*. We store the sequence of values we obtain in an array called `{jl} vectors`. The very last map is the identity function rather than $K.$, so it must be handled separately. 
 
     pre(julia-executable)
-      | function forwardprop(N::NeuralNet,x)
-      |     vectors = [x]
-      |     for (j,A) in enumerate(N.maps)
-      |         push!(vectors,A(vectors[end]))
-      |         push!(vectors,(j < length(N.maps) ? N.K : identity).(vectors[end]))
+      | function forwardprop(NN::NeuralNet,x)
+      |     activations = [x]
+      |     for (j,A) in enumerate(NN.maps)
+      |         push!(activations,A(activations[end]))
+      |         K = j < length(NN.maps) ? NN.K : identity
+      |         push!(activations,K.(activations[end]))
       |     end
-      |     vectors
+      |     activations
       | end 
+      | 
+      | activations = forwardprop(NN, [-2.0, -3])
+      | @test activations == [[-2, -3], [7, -12], [7, 0], [7], [7]]
 
 To adjust the weights and biases of the neural net in a favorable direction, we want to compute for every node $\nu$ the derivative of the value in the cost node with respect to the value in node $\nu$. The node which is easiest to compute the derivative for is the prediction vector node, since the only map between that node and the cost is $C\_i$. 
 
@@ -2261,7 +2270,7 @@ To adjust the weights and biases of the neural net in a favorable direction, we 
 ---
 > id: step-neural-backpropagation
 
-More generally, given the derivative value for any particular node $\nu$, we can calculate the derivative for the node $\nu\_{\text{left}}$ immediately to its left, using the chain rule. A small change $\operatorname{d}\mathbf{u}$ in the value $\mathbf{u}$ at node $\nu\_{\text{left}}$ induces a small change $\frac{\partial S}{\partial \mathbf{u}}\operatorname{d}\mathbf{u}$ in the value $\mathbf{v}$ at node $\nu$ (where $S$ denotes the map between $\nu$ and $\nu\_{\text{left}}$). This change in turn induces a change $\frac{\partial T}{\partial \mathbf{v}}\frac{\partial S}{\partial \mathbf{u}}\operatorname{d}\mathbf{u}$ in the cost value (where $T$ denotes the map from $\nu$ to the cost node). In other words, the net result of the small change $\operatorname{d}\mathbf{u}$ is the product of the two derivative matrices and $\operatorname{d}\mathbf{u}$. 
+More generally, given the derivative value for any particular node $\nu$, we can calculate the derivative for the node $\nu\_{\text{left}}$ immediately to its left, using the chain rule. A small change $\mathrm{d}\mathbf{u}$ in the value $\mathbf{u}$ at node $\nu\_{\text{left}}$ induces a small change $\frac{\partial S}{\partial \mathbf{u}}\mathrm{d}\mathbf{u}$ in the value $\mathbf{v}$ at node $\nu$ (where $S$ denotes the map between $\nu$ and $\nu\_{\text{left}}$). This change in turn induces a change $\frac{\partial T}{\partial \mathbf{v}}\frac{\partial S}{\partial \mathbf{u}}\mathrm{d}\mathbf{u}$ in the cost value (where $T$ denotes the map from $\nu$ to the cost node). In other words, the net result of the small change $\mathrm{d}\mathbf{u}$ is the product of the two derivative matrices and $\mathrm{d}\mathbf{u}$. 
 
 So we can work from right to left in the diagram and calculate the derivative values for all of the nodes. This is called **backpropagation**. We will just need to calculate the derivatives of the maps between adjacent nodes. 
 
@@ -2271,7 +2280,7 @@ So we can work from right to left in the diagram and calculate the derivative va
 * Find the derivative of $C\_i(\mathbf{y}) = |\mathbf{y} -
     \mathbf{y}\_i|^2$ with respect to $\mathbf{y}$. 
 * Find the derivative of $K.$ (the map which applies $K$ pointwise). 
-* Find the derivative of $W \mathbf{u} + \mathbf{b}$ with respect to $\mathbf{u}$. 
+* Find the derivative of $\mathbf{u} \mapsto W \mathbf{u} + \mathbf{b}$, where $W$ is a matrix and $\mathbf{b}$ is a vector. 
 :::
 
 [Continue](btn:next)
@@ -2289,7 +2298,7 @@ So we can work from right to left in the diagram and calculate the derivative va
 ```
 
 by the product rule. 
-* The derivative with respect to $\mathbf{x}$ has $(i,j)$ th entry $\frac{\partial (K.(\mathbf{x})\_{i})}{\partial x\_j}$, which is equal to 0 if $i \neq j$ and $\dot K(x\_i)$ if $i = j$. In other words, the derivative of $K.$ with respect to $\mathbf{x}$ is $\operatorname{diag} \dot K.(\mathbf{x})$. 
+* The derivative with respect to $\mathbf{x}$ has $(i,j)$ th entry $\frac{\partial (K.(\mathbf{x})\_{i})}{\partial x\_j}$, which is equal to 0 if $i \neq j$ and $\dot K(x\_i)$ if $i = j$ (where we're borrowing from physics the notation $\dot K$ for the derivative of $K$). In other words, the derivative of $K.$ with respect to $\mathbf{x}$ is $\operatorname{diag} \dot K.(\mathbf{x})$. (Here $\operatorname{diag}$ means "form a diagonal matrix with this vector's entries on the diagonal", the dot on top means "derivative", and the subscript dot means "apply componentwise".) 
 * The derivative of $W \mathbf{u} + \mathbf{b}$ with respect to $\mathbf{u}$ is $\frac{\partial (W \mathbf{u})}{\partial \mathbf{u}} +
     \frac{\partial \mathbf{b}}{\partial \mathbf{u}}= W + 0 = W$. 
 
@@ -2307,17 +2316,34 @@ Write a Julia function `{jl} backprop` which calculates the for each node the de
 *Solution*. We can use all the derivatives we calculated in the previous example. We define functions which return the index of the $j$ th green node and the $j$ th purple node in the diagram, for convenience. 
 
     pre(julia-executable)
+      | "Index of jth green node"
       | greennode(j) = 2j-1
+      | "Index of jth purple node"
       | purplenode(j) = 2j
-      | function backprop(N::NeuralNet,vectors,yᵢ)
-      |     grads = [2(vectors[end]-yᵢ)']
-      |     push!(grads,grads[end])
-      |     for j = length(N.maps) : -1 : 1
-      |         push!(grads,grads[end] * N.maps[j].W)
-      |         j > 1 && push!(grads,grads[end] * Diagonal(N.K̇.(vectors[purplenode(j-1)])))
+      | 
+      | """
+      | Compute the gradient of each composition of maps from 
+      | an intermediate node to the final output.
+      | """
+      | function backprop(NN::NeuralNet,activations,yᵢ)
+      |     y = activations[end]
+      |     grads = [2(y-yᵢ)']
+      |     for j in length(NN.maps) : -1 : 1
+      |         if j == length(NN.maps)
+      |             push!(grads, grads[end])
+      |         else
+      |             push!(grads, grads[end] *
+      |               Diagonal(NN.K̇.(activations[purplenode(j)])))
+      |         end
+      |         push!(grads, grads[end] * NN.maps[j].W)
       |     end
       |     reverse(grads)
       | end
+      | 
+      | gradients = backprop(NN, activations, [2.0])
+      | @test gradients == 
+      |           [[30, -40]', [10, 0]', [10, -10]', [10]', [10]']
+
 
 With the derivative values computed for all of the nodes on the bottom row, we can calculate the derivative of the cost function with respect to the weights and biases. To find changes in the cost function with respect to changes in a weight matrix $W\_j$, we need to introduce the idea of differentiating with respect to a matrix. 
 
@@ -2328,18 +2354,18 @@ Given $f:\mathbb{R}^{m\times n} \to \mathbb{R}$, we define
 ``` latex
     \frac{\partial}{\partial W}f(W) =
     \begin{bmatrix}
-      \frac{\partial f}{\partial a_{1,1}} & \cdots & \frac{\partial
-        f}{\partial a_{1,n}} \\
+      \frac{\partial f}{\partial w_{1,1}} & \cdots & \frac{\partial
+        f}{\partial w_{1,n}} \\
       \vdots & \ddots & \vdots \\
-      \frac{\partial f}{\partial a_{m,1}} & \cdots & \frac{\partial
-        f}{\partial a_{m,n}}
+      \frac{\partial f}{\partial w_{m,1}} & \cdots & \frac{\partial
+        f}{\partial w_{m,n}}
     \end{bmatrix}, 
 ```
 
-where $a\_{i,j}$ is the entry in the $i$ th row and $j$ th column of $W$. Suppose that $\mathbf{u}$ is a $1 \times m$ row vector and $\mathbf{v}$ is an $n \times 1$ column vector. Show that we have 
+where $w\_{i,j}$ is the entry in the $i$ th row and $j$ th column of $W$. Suppose that $\mathbf{u}'$ is a $1 \times m$ row vector and $\mathbf{v}$ is an $n \times 1$ column vector. Show that we have 
 
 ``` latex
-    \frac{\partial}{\partial W}(\mathbf{u}W \mathbf{v}) = \mathbf{u}'
+    \frac{\partial}{\partial W}(\mathbf{u}'W \mathbf{v}) = \mathbf{u}
     \mathbf{v}'. 
 ```
 :::
@@ -2352,22 +2378,22 @@ where $a\_{i,j}$ is the entry in the $i$ th row and $j$ th column of $W$. Suppos
 *Solution*. We have
 
 ``` latex
-\mathbf{u} A \mathbf{v} = a_{1,1}u_1v_1 + a_{1,2}u_1v_2 + \cdots + a_{m,n} u_m v_n.    
+\mathbf{u}' A \mathbf{v} = w_{1,1}u_1v_1 + w_{1,2}u_1v_2 + \cdots + w_{m,n} u_m v_n.    
 ```
 
-Therefore, the derivative with respect to $a\_{i,j}$ is $u\_iv\_j$. This is also the $(i,j)$ th entry of $\mathbf{u}' \mathbf{v}'$, so the purported equality holds. 
+Therefore, the derivative with respect to $w\_{i,j}$ is $u\_iv\_j$. This is also the $(i,j)$ th entry of $\mathbf{u} \mathbf{v}'$, so the purported equality holds. 
 
 [Continue](btn:next)
 
 ---
 > id: step-third-order-tensor
 
-If $\mathbf{f}$ is a vector-valued function of a matrix $W$, then $\frac{\partial}{\partial W}(\mathbf{f}(\mathbf{v}))$ is "matrix" whose $(i,j,k)$ th entry is $\frac{\partial f\_i}{\partial a\_{j,k}}$. As suggested by the scare quotes, this is not really a matrix, since it has three varying indices instead of two. This is called a **third-order tensor**, but we will not develop this idea further, since the only property we will need is suggested by the notation and the result of the exercise above: differentiating $W \mathbf{v}$ with respect to $W$ and left-multiplying by a row vector $\mathbf{u}$ has the following net effect: 
+If $\mathbf{f}$ is a vector-valued function of a matrix $W$, then $\frac{\partial}{\partial W}(\mathbf{f}(\mathbf{v}))$ is "matrix" whose $(i,j,k)$ th entry is $\frac{\partial f\_i}{\partial w\_{j,k}}$. As suggested by the scare quotes, this is not really a matrix, since it has three varying indices instead of two. This is called a **third-order tensor**, but we will not develop this idea further, since the only property we will need is suggested by the notation and the result of the exercise above: differentiating $W \mathbf{v}$ with respect to $W$ and left-multiplying by a row vector $\mathbf{u}'$ has the following net effect: 
 
 ``` latex
-  \mathbf{u}\frac{\partial}{\partial W}(W \mathbf{v}) =
+  \mathbf{u}'\frac{\partial}{\partial W}(W \mathbf{v}) =
   \frac{\partial}{\partial W}(\mathbf{u}W \mathbf{v}) =
-  \mathbf{u}' \mathbf{v}'.
+  \mathbf{u} \mathbf{v}'.
 ```
 
 ::: .example
@@ -2380,17 +2406,23 @@ Write two functions `{jl} weight_gradients` and `{jl} bias_gradients` which comp
 ---
 > id: step-julia-compute-gradients
 
-*Solution*. In each case, we calculate the derivative of the map to the next node (either $W\_j \mapsto W\_j \mathbf{x} + \mathbf{b}\_j$ or $\mathbf{b} \mapsto W\_j \mathbf{x} + \mathbf{b}\_j$) and left-multiply by the derivative of the cost function with respect to the value at that node. The derivative of $W\_j \mathbf{x} + \mathbf{b}\_j$ with respect to $\mathbf{b}\_j$ is the identity matrix, and by Exercise <a name=exer:diff-mat></a>, differentiating $W \mathbf{v}$ with respect to $W$ and left-multiplying by $\mathbf{u}$ yields $\mathbf{u}' \mathbf{v}'$: 
+*Solution*. In each case, we calculate the derivative of the map to the next node (either $W\_j \mapsto W\_j \mathbf{x} + \mathbf{b}\_j$ or $\mathbf{b} \mapsto W\_j \mathbf{x} + \mathbf{b}\_j$) and left-multiply by the derivative of the cost function with respect to the value at that node. The derivative of $W\_j \mathbf{x} + \mathbf{b}\_j$ with respect to $\mathbf{b}\_j$ is the identity matrix, and by the exercise above, differentiating $W \mathbf{v}$ with respect to $W$ and left-multiplying by $\mathbf{u}$ yields $\mathbf{u}' \mathbf{v}'$: 
 
     pre(julia-executable)
-      | function weight_gradients(N::NeuralNet,vectors,grads)
-      |     [grads[purplenode(j)]' * vectors[greennode(j)]' for j=1:length(N.maps)]
+      | function weight_gradients(NN::NeuralNet,activations,gradients)
+      |     [gradients[purplenode(j)]' * activations[greennode(j)]' for j in 1:length(NN.maps)]
       | end
       | 
-      | function bias_gradients(N::NeuralNet,vectors,grads)
-      |     [grads[purplenode(j)]' for j=1:length(N.maps)]
+      | function bias_gradients(NN::NeuralNet,gradients)
+      |     [gradients[purplenode(j)]' for j in 1:length(NN.maps)]
       | end
       |   
+      | @test weight_gradients(NN, activations, gradients) ==
+      | 		[[-20 -30; 0 0], [70 0]]
+      |         
+      | @test bias_gradients(NN, gradients) == [[10, 0], [10]]
+
+Note that we have to transpose `{jl} grads[purplenode(j)]` since it is a row vector to begin with. 
 
 We are now set up to train the neural network. 
 
@@ -2410,40 +2442,45 @@ Your function should take 7 arguments: (1) desired architecture, (2) the activat
 *Solution*. We write a function which calculates the average suggested changes in the weights and biases and call it from inside the `{jl} train` function. 
 
     pre(julia-executable)
-      | function averageweightΔ(N::NeuralNet,observations,batch,ϵ)
-      |     arch = architecture(N)
-      |     layers = length(arch)-1
-      |     sum_Δweight = [zeros(arch[i+1],arch[i]) for i=1:layers]
-      |     sum_Δbias = [zeros(arch[i+1]) for i=1:layers]
+      | function suggested_param_changes(NN::NeuralNet, observations,
+      |                                  batch, ϵ)
+      |     arch = architecture(NN)
+      |     n_layers = length(arch)-1
+      |     sum_Δweight = [zeros(arch[i+1],arch[i]) for i in 1:n_layers]
+      |     sum_Δbias = [zeros(arch[i+1]) for i in 1:n_layers]
       |     for k in batch
       |         x, y = observations[k]
-      |         vectors = forwardprop(N,x)
-      |         grads = backprop(N,vectors,y)
-      |         ΔWs = -ϵ*weight_gradients(N,vectors,grads)
-      |         Δbs = -ϵ*bias_gradients(N,vectors,grads)
-      |         for i=1:layers
+      |         activations = forwardprop(NN,x)
+      |         gradients = backprop(NN,activations,y)
+      |         ΔWs = -ϵ*weight_gradients(NN,activations,gradients)
+      |         Δbs = -ϵ*bias_gradients(NN,gradients)
+      |         for i in 1:n_layers
       |             sum_Δweight[i] += ΔWs[i]
       |             sum_Δbias[i] += Δbs[i]
       |         end
       |     end
       |     (sum_Δweight, sum_Δbias) ./ length(batch)
       | end
-      |   
+
  
  Now we can write `{jl} train`. We initialize the biases to $0.1$, and the affine map entries are sampled independently from the standard normal distribution. 
 
     pre(julia-executable)
-      | function train(arch,K,K̇,observations,batchsize,ϵ = 0.1,iterations=1000)
+      | function train(arch, K, K̇, observations, batchsize,
+      |                ϵ = 0.1, n_iterations = 1000)
       |     random_maps = [AffineMap(randn(arch[i+1],arch[i]),
-      |                              fill(0.1,arch[i+1])) for i=1:length(arch)-1]
-      |     N = NeuralNet(random_maps,K,K̇)
-      |     for i=1:iterations
-      |         batch = sample(1:length(observations),batchsize)
-      |         meanΔweight, meanΔbias = averageweightΔ(N,observations,batch,ϵ)
-      |         N = NeuralNet([AffineMap(A.W .+ ΔW, A.b .+ Δb)
-      |                        for (A,ΔW,Δb) in zip(N.maps,meanΔweight,meanΔbias)],K,K̇)
+      |                      fill(0.1,arch[i+1])) for i in 1:length(arch)-1]
+      |     NN = NeuralNet(random_maps, K, K̇)
+      |     for i in 1:n_iterations
+      |         batch = sample(1:length(observations), batchsize)
+      |         meanΔweight, meanΔbias =
+      |             suggested_param_changes(NN, observations, batch, ϵ)
+      |         NN = NeuralNet(
+      |              [AffineMap(A.W + ΔW, A.b + Δb) for (A,ΔW,Δb) in 
+      |                  zip(NN.maps, meanΔweight, meanΔbias)], K, K̇
+      |         )
       |     end
-      |     N
+      |     NN
       | end
       | 
 
@@ -2459,36 +2496,30 @@ Try training your model on some data which are sampled by taking $\mathbf{X}$ un
 ---
 > id: step-neural-net-see-result
  
-*Solution*. We begin by defining the ReLU activation and a cost function. 
-
-    pre(julia-executable)
-      | K(x) = x > 0 ? x : 0
-      | K̇(x) = x > 0 ? 1 : 0 
-      | cost(N::NeuralNet,observations) = mean(norm(N(x)-y)^2 for (x,y) in observations)
-
-Next, we sample our data. 
+*Solution*. We sample our data: 
 
     pre(julia-executable)
       | using Random; Random.seed!(123)
-      | xs = [rand(2) for i=1:1000]
+      | xs = [rand(2) for i in 1:1000]
       | ys = [[1-x'*x] for x in xs]
       | observations = collect(zip(xs,ys))
 
- Then we choose an architecture, a batch size, and a learning rate, and we train our model on the data: 
+Then we choose an architecture, a batch size, and a learning rate, and we train our model on the data: 
 
     pre(julia-executable)
       | arch = [2,5,1]
       | batchsize = 100
       | ϵ = 0.005
-      | N = train(arch, K, K̇, observations, batchsize, ϵ, 10_000)
+      | NN = train(arch, K, K̇, observations, batchsize, ϵ, 10_000)
 
- Finally, we inspect the result. 
+Finally, we inspect the result. 
 
     pre(julia-executable)
-      | cost(N,observations) # returns 0.00343
+      | cost(NN::NeuralNet,observations) = mean(norm(NN(x)-y)^2 for (x,y) in observations)
+      | cost(NN,observations) # returns 0.00343
       | xgrid = 0:1/2^8:1
       | ygrid = 0:1/2^8:1
-      | zs = [first(N([x,y])) for x=xgrid,y=ygrid]
+      | zs = [first(NN([x,y])) for x=xgrid,y=ygrid]
       | using Plots; pyplot()
       | surface(xgrid,ygrid,zs)
 
@@ -2547,7 +2578,7 @@ Apply principal component analysis to project the handwritten digit images in th
 ---
 > id: step-pca-on-mnist-sol
 
-*Solution*. We begin by loading the dataset and reshaping the training data feature matrix. 
+*Solution*. We begin by loading the dataset and reshaping the training data feature array.
 
     pre(julia-executable)
       | using MLDatasets, Images, Plots
@@ -2565,9 +2596,9 @@ Next, we define a custom function for displaying images. This function accepts a
       |         Gray.(reshape(v./maximum(abs.(v)),(28,28))')
       |     end
       | end
-      | "Done!"
 
 To perform principal component analysis, we take the column-wise mean with `{jl} mean(A,dims=1)` and subtract it from the matrix before performing the singular value decomposition. 
+
     pre(julia-executable)
       | using Statistics, LinearAlgebra
       | A = A[1:10_000,:] # make this computationally feasible on Binder
@@ -2633,11 +2664,12 @@ Consider the points $\mathbf{x}\_1 = [0,0]$, $\mathbf{x}\_2 = [0,1]$, $\mathbf{x
     pre(julia-executable)
       | x = [[0,0],[0,1],[1,1],[4,0]]
       | f(x,y,σ) = exp(-norm(x-y)^2/(2σ^2))
-      | P(x,i,j,σ) = f(x[i],x[j],σ) / sum(f(x[k],x[j],σ) for k=1:length(x) if k ≠ j)
+      | P(x,i,j,σ) = f(x[i],x[j],σ) / sum(f(x[k],x[j],σ) for k in 1:length(x) if k ≠ j)
+      | [P(x,2,1,σ) for σ in [0.25, 1, 2, 100]]
 
 We find that $P\_{2,1}(0.25) = 0.9997$, $P\_{2,1}(1) = 0.6222$, $P\_{2,1}(2) = 0.4912$, and $P\_{2,1}(100) = 0.3334$. 
 
-We can see from Example <a name=exam:tsne></a> that $\sigma$ is the unit with respect to which proximity is being measured. If $\sigma$ is very large, then all of the points are effectively close to $\mathbf{x}\_1$, so the values of $P\_{i,1}(\sigma)$ are approximately equal for $i \in \\{2,3,4\\}$. If $\sigma$ is very small, then $P\_{i,1}(\sigma)$ is close to 1 for $\mathbf{x}\_1$'s nearest neighbor and is close to 0 for the other points. 
+We can see from this calculation that $\sigma$ is essentially the unit with respect to which proximity is being measured. If $\sigma$ is very large, then all of the points are effectively close to $\mathbf{x}\_1$, so the values of $P\_{i,1}(\sigma)$ are approximately equal for $i \in \\{2,3,4\\}$. If $\sigma$ is very small, then $P\_{i,1}(\sigma)$ is close to 1 for $\mathbf{x}\_1$'s nearest neighbor and is close to 0 for the other points. 
 
 For each $j$ from 1 to $n$, we define $\sigma\_j$ to be the solution $\sigma$ of the equation 
 
