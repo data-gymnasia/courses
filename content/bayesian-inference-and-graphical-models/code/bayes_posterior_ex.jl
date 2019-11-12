@@ -2,7 +2,7 @@ using Distributions, LaTeXStrings, Random, Plots
 Random.seed!(1234)
 
 # Simulate n coin flips with a bias of 0.6
-n = 100
+n = 1000
 flips = rand(n) .< 0.6
 p = sum(flips)
 q = n - p
@@ -24,4 +24,8 @@ plot(x_values, posterior, seriestype = :line, label = "posterior",
 
 plot!(x_values, prior, seriestype = :line, label = "prior", grid = false)
 
-# savefig("beta_prior_coin_ex.svg")
+
+posterior_quantile = cdf(Beta(α+p,β+q),0.65) - cdf(Beta(α+p,β+q),0.55)
+confidence_interval = [quantile(Beta(α+p,β+q),0.025), quantile(Beta(α+p,β+q),0.975)]
+
+savefig("beta_prior_coin_ex.svg")

@@ -64,7 +64,7 @@ than tails, we will choose $\theta \sim Beta(\alpha,\beta)$ where $\alpha$ and
 $\beta$ are chosen to weight values above 0.5 more heavily. An example of this
 is $Beta(10,5)$, a plot of which is given below
 
-    img(src="images/beta_prior_coin_ex.svg")
+    img(src="images/beta_prior_coin_ex_1.svg")
 
 Letting $\theta \sim Beta(\alpha,\beta)$, we now turn our attention to the
 likelihood $f(y|\theta)$. This is the probability of observing the data $y$
@@ -96,8 +96,10 @@ f(\theta|y) &= \frac{f(y|\theta)f(\theta)}{f(y)} \\
 
 From above we see $f(\theta|y) \sim Beta(\alpha + p, \beta + q)$.
 
-*Remark*: If the prior and posterior distributions belong to the same family of
-distributions, they are called **conjugate**.
+*Remark* When the posterior distribution has the same parametric form as the
+prior distribution, this property is called *conjugacy*. For the example above,
+we say that the beta distribution is a conjugate family for the binomial
+likelihood.
 
 Suppose we believe the coin is biased with probability of heads greater than
 0.5. Say we take $\theta \sim Beta(10,5)$. Then after observing $p$ heads and
@@ -140,55 +142,130 @@ of the dataset grows and as the parameters of the prior are changed.
       |
       | plot!(x_values, prior, seriestype = :line, label = "prior", grid = false)
 
+Posterior distributions yield point estimates via measures of central tendency
+like the median or mean, as well as *Bayesian posterior intervals* (similar to
+confidence intervals) via their quantiles. For example, suppose we assume
+the prior for $\theta$ is $Beta(10,5)$. After flipping the coin 1000 times,
+suppose we observe 604 heads and 396 tails. Then the posterior is
+$p(\theta|y) \sim Beta(10 + 604, 5 + 396)$, shown below
 
-::: .example
-**Example**  
-The prior for the heads probability of a weighted coin might be stipulated to be uniform on $[0,1]$. Then observing $p$ heads and $q$ tails results in a posterior distribution proportional to $t\mapsto t^{p}(1-t)^{q}$. Frequentist statistics would instead give a single point estimate (such as the maximum likelihood estimator $p / (p + q)$).
-:::
+    img(src="images/beta_prior_coin_ex_2.svg")
 
-**Posterior is proportional to likelihood times prior**: if $X$ is the observed random variable and $\Theta$ the vector of model parameters, then
+From the plot of the posterior, we see that most of the distribution's mass
+is centered around $[0.55, 0.65]$. Since we know the exact distribution
+function, we can explicitly compute the probability that $\theta$ lies in
+this interval. Adding the code snippet below to the previous executable code
+gives the desired result:
 
-``` latex
-  \overbrace{f(\theta | x)}^{\text{posterior}} = \frac{\overbrace{f(x | \theta)}^{\text{likelihood}}\overbrace{f(\theta)}^{\text{prior}}}{\underbrace{f(x)}_{\text{marginal}}}
+``` julia
+cdf(Beta(α+p,β+q),0.65) - cdf(Beta(α+p,β+q),0.55)
 ```
 
-where $f(\theta | x)$ is shorthand for the conditional density or mass function of $\Theta$ given $X = x$.
+which is approximately 0.998. Thus, given the observed data, we can be highly
+confident that $\theta$ lies between 0.55 and 0.65, supporting our assumption
+that the coin is biased.
 
----
-> id: conjugate-priors
-### Conjugate priors
+We can also obtain a Bayesian confidence interval
+(analogous to the frequentist confidence interval). Suppose we want a 95%
+confidence interval. The code below uses the quantile/inverse CDF function to
+obtain the desired interval:
 
+``` julia
+confidence_interval = [quantile(Beta(α+p,β+q),0.025), quantile(Beta(α+p,β+q),0.975)]
+```
 
+which yields $[0.575, 0.635]$. Both of the intervals above are
+*posterior intervals*, also sometimes called *credible intervals*
+and abbreviated CI, though it is more common to give confidence intervals
+with a specified level of confidence like our 95% CI above.
 
-TODO: expand explanation of this example slightly, and then give a second example of conjugate prior distributions.
+With the frequentist approach, an estimator would yield a single point estimate
+for  $\theta$. With the Bayesian approach, we can summarize the posterior value
+of $\theta$ via measure of central tendency, for example, the mean:
 
-::: .example
-**Example**  
-Example: heads-probability distributions of the form $t\mapsto t^{p}(1-t)^{q}$ on $[0,1]$ update under coin flip observations by incrementing the exponents $p$ and $q$, so they are conjugate priors for the coin flip problem.
-:::
+``` julia
+mean(Beta(α+p,β+q))
+```
 
+which yields 0.605.
 
----
-> id: Bayesian posterior intervals
+In the example presented here we obtained a closed-form posterior distribution
+which made it easy to report posterior uncertainty via point estimates like the
+mean and median, and via posterior intervals. However, this may not always be
+the case and simulations may need to be performed to obtain the desired
+summaries.
 
-Posterior distributions yield point estimates via measures of central tendency like the median or mean, as well as *Bayesian posterior intervals** (similar to confidence intervals) via their quantiles.
+<!-- Break  -->
 
-TODO: add an example showing a Bayesian mean, as well as Bayesian posterior quantiles. Perhaps just the coin exmaple.
+Bayesian and frequentist statistics often yield similar results in the limit:
+under quite general conditions, the posterior distribution is approximately
+normal with mean converging to the maximum likelihood estimator as the sample
+size goes to $\infty$.
 
-Bayesian and frequentist statistics often yield similar results in the limit: under quite general conditions, the posterior distribution is approximately normal with mean converging to the maximum likelihood estimator as the sample size goes to $\infty$.
+Continuing our previous example, we can compute:
 
-TODO: explore this idea with a concrete example
+``` latex
+\mathbb{E}[\theta|y] &= \frac{\alpha + p}{\alpha + \beta + p + q} \\
+Var(\theta|y) &= \frac{(\alpha + p)(\beta + q)}
+{(\alpha + \beta + p + q)^2(\alpha + \beta + p + q+1)}
+```
+
+For fixed $\alpha,\beta$, as $p$ and $q$ grow, we have
+$\mathbb{E}[\theta|y] \approx \frac{p}{p+q}$ and
+$Var(\theta|y) \approx \frac{pq}{(p+q)^3}$. Note that $\mathbb{E}[\theta|y]$
+here converges to the MLE for $\theta$. More generally, we have
+
+``` latex
+\left(\left.\frac{\theta - \mathbb{E}[\theta|y]}{\sqrt{Var(\theta|y)}} \right|
+y \right) \to Normal(1,0)
+```
+
+Often, when the posterior distribution does not have a closed form, a normal
+distribution as shown above is used as an approximation.
+
+<!-- todo: explore this idea with a concrete example -->
 
 ---
 > id: markov-chain-monte-carlo
 ## Markov Chain Monte Carlo
 
 
-Bayesian analysis often involves evaluating integrals. For example, the posterior mean is $\frac{\int_{\mathbb{R}^n} \theta \mathcal{L}(\theta) f(\theta) \mathrm{d}\theta }{\int_{\mathbb{R}^n} \mathcal{L}(\theta) f(\theta) \mathrm{d}\theta }$, where $\mathcal{L}(\theta) = f(x| \theta)$ is the likelihood.
+Bayesian analysis often involves evaluating integrals. For example, the
+posterior mean is $\frac{\int_{\mathbb{R}^n} \theta \mathcal{L}(\theta)
+f(\theta) \mathrm{d}\theta }{\int_{\mathbb{R}^n} \mathcal{L}(\theta) f(\theta)
+\mathrm{d}\theta }$, where $\mathcal{L}(\theta) = f(x| \theta)$ is the
+likelihood. These integrals are often impossible to solve analytically
+as demonstrated in the following example:
 
-TODO: give a relatively simple example where this integral is nevertheless difficult to solve analytically.
 
-These integrals are often impossible to solve analytically or even approximate using exact numerical methods in the case where the parameter space is high-dimensional. One solution is to use **Monte Carlo** methods: use the identity $\int_{\mathbb{R}^n} g(x)  f(x)  \mathrm{d}x = \mathbb{E}[g(X)]$ where $X$ is a random vector with density $f$. The expectation can be approximated by sampling repeatedly from the density $f$, using the law of large numbers.
+::: .example
+**Example**  
+
+Suppose we have data $y$ and would like to obtain the posterior mean for
+a parameter $\theta \in [1,2]$. We will assume
+$f(\theta) = \frac{1}{\log(4)-1}\log(\theta)$ and that
+$f(y|\theta) \sim Normal(\theta,1)$. Then the posterior mean is given by
+
+``` latex
+\mathbb{E}[\theta|y] &=
+\frac{\frac{1}{\sqrt{2\pi}} \cdot \frac{1}{\log(4)-1}\int_1^2
+\theta e^{-\frac{(y-\theta)^2}{2}}\log(\theta) d\theta}
+{\frac{1}{\sqrt{2\pi}} \cdot \frac{1}{\log(4)-1}\int_1^2
+e^{-\frac{(y-\theta)^2}{2}}\log(\theta) d\theta} \\
+&=
+\frac{\int_1^2\theta e^{-\frac{(y-\theta)^2}{2}}\log(\theta) d\theta}
+{\int_1^2 e^{-\frac{(y-\theta)^2}{2}}\log(\theta) d\theta}.
+```
+
+The integrals in both the numerator and denominator above are intractable, i.e.,
+cannot be computed analytically.
+:::
+
+In the case where the parameter space is high-dimensional, e.g., when the
+parameter $\theta$ is a vector in $\mathbb{R}^n$, the integrals that arise in
+Bayesian analyses become even more complex and quickly become infeasible to
+solve even when using exact numerical methods.
+One solution is to use **Monte Carlo** methods: use the identity $\int_{\mathbb{R}^n} g(x)  f(x)  \mathrm{d}x = \mathbb{E}[g(X)]$ where $X$ is a random vector with density $f$. The expectation can be approximated by sampling repeatedly from the density $f$, using the law of large numbers.
 
 **Markov Chain Monte Carlo** (MCMC) is useful for approximating $\int_{\mathbb{R}^n} g(x) f(x) \mathrm{d}x$ when sampling from $f$ is difficult. Metropolis-Hastings is a common class of MCMC algorithms:
 
@@ -242,7 +319,7 @@ Bayes net inference (drawing conclusions about the model based on observed data)
 
 ---
 > id: expectation-maximization
-## Expectation-MaximizationOA
+## Expectation-Maximization
 
 
 **Expectation-Maximization** is an iterative procedure for parameter estimation in models with hidden variables: start with a random guess for the parameters and find the conditional distribution $\zeta$ of the hidden variables given the observed variables and the current parameter guess. We then treat the parameter vector $\theta$ as unknown and compute—with respect to the measure $\zeta$—the expected log likelihood function $Q(\theta)$. New parameters are chosen to maximize $Q$, and the two steps are iterated to convergence.

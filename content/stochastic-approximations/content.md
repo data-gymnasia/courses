@@ -2255,3 +2255,84 @@ zip(S[M:end,1], S[M:end,2])])
 The true value of the integral is approximately 3.218 while our estimator
 yields 3.214.
 :::
+
+---
+> id: mcmcalgs
+## MCMC Algorithms
+
+The goal of MCMC is to generate a Markov chain whose invariance measure is
+$\rho$, i.e., if $S_k \sim \rho$, then $S_{k+1} \sim \rho$.
+All MCMC methods will rely on the following:
+
+1. An initial sample (vector) $S_0 \in \Omega$ where $\Omega$ is the state
+space.
+
+2. A rule that determines how to obtain $S_{k+1}$ from $S_k$. This is the
+transition probability matrix $Q(S_{k+1}|S_k)$. This rule should guarantee that
+as $k$ grows, $S_k$ begins to behave like a sample from the target distribution
+$\rho$.
+
+Then for the Markov chain $S_0,S_1,S_2,\ldots$ with invariant measure $\rho$
+and function $f: \Omega \to \mathbb{R}$, we have the "law of large numbers for
+Markov chains":
+
+``` latex
+\lim_{k \to \infty} \frac{1}{k}\sum_{i=1}^k f(S_i) &=
+\int_{\Omega} f(x) \rho(x) dx
+```
+
+which allows us to estimate integrals (often we are interested in computing
+expectations).
+
+In the previous section we introduced the Metropolis Hastings algorithm.
+Here we will explore more MCMC algorithms and discuss when one might be used
+over another.
+
+### Gibbs Sampler
+
+For simplicity, suppose $S_k = (X_k,Y_k)$, that is, the Markov chain lives in
+$\mathbb{R}^2$ and $\rho: \mathbb{R}^2 \to \mathbb{R}$ is the target
+distribution. We assume that we can sample from the distribution of $X$ given
+$Y$, $\rho{X|Y}(x|y)$, and the distribution of $Y$ given $X$, $\rho_{Y|X}(y|x)$.
+Then we will obtain $S_{k+1} = (X_{k+1},Y_{k+1})$ as follows:
+
+``` latex
+X_{k+1} &\sim \rho_{X|Y}(\cdot| Y = Y_k) \\
+Y_{k+1} &\sim \rho_{Y|X}(\cdot| X = X_{k+1}) \\
+```
+
+In words, the first variable sample, $X_{k+1}$, is obtained by sampling from the
+conditional distribution of $X$ given the previous sample of $Y$. Then, to
+obtain the second variable sample, $Y_{k+1}$, we sample from the conditional
+distribution of $Y$ given the current sample of $X$.
+
+Recall that if the Markov chain $S_0,  S_1, \ldots$ has invariant
+measure $\rho$, then we need $S_k \sim \rho \Rightarrow S_{k+1} \sim \rho$.
+Above we obtained $Y_{k+1}$ by conditioning on $X_{k+1}$ rather than $X_k$.
+If we had instead conditioned on $X_k$, we would only be able to say
+$(X_k, Y_k) \sim \rho \Rightarrow (X_{k+1},Y_k) \sim \rho$ but this does
+not imply $(X_{k+1},Y_{k+1}) \sim \rho$.
+
+The transition matrix for the Gibbs sampler above is then given by
+
+``` latex
+Q(S_{k+1}|S_k) = \rho_{Y|X}(y_{k+1}|x_{k+1})\rho_{X|Y}(x_{k+1}|y_k).
+```
+
+More generally, suppose $S_k = (X_k^1, X_k^2, \ldots, X_k^n)$ and
+$\rho: \mathbb{R}^n \to \mathbb{R}$. For ease of notation, let
+$V = \\\{1,2,\ldots,n\\\}. $We will assume that we can sample
+from the distribution of $X^i$ conditioned on all other variables, i.e.,
+we can sample from $\rho_{X_i|X_{V\setminus \\\{i\\\}}}
+(X^i|X^1,\ldots,X^{i-1},X^{i+1},\ldots,X^n)$. Then the Gibbs sampler
+produces $S^{k+1} = (X_{k+1}^1, X_{k+1}^2, \ldots, X_{k+1}^n)$ as follows:
+
+``` latex
+X_{k+1}^1 &\sim \rho_{X_1|X^{V \setminus \{1\}}}(\cdot|X_k^{V \setminus \{1\}}) \\
+X_{k+1}^2 &\sim \rho_{X_2|X^{V \setminus \{2\}}}(\cdot|X_{k+1}^1,X_k^{V \setminus \{1,2\}}) \\
+X_{k+1}^3 &\sim \rho_{X_3|X^{V \setminus \{3\}}}(\cdot|X_{k+1}^1,X_{k+1}^2,X_k^{V \setminus \{1,2,3\}}) \\
+&\vdots \\
+X_{k+1}^i &\sim \rho_{X_i|X^{V \setminus \{i\}}}(\cdot|X_{k+1}^1,X_{k+1}^2,\ldots,X_{k+1}^{i-1},X_k^{V \setminus \{1,2,\dots,i\}}) \\
+&\vdots \\
+X_{k+1}^n &\sim \rho_{X_n|X^{V \setminus \{n\}}}(\cdot|X_{k+1}^1,X_{k+1}^2,\ldots,X_{k+1}^{n-1})
+```
