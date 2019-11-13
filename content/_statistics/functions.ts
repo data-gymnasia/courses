@@ -1,9 +1,10 @@
-import '../shared/shared';
 import { Draggable } from '@mathigon/boost';
+import {Step} from '../shared/types';
+import '../shared/shared';
 
 // Geopad example
 
-export function intro($step) {
+export function intro($step: Step) {
   const initial = [{x: 40, y: 40}, {x: 120, y: 0}, {x: 20, y: 20}];
   const correct = [{x: 100, y: 20}, {x: 40, y: 40}, {x: 120, y: 40}];
 

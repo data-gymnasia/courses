@@ -4,28 +4,35 @@
 // =============================================================================
 
 
-/* global CodeMirror */
-import { CustomElement, registerElement, script, $N, $ } from '@mathigon/boost';
+import { ElementView, CustomElementView, register, loadScript, $N, $, InputView } from '@mathigon/boost';
+import {Obj} from '@mathigon/core';
+
+
+declare global {
+  interface Window {
+    CodeMirror: any;
+  }
+}
 
 const SCRIPT_URL = 'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.47.0/codemirror.min.js';
 const STYLE_URL = 'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.47.0/codemirror.min.css';
 const MODES_URL = 'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.47.0/mode/abc/abc.min.js';
 const THEME_URL = 'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.47.0/theme/abc.min.css';
 
-const PROMISES = {};
+const PROMISES: Obj<Promise<{}>> = {};
 
-function loadCSS(href) {
+function loadCSS(href: string) {
   if (PROMISES[href]) return;
-  PROMISES[href] = Promise.resolve();
-  $N('link', {rel: 'stylesheet', type: 'text/css', href}, $(document.head));
+  PROMISES[href] = Promise.resolve({});
+  $N('link', {rel: 'stylesheet', type: 'text/css', href}, $(document.head)!);
 }
 
-function loadJS(src) {
-  if (!PROMISES[src]) PROMISES[src] = script(src);
+function loadJS(src: string) {
+  if (!PROMISES[src]) PROMISES[src] = loadScript(src);
   return PROMISES[src];
 }
 
-async function loadCodeMirror($el) {
+async function loadCodeMirror($el: ElementView) {
   loadCSS(STYLE_URL);
   await loadJS(SCRIPT_URL);
 
@@ -40,20 +47,21 @@ async function loadCodeMirror($el) {
 
 // -----------------------------------------------------------------------------
 
-export class CodeEditor extends CustomElement {
+@register('x-code-editor')
+export class CodeEditor extends CustomElementView {
 
   async ready() {
-    const $textarea = this.$('textarea');
+    const $textarea = this.$('textarea') as InputView;
 
     const readOnly = this.hasAttr('readonly');
     if (readOnly) $textarea.setAttr('readonly', true);
 
-    const height = this.attr('height') || $textarea.value.split('\n').length || 10;
+    const height = +this.attr('height') || $textarea.value.split('\n').length || 10;
     if (height) this.css('height', height * 27 + 5 + 'px');
 
     const [mode, theme] = await loadCodeMirror(this);
 
-    const cm = CodeMirror.fromTextArea($textarea._el,
+    const cm = window.CodeMirror.fromTextArea($textarea._el,
         {lineNumbers: true, readOnly, mode, theme});
 
     let text = cm.getValue();
@@ -71,7 +79,8 @@ export class CodeEditor extends CustomElement {
 
 // -----------------------------------------------------------------------------
 
-export class CodeChecker extends CustomElement {
+@register('x-code-checker')
+export class CodeChecker extends CustomElementView {
 
   async ready() {
     const $textareas = this.$$('textarea');
@@ -81,7 +90,7 @@ export class CodeChecker extends CustomElement {
     const $editor1 = $N('div', {class: 'editor'}, this);
     const $editor2 = $N('div', {class: 'editor', style: 'display: none'}, this);
 
-    const height = this.attr('height') || 10;
+    const height = +this.attr('height') || 10;
     if (height) {
       $editor1.css('height', height * 27 + 5 + 'px');
       $editor2.css('height', height * 27 + 5 + 'px');
@@ -92,8 +101,8 @@ export class CodeChecker extends CustomElement {
 
     const [mode, theme] = await loadCodeMirror(this);
 
-    const cm1 = CodeMirror.fromTextArea($textareas[0]._el, {lineNumbers: true, mode, theme});
-    const cm2 = CodeMirror.fromTextArea($textareas[1]._el, {readOnly: true, mode, theme});
+    const cm1 = window.CodeMirror.fromTextArea($textareas[0]._el, {lineNumbers: true, mode, theme});
+    const cm2 = window.CodeMirror.fromTextArea($textareas[1]._el, {readOnly: true, mode, theme});
 
     let state = 0;
     const $button = $N('button', {class: 'btn btn-red', text: 'Reveal Solution'}, this);
@@ -112,8 +121,3 @@ export class CodeChecker extends CustomElement {
     });
   }
 }
-
-// -----------------------------------------------------------------------------
-
-registerElement('x-code-editor', CodeEditor);
-registerElement('x-code-checker', CodeChecker);

@@ -1,18 +1,15 @@
-import { Point } from "@mathigon/fermat";
+import {Point} from '@mathigon/fermat';
+import {CoordinateSystem, Step} from '../shared/types';
 import '../shared/shared';
 
-/**
- * Returns a linear function mx+b.
- * @param {*} m   slope
- * @param {*} b   y-intercept
- * @returns {function}  x => mx+b
- */
-function lineOf(m, b) {
-  return x => m * x + b;
+
+/** Returns a linear function mx+b. */
+function lineOf(m: number, b: number) {
+  return (x: number) => m * x + b;
 }
 
-export function optimization($step) {
-  const $chart = $step.$("x-coordinate-system");
+export function optimization($step: Step) {
+  const $chart = $step.$('x-coordinate-system') as CoordinateSystem;
 
   // generate random linear equation
   const m = 4 * Math.random() - 2;
@@ -37,16 +34,16 @@ export function optimization($step) {
   });
 }
 
-function parabolaOf(a) {
-  return x => a * x * x; 
+function parabolaOf(a: number) {
+  return (x: number) => a * x * x;
 }
 
-export function simpleparabola($step) {
-  const $chart = $step.$("x-coordinate-system");
+export function simpleparabola($step: Step) {
+  const $chart = $step.$('x-coordinate-system') as CoordinateSystem;
 
   // draw the line based on user's slider inputs
   $step.model.watch(s => {
-    const fn = parabolaOf(s.a); 
+    const fn = parabolaOf(s.a);
     $chart.setFunctions(fn);
   });
 }
