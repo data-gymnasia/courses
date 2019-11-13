@@ -324,6 +324,140 @@ Bayes net inference (drawing conclusions about the model based on observed data)
 
 **Expectation-Maximization** is an iterative procedure for parameter estimation in models with hidden variables: start with a random guess for the parameters and find the conditional distribution $\zeta$ of the hidden variables given the observed variables and the current parameter guess. We then treat the parameter vector $\theta$ as unknown and compute—with respect to the measure $\zeta$—the expected log likelihood function $Q(\theta)$. New parameters are chosen to maximize $Q$, and the two steps are iterated to convergence.
 
+We will introduce the Expectation-Maximization (EM) algorithm in the context
+of maximum likelihood estimation. Indeed, finding the MLE is often not
+easy to do analytically. We will begin by presenting an approach known as
+*Minorize-Maximization*  (MM) which will give a procedure for maximizing a
+function; moreover, the EM algorithm is a special case of MM.
+
+We will assume the parameter we are trying to estimate is
+$\theta \in \Theta \subseteq \mathbb{R}$.
+
+::: .definition
+**Definition** (Minorize)
+
+Let $g: \Theta \times \Theta \to \mathbb{R}$ and $f: \Theta \to \mathbb{R}$.
+Then $g$ is said to *minorize* f if for all $\theta, \bar{\theta} \in \Theta$:
+
+1. $g(\theta, \theta) = f(\theta)$.
+
+2. $g(\theta, \bar{\theta}) \leq f(\theta)$.
+:::
+
+::: .example
+**Example**  
+
+Let $f(x) = -\log (x)$. Then $g(x,y) = \frac{x-y}{x} - \log(x)$ minorizes $f$.
+:::
+
+Suppose that $g: \Theta \times \Theta \to \mathbb{R}$ minorizes
+$f: \Theta \to \mathbb{R}$. Then the MM procedure attempts to maximize $f$
+by first setting the initial guess $\theta_0 \in \Theta$ and then performing
+the following iterations:
+
+``` latex
+\theta_1 &= \textrm{argmax}_{\theta} g(\theta,\theta_0) \\
+\theta_2 &= \textrm{argmax}_{\theta} g(\theta,\theta_1) \\
+&\vdots \\
+\theta_k &= \textrm{argmax}_{\theta} g(\theta,\theta_{k-1}).
+```
+
+From the definiton of $\theta_k$ above, we have
+$g(\theta_k,\theta_{k-1}) \geq g(\theta,\theta_{k-1})$ for all
+$\theta$. In particular, for $\theta = \theta_{k-1}$, we have
+$g(\theta_k, \theta_{k-1}) \geq g(\theta_{k-1},\theta_{k-1}) = f(\theta_{k-1})$.
+Moreover, because $g(\theta, \bar{\theta}) \leq f(\theta)$ for all
+$\theta, \bar{\theta}$, then for $\bar{\theta} = \theta_{k-1}$ we have
+$g(\theta_k, \theta_{k-1}) \leq f(\theta_k)$.
+Thus we have $g(\theta_k, \theta_{k-1}) \geq f(\theta_{k-1})$ and
+$g(\theta_k, \theta_{k-1}) \leq f(\theta_k)$ which implies
+$f(\theta_{k-1}) \leq f(\theta_k)$ so the MM procedure guarantees that $f$
+does not decrease after each iteration.
+
+Since we are interested in computing MLEs, $f(\theta)$ will typically be
+a likelihood function. Let $h(y,\theta) \geq 0$ for all $y, \theta$ and define
+
+``` latex
+f(\theta) &= \log\left(\sum_y h(y,\theta)\right).
+```
+
+We claim that the function $g(\theta, \bar{\theta})$ defined below minorizes
+$f$:
+
+``` latex
+g(\theta, \bar{\theta}) &= f(\bar{\theta}) + \sum_y
+\frac{h(y,\bar{\theta})}{e^{f(\bar{\theta})}}
+\log\left(\frac{h(y,\theta)}{h(y,\bar{\theta})}\right).
+```
+
+Note that $g(\theta, \theta) = f(\theta) + 0 = f(\theta)$. To prove that
+$g(\theta, \bar{\theta}) \leq f(\theta)$ for all $\theta, \bar{\theta}$ we
+will use Jensen's inequality:
+
+::: .theorem
+**Theorem** (Jensen's Inequality for Probability)
+
+Let $X$ be a random variable and $\phi$ a convex function. Then
+
+``` latex
+\phi(\mathbb{E}[X]) \leq \mathbb{E}[\phi(X)].
+```
+:::
+
+*Remark*: If $\phi$ is convex, then $\psi = -\phi$ is concave and
+Jensen's inequality yields:
+
+``` latex
+\mathbb{E}[\psi(X)] \leq \psi(\mathbb{E}[X]).
+```
+
+Note that
+$p(y) = \frac{h(y,\bar{\theta})}{e^{f(\bar{\theta})}} =
+\frac{h(y,\bar{\theta})}{\sum_y h(y,\bar{\theta})}$ is a probability
+distribution function. Thus the term
+$\sum_y
+\frac{h(y,\bar{\theta})}{e^{f(\bar{\theta})}}
+\log\left(\frac{h(y,\theta)}{h(y,\bar{\theta})}\right)$ is an expectation:
+
+``` latex
+\sum_y
+\frac{h(y,\bar{\theta})}{e^{f(\bar{\theta})}}
+\log\left(\frac{h(y,\theta)}{h(y,\bar{\theta})}\right) &=
+\mathbb{E}_Y\left[\log\left(\frac{h(Y,\theta)}{h(Y,\bar{\theta})}\right)\right].
+```
+
+Then because $\log(\cdot)$ is a concave function, we can apply Jensen's
+inequality to conclude:
+
+``` latex
+\mathbb{E}_Y\left[\log\left(\frac{h(Y,\theta)}{h(Y,\bar{\theta})}\right)\right]
+&\leq
+\log\left(\mathbb{E}_Y\left[\frac{h(Y,\theta)}{h(Y,\bar{\theta})}\right]\right) \\
+&= \log\left(\sum_y \frac{h(y,\bar{\theta})}{e^{f(\bar{\theta})}} \cdot
+\frac{h(y,\theta)}{h(y,\bar{\theta})}
+\right) \\
+&= \log\left(\sum_y \frac{h(y,\theta)}{e^{f(\bar{\theta})}}
+\right) \\
+&= \log\left(e^{-f(\bar{\theta})}\sum_y h(y,\theta)
+\right) \\
+&= \log\left(\sum_y h(y,\theta)\right) - f(\bar{\theta}) \\
+&= f(\theta) - f(\bar{\theta}).
+```
+
+Thus,
+
+``` latex
+g(\theta, \bar{\theta}) &= f(\bar{\theta}) +
+\underbrace{\sum_y \frac{h(y,\bar{\theta})}{e^{f(\bar{\theta})}}
+\log\left(\frac{h(y,\theta)}
+{h(y,\bar{\theta})}\right)}_{\leq f(\theta) - f(\bar{\theta})} \\
+&\leq f(\theta).
+```
+
+
+
+
+
 TODO: insert these images (see source)
 
     img(src="images/gmm-step-0.svg")

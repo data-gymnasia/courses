@@ -2336,3 +2336,208 @@ X_{k+1}^i &\sim \rho_{X_i|X^{V \setminus \{i\}}}(\cdot|X_{k+1}^1,X_{k+1}^2,\ldot
 &\vdots \\
 X_{k+1}^n &\sim \rho_{X_n|X^{V \setminus \{n\}}}(\cdot|X_{k+1}^1,X_{k+1}^2,\ldots,X_{k+1}^{n-1})
 ```
+
+::: .example
+**Example**
+
+Consider the bivariate normal distribution
+$(X,Y) \sim N(\mu, \Sigma)$ where $\mu = [\mu_X,\mu_Y]^T$ and
+
+``` latex
+\Sigma =
+\begin{bmatrix}
+\sigma_X^2 & \sigma_{XY} \\ \sigma_{XY} & \sigma_Y^2
+\end{bmatrix}
+```
+
+is the covariance matrix. Then we have
+
+``` latex
+X &\sim N(\mu_x,\sigma_X^2) \\
+Y &\sim N(\mu_Y,\sigma_Y^2).
+```
+
+Then because $f_{X|Y}(x|y) = \frac{f_{X,Y}(x,y)}{f_Y(y)}$ and
+$f_{Y|X}(y|x) = \frac{f_{X,Y}(x,y)}{f_X(x)}$, we have that
+
+``` latex
+f_{X|Y}(x|y) \sim N\left(\mu_X + \frac{\sigma_{XY}}{\sigma_Y^2}(y-\mu_Y),
+\left(1-\frac{\sigma_{XY}^2}{\sigma_X^2 \sigma_Y^2}\right)\sigma_X^2\right) \\
+f_{Y|X}(y|x) \sim N\left(\mu_Y + \frac{\sigma_{XY}}{\sigma_X^2}(x-\mu_X),
+\left(1-\frac{\sigma_{XY}^2}{\sigma_X^2 \sigma_Y^2}\right)\sigma_Y^2\right).
+```
+
+Let $S_0 \in \mathbb{R}^2$ be an initial sample vector. Then, with sample
+$S_k = (X_k,Y_k)$, $S_{k+1} = (X_{k+1},Y_{k+1})$ is obtained via the Gibbs
+sampler as follows:
+
+1. $X_{k+1} \sim N\left(\mu_X + \frac{\sigma_{XY}}{\sigma_Y^2}(Y_k-\mu_Y),
+\left(1-\frac{\sigma_{XY}^2}{\sigma_X^2 \sigma_Y^2}\right)\sigma_X^2\right)$
+
+2. $Y_{k+1} \sim N\left(\mu_Y + \frac{\sigma_{XY}}{\sigma_X^2}(X_{k+1}-\mu_X),
+\left(1-\frac{\sigma_{XY}^2}{\sigma_X^2 \sigma_Y^2}\right)\sigma_Y^2\right)$.
+:::
+
+::: .exercise
+**Exercise**  
+
+Implement the Gibbs sample in the previous example with $\mu = [-1,1]^T$ and
+
+``` latex
+\Sigma =
+\begin{bmatrix}
+2 & 2 \\
+2 & 3
+\end{bmatrix}.
+```
+Construct a 2d histogram of the samples.
+:::
+
+---
+> id: gibbs_biv_exec
+
+*Solution*: The executable code below generates the desired samples:
+
+    pre(julia-executable)
+      | using Distributions, Random
+      | Random.seed!(1234)
+      |
+      | # Sample from conditional X|Y=y
+      | # Inputs:
+      | # - y: The current value of y (Y_k)
+      | # - μ: The mean vector of the joint density
+      | # - Σ: The covariance matrix of X,Y
+      | # Outputs:
+      | # X_{k+1} where X_{k+1} ∼ f(X|Y=y)
+      | function condition_on_Y(y, μ, Σ)
+      |     μX = μ[1]
+      |     μY = μ[2]
+      |     σX2, σXY, _, σY2 = Σ
+      |
+      |     conditional_mean = μX + σXY/σY2*(y-μY)
+      |     conditional_variance = (1-σXY^2/(σX2*σY2))*σX2
+      |
+      |     distribution = Normal(conditional_mean, conditional_variance)
+      |
+      |     return rand(distribution)
+      | end
+      |
+      | # Sample from conditional Y|X=y
+      | # Inputs:
+      | # - x: The current value of x (X_{k+1})
+      | # - μ: The mean vector of the joint density
+      | # - Σ: The covariance matrix of X,Y
+      | # Outputs:
+      | # Y_{k+1} where Y_{k+1} ∼ f(y|X=x)
+      | function condition_on_X(x, μ, Σ)
+      |     μX = μ[1]
+      |     μY = μ[2]
+      |     σX2, σXY, _, σY2 = Σ
+      |
+      |     conditional_mean = μY + σXY/σX2*(x-μX)
+      |     conditional_variance = (1-σXY^2/(σX2*σY2))*σY2
+      |
+      |     distribution = Normal(conditional_mean, conditional_variance)
+      |
+      |     return rand(distribution)
+      | end
+      |
+      | # Gibbs sampler to obtain samples from (X,Y) ~ N(μ,Σ)
+      | # Inputs:
+      | # - μ: The joint density mean vector
+      | # - Σ: The covaraince matrix of X and Y
+      | # - n: The number of samples to return
+      | # Outputs:
+      | # An (n x 2) matrix where each row represent a sample
+      | function bivariate_gibbs(μ, Σ, n)
+      |     # Store samples here
+      |     S = zeros(n,2)
+      |
+      |     # Initialize S_0 to means
+      |     S[1,:] = μ
+      |
+      |     for i=2:n
+      |         X_k1 = condition_on_Y(S[i-1,2], μ, Σ) # Get X_{k+1}
+      |         Y_k1 = condition_on_X(X_k1, μ, Σ) # Get Y_{k+1}
+      |         S[i,:] = [X_k1, Y_k1]
+      |     end
+      |
+      |     return S
+      | end
+      |
+      | # Define joint density parameters
+      | μX = -1
+      | μY = 1
+      | σX = √2
+      | σY = √3
+      | σXY = 2
+      | μ = [μX, μY]
+      | Σ = [σX^2 σXY; σXY σY^2]
+      |
+      | # Get samples
+      | samples = bivariate_gibbs(μ, Σ, 10000)
+
+Running the block of code below will generate a 2d histogram:
+
+``` julia
+# Create 2d histogram
+Pkg.add("Seaborn")
+Pkg.add("Pandas")
+using Seaborn, Pandas
+pygui(true)
+df = DataFrame(Dict(:X=>samples[:,1], :Y=>samples[:,2]))
+jointplot(x = "X", y = "Y", data = df, s = 1, alpha = 0.18)
+```
+
+which yields
+
+    figure
+      img(src="images/gibbs_bivariate_hist.svg")
+
+There are certain cases when the Gibbs sampler performs really well and cases
+where it does not. By "perform well", we mean that the samples quickly begin
+to behave as if they were sampled from the target distribution. When it does not
+perform well, we mean that we will have to wait a very long time before the
+samples behave as if they came from the target distribution (if they ever do).
+To demonstrate this, we will consider two extreme cases.
+
+**Case 1**:
+The Gibbs sampler performs poorly when the variables in the joint density are
+highly dependent. Suppose we are considering the joint density of two random
+variables $(X,Y)$ and $Y = X$. Beginning with $S_0 = (X_0, Y_0)$, the Gibbs
+sampler proceeds as follows:
+
+``` latex
+X_1 &\sim \rho_{X|Y}(\cdot | Y = Y_0) \Rightarrow X_1 = Y_0 \\
+Y_1 &\sim \rho_{Y|X}(\cdot | X = X_1) \Rightarrow Y_1 = X_1 = Y_0 \\
+&\vdots \\
+(X_k,Y_k) &= (Y_0,Y_0)
+```
+
+*Remark*: The reason $X_1 = Y_0$ is the following: Since
+$X_1 \sim \rho_{X|Y}(\cdot | Y = Y_0)$, Bayes rule tells us
+$\rho_{X|Y}(\cdot | Y = Y_0) \propto \rho_{Y|X}(Y = Y_0|x)\rho_X(x)$.
+Now note that because $Y = X$ by definition, $\rho_{Y|X}(Y = Y_0|x)$ will be
+0 for any value except $X = Y_0$, so we must have $X_1 = Y_0$.
+
+The example above demonstrates that when the variables are highly dependent,
+the Gibbs sampler performs poorly--it fails in this example as all samples will
+be the same and the Markov chain never "mixes."
+
+**Case 2**:
+The Gibbs sampler performs well when the variables are highly independent. Again
+suppose that we are consider the joint density of two random variables
+$(X,Y)$ where $X \perp\\\!\\\!\\\!\perp Y$. Starting with $(X_0, Y_0),
+the Gibbs sample proceeds as  follows:
+
+``` latex
+X_1 &\sim \rho_{X|Y}(\cdot| Y = Y_0) = \rho_X(\cdot)  \\
+Y_1 &\sim \rho_{Y|X}(\cdot| X = X_1) = \rho_Y(\cdot)  \\
+&\vdots \\
+X_k &\sim \rho_X(\cdot) \\
+Y_k &\sim \rho_Y(\cdot).
+```
+
+Since $X \perp\\\!\\\!\\\!\perp Y$, the conditional densities are simply
+marginals so we see that the samples immediately begin to behave like samples
+from the target distribution.

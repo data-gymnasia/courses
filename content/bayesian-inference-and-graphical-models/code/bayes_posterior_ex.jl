@@ -27,5 +27,8 @@ plot!(x_values, prior, seriestype = :line, label = "prior", grid = false)
 
 posterior_quantile = cdf(Beta(α+p,β+q),0.65) - cdf(Beta(α+p,β+q),0.55)
 confidence_interval = [quantile(Beta(α+p,β+q),0.025), quantile(Beta(α+p,β+q),0.975)]
+bayes_mean = mean(Beta(α+p,β+q))
 
-savefig("beta_prior_coin_ex.svg")
+
+plot(x_values, normal_values)
+savefig("beta_prior_coin_ex_2.svg")
