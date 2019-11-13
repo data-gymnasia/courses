@@ -3,35 +3,38 @@
   "version": "0.1.0",
   "description": "Data Gymnasia courses",
   "homepage": "http://datagymnasia.com",
-  "repository": "sswatson/data-gymnasia",
+  "repository": "data-gymnasia/courses",
   "license": "UNLICENSED",
   "scripts": {
-    "server": "node server/main.js --use-strict & grunt concurrent",
-    "start": "grunt && npm run server",
-    "test": "eslint */*.js"
+    "server": "node server/app.js --use-strict & gulp watch",
+    "start": "gulp && npm run server"
   },
   "engines": {
     "node": ">=8.0.0"
   },
   "dependencies": {
-    "@mathigon/boost": "^0.3.0",
-    "@mathigon/core": "^0.2.5",
-    "@mathigon/fermat": "^0.2.7",
-    "@mathigon/hilbert": "^0.2.3",
-    "@mathigon/parser": "^0.2.23",
-    "acorn": "^6.2.1",
+    "@mathigon/boost": "^0.4.2",
+    "@mathigon/core": "^0.3.3",
+    "@mathigon/fermat": "^0.3.3",
+    "@mathigon/hilbert": "^0.3.3"
+  },
+  "devDependencies": {
+    "@mathigon/parser": "^0.4.0",
+    "autoprefixer": "^9.7.1",
     "emojione-assets": "^3.1.1",
-    "eslint": "^5.12.1",
     "express": "^4.16.4",
     "express-validator": "^5.3.1",
-    "grunt": "^1.0.3",
-    "grunt-autoprefixer": "^3.0.4",
-    "grunt-concurrent": "^2.3.1",
-    "grunt-contrib-less": "^2.0.0",
-    "grunt-contrib-watch": "^1.1.0",
+    "gulp": "^4.0.2",
+    "gulp-better-rollup": "^4.0.1",
+    "gulp-less": "^4.0.1",
+    "gulp-postcss": "^8.0.0",
+    "gulp-rename": "^1.4.0",
     "pug": "^2.0.3",
-    "rollup": "^1.1.2",
+    "rollup": "^1.27.0",
     "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-typescript": "^1.0.1",
+    "tslib": "^1.10.0",
+    "typescript": "^3.7.2",
     "yamljs": "^0.3.0"
   }
 }

@@ -17,12 +17,12 @@ html
     include components.html
 
     header
-      a(href="/" id="logo")
-        +icon('datalogo', 36, 72)
-        +icon('datatitle', 188, 36)
+      a#logo(href="/" title="Data Gym")
+        img(src="/images/gym.svg" width=36 height=36)
+        span Data Gymnasia
 
     .body
-      x-course(id=course.id)
+      x-course(id=course.id data-goals=section.goals)
         .sidebar(style=`background-color: ${course.color}`)
           .sidebar-hero(style=`background-image: url(/resources/${course.id}/hero.jpg)`)
             .sidebar-hero-gradient
@@ -51,8 +51,10 @@ html
           if section.background
             .page-background
           h1= section.title
-          .show-all-steps.off #[+icon('book', 20)] Reveal All Steps
-          div!= course.getSectionHTML(section.id)
+          .reveal-banner.off
+            | Reading time: ~#{section.duration} min
+            .complete Reveal all steps
+          .steps!= course.getSectionHTML(section.id)
 
           footer
             p.skip-step
@@ -68,6 +70,10 @@ html
                 .title= next.title
 
         x-tutor
+
+        x-modal#glossary-modal.light
+          .close: +icon('close', 24)
+          .modal-body
 
         script(type="application/json")#glossary!= course.getJSON('glossary')
         script(type="application/json")#bios!= course.getJSON('bios')

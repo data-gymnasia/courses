@@ -10,7 +10,9 @@ Data Gymnasia is a free [website](https://mathigon.org/data-gymnasia) for learni
 4. Run `npm start`. Wait for the assets to be compiled, and then open [localhost:8081](http://localhost:8081) to view the website. The server will automatically watch for file changes and recompile. 
 5. Every course is a subfolder in the [content](content) directory. The URL of the
 [Python course](content/programming-in-python), for example, will be
-[localhost:5000/course/programming-in-python](http://localhost:5000/course/programming-in-python).
+[localhost:8081/course/programming-in-python](http://localhost:8081/course/programming-in-python).
+
+Note that running `npm start` for the first time might take a significant amount of time, as it compiles the LaTeX code for every course. This will speed up significantly when using cached results the next time. The LaTeX compilation also uses a lot of memory, so if you encounter a JS HEAP overflow issue, you can instead try `npm start --max-old-space-size=8192`. This increases the memory available to the NodeJS task.
 
 To make a new course, run `cp -r content/blank-course content/my-new-course-name` (or just duplicate the `blank-course` folder and change the name). You can get started by editing the `my-new-course-name/content.md` file. Note that you have to `ctrl-c` to kill the `npm` process and then restart it whenver you add a new course or a new section in a course.
 

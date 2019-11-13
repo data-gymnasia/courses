@@ -9,8 +9,6 @@ const path = require('path');
 const yaml = require('yamljs');
 const express = require('express');
 
-const locales = ['en', 'de'];
-
 
 // -----------------------------------------------------------------------------
 // Course Class
@@ -20,10 +18,10 @@ const CURRICULUM = yaml.load(path.join(__dirname, `../curriculum.yaml`));
 
 class Course {
 
-  constructor(id, locale) {
-    const data = require(path.join(COURSE_PATH, id, locale, 'data.json'));
+  constructor(id, data, locale) {
     this.id = id;
     this.sections = data.sections;
+    this.steps = data.steps;
     this.title = data.title;
     this.locale = locale;
     this.color = '#' + (CURRICULUM[id] || {}).color;
@@ -32,7 +30,7 @@ class Course {
 
   readFile(name) {
     try {
-      return fs.readFileSync(path.join(COURSE_PATH, this.id, this.locale, name));
+      return fs.readFileSync(path.join(COURSE_PATH, this.id, name));
     } catch (e) {
       return null;
     }
@@ -43,21 +41,21 @@ class Course {
     return this.sections[sectionIndex + 1];
   }
 
-  getJSON(type) { return this.readFile(type + '.json'); }
+  getJSON(type) { return this.readFile(`${type}_${this.locale}.json`); }
   getSection(section) { return this.sections.find(s => s.id === section); }
-  getSectionHTML(section) { return this.readFile(`sections/${section}.html`); }
+  getStep(step) { return this.steps.find(s => s.id === step); }
+
+  getSectionHTML(sectionId) {
+    const steps = this.getSection(sectionId).steps;
+    return steps.map(s => this.getStep(s)).map(s => s.html).join('');
+  }
 }
 
-const Courses = {};
-const courseIds = fs.readdirSync(COURSE_PATH).filter(f => f !== 'shared')
-    .filter(f => fs.statSync(COURSE_PATH + '/' + f).isDirectory());
-for (let c of courseIds) {
-  Courses[c] = {};
-  for (let l of locales) {
-    if (fs.existsSync(path.join(COURSE_PATH, c, l, 'data.json'))) {
-      Courses[c][l] = new Course(c, l);
-    }
-  }
+function getCourse(courseId, locale='en') {
+  const file = path.join(COURSE_PATH, courseId, `data_${locale}.json`);
+  if (!fs.existsSync(file)) return;
+  const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+  return new Course(courseId, data, locale);
 }
 
 
@@ -65,7 +63,7 @@ for (let c of courseIds) {
 // Web Server
 
 const app = express();
-app.set('port', 3000);
+app.set('port', 8081);
 app.set('env', 'development');
 app.set('views', path.join(__dirname, 'assets'));
 app.set('view engine', 'pug');
@@ -83,19 +81,19 @@ app.get('/about', function(req, res) {
   res.render('about');
 });
 
+app.get('/course/python-programming', function(req, res) {
+  res.redirect('/course/programming-in-python');
+});
 
 app.get('/course/:course', function(req, res, next) {
-  const course = Courses[req.params.course];
+  const course = getCourse(req.params.course);
   if (!course) return next();
-  res.redirect(`/course/${course.en.id}/${course.en.sections[0].id}`);
+  res.redirect(`/course/${course.id}/${course.sections[0].id}`);
 });
 
 app.get('/course/:course/:section', function(req, res, next) {
-  const courseList = Courses[req.params.course];
-  if (!courseList) return next();
-
-  const locale = req.query.hl || 'en';
-  const course = courseList[locale] || courseList.en;
+  const course = getCourse(req.params.course, req.query.hl || 'en');
+  if (!course) return next();
 
   const section = course.getSection(req.params.section);
   if (!section) return next();
@@ -107,6 +105,6 @@ app.post('/course/:course/ask', function(req, res) {
   res.type('txt').send(JSON.stringify([{content: '[NOT IMPLEMENTED]'}]));
 });
 
-app.listen(3000, function() {
-  console.log('Server listening on port 3000');
+app.listen(8081, function() {
+  console.log('Server listening on port 8081');
 });
