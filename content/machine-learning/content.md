@@ -2633,7 +2633,7 @@ We can see that some digits cluster apart from the other digits (like `{jl} 1`),
 > id: t-sne
 ### t-SNE
 
-In this section we discuss a popular dimensionality reduction technique which is often more effective than principal component analysis. The idea is to choose a map which attempts to preserve *pairwise similarity* of the data points. The version we present is called $t$-SNE, which is short for *$t$-distributed stochastic neighbor embedding.* 
+In this section we discuss a popular dimensionality reduction technique which is often more effective than principal component analysis at discovering structure in the dataset. The idea is to choose a map which attempts to preserve *pairwise similarity* of the data points. The version we present is called $t$-SNE, which is short for *$t$-distributed stochastic neighbor embedding.* 
 
 Suppose that $\mathbf{x}\_1, \ldots, \mathbf{x}\_n$ is a set of points in $\mathbb{R}^p$. We begin by fixing a parameter of the model, called the **perplexity** $\rho$. Given $\sigma &gt; 0$, we define 
 
@@ -2669,7 +2669,7 @@ Consider the points $\mathbf{x}\_1 = [0,0]$, $\mathbf{x}\_2 = [0,1]$, $\mathbf{x
 
 We find that $P\_{2,1}(0.25) = 0.9997$, $P\_{2,1}(1) = 0.6222$, $P\_{2,1}(2) = 0.4912$, and $P\_{2,1}(100) = 0.3334$. 
 
-We can see from this calculation that $\sigma$ is essentially the unit with respect to which proximity is being measured. If $\sigma$ is very large, then all of the points are effectively close to $\mathbf{x}\_1$, so the values of $P\_{i,1}(\sigma)$ are approximately equal for $i \in \\{2,3,4\\}$. If $\sigma$ is very small, then $P\_{i,1}(\sigma)$ is close to 1 for $\mathbf{x}\_1$'s nearest neighbor and is close to 0 for the other points. 
+We can see from this calculation that $\sigma$ serves as the unit with respect to which proximity is being measured. If $\sigma$ is very large, then all of the points are effectively close to $\mathbf{x}\_1$, so the values of $P\_{i,1}(\sigma)$ are approximately equal for $i \in \\{2,3,4\\}$. If $\sigma$ is very small, then $P\_{i,1}(\sigma)$ is close to 1 for $\mathbf{x}\_1$'s nearest neighbor and is close to 0 for the other points. 
 
 For each $j$ from 1 to $n$, we define $\sigma\_j$ to be the solution $\sigma$ of the equation 
 
@@ -2677,31 +2677,54 @@ For each $j$ from 1 to $n$, we define $\sigma\_j$ to be the solution $\sigma$ of
 2^{-\sum_{i : i \neq j} P_{i,j}(\sigma) \log_2 P_{i,j}(\sigma)} = \rho. 
 ```
 
-This ensures that the function $i\mapsto P\_{i,j}(\sigma\_j)$ avoids the extremes of too heavily concentrating its values on a small number of $i$'s or spreading out its values too evenly across all of the $i$'s. 
+The quantity $\sum_i P\_{i,j}(\sigma) \log\_2 P\_{i,j}(\sigma)$ on the left-hand side is called the **Shannon entropy**, and it measures how evenly distributed the values $P\_{1,j}(\sigma), P\_{2,j}(\sigma), \ldots, P\_{n,j}(\sigma)$ are. We fix the perplexity for each $j$ to ensure that the function $i\mapsto P\_{i,j}(\sigma\_j)$ avoids the extremes of too heavily concentrating its values on a small number of $i$'s or spreading out its values too evenly across all of the $i$'s. 
 
 [Continue](btn:next)
 
 ---
-> id: step-tsne-symmetrized
+> id: step-asymmetric-tsne
 
-We also define the following symmetric version of the $P\_{i,j}$'s: $p\_{i,j} = \frac{1}{2n}(P\_{i,j}(\sigma\_j) + P\_{j,i}(\sigma\_i))$. 
-
-We will denote by $\mathbf{y}\_1, \ldots, \mathbf{y}\_n$ the locations of the *images* of the sample points under some map to a Euclidean space of a lower dimension $k$ (typically 2 or 3). We define 
+We will denote by $\mathbf{\tilde{x}}\_1, \ldots, \mathbf{\tilde{x}}\_n$ the images of the points $\mathbf{x}\_1, \ldots, \mathbf{x}\_n$ under a map from the original feature space to a lower-dimensional Euclidean space (typically the plane or 3D space). We won't bother trying to define our dimension reduction map on the whole feature space; rather, we will let the domain of the map be just the set of training points. We begin by defining
 
 ``` latex
-  q_{i,j} = \frac{(1 +
-    |\mathbf{y}_i-\mathbf{y}_j|^2)^{-1}}{\sum_{k\neq j}(1 +
-    |\mathbf{y}_k-\mathbf{y}_j|^2)^{-1}}. 
+  Q_{i,j} = \frac{(1 +
+    |\mathbf{\tilde{x}}_i-\mathbf{\tilde{x}}_j|^2)^{-1}}{\sum_{k\neq j}(1 +
+    |\mathbf{\tilde{x}}_k-\mathbf{\tilde{x}}_j|^2)^{-1}}. 
 ```
 
-These quantities measure the pairwise similarity of the points $\mathbf{y}\_1, \ldots, \mathbf{y}\_n$, analogously to $P\_{i,j}$. We measure how well the similarities $p\_{i,j}$ match the similarities $q\_{i,j}$ using the cost function 
+These quantities measure the pairwise similarity of the points $\mathbf{\tilde{x}}\_1, \ldots, \mathbf{\tilde{x}}\_n$, analogously to $P\_{i,j}$. Notice, that rather than using a Gaussian function to measure neighborliness, we're using the Cauchy density $\frac{1}{1+x^2}$. (As an aside, the Cauchy distribution is also known a the $t$ distribution with one degree of freedom, and that's where we get the $t$ in the name $t$-SNE).
+
+We measure how well the similarities $P\_{i,j}$ match the similarities $Q\_{i,j}$ using the cost function 
 
 ``` latex
-  C(\mathbf{y}_1, \ldots, \mathbf{y}_n) =
-  \sum_{(i,j) : i \neq j} p_{i,j} \log_2 \frac{p_{i,j}}{q_{i,j}}.
+  C(\mathbf{\tilde{x}}_1, \ldots, \mathbf{\tilde{x}}_n) =
+  \sum_{(i,j) : i \neq j} P_{i,j} \log_2 \frac{P_{i,j}}{Q_{i,j}}.
 ```
 
-Finally, we use gradient descent to find values for the image points $\mathbf{y}\_1, \ldots, \mathbf{y}\_n$ which minimize this cost function. 
+Finally, we use gradient descent to find values for the image points $\mathbf{\tilde{x}}\_1, \ldots, \mathbf{\tilde{x}}\_n$ which minimize this cost function. Note that, since our dimension reduction map is only defined on the training points, we can think of the image coordinates as the parameters of the map and perform the gradient descent steps on the image coordinates. You can think of this visually as moving the locations of the points about freely so as to try to get the value of the cost function to go down. The following animation shows this process in action:
+
+    center: figure: video(src="images/tsne-mnist.m4v" width="40%" controls)
+    
+This animation comes from [Chris Olah's blog](https://colah.github.io/posts/2014-10-Visualizing-MNIST/), which contains many other animations and discussion of PCA, t-SNE, and related models.
+
+::: .exercise
+**Exercise**  
+Why might it valuable to use the heavier tailed Cauchy function to compute the $Q$'s?
+:::
+
+    x-quill
+
+---
+> id: solution-heavy-tailed-tsne
+
+*Solution*. If two points which are supposed to be close are very far apart, the gradient of the Gaussian measuring their neighborliness will be tiny (since the Gaussian has derivative extremely close to zero outside of a small zone around the origin). This effect is much less pronounced with the Cauchy function, so the gradient signal in the optimization process is stronger.
+
+[Continue](btn:next)
+
+---
+> step-tsne-symmetrized 
+
+Lastly, we note that the version of t-SNE [proposed in the original t-SNE paper](http://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf) actually uses symmetrized versions of the $P$'s and $Q$'s that they call $p\_{i,j}$ and $q\_{i,j}$. (*Symmetric* means that $p\_{i,j} = p\_{j,i}$ and $q\_{i,j} = q\_{j,i}$.) This version has some technical advantages and gives similar results to the asymmetric version discussed above. 
 
 ::: .example
 **Example**  
