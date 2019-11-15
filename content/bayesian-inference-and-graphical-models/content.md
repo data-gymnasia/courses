@@ -585,8 +585,8 @@ f(x_k|y_k) &\sim N(y_k, \sigma^2).
 ```
 
 Given the observation $X = x^\*$, our goal will be to use the EM algorithm to
-estimate $q$ and $\sigma^2$. The observation $x^\*$ can be downloaded here
-[INSERT DOWNLOAD LINK].
+estimate $q$ and $\sigma^2$. The observation $x^\*$ can be downloaded
+[here](https://raw.githubusercontent.com/data-gymnasia/courses/master/content/bayesian-inference-and-graphical-models/code/hmm_observations.csv).
 
 The parameter we are trying to estimate is a vector: $\theta = [q, \sigma^2]$.
 The $k$th iteration of the EM algorithm gives $\theta_k = [q_k, \sigma^2_k]$
@@ -669,10 +669,10 @@ a_k &= \mathbb{E}_{Y|X=x^*}^{\theta_{k-1}}\left[\sum_{k=2}^n \mathbf{1}_{y_k = y
 
 There are a few ways in which we can compute this expectation. The first is
 by computing it exactly and summing over all possible $y$ combinations.
-This can be done fairly efficiently using dynamic programming, but, in the
-spirit of this course,  we will use Gibbs sampling to obtain samples from the
-conditional distribution of $Y$ given $X = x^\*$. Afterwards, we will use the
-samples to estimate the expectation via Monte Carlo.
+This can be done fairly efficiently for this problem using dynamic programming,
+but, in the spirit of this course,  we will use Gibbs sampling to obtain
+samples from the conditional distribution of $Y$ given $X = x^\*$. Afterwards,
+we will use the samples to estimate the expectation via Monte Carlo.
 
 To obtain a sample $(Y_1, Y_2, \ldots, Y_n)$, we will use Gibbs sampling.
 Suppose we start with initial sample $(Y_1^0, Y_2^0, \ldots, Y_n^0)$.
