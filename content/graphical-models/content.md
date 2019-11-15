@@ -1121,10 +1121,10 @@ Suppose $X_i \in \\\{-1,0,1\\\}$ and:
 ``` latex
 p(x_1) &= \frac{1}{3} \textrm{ for } x_1 \in \{-1,0,1\} \\
 f(y_j|x_j) &\sim N(x_j,1) \textrm{ for } j \in \{1,2,\ldots,n\} \\
-\mathbb{P}(X_{k+1} &= x_{k+1}|X_k = x_k) = a(x_{k+1},x_k)
+\mathbb{P}(X_{k+1} &= x_{k+1}|X_k = x_k) = p(x_{k+1},x_k)
 ```
 
-where $a(x_{k+1},x_k)$ is defined by:
+where $p(x_{k+1},x_k)$ is defined by:
 
     figure
       img(src="images/bn_sampling_matrix_1.svg")
@@ -1184,7 +1184,7 @@ function get_x_samples(n)
     samples = zeros(n)
 
     # Randomly set x1
-    samples[1] = [-1 0 1][rand(1:3)]
+    samples[1] = rand(-1:1)
 
     # Get samples x_2 through x_n
     for i=2:n

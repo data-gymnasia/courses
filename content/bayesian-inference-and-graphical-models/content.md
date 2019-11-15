@@ -171,7 +171,7 @@ confidence interval. The code below uses the quantile/inverse CDF function to
 obtain the desired interval:
 
 ``` julia
-confidence_interval = [quantile(Beta(α+p,β+q),0.025), quantile(Beta(α+p,β+q),0.975)]
+[quantile(Beta(α+p,β+q),0.025), quantile(Beta(α+p,β+q),0.975)]
 ```
 
 which yields $[0.575, 0.635]$. Both of the intervals above are
@@ -356,10 +356,10 @@ by first setting the initial guess $\theta_0 \in \Theta$ and then performing
 the following iterations:
 
 ``` latex
-\theta_1 &= \textrm{argmax}_{\theta} g(\theta,\theta_0) \\
-\theta_2 &= \textrm{argmax}_{\theta} g(\theta,\theta_1) \\
+\theta_1 &= \text{argmax}_{\theta} \;  g(\theta,\theta_0) \\
+\theta_2 &= \text{argmax}_{\theta} \;  g(\theta,\theta_1) \\
 &\vdots \\
-\theta_k &= \textrm{argmax}_{\theta} g(\theta,\theta_{k-1}).
+\theta_k &= \text{argmax}_{\theta} \;  g(\theta,\theta_{k-1}).
 ```
 
 From the definiton of $\theta_k$ above, we have
@@ -451,11 +451,430 @@ g(\theta, \bar{\theta}) &= f(\bar{\theta}) +
 \underbrace{\sum_y \frac{h(y,\bar{\theta})}{e^{f(\bar{\theta})}}
 \log\left(\frac{h(y,\theta)}
 {h(y,\bar{\theta})}\right)}_{\leq f(\theta) - f(\bar{\theta})} \\
-&\leq f(\theta).
+&\leq f(\theta)
 ```
 
+so we have shown that $g$ indeed minorizes $f$.
+
+Now consider a system with $n$ observable variables and $n$ hidden/latent
+variables, e.g., an HMM. We will use the shorthand notation
+$X_V = (X,Y) = (X_1,X_2,\ldots X_n, Y_1, Y_2, \ldots, Y_n)$ and assume that $X$
+is observable and $Y$ is hidden. Suppose the joint distribution of
+$X_V$ is parameterized by $\theta$: $p_V(x,y;\theta)$. Our goal is to estimate
+$\theta$ via the observation of $X = x^\*$. In particular, the MLE of $\theta$,
+$\hat{\theta}$, can be obtained by maximizing the marginal distribution of $X$,
+given by $\sum_{y} p_V(x^\*,y; \theta)$:
+
+``` latex
+\hat{\theta} &= \text{argmax}_{\theta} \;  \sum_y p_V(x^*,y; \theta).
+```
+
+Since $\log(\cdot)$ is an increasing function, we can also maximize the
+log-likelihood to obtain $\hat{\theta}$:
+
+``` latex
+\hat{\theta} &= \text{argmax}_{\theta} \;  \log\left(\sum_y p_V(x^*,y; \theta)
+\right).
+```
+
+We will use the MM algorithm to try to maximize the likelihood. In our previous
+notation, we will set
+
+``` latex
+f(\theta) &=  \log\left(\sum_y p_V(x^*,y; \theta) \right)
+```
+
+so that $h(y,\theta) = p_V(x^\*,y;\theta)$ and
+
+``` latex
+g(\theta, \bar{\theta}) &= f(\bar{\theta}) + \sum_y
+\frac{p_V(x^*,y;\bar{\theta})}{e^{f(\bar{\theta})}}
+\log\left(\frac{p_V(x^*,y;\theta)}{p_V(x^*,y;\bar{\theta})}\right).
+```
+
+ Then starting with initial guess
+$\theta_0$, we have
+
+``` latex
+\theta_k &= \text{argmax}_{\theta} \;  g(\theta,\theta_{k-1}).
+```
+
+Note that we can expand $g(\theta, \theta_{k-1})$ to get
+
+``` latex
+g(\theta, \theta_{k-1}) &= f(\theta_{k-1}) + \sum_y
+\frac{p_V(x^*,y;\theta_{k-1})}{e^{f(\theta_{k-1})}}
+\log\left(\frac{p_V(x^*,y;\theta)}{p_V(x^*,y;\theta_{k-1})}\right) \\
+&= f(\theta_{k-1}) + \sum_y
+\frac{p_V(x^*,y;\theta_{k-1})}{e^{f(\theta_{k-1})}}
+\log(p_V(x^*,y;\theta))
+- \sum_y
+\frac{p_V(x^*,y;\theta_{k-1})}{e^{f(\theta_{k-1})}}
+\log(p_V(x^*,y;\theta_{k-1})).
+```
+
+Now we define
+
+``` latex
+l(\theta) = f(\theta) - \sum_y
+\frac{p_V(x^*,y;\theta)}{e^{f(\theta)}}
+\log(p_V(x^*,y;\theta))
+```
+
+so that
+
+``` latex
+g(\theta, \theta_{k-1}) &= l(\theta_{k-1}) + \sum_y
+\frac{p_V(x^*,y;\theta_{k-1})}{e^{f(\theta_{k-1})}}
+\log(p_V(x^*,y;\theta)).
+```
+
+Now note that
+
+``` latex
+\theta_k &= \text{argmax}_{\theta} \;  g(\theta,\theta_{k-1}) \\
+&= \text{argmax}_{\theta} \;  l(\theta_{k-1}) + \sum_y
+\frac{p_V(x^*,y;\theta_{k-1})}{e^{f(\theta_{k-1})}}
+\log(p_V(x^*,y;\theta)) \\
+&= \text{argmax}_{\theta} \;  \sum_y
+\frac{p_V(x^*,y;\theta_{k-1})}{e^{f(\theta_{k-1})}}
+\log(p_V(x^*,y;\theta))
+```
+
+where the last equation follows from the fact that $l(\theta_{k-1})$ does not
+depend on $\theta$.
+
+Therefore, we have
+
+``` latex
+\theta_k &= \text{argmax}_{\theta} \;  \sum_y
+\frac{p_V(x^*,y;\theta_{k-1})}{e^{f(\theta_{k-1})}}
+\log(p_V(x^*,y;\theta)).
+```
+
+To conclude, we recall that the term
+$\frac{p_V(x^\*,y;\theta_{k-1})}{e^{f(\theta_{k-1})}}$ is a probability
+distribution function with parameter $\theta_{k-1}$, so above we are really
+computing an expectation:
+
+``` latex
+\theta_k &= \text{argmax}_{\theta} \;  
+\mathbb{E}_{Y|X=x^*}^{\theta_{k-1}} \left[\log(p_V(x^*,y;\theta))\right]
+```
+
+and hence the name *Expectation-maximization*.
+
+::: .example
+**Example**  
+
+Consider the HMM with hidden variables $(Y_1, Y_2,\ldots, Y_n)$ and observed
+variables $(X_1, X_2, \ldots, X_n)$ with joint density
+
+``` latex
+p(x_1, \ldots, x_n, y_1, \ldots, y_n) &=
+p(y_1)\prod_{k=2}^n [q\mathbf{1}_{y_k = y_{k-1}} +
+(1-q)\mathbf{1}_{y_k \neq y_{k-1}}]\prod_{k=1}^n f(x_k|y_k)
+```
+
+where
+
+``` latex
+Y_i &\in \{0,1\} \\
+p(y_1) &= \frac{1}{2} \; \text{ for } y_1 \in \{0,1\} \\
+f(x_k|y_k) &\sim N(y_k, \sigma^2).
+```
+
+Given the observation $X = x^\*$, our goal will be to use the EM algorithm to
+estimate $q$ and $\sigma^2$. The observation $x^\*$ can be downloaded here
+[INSERT DOWNLOAD LINK].
+
+The parameter we are trying to estimate is a vector: $\theta = [q, \sigma^2]$.
+The $k$th iteration of the EM algorithm gives $\theta_k = [q_k, \sigma^2_k]$
+where
+
+``` latex
+\theta_k &= \text{argmax}_{\theta}
+\mathbb{E}_{Y|X=x^*}^{\theta_{k-1}} \left[\log\left(
+p(x_1, \ldots, x_n, y_1, \ldots, y_n)
+\right)\right].
+```
+
+Expanding the term $\log(p(x_1, \ldots, x_n, y_1, \ldots, y_n))$ we have
+
+``` latex
+&\log(p(x_1, \ldots, x_n, y_1, \ldots, y_n)) =
+\log(p(y_1)) + \sum_{k=2}^n
+\log([q_k\mathbf{1}_{y_k = y_{k-1}} + (1-q_k)\mathbf{1}_{y_k \neq y_{k-1}}])
++ \sum_{k=1}^n \log\left(\frac{1}{\sqrt{2\pi \sigma^2_k}}
+  e^{-\frac{(x_k-y_k)^2}{2\sigma^2_k}}\right) \\
+&= \log(p(y_1)) + \log(q_k)\sum_{k=2}^n \mathbf{1}_{y_k = y_{k-1}} +
+\log(1-q_k) \sum_{k=2}^n \mathbf{1}_{y_k \neq y_{k-1}} -
+\frac{1}{2\sigma^2_k}\sum_{k=1}^n (x_k-y_k)^2 - \frac{n}{2} \log(2\pi\sigma^2_k).
+```
+
+Taking the expectation we have
+
+``` latex
+&\mathbb{E}_{Y|X=x^*}^{\theta_{k-1}}\left[\log(p(y_1))\right] +
+\log(q_k)\mathbb{E}_{Y|X=x^*}^{\theta_{k-1}}\left[\sum_{k=2}^n \mathbf{1}_{y_k = y_{k-1}}\right] +
+\log(1-q_k) \mathbb{E}_{Y|X=x^*}^{\theta_{k-1}}\left[\sum_{k=2}^n \mathbf{1}_{y_k \neq y_{k-1}}\right] -
+\frac{1}{2\sigma^2_k}\mathbb{E}_{Y|X=x^*}^{\theta_{k-1}}\left[\sum_{k=1}^n (x_k-y_k)^2\right] -
+\mathbb{E}_{Y|X=x^*}^{\theta_{k-1}}\left[\frac{n}{2} \log(2\pi\sigma^2_k)\right] \\
+&=
+\log(p(y_1)) +
+\log(q_k)\underbrace{\mathbb{E}_{Y|X=x^*}^{\theta_{k-1}}\left[\sum_{k=2}^n \mathbf{1}_{y_k = y_{k-1}}\right]}_{:= a_k} +
+\log(1-q_k) \underbrace{\mathbb{E}_{Y|X=x^*}^{\theta_{k-1}}\left[\sum_{k=2}^n \mathbf{1}_{y_k \neq y_{k-1}}\right]}_{:= b_k} -
+\frac{1}{2\sigma^2_k}\underbrace{\mathbb{E}_{Y|X=x^*}^{\theta_{k-1}}\left[\sum_{k=1}^n (x_k-y_k)^2\right]}_{:= c_k} -
+\frac{n}{2} \log(2\pi\sigma^2_k) \\
+&=
+\log(p(y_1)) + a_k\log(q_k) + b_k\log(1-q_k) - \frac{c_k}{2\sigma^2_k} -
+\frac{n}{2}\log(2\pi\sigma^2_k).
+```
+
+Assuming we can compute $a_k, b_k$ and $c_k$ above, and letting
+$\psi(q_k,\sigma^2_k) = \log(p(y_1)) + a_k\log(q_k) + b_k\log(1-q_k) - \frac{c_k}{2\sigma^2_k} -
+\frac{n}{2}\log(2\pi\sigma^2_k)$ we have
+
+``` latex
+\theta_k &=
+\text{argmax}_{\theta} \; \psi(q_k, \sigma^2_k).
+```
+
+We can differentiate $\psi(q_k, \sigma^2_k)$ with respect to $q_k$ and
+$\sigma^2_k$ and find the roots to obtain $\theta_k$:
+
+``` latex
+\frac{\partial \psi(q_k, \sigma^2_k)}{\partial q_k} &= \frac{a_k}{q_k} -
+\frac{b_k}{1-q_k} = 0 \\
+&\Rightarrow q_k = \frac{a_k}{a_k + b_k} \\
+\frac{\partial \psi(q_k, \sigma^2_k)}{\partial \sigma^2_k} &=
+\frac{c_k}{2\sigma^4_k} - \frac{n}{2\sigma_k^2}  = 0 \\
+&\Rightarrow \sigma^2_k = \frac{c_k}{n}
+```
+
+To summarize, assuming we can compute $a_k, b_k, c_k$, the EM algorithm updates
+are:
+
+``` latex
+q_k &= \frac{a_k}{a_k + b_k} \\
+\sigma^2_k &= \frac{c_k}{n}
+```
+
+Now we turn our attention to computing $a_k, b_k, c_k$ and will focus
+particularly on $a_k$ as the rest are computed similarly. We have
+
+``` latex
+a_k &= \mathbb{E}_{Y|X=x^*}^{\theta_{k-1}}\left[\sum_{k=2}^n \mathbf{1}_{y_k = y_{k-1}}\right].
+```
+
+There are a few ways in which we can compute this expectation. The first is
+by computing it exactly and summing over all possible $y$ combinations.
+This can be done fairly efficiently using dynamic programming, but, in the
+spirit of this course,  we will use Gibbs sampling to obtain samples from the
+conditional distribution of $Y$ given $X = x^\*$. Afterwards, we will use the
+samples to estimate the expectation via Monte Carlo.
+
+To obtain a sample $(Y_1, Y_2, \ldots, Y_n)$, we will use Gibbs sampling.
+Suppose we start with initial sample $(Y_1^0, Y_2^0, \ldots, Y_n^0)$.
+
+First, to obtain the $k$th sample of $Y_1$, we sample from the distribution
+
+``` latex
+p(Y_1|X = x^*, Y_2 = y_2^{k-1}, \ldots, Y_n = y_n^{k-1}) &=
+\frac{p(y_1, X = x^*, Y_2 = y_2^{k-1}, \ldots, Y_n = y_n^{k-1})}
+{p(X = x^*, Y_2 = y_2^{k-1}, \ldots, Y_n = y_n^{k-1})}.
+```
+
+Substituting the value of the joint density, we get many cancellations
+(this is omitted for the sake of brevity) and see that
+
+``` latex
+\mathbb{P}(Y_1 = 1|X = x^*, Y_2 = y_2^{k-1}, \ldots, Y_n = y_n^{k-1}) &=
+\frac{(q_k\mathbf{1}_{y_2 = 1} + (1-q_k)\mathbf{1}_{y_2 = 0})\frac{1}{\sqrt{2\pi\sigma^2_k}}e^{-\frac{(x_1^* - 1)^2}{2\sigma^2_k}}}
+{(q_k\mathbf{1}_{y_2 = 1} + (1-q_k)\mathbf{1}_{y_2 = 0})\frac{1}{\sqrt{2\pi\sigma^2_k}}e^{-\frac{(x_1^* - 1)^2}{2\sigma^2_k}} +
+(q_k\mathbf{1}_{y_2 = 0} + (1-q_k)\mathbf{1}_{y_2 = 1})\frac{1}{\sqrt{2\pi\sigma^2_k}}e^{-\frac{(x_1^* - 0)^2}{2\sigma^2_k}}}.
+```
+
+For $1 < j < n$, $\mathbb{P}(Y_j = 1|X = x^\*, Y_1 = y_1^k, \ldots,
+  Y_{j-1} = y_{j-1}^k, Y_{j+1} = y_{j+1}^{k-1}, \ldots, Y_n = y_n^{k-1})$
+is given by
+
+``` latex
+\frac{(q_k\mathbf{1}_{y_{j-1} = 1} + (1-q_k)\mathbf{1}_{y_{j-1} = 0})
+(q_k\mathbf{1}_{y_{j+1} = 1} + (1-q_k)\mathbf{1}_{y_{j+1} = 0})
+\frac{1}{\sqrt{2\pi\sigma^2_k}}e^{-\frac{(x_j^* - 1)^2}{2\sigma^2_k}}}
+{(q_k\mathbf{1}_{y_{j-1} = 1} + (1-q_k)\mathbf{1}_{y_{j-1} = 0})
+(q_k\mathbf{1}_{y_{j+1} = 1} + (1-q_k)\mathbf{1}_{y_{j+1} = 0})
+\frac{1}{\sqrt{2\pi\sigma^2_k}}e^{-\frac{(x_j^* - 1)^2}{2\sigma^2_k}} +
+(q_k\mathbf{1}_{y_{j-1} = 0} + (1-q_k)\mathbf{1}_{y_{j-1} = 1})
+(q_k\mathbf{1}_{y_{j+1} = 0} + (1-q_k)\mathbf{1}_{y_{j+1} = 1})
+\frac{1}{\sqrt{2\pi\sigma^2_k}}e^{-\frac{(x_j^* - 0)^2}{2\sigma^2_k}}}.
+```
+
+Finally,
+
+``` latex
+\mathbb{P}(Y_n = 1|X = x^*, Y_1 = y_2^{k}, \ldots, Y_{n-1} = y_n^{k}) &=
+\frac{(q_k\mathbf{1}_{y_{n-1} = 1} + (1-q_k)\mathbf{1}_{y_{n-1} = 0})\frac{1}{\sqrt{2\pi\sigma^2_k}}e^{-\frac{(x_n^* - 1)^2}{2\sigma^2_k}}}
+{(q_k\mathbf{1}_{y_{n-1} = 1} + (1-q_k)\mathbf{1}_{y_{n-1} = 0})\frac{1}{\sqrt{2\pi\sigma^2_k}}e^{-\frac{(x_n^* - 1)^2}{2\sigma^2_k}} +
+(q_k\mathbf{1}_{y_{n-1} = 0} + (1-q_k)\mathbf{1}_{y_{n-1} = 1})\frac{1}{\sqrt{2\pi\sigma^2_k}}e^{-\frac{(x_{n-1}^* - 0)^2}{2\sigma^2_k}}}.
+```
+
+After obtaining many samples of the form $(Y_1, Y_2, \ldots, Y_n)$, we use
+standard Monte Carlo methods to estimate $a_k, b_k$ and $c_k$ and then update
+$\theta_k$. The code below performs 200 EM iterations and 100 MC estimations
+for each, with 75 Gibbs samples for each of these:
+
+``` julia
+using Distributions, CSV, Printf
+
+# Load observed data
+x_samples = CSV.read("hmm_observations.csv")[:,1]
 
 
+# Gives P(Y_k = 1 | All other variables)
+# Inputs
+# - x: The vector of (observed) X variables
+# - y: The current sample of Y variables
+# - θ_k: The vector parameters in the form [q, σ^2]
+# - k: The index of the Y variable of interest
+# Outputs
+# The probability that Y_k = 1 given all other variables
+function conditional_probability(x, y, θ_k, k)
+    # Extract density parameters
+    q, σ2 = θ_k
+    σ = sqrt(σ2)
+
+    n = length(x)
+
+    𝒩_1 = Normal(1, σ)
+    𝒩_0 = Normal(0, σ)
+
+    if k == 1
+        joint = (q*(y[k+1] == 1) + (1-q)*(y[k+1] == 0))*pdf(𝒩_1, x[k])
+
+        marginal = joint +
+        (q*(y[k+1] == 0) + (1-q)*(y[k+1] == 1))*pdf(𝒩_0,x[k])
+    elseif k == n
+        joint = (q*(y[k-1] == 1) + (1-q)*(y[k-1] == 0))*pdf(𝒩_1, x[k])
+
+        marginal = joint +
+        (q*(y[k-1] == 0) + (1-q)*(y[k-1] == 1))*pdf(𝒩_0,x[k])
+
+    else
+        joint = (q*(y[k-1] == 1) + (1-q)*(y[k-1] == 0))*(q*(y[k+1] == 1)
+         + (1-q)*(y[k+1] == 0))*pdf(𝒩_1,x[k])
+
+        marginal = joint +
+        (q*(y[k-1] == 0) + (1-q)*(y[k-1] == 1))*(q*(y[k+1] == 0)
+        + (1-q)*(y[k+1] == 1))*pdf(𝒩_0, x[k])
+    end
+
+    return joint/marginal
+end
+
+
+# Performs one single Gibbs sampler iteration of Y
+# Inputs
+# - x: The vector of (observed) X variables
+# - y: The current sample of Y variables
+# - θ_k: The vector parameters in the form [q, σ^2]
+# - k: The index of the Y variable of interest
+# Outputs
+# A Y sample where each index of Y is sampled by conditioning on all other
+# variables
+function get_single_gibbs_sample(x, y, θ_k)
+    n = length(x)
+
+    for k = 1:n
+        y[k] = rand() < conditional_probability(x, y, θ_k, k)
+    end
+
+    return y
+end
+
+# Returns a sample of Y
+# Inputs
+# - x: The vector of (observed) X variables
+# - θ_k: The vector parameters in the form [q, σ^2]
+# Outputs
+# A Y sample where Y ~ P(Y|X = x)
+function gibbs_sampler(x, θ_k)
+    n = length(x)
+
+    y = rand(0:1, n)
+
+    for i = 1:75
+        y = get_single_gibbs_sample(x, y, θ_k)
+    end
+
+    return y
+end
+
+# Estimates the values of a,b,c (as defined in example) via Monte Carlo
+# Inputs
+# - x: The vector of (observed) X variables
+# - θ_k: The vector parameters in the form [q, σ^2]
+# Outputs
+# A vector in the form [a,b,c] representing a MC estimate of a,b, and c
+function estimate_a_b_c(x, θ_k)
+    n = length(x)
+
+    # Number of MC samples
+    num_samples = 100
+
+    # Estimate sum
+    total_a = 0
+    total_b = 0
+    total_c = 0
+
+    for k = 1:num_samples
+        y_samples = gibbs_sampler(x, θ_k)
+        estimate_a = sum(y_samples[1:(n-1)] .== y_samples[2:n])
+        estimate_b = sum(y_samples[1:(n-1)] .!= y_samples[2:n])
+        estimate_c = sum((x - y_samples).^2)
+
+
+        total_a += estimate_a
+        total_b += estimate_b
+        total_c += estimate_c
+    end
+
+    return [total_a, total_b, total_c]./num_samples
+end
+
+# Performs EM algorithm to estimate θ
+# Inputs
+# - x: The vector of (observed) X variables
+# Outputs
+# An estimate of θ = [q, σ^2]
+function em_algorithm(x)
+    # Initialize theta parameter (q,σ^2)
+    θ_k = [0.5, 1]
+    @printf("k = 0: [%f, %f]\n", θ_k[1], θ_k[2])
+
+    num_iterations = 500
+
+    for i = 1:num_iterations
+        a, b, c = estimate_a_b_c(x, θ_k)
+        q_1 = a/(a+b)
+        σ2_1 = c/(a+b+1)
+        θ_k = [q_1, σ2_1]
+
+        @printf("k = %d: [%f, %f]\n", i, θ_k[1], θ_k[2])
+    end
+
+    return θ_k
+end
+
+em_algorithm(x_samples)
+```
+
+*Remark*: The code is written with readability in mind rather than efficiency. As such it may take several minutes to run.
+
+After 200 iterations, we obtain $\theta_{200} = [0.29481, 2.2963]$,
+while the true  parameter is $\theta = [0.3, 2.25]$.
+:::
 
 
 TODO: insert these images (see source)

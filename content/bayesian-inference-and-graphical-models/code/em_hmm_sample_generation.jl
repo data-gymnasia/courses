@@ -1,5 +1,4 @@
-using Distributions
-using Plots
+using Distributions, Plots, CSV, Pandas
 
 # Sample x_{k+1} given x_k
 # Parameters:
@@ -7,24 +6,13 @@ using Plots
 # Outputs:
 # - x_{k+1}: The (k+1)th X sample
 function sample_x(xk)
-    # Matrix defining p(x_{k+1}|x_k)
-    probability_matrix = [0.9 0.05 0.05; 0.05 0.9 0.05; 0.05 0.05 0.9]
+    # Define q parameter
+    q = 0.3
 
-    # Extract row from probability matrix
-    distribution = xk + 2
+    # Probability that x_{k+1} = 1
+    p = q*(xk == 1) + (1-q)*(xk == 0)
 
-    # Define cumulative sum of distribution for sampling
-    cumulative_distribution = cumsum(probability_matrix[Int(distribution),:])
-
-    # Obtain x_k
-    unif_sample = rand()
-    xk_values = [-1 0 1]
-
-    for i=1:3
-        if unif_sample < cumulative_distribution[i]
-            return xk_values[i]
-        end
-    end
+    return rand() < p
 end
 
 # Obtains n samples of X based on HMM
@@ -37,7 +25,7 @@ function get_x_samples(n)
     samples = zeros(n)
 
     # Randomly set x1
-    samples[1] = rand(-1:1)
+    samples[1] = rand(0:1)
 
     # Get samples x_2 through x_n
     for i=2:n
@@ -53,12 +41,15 @@ end
 # Outputs
 # A vector of length n where the kth element is the kth sample of Y
 function get_y_samples(x_samples)
+    # Define normal standard deviation
+    σ = 1.5
+
     # Store y samples
     n = length(x_samples)
     y_samples = zeros(n)
 
     for i=1:n
-        𝒩 = Normal(x_samples[i],1)
+        𝒩 = Normal(x_samples[i], σ)
         y_samples[i] = rand(𝒩)
     end
 
@@ -66,13 +57,18 @@ function get_y_samples(x_samples)
 end
 
 # Obtian and plot samples
-n = 1000
+n = 1500
 x_samples = get_x_samples(n)
 y_samples = get_y_samples(x_samples)
+
 plot(1:n,x_samples, seriestype=:scatter, bg = RGB(247/255, 236/255, 226/255), color = RGB(0,191/255,255/255), label = "x", alpha = 0.2)
 plot!(1:n,y_samples, seriestype=:scatter, color = RGB(191/255,1,0), label =
 "y", alpha = 0.2)
 
 
-cd("/Users/elvis/Documents/DSI/courses/content/graphical-models/images/")
-savefig("bn_sampling_ex_1.svg")
+cd("/Users/elvis/Documents/DSI/courses/content/stochastic-approximations/images/")
+
+# Note X and Y variables swapped here from what was presented in example
+df = DataFrame(Dict(:X=>y_samples))
+
+CSV.write("/Users/elvis/Documents/DSI/courses/content/bayesian-inference-and-graphical-models/code/hmm_observations.csv", df)
