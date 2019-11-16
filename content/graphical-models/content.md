@@ -857,7 +857,7 @@ p_V(x_V) &= p(x_1)p(x_2|x_1)p(x_3|x_2,x_1)\cdots p(x_n|x_{n-1},\ldots,x_2,x_1)
 ```
 
 which implies that any collection of random variables can be expressed as a
-Bayes net.
+Bayes net, though this may not necessarily be useful in practice. 
 
 ---
 > id: bnrules

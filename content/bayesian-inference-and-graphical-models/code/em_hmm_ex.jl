@@ -8,33 +8,33 @@ x_samples = CSV.read("hmm_observations.csv")[:,1]
 # Inputs
 # - x: The vector of (observed) X variables
 # - y: The current sample of Y variables
-# - θ_k: The vector parameters in the form [q, σ^2]
+# - θ_k: The vector parameters in the form [q, σ²]
 # - k: The index of the Y variable of interest
 # Outputs
 # The probability that Y_k = 1 given all other variables
 function conditional_probability(x, y, θ_k, k)
     # Extract density parameters
-    q, σ2 = θ_k
-    σ = sqrt(σ2)
+    q, σ² = θ_k
+    σ = sqrt(σ²)
 
     n = length(x)
 
-    𝒩_1 = Normal(1, σ)
-    𝒩_0 = Normal(0, σ)
+    𝒩₁ = Normal(1, σ)
+    𝒩₀ = Normal(0, σ)
 
     if k == 1
-        joint = (q*(y[k+1] == 1) + (1-q)*(y[k+1] == 0))*pdf(𝒩_1, x[k])
+        joint = (q*(y[k+1] == 1) + (1-q)*(y[k+1] == 0))*pdf(𝒩₁, x[k])
 
-        marginal = joint + (q*(y[k+1] == 0) + (1-q)*(y[k+1] == 1))*pdf(𝒩_0,x[k])
+        marginal = joint + (q*(y[k+1] == 0) + (1-q)*(y[k+1] == 1))*pdf(𝒩₀,x[k])
     elseif k == n
-        joint = (q*(y[k-1] == 1) + (1-q)*(y[k-1] == 0))*pdf(𝒩_1, x[k])
+        joint = (q*(y[k-1] == 1) + (1-q)*(y[k-1] == 0))*pdf(𝒩₁, x[k])
 
-        marginal = joint + (q*(y[k-1] == 0) + (1-q)*(y[k-1] == 1))*pdf(𝒩_0,x[k])
+        marginal = joint + (q*(y[k-1] == 0) + (1-q)*(y[k-1] == 1))*pdf(𝒩₀,x[k])
 
     else
-        joint = (q*(y[k-1] == 1) + (1-q)*(y[k-1] == 0))*(q*(y[k+1] == 1) + (1-q)*(y[k+1] == 0))*pdf(𝒩_1,x[k])
+        joint = (q*(y[k-1] == 1) + (1-q)*(y[k-1] == 0))*(q*(y[k+1] == 1) + (1-q)*(y[k+1] == 0))*pdf(𝒩₁,x[k])
 
-        marginal = joint + (q*(y[k-1] == 0) + (1-q)*(y[k-1] == 1))*(q*(y[k+1] == 0) + (1-q)*(y[k+1] == 1))*pdf(𝒩_0, x[k])
+        marginal = joint + (q*(y[k-1] == 0) + (1-q)*(y[k-1] == 1))*(q*(y[k+1] == 0) + (1-q)*(y[k+1] == 1))*pdf(𝒩₀, x[k])
     end
 
     return joint/marginal
@@ -45,7 +45,7 @@ end
 # Inputs
 # - x: The vector of (observed) X variables
 # - y: The current sample of Y variables
-# - θ_k: The vector parameters in the form [q, σ^2]
+# - θ_k: The vector parameters in the form [q, σ²]
 # - k: The index of the Y variable of interest
 # Outputs
 # A Y sample where each index of Y is sampled by conditioning on all other
@@ -63,7 +63,7 @@ end
 # Returns a sample of Y
 # Inputs
 # - x: The vector of (observed) X variables
-# - θ_k: The vector parameters in the form [q, σ^2]
+# - θ_k: The vector parameters in the form [q, σ²]
 # Outputs
 # A Y sample where Y ~ P(Y|X = x)
 function gibbs_sampler(x, θ_k)
@@ -114,9 +114,9 @@ end
 # Inputs
 # - x: The vector of (observed) X variables
 # Outputs
-# An estimate of θ = [q, σ^2]
+# An estimate of θ = [q, σ²]
 function em_algorithm(x)
-    # Initialize theta parameter (q,σ^2)
+    # Initialize theta parameter [q, σ²]
     θ_k = [0.5, 1]
     @printf("k = 0: [%f, %f]\n", θ_k[1], θ_k[2])
 
@@ -125,8 +125,8 @@ function em_algorithm(x)
     for i = 1:num_iterations
         a, b, c = estimate_a_b_c(x, θ_k)
         q_1 = a/(a+b)
-        σ2_1 = c/(a+b+1)
-        θ_k = [q_1, σ2_1]
+        σ²_1 = c/(a+b+1)
+        θ_k = [q_1, σ²_1]
 
         @printf("k = %d: [%f, %f]\n", i, θ_k[1], θ_k[2])
     end
