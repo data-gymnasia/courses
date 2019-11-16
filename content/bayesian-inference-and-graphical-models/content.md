@@ -918,7 +918,7 @@ $x^\* = (x_1^\*, x_2^\*, \ldots, x_n^\*)$
 and our goal will be to estimate the parameter vector
 $\theta = (\alpha, \boldsymbol{\mu}_0, \Sigma_0, \boldsymbol{\mu}_1, \Sigma_1)$
 using $x^\*$ and the EM algorithm.
-The dataset can be downloaded here [INSERT DOWNLOAD LINK].
+The dataset can be downloaded [here](https://raw.githubusercontent.com/data-gymnasia/courses/master/content/bayesian-inference-and-graphical-models/code/gmm_observations.csv).
 
 Assuming we have initialized $\theta_0$, the $k$th step of the EM algorithm is
 
