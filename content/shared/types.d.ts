@@ -1,5 +1,5 @@
 import {Obj, EventTarget} from '@mathigon/core';
-import {Point, Angle, Arc, Circle, Line, TransformMatrix, Polygon, Rectangle} from '@mathigon/fermat';
+import {Point, Angle, Arc, Circle, Line, TransformMatrix, Polygon, Rectangle, Bounds} from '@mathigon/fermat';
 import {CustomElementView, ElementView, SVGView, Observable, AnimationResponse, SVGParentView} from '@mathigon/boost';
 import {ExprElement} from '@mathigon/hilbert';
 
@@ -13,6 +13,7 @@ export class Gesture extends CustomElementView {
   from?: Point;
   created(): void;
   ready(): void;
+  setTarget($target: string|ElementView, slide?: Point, shift?: Point): void;
   start(slide?: Point): void;
   startSlide($from: ElementView, $to: ElementView): void;
   stop(): void;
@@ -45,7 +46,7 @@ export class BlankInput extends CustomElementView {
   blur(): void;
 }
 
-export type EquationValidationResponse = {isCorrect?: boolean, error?: string}|null;
+export type EquationValidationResponse = {isCorrect?: boolean, error?: string}|undefined;
 
 export class Equation extends CustomElementView {
   $math: ElementView;
@@ -149,8 +150,9 @@ export class Step extends CustomElementView {
   private $course?;
   model: import('@mathigon/boost').Observable;
   tools: {confetti: (duration?: number, maxParticles?: number) => void};
-  initialData?: {scores: string[], data: Obj<any>};
+  initialData?: any;
   isShown: boolean;
+  isPageLoaded: boolean;
   isCompleted: boolean;
   goals: string[];
   scores: Set<string>;
@@ -167,23 +169,17 @@ export class Step extends CustomElementView {
   isReady: boolean;
   score(goal: string, goNext?: boolean): void;
   storeData(key: string, value: any): void;
-  onScore(goalList: string, callback: () => void): void;
+  onScore(goalList: string, callback?: () => void): Promise<void>;
   addHint(text: string, options?: HintOptions): {text: string};
-  getText(id: string): string|string[];
+  getText(id: string): string;
   getHelp(): void;
   delayedHint(callback: () => void, t?: number): void;
 }
 
 export class CoordinateSystem extends CustomElementView {
   private $grid;
-  private $xAxis;
-  private $yAxis;
-  private $plot;
   private $labels;
-  private $overlay;
   private mathBounds;
-  private plotBounds;
-  private plotOrigin;
   private xAxisOptions;
   private yAxisOptions;
   private xSuffix;
@@ -194,6 +190,12 @@ export class CoordinateSystem extends CustomElementView {
   private yLabel;
   private crosshairGrid;
   private getCrosshairPosn;
+  $xAxis: SVGView;
+  $yAxis: SVGView;
+  $plot: ElementView;
+  $overlay: SVGView;
+  plotBounds: Bounds;
+  plotOrigin: Point;
   ready(): void;
   setupCrosshairs($svg: SVGParentView, width: number): void;
   mathToPlotCoords(p: Point): Point;
@@ -215,7 +217,7 @@ export class Ticker {
 export abstract class DisplayNode {
   readonly type: string;
   $element?: SVGView|undefined;
-  parent: DisplayNode|null;
+  parent?: DisplayNode;
   children: DisplayNode[];
   status: string;
   value: string;
@@ -288,18 +290,20 @@ export class EquationFlow extends CustomElementView {
   newRow(): Promise<void>;
 }
 
+type Callback = (e: any) => void;
+
 export class Gameplay extends CustomElementView {
   private $progress;
   private $dots;
   private slideTemplate;
   private time;
-  private slideGenerator;
   private currentAnimation;
   private history;
   private goal;
   private $currentSlide;
   playing: boolean;
   completed: boolean;
+  slideGenerator: (el: ElementView, success: Callback, error: Callback) => void;
   ready(): void;
   private score;
   private makeSlide;
@@ -419,7 +423,7 @@ export class Geopad extends CustomElementView {
   animatePoint(name: string, target: Point, duration?: number): void;
   animateConstruction(name: string, duration?: number): Promise<void>;
   showGesture(from: string, to?: string): void;
-  waitForPath(validate: (p: GeoPath) => boolean): Promise<unknown>;
+  waitForPath(validate: (p: GeoPath) => boolean): Promise<GeoPath>;
   waitForPaths(paths: (string|Shape)[], {onCorrect, onIncorrect, onHint, onComplete, maxErrors}?: WaitForPathsOptions): void;
 }
 
@@ -450,11 +454,11 @@ export class PlayToggle extends CustomElementView {
 }
 
 export class Slider extends CustomElementView {
-  private steps;
   private speed;
-  private current;
   private playing;
   private drag;
+  steps: number;
+  current: number;
   ready(): void;
   play(): void;
   set(x: number): void;
