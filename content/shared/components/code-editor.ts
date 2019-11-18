@@ -19,7 +19,7 @@ const STYLE_URL = 'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.47.0/code
 const MODES_URL = 'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.47.0/mode/abc/abc.min.js';
 const THEME_URL = 'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.47.0/theme/abc.min.css';
 
-const PROMISES: Obj<Promise<{}>> = {};
+const PROMISES: Obj<Promise<any>> = {};
 
 function loadCSS(href: string) {
   if (PROMISES[href]) return;

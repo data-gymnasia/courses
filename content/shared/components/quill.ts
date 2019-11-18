@@ -13,7 +13,7 @@ declare global {
   }
 }
 
-let promise: Promise<{}>;
+let promise: Promise<any>;
 const MAX_LENGTH = 2500;
 
 async function loadEditorAssets() {

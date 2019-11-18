@@ -13,13 +13,13 @@
     "node": ">=8.0.0"
   },
   "dependencies": {
-    "@mathigon/boost": "^0.4.2",
-    "@mathigon/core": "^0.3.3",
-    "@mathigon/fermat": "^0.3.3",
-    "@mathigon/hilbert": "^0.3.3"
+    "@mathigon/boost": "^0.4.3",
+    "@mathigon/core": "^0.3.4",
+    "@mathigon/fermat": "^0.3.4",
+    "@mathigon/hilbert": "^0.3.4"
   },
   "devDependencies": {
-    "@mathigon/parser": "^0.4.0",
+    "@mathigon/parser": "^0.4.2",
     "autoprefixer": "^9.7.1",
     "emojione-assets": "^3.1.1",
     "express": "^4.16.4",

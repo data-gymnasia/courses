@@ -331,7 +331,7 @@ easy to do analytically. We will begin by presenting an approach known as
 function; moreover, the EM algorithm is a special case of MM.
 
 We will assume the parameter we are trying to estimate is
-$\theta \in \Theta \subseteq \mathbb{R}$.
+$\theta \in \Theta \subseteq \mathbb{R}^n$.
 
 ::: .definition
 **Definition** (Minorize)
@@ -564,6 +564,11 @@ computing an expectation:
 
 and hence the name *Expectation-maximization*.
 
+*Remark*: In the notation presented at the beginning of this section,
+$\zeta$ is the distribution of $Y|X = x^\*$ and
+$Q(\theta) =
+\mathbb{E}_{Y|X=x^\*}^{\theta_{k-1}} \left[\log(p_V(x^\*,y;\theta))\right]$.
+
 ::: .example
 **Example**  
 
@@ -736,38 +741,37 @@ x_samples = CSV.read("hmm_observations.csv")[:,1]
 # Inputs
 # - x: The vector of (observed) X variables
 # - y: The current sample of Y variables
-# - θ_k: The vector parameters in the form [q, σ^2]
+# - θ_k: The vector parameters in the form [q, σ²]
 # - k: The index of the Y variable of interest
 # Outputs
 # The probability that Y_k = 1 given all other variables
 function conditional_probability(x, y, θ_k, k)
     # Extract density parameters
-    q, σ2 = θ_k
-    σ = sqrt(σ2)
+    q, σ² = θ_k
+    σ = sqrt(σ²)
 
     n = length(x)
 
-    𝒩_1 = Normal(1, σ)
-    𝒩_0 = Normal(0, σ)
+    𝒩₁ = Normal(1, σ)
+    𝒩₀ = Normal(0, σ)
 
     if k == 1
-        joint = (q*(y[k+1] == 1) + (1-q)*(y[k+1] == 0))*pdf(𝒩_1, x[k])
+        joint = (q*(y[k+1] == 1) + (1-q)*(y[k+1] == 0))*pdf(𝒩₁, x[k])
 
-        marginal = joint +
-        (q*(y[k+1] == 0) + (1-q)*(y[k+1] == 1))*pdf(𝒩_0,x[k])
+        marginal = joint + (q*(y[k+1] == 0) +
+        (1-q)*(y[k+1] == 1))*pdf(𝒩₀,x[k])
     elseif k == n
-        joint = (q*(y[k-1] == 1) + (1-q)*(y[k-1] == 0))*pdf(𝒩_1, x[k])
+        joint = (q*(y[k-1] == 1) + (1-q)*(y[k-1] == 0))*pdf(𝒩₁, x[k])
 
-        marginal = joint +
-        (q*(y[k-1] == 0) + (1-q)*(y[k-1] == 1))*pdf(𝒩_0,x[k])
+        marginal = joint + (q*(y[k-1] == 0) +
+        (1-q)*(y[k-1] == 1))*pdf(𝒩₀,x[k])
 
     else
-        joint = (q*(y[k-1] == 1) + (1-q)*(y[k-1] == 0))*(q*(y[k+1] == 1)
-         + (1-q)*(y[k+1] == 0))*pdf(𝒩_1,x[k])
+        joint = (q*(y[k-1] == 1) + (1-q)*(y[k-1] == 0))*(q*(y[k+1] == 1) +
+         (1-q)*(y[k+1] == 0))*pdf(𝒩₁,x[k])
 
-        marginal = joint +
-        (q*(y[k-1] == 0) + (1-q)*(y[k-1] == 1))*(q*(y[k+1] == 0)
-        + (1-q)*(y[k+1] == 1))*pdf(𝒩_0, x[k])
+        marginal = joint + (q*(y[k-1] == 0) + (1-q)*(y[k-1] == 1))*(q*(y[k+1] == 0) +
+        (1-q)*(y[k+1] == 1))*pdf(𝒩₀, x[k])
     end
 
     return joint/marginal
@@ -778,7 +782,7 @@ end
 # Inputs
 # - x: The vector of (observed) X variables
 # - y: The current sample of Y variables
-# - θ_k: The vector parameters in the form [q, σ^2]
+# - θ_k: The vector parameters in the form [q, σ²]
 # - k: The index of the Y variable of interest
 # Outputs
 # A Y sample where each index of Y is sampled by conditioning on all other
@@ -796,7 +800,7 @@ end
 # Returns a sample of Y
 # Inputs
 # - x: The vector of (observed) X variables
-# - θ_k: The vector parameters in the form [q, σ^2]
+# - θ_k: The vector parameters in the form [q, σ²]
 # Outputs
 # A Y sample where Y ~ P(Y|X = x)
 function gibbs_sampler(x, θ_k)
@@ -814,7 +818,7 @@ end
 # Estimates the values of a,b,c (as defined in example) via Monte Carlo
 # Inputs
 # - x: The vector of (observed) X variables
-# - θ_k: The vector parameters in the form [q, σ^2]
+# - θ_k: The vector parameters in the form [q, σ²]
 # Outputs
 # A vector in the form [a,b,c] representing a MC estimate of a,b, and c
 function estimate_a_b_c(x, θ_k)
@@ -847,9 +851,9 @@ end
 # Inputs
 # - x: The vector of (observed) X variables
 # Outputs
-# An estimate of θ = [q, σ^2]
+# An estimate of θ = [q, σ²]
 function em_algorithm(x)
-    # Initialize theta parameter (q,σ^2)
+    # Initialize theta parameter [q, σ²]
     θ_k = [0.5, 1]
     @printf("k = 0: [%f, %f]\n", θ_k[1], θ_k[2])
 
@@ -858,8 +862,8 @@ function em_algorithm(x)
     for i = 1:num_iterations
         a, b, c = estimate_a_b_c(x, θ_k)
         q_1 = a/(a+b)
-        σ2_1 = c/(a+b+1)
-        θ_k = [q_1, σ2_1]
+        σ²_1 = c/(a+b+1)
+        θ_k = [q_1, σ²_1]
 
         @printf("k = %d: [%f, %f]\n", i, θ_k[1], θ_k[2])
     end
@@ -877,41 +881,527 @@ while the true  parameter is $\theta = [0.3, 2.25]$.
 :::
 
 
-TODO: insert these images (see source)
-
-    img(src="images/gmm-step-0.svg")
-    img(src="images/gmm-step-1.svg")
-    img(src="images/gmm-step-2.svg")
-
-TODO: provide more details in this example
-
 ::: .example
 **Example**  
-Consider a GMM with a $\\{0,1\\}$-valued $Z$: we have $\mathbb{P}(Z = 1) = \alpha$, and for each observation $i$ and each $j \in \\{0,1\\}$, the conditional distribution of $\mathbf{X}_i$ given $Z_i = j$ is normal with mean $\boldsymbol{\mu}_j$ and covariance $\Sigma_j$. All together, the parameter vector is $\theta = (\alpha, \boldsymbol{\mu}_0, \Sigma_0, \boldsymbol{\mu}_1, \Sigma_1)$. By Bayes' theorem, the conditional distribution of $Z_i$ given $\mathbf{X}\_i = \mathbf{x}\_i$ is Bernoulli with success probability
+
+Consider the following GMM
 
 ``` latex
-\pi_i = \frac{\alpha f_1(\mathbf{x}_i)}{\alpha f_1(\mathbf{x}_i) + (1-\alpha) f_0(\mathbf{x}_i)},
+Z_i &\in \{0,1\} \\
+\mathbb{P}(Z_i = 1) &= \alpha \\
+X_i | Z_i = j &\sim Normal(\boldsymbol{\mu}_j, \Sigma_j).
 ```
 
-where $f\_j$ is the normal density with mean $\boldsymbol{\mu}\_j$ and covariance $\Sigma\_j$. Then, treating the $\pi\_i$'s as constant, we get
+Note that $X_i$ is a bivariate normal distribution with mean vector
+$\boldsymbol{\mu}_j$ and covariance matrix
+$\Sigma_j \in \mathbb{R}^{2 \times 2}$ for $j \in \\{0,1\\}$.
+Let $f_j(x)$ denote the density of the bivariate normal
+distribution with mean $j$ and covariance matrix $\Sigma_j$.
+
+For ease of notation, we will let
+$\pi_i = \mathbb{P}(Z_i = 1|X_i = x_i)$.
+Applying Bayes' theorem, we have
 
 ``` latex
-      Q(\theta) &= \mathbb{E}\left[\log \prod_{i=1}^n(z_i\alpha f_1(\mathbf{x}_j)+(1-z_i)(1-\alpha) f_0(\mathbf{x}_j))\right] \\
-      &= \sum_{i=1}^n \pi_i[\log \alpha + \log f_1(\mathbf{x}_i)] \\ &\hspace{6mm} +
-      (1-\pi_i)[\log (1-\alpha) + \log f_1(\mathbf{x}_i)].
+\pi_i &= \frac{f_1(x_i)\mathbb{P}(Z_i = 1)}
+{\sum_{z \in \{0,1\}} p(x_i, z)} \\
+&= \frac{f_1(x_i)\mathbb{P}(Z_i = 1)}
+{\sum_{z \in \{0,1\}} \mathbb{P}(Z_i = z)f_z(x_i)} \\
+&= \frac{f_1(x_i)\mathbb{P}(Z_i = 1)}
+{f_1(x_i)\mathbb{P}(Z_i = 1) + f_0(x_i)\mathbb{P}(Z_i = 0)} \\
+&= \frac{\alpha f_1(x_i)}
+{\alpha f_1(x_i) + (1-\alpha)f_0(x_i)}.
 ```
 
-Optimizing, we get $\pi$-weighted counts, means, and covariance matrices for $\alpha$, $\boldsymbol{\mu}_1, \boldsymbol{\mu}_0, \Sigma_1$ and $\Sigma_0$.
-:::
+We will assume that we have been given data
+$x^\* = (x_1^\*, x_2^\*, \ldots, x_n^\*)$
+and our goal will be to estimate the parameter vector
+$\theta = (\alpha, \boldsymbol{\mu}_0, \Sigma_0, \boldsymbol{\mu}_1, \Sigma_1)$
+using $x^\*$ and the EM algorithm.
+The dataset can be downloaded [here](https://raw.githubusercontent.com/data-gymnasia/courses/master/content/bayesian-inference-and-graphical-models/code/gmm_observations.csv).
 
-In the EM iterations shown, membership probabilities $\pi_i$, based on current parameter estimates, are indicated by point color (E-step). These values are used as weights to update the means and covariances for the multivariate normal distributions (M-step).
+Assuming we have initialized $\theta_0$, the $k$th step of the EM algorithm is
 
-TODO: give a second, reasonably distinct application of EM
+``` latex
+\theta_k &=
+\text{argmax}_{\theta} \;
+\mathbb{E}_{Z|X = x^*}^{\theta_{k-1}}
+\left[
+\log(p(x_1, x_2, \ldots, x_n, z_1, z_2, \ldots, z_n))
+\right].
+```
 
-```julia
-using Plots
-using Distributions
-using Random
+We now turn our attention to simplifying the joint density
+$p(x_1, \ldots, x_n, z_1, \ldots, z_n)$. By the chain rule of
+probability, we have
+
+``` latex
+p(x_1, \ldots, x_n, z_1, \ldots, z_n) &=
+p(x_1)p(z_1|x_1)p(x_2|x_1,z_1)p(z_2|x_1,x_2,z_1)\cdots
+p(x_n|x_1,\ldots, x_{n-1},z_1, \ldots, z_{n-1})
+p(z_n|x_1, \ldots, x_n, z_1, \ldots, z_{n-1})
+```
+
+Note that $X_s \perp\\\!\\\!\\\!\perp Z_t$ for $s \neq t$. With this in mind,
+the joint density simplifies to
+
+``` latex
+p(x_1, \ldots, x_n, z_1, \ldots, z_n) &=
+p(x_1)p(z_1|x_1)p(x_2)p(z_2|x_2)\cdots p(x_n)p(z_n|x_n).
+```
+
+Moreover,  Bayes' theorem tells us
+
+``` latex
+p(x_i)p(z_i|x_i) &= p(z_i)p(x_i|z_i) \\
+&= [z_i\alpha + (1-z_i)(1-\alpha)]f_{z_i}(x_i) \\
+&= z_i\alpha f_1(x_i) + (1-z_i)(1-\alpha)f_0(x_i).
+```
+
+Thus we have
+
+``` latex
+\log(p(x_1, \ldots, x_n, z_1, \ldots, z_n)) &=
+\log\left(\prod_{i=1}^n (z_i\alpha f_1(x_i) + (1-z_i)(1-\alpha)f_0(x_i)) \right)
+\\
+&= \sum_{i=1}^n \log(z_i\alpha f_1(x_i) + (1-z_i)(1-\alpha)f_0(x_i)) \\
+&= \sum_{i=1}^n\left[ z_i \log(\alpha f_1(x_i)) + (1-z_i)\log((1-
+  \alpha)f_0(x_i)) \right] \\
+&= \sum_{i=1}^n \left[
+z_i (\log \alpha + \log f_1(x_i)) + (1-z_i)(\log(1-\alpha) + \log f_0(x_i))
+\right].
+```
+
+so the $k$th step of the EM algorithm is
+
+``` latex
+\theta_k &=
+\text{argmax}_{\theta} \;
+\mathbb{E}_{Z|X = x^*}^{\theta_{k-1}}
+\left[
+\sum_{i=1}^n \left(
+z_i (\log \alpha + \log f_1(x_i)) + (1-z_i)(\log(1-\alpha) + \log f_0(x_i))
+\right)
+\right].
+```
+
+And by the linearity of expectation,
+
+``` latex
+\theta_k &=
+\text{argmax}_{\theta} \;
+
+\sum_{i=1}^n \mathbb{E}_{Z|X = x^*}^{\theta_{k-1}}
+\left[
+z_i (\log \alpha + \log f_1(x_i)) + (1-z_i)(\log(1-\alpha) + \log f_0(x_i))
+\right].
+```
+
+For ease of notation, we will let
+$\phi(z_i) = z_i (\log \alpha + \log f_1(x_i)) +
+ (1-z_i)(\log(1-\alpha) + \log f_0(x_i))$ so we now have
+
+``` latex
+\theta_k &=
+\text{argmax}_{\theta} \;
+\sum_{i=1}^n \mathbb{E}_{Z|X = x^*}^{\theta_{k-1}} \left[
+\phi(z_i) \right].
+```
+
+Now notice that the expectation is taken with respect to the conditional density
+of $Y$ given $X = x^\*$. Using the definition of conditional probability, the
+chain rule of probability, and the fact that $X_s \perp\\\!\\\!\\\!\perp X_t$
+and $X_s \perp\\\!\\\!\\\!\perp Z_t$ for $s \neq t$, we have
+
+``` latex
+p(z_1, \ldots, z_n|x_1, \ldots, x_n) &=
+\frac{p(x_1, \ldots, x_n, z_1, \ldots, z_n)}{p(x_1, \ldots, x_n)} \\
+&= \frac{p(x_1)p(z_1|x_1)p(z_2|x_2)\cdots p(x_n)p(z_n|x_n)}
+{p(x_1)p(x_2)\cdots p(x_n)} \\
+&= p(z_1|x_1)p(z_2|x_2) \cdots p(z_n|x_n)
+```
+
+so that
+
+``` latex
+\mathbb{E}_{Z|X = x^*}^{\theta_{k-1}} \left[ \phi(z_i) \right] &=
+\sum_{z_1, z_2, \ldots, z_n} p(z_1|x_1)p(z_2|x_2) \cdots p(z_n|x_n)
+\phi(z_i).
+```
+
+Now note that we can rearrange the order of summation and factor terms
+so that we have
+
+``` latex
+\mathbb{E}_{Z|X = x^*}^{\theta_{k-1}} \left[ \phi(z_i) \right] &=
+\sum_{z_i} p(z_i|x_i) \phi(z_i)
+\sum_{z_1, \ldots z_{i-1}, z_{i+1}, \ldots, z_n}
+p(z_1|x_1)\cdots p(z_{i-1}|x_{i-1}) p(z_{i+1}|x_{i+1}) \cdots p(z_n|x_n) \\
+&= \sum_{z_i} p(z_i|x_i) \phi(z_i)
+\underbrace{\sum_{z_1, \ldots z_{i-1}, z_{i+1}, \ldots, z_n}
+p(z_1, \ldots, z_{i-1}, z_{i+1}, \ldots, z_n |
+  x_1, \ldots, x_{i-1}, x_{i+1}, \ldots, x_n)}_{= 1} \\
+&=  \sum_{z_i \in \{0,1\}} p(z_i|x_i) \phi(z_i) \\
+&= \pi_i^{\theta_{k-1}} \phi(1) + (1-\pi_i^{\theta_{k-1}})\phi(0) \\
+&= \pi_i^{\theta_{k-1}}(\log \alpha + \log f_1(x_i)) +
+(1-\pi_i^{\theta_{k-1}})(\log(1-\alpha) + \log f_0(x_i)).
+```
+
+To summarize,
+
+``` latex
+\theta_k &=
+\text{argmax}_{\theta} \;
+\sum_{i=1}^n \mathbb{E}_{Z|X = x^*}^{\theta_{k-1}}
+\left[ \phi(z_i) \right] \\
+&= \text{argmax}_{\theta} \;
+\sum_{i=1}^n [\pi_i^{\theta_{k-1}}(\log \alpha +
+  \log f_1(x_i)) +
+(1-\pi_i^{\theta_{k-1}})(\log(1-\alpha) + \log f_0(x_i))]
+```
+
+Where $\pi_i^{\theta_{k-1}}$ is $\pi_i$ computed with respect to the parameters
+in $\theta_{k-1}$.
+
+Since we are optimizing over $\theta$, $\pi_i^{\theta_{k-1}}$ can be treated as
+a constant. Let
+
+``` latex
+Q(\theta) &= \sum_{i=1}^n [\pi_i^{\theta_{k-1}}(\log \alpha +
+  \log f_1(x_i)) +
+(1-\pi_i^{\theta_{k-1}})(\log(1-\alpha) + \log f_0(x_i))].
+```
+
+To obtain the updates for $\theta_k$, we will differentiate $Q(\theta)$
+and find the corresponding roots. Differentiating with respect to $\alpha$
+we have
+
+``` latex
+\frac{\partial Q(\theta)}{\partial \alpha} &=
+\sum_{i=1}^n \frac{\pi_i^{\theta_{k-1}} - \alpha}{\alpha(1-\alpha)}.
+```
+
+Setting $\frac{\partial Q(\theta)}{\partial \alpha} = 0$ and solving for
+$\alpha$ we get
+
+``` latex
+\alpha_k &= \frac{1}{n}\sum_{i=1}^n \pi_i^{\theta_{k-1}}.
+```
+
+Before differentiating with respect to $\boldsymbol{\mu}_1$ and
+$\boldsymbol{\mu}_0$, we first note
+
+``` latex
+f_1(x_i) &= \frac{1}{2\pi} \det(\Sigma_1)^{-\frac{1}{2}}
+\exp\left(-\frac{1}{2}(x_i - \boldsymbol{\mu}_1)^T\Sigma_1^{-1}
+(x_i - \boldsymbol{\mu}_1)\right) \\
+f_0(x_i) &= \frac{1}{2\pi} \det(\Sigma_0)^{-\frac{1}{2}}
+\exp\left(-\frac{1}{2}(x_i - \boldsymbol{\mu}_0)^T\Sigma_0^{-1}
+(x_i - \boldsymbol{\mu}_0)\right)
+```
+
+so
+
+``` latex
+\log(f_1(x_i)) &= \log \frac{1}{2\pi} - \frac{1}{2}\log \det(\Sigma_1) -
+\frac{1}{2}(x_i - \boldsymbol{\mu}_1)^T\Sigma_1^{-1}(x_i - \boldsymbol{\mu}_1)
+\\
+\log(f_0(x_i)) &= \log \frac{1}{2\pi} - \frac{1}{2}\log \det(\Sigma_0) -
+\frac{1}{2}(x_i - \boldsymbol{\mu}_0)^T\Sigma_0^{-1}(x_i - \boldsymbol{\mu}_0).
+```
+
+Since $\boldsymbol{\mu}_1$ only appears in the term $\log(f_1(x_i))$, we have
+
+``` latex
+\frac{\partial Q(\theta)}{\partial \boldsymbol{\mu}_1} &=
+\sum_{i=1}^n  \pi_i^{\theta_{k-1}} \frac{\partial}{\partial \boldsymbol{\mu}_1}
+\log(f_1(x_i)) \\
+&= \sum_{i=1}^n  \pi_i^{\theta_{k-1}}
+\frac{\partial}{\partial \boldsymbol{\mu}_1}\left[
+-\frac{1}{2}(x_i - \boldsymbol{\mu}_1)^T\Sigma_1^{-1}(x_i - \boldsymbol{\mu}_1)
+\right].
+```
+
+Using that for symmetric $W \in \mathbb{R}^{n \times n}$ and
+$s,t \in \mathbb{R}^n$ we have
+
+``` latex
+\frac{\partial}{\partial s}(t - s)^TW(t-s) = -2W(t-s),
+```
+
+it follows
+
+``` latex
+\frac{\partial Q(\theta)}{\partial \boldsymbol{\mu}_1}
+&= \sum_{i=1}^n  \pi_i^{\theta_{k-1}}  \Sigma_1^{-1}(x_i - \boldsymbol{\mu}_1)
+\\
+&= \Sigma_1^{-1} \sum_{i=1}^n  \pi_i^{\theta_{k-1}} (x_i - \boldsymbol{\mu}_1).
+```
+
+Setting $\frac{\partial Q(\theta)}{\partial \boldsymbol{\mu}_1} = 0$ and solving
+for $\boldsymbol{\mu}_1$, we get
+
+``` latex
+\boldsymbol{\mu}_1^k &=
+\frac{1}{\sum_{i=1}^n \pi_i^{\theta_{k-1}}}\sum_{i=1}^n
+\pi_i^{\theta_{k-1}} x_i.
+```
+
+We can similarly differentiate $Q(\theta)$ with respect to $\boldsymbol{\mu}_0$
+to get
+
+``` latex
+\frac{\partial Q(\theta)}{\partial \boldsymbol{\mu}_0}
+&= \Sigma_0^{-1} \sum_{i=1}^n  \left(1 - \pi_i^{\theta_{k-1}}\right) (x_i -
+  \boldsymbol{\mu}_0)
+```
+
+from which it follows
+
+``` latex
+\boldsymbol{\mu}_0^k &=
+\frac{1}{\sum_{i=1}^n \left(1-\pi_i^{\theta_{k-1}}\right)}
+\sum_{i=1}^n  \left(1-\pi_i^{\theta_{k-1}}\right) x_i.
+```
+
+Now, since $\Sigma_1$ only appears in the term $f_1(x_i)$, we have
+
+``` latex
+\frac{\partial Q(\theta)}{\partial \Sigma_1} &=
+\sum_{i=1}^n  \pi_i^{\theta_{k-1}} \frac{\partial}{\partial \Sigma_1}
+\log(f_1(x_i)) \\
+&= \sum_{i=1}^n  \pi_i^{\theta_{k-1}} \frac{\partial}{\partial \Sigma_1}
+\log(f_1(x_i)) \\
+&= \sum_{i=1}^n  \pi_i^{\theta_{k-1}} \frac{\partial}{\partial \Sigma_1}\left[
+-\frac{1}{2} \log \det(\Sigma_1) -\frac{1}{2}(x_i - \boldsymbol{\mu}_1^k)^T
+\Sigma_1^{-1} (x_i - \boldsymbol{\mu}_1)\right].
+```
+
+Using the fact that for nonsingular $A \in \mathbb{R}^{n \times n}$ and
+$s,t \in \mathbb{R}^n$ we have
+
+``` latex
+\frac{\partial \log | \det(A)|}{\partial A} &= \left(A^T\right)^{-1} \\
+\frac{\partial s^TA^{-1}t}{\partial A} &= -\left(A^T\right)^{-1}
+st^T\left(A^T\right)^{-1}
+```
+
+and since $\Sigma_1$ is symmetric, it follows
+
+``` latex
+\frac{\partial}{\partial \Sigma_1} \log(f_1(x_i)) &=
+-\frac{1}{2} \Sigma_1^{-1} + \frac{1}{2}\Sigma_1^{-1}
+(x_i - \boldsymbol{\mu}_1^k)(x_i - \boldsymbol{\mu}_1^k)^T\Sigma_1^{-1}.
+```
+
+Hence,
+
+``` latex
+\frac{\partial Q(\theta)}{\partial \Sigma_1} &=
+\sum_{i=1}^n \pi_i^{\theta_{k-1}}
+\left[
+-\frac{1}{2} \Sigma_1^{-1} + \frac{1}{2}\Sigma_1^{-1}
+(x_i - \boldsymbol{\mu}_1^k)(x_i - \boldsymbol{\mu}_1^k)^T\Sigma_1^{-1}
+\right] \\
+&= -\frac{1}{2}\Sigma_1^{-1} \sum_{i=1}^n \pi_i^{\theta_{k-1}}
++ \frac{1}{2}\Sigma_1^{-1} \left[
+\sum_{i=1}^n \pi_i^{\theta_{k-1}}
+(x_i - \boldsymbol{\mu}_1^k)(x_i - \boldsymbol{\mu}_1^k)^T
+\right] \Sigma_1^{-1}.
+```
+
+Setting $\frac{\partial Q(\theta)}{\partial \Sigma_1} = 0$ and solving for
+$\Sigma_1$ yields
+
+``` latex
+\Sigma_1^k &=
+\frac{1}{\sum_{i=1}^n \pi_i^{\theta_{k-1}}} \sum_{i=1}^n
+\pi_i^{\theta_{k-1}} (x_i - \boldsymbol{\mu}_1^k)(x_i - \boldsymbol{\mu}_1^k)^T.
+```
+
+Similarly we can compute
+
+``` latex
+\frac{\partial Q(\theta)}{\partial \Sigma_0} &=
+\sum_{i=1}^n \left(1 - \pi_i^{\theta_{k-1}}\right)
+\left[
+-\frac{1}{2} \Sigma_0^{-1} + \frac{1}{2}\Sigma_0^{-1}
+(x_i - \boldsymbol{\mu}_0^k)(x_i - \boldsymbol{\mu}_0^k)^T\Sigma_0^{-1}
+\right] \\
+&= -\frac{1}{2}\Sigma_0^{-1} \sum_{i=1}^n \left(1 - \pi_i^{\theta_{k-1}}\right)
++ \frac{1}{2}\Sigma_0^{-1} \left[
+\sum_{i=1}^n \left(1 - \pi_i^{\theta_{k-1}}\right)
+(x_i - \boldsymbol{\mu}_0^k)(x_i - \boldsymbol{\mu}_0^k)^T
+\right] \Sigma_0^{-1}.
+```
+
+Setting $\frac{\partial Q(\theta)}{\partial \Sigma_0} = 0$ and solving for
+$\Sigma_0$ yields
+
+``` latex
+\Sigma_0^k &=
+\frac{1}{\sum_{i=1}^n \left(1 - \pi_i^{\theta_{k-1}}\right)} \sum_{i=1}^n
+\left(1 - \pi_i^{\theta_{k-1}}\right) (x_i - \boldsymbol{\mu}_1^k)(x_i - \boldsymbol{\mu}_1^k)^T.
+```
+
+To summarize, the $k$th EM update for $\theta$ is
+
+``` latex
+\alpha_k &= \frac{1}{n}\sum_{i=1}^n \pi_i^{\theta_{k-1}} \\
+\boldsymbol{\mu}_1^k &=
+\frac{1}{\sum_{i=1}^n \pi_i^{\theta_{k-1}}}\sum_{i=1}^n
+\pi_i^{\theta_{k-1}} x_i \\
+\boldsymbol{\mu}_0^k &=
+\frac{1}{\sum_{i=1}^n \left(1-\pi_i^{\theta_{k-1}}\right)}
+\sum_{i=1}^n  \left(1-\pi_i^{\theta_{k-1}}\right) x_i \\
+\Sigma_1^k &=
+\frac{1}{\sum_{i=1}^n \pi_i^{\theta_{k-1}}} \sum_{i=1}^n
+\pi_i^{\theta_{k-1}} (x_i - \boldsymbol{\mu}_1^k)(x_i - \boldsymbol{\mu}_1^k)^T
+\\
+\Sigma_0^k &=
+\frac{1}{\sum_{i=1}^n \left(1 - \pi_i^{\theta_{k-1}}\right)} \sum_{i=1}^n
+\left(1 - \pi_i^{\theta_{k-1}}\right) (x_i - \boldsymbol{\mu}_1^k)(x_i - \boldsymbol{\mu}_1^k)^T.
+```
+
+The Julia code below uses 20 EM steps to attempts to estimate $\theta$ using
+the provided dataset.
+
+``` julia
+using Distributions, CSV, LinearAlgebra, DataFrames
+
+# Load observed data
+x_samples_df = CSV.read("gmm_observations.csv")
+x_samples = hcat(x_samples_df[!, :X1], x_samples_df[!, :X2])
+
+# Computes πᵢ for all i with respect to the given parameters in θ
+# Inputs:
+# - θ: A vector containing the current estimates of [α₀, μ₀, Σ₀, μ₁, Σ₁]
+# - x: The (n x 2) matrix of observed X values
+# Ouputs:
+# 𝛑: An n dimensional vector where the ith coordinate is the value of πᵢ
+function compute_all_πᵢ(θ, x)
+    # Get dataset size
+    n = size(x, 1)
+
+    # Get current parameters
+    α, μ₀, Σ₀, μ₁, Σ₁ = θ
+
+    # Set distributions
+    𝒩₁ = MvNormal(μ₁, Σ₁)
+    𝒩₀ = MvNormal(μ₀, Σ₀)
+
+    # Compute all πᵢ
+    𝛑 = [α*pdf(𝒩₁, x[i,:])/(α*pdf(𝒩₁, x[i,:]) + (1-α)*pdf(𝒩₀, x[i,:])) for i=1:n]
+
+    return 𝛑
+end
+
+# EM algorithm for GMM with observations x and Z ∈ {0,1}
+# Inputs:
+# - θ₀: The initial estimate of the θ parameter
+# - x: The observed X values
+# - iterations: The number of iterations for the EM algorithm
+# Outputs:
+# - θⱼ: The estimate of θ after 1000 iterations
+function gmm_EM(θ₀, x, iterations)
+    # Get dataset size
+    n = size(x, 1)
+
+    # Store the value of θ on jth step
+    θⱼ = θ₀
+
+    for j=1:iterations
+        # Get current πᵢ values for all i
+        𝛑 = compute_all_πᵢ(θⱼ, x)
+
+        # Store the vector containing 1 - 𝛑
+        𝛑₁ = 1 .- 𝛑
+
+        # Get next value of α
+        α = sum(𝛑)/n
+
+        # Get next value of μ₀
+        μ₀ = [dot(𝛑₁, x[:,1]), dot(𝛑₁, x[:,2])]/sum(𝛑₁)
+
+        # Get next value of μ₁
+        μ₁ = [dot(𝛑, x[:,1]), dot(𝛑, x[:,2])]/sum(𝛑)
+
+        # Get next value of Σ₀.
+        Σ₀ = sum([(x[i,:] - μ₀)*((x[i,:] - μ₀))'*𝛑₁[i] for i=1:n])/sum(𝛑₁)
+
+        # Get next value of Σ₁.
+        Σ₁ = sum([(x[i,:] - μ₁)*((x[i,:] - μ₁))'*𝛑[i] for i=1:n])/sum(𝛑)
+
+        # Update θ
+        θⱼ = [α, μ₀, Σ₀, μ₁, Σ₁]
+
+    end
+
+    return θⱼ
+end
+
+
+# Initialize EM parameters
+α₀ = 0.3
+μ₀ = [1.0, 2.0]
+μ₁ = [2.0, 3.0]
+Σ₀ = 1.0*Matrix(I, 2, 2)
+Σ₁ = 1.0*Matrix(I, 2, 2)
+θ₀ = [α₀, μ₀, Σ₀, μ₁, Σ₁]
+
+println(gmm_EM(θ₀, x_samples, 20))
+```
+The true model parameters were
+
+``` latex
+\alpha &= 0.4 \\
+\boldsymbol{\mu}_0 &= [-1, 2]^T \\
+\boldsymbol{\mu}_1 &= [3,7]^T \\
+\Sigma_0 &=
+\begin{bmatrix}
+2 & 1 \\ 1 & 2
+\end{bmatrix} \\
+\Sigma_1 &=
+\begin{bmatrix}
+1.5 & 0 \\ 0 & 0.5
+\end{bmatrix}.
+```
+
+After 20 iterations, the EM algorithm gives the following estimates:
+
+``` latex
+\alpha^{20} &= 0.381 \\
+\boldsymbol{\mu}_0^{20} &= [-0.811, 2.109]^T \\
+\boldsymbol{\mu}_1^{20} &= [2.907, 6.953]^T \\
+\Sigma_0^{20} &=
+\begin{bmatrix}
+2.101 & 1.055 \\ 1.055 & 2.218
+\end{bmatrix} \\
+\Sigma_1^{20} &=
+\begin{bmatrix}
+1.468 & 0.022 \\ 0.022 & 0.401
+\end{bmatrix}.
+```
+
+Given the relatively small size of the dataset $n = 200$, these estimates
+are fairly accurate.
+
+The plots below are Gaussian mixture plots where colors represent the
+distribution we believe the points came from at the given step. The
+ellipses represent our confidence at that step. These are the plots
+obtained after zeroth, first, fifth, and twentieth steps.
+
+    img(src="images/gmm_mixtureplot_0.svg")
+    img(src="images/gmm_mixtureplot_1.svg")
+    img(src="images/gmm_mixtureplot_5.svg")
+    img(src="images/gmm_mixtureplot_20.svg")
+
+
+These plots can be obtained by appending the following code snipped to the
+previous code:
+
+``` julia
+using LaTeXStrings
 gr(size=(300,300))
 
 function ellipse!(μ,Σ;kw...)
@@ -922,55 +1412,24 @@ function ellipse!(μ,Σ;kw...)
     current()
 end
 
-function mixtureplot(X₁,X₂,μ₀,Σ₀,μ₁,Σ₁,Π)
+function mixtureplot(X₁,X₂,μ₀,Σ₀,μ₁,Σ₁,Π, plot_title)
     scatter(X₁,X₂;fillalpha=0.5,markerstrokewidth=0.5,
         marker_z=Π,mc=ColorGradient([:lightblue,:orange]),
-        colorbar=:false)
+        colorbar=:false, title=plot_title)
     ellipse!(μ₀,Σ₀,fillcolor=:lightblue)
     ellipse!(μ₁,Σ₁,fillcolor=:orange)
     plot!(;bg=:transparent,xlims=(-4.5,8.5),ylims=(-3.5,10.5),
         leg=false,ticks=:none,ratio=:equal)
 end
 
-function scalein(x)
-    (x-1/2)^101/(0.5^101)
-end
+five_steps = gmm_EM(θ₀, x_samples, 5)
+five_step_Π = compute_all_πᵢ(ten_steps, x_samples)
 
-Random.seed!(123);
-n = 100
-α = 0.4
-𝒩₀ = MvNormal([1,1],[2.0 1.0; 1.0 2.0])
-𝒩₁ = MvNormal([3.0,7.0],[1.5 0; 0 0.5])
-X₁ = zeros(n)
-X₂ = zeros(n)
-Z = zeros(Bool,n)
-for i=1:n
-    Z[i] = rand(Bernoulli(α))
-    X₁[i],X₂[i] = Z[i] ? rand(𝒩₁) : rand(𝒩₀)
-end
 
-α = 0.6
-μ₀ = [3.0,3.0]
-μ₁ = [1.0,6.0]
-Σ₀ = 1.0*Matrix(I, 2, 2)
-Σ₁ = 1.0*Matrix(I, 2, 2)
-# mixtureplot(X₁,X₂,μ₀,Σ₀,μ₁,Σ₁)
-
-Π = [α*pdf(MvNormal(μ₁,Σ₁),[x₁,x₂]) /
-       ((1-α)*pdf(MvNormal(μ₀,Σ₀),[x₁,x₂]) +
-        α*pdf(MvNormal(μ₁,Σ₁),[x₁,x₂])) for (x₁,x₂) in zip(X₁,X₂)];
-
-α = sum(Π)/n
-μ₀ = [(1 .- Π) ⋅ X₁, (1 .- Π) ⋅ X₂] / sum(1 .- Π)
-μ₁ = [Π ⋅ X₁, Π ⋅ X₂] / sum(Π)
-Σ₀ = Matrix(Hermitian(sum((1-π)*([x₁,x₂] - μ₀) * ([x₁,x₂] - μ₀)' for (x₁,x₂,π) in zip(X₁,X₂,Π))/sum(1 .- Π)))
-Σ₁ = Matrix(Hermitian(sum(π*([x₁,x₂] - μ₁) * ([x₁,x₂] - μ₁)' for (x₁,x₂,π) in zip(X₁,X₂,Π))/sum(Π)))
-Π = [α*pdf(MvNormal(μ₁,Σ₁),[x₁,x₂]) /
-       ((1-α)*pdf(MvNormal(μ₀,Σ₀),[x₁,x₂]) +
-        α*pdf(MvNormal(μ₁,Σ₁),[x₁,x₂])) for (x₁,x₂) in zip(X₁,X₂)];
-
-mixtureplot(X₁,X₂,μ₀,Σ₀,μ₁,Σ₁,Π)        
+# Five step plot
+mixtureplot(x_samples[:,1], x_samples[:,2], five_steps[2], five_steps[3], five_steps[4], five_steps[5], five_step_Π, L"\theta_5")
 ```
+:::
 
 ---
 > id: probabilistic-programming

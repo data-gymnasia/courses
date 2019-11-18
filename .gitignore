@@ -31,6 +31,7 @@ server/assets/resources
 content/scratch
 content/conv-architectures/julia
 content/.cache.json
+ts_build
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
