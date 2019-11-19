@@ -2707,7 +2707,7 @@ We measure how well the similarities $P\_{i,j}$ match the similarities $Q\_{i,j}
 
 Finally, we use gradient descent to find values for the image points $\mathbf{\tilde{x}}\_1, \ldots, \mathbf{\tilde{x}}\_n$ which minimize this cost function. Note that, since our dimension reduction map is only defined on the training points, we can think of the image coordinates as the parameters of the map and perform the gradient descent steps on the image coordinates. You can think of this visually as moving the locations of the points about freely so as to try to get the value of the cost function to go down. The following animation shows this process in action:
 
-    center: figure: video(src="images/tsne-mnist.mov" width="40%" controls)
+    center: figure: video(src="images/tsne-mnist.mp4" width="40%" controls)
     
 This animation comes from [a blog post](https://colah.github.io/posts/2014-10-Visualizing-MNIST/) by Chris Olah, which contains many other animations and discussion of PCA, t-SNE, and related models.
 
