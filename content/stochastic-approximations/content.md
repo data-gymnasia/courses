@@ -3069,3 +3069,10 @@ marginals are given below:
 We see that these marginal plots indeed match those estimated in the
 histogram of the obtained samples.
 :::
+
+Here we have only provided an introduction to HMC. Much can be done to improve
+the performance, for example, choosing an appropriate $\pi(p|q)$ as well as
+the optimal trajectory length. Topics such as these are covered
+[here](https://arxiv.org/pdf/1701.02434.pdf).
+
+In the next section we consider an improvement of the HMC algorithm.
