@@ -71,7 +71,7 @@ function gibbs_sampler(x, θ_k)
 
     y = rand(0:1, n)
 
-    for i = 1:75
+    for i = 1:75 # Burn-in period
         y = get_single_gibbs_sample(x, y, θ_k)
     end
 

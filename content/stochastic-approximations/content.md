@@ -1842,7 +1842,7 @@ for arbitrary function $f: \mathbb{R}^d \to \mathbb{R}$.
 Recall that in the discrete setting, the proposal distribution $Q(a_i,a_j)$
 gave us the probability of transitioning from state $a_i$ to state $a_j$
 in one step. We can therefore think of $Q(a_i,a_j)$ as the conditional
-probability of moving to state $a_j$ given that we are at state $a_j$.
+probability of moving to state $a_j$ given that we are at state $a_i$.
 To this end, in the continuous setting, $Q$ can be thought of as a joint
 distribution with conditional densities $q(y|x)$. Thus, the continuous
 Metropolis-Hastings algorithm is as follows:
@@ -2260,7 +2260,7 @@ yields 3.214.
 > id: mcmcalgs
 ## MCMC Algorithms
 
-The goal of MCMC is to generate a Markov chain whose invariance measure is
+The goal of MCMC is to generate a Markov chain whose invariant measure is
 $\rho$, i.e., if $S_k \sim \rho$, then $S_{k+1} \sim \rho$.
 All MCMC methods will rely on the following:
 
@@ -2541,3 +2541,531 @@ Y_k &\sim \rho_Y(\cdot).
 Since $X \perp\\\!\\\!\\\!\perp Y$, the conditional densities are simply
 marginals so we see that the samples immediately begin to behave like samples
 from the target distribution.
+
+---
+> id:hmc
+### Hamiltonian Monte Carlo (HMC)
+
+Recall that the standard Metropolis-Hastings algorithm generates the Markov
+chain $S_1, S_2, \ldots, $ with invariant measure $\rho$ as follows:
+
+1. Propose (sample) $Y \sim q(\cdot | S_k)$.
+
+2. Compute acceptance probabilty:
+``` latex
+\alpha(S_k,Y) := \textrm{min}
+\left\{
+    1, \frac{q(Y|S_k)\rho(Y)}{q(S_k|Y)\rho(S_k)}
+\right\}.
+```
+
+3. Sample $X \sim Bernoulli(\alpha(S_k,Y))$ and set
+``` latex
+S_{k+1} &=
+\begin{cases}
+Y, & \textrm{if } X = 1 \\
+S_k, & \textrm{otherwise.}
+\end{cases}
+```
+
+While relatively simple to understand and implement, the Metropolis-Hastings
+algorithm suffers when the dimension of the state space $\Omega$ is large. Here
+we will introduce another MCMC method, called Hamiltonian Monte Carlo (HMC)
+that builds upon the standard Metropolis-Hastings algorithm and performs better
+in high dimensional spaces. To accomplish this, we will make use of information
+contained in the gradient of the target distribution.
+
+The mathematics justifying the efficacy of HMC relies on differential geometry,
+which is outside the scope of this course. However, we can gain some intuition
+into its performance by considering an analogy in physics.
+
+*Remark*: To retain consistency with other HMC literature, we will let
+$\pi(q)$ denote the target density/distribution.
+
+The physical system we will consider is that of an object orbiting a planet.
+For the sake of this analogy, we will suppose the shape of  our target
+distribution is the elliptic orbit of the object around the planet. Now the
+idea of this setup is that the object will only remain in this orbit if it is
+endowed with just the right of momentum to counteract the gravitational
+attraction of the planet. Too little momentum would cause the object to fall
+into the planet, and too much might render the gravitational attraction too weak
+to retain the object in orbit, causing it to ecape into space.
+
+This balance of gravitational attraction and momentum gives rise to the idea of
+*conservative dynamics*. For our probabilistic problem, we will
+draw on the idea of volume preservation whereby an expansion or contraction in
+position is compensated by a respective contraction or expansion in momentum.
+In particular, we will imagine we have
+a system with position $q$ and momentum $p$, say, a particle; $q$ here presents
+a sample from our target density. Suppose the particle moves from $q_0$ to
+$q_1$; we can interpret $q_1$ as the next possible proposal. In a physical
+system, the trajectory from $q_0$ to $q_1$ will be determined by the momentum
+at time 0, $p_0$. Since $q_1$ is a sample proposal, the trajectory from $q_0$
+to $q_1$ should be determined by the geometry of the target distribution.
+This harmony between position and momentum will be captured by what is called
+the *canonical distribution*, which is the joint density of $q$ and $p$:
+
+``` latex
+\pi(q,p) &= \pi(p|q)\pi(q).
+```
+
+We will write this in term of a function $H(q,p)$ called a Hamiltonian function
+which represents the energy of the system at $q,p$:
+
+``` latex
+\pi(q,p) &= e^{-H(q,p)}.
+```
+
+where $p \in \mathbb{R}^{|\Omega|}$, that is, $p$ has the same dimension as
+$q$.
+
+We will choose $H(q,p) = -\log \pi(q,p)$ so that we have
+
+``` latex
+H(q,p) &= -\log \pi(q,p) \\
+&= -\log \pi(p|q)\pi(q) \\
+&= -\log \pi(p|q) - \log \pi(q) \\
+&= K(q,p) + V(q)
+```
+
+where $K(q,p)$ and $V(q)$ represent the kinetic and potential energies,
+respectively, of the system at $q,p$. The set of all possible $(q,p)$ is
+called the *phase space*.
+
+Note that because $\pi(q,p) = \pi(p|q)\pi(q)$, if we marginalize $\pi(q,p)$
+over the momentum, we immediately obtain $\pi(q)$. This means that if we have
+samples $(q_0,p_0), (q_1,p_1), \ldots, (q_n,p_n)$, then we can simply drop
+$p_0, p_1, \ldots, p_n$ to obtain samples $q_0, q_1, \ldots, q_n$ from $\pi(q)$.
+
+Now, suppose we start with sample $(q^0, p^0)$. To get the next sample, we will
+consider a trajectory starting at time 0 and ending at time $L$.
+The trajectory is determined by Hamilton's equations:
+
+``` latex
+\frac{dq}{dt} &= \frac{\partial H}{\partial p} = \frac{\partial K}{\partial p}\\
+\frac{dp}{dt} &= -\frac{\partial H}{\partial q} =
+-\frac{\partial K}{\partial q} - \frac{dV}{dq}.
+```
+
+Indeed, if at time 0 the particle is at $(q^0,p^0)$ then after time $\epsilon$
+the particle will be at $(q^1, p^1)$ where
+
+``` latex
+q^1 &= q^0 + \int_0^{\epsilon} \frac{\partial H}{\partial p} dt \\
+p^1 &= p^0 + \int_0^{\epsilon} -\frac{\partial H}{\partial q} dt.
+```
+
+Computing the integrals above may be difficult and will instead be numerically
+computed.
+We first discretize the interval $[0,L]$ into $n$ disjoint intervals of length
+$\epsilon = \frac{L}{n}$ which yields the intervals
+$[0,\epsilon), [\epsilon, 2\epsilon), \ldots, [(n-1)\epsilon, L]$ so that the
+obtained trajectory is $(q^0,p^0), (q^1,p^1), \ldots, (q^{n-1},p^{n-1})$ where
+$(q^j,p^j)$ is given by
+
+``` latex
+\psi &= p^{j-1} - \frac{\epsilon}{2}\frac{\partial V}{\partial q}(q^{j-1}) \\
+q^j &= q^{j-1} + \epsilon \psi \\
+p^j &= \psi - \frac{\epsilon}{2}\frac{\partial V}{\partial q}(q^j)
+```
+for $j = 1,2,\ldots, n-1$. The above numerical scheme is known as the
+*leapfrog integrator*.
+
+Once we have obtained the trajectory
+$(q^0,p^0), (q^1,p^1), \ldots, (q^{n-1},p^{n-1})$, there are multiple ways
+to construct the next sample proposal. The most simple is to just propose the
+final point of the trajectory, $(q^{n-1},p^{n-1})$.
+
+One of they key components of Hamiltonian dynamics is reversibility. In the
+context of this problem, this means the particle should be able to go from
+$(q^0,p^0)$ to $(q^{n-1},p^{n-1})$ and from $(q^{n-1},p^{n-1})$ back to
+$(q^0,p^0)$. As currently defined, this is not possible. To remedy this, we
+will add a step to the numerical integrator that negates the sign of the
+momentum so that we obtain the trajectory
+$(q^0,p^0), (q^1,-p^1), \ldots, (q^{n-1},-p^{n-1})$. This step effectively
+makes transition probability symmetric, so that the acceptance probability
+becomes
+
+``` latex
+\alpha &= \min\left(1, e^{H(q^0,p^0) - H(q^{n-1},p^{n-1})}\right).
+```
+
+The last step is to define the conditional probability $\pi(p|q)$. The most
+simple choice is $\pi(p|q) \sim N(\mathbf{0},I)$ where $\mathbf{0}$ is the
+$|\Omega|$-dimensional zero vector and $I$ is the $|\Omega| \times |\Omega|$
+identity. Note that because $\pi(p|q)$ as defined here does not depend on $q$,
+$p$ can be sampled independently from $q$.
+
+To summarize, after initializing $(q_0, p_0)$ and defining $\pi(p|q)$, the
+simplest HMC algorithm obtains sample $(q_k, p_k)$ from $(q_{k-1},p_{k-1})$
+as follows:
+
+0. Set integration time $L$ and number of integration intervals $n$ and
+define $\epsilon = \frac{L}{n}$.
+
+1. Obtain trajectory $(q^0,p^0), (q^1,p^1), \ldots, (q^{n-1},p^{n-1})$
+as follows:
+
+``` latex
+&1. \quad q^0 \leftarrow q_k, p^0 \sim N(\mathbf{0},I) \\
+&2. \quad \text{for } j = 1,2,\ldots, n-1, \text{ define }
+\\
+&\quad \quad \psi = p^{j-1} - \frac{\epsilon}{2}\frac{\partial V}{\partial q}(q^{j-1}) \\
+&\quad \quad q^j = q^{j-1} - \epsilon \psi \\
+&\quad \quad p^j = \psi - \frac{\epsilon}{2}\frac{\partial V}{\partial q}(q^{j})
+```
+
+2. Compute acceptance probability
+
+``` latex
+\alpha &= \min\left(1, e^{H(q_k,p_k) - H(q^{n-1},p^{n-1})}\right).
+```
+
+3. Sample $X \sim Bernoulli(\alpha)$ and set
+``` latex
+(q_{k+1}, p_{k+1}) &=
+\begin{cases}
+(q^{n-1},p^{n-1}), & \textrm{if } X = 1 \\
+(q_k,p_k), & \textrm{otherwise.}
+\end{cases}
+```
+
+From above we see that HMC is a special case of the Metropolis-Hastings
+algorithm where the proposal is found using methods from Hamiltonian dynamics.
+
+::: .example
+**Example**
+
+Consider the density given by
+
+``` latex
+\pi(q) &= \frac{3}{10\sqrt{2\pi}}e^{-\frac{(q+2)^2}{2}} +
+\frac{7}{10\sqrt{\pi}} e^{-(q-3)^2}
+```
+
+a plot of which is given below:
+
+    figure
+      img(src="images/hmc_ex_1_density_plot.svg")
+
+We will obtain samples from $\pi(q)$ via HMC. First, we will let
+
+``` latex
+\pi(p|q) \sim N(0,1).
+```
+
+Then we have
+
+``` latex
+V(q) &= -\log \pi(q)
+```
+
+and
+
+``` latex
+\frac{d V}{dq} &= \frac{1}{\pi(q)}
+\left[
+\frac{3}{10\sqrt{2\pi}}(q+2)e^{-\frac{(q+2)^2}{2}} +
+\frac{7}{10\sqrt{\pi}}(q-3)e^{-(q-3)^2}
+\right].
+```
+
+The code below will generate 20,000 samples from $pi(q)$:
+
+``` julia
+using Plots, Distributions
+
+# Evaluates target distribution π(q)
+function π_q(q)
+    return 0.3*1/sqrt(2*pi)*exp(-(q+2)^2/2) + 0.7*1/sqrt(pi)*exp(-(q-3)^2)
+end
+
+# Evaluates conditional probability π(p|q)
+function π_pq(p,q)
+    return pdf(Normal(0, 1), p)
+end
+
+# Evaluates Kinetic enery K(p,q)
+function K(p,q)
+    return -log(π_pq(p,q))
+end
+
+# Evaluates Potential energy V(q)
+function V(q)
+    return -log(π_q(q))
+end
+
+# Evaluates dV/dq at q
+function dV_dq(q)
+    return 1/π_q(q) * (0.3*1/sqrt(2*pi)*(q+2)*exp(-(q+2)^2/2) +
+    0.7*2/sqrt(pi)*(q-3)*exp(-(q-3)^2))
+end
+
+# Compute Hamiltonian at q,p
+function H(p,q)
+    return K(p,q) + V(q)
+end
+
+
+# Gets a trajectory of length L with n steps
+function get_trajectory(q,p,L,n)
+    # Flip sign of momentum
+    # p *= -1
+
+    # Step size
+    ϵ = L/n
+
+    q_trajectory = zeros(n)
+    p_trajectory = zeros(n)
+
+    q_trajectory[1] = q
+    p_trajectory[1] = p
+
+    for j=2:n
+        ψ = p_trajectory[j-1] - ϵ/2 * dV_dq(q_trajectory[j-1])
+        q_trajectory[j] = q_trajectory[j-1] + ϵ*ψ
+        p_trajectory[j] = ψ - ϵ/2*dV_dq(q_trajectory[j])
+    end
+
+    return q_trajectory, p_trajectory
+end
+
+function hmc_alg(q₀, p₀)
+    # Number of samples to return
+    n = 20000
+
+    q_samples = zeros(n)
+    p_samples = zeros(n)
+    q_samples[1] = q₀
+    p_samples[1] = p₀
+
+    trajectory_length = 1
+    trajectory_partitions = 3
+
+    for j=2:n
+
+        q = q_samples[j-1]
+        p = rand(Normal(0,1))
+        q_proposal_trajectory, p_proposal_trajectory =
+        get_trajectory(q, p, trajectory_length, trajectory_partitions)
+
+        # Proposal
+        q_L = last(q_proposal_trajectory)
+        p_L = last(p_proposal_trajectory)
+
+        # Compute acceptance probabilty
+        α = min(1, exp(H(p,q) - H(-p_L,q_L)))
+
+        if rand() < α
+            q_samples[j] = q_L
+            p_samples[j] = -p_L
+        else
+            q_samples[j] = q
+            p_samples[j] = p
+        end
+
+    end
+
+    return q_samples
+end
+
+# Generate HMC samples
+samples = hmc_alg(0,1)
+```
+
+A histogram of the obtained samples with the density superimposed is given
+below:
+
+    figure
+      img(src="images/hmc_ex_1_histogram.svg")
+:::
+
+For more complex target densities in higher dimensions it is often cumbersome
+to differentiate $\pi(q)$ by hand. Instead, it is common to use numerical
+differentiating schemes called *automatic differentiation*. In Julia, we can
+do this with the package `ForwardDiff.` For arbitrary function
+$f: \mathbb{R}^n \to \mathbb{R}$, its gradient can be obtained as follows:
+
+``` julia
+using ForwardDiff
+df_dx(x) = ForwardDiff.derivative(f, x)
+```
+
+For example, to evaluate $f'(5)$ for $f(x) = \frac{\sin(x^3)}{\sqrt{\log x}}$
+we can write
+
+``` julia
+using ForwardDiff
+
+function f(x)
+    return sin(x^3)/sqrt(log(x))
+end
+
+df_dx(x) = ForwardDiff.derivative(f, x)
+println(df_dx(5))
+```
+
+::: .example
+**Example**  
+
+Consider the density
+$\pi: \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]^2 \to \mathbb{R}$ defined by
+
+``` latex
+\pi(q_1, q_2) &= \frac{1}{Z}
+\left[
+\left(\sin(q_1q_2)\sin(q_1)\cos(q_2)\right)^2 +
+\frac{2}{\pi} e^{-2(q_1^2 + q_2^2)}
+\right]
+```
+
+where $Z$ is a normalization constant.
+
+A plot of this density along with a contour plot is given below
+
+    figure
+      img(src="images/hmc_ex_2_plot_1.svg")
+
+The code below makes use of the ForwardDiff Julia package to run HMC and
+obtain 25,000 samples:
+
+``` julia
+using Distributions, LinearAlgebra, ForwardDiff, Seaborn, Pandas
+
+# Evaluates target distribution π(q)
+function π_q(q)
+    q₁ = q[1]
+    q₂ = q[2]
+    in_bound = (-π/2 < q₁ < π/2) & (-π/2 < q₂ < π/2)
+    return in_bound*(2/π * exp(-2*(q₁^2 + q₂^2)) + (sin(q₁*q₂)*sin(q₁)*cos(q₂))^2)
+end
+
+# Evaluates conditional probability π(p|q)
+function π_pq(p,q)
+    return pdf(MvNormal([0,0], 1.0*Matrix(I, 2, 2)), p)
+end
+
+# Evaluates Kinetic enery K(p,q)
+function K(p,q)
+    return -log(π_pq(p,q))
+end
+
+# Evaluates Potential energy V(q)
+function V(q)
+    return -log(π_q(q))
+end
+
+# Compute Hamiltonian at q,p
+function H(p,q)
+    return K(p,q) + V(q)
+end
+
+
+# Gets a trajectory of length L with n steps
+function get_trajectory(q,p,L,n,dV_dq)
+
+    # Step size
+    ϵ = L/n
+
+    q_trajectory = zeros(n,2)
+    p_trajectory = zeros(n,2)
+
+    q_trajectory[1,:] = q
+    p_trajectory[1,:] = p
+
+    for j=2:n
+        ψ = p_trajectory[j-1,:] - ϵ/2 * dV_dq(q_trajectory[j-1,:])
+        q_trajectory[j,:] = q_trajectory[j-1,:] + ϵ*ψ
+        p_trajectory[j,:] = ψ - ϵ/2*dV_dq(q_trajectory[j,:])
+    end
+
+    return q_trajectory, p_trajectory
+end
+
+function hmc_alg(q₀, p₀)
+    # Number of samples to return
+    n = 25000
+
+    q_samples = zeros(n,2)
+    p_samples = zeros(n,2)
+    q_samples[1,:] = q₀
+    p_samples[1,:] = p₀
+
+    trajectory_length = 1
+    trajectory_partitions = 5
+
+    # Gradient of V
+    dV_dq(x) = ForwardDiff.gradient(V, x)
+
+    for j=2:n
+
+        q = q_samples[j-1,:]
+        p = rand(MvNormal([0,0],1.0*Matrix(I, 2, 2)))
+        q_proposal_trajectory, p_proposal_trajectory =
+        get_trajectory(q, p, trajectory_length, trajectory_partitions, dV_dq)
+
+        # Proposal
+        q_L = q_proposal_trajectory[lastindex(q_proposal_trajectory)÷2,:]
+        p_L = p_proposal_trajectory[lastindex(p_proposal_trajectory)÷2,:]
+
+        # Compute acceptance probabilty
+        α = min(1, exp(H(p,q) - H(-p_L,q_L)))
+
+        if rand() < α
+            q_samples[j,:] = q_L
+            p_samples[j,:] = -p_L
+        else
+            q_samples[j,:] = q
+            p_samples[j,:] = p
+        end
+
+    end
+
+    return q_samples
+end
+
+samples = hmc_alg([0,0],[1,1])
+```
+
+A histogram of the obtained samples is given below:
+
+    figure
+      img(src="images/hmc_ex_2_histogram.svg")
+
+Above we see that the histogram of the samples indeed matches the contour of the
+density:
+
+    figure
+      img(src="images/hmc_ex_2_plot_3.svg")
+
+Moreover, we can obtain the marginals of $q_1$ and $q_2$ as follows:
+
+``` latex
+\pi_{q_1}(q_1) &= \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}\pi(q_1,q_2)dq_2 \\
+&= \sqrt{\frac{2}{\pi}} erf\left(\frac{\pi}{\sqrt{2}}\right)
+e^{-2x^2} + \frac{(-\pi x + \pi x^3 + \sin(\pi x))\sin^2(x)}{4x^3 - 4x}
+```
+
+and
+
+``` latex
+\pi_{q_2}(q_2) &= \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}\pi(q_1,q_2)dq_1 \\
+&= \sqrt{\frac{2}{\pi}} erf\left(\frac{\pi}{\sqrt{2}}\right)
+e^{-2y^2} + \frac{1}{4}\cos^2(y)\left[\pi + \frac{(1-2y^2)\sin(\pi y)}{y^3-y}
+\right]
+```
+
+where $erf(x)$ is the error function given by
+$erf(x) = \frac{2}{\sqrt{\pi}} \int_0^x e^{-t^2} dt$. Plots of these two
+marginals are given below:
+
+    figure
+      img(src="images/hmc_ex_2_marginal_1_plot.svg")
+
+
+    figure
+      img(src="images/hmc_ex_2_marginal_2_plot.svg")
+
+We see that these marginal plots indeed match those estimated in the
+histogram of the obtained samples.
+:::
