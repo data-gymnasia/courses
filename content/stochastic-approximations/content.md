@@ -2694,7 +2694,9 @@ The last step is to define the conditional probability $\pi(p|q)$. The most
 simple choice is $\pi(p|q) \sim N(\mathbf{0},I)$ where $\mathbf{0}$ is the
 $|\Omega|$-dimensional zero vector and $I$ is the $|\Omega| \times |\Omega|$
 identity. Note that because $\pi(p|q)$ as defined here does not depend on $q$,
-$p$ can be sampled independently from $q$.
+$p$ can be sampled independently from $q$. This choice of kinetic energy
+function is an example of what is sometimes referred to as a
+*Euclidean-Gaussian Kinetic Energy* function.
 
 To summarize, after initializing $(q_0, p_0)$ and defining $\pi(p|q)$, the
 simplest HMC algorithm obtains sample $(q_k, p_k)$ from $(q_{k-1},p_{k-1})$
@@ -3027,6 +3029,8 @@ end
 samples = hmc_alg([0,0],[1,1])
 ```
 
+Note that we do not need to know the normalization constant $Z$ to be able to
+sample from $\pi(q_1,q_2)$.
 A histogram of the obtained samples is given below:
 
     figure
@@ -3042,17 +3046,17 @@ Moreover, we can obtain the marginals of $q_1$ and $q_2$ as follows:
 
 ``` latex
 \pi_{q_1}(q_1) &= \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}\pi(q_1,q_2)dq_2 \\
-&= \sqrt{\frac{2}{\pi}} erf\left(\frac{\pi}{\sqrt{2}}\right)
-e^{-2x^2} + \frac{(-\pi x + \pi x^3 + \sin(\pi x))\sin^2(x)}{4x^3 - 4x}
+&= \frac{1}{Z}\left[\sqrt{\frac{2}{\pi}} erf\left(\frac{\pi}{\sqrt{2}}\right)
+e^{-2x^2} + \frac{(-\pi x + \pi x^3 + \sin(\pi x))\sin^2(x)}{4x^3 - 4x}\right]
 ```
 
 and
 
 ``` latex
 \pi_{q_2}(q_2) &= \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}\pi(q_1,q_2)dq_1 \\
-&= \sqrt{\frac{2}{\pi}} erf\left(\frac{\pi}{\sqrt{2}}\right)
-e^{-2y^2} + \frac{1}{4}\cos^2(y)\left[\pi + \frac{(1-2y^2)\sin(\pi y)}{y^3-y}
-\right]
+&= \frac{1}{Z}\left[\sqrt{\frac{2}{\pi}} erf\left(\frac{\pi}{\sqrt{2}}\right)
+e^{-2y^2} + \frac{1}{4}\cos^2(y)\left(\pi + \frac{(1-2y^2)\sin(\pi y)}{y^3-y}
+\right)\right]
 ```
 
 where $erf(x)$ is the error function given by
@@ -3076,3 +3080,110 @@ the optimal trajectory length. Topics such as these are covered
 [here](https://arxiv.org/pdf/1701.02434.pdf).
 
 In the next section we consider an improvement of the HMC algorithm.
+
+### No-U-Turn Sampler (NUTS)
+After choosing an appropriate kinetic energy function, $K(q,p)$, for the HMC
+algorithm, we are tasked with choosing the length of the trajectories $L$
+(number of steps) and the step size $\epsilon$. If $L$ is chosen to be small,
+then the trajectories are subsequently short and the behavior of HMC to similar
+to the random walk Metropolis-Hastings sampler. If $L$ is too large, then
+superfluous trajectories may be computed and thus needlessly expend
+computational resources. Ideally, we would like $L$ and $\epsilon$ to be chosen
+adaptively, without the need for user intervention.
+
+At its core, NUTS builds upon HMC by utilizing a recursive algorithm to find
+an optimal trajectory length $L$. However, it is common to augment NUTS with
+an additional step that can automatically tune the parameter $\epsilon$.
+The mathematics is a bit tedious but can be found
+[here](https://arxiv.org/pdf/1111.4246.pdf).
+In this section we simply outline how NUTS may be used in Julia.  
+
+::: .example
+**Example**  
+
+Here we will use NUTS to obtain samples from the density given in the HMC
+section:
+
+``` latex
+\pi(q_1, q_2) &= \frac{1}{Z}
+\left[
+\left(\sin(q_1q_2)\sin(q_1)\cos(q_2)\right)^2 +
+\frac{2}{\pi} e^{-2(q_1^2 + q_2^2)}
+\right]
+```
+
+We will use the *AdvancedHMC* Julia package to obtain samples from NUTS.
+We first define the density as follows:
+
+``` julia
+using Distributions, DiffResults, ForwardDiff, DiffResults, AdvancedHMC
+
+# Evaluates target distribution π(q)
+function π_q(q)
+    q₁ = q[1]
+    q₂ = q[2]
+    in_bound = (-π/2 < q₁ < π/2) & (-π/2 < q₂ < π/2)
+    return in_bound*(2/π * exp(-2*(q₁^2 + q₂^2)) + (sin(q₁*q₂)*sin(q₁)*cos(q₂))^2)
+end
+
+# Initial sample
+q₀ = [0.0, 0.0]
+
+# State space size
+Ω_size = length(q₀)
+
+# Number of samples desired
+num_samples = 25000
+
+# Number of ϵ updates
+num_adapts = 2000
+```
+
+We also define the initial sample, the desired sample size, as well as a
+parameter that defines the number of times the step size $\epsilon$
+will be updated.
+
+Once the above is defined, the code below can be used to generate the samples:
+
+``` julia
+# Evaluates log of target distribution
+function ℓπ(q)
+    return log(π_q(q))
+end
+
+# Evaluates gradient of log of target distribution
+# This implementation of NUTS requires the gradient function to be defined this
+# way
+function ∂ℓπ_∂q(q)
+    result = DiffResults.GradientResult(q)
+    ForwardDiff.gradient!(result, ℓπ, q)
+    return (DiffResults.value(result), DiffResults.gradient(result))
+end
+
+# Use Euclidean matrix. 2 here is dimension of sample space
+metric = DiagEuclideanMetric(Ω_size)
+
+# Define Hamiltonian function
+hamiltonian = Hamiltonian(metric, ℓπ, ∂ℓπ_∂q)
+
+# Initial step size
+ϵ₀ = find_good_eps(hamiltonian, q₀)
+
+# Define leapfrog symplectic integrator
+lf_integrator = Leapfrog(ϵ₀)
+
+# Define NUTS sampler
+sampler = NUTS{MultinomialTS,GeneralisedNoUTurn}(lf_integrator)
+
+# Define ϵ adapter. Used to find apatively determine optimal step size ϵ
+adaptor = StanHMCAdaptor(num_adapts, Preconditioner(metric), NesterovDualAveraging(0.8, lf_integrator))
+
+# Get samples. stats stores information for each sample (e.g., acceptance rate)
+samples, stats = sample(hamiltonian, sampler, q₀, num_samples, adaptor, num_adapts; progress=true)
+```
+
+We can again construct a histogram as we did before to obtain:
+
+    figure
+      img(src="images/hmc_nuts_hist_1.svg")
+:::
