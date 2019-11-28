@@ -1499,7 +1499,7 @@ chain = sample(die_model(data), HMC(ϵ, τ), num_posterior_samples, progress=fal
 
 The variable *data* above is a vector containing the observed data which is
 typically given to us. A sample dataset of a biased die can be downloaded
-[here](INSERT DOWNLOAD LINK).
+[here](https://raw.githubusercontent.com/data-gymnasia/courses/master/content/bayesian-inference-and-graphical-models/code/pp_ex_1_data.csv).
 
 We can now obtain summary statistics of the parameter $p$, such as mean and
 standard deviation, and plot a histogram of the posterior samples with the
@@ -1550,7 +1550,7 @@ where $p(x_{k+1},x_k)$ is defined by:
       img(src="images/pp_ex_2_mat.svg")
 
 Suppose we have observed the variables $Y_1, Y_2, \ldots, Y_{15}$ available
-[here](INSERT DOWNLOAD LINK HERE). Our goal will be to estimate $p_1$ and $p_2$
+[here](https://raw.githubusercontent.com/data-gymnasia/courses/master/content/bayesian-inference-and-graphical-models/code/pp_ex_2_data.csv). Our goal will be to estimate $p_1$ and $p_2$
 using probabilistic programming.
 
 We will assume a uniform prior on $p_1$ and $p_2$. We can define the model
