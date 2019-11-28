@@ -1435,35 +1435,182 @@ mixtureplot(x_samples[:,1], x_samples[:,2], five_steps[2], five_steps[3], five_s
 > id: probabilistic-programming
 ## Probabilistic Programming
 
-A **Probabilistic Programming Language** (PPL) is a framework for describing stochastic models and performing inference on them. Examples: **Stan** (a C++ library, callable from Julia/Python/R), **PyMC3**, and **Turing.jl**.
+A **Probabilistic Programming Language** (PPL) is a framework for describing
+stochastic models and performing inference on them. Put simply, PPLs are a
+means of automating Bayesian inference. Generally, a probabilistic program
+will consists of two objects: 1) A program/model that can generate samples
+and 2) observed data. When performing inference, we will generally have samples
+obtained from some distribution parameterized by, say, $\theta$.  The structure
+of a model in a probabilistic program is Bayesian: it encodes prior information
+about the parameter $\theta$ and then generates samples based on this
+information.
 
-TODO: explain the probabilistic programming setup in more detail  
-TODO: provide more context and explanation for the example below  
-TODO: provide 1-2 more examples of probabilistic programming applications
+Examples of PPLs are:
+**Stan** (a C++ library, callable from Julia/Python/R), **PyMC3**, and
+**Turing.jl**. In this section we will use the *Turing* package in Julia to
+perform Bayesian inference via probabilistic programming.
 
-A HMM example in Turing.jl (the object returned on the last line will contain estimates for the parameters):
+::: .example
+**Example**
+
+Suppose we have a 6-sided die. Letting $X$ represent the outcome of a roll,
+suppose $\mathbb{P}(X = 1) = p$ and $\mathbb{P}(X = k) = \frac{1-p}{5}$ for
+$k = 2,3,4,5$. If we assume that $p$ has a beta prior, then after observing
+many rolls we can manually determine that the posterior distribution of
+$p$ given the data is also beta. While finding a closed form solution of
+this posterior is simple for this problem, this may not be the case for more
+complicated problems. Here we will use probabilistic programming and MCMC to
+obtain samples from the posterior.
+
+We begin by specifying the model from which the data was drawn:
 
 ``` julia
-using Turing
-@model HMM(x) = begin
-    n = length(x)
-    z = tzeros(Int64, n) # hidden states
-    p₁ ~ Uniform(0,1) # trans. prob. 1→1
-    p₂ ~ Uniform(0,1) # trans. prob. 2→1
-    P = [p₁ 1-p₁; p₂ 1-p₂] # transition matrix
-    z[1] ~ Categorical([0.5,0.5]) # start 1 or 2
-    x[1] ~ Normal(z[1],0.1)
-    for i=2:n
-        # choose next hidden state
-        z[i] ~ Categorical(P[z[i-1],:])
-        x[i] ~ Normal(z[i],0.1) # add noise
+using Turing, MCMCChains, Distributions, StatsPlots, CSV
+
+@model die_model(observations) = begin
+    # Set prior distribution for p (probability of rolling 1)
+    p ~ Beta(2,5)
+
+    # Probability of rolling one of 2 - 6
+    q = (1-p)/5
+
+    # Define how samples are obtained
+    for i=1:length(observations)
+        observations[i] ~ Categorical([p, q, q, q, q, q])
     end
 end
-# choose parameters for samplers
-hmc = HMC(2, 0.001, 7, :p₁, :p₂)
-pg = PG(20, 1, :z)
-G = Gibbs(1000, hmc, pg)
-# perform inference (assuming the vector x
-# contains empirical observations)
-sample(HMM(x), G)
 ```
+
+Note that above we have imposed a prior of $Beta(2,5)$ for $p$, encoding
+a belief that the die is biased toward 1.
+
+After defining the model, we need to define a means of obtaining samples from
+the posterior distribution. One way to do this is to use HMC:
+
+``` julia
+# Use HMC sampler to obtain posterior samples
+num_posterior_samples = 1000
+ϵ = 0.05 # Leapfrog step size
+τ = 10   # Number of leapfrog iterations
+
+# Obtain posterior samples
+chain = sample(die_model(data), HMC(ϵ, τ), num_posterior_samples, progress=false)
+```
+
+The variable *data* above is a vector containing the observed data which is
+typically given to us. A sample dataset of a biased die can be downloaded
+[here](INSERT DOWNLOAD LINK).
+
+We can now obtain summary statistics of the parameter $p$, such as mean and
+standard deviation, and plot a histogram of the posterior samples with the
+following code:
+
+``` julia
+# Extract summary of p parameter and plot histogram
+p_summary = chain[:p]
+plot(p_summary, seriestype = :histogram)
+```
+
+which generates the following histogram:
+
+    img(src="images/pp_ex_1_hist.svg")
+
+The variable *p_summary* above is an MCMCChains object and contains the
+samples of $p$ sampled from the posterior. To obtain the samples, we can run
+
+``` julia
+Array(p_summary)
+```
+
+We can now use this to construct confidence intervals for $p$. For example, a
+95\% confidence interval is given by
+
+``` julia
+quantile(Array(p_summary), [0.025, 0.975])
+```
+:::
+
+
+Below we consider a slightly more complex HMM problem.
+
+::: .example
+**Example**
+
+Consider an HMM with latent variables $X_i \in \\\{1,2\\\}$ and:
+
+``` latex
+p(x_1) &= \frac{1}{2} \textrm{ for } x_1 \in \{1,2\} \\
+f(y_j|x_j) &\sim N(x_j,0.1) \textrm{ for } j \in \{1,2,\ldots,n\} \\
+\mathbb{P}(X_{k+1} &= x_{k+1}|X_k = x_k) = p(x_{k+1},x_k)
+```
+
+where $p(x_{k+1},x_k)$ is defined by:
+
+    figure
+      img(src="images/pp_ex_2_mat.svg")
+
+Suppose we have observed the variables $Y_1, Y_2, \ldots, Y_{15}$ available
+[here](INSERT DOWNLOAD LINK HERE). Our goal will be to estimate $p_1$ and $p_2$
+using probabilistic programming.
+
+We will assume a uniform prior on $p_1$ and $p_2$. We can define the model
+as follows:
+
+``` julia
+using Turing, MCMCChains, Distributions
+
+@model HMM(y) = begin
+    n = length(y)
+    x = zeros(Int64, length(y)) # hidden states
+
+    # Define priors
+    p₁ ~ Uniform(0,1) # Transition probability 1→1
+    p₂ ~ Uniform(0,1) # Transition probability 2→1
+
+    # Define transition matrix
+    P = [p₁ 1-p₁; p₂ 1-p₂]
+
+    # Initialize samples
+    x[1] ~ Categorical([0.5,0.5]) # Start Z at either 1 or 2
+    y[1] ~ Normal(x[1],0.1)
+
+    for i=2:n
+        # Get next hidden state
+        x[i] ~ Categorical(P[x[i-1],:])
+        y[i] ~ Normal(x[i], 0.1) # Add noise
+    end
+
+    return (p₁, p₂)
+end
+```
+
+We will now use a Gibbs sampler to obtain samples from the posterior of
+$p₁$ and $p₂$. We will use a Gibbs sampler with
+HMC and Particle Gibbs to obtain samples from the latent variables
+(since they are discrete) as follows:
+
+``` julia
+# Load observed data
+data = CSV.read("pp_ex_2_data.csv")[:,1]
+
+# Use Gibbs w/ HMC and PG to obtain posterior samples
+num_posterior_samples = 1000
+ϵ = 0.1 # Leapfrog step size
+τ = 10   # Number of leapfrog iterations
+hmc = HMC(ϵ, τ, :p₁, :p₂)
+particle_gibbs = Turing.PG(20, :z)
+G = Gibbs(hmc, particle_gibbs)
+
+# Obtain posterior samples
+chain = sample(HMM(data), G, num_posterior_samples)
+```
+
+Histograms of the $p_1$ and $p_2$ marginal posteriors are given below.
+
+    figure
+      img(src="images/pp_ex_2_hist_1.svg")
+      img(src="images/pp_ex_2_hist_2.svg")
+
+The true values of $p_1$ adn $p_2$ used to generate the data were 0.25 and
+0.55, respectively.
+:::
