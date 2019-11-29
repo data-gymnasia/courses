@@ -1098,7 +1098,7 @@ The test cases above don't cover the *degenerate* situation where one of the str
 
     pre(julia-executable)
       | function space_concat(s,t)
-      |     if s == "" || t == "" || s[-1] == " " || t[0] == " "
+      |     if s == "" || t == "" || s[end] == " " || t[1] == " "
       |         s * t
       |     else
       |         s * " " * t
