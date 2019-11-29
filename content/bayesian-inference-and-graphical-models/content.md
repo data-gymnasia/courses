@@ -928,7 +928,190 @@ Finally, we can actually perform the expectation-maximization algorithm using th
 
 Using MCMC to do inference can be hard work, as we saw in the previous section. However, if we take the Bayesian approach where $q$ and $\sigma^2$ are random variables just like $Z_1, \ldots, Z_{100}$, then the only thing the user really needs to specify are the priors, the structure of the model, and the sampler (e.g., in the example above, we used a Gibbs sampler with a bit-switching proposal distribution). The rest is calculation, which could in principle be handled automatically by a probability-aware programming framework.
 
-**Probabilistic programming** systems seek to automate Bayesian inference by allowing the user to specify model structure in the form of a *program*, choose samplers, and let the computer handle the rest. Here's an example showing how we can implement the hidden Markov model from the previous section: 
+**Probabilistic programming** systems seek to automate Bayesian inference by allowing the user to specify model structure in the form of a *program*, choose samplers, and let the computer handle the rest. 
+
+::: .example
+**Example**
+
+Suppose we have a 6-sided die. Letting $X$ represent the outcome of a roll,
+suppose $\mathbb{P}(X = 1) = p$ and $\mathbb{P}(X = k) = \frac{1-p}{5}$ for
+$k = 2,3,4,5$. If we assume that $p$ has a beta prior, then after observing
+many rolls we can manually determine that the posterior distribution of
+$p$ given the data is also beta. While finding a closed form solution of
+this posterior is simple for this problem, this may not be the case for more
+complicated problems. Use probabilistic programming and MCMC to
+obtain samples from the posterior.
+
+:::
+
+[Continue](btn:next)
+
+---
+> id: step-six-sided-die-solution
+
+*Solution*. We begin by specifying the model from which the data was drawn:
+
+    pre(julia-executable)
+      | 
+      | using Turing, MCMCChains, Distributions, StatsPlots, CSV
+      | 
+      | @model die_model(observations) = begin
+      |     # Set prior distribution for p (probability of rolling 1)
+      |     p ~ Beta(2,5)
+      | 
+      |     # Probability of rolling one of 2 - 6
+      |     q = (1-p)/5
+      | 
+      |     # Define how samples are obtained
+      |     for i in 1:length(observations)
+      |         observations[i] ~ Categorical([p, q, q, q, q, q])
+      |     end
+      | end
+
+Some points about how this works: 
+
+1. The model definition works essentially like a function definition, with the `{jl} @model` macro in place of the `{jl} function` keyword. The argument (in this case, `{jl} observations`) should be the *observed* data that will be provided for purposes of performing inference. 
+
+2. Hidden random variables appear before a tilde (`{jl} ~`), which is a common probability syntax for "is distributed according to". These random variables will be tracked by the framework, and you'll get information about their posterior distributions once you provide the observed data. 
+
+3. Other than these distinctions, the program is normal Julia code. It describes the procedure we would use to sample from the model's prior distribution. 
+
+Note that above we have imposed a prior of $\operatorname{Beta}(2,5)$ for $p$, encoding a belief that the die is biased toward 1.
+
+After defining the model, we need to describe a method for proposing steps in the Markv chain we'll be using to sample from the posterior distribution. In practice, using a straightforward proposal distribution for the Metropolis-Hastings updates can be very inefficient because the proposal it suggests often go in directions of much smaller probability density. Hamiltonian Monte Carlo differentiates (usually [autodiffs](gloss:autodiff)) the density $f$ and uses some fairly advanced mathematical ideas to suggest moves which are much more likely to be in directions where the density isn't way smaller:
+
+    figure
+      img(src="images/hmc-figure.svg")
+      p.caption.md Hamiltonian Monte Carlo
+      
+Let's use a Hamiltonian Monte Carlo sampler for this problem:
+
+    pre(julia-executable)
+      | # Use HMC sampler to obtain posterior samples
+      | n_posterior_observations = 1000
+      | ϵ = 0.05 # Leapfrog step size
+      | τ = 10   # Number of leapfrog iterations
+      | 
+      | # Obtain posterior samples
+      | chain = sample(die_model(data), HMC(ϵ, τ), num_posterior_samples, progress=false)
+
+The variable `{jl} data` above is a vector containing the observed data. A sample sequence of observations from a biased die can be downloaded
+[here](https://raw.githubusercontent.com/data-gymnasia/courses/master/content/bayesian-inference-and-graphical-models/code/pp_ex_1_data.csv).
+
+We can now obtain summary statistics of the parameter $p$, such as mean and
+standard deviation, and plot a histogram of the posterior samples with the
+following code:
+
+    pre(julia-executable)
+      | 
+      | # Extract summary of p parameter and plot histogram
+      | p_summary = chain[:p]
+      | plot(p_summary, seriestype = :histogram)
+
+which generates the following histogram:
+
+    center: img(src="images/pp_ex_1_hist.svg")
+
+The variable `{jl} p_summary` above is an `{jl} MCMCChains` object and contains the samples of $p$ sampled from the posterior. To obtain the samples, we can run
+
+    pre(julia-executable)
+      | Array(p_summary)
+
+We can now use this to construct confidence intervals for $p$. For example, a
+95\% confidence interval is given by
+
+    pre(julia-executable)
+      | quantile(Array(p_summary), [0.025, 0.975])
+
+Below we consider a slightly more complex HMM problem.
+
+::: .example
+**Example**
+
+Consider an HMM with hidden variables $Z_i \in \\\{1,2\\\}$ and:
+
+``` latex
+p(z_1) &= \frac{1}{2} \textrm{ for } z_1 \in \{1,2\} \\
+f(x_j|z_j) &\sim N(z_j,0.1) \textrm{ for } j \in \{1,2,\ldots,n\} \\
+\mathbb{P}(Z_{k+1} &= z_{k+1}|Z_k = z_k) = p(z_{k+1},z_k), 
+```
+
+where $p(z\_{k+1},z\_k)$ is defined by:
+
+    figure
+      img(src="images/pp_ex_2_mat.svg")
+
+Suppose we have observed the variables $X_1, X_2, \ldots, X_{15}$ available
+[here](https://raw.githubusercontent.com/data-gymnasia/courses/master/content/bayesian-inference-and-graphical-models/code/pp_ex_2_data.csv). Estimate $p_1$ and $p_2$ using probabilistic programming.
+
+:::
+
+[Continue](btn:next)
+
+---
+> id: step-small-hmm-solution
+
+*Solution*. We will assume a uniform prior on $p_1$ and $p_2$. We can define the model as follows:
+
+    pre(julia-executable)
+      | 
+      | using Turing, MCMCChains, Distributions
+      | 
+      | @model HMM(y) = begin
+      |     n = length(y)
+      |     z = zeros(Int64, length(y)) # hidden states
+      | 
+      |     # Define priors
+      |     p₁ ~ Uniform(0,1) # Transition probability 1→1
+      |     p₂ ~ Uniform(0,1) # Transition probability 2→1
+      | 
+      |     # Define transition matrix
+      |     P = [p₁ 1-p₁; p₂ 1-p₂]
+      | 
+      |     # Initialize samples
+      |     z[1] ~ Categorical([0.5,0.5]) # Start Z at either 1 or 2
+      |     z[1] ~ Normal(z[1],0.1)
+      | 
+      |     for i=2:n
+      |         # Get next hidden state
+      |         z[i] ~ Categorical(P[x[i-1],:])
+      |         x[i] ~ Normal(x[i], 0.1) # Add noise
+      |     end
+      | 
+      |     return (p₁, p₂)
+      | end
+
+We will now use a Gibbs sampler to obtain samples from the posterior of
+`{jl} p₁` and `{jl} p₂`. HMC is only appropriate for continuous random variables; other samplers are needed for discrete random variables, like the $Z$'s in this case. We'll use one called **particle Gibbs**, which keeps track of several values for each random variable at the same time. (Each of these values is conceived as a particle; hence the name.) We will use a Gibbs sampler to combine HMC and Particle Gibbs. 
+
+    pre(julia-executable)
+      | 
+      | # Load observed data
+      | data = [0.97, 0.94, 2.02, 1.07, 1.93, 0.93, 2.0, 2.0, 2.07, 0.92, 2.18, 1.8, 1.94, 1.9, 0.93]
+      | 
+      | # Use Gibbs with HMC and PG to obtain posterior samples
+      | num_posterior_samples = 1000
+      | ϵ = 0.1 # Leapfrog step size
+      | τ = 10  # Number of leapfrog iterations
+      | hmc = HMC(ϵ, τ, :p₁, :p₂)
+      | particle_gibbs = Turing.PG(20, :z)
+      | G = Gibbs(hmc, particle_gibbs)
+      | 
+      | # Obtain posterior samples
+      | chain = sample(HMM(data), G, n_posterior_observations)
+
+
+Histograms of the $p_1$ and $p_2$ marginal posteriors are given below.
+
+    figure
+      img(src="images/pp_ex_2_hist_1.svg")
+      img(src="images/pp_ex_2_hist_2.svg")
+
+The true values of $p_1$ and $p_2$ used to generate the data were 0.25 and
+0.55, respectively.
+:::
+
+Finally, let's look at the hidden Markov model from the previous section: 
 
     pre(julia-executable)
       | using Turing, OffsetArrays, StatsPlots
@@ -947,30 +1130,7 @@ Using MCMC to do inference can be hard work, as we saw in the previous section. 
       |     end
       | end
 
-Some points about how this works: 
-
-1. The model definition works essentially like a function definition, with the `{jl} @model` macro in place of the `{jl} function` keyword. The argument (in this case, `{jl} x`) should be the *observed* data that will be provided for purposes of performing inference. 
-
-2. Hidden random variables appear before a tilde (`{jl} ~`), which is a common probability syntax for "is distributed according to". These random variables will be tracked by the framework, and you'll get information about their posterior distributions once you provide the observed data. 
-
-3. Arrays of zeros should be initialized using `{jl} tzeros` rather than `{jl} zeros`, because Turing has its own array type called `{jl} TArray` that it's designed to work with.
-
-3. Other than those distinctions, the program reads like normal Julia code. It describes the procedure we would use to sample from the Hidden Markov Model. 
-
-[Continue](btn:next)
-
----
-> id: step-pp-samplers
-
-Next we choose samplers. In practice, Metropolis-Hastings with a naive proposal distribution can be very inefficient because the proposal it suggests often go in directions of much smaller probability density. Hamiltonian Monte Carlo differentiates (usually [autodiffs](gloss:autodiff)) the density $f$ and uses some fairly advanced mathematical ideas to suggest moves which are much more likely to be in directions where the density isn't way smaller:
-
-    figure
-      img(src="images/hmc-figure.svg")
-      p.caption.md Hamiltonian Monte Carlo
-      
-HMC is only appropriate for continuous random variables; other samplers are needed for discrete random variables like $Z_1, \ldots, Z_n$. We'll use one called **particle Gibbs**, which keeps track of several values for each random variable at the same time. (Each of these values is conceived as a particle; hence the name.) 
-
-We can combine HMC and PG into the same model by building a Gibbs sampler which uses HMC for the continuous variables and PG for the discrete ones:
+As in the previous example, we'll use a Gibbs sampler to combine HMC and particle Gibbs sampling: 
 
     pre(julia-executable)
       | # choose parameters for samplers
@@ -981,9 +1141,8 @@ We can combine HMC and PG into the same model by building a Gibbs sampler which 
       | G = Gibbs(hmc, pg)
       | 
       | X = [-0.12, 0.11, -0.58, -1.21, 1.06, -0.09, -0.32, -0.09, -0.39, 2.01, 0.72, 1.61, -0.08, 0.99, 0.55, 1.28, 0.75, 1.09, 0.91, 0.45, 0.13, -0.61, 0.18, -0.03, 1.36, 0.12, 0.06, -0.96, 1.38, -1.86, 0.11, -1.17, -1.94, -0.3, -0.01, 0.82, -0.34, 0.55, 0.53, -1.15, -0.67, 0.47, 0.68, 1.84, 2.39, -0.05, -0.14, -0.03, 2.27, 0.36, 0.31, 0.46, 0.72, 1.34, 1.45, -0.28, -0.06, 0.71, -0.5, -1.01, 0.31, -0.07, 0.67, 2.55, 1.41, 0.35, 0.89, 1.04, 0.81, 1.08, 1.45, 0.23, 0.06, -0.05, 1.88, 1.11, 1.25, 0.35, 0.84, 1.96, 1.52, 1.34, 1.43, 1.9, 0.01, 1.08, 1.44, 1.22, 1.7, 1.36, 1.62, 1.49, 2.42, 1.11, -0.56, 0.71, -0.35, 0.26, 0.48, 0.42]
-      
-Lastly, we can actually perform the inference step using the `{jl} sample` function. This function will use the specified model, data, and sampler to perform a specified number of MCMC runs. The resulting data are stored in a `{jl} Chains` object which can be used to see the results of the runs or make summary plots:
-
-    pre(julia-executable)
+      |  
       | chains = sample(HMM(X), G, 50)
       | plot(chains[:q])
+
+
