@@ -795,3 +795,29 @@ strong-duality:
   title: Strong Duality
   text: |
     *Weak duality*, which is true in general, says that $\max_{\lambda\geq 0} \min_x f(x,\lambda) \leq \min_{x} \max_{\lambda \geq 0} f(x,\lambda)$. We say that **strong duality** holds for a class of functions $f$ if the inequality above holds with no gap: $\max_{\lambda\geq 0} \min_x f(x,\lambda) = \min_{x} \max_{\lambda \geq 0} f(x,\lambda)$.
+
+transition-matrix:
+  title: Transition Matrix
+  text: |
+    A transition matrix on a finite set $\Omega$ is an $|\Omega| \times |\Omega|$ matrix of nonnegative values which sum to 1 along each row. A transition matrix specifies a Markov chain by prescribing via its $(i,j)$th entry the probability of transitioning to state $j$ next given that the current state is $i$. 
+    
+    More generally, a transition **kernel** specifies a probability measure on $\Omega$ for each element of $\Omega$. A Markov chain currently in state $x$ draws its next state from the measure associated with the point $x$. For example, the kernel $p(x,y) = \frac{1}{\sqrt{2\pi}}\operatorname{e}^{-|x-y|^2/2}$ prescribes a standard multivariate Gaussian jump from the current state $x$. 
+    
+dot-anonymous-function:
+  title: Dot anonymous function notation
+  text: |
+    The notation $f(x, \cdot)$ means "the function which takes $y$ as input and returns $f(x,y)$ as output". It can also be written as $y\mapsto f(x,y)$. 
+  
+float64:
+  title: Float64
+  text: |
+    The most common real-number type in modern computers is the 64-bit floating point. Since we can represent at most $2^{64}$ distinct numbers with 64 bits, we choose those numbers based on a desire to represent values ranging from very small to very large with a small and consistent *relative* error.
+    
+    Specifically, we represent $2^{52}$ equally spaced numbers in each interval between consecutive powers of $2$, from $[2^{-1022},2^{-1022})$ up to $[2^{1023},2^{1024})$. We also represent $2^{52}$ equally spaced numbers in the interval $[0, 2^{-1022})$, as well as the negations of all of these numbers.
+    
+autodiff:
+  title: Automatic Differentiation
+  text: |
+    *Automatic differentiation* is a technique for efficiently and accurately computing numerical derivatives of functions expressed in the form of code. The idea is to substitute into the function a two-field object which uses the chain rule to simultaneously track the value *and* the derivative at that value as each intermediate calculation is performed. 
+    
+    An autodiff system needs to know how to compute derivatives for any basic function that might be used inside the body of the function being differentiated.
