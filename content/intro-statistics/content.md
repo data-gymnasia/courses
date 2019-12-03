@@ -1766,3 +1766,325 @@ Which results are reported as significant at the 5% level, according to the Bonf
 Hypothesis testing is often viewed by learners of statistics as potentially misleading. In fact, this thought is not uncommon among professional statisticians and other scientists as well. See, for example, this [comment in Nature](https://www.nature.com/articles/d41586-019-00857-9), which was part of a widespread discussion of $p$-values in the statistics community in early 2019. 
 
 Despite these concerns, it's useful to be understand the basics of hypothesis testing, because it remains a widely used framework, and conveys a critical lesson about the hazards of extracting hypotheses from data rather the other way around (using data to scrutinize hypotheses). 
+
+
+---
+> id: causal-inference
+## Causal Inference
+
+::: .exercise
+**Exercise**  
+Suppose that your company's ad spending and revenue are found to have the relationship shown in the figure below. What are some potential explanations for why these values are positively associated?
+:::
+
+    figure
+      img(src="images/adspending.svg")
+      p.caption.md Each point represents an (ad spending, revenue) pair for a particular month.
+
+    x-quill
+
+---
+> id: step-ad-spending-solution
+
+*Solution*. Perhaps both revenue and ad spending are associated with a third variable, such as proximity to the holiday season. Or maybe management decides to spend more on ads when they have more revenue. Or maybe more ad spending results in more ad impressions and leads to increased sales.
+
+[Continue](btn:next)
+
+---
+> id: step-casuation-discussion
+
+*Association does not imply causation* is a cautionary mantra, and as such it raises the important question *How can we use statistics to discern cause?* There are many applications in business and science where the distinction between association and causation is exactly what we're interested in. 
+
+We will develop the **counterfactual model** for describing causation mathematically. The idea is to model causal relationships using random variables which describe **potential outcomes**. 
+
+[Continue](btn:next)
+
+---
+> id: step-train-or-car
+
+For example, suppose you choose to drive rather than take the train to work, and you end up being late. It's natural to wonder *would I have been late if I'd driven?* In your mind, you're pondering two random variables: the amount of time $C_{\text{train}}$ that it would have taken if you'd chosen the train, and the amount of time $C_{\text{car}}$ that it was going to take if you drove. You would model both of these as random variables since you don't their values at the outset of the trip. When your journey is complete, you've been able to observe the value of one of these random variables, but not the other. Given your decision $X \in \\{\text{train}, \\text{car}\\}$, your observed outcome is $Y =$ [[$C\_X$|$C\_1$|$C\_0$]]. 
+
+---
+> id: step-train-on-time
+
+To simplify, let's let $C_{\text{train}}$ be 0 if you're on time and 1 if you're late. Similarly, we let $C_{\text{car}}$ be 0 if you're on time and 1 if you're late. Also, we'll use $X = \text{train}$ and $X=0$ interchangeably, as well as $X = \text{car}$ and $X=1$ (in other words, encode train and car as 0 and 1, respectively). 
+
+::: .exercise
+**Exercise**  
+Suppose that the joint distribution of $X$, $Y$, $C_0$ and $C_1$ is the uniform distribution on the rows of a table compatible with the following one:
+
+``` latex
+\begin{array}{cccc}
+{X} & {Y} & {C_{\text{train}}} & {C_{\text{car}}} \\ \hline 
+\text{train }(0) & {0} & {0} & * \\ 
+\text{train }(0) & {0} & {0} & * \\ 
+\text{train }(0) & {0} & {0} & * \\ 
+\text{train }(0) & {0} & {0} & * \\ \hline 
+\text{car }(1) & {1} & * & {1} \\ 
+\text{car }(1) & {1} & * & {1} \\ 
+\text{car }(1) & {1} & * & {1} \\ 
+\text{car }(1) & {1} & * & {1}
+\end{array}
+```
+
+Note that the asterisks indicate *counterfactual* outcomes which are not observed. 
+
+We define the **association** to be 
+
+``` latex
+\alpha = \mathbb{E}[Y | X = 1] - \mathbb{E}[Y | X = 0]
+```
+
+and the **average causal effect** to be 
+
+``` latex
+\theta = \mathbb{E}[C_1] - \mathbb{E}[C_0].
+```
+
+Find the association as well as the largest and smallest possible values for the average causal effect. Describe a scenario in which the measure which gives rise to these extreme average causal effect values might be plausible.
+:::
+
+    x-quill
+
+---
+> id: step-basic-causal-example-solution
+    
+*Solution*. 
+
+The association is $1 - 0 = 1$, while the largest possible value for the average causal effect occurs when the last column is all ones and the next-to-last is all zeros. That gives an average causal effect of 1. The smallest value would be zero, if the first four rows are all zeros in the last two columns, and the last four rows are all ones.
+
+Intepretation-wise, this makes sense. If the table ends in $(0,1)$ in every row, that means that taking the train always results in our being on time, while taking the car always results in our being late. The value of $X$ in that case definitely has a causal effect. Conversely, if the top half of the table is all zeros in the last two columns and the bottom half is all ones, then that means that we would have been on time those days regardless of our mode of transit on the days we took the train, and we would have been late no matter what on the days we took the car. So there is no causal effect in that case, and $\theta$ is appropriately equal to 0. 
+
+[Continue](btn:next)
+
+---
+> id: step-positive-result-causal
+
+The punch line of Problem 2 is still negative: it tells us that the missing counterfactual outcomes can make it impossible to use association to say something about the causal effect. However, this is not always the case: 
+
+::: .exercise
+**Exercise**  
+Suppose that you flip a coin every day to determine whether to take the train or car. In other words, suppose that $X$ is independent of $(C_0, C_1)$. Show that in that case, we have $\alpha = \theta$. 
+:::
+
+    x-quill
+
+[Continue](btn:next)
+
+---
+> id: step-coin-flip-theorem
+
+We have
+
+``` latex
+\theta &= \mathbb{E}\left(C_{1}\right)-\mathbb{E}\left(C_{0}\right) \\ 
+&= \mathbb{E}\left(C_{1} | X=1\right)-\mathbb{E}\left(C_{0} | X=0\right) & & \text { since } X \text{ is ind. of } \left(C_{0}, C_{1}\right) \\ 
+&= \mathbb{E}(Y | X=1)-\mathbb{E}(Y | X=0) & & \text { since } Y=C_{X} \\ 
+&= \alpha 
+```
+
+[Continue](btn:next)
+
+---
+> id: step-confounding
+
+A study in which the treatment value $X$ is not randomly assigned is called an **observational** study. Observational studies are subject to **confounding** from variables $Z$ such as the weather in the scenario described in Problem 2. In that situation, $Z$ was associated with both $X$ and $(C_0, C_1)$, and their non-independence led to a difference between $\alpha$ and $\theta$ to be different.
+
+However, if $X$ and $(C_0, C_1)$ are independent *conditioned on $Z$*, and if we record the value of $Z$ as well as $X$ and $Y$ in our study, then we can obtain an unbiased estimate of the causal effect by from an unbiased estimator of the association by performing that estimate *within each $Z$ group* and averaging. This is called the **adjusted treatment effect**. 
+
+::: .exercise
+**Exercise**  
+Suppose that the probability measure on $(X,Y,Z,C_0,C_1)$ is uniform on the rows of the following table ($Z = 0$ means good weather and $Z = 1$ means bad weather). 
+
+``` latex
+\begin{array}{ccccc}
+{X} & {Y} & {Z} & {C_{\text{0}}} & {C_{\text{1}}} \\ \hline 
+0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 1 \\
+0 & 0 & 0 & 0 & 1 \\
+1 & 0 & 0 & 0 & 0 \\
+1 & 1 & 0 & 0 & 1 \\ \hline
+0 & 0 & 1 & 0 & 1 \\
+0 & 1 & 1 & 1 & 1 \\
+1 & 1 & 1 & 0 & 1 \\
+1 & 1 & 1 & 0 & 1 \\
+1 & 1 & 1 & 1 & 1 \\
+1 & 1 & 1 & 1 & 1
+\end{array}
+```
+
+(a) Compute the association $\alpha$. 
+
+(b) Compute the average causal effect $\theta$. 
+
+(c) Show that $X$ and $(C_0, C_1)$ are conditionally independent given $Z$, and compute the adjusted treatment effect. 
+:::
+
+    x-quill
+    
+[Continue](btn:next)
+
+---
+> id: step-12-element-causal-problem
+
+(a) The association is equal to $5/6 - 1/6 = 2/3$. 
+
+(b) The average causal effect is equal to $9/12 - 3/12 = 1/2$. 
+
+(c) The conditional distribution of $(C\_0, C\_1)$ given $X = 0$ and $Z = 0$ places half its probability mass at $(0,0)$ and half at $(0,1)$. The conditional distribution of $(C\_0, C\_1)$ given $X = 1$ and $Z = 0$ likewise places half its probability mass at $(0,0)$ and half at $(0,1)$. So $X$ and $(C\_0, C\_1)$ are conditionally independent given $Z = 0$. A similar calculation shows that $X$ and $(C\_0, C\_1)$ are conditionally independent given $Z = 1$. So $X$ and $(C\_0, C\_1)$ are conditionally independent given $Z$. 
+
+The adjusted treatment effect is the average of $1/2 - 0 = 1/2$ (coming from $Z= 0$) and $1 - 1/2 = 1/2$ (coming from $Z = 1$). So it is indeed equal to the average causal effect $\theta = 1/2$. 
+
+[Continue](btn:next)
+
+---
+> id: step-counterfactual-model-for-continuous-random-variables
+### Continuous random variables
+
+Although we've focused on binary random variables, essentially the same analysis carries over to continuous random variables. If $X$ is real-valued, then the counterfactual vector $(C_0, C_1)$ becomes a counterfactual **process** $\\{C(x) : x \in \mathbb{R}\\}$ which specifies the outcome $Y$ that results from each possible value $x$ of $X$. As in the binary case, only one of the values of the random function $C$ is ever seen for a given observation. 
+
+::: .example
+**Example**  
+Suppose that $Z$ is a $\text{Uniform}(0,10)$ random variable and $U$ and $V$ are $\operatorname{Uniform}(0,1)$ and $\operatorname{Uniform}(-5,5)$ random variables (respectively), which are independent. Suppose that $X = Z$ and that 
+
+``` latex
+C = \left\{ \begin{array}{cl} x \mapsto x + \sin (Ux) & \text{if }Z + V > 5 \\ x \mapsto 5 + U & \text{if }Z + V < 5 \\ \end{array} \right.
+``` 
+
+Plot several instances of $C$, over $[0,10]$. 
+:::
+
+*Solution*. 
+
+    pre(julia-executable)
+      | plot(xlabel = "x", ylabel = "C(x)")
+      | for i in 1:10
+      |     Z = rand(Uniform(0, 10))
+      |     U = rand(Uniform(0,1))
+      |     V = rand(Uniform(-5,5))
+      |     plot!(0:0.01:10, Z + V < 5 ? x -> 5 + U : x->x+sin(U*x))
+      | end
+      | current()
+      
+[Continue](btn:next)
+
+---
+> id: step-causal-continuous-scatter      
+      
+::: .example
+**Example**  
+Draw 1000 observations from the joint distribution on $X\sim\operatorname{Unif}(0,10)$ and $Y = C(X)$, and make a scatter plot. 
+:::
+
+*Solution*. 
+      
+    pre(julia-executable)
+      | points = Tuple{Float64, Float64}[]
+      | for i in 1:1000
+      |     U = rand(Uniform(0,1))
+      |     V = rand(Uniform(-5, 5))
+      |     X = rand(Uniform(0,10))
+      |     Y = if X + V < 5
+      |         5 + U
+      |     else
+      |         X + sin(U*X)
+      |     end
+      |     push!(points, (X,Y))
+      | end
+      | scatter(points, ms = 1.5, msw = 0.5, color = :LightSeaGreen, markeropacity = 0.5)
+
+::: .example
+**Example**  
+The **causal regression function** is $\theta(x) = \mathbb{E}[C(x)]$. Find the causal regression function in the example above. 
+:::
+      
+    pre(julia-executable)
+      | using SymPy
+      | @vars x u
+      | f = 1//2 * integrate(x + sin(u*x), (u, 0, 1)) + 1//2 * integrate(5 + u, (u, 0, 1))
+      | plot!(0.01:0.01:10, x->f(x), lw = 2, color = :purple)
+
+[Continue](btn:next)
+
+---
+> id: step-causal-regression-function-graph
+      
+::: .exercise
+**Exercise**  
+How does the causal regression function compare to the regression function? Feel free to eyeball the regression function from the graph.
+:::
+      
+    x-quill
+
+---
+> id: step-causal-regression-solution
+
+*Solution*. The causal regression function weights the $Z + V < 5$ and $Z + V > 5$ parts of the probability space equally all along the range from $[0,10]$, rather than giving more weight to the former condition when $X$ is close to 0 and more to the latter when $X$ is close to 10. 
+
+You can imagine the distinction between the regression function and causal regression function by visualizing a person sitting a particular value of $x$ and watching a sequence of observations of $(X,C)$. For the causal regression function, they record every value of $C(x)$ they observe. For the ordinary regression function, they wait until they see a value of $X$ which is very close to $x$, and only then do they record the $(X,Y)$ pair for that observation. 
+
+When $x$ is close to the extremes in this example, the additional conditioning on $X$ performed in the ordinary regerssion obscures the causal relationship between $X$ and $Y$. 
+
+[Continue](btn:next)
+
+---
+> id: step-adjusted-treatment-effect
+
+The formula for the adjusted treatment effect in the continuous case becomes 
+
+``` latex
+\theta(x) = \int \mathbb{E}(Y | X=x, Z=z) f_Z(z) dz, 
+```
+
+where $f\_Z$ is the density of $Z$ (note that this is the same idea as in the discrete case: we're averaging the $z$-specific estimates $\mathbb{E}(Y | X=x, Z=z)$, weighted by how frequently those $z$-values occur). 
+
+And as in the discrete case, the adjusted treatment effect is equal to the causal regression function $\theta(x)$ if $X$ and $\\{C(x) : x \in \mathbb{R}\\}$ are conditionally independent given $Z$. This implies that, again assuming conditional independence of $X$ and $C$ given $Z$, if $\widehat{r}(x,z)$ is a consistent estimator of $\mathbb{E}[Y | X = x, Z = z]$, then $\frac{1}{n}\sum\_{i=1}^n\widehat{r}(x, Z\_i)$ is a consistent estimator of $\theta(x)$. 
+
+[Continue](btn:next)
+
+---
+> id: step-causal-linear-case
+
+If the regression function given $X$ and $Z$ is linear (that is, $r(x, z)=\mathbb{E}[Y | X = x, Z = z] = \beta\_{0}+\beta\_{1} x+\beta\_{2} z$), then we can control for $Z$ merely by including $Z$ as a feature in the ordinary least squares regression. In other words, if $X$ is independent of $C$ given $Z$, then $\widehat{\theta}(x)=\widehat{\beta}\_{0}+\widehat{\beta}\_{1} x+\widehat{\beta}\_{2} \overline{Z}$ is a consistent estimator of $\theta(x)$, where $\widehat{\beta}\_{0}, \widehat{\beta}\_{1}, \widehat{\beta}\_{2}$ are the OLS coefficients.
+
+::: .exercise
+**Exercise**  
+Suppose that $U\_X, U\_Z,$ and $U\_Y$ are independent $\operatorname{Uniform}(1)$ random variables, and that 
+
+``` latex
+X &= U_X \\
+Z &= 0.9X + 0.1U_Z \\
+C(x) &= x - 2Z + 0.01U_{Y}.
+```
+
+(a) Calculate $r(x,z) = \mathbb{E}[Y | X = x, Z = z]$
+
+(b) Calculate $\theta(x) = \mathbb{E}[C(x)]$. 
+
+(c) Suppose that $\widehat{r}$ is the OLS estimator of $Y$ with features $X$ and $Z$. Show that $\frac{1}{n}\sum\_{i=1}^n\widehat{r}(x, Z\_i)$ is a consistent estimator of $\theta(x)$. 
+
+(d) Show that if $\widehat{r}$ is the OLS estimator of $Y$ with $X$ as the lone regressor that $\widehat{r}(x)$ does *not* converge to $\theta(x)$ as the sample size tends to infinity. 
+:::
+
+    x-quill
+
+---
+> id: step-causal-linear-solution
+
+*Solution*. 
+(a) We have $r(x,z) = x - 2z + 0.01\mathbb{E}[U_Y] = x - 2z + 0.005$
+
+(b) We have $\mathbb{E}[C(x)] = x -2 \mathbb{E}[Z] + 0.01 \mathbb{E}[U_Y] = x - 1 + 0.005 = x - 0.995$.
+
+(c) We have $\frac{1}{n}\sum_{i=1}^n\widehat{r}(x, Z\_i) = \widehat{\beta}\_{0}+\widehat{\beta}\_{1} x+\widehat{\beta}\_{2} \overline{Z}$. By consistency of the OLS estimator, we have $\widehat{\beta}_0 \to 0.005$ and $\widehat{\beta}_2 \to -2$ as the sample size tends to $\infty$, as well as $\widehat{\beta}_1 \to 1$. By the law of large numbers, we have $\overline{Z} \to 0.5$. Therefore, $\frac{1}{n}\sum_{i=1}^n\widehat{r}(x, Z_i)$ converges to $x - 2(0.5) + 0.005 = x - 0.995$ as the sample size goes to $\infty$.
+
+(d) We have $\widehat{r}(x) =  \widehat{\beta}_0 + \widehat{\beta}_1x$ where $\widehat{\beta}_0 \to -0.1 + 0.005 = -0.095$ and $\widehat{\beta}_1 \to -0.8$ as the sample size goes to $\infty$, since $Y = X - 2(0.9X + 0.1U_Z) + 0.01U_Y = -0.8X - 0.2U_Z + 0.01U_Y$.
+
+[Continue](btn:next)
+
+---
+> id: step-causal-conclusion
+### Conclusion
+
+We conclude by noting that the conditional independence of $X$ and $C$ given a proposed confounding variable $Z$ isn't directly supportable by statistical evidence, since we won't have observations of the joint distribution of $X$ and $C$ (since so many of $C$'s values are unobserved). The argument must be made that the list of variables controlled for is reasonably exhaustive, and we would typically hope to see the same argument supported by a variety of studies before believing it with very high confidence.
