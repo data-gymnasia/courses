@@ -1,0 +1,45 @@
+% \usepackage[usenames,dvipsnames]{pstricks}
+% \usepackage{epsfig}
+% \usepackage{pst-grad} % For gradients
+% \usepackage{pst-plot} % For axes
+% \usepackage[space]{grffile} % For spaces in paths
+% \usepackage{etoolbox} % For spaces in paths
+% \makeatletter % For spaces in paths
+% \patchcmd\Gread@eps{\@inputcheck#1 }{\@inputcheck"#1"\relax}{}{}
+% \makeatother
+% % User Packages:
+% 
+% 
+
+\psscalebox{1.0 1.0} % Change this value to rescale the drawing.
+{
+\begin{pspicture}(0,-6.8)(12.661765,6.8)
+\pscircle[linecolor=black, linewidth=0.04, dimen=outer](0.8,6.0){0.8}
+\pscircle[linecolor=black, linewidth=0.04, dimen=outer](0.8,3.6){0.8}
+\pscircle[linecolor=black, linewidth=0.04, dimen=outer](0.8,1.2){0.8}
+\pscircle[linecolor=black, linewidth=0.04, dimen=outer](0.8,-1.2){0.8}
+\pscircle[linecolor=black, linewidth=0.04, dimen=outer](0.8,-6.0){0.8}
+\pscircle[linecolor=black, linewidth=0.04, fillstyle=solid,fillcolor=black, dimen=outer](0.8,-2.7882352){0.08235294}
+\pscircle[linecolor=black, linewidth=0.04, fillstyle=solid,fillcolor=black, dimen=outer](0.7882353,-3.6){0.08235294}
+\pscircle[linecolor=black, linewidth=0.04, fillstyle=solid,fillcolor=black, dimen=outer](0.8,-4.388235){0.08235294}
+\pscircle[linecolor=black, linewidth=0.04, dimen=outer](8.4,0.0){0.8}
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.6235294,-5.9764705)(8.0,-0.8)
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.6235294,-1.2235295)(7.647059,-0.4)
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.6235294,1.2)(7.5529413,0.0)
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.6,3.6)(7.6,0.3764706)
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.6,6.0235295)(7.9058824,0.68235296)
+\rput[bl](0.65882355,5.9058824){$x_1$}
+\rput[bl](0.63529414,3.5058823){$x_2$}
+\rput[bl](0.63529414,1.1058824){$x_3$}
+\rput[bl](0.65882355,-1.2941177){$x_4$}
+\rput[bl](0.63529414,-6.0941176){$x_n$}
+\rput[bl](4.8,3.6941175){$w_1$}
+\rput[bl](4.7764707,2.0470588){$w_2$}
+\rput[bl](4.8,0.63529414){$w_3$}
+\rput[bl](4.7764707,-0.63529414){$w_4$}
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(9.176471,0.023529412)(11.176471,0.023529412)
+\rput[bl](11.411765,-0.047058824){$w^Tx + b$}
+\rput[bl](4.8,-2.8470588){$w_n$}
+\end{pspicture}
+}
+
