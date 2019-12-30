@@ -1543,7 +1543,7 @@ Elements can be appended to an array with `{jl} push!`:
 ---
 > id: step-broadcasting      
       
-To perform operations entry-by-entry on two arrays, prefix the operation with a plus sign: 
+To perform operations entry-by-entry on two arrays, prefix the operation with a dot: 
 
     pre(julia-executable)
       | [1,2,3] .+ [4,5,6]
