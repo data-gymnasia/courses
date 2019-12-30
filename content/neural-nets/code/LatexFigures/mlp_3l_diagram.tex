@@ -1,0 +1,124 @@
+\documentclass{article}
+\usepackage[usenames,dvipsnames]{pstricks}
+\usepackage{epsfig}
+\usepackage{pst-grad} % For gradients
+\usepackage{pst-plot} % For axes
+\usepackage[space]{grffile} % For spaces in paths
+\usepackage{etoolbox} % For spaces in paths
+% \makeatletter % For spaces in paths
+% \patchcmd\Gread@eps{\@inputcheck#1 }{\@inputcheck"#1"\relax}{}{}
+% \makeatother
+% % User Packages:
+% 
+% 
+
+\begin{document}
+\psscalebox{1.0 1.0} % Change this value to rescale the drawing.
+{
+\begin{pspicture}(0,-7.083626)(12.0,7.083626)
+\definecolor{orange}{rgb}{1.0,0.65882355,0.39607844}
+\definecolor{pink}{rgb}{1.0,0.6,0.67058825}
+\definecolor{blue}{rgb}{0.0,0.5686275,0.90588236}
+\definecolor{green}{rgb}{0.0,0.8980392,0.5294118}
+\definecolor{gray}{rgb}{0.8,0.8,0.8}
+\rput[bl](10.688889,6.777486){Layer $3$}
+\rput[bl](11.0,-6.483626){$a^3_{n_3}$}
+\rput[bl](11.038095,-1.6645778){$a^3_4$}
+\rput[bl](11.038095,0.7258983){$a^3_3$}
+\rput[bl](11.047619,3.135422){$a^3_2$}
+\rput[bl](11.047619,5.5449457){$a^3_1$}
+\pscircle[linecolor=black, linewidth=0.04, dimen=outer](11.2,-6.2836256){0.8}
+\psdots[linecolor=black, dotsize=0.1](11.2,-4.6836257)
+\psdots[linecolor=black, dotsize=0.1](11.2,-3.8836255)
+\psdots[linecolor=black, dotsize=0.1](11.2,-3.0836256)
+\pscircle[linecolor=black, linewidth=0.04, dimen=outer](11.2,-1.4836257){0.8}
+\pscircle[linecolor=black, linewidth=0.04, dimen=outer](11.2,0.9163745){0.8}
+\pscircle[linecolor=black, linewidth=0.04, dimen=outer](11.2,3.3163745){0.8}
+\pscircle[linecolor=black, linewidth=0.04, dimen=outer](11.2,5.7163744){0.8}
+\rput[bl](0.2888889,6.777486){Layer $1$}
+\rput[bl](0.6,-6.483626){$a^1_{n_1}$}
+\rput[bl](0.63809526,-1.6645778){$a^1_4$}
+\rput[bl](0.63809526,0.7258983){$a^1_3$}
+\rput[bl](0.64761907,3.135422){$a^1_2$}
+\rput[bl](0.64761907,5.5449457){$a^1_1$}
+\pscircle[linecolor=black, linewidth=0.04, dimen=outer](0.8,-6.2836256){0.8}
+\psdots[linecolor=black, dotsize=0.1](0.8,-4.6836257)
+\psdots[linecolor=black, dotsize=0.1](0.8,-3.8836255)
+\psdots[linecolor=black, dotsize=0.1](0.8,-3.0836256)
+\pscircle[linecolor=black, linewidth=0.04, dimen=outer](0.8,-1.4836257){0.8}
+\pscircle[linecolor=black, linewidth=0.04, dimen=outer](0.8,0.9163745){0.8}
+\pscircle[linecolor=black, linewidth=0.04, dimen=outer](0.8,3.3163745){0.8}
+\pscircle[linecolor=black, linewidth=0.04, dimen=outer](0.8,5.7163744){0.8}
+\rput[bl](5.438889,6.7836256){Layer $2$}
+\rput[bl](5.8,-5.2836256){$a^2_{n_2}$}
+\rput[bl](5.838095,-0.4645779){$a^2_3$}
+\rput[bl](5.838095,1.9354222){$a^2_2$}
+\rput[bl](5.838095,4.335422){$a^2_1$}
+\pscircle[linecolor=black, linewidth=0.04, dimen=outer](6.0,-5.083626){0.8}
+\psdots[linecolor=black, dotsize=0.1](6.0,-3.4836254)
+\psdots[linecolor=black, dotsize=0.1](6.0,-2.6836255)
+\psdots[linecolor=black, dotsize=0.1](6.0,-1.8836255)
+\pscircle[linecolor=black, linewidth=0.04, dimen=outer](6.0,-0.2836255){0.8}
+\pscircle[linecolor=black, linewidth=0.04, dimen=outer](6.0,2.1163745){0.8}
+\pscircle[linecolor=black, linewidth=0.04, dimen=outer](6.0,4.516374){0.8}
+\rput[bl](1.7616161,-6.7543325){\textcolor{green}{$w^2_{n_2 n_1}$}}
+\rput[bl](1.2888889,-2.5361507){\textcolor{green}{$w^2_{n_2 4}$}}
+\rput[bl](1.2888889,-0.3725144){\textcolor{green}{$w^2_{n_2 3}$}}
+\rput[bl](1.3070707,2.0274856){\textcolor{green}{$w^2_{n_2 2}$}}
+\rput[bl](1.2525252,4.4456677){\textcolor{green}{$w^2_{n_2 1}$}}
+\rput[bl](3.288889,-1.9543326){\textcolor{blue}{$w^2_{1n_1}$}}
+\rput[bl](3.3434343,1.0093038){\textcolor{blue}{$w^2_{14}$}}
+\rput[bl](3.3252525,2.2638493){\textcolor{blue}{$w^2_{13}$}}
+\rput[bl](3.3070707,3.4456675){\textcolor{blue}{$w^2_{12}$}}
+\rput[bl](3.2707071,4.554758){\textcolor{blue}{$w^2_{11}$}}
+\psline[linecolor=green, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.6,-1.4836257)(5.2,-5.083626)
+\psline[linecolor=gray, linewidth=0.04, strokeopacity=0.39215687, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.6,-1.4836257)(5.2,-0.2836255)
+\psline[linecolor=gray, linewidth=0.04, strokeopacity=0.39215687, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.6,-1.4836257)(5.2,2.1163745)
+\psline[linecolor=blue, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.6,-1.4836257)(5.2,4.516374)
+\psline[linecolor=green, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.6,0.9163745)(5.2,-5.083626)
+\psline[linecolor=gray, linewidth=0.04, strokeopacity=0.39215687, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.6,0.9163745)(5.2,-0.2836255)
+\psline[linecolor=gray, linewidth=0.04, strokeopacity=0.39215687, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.6,0.9163745)(5.2,2.1163745)
+\psline[linecolor=blue, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.6,0.9163745)(5.2,4.516374)
+\psline[linecolor=green, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.6,3.3163745)(5.2,-5.083626)
+\psline[linecolor=gray, linewidth=0.04, strokeopacity=0.39215687, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.6,3.3163745)(5.2,-0.2836255)
+\psline[linecolor=gray, linewidth=0.04, strokeopacity=0.39215687, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.6,3.3163745)(5.2,2.1163745)
+\psline[linecolor=blue, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.6,3.3163745)(5.2,4.516374)
+\psline[linecolor=green, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.6,-6.2836256)(5.2,-5.083626)
+\psline[linecolor=gray, linewidth=0.04, strokeopacity=0.39215687, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.6,-6.2836256)(5.2,-0.2836255)
+\psline[linecolor=gray, linewidth=0.04, strokeopacity=0.39215687, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.6,-6.2836256)(5.2,2.1163745)
+\psline[linecolor=blue, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.6,-6.2836256)(5.2,4.516374)
+\psline[linecolor=green, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.6,5.7163744)(5.2,-5.083626)
+\psline[linecolor=gray, linewidth=0.04, strokeopacity=0.39215687, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.6,5.7163744)(5.2,-0.2836255)
+\psline[linecolor=blue, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.6,5.7163744)(5.2,4.516374)
+\psline[linecolor=gray, linewidth=0.04, strokeopacity=0.39215687, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.6,5.7163744)(5.2,2.1163745)
+\psline[linecolor=pink, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(6.785714,2.1407685)(10.428572,5.712197)
+\psline[linecolor=gray, linewidth=0.04, strokeopacity=0.39215687, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(6.785714,2.1407685)(10.428572,3.212197)
+\psline[linecolor=gray, linewidth=0.04, strokeopacity=0.39215687, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(6.785714,2.1407685)(10.357142,-1.6449459)
+\psline[linecolor=gray, linewidth=0.04, strokeopacity=0.39215687, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(6.785714,2.1407685)(10.357142,0.8550542)
+\psline[linecolor=orange, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(6.785714,2.1407685)(10.357142,-6.4306602)
+\psline[linecolor=gray, linewidth=0.04, strokeopacity=0.39215687, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(6.785714,-0.28780296)(10.428572,0.7836256)
+\psline[linecolor=pink, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(6.785714,-0.28780296)(10.428572,5.5693398)
+\psline[linecolor=gray, linewidth=0.04, strokeopacity=0.39215687, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(6.785714,-0.28780296)(10.428572,3.1407685)
+\psline[linecolor=gray, linewidth=0.04, strokeopacity=0.39215687, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(6.785714,-0.28780296)(10.428572,-1.7878029)
+\psline[linecolor=orange, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(6.785714,-0.28780296)(10.357142,-6.5735173)
+\psline[linecolor=orange, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(6.785714,-5.0735173)(10.357142,-6.6449456)
+\psline[linecolor=gray, linewidth=0.04, strokeopacity=0.39215687, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(6.785714,-5.0735173)(10.428572,-1.7878029)
+\psline[linecolor=gray, linewidth=0.04, strokeopacity=0.39215687, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(6.785714,-5.0735173)(10.428572,0.712197)
+\psline[linecolor=gray, linewidth=0.04, strokeopacity=0.39215687, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(6.785714,-5.0735173)(10.428572,2.9979112)
+\psline[linecolor=pink, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(6.785714,-5.0735173)(10.444445,5.450292)
+\psline[linecolor=orange, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(6.785714,4.5023756)(10.363636,-6.2163744)
+\psline[linecolor=gray, linewidth=0.04, strokeopacity=0.39215687, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(6.785714,4.5023756)(10.40625,3.2523758)
+\psline[linecolor=pink, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(6.785714,4.5023756)(10.40625,5.7836256)
+\psline[linecolor=gray, linewidth=0.04, strokeopacity=0.39215687, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(6.785714,4.5023756)(10.357142,0.99791133)
+\psline[linecolor=gray, linewidth=0.04, strokeopacity=0.39215687, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(6.785714,4.5023756)(10.357142,-1.4306601)
+\rput[bl](7.9,5.103626){\textcolor{pink}{$w^3_{11}$}}
+\rput[bl](7.84,3.7036257){\textcolor{pink}{$w^3_{12}$}}
+\rput[bl](7.84,2.4036255){\textcolor{pink}{$w^3_{13}$}}
+\rput[bl](8.0,0.7636256){\textcolor{pink}{$w^3_{1n_2}$}}
+\rput[bl](6.38,3.0836256){\textcolor{orange}{$w^3_{n_3 1}$}}
+\rput[bl](6.46,0.7636256){\textcolor{orange}{$w^3_{n_3 2}$}}
+\rput[bl](6.54,-1.5763744){\textcolor{orange}{$w^3_{n_3 3}$}}
+\rput[bl](6.68,-5.916374){\textcolor{orange}{$w^3_{n_3n_2}$}}
+\end{pspicture}
+}
+\end{document}
