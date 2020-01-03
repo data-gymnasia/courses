@@ -172,7 +172,7 @@ Below is a summary of the perceptron algorithm used to find $w$ and $b$:
       p.caption.md Perceptron Algorithm
 
 Below we provide a python implementation of the perceptron and make use of the
-dataset available here [INSERT DOWNLOAD LINK HERE].
+dataset available here [https://raw.githubusercontent.com/data-gymnasia/courses/master/content/neural-nets/code/datasets/lin_sep_d1.csv].
 
 ``` python
 import pandas as pd
@@ -503,6 +503,416 @@ w^3_{n_31} & w^3_{n_32} & \cdots & w^3_{n_3n_2}
 
 ### Backpropagation
 
+So far we have discussed how a neural network takes an input and gives an
+output, but this presupposes we know the weights and biases of the network.
+In this section we will discuss an algorithm called *backpropagation* which
+is the underlying mechanics that allows us to take a labeled dataset and
+"learn" a set of weights and biases that will allow the network to make
+reasonable predictions on unseen data; the process of taking data and learning
+the appropriate weights and biases is called *training*.
+
+Before proceeding, it will be helpful to first define some notation. We will
+assume that we have initialized a network with random weights and biases
+(typically with values close to zero) and that it has $L$ layers. As such, the
+output of the network is the output of the $L$th layer, which we will denote
+$a^L \in \mathbb{R}^{n_L}$. The activation of layer $\ell$ will be denoted
+$a^{\ell} = \tilde{\sigma}(W^{\ell}a^{\ell-1} + b^{\ell})$ where $W^{\ell}$
+and $b^{\ell}$ are the weights and biases, respectively, of the $\ell$th layer.
+Note that because we refer to the input layer as layer 1, we will assume
+$\ell \in \\\{2,3,\ldots, L\\\}$ and $a^1$ will represent the input vector.
+The quantity $W^{\ell}a^{\ell-1} + b^{\ell}$ will appear frequently in our
+analysis so we will label it $z^{\ell} = W^{\ell}a^{\ell-1} + b^{\ell}$;
+the vector $z^{\ell}$ is typically referred to as the "weighted input" to the
+neurons in the $\ell$th layer. Note also that the $j$th element of $z^{\ell}$
+is given by
+$z^\ell_j = \sum_{k=1}^{n_{\ell - 1}} w_{jk}^{\ell}a_k^{\ell - 1} + b^{\ell}_j$.
+To summarize, for $\ell \in \\\{2,3, \ldots, L\\\}$ we have
+
+``` latex
+z^{\ell} &= W^{\ell}a^{\ell-1} + b^{\ell} \\
+z^\ell_j &=
+\sum_{k=1}^{n_{\ell - 1}} w_{jk}^{\ell}a_k^{\ell - 1} + b^{\ell}_j \\
+a^{\ell} &= \tilde{\sigma}(W^{\ell}a^{\ell-1} + b^{\ell}) =
+ \tilde{\sigma}(z^\ell).
+```
+
+Perhaps the most important step of the training process is in the definition
+of the *loss function*. The loss function provides a means of quantifying the
+error of our predictions and then using this to update the weights and
+biases to minimize the error. As such, the goal of training the network is to
+find the weights and biases that minimize the loss function. If we assume that
+the loss function is differentiable, then we can find the minimizer using
+basic calculus. Unfortunately, it is not always feasible to obtain a closed-form
+solution to the minimization problems. Consequently, we will aim to minimize the
+function by utilizing numerical methods—in particular—gradient descent.
+
+There are a wide array of loss functions that we can use. We will call the
+loss function $C$ (it sometimes referred to as a "cost" function) and assume
+it is differentiable. For now, we will work with the mean squared error function
+given by
+
+``` latex
+C &= \frac{1}{2n}\sum_{i=1}^n ||a^L(X_i) - Y_i||_2^2.
+```
+
+Our goal is to find the weights and biases that make $C$ as small as possible.
+Since we will rely on gradient descent methods, we will need to compute
+$\frac{\partial C}{\partial W^{\ell}}$ and
+$\frac{\partial C}{\partial b^{\ell}}$ for each
+$\ell \in \\\{2,3, \ldots, L\\\}$.
+
+It will be useful to define $C_i := \frac{1}{2}||a^L(X_i) - Y_i||^2_2$ so
+that we have $C = \frac{1}{n}\sum_{i=1}^n C_i$. It follows that
+
+``` latex
+\frac{\partial C}{\partial W^{\ell}} &= \frac{1}{n}\sum_{i=1}^n
+\frac{\partial C_i}{\partial W^{\ell}} \\
+\frac{\partial C}{\partial b^{\ell}} &= \frac{1}{n}\sum_{i=1}^n
+\frac{\partial C_i}{\partial b^{\ell}}
+```
+
+so we will focus on computing $\frac{\partial C_i}{\partial W^{\ell}}$
+and $\frac{\partial C_i}{\partial b^{\ell}}$. We will be making extensive use
+of the chain rule from calculus and it will be useful to construct tree
+diagrams of the function $C_i$ and its dependencies. For example, suppose
+we would like to compute $\frac{\partial C_i}{\partial w^L_{21}}$, that is,
+the derivative of $C_i$ with respect to the weight connecting the first
+neuron in the $(L-1)$th layer to the second neuron in the $L$th layer.
+Note that we have
+
+``` latex
+C_i &= \frac{1}{2}\sum_{k=1}^{n_L} (a^L_k(X_i) - Y_i^k)^2
+```
+
+where $Y_i^k$ is the $k$th element of the vector $Y_i$. So we have that
+$C_i$ is a function of $a_1^L(X_i), a_2^L(X_i), \ldots, a_{n_L}^L(X_i)$
+which in turn are functions of $z_1^L, z_2^L, \ldots, z_{n_L}^L$, respectively.
+Further, $z_j^L$ is a function of
+$b_j^L, w_{j1}^L, w_{j2}^L, \ldots, w_{jn_{L-1}}^L$. Diagrammatically, we can
+represent this dependence structure as shown in the figure below:
+
+    figure
+      img(src="images/loss_function_tree_1.svg")
+
+The diagram above makes it very easy to compute the derivative of interest.
+In particular, to compute $\frac{\partial C_i}{\partial w^L_{21}}$,
+we simply locate the term $w^L_{21}$ and differentiate along this path. So
+we have:
+
+``` latex
+\frac{\partial C_i}{\partial w^L_{21}} &=
+\frac{\partial C_i}{\partial a_2^L} \frac{\partial a_2^L}{\partial z_2^L}
+\frac{\partial z_2^L}{\partial w_{21}^L}
+```
+
+This simply gives us a visual way of applying the chain rule. With the diagram
+above we also see that for any weight $w_{jk}^L$ in the $L$th layer we have
+
+``` latex
+\frac{\partial C_i}{\partial w^L_{jk}} &=
+\frac{\partial C_i}{\partial a_j^L} \frac{\partial a_j^L}{\partial z_j^L}
+\frac{\partial z_j^L}{\partial w_{jk}^L} \\
+&=
+\frac{\partial C_i}{\partial z_j^L}
+\frac{\partial z_j^L}{\partial w_{jk}^L}.
+```
+
+Similarly, for arbitrary bias in the $L$th layer $b_j^L$,
+
+``` latex
+\frac{\partial C_i}{\partial b_j^L} &=
+\frac{\partial C_i}{\partial a_j^L} \frac{\partial a_j^L}{\partial z_j^L}
+\frac{\partial z_j^L}{\partial b_j^L} \\
+&=
+\frac{\partial C_i}{\partial z_j^L}
+\frac{\partial z_j^L}{\partial b_j^L}.
+```
+
+Now, since $z^L_j = \sum_{m=1}^{n_{L - 1}} w_{jm}^{L}a_m^{L - 1} + b^{L}_j$,
+we have
+
+``` latex
+\frac{\partial z_j^L}{\partial w_{jk}^L} &= a_k^{L-1}
+\quad \text{ and } \quad
+\frac{\partial z_j^L}{\partial b_j^L} = 1.
+```
+Combining this result with the previous equations, we have
+
+``` latex
+\frac{\partial C_i}{\partial w^L_{jk}} &=
+\frac{\partial C_i}{\partial z_j^L} a_k^{L-1} \\
+\frac{\partial C_i}{\partial b^L_j} &=
+\frac{\partial C_i}{\partial z_j^L}.
+```
+
+::: .exercise
+**Exercise**  
+
+Show that for arbitrary layer $\ell \in \\\{2,3, \ldots, L\\\}$ we have
+
+``` latex
+\frac{\partial C_i}{\partial w^\ell_{jk}} &=
+\frac{\partial C_i}{\partial z_j^\ell} a_k^{\ell-1} \\
+\frac{\partial C_i}{\partial b^\ell_j} &=
+\frac{\partial C_i}{\partial z_j^\ell}.
+```
+:::
+
+As the previous example and derivation shows, the quantity
+$\frac{\partial C_i}{\partial z_j^\ell}$ appears frequently and as such we will
+define $\delta_j^\ell := \frac{\partial C_i}{\partial z_j^\ell}$; we avoid
+adding the index of $i$ to $\delta_j^\ell$ to avoid excess notation
+but it should be understood that we are operating under a fixed $(X_i, Y_i)$
+pair. With this notation, we have
+
+``` latex
+\frac{\partial C_i}{\partial w^\ell_{jk}} &=
+\delta_j^\ell a_k^{\ell-1} \\
+\frac{\partial C_i}{\partial b^\ell_j} &=
+\delta_j^\ell.
+```
+
+We will first compute $\delta_j^L$. From the previous diagram, it is clear
+that
+
+``` latex
+\frac{\partial C_i}{\partial z_j^L} &=
+\frac{\partial C_i}{\partial a_j^L} \frac{\partial a_j^L}{\partial z_j^L}.
+```
+
+Since $C_i = \frac{1}{2}\sum_{k=1}^{n_L} (a^L_k(X_i) - Y_i^k)^2$, it follows
+
+``` latex
+\frac{\partial C_i}{\partial a_j^L} &= a_j^L(X_i) - Y_i^j.
+```
+
+Also, because $a_j^L = \sigma(z_j^L)$, it follows
+
+``` latex
+\frac{\partial a_j^L}{\partial z_j^L} &= \sigma'(z_j^L).
+```
+
+Putting these together we have
+
+``` latex
+\delta_j^L &= \left[a_j^L(X_i) - Y_i^j\right] \sigma'(z_j^L).
+```
+
+We will define $\delta^L \in \mathbb{R}^{n_L}$ as
+$\delta^L := [\delta_1^L, \delta_2^L, \ldots, \delta_{n_L}^L]^T$. From the
+above we have
+
+``` latex
+\delta^L &= \left[a^L(X_i) - Y_i\right] \odot \tilde{\sigma}'(z^L)
+```
+
+where $\tilde{\sigma}'(z^L)$ applies $\sigma'$ to each element of $z^L$ and
+$\odot$ denotes the *Hadamard* product: for $x,y \in \mathbb{R}^n$,
+$(x \odot y) \in \mathbb{R}^n$ is the element-wise product of $x$ and $y$,
+that is, $x \odot y = [x_1y_1, x_2y_2, \ldots, x_ny_n]^T$.
+
+To summarize, we have found
+
+``` latex
+\frac{\partial C_i}{\partial z_j^L} &= \delta^L =
+\left[a^L(X_i) - Y_i\right] \odot \tilde{\sigma}'(z^L).
+```
+
+We now turn our attention towards computing
+$\delta_j^{L-1} := \frac{\partial C_i}{\partial z_j^{L-1}}$. Suppose we would
+like to compute $\delta_1^{L-1}$. We will again construct a tree diagram to
+compute this derivative:
+
+    figure
+      img(src="images/loss_function_tree_2.svg")
+
+From above, we have that
+
+``` latex
+\delta_1^{L-1} &=
+\frac{\partial C_i}{\partial a_1^L}\frac{\partial a_1^L}{\partial z_1^L}
+\frac{\partial z_1^L}{\partial a_1^{L-1}}
+\frac{\partial a_1^{L-1}}{\partial z_1^{L-1}} +
+\frac{\partial C_i}{\partial a_2^L}\frac{\partial a_2^L}{\partial z_2^L}
+\frac{\partial z_2^L}{\partial a_1^{L-1}}
+\frac{\partial a_1^{L-1}}{\partial z_1^{L-1}} + \cdots +
+\frac{\partial C_i}{\partial a_{n_L}^L}
+\frac{\partial a_{n_L}^L}{\partial z_{n_L}^L}
+\frac{\partial z_{n_L}^L}{\partial a_1^{L-1}}
+\frac{\partial a_1^{L-1}}{\partial z_1^{L-1}} \\
+&= \sum_{k=1}^{n_L}
+\frac{\partial C_i}{\partial a_k^L}\frac{\partial a_k^L}{\partial z_k^L}
+\frac{\partial z_k^L}{\partial a_1^{L-1}}
+\frac{\partial a_1^{L-1}}{\partial z_1^{L-1}} \\
+&= \sum_{k=1}^{n_L}
+\delta_k^L
+\frac{\partial z_k^L}{\partial a_1^{L-1}}
+\frac{\partial a_1^{L-1}}{\partial z_1^{L-1}}.
+```
+
+More generally, we have
+
+``` latex
+\delta_j^{L-1} &=
+\sum_{k=1}^{n_L} \delta_k^L \frac{\partial z_k^L}{\partial a_j^{L-1}}
+\frac{\partial a_j^{L-1}}{\partial z_j^{L-1}}.
+```
+
+Now, because $z_k^L = \sum_{m=1}^{n_{L-1}} w_{km}^L a_m^{L-1} + b_k^L$ and
+$a_j^{L-1} = \sigma(z_j^{L-1})$, we have
+
+``` latex
+\frac{\partial z_k^L}{\partial a_j^{L-1}} = w_{kj}^L
+\quad \text{ and } \quad
+\frac{\partial a_j^{L-1}}{\partial z_j^{L-1}} = \sigma'(z_j^{L-1}).
+```
+
+Thus,
+
+``` latex
+\delta_j^{L-1} &=
+\sum_{k=1}^{n_L} \delta_k^L w_{kj}^L \sigma'(z_j^{L-1}).
+```
+
+Rearranging terms we have
+
+``` latex
+\delta_j^{L-1} &=
+\left(\sum_{k=1}^{n_L} w_{kj}^L \delta_k^L \right) \sigma'(z_j^{L-1}) \\
+&= \left[\left(W^L\right)^T \delta^L \right]_j \sigma'(z_j^{L-1}).
+```
+
+Letting $\delta^{L-1} =
+[\delta_1^{L-1}, \delta_2^{L-1}, \ldots, \delta_{n_{L-1}}^{L-1}]^T$, from above
+it follws
+
+``` latex
+\delta^{L-1} &=
+\left[\left(W^L\right)^T \delta^L \right] \odot \tilde{\sigma}'(z^{L-1}).
+```
+
+By continuing the tree diagram from before, we can show that
+
+``` latex
+\delta^{L-2} &= \left[\left(W^{L-1}\right)^T \delta^{L-1}\right]
+\odot
+\tilde{\sigma}'(z^{L-2}).
+```
+
+More generally, for $\ell \in \\\{2, 3, \ldots, L-1\\\}$ we have
+
+``` latex
+\delta^\ell &= \left[\left(W^{\ell + 1}\right)^T \delta^{\ell + 1}\right]
+\odot
+\tilde{\sigma}'(z^{\ell}).
+```
+
+To summarize, we have shown
+
+``` latex
+\delta^L &=
+\left[a^L(X_i) - Y_i\right] \odot \tilde{\sigma}'(z^L) \\
+\delta^\ell &= \left[\left(W^{\ell + 1}\right)^T \delta^{\ell + 1}\right]
+\odot
+\tilde{\sigma}'(z^{\ell}), \quad \ell \in \{2,3 \ldots, L -1\}.
+```
+
+::: .exercise
+**Exercise**
+
+Show that the equations
+
+``` latex
+\frac{\partial C_i}{\partial w^\ell_{jk}} &=
+\delta_j^{\ell} a_k^{\ell-1} \\
+\frac{\partial C_i}{\partial b^\ell_j} &=
+\delta_j^{\ell}.
+```
+
+can be written in matrix form as
+
+``` latex
+\frac{\partial C_i}{\partial W^\ell} &=
+\delta^{\ell} \left(a^{\ell-1}\right)^T \\
+\frac{\partial C_i}{\partial b^\ell} &=
+\delta^\ell
+```
+
+for $\ell \in \\\{2,,3 \ldots, L\\\}$.
+:::
+
+With the above, we can summarize the backpropagation equations as follows:
+
+``` latex
+\delta^L &=
+\left[a^L(X_i) - Y_i\right] \odot \tilde{\sigma}'(z^L) \\
+\delta^\ell &= \left[\left(W^{\ell + 1}\right)^T \delta^{\ell + 1}\right]
+\odot
+\tilde{\sigma}'(z^{\ell}), \quad \ell \in \{2,3 \ldots, L -1\} \\
+\frac{\partial C_i}{\partial W^\ell} &=
+\delta^{\ell} \left(a^{\ell-1}\right)^T \\
+\frac{\partial C_i}{\partial b^\ell} &=
+\delta^\ell.
+```
+
+With the above equations, we are ready to present how to update the weights of
+a neural network given some training dataset
+$(X_1, Y_1), (X_2, Y_2), \ldots, (X_n, Y_n)$ where $X_i$ is a vector and
+$Y_i \in \mathbb{N}_{\geq 0}$.
+ Assuming we have initialized
+the weights $W_0^2, W_0^3, \ldots, W_0^L$ and biases
+$b_0^2, b_0^3, \ldots, b_0^L$ we will update the weights according to the
+algorithm below:
+
+    figure
+      img(src="images/backprop_pseudo_cropped.svg")
+
+### Stochastic Gradient Descent and Batch Updates
+
+In the section above we showed how to update the weights and biases so as to
+reduce the error of the loss function. Before implementing this, there are a few
+things we first need to address. First we address the issue of the dataset
+size. In particular, the algorithm above will have go through each data point
+and will produce a single update to the weights, which, for large $n$, can be
+very slow. A simple solution to this would be to take the dataset and
+split it into $t$ disjoint subsets of size $s$ and then apply the algorithm
+from the  previous section to each of these subsets so that we obtain $m$
+updates to the weights. Ideally, the gradients obtained in each of the $t$
+updates would approximate the gradient that we would have obtained if we had
+used the entire dataset. Suppose we construct the subsets by taking the first
+$s$ points, then the next $s$ points and so on.
+Then, if the data is ordered in such a way
+that data points with similar labels are clustered together, then it is possible
+that some of the $t$ subsets will have similar labels and hence will not
+adequately capture the heterogeneity of the dataset. To mitigate this,
+we will first shuffle the data and then proceed to select the subsets; this
+is equivalent to constructing the subsets by randomly sampling $s$ points
+(without replacement).
+
+Once the $t$ subsets have been created, we will apply the algorithm in the
+previous section to each subset so that we update the weights a total of
+$t$ times. These subsets are typically referred to as *batches* or
+*mini-batches*. The process of shuffling—or randomly sampling—the data
+and updating the weights according to the previous algorithm is known
+as *stochastic gradient descent (SGD)*. The process of going through
+all $t$ batches and updating the weights $t$ times is called an *epoch*.
+
+By constructing the batches we are essentially speeding up the learning time
+as we are allowing for more updates to the weights for each epoch. By
+constructing the batches randomly we are guaranteeing that the gradient of
+the batch will converge to the true gradient of the entire dataset
+(asymptotically).
+
+In practice, we typically specify the size of the batches, i.e., $s$, and
+$t$ is simply the number of times the dataset can be split into batches
+of size $s$ (it is normal to have a single batch that is not of size $s$
+since $s$ may not be a factor of $n$). A standard value for $s$ is 32.
+It is normal to go through several epochs, randomly constructing the
+batches each time.
+
+In the next section we give a Python implementation of the algorithm described
+here and apply to it to the class MNIST dataset.
+
 ---
 > id: uat
 ## Universal Approximation Theorem
@@ -511,9 +921,216 @@ w^3_{n_31} & w^3_{n_32} & \cdots & w^3_{n_3n_2}
 > id: mnist
 ## MNIST Example
 
-#TODO Explain MNIST dataset and expand on code below
+### MNIST Dataset
+In this section we will use the MNIST (pronounced "em-nist") dataset to train
+a neural network to recognize hand-written digits on a $28 \times 28$ grid.
+The dataset consists of 60,000 training images and 10,000 test images.
+Two example images are shown below:
 
-MLP code:
+    figure
+      img(src="images/mnist_ex_0.svg")
+      img(src="images/mnist_ex_1.svg")
+
+
+The dataset can be downloaded by following the instructions
+[here](https://pypi.org/project/python-mnist/).
+
+### Implementation
+The implementation of the MLP will be in Python and we will begin by
+constructing a class for our MLP. It is important to keep in mind that the code
+presented here favors readability over efficiency. Moreover, this implementation
+is for the sake of understanding the mechanics of the backpropagation and
+SGD algorithms. Naturally, the reader is encouraged to implement these
+algorithms before seeing the provided implementation.
+
+We will construct our class so that the number of layers is variable and
+as such we will store our weights and biases in a list and keep a count
+of the number of layers as they are added. We will also assume the size
+of the input vector is given and fixed. The code below produces the desired
+initialization:
+
+``` python
+def __init__(self, input_size, learning_rate):
+    self.weights = []
+    self.biases = []
+    self.input_size = input_size
+    self.num_layers = 1
+    self.learning_rate = learning_rate
+```
+
+Next we add the code that allows us to add layers of a given size to the
+network. Since the weights for the new layer is a matrix whose size is
+determined by the previous layer and the current layer, we first determine the
+appropriate size and then initialize the weights randomly and append it to the
+list of weights:
+
+``` python
+def add_layer(self, k):
+    # Check if network only has one (input) layer
+    if not self.weights:
+        previous_size = self.input_size
+    else:
+        previous_size = np.shape(self.weights[-1])[0]
+
+    self.weights.append(np.random.normal(size = (k, previous_size)))
+    self.biases.append(np.random.normal(size = (k, 1)))
+    self.num_layers += 1
+```
+
+We now need a function that takes an input and passes it through the network,
+storing each activation along the way. In our previous notation, this
+corresponds to returning $a^1, a^2, \ldots, a^L$:
+
+``` python
+def forward_pass(self, input):
+    current_activation = np.reshape(input, (len(input), 1))
+    activations = [current_activation]
+    for (W, b) in zip(self.weights, self.biases):
+        current_activation = self.sigmoid(np.matmul(W, current_activation) + b)
+        activations.append(current_activation)
+    return activations
+```
+
+We are almost ready to implement the backpropagation algorithm, we simply need
+to define some functions that will calculate $\tilde{\sigma}$ and
+$\tilde{\sigma}'$ as well as a function that computes the Hadamard product of
+two vectors:
+
+``` python
+def sigmoid(self, x):
+    applied_sigmoid = [1/(1 + math.exp(-x_i)) for x_i in x]
+    return np.reshape(applied_sigmoid, (len(applied_sigmoid), 1))
+
+def sigmoid_derivative(self, x):
+    applied_sigmoid_derivative = [math.exp(-x_i)/math.pow(1+math.exp(-x_i), 2) for x_i in x]
+    return np.reshape(applied_sigmoid_derivative, (len(applied_sigmoid_derivative),1))
+
+def hadamard(self, x, y):
+    prod = [x_i*y_i for (x_i, y_i) in zip(x,y)]
+    return np.reshape(prod, (len(prod), 1))
+```
+
+Our backpropagation function will take an image and its corresponding label
+as arguments. In our notation, this function returns
+$\frac{\partial C_i}{\partial W^2}, \frac{\partial C_i}{\partial W^3}, \ldots,
+\frac{\partial C_i}{\partial W^L}$ and
+$\frac{\partial C_i}{\partial b^2}, \frac{\partial C_i}{\partial b^3}, \ldots,
+\frac{\partial C_i}{\partial b^L}$:
+
+``` python
+def backprop(self, x, y):
+    L = self.num_layers - 2
+    activations = self.forward_pass(x)
+    W_L = self.weights[L]
+    b_L = self.biases[L]
+    a_L = activations[L]
+
+    y = np.reshape(y, (len(y),1))
+    z_L = np.matmul(W_L, activations[L]) + b_L
+    delta_L = self.hadamard(activations[L+1] - y, self.sigmoid_derivative(z_L))
+
+    nabla_W_L = np.matmul(delta_L, np.transpose(a_L))
+    nabla_b_L = delta_L
+
+    w_gradients = [nabla_W_L]
+    b_gradients = [nabla_b_L]
+
+    delta_previous = delta_L
+
+    for l in xrange(L-1, -1, -1):
+        W_l = self.weights[l]
+        W_l_1 = self.weights[l+1]
+        z_l = np.matmul(W_l, activations[l]) + self.biases[l]
+        delta_l = self.hadamard(np.matmul(np.transpose(W_l_1), delta_previous), self.sigmoid_derivative(z_l))
+
+        nabla_W_l = np.matmul(delta_l, np.transpose(activations[l]))
+        nabla_b_l = delta_l
+
+        w_gradients.append(nabla_W_l)
+        b_gradients.append(nabla_b_l)
+
+        delta_previous = delta_l
+
+    return (w_gradients[::-1], b_gradients[::-1])
+```
+
+Since the code above operates on a single image, we now write the function
+that will take a batch of images and applies the backpropagation algorithm
+to the entire batch:
+
+``` python
+def batch_update(self, batch):
+    n = len(batch)
+    w_gradients = []
+    b_gradients = []
+
+    avg_w_gradients = []
+    avg_b_gradients = []
+
+    for i in range(self.num_layers - 1):
+        avg_w_gradients.append(np.zeros_like(self.weights[i]))
+        avg_b_gradients.append(np.zeros_like(self.biases[i]))
+
+    for x in batch:
+        wg, bg = self.backprop(x[0], x[1])
+        for i in range(self.num_layers - 1):
+            avg_w_gradients[i] = avg_w_gradients[i] + np.multiply(1.0/n, wg[i])
+            avg_b_gradients[i] = avg_b_gradients[i] + np.multiply(1.0/n, bg[i])
+
+    for i in range(self.num_layers - 1):
+        self.weights[i] = self.weights[i] - np.multiply(self.learning_rate, avg_w_gradients[i])
+        self.biases[i] = self.biases[i] - np.multiply(self.learning_rate, avg_b_gradients[i])
+
+    return (self.weights, self.biases)
+```
+
+We now simply need to write the function that returns the batches for the
+given epoch:
+
+``` python
+def get_batches(self, n, batch_size):
+    indices = np.random.permutation(n)
+    batches = []
+    num_full_batches = int(np.floor(n/batch_size))
+    for i in range(num_full_batches):
+        batches.append(indices[i*batch_size:(i+1)*batch_size])
+
+    if num_full_batches*batch_size != n:
+        batches.append(indices[num_full_batches*batch_size:])
+    return batches
+```
+
+Finally, we write code that goes through a specified number of epochs and
+monitors the performance of our network on the test data:
+
+``` python
+def compute_accuracy(self, data):
+    accuracy = 0.0
+    for d in data:
+        x, y = d
+        y_hat = np.argmax(self.forward_pass(x)[-1])
+        accuracy += (np.argmax(y) == y_hat)
+    return accuracy/len(data)
+
+def train(self, training_data, num_epochs, testing_data = None):
+    training_size = len(training_data)
+    if testing_data is not None:
+        print("Initial test accuracy: {}".format(self.compute_accuracy(testing_data)))
+    else:
+        print("Initial training accuracy: {}".format(self.compute_accuracy(training_data)))
+
+    for epoch in range(num_epochs):
+        batches = self.get_batches(training_size, 32)
+        for batch_indices in batches:
+            training_batch = [training_data[i] for i in batch_indices]
+            self.batch_update(training_batch)
+        if testing_data is not None:
+            print("Done with epoch {}/{}. Test accuracy: {}".format(epoch+1, num_epochs, self.compute_accuracy(testing_data)))
+        else:
+            print("Done with epoch {}/{}. Training accuracy: {}".format(epoch+1, num_epochs, self.compute_accuracy(training_data)))
+```
+
+Putting all of this together, we have the following class:
 
 ``` python
 import numpy as np
@@ -629,15 +1246,6 @@ class MLP:
             batches.append(indices[num_full_batches*batch_size:])
         return batches
 
-
-    def evaluate_loss(self, test_data):
-        loss = 0
-        for test in test_data:
-            x, y = test
-            y_hat = self.forward_pass(x)[-1]
-            loss += np.linalg.norm(y-y_hat)**2
-        return loss
-
     def compute_accuracy(self, data):
         accuracy = 0.0
         for d in data:
@@ -662,11 +1270,9 @@ class MLP:
                 print("Done with epoch {}/{}. Test accuracy: {}".format(epoch+1, num_epochs, self.compute_accuracy(testing_data)))
             else:
                 print("Done with epoch {}/{}. Training accuracy: {}".format(epoch+1, num_epochs, self.compute_accuracy(training_data)))
-        return self.biases
-
 ```
 
-Code to call MLP class:
+We can load the MNIST dataset and train a network using the code below:
 
 ``` python
 import numpy as np
@@ -706,3 +1312,14 @@ network.add_layer(10)
 network.train(training_data, 30, testing_data)
 
 ```
+
+here we have used a three-layer network of relatively arbitrary sizes
+(except for the last). With this network we can obtain $> 95\%$ accuracy
+on the test set.
+
+Although applicable to other datasets, the provided implementation is quite
+limited. For example, the network above uses the same sigmoid activation
+function in every layer and requires we specify its derivative. Deep learning
+frameworks such as TensorFlow allows us to more quickly construct and train
+neural networks while handling all the differentiation for us. In the next
+section we will see how to recreate this example using TensorFlow. 

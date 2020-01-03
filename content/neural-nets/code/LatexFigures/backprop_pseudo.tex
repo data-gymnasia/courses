@@ -1,0 +1,66 @@
+\documentclass[10pt]{article}
+\usepackage[usenames]{color} %used for font color
+\usepackage{amssymb} %maths
+\usepackage{amsmath} %maths
+\usepackage[utf8]{inputenc} %useful to type directly diacritic characters
+\usepackage[lined]{algorithm2e}
+
+\begin{document}
+\pagestyle{empty}
+\begin{algorithm}
+\DontPrintSemicolon
+\SetKwInput{Input}{Input}
+\SetKwInput{Output}{Output}
+\Input{
+
+		\quad\quad Training data: $(X_1, Y_1), (X_2, Y_2), \ldots, (X_n, Y_n)$ \;
+		\quad\quad Current weights: $W_k^2, W_k^3, \ldots, W_k^L$ \;
+		\quad\quad Current biases: $b_k^2, b_k^3, \ldots, b_k^L$ \;
+		\quad\quad Learning rate: $\eta \in \mathbb{R}$
+}
+\Output{
+
+		\quad\quad Updated weights: $W_{k+1}^2, W_{k+1}^3, \ldots, W_{k+1}^L$ \;
+		\quad\quad Updated biases: $b_{k+1}^2, b_{k+1}^3, \ldots, b_{k+1}^L$
+}
+\For{$i \leftarrow  1$ \KwTo $n$}{
+	Forward pass: \;
+	\Begin{
+		$a^1 = X_i$ \;
+		\For{$\ell \leftarrow 2$ \KwTo $L$}{
+			$z^\ell = W_k^\ell a^{\ell - 1} + b^\ell$ \;
+			$a^\ell = \tilde{\sigma}(z^\ell)$
+		}
+	}
+	\BlankLine
+	Compute errors (backpropagation): \;
+	\Begin{
+		$\delta^L = [a^L(X_i) - Y_i] \odot \tilde{\sigma}'(z^L)$ \;
+		$\frac{\partial C_i}{\partial W_k^L} = \delta^L (a^{L-1})^T$ \;
+		$\frac{\partial C_i}{\partial b_k^L} = \delta^L$ \;
+		\For{$\ell \leftarrow L - 1, L - 2, \ldots$ \KwTo $2$}{
+			$\delta^\ell = \left[\left(W^{\ell + 1}\right)^T \delta^{\ell + 1}\right] \odot \tilde{\sigma}'(z^\ell)$ \;
+			$\frac{\partial C_i}{\partial W_k^\ell} = \delta^\ell\left(a^{\ell - 1}\right)^T$ \;
+			$\frac{\partial C_i}{\partial b_k^\ell} = \delta^\ell$
+		}
+	}
+}
+\BlankLine
+Compute gradients: \;
+\Begin{
+	\For{$\ell \leftarrow 2$ \KwTo $L$}{
+		$\frac{\partial C}{\partial W_k^\ell} = \frac{1}{n}\sum_{i = 1}^n \frac{\partial C_i}{\partial W_k^\ell}$ \\
+		$\frac{\partial C}{\partial b_k^\ell} = \frac{1}{n}\sum_{i = 1}^n \frac{\partial C_i}{\partial b_k^\ell}$ 
+	}
+}
+\BlankLine
+Update weights and biases (gradient descent): \;
+\Begin{
+	\For{$\ell \leftarrow 2$ \KwTo $L$}{
+		$W_{k+1}^\ell = W_k^\ell - \eta \frac{\partial C}{\partial W_k^\ell}$ \\
+		$b_{k+1}^\ell = b_k^\ell - \eta \frac{\partial C}{\partial b_k^\ell}$ 
+	}
+}
+\end{algorithm}
+
+\end{document}
