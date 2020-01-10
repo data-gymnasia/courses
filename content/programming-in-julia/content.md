@@ -2516,7 +2516,7 @@ store it to a variable, and write a line of code to select the submatrix
 Hint: you might want to use the function `{jl} rem`—look it up from a Julia session to check how it works. 
 :::
 
-*Solution*. `{jl} A = [rem(i+j,5) for i=0:4,j=0:4]` generates the first matrix and stores it to the variable `{jl} A`. Then `{jl} A[end-2:end,:]` takes the last two rows of `{jl} A`. 
+*Solution*. `{jl} A = [rem(i+j,5) for i=0:4,j=0:4]` generates the first matrix and stores it to the variable `{jl} A`. Then `{jl} A[end-1:end,:]` takes the last two rows of `{jl} A`. 
 
 ---
 > id: plotting

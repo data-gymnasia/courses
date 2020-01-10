@@ -472,7 +472,7 @@ We can concatenate two strings with the addition operator (`{py} +`): `{py} "Hel
 ---
 > id: step-41
 
-We can return the first character in a string `{py} s` using the expression `{py} s[0]`, the second element using `{py} s[1]`, and so on. We can get the substring from the third to the eighth character using `{py} s[3:9]`. Note that the 9 is one **past** the index where we want to stop. 
+We can return the first character in a string `{py} s` using the expression `{py} s[0]`, the second element using `{py} s[1]`, and so on. We can get the substring from the third to the eighth character using `{py} s[2:8]`. Note that the 9 is one **past** the index where we want to stop.
 
 [Continue](btn:next)
 
