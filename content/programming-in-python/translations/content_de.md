@@ -33,14 +33,16 @@ Es gibt mehrere Möglichkeiten, Python anzuwenden:
 ---
 > id: step-3
 
-**Binder**. Du kannst Python-Code auch in einem sogenannten Notebook auf der Binder-Website ausführen. Um mit einer Reihe von Paketen zu starten, die auf diesen Kurs zugeschnitten sind, [klicke hier](https://mybinder.org/v2/gh/data-gymnasia/python-binder/master). Wähle dann *New* (rechte obere Ecke) und *Python 3* aus. Es wird dringend empfohlen, während der Arbeit an diesem Kurs eine Registerkarte mit einem Binder-Notebook offen zu halten, da es als Platz für Notizen und eigene Versuche dienen kann. Außerdem bietet es mehr Funktionen als die Blöcke, die direkt auf dieser Seite eingebunden sind. 
+**Binder** oder **Google Colab**. Du kannst Python-Code auch in einem sogenannten Notebook auf der Binder-Website (oder Google Colaboratory)ausführen. Um mit einer Reihe von Paketen zu starten, die auf diesen Kurs zugeschnitten sind, [klicke hier](https://mybinder.org/v2/gh/data-gymnasia/python-binder/master). Wähle dann *New* (rechte obere Ecke) und *Python 3* aus. Es wird dringend empfohlen, während der Arbeit an diesem Kurs eine Registerkarte mit einem Binder-Notebook offen zu halten, da es als Platz für Notizen und eigene Versuche dienen kann. Außerdem bietet es mehr Funktionen als die Blöcke, die direkt auf dieser Seite eingebunden sind. 
+[Colab](https://colab.research.google.com/)
+[Binder mit deutschen Kursunterlagen](https://mybinder.org/v2/gh/matheharry/Cognitive-Class-Labs-Python-german/binder)
 
 [Weiter](btn:next)
 
 ---
 > id: step-4
 
-**Anaconda**. Eine Pythonvariante mit vorinstallierten wissenschaftlichen Rechenpaketen und Tools zur Verwaltung von Python-Umgebungen ist die Distribution [Anaconda](https://www.anaconda.com/). Das ist die empfohlene Methode, um Python auf deinem eigenen Computer zu installieren. [Lade das Installationsprogramm herunter](https://www.anaconda.com/distribution) und starte es, um es auf deinem Computer einzurichten.
+**Anaconda**. Eine Pythonvariante mit vorinstallierten wissenschaftlichen Rechenpaketen und Tools zur Verwaltung von Python-Umgebungen ist die Distribution [Anaconda](https://www.anaconda.com/). [Lade das Installationsprogramm herunter](https://www.anaconda.com/distribution) und starte es, um es auf deinem Computer einzurichten.
 Wer auf einem PC keine Rechte hat, Software zu installieren, kann auch [WinPython](http://winpython.sourceforge.net/) verwenden. 
 
 [Weiter](btn:next)
@@ -60,7 +62,8 @@ Wer auf einem PC keine Rechte hat, Software zu installieren, kann auch [WinPytho
 
 Sobald du Python installiert hast, gibt es mehrere Möglichkeiten, damit zu arbeiten. 
 
-**REPL**. Starte einen sogenannten Read-Eval-Print Loop (eine Lesen-Auswerten-Anzeigen Schleife) über die [Befehlszeile](gloss:command-line). Jeder von dir eingegebene Code wird sofort ausgeführt, und alle von deinem Code zurückgegebenen Werte werden angezeigt. Um eine Sitzung zu starten, öffne das Terminal (Befehlszeile) deines Betriebssystems und führe `{py} python` oder `{py} ipython` aus (letzteres ist bunter und hat mehr Funktionen). Du kannst das auch in Binder tun, indem du *New > Terminal* auswählst. 
+**REPL**. Starte einen sogenannten Read-Eval-Print Loop (eine Lesen-Auswerten-Anzeigen Schleife) über die [Befehlszeile](gloss:command-line). Jeder von dir eingegebene Code wird sofort ausgeführt, und alle von deinem Code zurückgegebenen Werte werden angezeigt. Um eine Sitzung zu starten, öffne das Terminal (Befehlszeile) deines Betriebssystems und führe `{py} python` oder `{py} ipython` aus (letzteres ist bunter und hat mehr Funktionen). Du kannst das auch in Binder tun, indem du *New > Terminal* auswählst.
+Im Fall von WinPython geht das über *WinPython Command Prompt*. 
 
 [Weiter](btn:next)
 
@@ -74,7 +77,7 @@ Sobald du Python installiert hast, gibt es mehrere Möglichkeiten, damit zu arbe
 ---
 > id: step-8
 
-**Jupyter**. Wie ein REPL, aber erlaubt das Einfügen von Text und mathematischen Ausdrücken, das Gruppieren von Code in Blöcke, etc. Dies ist die standardmäßig in [Binder](https://mybinder.org/v2/gh/data-gymnasia/python-binder/master) bereitgestellte Schnittstelle. Lokal kannst du ein Notebook starten, indem du `{py}jupyter notebook` auf der [Befehlszeile](gloss:command-line) ausführst (vorausgesetzt, du hast Anaconda installiert; im Fall von WinPython geht das über *WinPython Command Prompt*). 
+**Jupyter**. Wie ein REPL, aber erlaubt das Einfügen von Text und mathematischen Ausdrücken, das Gruppieren von Code in Blöcke, etc. Dies ist die standardmäßig in [Binder](https://mybinder.org/v2/gh/data-gymnasia/python-binder/master) bereitgestellte Schnittstelle. Lokal kannst du ein Notebook starten, indem du `{py}jupyter notebook` auf der [Befehlszeile](gloss:command-line) ausführst (vorausgesetzt, du hast Anaconda installiert; in WinPython kann *Jupyter Notebook* direkt aus dem Programmverzeichnis aufgerufen werden). 
 
 [Weiter](btn:next)
 
@@ -164,7 +167,7 @@ Wir sagen, dass `{py} 41` der **Wert** der Variablen `{py} Alter` ist.
 ---
 > id: step-16
 
-Variablennamen müssen mit einem Unterstrich oder Buchstaben beginnen und dürfen danach nur Buchstaben, Zahlen und Unterstriche enthalten. Buchstaben können in Groß- oder Kleinschreibung sein, wobei die Groß- und Kleinschreibung einen Unterschied macht. Zum Beispiel ist `{py} extractValues0` ein [[gültiger|ungültiger]] Variablenname, und `{py} stop!` ist ein [[ungültiger|gültiger]] Variablenname. 
+Variablennamen müssen mit einem Unterstrich oder Buchstaben beginnen und dürfen danach nur Buchstaben, Zahlen und Unterstriche enthalten. Buchstaben können in Groß- oder Kleinschreibung sein, wobei die Groß- und Kleinschreibung einen Unterschied macht. Zum Beispiel ist `{py} neueWerte0` ein [[gültiger|ungültiger]] Variablenname, und `{py} stop!` ist ein [[ungültiger|gültiger]] Variablenname. 
 
 ---
 > id: step-17
@@ -317,7 +320,7 @@ Eine einzelne ausführbare Codeeinheit in Python wird als **Anweisung** bezeichn
 
     x-picker.list
       .item.pill.bblue(data-error="expression-1") ein Ausdruck      
-      .item.pill.bblue eine Anweisung, die beim Ausführen einen Ausdrucks auswertet
+      .item.pill.bblue eine Anweisung, die beim Ausführen einen Ausdruck auswertet
 
 :::
 
