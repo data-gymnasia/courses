@@ -25,20 +25,20 @@ class MLP:
         if hasattr(input, '__len__'):
             current_activation = np.reshape(input, (len(input), 1))
         else:
-            current_activation = np.reshape(input, (1, 1))
+            current_activation = np.array([input])
         activations = [current_activation]
         for (W, b) in zip(self.weights, self.biases):
-            current_activation = self.relu(np.matmul(W, current_activation) + b)
+            current_activation = self.sigmoid(np.matmul(W, current_activation) + b)
             activations.append(current_activation)
         return activations
 
-    def relu(self, x):
-        applied_relu = [x_i*(x_i > 0) for x_i in x]
-        return np.reshape(applied_relu, (len(applied_relu), 1))
+    def sigmoid(self, x):
+        applied_sigmoid = [1/(1 + math.exp(-x_i)) for x_i in x]
+        return np.reshape(applied_sigmoid, (len(applied_sigmoid), 1))
 
-    def relu_derivative(self, x):
-        applied_relu_derivative = [x_i > 0 for x_i in x]
-        return np.reshape(applied_relu_derivative, (len(applied_relu_derivative), 1))
+    def sigmoid_derivative(self, x):
+        applied_sigmoid_derivative = [math.exp(-x_i)/math.pow(1+math.exp(-x_i), 2) for x_i in x]
+        return np.reshape(applied_sigmoid_derivative, (len(applied_sigmoid_derivative),1))
 
     def hadamard(self, x, y):
         prod = [x_i*y_i for (x_i, y_i) in zip(x,y)]
@@ -51,13 +51,9 @@ class MLP:
         b_L = self.biases[L]
         a_L = activations[L]
 
-        if hasattr(y, '__len__'):
-            y = np.reshape(y, (len(y),1))
-        else:
-            y = np.reshape(y, (1,1))
-
+        y = np.reshape(y, (len(y),1))
         z_L = np.matmul(W_L, activations[L]) + b_L
-        delta_L = self.hadamard(activations[L+1] - y, self.relu_derivative(z_L))
+        delta_L = self.hadamard(activations[L+1] - y, self.sigmoid_derivative(z_L))
 
         nabla_W_L = np.matmul(delta_L, np.transpose(a_L))
         nabla_b_L = delta_L
@@ -71,7 +67,7 @@ class MLP:
             W_l = self.weights[l]
             W_l_1 = self.weights[l+1]
             z_l = np.matmul(W_l, activations[l]) + self.biases[l]
-            delta_l = self.hadamard(np.matmul(np.transpose(W_l_1), delta_previous), self.relu_derivative(z_l))
+            delta_l = self.hadamard(np.matmul(np.transpose(W_l_1), delta_previous), self.sigmoid_derivative(z_l))
 
             nabla_W_l = np.matmul(delta_l, np.transpose(activations[l]))
             nabla_b_l = delta_l
@@ -131,16 +127,16 @@ class MLP:
         accuracy = 0.0
         for d in data:
             x, y = d
-            y_hat = self.forward_pass(x)[-1]
+            y_hat = np.argmax(self.forward_pass(x)[-1])
             accuracy += (np.argmax(y) == y_hat)
         return accuracy/len(data)
 
     def train(self, training_data, num_epochs, testing_data = None):
         training_size = len(training_data)
         if testing_data is not None:
-            print("Initial test loss: {}".format(self.evaluate_loss(testing_data)))
+            print("Initial test accuracy: {}".format(self.compute_accuracy(testing_data)))
         else:
-            print("Initial training loss: {}".format(self.evaluate_loss(training_data)))
+            print("Initial training accuracy: {}".format(self.compute_accuracy(training_data)))
 
         for epoch in range(num_epochs):
             batches = self.get_batches(training_size, 32)
@@ -148,6 +144,6 @@ class MLP:
                 training_batch = [training_data[i] for i in batch_indices]
                 self.batch_update(training_batch)
             if testing_data is not None:
-                print("Done with epoch {}/{}. Test loss: {}".format(epoch+1, num_epochs, self.evaluate_loss(testing_data)))
+                print("Done with epoch {}/{}. Test accuracy: {}".format(epoch+1, num_epochs, self.compute_accuracy(testing_data)))
             else:
-                print("Done with epoch {}/{}. Training loss: {}".format(epoch+1, num_epochs, self.evaluate_loss(training_data)))
+                print("Done with epoch {}/{}. Training accuracy: {}".format(epoch+1, num_epochs, self.compute_accuracy(training_data)))

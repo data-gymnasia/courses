@@ -1,5 +1,5 @@
 
-# Course Title
+# Neural Networks
 
 > id: intro
 ## Introduction
@@ -913,9 +913,6 @@ batches each time.
 In the next section we give a Python implementation of the algorithm described
 here and apply to it to the class MNIST dataset.
 
----
-> id: uat
-## Universal Approximation Theorem
 
 ---
 > id: mnist
@@ -1322,4 +1319,915 @@ limited. For example, the network above uses the same sigmoid activation
 function in every layer and requires we specify its derivative. Deep learning
 frameworks such as TensorFlow allows us to more quickly construct and train
 neural networks while handling all the differentiation for us. In the next
-section we will see how to recreate this example using TensorFlow. 
+section we will see how to recreate this example using TensorFlow.
+
+---
+> id: uat
+## Universal Approximation Theorem
+
+At this juncture it may be tempting to assume that most machine learning
+problems can be solved using neural networks and sufficient data. However,
+it is important to understand the expressive power of neural networks.
+
+We will begin our discussion by trying to "learn" a positive-valued polynomial using a neural network.
+
+::: .exercise
+**Exercise**  
+
+Modify the MLP code from the previous section so that the activation function
+used is the ReLU function given by
+
+``` latex
+f(x) &=
+\begin{cases}
+x, & \textrm{ if } x > 0 \\
+0, & \textrm{ otherwise.}
+\end{cases}
+```
+
+Then, using this dataset [INSERT DOWNLOAD LINK HERE], train a neural network for
+1000 epochs and then make a plot of the obtained function for
+$x \in \left[-\frac{5}{2}, 2\right]$ (Be sure to change the computation of the
+    accuracy to the computation of the loss since this is not a classification
+    problem).
+:::
+
+*Solution.* We use the following MLP class:
+
+``` python
+import numpy as np
+import math
+
+class MLP:
+
+    def __init__(self, input_size, learning_rate):
+        self.weights = []
+        self.biases = []
+        self.input_size = input_size
+        self.num_layers = 1
+        self.learning_rate = learning_rate
+
+    def add_layer(self, k):
+        # Check if network only has one (input) layer
+        if not self.weights:
+            previous_size = self.input_size
+        else:
+            previous_size = np.shape(self.weights[-1])[0]
+
+        self.weights.append(np.random.normal(size = (k, previous_size)))
+        self.biases.append(np.random.normal(size = (k, 1)))
+        self.num_layers += 1
+
+    def forward_pass(self, input):
+        if hasattr(input, '__len__'):
+            current_activation = np.reshape(input, (len(input), 1))
+        else:
+            current_activation = np.reshape(input, (1, 1))
+        activations = [current_activation]
+        for (W, b) in zip(self.weights, self.biases):
+            current_activation = self.relu(np.matmul(W, current_activation) + b)
+            activations.append(current_activation)
+        return activations
+
+    def relu(self, x):
+        applied_relu = [x_i*(x_i > 0) for x_i in x]
+        return np.reshape(applied_relu, (len(applied_relu), 1))
+
+    def relu_derivative(self, x):
+        applied_relu_derivative = [x_i > 0 for x_i in x]
+        return np.reshape(applied_relu_derivative, (len(applied_relu_derivative), 1))
+
+    def hadamard(self, x, y):
+        prod = [x_i*y_i for (x_i, y_i) in zip(x,y)]
+        return np.reshape(prod, (len(prod), 1))
+
+    def backprop(self, x, y):
+        L = self.num_layers - 2
+        activations = self.forward_pass(x)
+        W_L = self.weights[L]
+        b_L = self.biases[L]
+        a_L = activations[L]
+
+        if hasattr(y, '__len__'):
+            y = np.reshape(y, (len(y),1))
+        else:
+            y = np.reshape(y, (1,1))
+
+        z_L = np.matmul(W_L, activations[L]) + b_L
+        delta_L = self.hadamard(activations[L+1] - y, self.relu_derivative(z_L))
+
+        nabla_W_L = np.matmul(delta_L, np.transpose(a_L))
+        nabla_b_L = delta_L
+
+        w_gradients = [nabla_W_L]
+        b_gradients = [nabla_b_L]
+
+        delta_previous = delta_L
+
+        for l in xrange(L-1, -1, -1):
+            W_l = self.weights[l]
+            W_l_1 = self.weights[l+1]
+            z_l = np.matmul(W_l, activations[l]) + self.biases[l]
+            delta_l = self.hadamard(np.matmul(np.transpose(W_l_1), delta_previous), self.relu_derivative(z_l))
+
+            nabla_W_l = np.matmul(delta_l, np.transpose(activations[l]))
+            nabla_b_l = delta_l
+
+            w_gradients.append(nabla_W_l)
+            b_gradients.append(nabla_b_l)
+
+            delta_previous = delta_l
+
+        return (w_gradients[::-1], b_gradients[::-1])
+
+    def batch_update(self, batch):
+        n = len(batch)
+        w_gradients = []
+        b_gradients = []
+
+        avg_w_gradients = []
+        avg_b_gradients = []
+
+        for i in range(self.num_layers - 1):
+            avg_w_gradients.append(np.zeros_like(self.weights[i]))
+            avg_b_gradients.append(np.zeros_like(self.biases[i]))
+
+        for x in batch:
+            wg, bg = self.backprop(x[0], x[1])
+            for i in range(self.num_layers - 1):
+                avg_w_gradients[i] = avg_w_gradients[i] + np.multiply(1.0/n, wg[i])
+                avg_b_gradients[i] = avg_b_gradients[i] + np.multiply(1.0/n, bg[i])
+
+        for i in range(self.num_layers - 1):
+            self.weights[i] = self.weights[i] - np.multiply(self.learning_rate, avg_w_gradients[i])
+            self.biases[i] = self.biases[i] - np.multiply(self.learning_rate, avg_b_gradients[i])
+
+        return (self.weights, self.biases)
+
+    def get_batches(self, n, batch_size):
+        indices = np.random.permutation(n)
+        batches = []
+        num_full_batches = int(np.floor(n/batch_size))
+        for i in range(num_full_batches):
+            batches.append(indices[i*batch_size:(i+1)*batch_size])
+
+        if num_full_batches*batch_size != n:
+            batches.append(indices[num_full_batches*batch_size:])
+        return batches
+
+
+    def evaluate_loss(self, test_data):
+        loss = 0
+        for test in test_data:
+            x, y = test
+            y_hat = self.forward_pass(x)[-1]
+            loss += np.linalg.norm(y-y_hat)**2
+        return loss
+
+    def train(self, training_data, num_epochs, testing_data = None):
+        training_size = len(training_data)
+        if testing_data is not None:
+            print("Initial test loss: {}".format(self.evaluate_loss(testing_data)))
+        else:
+            print("Initial training loss: {}".format(self.evaluate_loss(training_data)))
+
+        for epoch in range(num_epochs):
+            batches = self.get_batches(training_size, 32)
+            for batch_indices in batches:
+                training_batch = [training_data[i] for i in batch_indices]
+                self.batch_update(training_batch)
+            if testing_data is not None:
+                print("Done with epoch {}/{}. Test loss: {}".format(epoch+1, num_epochs, self.evaluate_loss(testing_data)))
+            else:
+                print("Done with epoch {}/{}. Training loss: {}".format(epoch+1, num_epochs, self.evaluate_loss(training_data)))
+
+```
+
+To train and plot the output of the network we use the code below:
+
+``` python
+import numpy as np
+from MLP.MLP import MLP
+import matplotlib.pyplot as plt
+import pandas as pd
+import math
+
+file_dir = "poly_1.csv"
+
+dataset = pd.read_csv(file_dir).to_numpy()
+
+train_x = dataset[:,0]
+train_y = dataset[:,1]
+training_data = zip(train_x, train_y)
+
+network = MLP(1, 0.01)
+network.add_layer(10)
+network.add_layer(10)
+network.add_layer(1)
+
+network.train(training_data, 1000)
+
+x_values = np.linspace(-1.5, 2, 100)
+true_y = np.zeros(100)
+pred_y = np.zeros(100)
+
+for i in range(100):
+    x = x_values[i]
+    y_true = x**4 - 4*x**2 + .5*x + 12
+    y_predicted = network.forward_pass(x)[-1][0][0]
+    true_y[i] = y_true
+    pred_y[i] = y_predicted
+
+plt.plot(x_values, true_y)
+plt.plot(x_values, pred_y)
+plt.show()
+
+```
+
+Note that we have used a network with two hidden layers, each with ten neurons
+and a learning rate of 0.01.
+
+The true polynomial is $g(x) = x^4 - 4x^2 + \frac{1}{2}x + 12$. Letting
+$h(x)$ represent the output of the network, we obtain the following plot:
+
+    figure
+      img(src="images/mlp_poly_1.svg")
+
+The value of the loss function after 1000 iterations is approximately 2
+(this is highly dependent on the initialization of the weights) and from
+the plot above we see that the network approximates the polynomial fairly well
+considering the relatively small size of the dataset.
+
+In the example above, the domain of the data was in the interval
+$\left[-\frac{3}{2}, 2\right]$; of course, we should not expect the neural
+network to be able to correctly approximate the polynomial outside of this
+interval. Indeed, for the interval $[2,3]$ we obtain something like the
+following:
+
+    figure
+      img(src="images/mlp_poly_2.svg")
+
+This is a consequence of the expressive power of neural networks: for functions
+in $\mathbb{R}^n$, a neural network can approximate functions on a closed
+and bounded subset of $\mathbb{R}^n$. In this example, it was implicitly
+assumed that the function we were trying to learn was bounded in the interval
+$\left[-\frac{3}{2}, 2\right]$.
+
+We now formally present the theorem that summarizes the expressive power of
+(feed-forward) neural networks:
+
+::: .theorem
+**Theorem**  
+
+Let $\phi: \mathbb{R} \to \mathbb{R}$ be an activation function assumed to be
+non-constant, continuous, and bounded. Let $C([0,1]^m)$ be the set of
+real-valued continuous functions on the $m$-dimensional hypercube $[0,1]^m$.
+Then for any $\epsilon > 0$ and $f \in C([0,1]^m)$, there exists an
+$N \in \mathbb{N}_{> 0}$
+
+:::
+
+---
+> id: tf
+## TensorFlow
+
+In this section we introduce the [TensorFlow](https://www.tensorflow.org)
+framework. The previous MNIST example illustrated the tedious nature of writing
+deep learning programs from scratch. Moreover, the functionality of what we
+wrote was quite limited in scope. TensorFlow (TF) abstracts much of what we did 
+in the previous section and allows us to build much more complex models. 
+
+*Remark.* At the time of writing, the most recent TF version is 2.1, which
+we will be using along with Python 3.6.x.  
+
+### Basics
+TF is a framework available across multiple programming languages;
+here we will use Python to  interact with TF. It should be noted that much of
+the underlying code for TF is written in C++ and the choice of language to call
+TF-in our case, Python-does not make much of a difference with respect to
+runtime. 
+
+TF consists of two components: 1. A library which defined a *computational graph* and 2.
+A runtime which executes the computational graph. To define a computational graph,
+first consider the Python code below:
+
+``` python
+x = 5.0
+y = 15.0
+sumXY = x + y
+divXY = y/x 
+ans = divXY/sumXY
+print(ans)
+```
+
+When we run the code above, each step is done sequentially: first, x is defined, followed by;
+then, the sum of x and y is computed and then their quotient and so on. Note that 
+$\texttt{sumXY}$ and $\texttt{divXY}$ are independent, i.e., their values do not depend on each other. 
+TF aims to expedite computations by parallelizing *operations* that are independent 
+of each other. It accomplishes this by constructing a computational graph. When we run
+code that calls the TF API, the TF library constructs this graph and identifies the
+smallest subset of the graph that needs to be run to get the desired result. We
+can visualize the computational graph of the program above as shown below:
+
+    figure
+      img(src="images/tf_cg_ex_1.svg")
+
+The nodes of the computational graph are called *operations* while the (directed) edges
+are called *tensors.* Tensors can be regarded as multidimensional arrays that "flow" through
+the edges of the computational graph. When this graph is constructed, not every operation
+in the graph is carried out-in fact, not all values are defined until they are called or
+needed. Below is how we would write the code above using the TF API:
+
+``` python
+import tensorflow as tf
+
+x = tf.constant(5.0)
+y = tf.constant(15.0)
+sumXY = x + y 
+divXY = y/x 
+ans = divXY/sumXY
+print(ans)
+```
+
+Except for the first two lines, the code above is identical to the previous one.
+However, unlike the previous code, when we run this one, the values 
+$\texttt{x}$, $\texttt{y}$, $\texttt{sumXY}$, $\texttt{divXY}$, and $\texttt{ans}$
+are not created until they are called or needed. In this case, this does not
+happen until we call $\texttt{print(ans)}$ which then executes the portion of the graph
+needed to print the value of $\texttt{ans}$; moreover, upon identifying which 
+portions of the graph need to be run, independent subgraphs are executed in parallel.
+
+A thorough understanding of TF's computational graph is not needed for TF 2.x;
+nevertheless, having some familiarity will help in the design of our programs.
+
+### TensorFlow API
+
+Here we will introduce common TF operations and basic API calls. Throughout this section
+we will assume we have the following in our program's preamble:
+
+``` python
+import tensorflow as tf 
+import numpy as np 
+```
+First, as alluded to above, to define a *constant* in TF, we do the following:
+
+``` python
+# Defining a scalar constant in TF
+scalar_constant = tf.constant(10.0, name = "scalar_constant_name")
+```
+
+A few comments about the snippet above: the $\texttt{name}$ argument is used to identify 
+this constant when the computational graph is saved and then loaded, i.e., the Python
+name $\texttt{scalar_constant}$ will no longer exist when we load the graph and we
+will instead have to reference it using the name $\texttt{scalar_constant_name}$. When defining
+a constant, TF will attempt to infer the type of the constant using the input value; in this
+case, because we set the alue to 10.0, the type of this tensor is $\texttt{tf.float32}$.
+If we want to define the type explicitly, we can do this as follows:
+
+``` python
+# Defining a scalar constant in TF
+scalar_constant = tf.constant(10, name = "scalar_constant_name", dtype = tf.float32)
+```
+
+We can do standard mathematical operations on these tensors as follows:
+
+``` python
+x = tf.constant(10)
+y = tf.constant(15)
+
+# Compute sum of x and y
+x + y 
+
+# Multiply x and y
+x*y 
+
+# Divide x and y
+y/x
+```
+
+In addition to defining scalar constants, we can also define matrix constants and access
+their elements as follows:
+
+``` python
+matrix_constant = tf.constant([[1,2],[3,4]], dtype = tf.float32)
+
+# Get row 2 of matrix
+print(matrix_constant[1,:]) 
+
+# Get column 2 of matrix
+print(matrix_constant[:,1]) 
+
+# Get element (2,1) of matrix
+print(matrix_constant[1,0]) 
+```
+
+We can also perform standard matrix operations:
+
+``` python
+A = tf.constant([[1,2],[5,6]], dtype = tf.float32)
+B = tf.constant([[-1,2],[2,-1]], dtype = tf.float32)
+C = tf.constant([[-1,2,3],[0,3,5]], dtype = tf.float32)
+
+# Compute A + B
+sumAB = tf.add(A,B) 
+
+# Alternative way of computing A + B
+sumAB_2 = A + B
+
+# Compute product AC
+prodAC = tf.matmul(A,C)
+
+# Alternative way of computing AC (syntactic sugar)
+prodAC_2 = A @ C
+
+# Computes inverse of B
+B_inv = tf.linalg.inv(B)
+prodBB_inv = B @ B_inv
+```
+
+Tensors can be of arbitrary dimensions. For example, the code below creates a tensor of size 
+$2 \times 3 \times 2$.
+
+``` python
+multi_dimen_constant = tf.constant([[[1,2],[3,4], [5,6]], [[7,8],[9,10], [11,12]]], dtype = tf.float32)
+
+# Get first matrix 
+print(multi_dimen_constant[0,:,:])
+
+# Get first row of second matrix  
+print(multi_dimen_constant[1,0,:])
+
+# Get third rows of both matrices
+print(multi_dimen_constant[:,2,:])
+
+# Get element (1,2) of second matrix
+print(multi_dimen_constant[1,0,1]) 
+```
+
+The print statements above will print something like 
+$\texttt{tf.Tensor(8.0, shape=(), dtype=float32)}$. To extract the numeric quantity we can do
+
+``` python
+# Extract value
+print(multi_dimen_constant[1,0,1].numpy())
+```
+which will print $\texttt{8.0}$. 
+
+So far we have discussed how to define constants in TF. We will now see how to define 
+*variables.* Syntactically, there is no major difference in how we define variables.
+However, the distinction becomes significant when we do differentiation operations, i.e.,
+it is important to be able to distinguish between variables and constants when computing
+the gradient of a function. Variables can be defined as shown below:
+
+``` python
+scalar_variable = tf.Variable(10, dtype = tf.float32, name = "scalar_variable")
+matrix_variable = tf.Variable([[1,2],[3,4]], dtype = tf.float32, name = "matrix_variable")
+```
+
+Note that "variable" in $\texttt{tf.Variable}$ is capitalized-this is because this is
+a class in TF. 
+
+It will often be useful to initialize weights randomly, e.g., when defining the weights of a
+neural network. We can do this as follows:
+
+``` python
+random_matrix_variable = tf.Variable(initial_value = tf.random.normal([3,3]), dtype = tf.float32)
+```
+
+the above creates a $3 \times 3$ matrix where each element is sampled from a standard
+normal distribution. 
+
+All of the operations introduced for constants also apply to variables:
+
+``` python
+A = tf.Variable([[1,2],[5,6]], dtype = tf.float32)
+B = tf.Variable([[-1,2],[2,-1]], dtype = tf.float32)
+C = tf.Variable([[-1,2,3],[0,3,5]], dtype = tf.float32)
+
+# Compute A + B
+sumAB = tf.add(A,B) 
+
+# Alternative way of computing A + B
+sumAB_2 = A + B
+
+# Compute product AC
+prodAC = tf.matmul(A,C)
+
+# Alternative way of computing AC (syntactic sugar)
+prodAC_2 = A @ C
+
+# Computes inverse of B
+B_inv = tf.linalg.inv(B)
+prodBB_inv = B @ B_inv
+```
+
+We can also integrate variable tensors into for-loops:
+
+``` python
+A = tf.Variable([[1,0],[0,1]], dtype = tf.float32)
+
+for i in range(5):
+  A = A + [[0,1],[0,0]]
+
+# Value of A is [[1,5],[0,1]]
+print(A)
+```
+
+A useful TF API is the Dataset API. The Dataset API is a wrapper class
+for data sources that also supports intermediate operators, such as map, filter, 
+apply, etc. We can invoke these operators as shown below:
+
+``` python
+v = tf.range(1,20,3)
+v_ds = tf.data.Dataset.from_tensors(v)
+v_ds_inc_1 = v_ds.map(lambda x: x + 1)
+
+for val in v_ds_inc_1.take(len(v)):
+  print(val)
+
+v_ds_2 = tf.data.Dataset.from_tensor_slices(v)
+v_ds_2_inc_1 = v_ds_2.map(lambda x: x + 1)
+v_ds_2_even = v_ds_2.filter(lambda x: x % 2 == 0)
+
+
+for val in v_ds_2_inc_1.take(len(v)):
+  print(val)
+
+for val in v_ds_2_even.take(len(v)):
+  print(val)
+```
+
+$\texttt{v_ds_inc_1}$ above stores the same values as $\texttt{v_ds}$ but 
+they are incremented by one. $\texttt{v_ds_2_even}$ stores only the even
+elements of $\texttt{v_ds_2}$. $\texttt{tf.data.Dataset.from_tensors(v)}$
+creates a Dataset tensor where every element in $\texttt{v}$ is stored as within a standard
+vector; on the other hand, $\texttt{tf.data.Dataset.from_tensor_slices(v)}$
+creates a Dataset tensor where each element in $\texttt{v}$ is stored as a
+vector within a larger vector. We will not be making much use of this for the time
+being and the reader is encouraged to read the TF documentation for a deeper exposition.
+
+::: .exercise
+**Exercise**  
+
+Define 
+
+``` python
+v = tf.range(1,20,3)
+```
+
+using the map and filter functions, extract the even elements of $\texttt{v}$ and cube them.
+:::
+
+*Solution.* The code below accomplishes this:
+
+``` python
+import tensorflow as tf
+
+v = tf.range(1,20,3)
+v_ds = tf.data.Dataset.from_tensor_slices(v)
+
+ans = v_ds.filter(lambda x: x % 2 == 0).map(lambda x: x**3)
+
+
+for val in ans.take(len(v)):
+  print(val)
+```
+
+### TF MNIST: V1
+
+At the heart of TF 2.x is Keras, a high-level deep learning API that allows
+for rapid construction of deep learning models. We will soon be making extensive use
+of Keras, but first, we will attempt to gain a familiarity with the TF API. 
+
+In this section we will implement a neural network with two hidden layers that 
+will be trained on the MNIST data. We will see how we can define a loss function
+and use TF to differentiate it and then apply gradient descent to update the weights
+of the network.
+
+We will assume that we have the following in our program's preamble:
+
+``` python
+import tensorflow as tf 
+from tensorflow import keras
+import numpy as np 
+```
+
+To load the MNIST data, we simply need to run the following from within our program:
+
+``` python
+# Load MNIST data
+mnist = keras.datasets.mnist
+(train_images, train_labels), (test_images, test_labels) = mnist.load_data()
+train_images, test_images = train_images/255.0, test_images/255.0
+```
+
+We will specify the following global parameters:
+
+``` python
+mnist_size = 28*28
+nl1 = 32 
+nl2 = 32
+output_size = 10
+```
+
+where $\texttt{nl1}$ and $\texttt{nl2}$ represent the sizes of the first and second
+hidden layers, respectively. With this at hand, we can define the weights and biases
+of our network as follows:
+
+``` python
+# Weights
+W2 = tf.Variable(initial_value = tf.random.normal(shape = [nl1, mnist_size], stddev = 0.5))
+W3 = tf.Variable(initial_value = tf.random.normal(shape = [nl2, nl2], stddev = 0.5))
+W4 = tf.Variable(initial_value = tf.random.normal(shape = [output_size, nl2], stddev = 0.5))
+
+# Biases
+b2 = tf.Variable(initial_value = tf.random.normal(shape = [nl1, 1], stddev = 0.5))
+b3 = tf.Variable(initial_value = tf.random.normal(shape = [nl2, 1], stddev = 0.5))
+b4 = tf.Variable(initial_value = tf.random.normal(shape = [output_size, 1], stddev = 0.5))
+```
+
+We now need a function to compute a forward pass for a given input. This function is given below:
+
+``` python
+def forward_pass(x):
+  a1 = x
+  a2 = tf.math.sigmoid((W2 @ a1) + b2)
+  a3 = tf.math.sigmoid((W3 @ a2) + b3)
+  a4 = tf.math.sigmoid((W4 @ a3) + b4)
+  return tf.reshape(a4, [output_size,])
+```
+
+The function above operates on a single input, but it will be necessary to be able to
+feed a batch of images through the network, so we write this function below:
+
+``` python
+def batch_forward_pass(x):
+  return tf.convert_to_tensor([forward_pass(tf.reshape(tf.convert_to_tensor(x_i, dtype = tf.float32),
+   [mnist_size, 1])) for x_i in x], dtype = tf.float32)
+```
+
+We now write a function to compute the loss for a given batch 
+
+``` python
+def loss_function(x, y):
+  return tf.math.reduce_mean(tf.math.reduce_sum(tf.math.square(x - y), 1))
+```
+
+The next function reveals one of the many powerful abstractions of TF.
+We will write a function to return the gradient of the loss function with 
+respect to each weight and bias as shown below:
+
+``` python
+def loss_grad(x, y):
+  y = tf.convert_to_tensor([tf.one_hot(y_i, output_size) for y_i in y], dtype = tf.float32)
+  with tf.GradientTape() as g:
+    g.watch([W2, W3, W4, b2, b3, b4])
+    outputs = batch_forward_pass(x)
+    loss = loss_function(outputs, y)
+  return g.gradient(loss, [W2, W3, W4, b2, b3, b4])
+```
+
+Now that we are able to compute the gradients, we will write a function to 
+perform a gradient descent update to the weights and biases:
+
+``` python
+def update_weights(x, y, learning_rate):
+  nabla_W2, nabla_W3, nabla_W4, nabla_b2, nabla_b3, nabla_b4 = loss_grad(x, y)
+  global W2, W3, W4, b2, b3, b4
+  W2 = W2 - learning_rate*nabla_W2
+  W3 = W3 - learning_rate*nabla_W3
+  W4 = W4 - learning_rate*nabla_W4
+  b2 = b2 - learning_rate*nabla_b2
+  b3 = b3 - learning_rate*nabla_b3
+  b4 = b4 - learning_rate*nabla_b4
+```
+
+Now, given the training data, we would like to split it into batches and then perform
+weight updates for each batch. In other words, we need a function to perform 
+a single epoch:
+
+``` python
+def single_epoch(train_data, train_labels, test_data, test_labels, learning_rate):
+  # Split into batches of size 32
+  n = len(train_labels)
+  batch_size = 32.0
+  shuffled_indices = np.arange(n)
+  np.random.shuffle(shuffled_indices)
+  batches = np.array_split(shuffled_indices, np.ceil(n/batch_size))
+  for batch in batches:
+    x_batch = train_data[batch]
+    y_batch = train_labels[batch]
+    update_weights(x_batch, y_batch, learning_rate)
+```
+
+With the above, we can easily write a function to train our network for a 
+specified number of epochs:
+
+``` python
+def train_model(train_data, train_labels, test_data, test_labels, epochs, learning_rate):
+  print("Initial test accuracy: {}".format(compute_accuracy(test_data, test_labels)))
+  for epoch in range(epochs):
+    single_epoch(train_data, train_labels, test_data, test_labels, learning_rate)
+    test_accuracy = compute_accuracy(test_data, test_labels)
+    print("Done with epoch {}/{}. Test accuracy: {}".format(epoch + 1, epochs, test_accuracy))
+```
+
+To monitor performance, we write a function to compute the accuracy:
+
+``` python
+def compute_accuracy(x, y):
+  predictions = tf.math.argmax(batch_forward_pass(x), axis = 1)
+  accuracy = tf.reduce_mean(tf.cast(tf.math.equal(predictions, y), tf.float32))
+  return accuracy
+```
+
+To begin training, we simply call the $\texttt{train_model}$ function:
+
+``` python
+train_model(train_images, train_labels, test_images, test_labels, 20, 0.1)
+```
+
+Putting all of this together, we get
+
+``` python
+import tensorflow as tf 
+from tensorflow import keras
+import numpy as np 
+
+# Creates an MLP with 2 hidden layers for MNIST
+# 728 -> nl1 -> nl2 -> 10
+mnist_size = 28*28
+nl1 = 32 
+nl2 = 32
+output_size = 10
+
+# Weights
+W2 = tf.Variable(initial_value = tf.random.normal(shape = [nl1, mnist_size], stddev = 0.5))
+W3 = tf.Variable(initial_value = tf.random.normal(shape = [nl2, nl2], stddev = 0.5))
+W4 = tf.Variable(initial_value = tf.random.normal(shape = [output_size, nl2], stddev = 0.5))
+
+# Biases
+b2 = tf.Variable(initial_value = tf.random.normal(shape = [nl1, 1], stddev = 0.5))
+b3 = tf.Variable(initial_value = tf.random.normal(shape = [nl2, 1], stddev = 0.5))
+b4 = tf.Variable(initial_value = tf.random.normal(shape = [output_size, 1], stddev = 0.5))
+
+# Computes a forward pass for the given input
+# Inputs:
+# - x: A 1d tensor. The value to pass through the network.
+# Outputs:
+# - The output of the network after passing x through it. Size is [output_size, 1]
+def forward_pass(x):
+  a1 = x
+  a2 = tf.math.sigmoid((W2 @ a1) + b2)
+  a3 = tf.math.sigmoid((W3 @ a2) + b3)
+  a4 = tf.math.sigmoid((W4 @ a3) + b4)
+  return tf.reshape(a4, [output_size,])
+
+# Computes a forward pass for multiple values
+# Inputs:
+# - x: A 2d tensor where each row represents a value to pass through the network.
+# Outputs:
+# - A matrix with the same number of rows as x and 10 columns. Each row represents the
+#   forward pass for the corresponding row of x
+def batch_forward_pass(x):
+  return tf.convert_to_tensor([forward_pass(tf.reshape(tf.convert_to_tensor(x_i, dtype = tf.float32),
+   [mnist_size, 1])) for x_i in x], dtype = tf.float32)
+
+# Computes the loss for input x and corresponding label y
+# Inputs:
+# - x: A 2d tensor where each row is a data point.
+# - y: A 1d tensor where the ith element corresponds to the true label of row i of x
+# Outputs:
+# - A scalar tensor representing the value of the loss function for the given
+#   input and output
+def loss_function(x, y):
+  return tf.math.reduce_mean(tf.math.reduce_sum(tf.math.square(x - y), 1))
+
+# Computes the gradient of the loss function for the given input/output pair
+# Inputs:
+# - x: A 2d tensor where each row is a data point.
+# - y: A 1d tensor where the ith element corresponds to the true label of row i of x
+# Outputs:
+# - A list where each element is the gradient of the loss function with respect
+#   to some model parameter. gradient list order is [W2, W3, W4, b2, b3, b4]
+def loss_grad(x, y):
+  y = tf.convert_to_tensor([tf.one_hot(y_i, output_size) for y_i in y], dtype = tf.float32)
+  with tf.GradientTape() as g:
+    g.watch([W2, W3, W4, b2, b3, b4])
+    outputs = batch_forward_pass(x)
+    loss = loss_function(outputs, y)
+  return g.gradient(loss, [W2, W3, W4, b2, b3, b4])
+
+# Updates the weights using gradient descent 
+# Inputs:
+# - x: A 2d tensor where each row is a data point.
+# - y: A 1d tensor where the ith element corresponds to the true label of row i of x
+# - learning_rate: A real number. The step-size in the gradient descent algrorithm
+def update_weights(x, y, learning_rate):
+  nabla_W2, nabla_W3, nabla_W4, nabla_b2, nabla_b3, nabla_b4 = loss_grad(x, y)
+  global W2, W3, W4, b2, b3, b4
+  W2 = W2 - learning_rate*nabla_W2
+  W3 = W3 - learning_rate*nabla_W3
+  W4 = W4 - learning_rate*nabla_W4
+  b2 = b2 - learning_rate*nabla_b2
+  b3 = b3 - learning_rate*nabla_b3
+  b4 = b4 - learning_rate*nabla_b4
+
+# Given an input, gets predictions and then computes accuracy
+# Inputs:
+# - x: A 2d tensor where each row is a data point.
+# - y: A 1d tensor where the ith element corresponds to the true label of row i of x
+# Outputs:
+# - A real number between 0 and 1 representing the proportion of predictions that were correct
+def compute_accuracy(x, y):
+  predictions = tf.math.argmax(batch_forward_pass(x), axis = 1)
+  accuracy = tf.reduce_mean(tf.cast(tf.math.equal(predictions, y), tf.float32))
+  return accuracy
+
+# Splits training data into batches and performs gradient descent step for each batch
+# Inputs:
+# - train_data: A numpy matrix containing the training data
+# - train_labels: A numpy vector containing the labels for the training data
+# - test_data: A numpy matrix containing the data used for testing
+# - test_labels: A numpy vector containing the labels for the test data
+# - learning_rate: The step-size used in the gradient descent algorithm
+def single_epoch(train_data, train_labels, test_data, test_labels, learning_rate):
+  # Split into batches of size 32
+  n = len(train_labels)
+  batch_size = 32.0
+  shuffled_indices = np.arange(n)
+  np.random.shuffle(shuffled_indices)
+  batches = np.array_split(shuffled_indices, np.ceil(n/batch_size))
+  for batch in batches:
+    x_batch = train_data[batch]
+    y_batch = train_labels[batch]
+    update_weights(x_batch, y_batch, learning_rate)
+
+# Performs the training of the model for the specified number of epochs
+# Inputs:
+# - train_data: A numpy matrix containing the training data
+# - train_labels: A numpy vector containing the labels for the training data
+# - test_data: A numpy matrix containing the data used for testing
+# - test_labels: A numpy vector containing the labels for the test data
+# - epochs: The number of epochs to go through while training
+# - learning_rate: The step-size used in the gradient descent algorithm
+def train_model(train_data, train_labels, test_data, test_labels, epochs, learning_rate):
+  print("Initial test accuracy: {}".format(compute_accuracy(test_data, test_labels)))
+  for epoch in range(epochs):
+    single_epoch(train_data, train_labels, test_data, test_labels, learning_rate)
+    test_accuracy = compute_accuracy(test_data, test_labels)
+    print("Done with epoch {}/{}. Test accuracy: {}".format(epoch + 1, epochs, test_accuracy))
+
+# Load MNIST data
+mnist = keras.datasets.mnist
+(train_images, train_labels), (test_images, test_labels) = mnist.load_data()
+train_images, test_images = train_images/255.0, test_images/255.0
+train_model(train_images, train_labels, test_images, test_labels, 20, 0.1)
+```
+
+The code above favors readability over efficiency and hence runs a bit slow. However, after 20 epochs,
+we see that we can obtain an accuracy over 90%.
+
+::: .exercise
+**Exercise**  
+
+Modify the code above so that the network can have an arbitrary number of layers
+of arbitrary sizes.
+:::
+
+### TF MNIST: V2
+
+Here we use Keras to build the same model above:
+
+``` python
+import tensorflow as tf 
+from tensorflow import keras
+import numpy as np 
+
+# Load MNIST data
+mnist = keras.datasets.mnist
+(train_images, train_labels), (test_images, test_labels) = mnist.load_data()
+train_images, test_images = train_images/255.0, test_images/255.0
+
+# Define model
+model = tf.keras.models.Sequential([
+  tf.keras.layers.Flatten(input_shape = (28,28)),
+  tf.keras.layers.Dense(32, activation = "sigmoid"),
+  tf.keras.layers.Dense(32, activation = "sigmoid"),
+  tf.keras.layers.Dense(10, activation = "sigmoid"),
+  ])
+
+# Define model loss function and evaluation metrics
+model.compile(optimizer = "adam",
+  loss = "sparse_categorical_crossentropy",
+  metrics = ["accuracy"])
+
+# Train model
+print("Training...")
+model.fit(train_images, train_labels, epochs = 20)
+
+print("\nDone training.\n")
+
+print("Testing...")
+model.evaluate(test_images, test_labels)
+```
