@@ -644,7 +644,7 @@ Writing the quadratic approximation of $f$ in the form $\frac{1}{2}(\lambda\_1\t
 
 {.text-center} `a =`${a}{a|1|-5,5,0.1}
 
-    x-coordinate-system.var(x-axis="-10|10|1" y-axis="-10|10|1")
+    x-coordinate-system(width=600 height=400 x-axis="-10,10,1" y-axis="-10,10,1")
 
 If $\lambda\_1$ is negative, then the graph of $f$ is shaped like an up-turned parabola along the $\mathbf{v}\_1$ axis. If it's positive, then the graph of $f$ is shaped like a down-turned parabola along that axis. 
 
@@ -708,7 +708,7 @@ Suppose we want to use a line to describe the relationship between the $x$-value
 
 {.text-center} `y =`${m}{m|1|-5,5,0.1} `x+`${b}{b|0|-5,5,0.1}
 
-    x-coordinate-system.var(x-axis="-10|10|1" y-axis="-10|10|1")
+    x-coordinate-system(width=600 height=400 x-axis="-10,10,1" y-axis="-10,10,1")
 
 To identify which line which does the "best" job, we need to quantify how well a given line fits the points. The most common way to do this is to measure the sum of the squares of the vertical distances from each point to the line. We seek to make that sum of squared distances as small as possible. 
 

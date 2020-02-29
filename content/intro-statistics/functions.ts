@@ -87,9 +87,9 @@ export function gaussiandensity_mle($step: Step) {
 
   const points = xs.map(p => new Point(p, 0));
 
-  $step.model.watch(s => {
+  $step.model.watch((s: any) => {
     const fn = pdf(s.μ, s.σ);
-    s.$step.model.set('LL', xs.map(fn).map(Math.log).reduce((a, b) => a + b));
+    s.$step.model.LL = xs.map(fn).map(Math.log).reduce((a, b) => a + b);
     //$chart.mathBounds = new Bounds(55, 75, 0, 0.5);
     $chart.setFunctions(fn);
     $chart.drawPoints(points);
@@ -108,9 +108,9 @@ export function mleCaution($step: Step) {
 
   const points = xs.map(p => new Point(p, 0));
 
-  $step.model.watch(s => {
+  $step.model.watch((s: any) => {
     const fn = twoStep(s.a, s.b, s.c, s.d, s.γ);
-    s.$step.model.set('likelihood', xs.map(fn).reduce((a, b) => a * b));
+    s.$step.model.likelihood = xs.map(fn).reduce((a, b) => a * b);
     $chart.setFunctions(fn);
     $chart.drawPoints(points);
   });

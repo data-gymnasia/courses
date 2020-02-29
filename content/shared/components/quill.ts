@@ -38,7 +38,7 @@ export class QuillComponent extends CustomElementView {
   }
 
   setup() {
-    const $step = this.getModel().$step as Step|undefined;
+    const $step = this.getParentModel().$step as Step|undefined;
 
     this.quill = new window.Quill($N('div', {}, this)._el, {
       modules: {

@@ -16,14 +16,13 @@ export function logisticAnimationExercise($step: Step) {
   const points0 = zeros.map(p => new Point(p, 0));
   const points1 = ones.map(p => new Point(p, 1));
 
-  $step.model.watch(s => {
+  $step.model.watch((s: any) => {
     const fn = sigmoid(s.α, s.β);
     var onesloss = ones.map(x => Math.log(1 / fn(x)))
         .reduce((a, b) => a + b, 0);
     var zerosloss = zeros.map(x => Math.log(1 / (1 - fn(x))))
         .reduce((a, b) => a + b, 0);
-    s.$step.model.set('loss',
-        Math.round(10 ** 3 * (onesloss + zerosloss)) / 10 ** 3);
+    s.$step.model.loss = Math.round(10 ** 3 * (onesloss + zerosloss)) / 10 ** 3;
     $chart.setFunctions(fn);
     $chart.drawPoints(points0);
     $chart.drawPoints(points1);

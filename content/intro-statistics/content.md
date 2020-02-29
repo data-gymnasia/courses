@@ -129,7 +129,7 @@ Use the sliders to find the μ and σ values for which the normal distribution $
 
 {.text-center} `σ =`${σ}{σ|1|1,8,0.2}
 
-    x-coordinate-system(x-axis="55|100|5" y-axis="0|0.5|0.1")
+    x-coordinate-system(width=600 height=400 x-axis="55,100,5" y-axis="0,0.5,0.1")
     
 The best μ value is [[66±2]], and the best σ value is [[3.69±0.3]]. 
 :::
@@ -304,7 +304,7 @@ We define $D\_\lambda(u) = \frac{1}{\lambda} D\left(\frac{u}{\lambda}\right)$; T
 
 {.text-center} `λ =`${λ}{λ|1|0.3,4,0.05}
 
-    x-coordinate-system(x-axis="-3|3|0.5" y-axis="0|3|0.5")
+    x-coordinate-system(width=600 height=400 x-axis="-3,3,0.5" y-axis="0,3,0.5")
 
 [Continue](btn:next)
 
@@ -446,7 +446,7 @@ Experiment with the sliders below to adjust the bandwidth $\lambda$ and the omit
 
 {.text-center} `i = `${i}{i|1|1,7,1}
 
-    x-coordinate-system(x-axis="-5|10|2" y-axis="0|0.5|0.1")
+    x-coordinate-system(width=600 height=400 x-axis="-5,10,2" y-axis="0,0.5,0.1")
 
 The density value at the omitted point is small when $\lambda$ is too small because [[the mass is too concentrated at other points|the mass is too spread out]], and the value is small when $\lambda$ is too large because [[the mass is too spread out|the mass is zero everywhere]]. 
 :::
@@ -1222,7 +1222,7 @@ Adjust the knobs to get the goodness score as high as possible (hint: you can ge
 
 {.text-center} log likelihood = ${Math.round(100*LL)/100}
 
-    x-coordinate-system(x-axis="55|100|5" y-axis="0|0.3|0.1")
+    x-coordinate-system(width=600 height=400 x-axis="55,100,5" y-axis="0,0.3,0.1")
     
 The best μ value is [[66±0.4]], and the best σ value is [[3.7±0.2]]. 
 
@@ -1458,7 +1458,7 @@ where $a < b < c < d$, and where $\gamma$ and $\delta$ are nonnegative real numb
 
 {.text-center} `likelihood` = ${likelihood}
 
-    x-coordinate-system(x-axis="-4|5|1" y-axis="0|13|1")
+    x-coordinate-system(width=600 height=400 x-axis="-4,5,1" y-axis="0,13,1")
 
     x-quill
 
