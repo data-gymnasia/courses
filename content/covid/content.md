@@ -116,11 +116,11 @@ The code block below computes the eventual number of recovered individuals over 
 
     pre(julia-executable)
       | 
-      | population_size = 1000
-      | infection_probability = 1.0/population_size
-      | n_timesteps = 20
-      | n_recovered(n, P, T) = sum(SIR_simulation(n, P, T)[:, end] .== "recovered")
-      | histogram([n_recovered() for _ in 1:5_000], xlims = (0, 1000), 
+      | n = population_size = 1000
+      | p = infection_probability = 1.0/population_size
+      | T = n_timesteps = 20
+      | n_recovered(n, p, T) = sum(SIR_simulation(n, p, T)[:, end] .== "recovered")
+      | histogram([n_recovered(n, p, T) for _ in 1:5_000], xlims = (0, 1000), 
       |           nbins = 100, label = "", xlabel = "final number recovered",
       |           ylabel = "number of runs")
       
@@ -203,7 +203,7 @@ Even for the simple SIR model, we can see how flattening the curve is directly r
     pre(julia-executable)
       | 
       | function infection_curve!(R₀)
-      |     population_size = 1_000_000
+      |     population_size = 100_000
       |     infection_probability = R₀/population_size
       |     n_timesteps = 30
       |     statuses = SIR_simulation(population_size, infection_probability, n_timesteps)
@@ -211,9 +211,10 @@ Even for the simple SIR model, we can see how flattening the curve is directly r
       |             ylabel = "number infected", ylims = (0,population_size))
       | end
       | 
-      | using Random; Random.seed!(123)
+      | using Random; Random.seed!(1)
       | plot()
       | infection_curve!(2.0)
       | infection_curve!(3.0)
 
 This graph is not very smooth compared to the ones you've seen online. The reason for this is that the **generational time**, the typical time between getting infected and infecting others, is 1 for this model. We could modify the model so that each infectious individual remains infectious for a larger number of time steps (decreasing $p$ by the same factor to keep the same $R\_0$ value), and in that case the graph would look very similar to ones you've seen online.
+
