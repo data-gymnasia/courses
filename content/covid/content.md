@@ -98,7 +98,7 @@ Use the code block below to simulate several runs of an SIR model. Why does the 
       | population_size = 100
       | infection_probability = 2 / population_size
       | statuses = SIR_simulation(population_size, infection_probability)
-      | heatmap(statuses .== "infectious")
+      | heatmap(statuses .== "recovered")
       | 
 
     figure
@@ -355,8 +355,21 @@ Let's arrange our individuals into a square grid, and we'll let each person tran
 
     pre(julia-executable)
       | using Plots
+      |
+      | function infection_plot(statuses)
+      |     p = plot(ratio = 1, legend = false, axis = false, grid = false)
+      |     for (status, color) in (("susceptible", "gray"), 
+      |                             ("infectious", "tomato"), 
+      |                             ("recovered", "darkgreen"))
+      |         pts = [Tuple(i) for i in CartesianIndices(statuses) if statuses[i] == status]
+      |         if length(pts) > 0
+      |             scatter!(p, pts, color = color, markersize = 6)
+      |         end
+      |     end
+      |     p
+      | end
       | 
-      | "Return the four nodes adjacent. 
+      | "Return the four nodes adjacent to (i, j)"
       | function neighbors(i, j, sidelength, barrier = Set())
       |     filter(k -> all(1 .≤ k .≤ sidelength) && k ∉ barrier, [(i+1, j), (i-1, j), (i, j+1), (i, j-1)])
       | end
