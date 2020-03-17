@@ -151,10 +151,21 @@ bayesian-inference-and-graphical-models:
   title: Bayesian Inference and Graphical Models
   description: Bayesian vs frequentist statistics, conjugate priors, Markov Chain Monte Carlo, Bayesian networks, Expectation-Maximization, and Probabilistic Programming.
   color: 4d64b3
-  next: sets-and-functions
+  next: covid
   hideIcon: true
   branding: brown
   tile: /images/third-party/og-tile.jpg
   author:
     name: Samuel S. Watson and Elvis Nunez
+    link: http://sswatson.com
+    
+covid:
+  title: Epidemic Modeling
+  description: Exploration of simple models for the spread of infection in a population.
+  next: sets-and-functions
+  hideIcon: true
+  branding: brown
+  title: /images/third-party/og-tile.jpg
+  author:
+    name: Samuel S. Watson
     link: http://sswatson.com
