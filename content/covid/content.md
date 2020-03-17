@@ -70,7 +70,7 @@ Use the code block below to simulate several runs of an SIR model. Why does the 
 :::
 
     pre(julia-executable)
-      | using Plots, Distributions
+      | using Plots
       | import Base.Iterators: countfrom
       | 
       | function SIR_simulation(population_size, infection_probability)
@@ -124,6 +124,8 @@ The code block below computes the eventual number of recovered individuals over 
 :::
 
     pre(julia-executable)
+      | using Plots
+      | include("data-gymnasia/sir-simulation.jl")
       | 
       | n = population_size = 1000
       | p = infection_probability = 1.0/population_size
@@ -219,6 +221,8 @@ You've probably seen graphs labeled *Flattening the Curve* on social media. The 
 Even for the simple SIR model, we can see how flattening the curve is directly related to $R_0$ through simulation:
 
     pre(julia-executable)
+      | using Plots
+      | include("data-gymnasia/sir-simulation.jl")
       | 
       | function infection_curve!(R₀)
       |     population_size = 100_000
