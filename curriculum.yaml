@@ -9,7 +9,6 @@ sets-and-functions:
   next: programming-in-python
   hideIcon: true
   branding: brown
-  tile: /images/third-party/og-tile.jpg
   author:
     name: Samuel S. Watson
     link: http://sswatson.com
@@ -21,7 +20,6 @@ programming-in-python:
   next: linear-algebra
   hideIcon: true
   branding: brown
-  tile: /images/third-party/og-tile.jpg
   locales: [en, de]
   author:
     name: Samuel S. Watson
@@ -34,7 +32,6 @@ linear-algebra:
   next: multivariable-calculus
   hideIcon: true
   branding: brown
-  tile: /images/third-party/og-tile.jpg
   author:
     name: Samuel S. Watson
     link: http://sswatson.com
@@ -46,7 +43,6 @@ multivariable-calculus:
   next: intro-probability
   hideIcon: true
   branding: brown
-  tile: /images/third-party/og-tile.jpg
   author:
     name: Samuel S. Watson
     link: http://sswatson.com
@@ -58,7 +54,6 @@ intro-probability:
   next: data-science-utilities
   hideIcon: true
   branding: brown
-  tile: /images/third-party/og-tile.jpg
   author:
     name: Samuel S. Watson
     link: http://sswatson.com
@@ -70,7 +65,6 @@ data-science-utilities:
   next: data-and-society
   hideIcon: true
   branding: brown
-  tile: /images/third-party/og-tile.jpg
   author:
     name: Samuel S. Watson
     link: http://sswatson.com
@@ -82,7 +76,6 @@ data-and-society:
   next: intro-data-pipeline
   hideIcon: true
   branding: brown
-  tile: /images/third-party/og-tile.jpg
   author:
     name: Sarah M. Brown
     link: http://sarahmbrown.org
@@ -94,7 +87,6 @@ intro-data-pipeline:
   next: programming-in-julia
   hideIcon: true
   branding: brown
-  tile: /images/third-party/og-tile.jpg
   author:
     name: Samuel S. Watson
     link: http://sswatson.com
@@ -106,7 +98,6 @@ programming-in-julia:
   next: numerical-computing
   hideIcon: true
   branding: brown
-  tile: /images/third-party/og-tile.jpg
   author:
     name: Samuel S. Watson
     link: http://sswatson.com
@@ -118,7 +109,6 @@ numerical-computing:
   next: intro-statistics
   hideIcon: true
   branding: brown
-  tile: /images/third-party/og-tile.jpg
   author:
     name: Samuel S. Watson
     link: http://sswatson.com
@@ -130,7 +120,6 @@ intro-statistics:
   next: sets-and-functions
   hideIcon: true
   branding: brown
-  tile: /images/third-party/og-tile.jpg
   author:
     name: Samuel S. Watson
     link: http://sswatson.com
@@ -142,7 +131,6 @@ machine-learning:
   next: bayesian-inference-and-graphical-models
   hideIcon: true
   branding: brown
-  tile: /images/third-party/og-tile.jpg
   author:
     name: Samuel S. Watson
     link: http://sswatson.com
@@ -154,18 +142,17 @@ bayesian-inference-and-graphical-models:
   next: covid
   hideIcon: true
   branding: brown
-  tile: /images/third-party/og-tile.jpg
   author:
     name: Samuel S. Watson and Elvis Nunez
     link: http://sswatson.com
-    
+
 covid:
   title: Epidemic Modeling
   description: Exploration of simple models for the spread of infection in a population.
   next: sets-and-functions
+  color: 5d2b2f
   hideIcon: true
   branding: brown
-  title: /images/third-party/og-tile.jpg
   author:
     name: Samuel S. Watson
     link: http://sswatson.com
