@@ -1,6 +1,6 @@
 {
   "name": "data-gymnasia",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Data Gymnasia courses",
   "homepage": "http://datagymnasia.com",
   "repository": "data-gymnasia/courses",
@@ -13,13 +13,13 @@
     "node": ">=8.0.0"
   },
   "dependencies": {
-    "@mathigon/boost": "^0.4.5",
-    "@mathigon/core": "^0.3.5",
-    "@mathigon/fermat": "^0.3.5",
-    "@mathigon/hilbert": "^0.3.5"
+    "@mathigon/boost": "^0.4.7",
+    "@mathigon/core": "^0.3.6",
+    "@mathigon/fermat": "^0.3.6",
+    "@mathigon/hilbert": "^0.3.6"
   },
   "devDependencies": {
-    "@mathigon/parser": "^0.4.4",
+    "@mathigon/parser": "^0.4.5",
     "autoprefixer": "^9.7.1",
     "emojione-assets": "^3.1.1",
     "express": "^4.16.4",
