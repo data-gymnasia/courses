@@ -2775,7 +2775,7 @@ import yagmail
 yagmail.register('mygmailusername')
 ```
 
-and enter the password for the Gmail account in the resulting password prompt. This stores the password in the operating system keychain so you don't have to keep entering it. (Note: if you're using dual authentication on your Google account, you'll need to generate and enter a special app password instead of your regular password; see [this info page](https://support.google.com/accounts/answer/185833?p=InvalidSecondFactor) for instructions.)
+and enter the password for the Gmail account in the resulting password prompt. This stores the password in the operating system keychain so you don't have to keep entering it. (Note: if you're using dual authentication on your Google account, you'll need to generate and enter a special app password instead of your regular password; see [this info page](https://support.google.com/accounts/answer/185833?p=InvalidSecondFactor) for instructions. I found that I also needed to be logged into my Google account on my system, which is in System Preferences > Internet Accounts on macOS.)
 
 [Continue](btn:next)
 
