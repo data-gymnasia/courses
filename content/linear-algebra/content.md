@@ -489,7 +489,7 @@ At least one of the weights must be nonzero, so we can solve this equation for a
 > id: vector-spaces
 ## Vector Spaces
 
-Spans of lists of vectors are so important that we give them a special name: a **vector space** in $\mathbf{R}^n$ is a nonempty set of vectors in $\mathbb{R}^n$ which is closed under the vector space operations. *Closed* in this context means that if two vectors in the set, the any linear combination of those vectors is also in the set. 
+Spans of lists of vectors are so important that we give them a special name: a **vector space** in $\mathbf{R}^n$ is a nonempty set of vectors in $\mathbb{R}^n$ which is closed under the vector space operations. *Closed* in this context means that if two vectors are in the set, then any linear combination of those vectors is also in the set. 
 
 If $V$ and $W$ are vector spaces and $V \subset W$, then $V$ is called a **subspace** of $W$. 
 
