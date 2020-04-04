@@ -544,10 +544,19 @@ Hint: make a new column to group by.
 ---
 > id: step-other-functions
 
-We conclude this section by noting that the other four operations (filter, sort, select, and transform) can be applied to grouped data frames as well. However, only selection works directly on grouped data frames. For the others, the `{py} apply` method is used to operate group-by-group. For example, we can sort by petal length within species as follows:
+We conclude this section by noting that the other four operations (filter, sort, select, and transform) can be applied to grouped data frames as well. However, only selection works directly on grouped data frames. For the others, we use the `{py} apply` method  of the grouped data frame object to operate group-by-group and collect the results into a single data frame. 
+
+For example, we can sort by petal length within species as follows:
 
     pre(python-executable)
       | iris.groupby('Species').apply(lambda d: d.sort_values('Petal.Length'))
+
+You'll notice in data frame returned above that the row indices are retained from the original data frame. Actually, the group values are also incorporated into the indexing scheme—this is advanced feature of Pandas called a *multi-indexing*. The `{py} reset_index` method is useful for dropping this extra structure and simply re-indexing the rows from 0. We need to supply the value `{py} True` to the keyword argument `{py} drop`, because otherwise the `{py} reset_index` method will try to keep the old indices around as new columns, and that will fail since we already have a `{py} Species` column:
+
+    pre(python-executable)
+      | (iris.groupby('Species')
+      |      .apply(lambda d: d.sort_values('Petal.Length'))
+      |      .reset_index(drop = True))
 
 ---
 > id: visualize
