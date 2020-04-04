@@ -312,7 +312,7 @@ Sort the `{py} 'Boston'` data set in decreasing order of the value in the first 
     x-quill
     
 ---
-> id: filter-exercise-solution
+> id: sort-exercise-solution
 
 *Solution*. We can inspect `{py} columns` or look at the data frame's head to see that the first column is `{py} 'crim'`. Then we sort:
 
@@ -359,7 +359,7 @@ Select the columns in the Boston data frame which contain floating point numbers
     x-quill
     
 ---
-> id: filter-exercise-solution
+> id: select-exercise-solution
 
 *Solution*. We inspect the data frame to find that the columns which are not floats are `{py} 'chas'`, `{py} rad`, and `{py} 'tax'`. So we use drop instead of selecting: 
 
@@ -406,7 +406,7 @@ For each observation in the `{py} 'toothpaste'` data set, find the ratio of the 
     x-quill
     
 ---
-> id: filter-exercise-solution
+> id: assign-exercise-solution
 
 *Solution*. Since the formula is quite involved, we use an anonymous function: 
 
@@ -460,7 +460,7 @@ Find the range (the difference between max and min) for each of the four quantit
     x-quill
     
 ---
-> id: filter-exercise-solution
+> id: range-exercise-solution
 
 *Solution*. We have to drop the categorical column first since we can't compute a range for that. 
 
