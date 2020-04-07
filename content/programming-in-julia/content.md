@@ -916,7 +916,7 @@ In the following block of code, `{jl} s` is [[a parameter|an argument]], while `
 
 ``` julia
 function duplicate(s)
-    s + s
+    s * s
 end
 
 duplicate("hello")
