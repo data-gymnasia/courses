@@ -639,7 +639,7 @@ Therefore, $|S \times T| = 400$.
 
 ::: .exercise
 **Exercise**  
-Select most appropriate set theory term for each of the following real-world scenarios.
+Select the most appropriate set theory term for each of the following real-world scenarios.
 
 * You have a list of patients which have a particular risk factor and a second
   list of patients who have another risk factor. You want to identify the

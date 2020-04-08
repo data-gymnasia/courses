@@ -637,7 +637,7 @@ Given a statistical functional, our goal will be to use a list of independent ob
 An **estimator** $\widehat{\theta}$ is a random variable which is a function of $n$ i.i.d.\ random variables.
 :::
 
-For example, the random variable $X_1 + \cdots + X_n$ is an estimator, if $X_1, \ldots, X_n$ are independent and identically distributed. Let's develop a general approach for defining estimators. We begin by observing a large independent sample from a distribution gives us direct information information about the CDF of the distribution. 
+For example, the random variable $X_1 + \cdots + X_n$ is an estimator, if $X_1, \ldots, X_n$ are independent and identically distributed. Let's develop a general approach for defining estimators. We begin by observing a large independent sample from a distribution gives us direct information about the CDF of the distribution. 
 
 ::: .example
 **Example**  

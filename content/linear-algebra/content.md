@@ -1491,7 +1491,7 @@ Find the matrix corresponding to the linear transformation $T([x,y,z]) = [z,x,y]
 
 ::: .exercise
 **Exercise**  
-Suppose that $A$ is an $m\times n$ matrix and $\mathbf{b}$ is a vector in $\mathbb{R}^m$ with the property that the equation $A\mathbf{x} = \mathbf{b}$ has at least one solution $\mathbf{x} \in \mathbb{R}^n$. Show that the solution is unique if and only the columns of $A$ are linearly independent. 
+Suppose that $A$ is an $m\times n$ matrix and $\mathbf{b}$ is a vector in $\mathbb{R}^m$ with the property that the equation $A\mathbf{x} = \mathbf{b}$ has at least one solution $\mathbf{x} \in \mathbb{R}^n$. Show that the solution is unique if and only if the columns of $A$ are linearly independent. 
 :::
 
 The intuition is that $\mathbf{x}$ provides a recipe for how much of each column of $A$ to use to get $\mathbf{b}$. If the columns of $A$ are linearly dependent, then we can swap out a unit of one of the vectors for some combination of others. This swappability shows that the solution is nonunique. 
