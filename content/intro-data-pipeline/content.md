@@ -162,8 +162,8 @@ Use the `{py} pydataset` package to load the `{py} 'Boston'` data set. Select al
 [Continue](btn:next)
 
 ---
-> id: five-verbs
-### The five verbs of data manipulation
+> id: six-verbs
+### The six verbs of data manipulation
 
 Although data frames support many transformations, we will follow the prominent data scientist [Hadley Wickham](gloss:hadley) in suggesting the following six as fundamental. They can be combined to cover most of your data manipulation needs, so you can get up and running quickly in any data manipulation framework by learning how these actions are performed and composed. 
 
@@ -214,9 +214,34 @@ Although data frames support many transformations, we will follow the prominent 
 ---
 > id: step-verb-item-group-explanation
 
-The grouping operation is different from the others because it outputs a **grouped data frame** (which can be visualized as a stack of data frames). The other operations can be applied group-by-group. 
+The grouping operation is different from the others because it outputs a **grouped data frame** object, which can be visualized as a stack of data frames. Here's how the popular data table product *Airtable* presents grouped data frames (using some of the rows from the iris data set above, grouped on species):
+
+<iframe class="airtable-embed" src="https://airtable.com/embed/shrc2wjVuNKqz7QJJ?backgroundColor=cyan" frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
+
+The other operations can be applied group-by-group. 
 
 [Continue](btn:next)
+
+::: .exercise
+**Exercise**  
+Experiment with the interactive table below to practice some of the operations above. You might want to click the "View larger version" icon in the bottom right corner to open the table in a new browser tab. 
+
+1. Use the **Filter** button to select only those flowers whose sepal length is less than 5.0. 
+
+  There are [[22]] such flowers in the data frame (note: the number of rows can be seen in the bottom left corner of the interactive table).
+2. Use the **Sort** button to sort by sepal length and then by sepal width (this means that ties in sepal length are broken by looking at the sepal width value).
+
+  The smallest sepal length value is [[4.3]].
+3. Use the **Hide fields** button to select only the petal-related and species columns.
+4. Remove the sorts and filters (by clicking on those buttons again and then using the small x by each sort or filter), and then use the **Group** button to group the data frame by species. 
+
+  There are [[50]] flowers of each species in the data frame.
+5. Click the small downward pointing triangle under the Petal Length column in the Setosa group (where it originally says "Sum 73.1") to change the aggregation function to "Average". Then click the downward pointing triangle to the left of the "setosa" icon to collapse that group. Do the same for the other two groups. 
+
+  The species with the largest average petal length is [[virginica|setosa|versicolor]].
+:::
+
+<iframe class="airtable-embed" src="https://airtable.com/embed/shrUtQZE2mQanv9MC?backgroundColor=cyan&viewControls=on" frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
 
 ---
 > id: filter-verb
@@ -505,7 +530,16 @@ and `{py} 'XYZ Widgets'` to
 
 <table border="0" class="dataframe">  <thead>    <tr style="text-align: right;">      <th></th>      <th>Customer name</th>      <th>Transaction amount</th>    </tr>  </thead>  <tbody>    <tr>      <th>2</th>      <td>XYZ Widgets</td>      <td>35.55</td>    </tr>    <tr>      <th>4</th>      <td>XYZ Widgets</td>      <td>34.78</td>    </tr>  </tbody></table>
 
-The `{py} agg` method of `{py} DataFrameGroupBy` object operates on each each of these data frames to produce a row, and these rows are collected into a new data frame. The row index for this output data frame comes from the keys of the dictionary-like `{py} DataFrameGroupBy` object. 
+The `{py} agg` method of `{py} DataFrameGroupBy` object operates on each each of these data frames to produce a single row, and these rows are collected into a new data frame. The row index for this output data frame comes from the keys of the dictionary-like `{py} DataFrameGroupBy` object. 
+
+::: .exercise
+**Exercise**  
+Use the interactive table below to perform the same aggregation operation described above (in other words, find the sum of the transaction amounts for each company).
+:::
+
+<center>
+  <iframe class="airtable-embed" src="https://airtable.com/embed/shrzoImJZEKreaxwn?backgroundColor=cyan&viewControls=on" frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
+</center>
 
 [Continue](btn:next)
 

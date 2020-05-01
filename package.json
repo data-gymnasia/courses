@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@mathigon/parser": "^0.4.5",
-    "autoprefixer": "^9.7.1",
+    "autoprefixer": "^9.7.6",
     "emojione-assets": "^3.1.1",
     "express": "^4.16.4",
     "express-validator": "^5.3.1",
@@ -30,11 +30,11 @@
     "gulp-postcss": "^8.0.0",
     "gulp-rename": "^1.4.0",
     "pug": "^2.0.3",
-    "rollup": "^1.27.0",
+    "rollup": "^1.32.1",
     "rollup-plugin-node-resolve": "^4.0.0",
     "rollup-plugin-typescript": "^1.0.1",
-    "tslib": "^1.10.0",
-    "typescript": "^3.7.2",
+    "tslib": "^1.11.1",
+    "typescript": "^3.8.3",
     "yamljs": "^0.3.0"
   }
 }
