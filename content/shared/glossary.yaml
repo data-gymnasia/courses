@@ -412,6 +412,25 @@ bernoulli:
   text: |
     The Bernoulli distribution with parameter $p \in [0,1]$ is the distribution which assigns mass $p$ to 1 and mass $1-p$ to 0. When $p = 1/2$, we call this distribution the *fair coin flip distribution*.
 
+measure:
+  title: Probability Measure
+  text: |
+    A **probability measure** (or *probability distribution*) puts one of unit probability mass on the number line. 
+    
+    The mass might be concentrated at individual points, in which case the measure is specified by a *probability mass function*. For example, a measure might put a mass of 1/10 at each of the points $\\{1, 2, \\ldots, 10\\}$.
+    
+    Alternatively, the mass might be spread out over an interval, in which case the measure is specified by a *probability density function*. For example, a measure might spread the mass out uniformly over $[0,10]$, with a density of 1/10 at each point.
+    
+poisson:
+  title: Poisson Distribution
+  text: |
+    The **Poisson distribution** with parameter $\lambda$ is the probability measure on $\\{0, 1, 2, \\ldots\\}$ with probability mass function  $m_\\lambda(k) = \\frac{\\mathrm{e}^{-\\lambda}\\lambda^k}{k!}$
+    
+    The Poisson distribution appears in many real-life phenomena, because it approximately describes the number of successes in a large number of independent random trials with a small probability of success for each trial. The parameter $\\lambda$ represents the product of the success probability and the number of trials. 
+    
+    For example, the number of deaths by horse kick in the Prussian army cavalry corps was approximately Poisson distributed: there were many soldiers, and each had a small probability of being fatally kicked by a horse. 
+  image: poisson.svg
+
 traverse:
   title: Traverse
   text: |
@@ -821,3 +840,44 @@ autodiff:
     *Automatic differentiation* is a technique for efficiently and accurately computing numerical derivatives of functions expressed in the form of code. The idea is to substitute into the function a two-field object which uses the chain rule to simultaneously track the value *and* the derivative at that value as each intermediate calculation is performed. 
     
     An autodiff system needs to know how to compute derivatives for any basic function that might be used inside the body of the function being differentiated.
+    
+host:
+  title: Host cell
+  text: A **host** is an organism which is infected by a virus.
+  
+RNA:
+  title: RNA
+  text: Ribonucleic acid. In all known organisms and many viruses, genetic information is encoded in *DNA*, while RNA serves to mediate the synthesis of proteins. However, in some viruses (including SARS-CoV-2), genetic information is encoded in RNA.
+
+viral-envelope:
+  title: Viral envelope
+  text: For most viruses, the structure of a virion includes a protective outer layer called a **viral envelope**. The envelope fuses with the host cell membrane to allow the genetic material to enter the host cell and infect it.
+  
+virus-alive:
+  title: Virus alive
+  text: We say that a virus is active or inactive, rather than alive or dead, because viruses are not typically considered to be living things (because they lack characteristics typically included in the definition of *life*.)
+  
+directed-graph:
+  title: Directed Graph
+  text: A **directed graph** consists of a collection of points together with arrows drawn between them.
+  image: directed-graph.svg
+  
+antibody:
+  title: Antibody
+  text: An antibody is a Y-shaped protein produced by the body to neutralize viruses (Image credit: [Volker Brinkmann / CC BY](https://upload.wikimedia.org/wikipedia/commons/f/f2/Neutrophil_with_anthrax_copy.jpg))
+  image: antibody.jpg
+  
+strain:
+  title: Strain
+  text: A **strain** of a virus is a genetic variant. For example, flu shots target particular strains of the influenza virus. If you are exposed to a different strain of the flu, the shot might not protect you.
+  
+herd-immunity:
+  title: Herd Immunity
+  text: If a high enough proportion of the population is immune to a particular infectious disease, then the disease can't spread enough to sustain itself. This is called *herd immunity*.
+  
+law-of-large-numbers:
+  title: Law of Large Numbers
+  text: |
+    The **law of large numbers** says that the average of a large number of independent, identically distrbuted random variables is likely to be approximately equal to the expected value of the random variables' common distribution. (More precisely, the average converges to the expected value in probability as the number of random variables being averaged goes to infinity.)
+    
+    For example, if we flip a fair coin 1000 times, the number of heads is close to 500 with high probability.
