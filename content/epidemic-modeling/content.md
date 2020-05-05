@@ -116,6 +116,8 @@ Then adjust the values in the definition of the function `{jl} sim` to start wit
 (b) If $\lambda$ is on the larger side, the number of infectious persons [[usually|always]] grows eventually, while if $\lambda$ is on the smaller side, the number of infected persons [[always|usually]] decays eventually.
 :::
 
+(Note: the executable code cells are provided here for convenience, but if you have difficulty seeing the plots, or if you'd prefer a notebook interface, you can [launch a Binder notebook with one click](https://mybinder.org/v2/gh/data-gymnasia/julia-binder/master)).
+
     pre(julia-executable)
       | using Plots, Distributions
       | function galton_watson(n_generations; initial_population = 1, λ = 2)
