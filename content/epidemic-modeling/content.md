@@ -589,6 +589,7 @@ While this system does not have an analytical solution, we can solve it numerica
 
     pre(julia-executable)
       | using DifferentialEquations, Plots
+      | import ParameterizedFunctions: @ode_def
       | 
       | sir_ode = @ode_def SIRModel begin
       |    ds = -p*s*i
