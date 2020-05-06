@@ -229,18 +229,18 @@ M1957.85 372.684 L2280.76 372.684 L2280.76 130.764 L1957.85 130.764  Z
   1981.85,191.244 2125.85,191.244 
   "/>
 <g clip-path="url(#clip5900)">
-<text style="fill:#000000; fill-opacity:1; font-family:Book Antiqua,Palatino,Palatino Linotype,Palatino LT STD,Georgia,serif; font-size:50px; text-anchor:start;" transform="rotate(0, 2149.85, 208.744)" x="2149.85" y="208.744">S(t)</text>
+<text style="fill:#000000; fill-opacity:1; font-family:Book Antiqua,Palatino,Palatino Linotype,Palatino LT STD,Georgia,serif; font-size:50px; text-anchor:start;" transform="rotate(0, 2149.85, 208.744)" x="2149.85" y="208.744">s(t)</text>
 </g>
 <polyline clip-path="url(#clip5900)" style="stroke:#e26f46; stroke-width:8; stroke-opacity:1; fill:none" points="
   1981.85,251.724 2125.85,251.724 
   "/>
 <g clip-path="url(#clip5900)">
-<text style="fill:#000000; fill-opacity:1; font-family:Book Antiqua,Palatino,Palatino Linotype,Palatino LT STD,Georgia,serif; font-size:50px; text-anchor:start;" transform="rotate(0, 2149.85, 269.224)" x="2149.85" y="269.224">I(t)</text>
+<text style="fill:#000000; fill-opacity:1; font-family:Book Antiqua,Palatino,Palatino Linotype,Palatino LT STD,Georgia,serif; font-size:50px; text-anchor:start;" transform="rotate(0, 2149.85, 269.224)" x="2149.85" y="269.224">i(t)</text>
 </g>
 <polyline clip-path="url(#clip5900)" style="stroke:#3da44d; stroke-width:8; stroke-opacity:1; fill:none" points="
   1981.85,312.204 2125.85,312.204 
   "/>
 <g clip-path="url(#clip5900)">
-<text style="fill:#000000; fill-opacity:1; font-family:Book Antiqua,Palatino,Palatino Linotype,Palatino LT STD,Georgia,serif; font-size:50px; text-anchor:start;" transform="rotate(0, 2149.85, 329.704)" x="2149.85" y="329.704">R(t)</text>
+<text style="fill:#000000; fill-opacity:1; font-family:Book Antiqua,Palatino,Palatino Linotype,Palatino LT STD,Georgia,serif; font-size:50px; text-anchor:start;" transform="rotate(0, 2149.85, 329.704)" x="2149.85" y="329.704">r(t)</text>
 </g>
 </svg>

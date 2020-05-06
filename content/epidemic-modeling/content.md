@@ -116,7 +116,9 @@ Then adjust the values in the definition of the function `{jl} sim` to start wit
 (b) If $\lambda$ is on the larger side, the number of infectious persons [[usually|always]] grows eventually, while if $\lambda$ is on the smaller side, the number of infected persons [[always|usually]] decays eventually.
 :::
 
-{.small} Note: the executable code cells are provided here for convenience, but if you'd prefer a notebook interface, you can launch a Jupyter notebook on Binder, with all packages pre-loaded, with [one click](https://mybinder.org/v2/gh/data-gymnasia/julia-binder/master)).
+{.small} Note: the executable code cells are provided here for convenience, but if you'd prefer a notebook interface, you can launch a Jupyter notebook on Binder, with all packages pre-loaded, with [one click](https://mybinder.org/v2/gh/data-gymnasia/julia-binder/master)). 
+
+{.small} Also, note that the cells may take some time to load initially, because a server is being launched for you in the background.
 
     pre(julia-executable)
       | using Plots, Distributions
@@ -322,7 +324,9 @@ To make it easier to see the whole array, we map the status values to colors and
 
 (a) The number of infectious individuals eventually reaches the value 0 and stays there forever, since each time step with a positive number of infectious individuals either results in no new infections, or it reduces the finite number of susceptible individuals by at least 1. When the number of susceptible individuals reaches zero, no new infections can occur.
 
-(b) No. There are almost always some individuals which make it to eradication without ever being infectious
+(b) No. There are almost always some individuals which make it to eradication without ever being infectious.
+
+[Continue](btn:next)
 
 ---
 > id: reproduction-number
@@ -352,9 +356,6 @@ The code block below computes the eventual number of recovered individuals over 
       
     x-quill
 
-    
-[Continue](btn:next)
-
 ---
 > id: step-solution-R0
 
@@ -362,14 +363,14 @@ The code block below computes the eventual number of recovered individuals over 
 
     figure
       img(src="images/histogram-final-recovered.svg" width="60%")
-      p.caption.md Figure 2.2
+      p.caption.md Figure 2.2. The proportion of the population that the infection spreads to is almost always around either 60% or 0%. 
 
 [Continue](btn:next)
 
 ---
 > id: step-introducing-R0
 
-The value $\lambda = np$ is called the **basic reproductive number**. This is the value known in the literature and in the news as $R\_0$ (pronounced "R-naught"), and it represents the expected number of susceptible individuals each infectious person transmits to on a given *early* time step, when the number of susceptible individuals is nearly the whole population. More generally, if the the time $t$ is not necessarily early on, then the expected number of usceptible individuals each infectious person transmits to is called $R\_t$. 
+The value $\lambda = np$ is called the **basic reproductive number**. This is the value known in the literature (and in the news!) as $R\_0$ (pronounced "R-naught"), and it represents the expected number of susceptible individuals each infectious person transmits to on a given *early* time step, when the number of susceptible individuals is nearly the whole population. More generally, if we want to talk about a time $t$ is not necessarily early on, then the expected number of susceptible individuals each infectious person transmits to is called $R\_t$. 
 
 In the context of this model, we calculated the value of $R_t$ to be $pS_t$, where $S_t$ is the number of susceptible individuals at time $t$. 
 
@@ -377,6 +378,7 @@ In the context of this model, we calculated the value of $R_t$ to be $pS_t$, whe
 
 ---
 > id: step-how-transmission-works
+### Herd immunity
 
 Let's reflect on how [herd immunity](gloss:herd-immunity) works in the context of our discrete SIR model, using the language of Galton-Watson processes. If the value of $R\_0$ is larger than 1, then the disease spreads exponentially early on. As a higher fraction of the population becomes infected (and thus immune), the value of $R\_t$ decreases proportionally. At some point, $R\_t$ reaches a value less than 1, and then the spread begins to decay rapidly and die out. 
 
@@ -404,6 +406,9 @@ We can observe this phenomenon numerically by plotting $R\_t$ as a function of t
 
 Finding the infected proportion of the population at the point where $R_t$ drops below 1 is a matter of solving the equation $R_t = pS_t = 1$ for $S_t$. We find that $S_t = 1/p = n/R\_0$. For example, if $R\_0 = 2$, then [[half|a third|a fourth]] of the population has been infected at the point when $R\_t$ hits 1. 
 
+---
+> id: step-infection-dying-down
+
 However, more people become infected after $R_t$ goes below 1, because it takes a few further generations for the number of active cases to go down. Remarkably, we can do an elegant back-of-the-envelope calculation to work out the expectation of the proportion $\tau$ of individuals who eventually become infectious (in the context of our discrete SIR model, and conditioned on the event that that proportion is not close to zero). 
 
 Loosely speaking, the value $\tau$ that we're looking for here is the middle of the hump on the right in the histogram in Figure 2.3 (which shows number of simulations versus number of eventually recovered individuals in those simulations). 
@@ -413,9 +418,14 @@ The key idea is to work out—in two different ways—the probability that a giv
 [Continue](btn:next)
 
 ---
-> id: step-recovery-calcluation
+> id: step-recovery-calculation
 
 From the point of view of a given never-infectious individual, each eventually recovered individual attempts transmission to them [[exactly once|more than once|once or more]]. If we assume that the distribution of the number of eventually infectious individuals is concentrated around $n \tau$, then we conclude that the probability that a susceptible individual dodges infection is approximately $(1-p)^{n\tau}$.
+
+[Continue](btn:next)
+
+---
+> id: step-proportion-not-infected
 
 Also, since the population is homogeneous (that is, each individual has the same properties in the model's dynamics), the probability that a given individual dodges infection is the probability that it lies in the $1-\tau$ proportion of individuals which never get infected. 
 
@@ -437,6 +447,12 @@ We can plot $\tau$ as a function of $R\_0$ by solving this equation numerically.
 
 [Continue](btn:next)
 
+The vertical gap between the two curves plotted in Figure 2.4 represents...
+
+    x-picker.list
+      .item.pill.bblue the proportion of individuals who eventually become infected
+      .item.pill.bblue(data-error="incorrect") the proportion of individuals who become infected after the point when the infection starts decreasing in prevalence
+
 ---
 > id: reducing-R0
 ### Mitigation measures
@@ -447,7 +463,7 @@ The value of $R\_0$ can be lowered through preventative measures. Roughly speaki
 * Number of contacts per day
 * Number of days in infectious period 
 
-For example, handwashing reduces [[transmission probability|number of contacts per day]], while disease testing can help reduce [[duration of infectious period|transmission probability for each contact]]. Social distancing reduces [[both contacts per day and transmission probability per contact|contacts per day|transmission probability per contact]]. 
+For example, handwashing reduces [[transmission probability|number of contacts per day]], while testing can help reduce [[duration of infectious period|transmission probability for each contact]]. Social distancing reduces [[both contacts per day and transmission probability per contact|contacts per day|transmission probability per contact]]. 
       
 ::: .exercise
 **Exercise**  
@@ -455,7 +471,6 @@ Early estimates of the $R\_0$ value of COVID-19 (under transmission conditions a
 :::
 
     x-quill
-  
 
 ---
 > id: step-R0-covid-solution
@@ -486,6 +501,7 @@ For the next step, we'll have $i_1 = p(n-1)$ infectious individuals, $s_1 = n - 
 Let's continue this calculation in code: 
 
     pre(julia-executable)
+      | using Plots
       | n = 1000
       | R₀ = 1.5
       | s = [1.0 * (n - 1)]
@@ -517,6 +533,8 @@ To see how this is exercise is valuable, let's plot a simulation of the stochast
       | population_size = 1000
       | infection_probability = 1.5 / population_size
       | statuses, transmissions = SIR_simulation(population_size, infection_probability)
+      | p = plot([s i r], label = ["s(t)" "i(t)" "r(t)"], 
+      |                   xlabel = "time", ylabel = "count")      
       | for status in ("susceptible", "infectious", "recovered")
       |     inf_totals = sum(statuses .== status, dims = 1)[:]
       |     scatter!(p, inf_totals, label = "")
@@ -538,8 +556,8 @@ We can see that the deterministic approach plays the role of the mean in the [la
 In mathematical notation, the system we simulated above is called a system of *difference equations*. Writing the change in $s$ as $\Delta s$, the equations might be written in a math textbook as
 
 ```latex
-\Delta s_t &= -s_ti_tR_0/n \\
-\Delta i_t &= s_ti_tR_0/n - i_t \\
+\Delta s_t &= -\frac{s_ti_tR_0}{n} \\
+\Delta i_t &= \frac{s_ti_tR_0}{n} - i_t \\
 \Delta r_t &= i_t. 
 ```
 
@@ -551,8 +569,8 @@ In mathematical notation, the system we simulated above is called a system of *d
 If we want to obtain even smoother behavior by making *time* continuous as well, we should use a time increment of $\Delta t$ rather than 1. Since the amount by which $s$ or $i$ or $r$ changes in a given short interval of length $\Delta t$ is approximately [[$\Delta t$|$1/\Delta t$]] times as much as it would change over one unit of time, we should modify the equation above by multiplying the right-hand side by $\Delta t$: 
 
 ```latex
-\Delta s_t &= (-s_ti_tR_0/n)\Delta t \\
-\Delta i_t &= (s_ti_tR_0/n - i_t) \Delta t \\
+\Delta s_t &= -\frac{s_ti_tR_0}{n}\Delta t \\
+\Delta i_t &= \left(\frac{s_ti_tR_0}{n} - i_t\right) \Delta t \\
 \Delta r_t &= i_t \Delta t. 
 ```
 
@@ -574,7 +592,7 @@ While this system does not have an analytical solution, we can solve it numerica
       | 
       | sir_ode = @ode_def SIRModel begin
       |    ds = -p*s*i
-      |    di = p*s*i-i
+      |    di = p*s*i - i
       |    dr = i
       | end p
       | 
@@ -599,7 +617,8 @@ You've probably seen graphs labeled *Flattening the Curve* on social media. The 
 
 Even for the simple SIR model, we can see numerically how flattening the curve is directly related to $R_0$. Make a plot of $i_t$ for two $R\_0$ values to see that the curve is flatter for the smaller one. 
 
-(Note: we supply the keyword argument `{jl} vars = (0, 2)` to the plot method for the differential equation solution object to say that we want to plot time on the horizontal axis (variable 0) and $i$ on the vertical axis (variable 2).)
+{.small} Note: we supply the keyword argument `{jl} vars = (0, 2)` to the plot method for the differential equation solution object to say that we want to plot time on the horizontal axis (variable 0) and $i$ on the vertical axis (variable 2).
+
 :::
 
     pre(julia-executable)
@@ -763,9 +782,14 @@ Use your observation to draw a conclusion about the strategy of *temporary* redu
       
 The final proportion infected depends on the $R\_0$ value but *not* on the number of individuals who infectious initially. 
 
+[Continue](btn:next)
+
+---
+> id: step-apply-initial-pop-to-real-life
+
 While we derived this observation in the context of an SIR model, it does apply to real-life outbreaks as well: unless the disease is [[fully eradicated|significantly reduced]], $R\_0$ matters far more than the number of individuals who are infectious to start. 
 
-When people on social media argue that SARS-CoV-2 should be ignored because the number of cases is still a small proportion of the population, it's analogous to arguing that an oven fire should be ignored until it at least engulfs the kitchen: flammability matters more than the size of the initial fire, unless the initial fire is nonexistent.
+When you heart the argument that an infectious disease should be ignored because the number of cases is still a small proportion of the population, it's analogous to arguing that an oven fire should be ignored until it at least engulfs the kitchen: flammability matters more than the size of the initial fire, unless the initial fire is nonexistent.
 
 [Continue](btn:next)
 
@@ -780,7 +804,7 @@ This observation also helps us see why a temporary reduction in $R\_0$ does not 
 > id: containment-vs-mitigation
 ### Containment vs Mitigation
 
-The SIR model may be made more realistic in a wide variety of ways. One of the most glaring omissions is the lack of *geography* in the model: in the real world, the virus spreads by the kind of physical contact which is much more likely between people who live close to one another. Let's see what happens when we incorporate spatial relationships into the model. 
+The SIR model may be made more realistic in a wide variety of ways. One of the most glaring omissions is the lack of [[*geography*|*transportation*|*RNA*]] in the model: in the real world, the virus spreads by the kind of physical contact which is much more likely between people who live close to one another. Let's see what happens when we incorporate spatial relationships into the model. 
 
 Let's arrange our individuals into a square grid, and we'll let each person transmit to its four neighbors: 
 
@@ -849,20 +873,32 @@ Varying $t$, we obtain the following animation:
 ::: .exercise
 **Exercise**  
 Experiment with other variations on this model to explore the following idea: *barriers don't seem to help much unless they manage to completely contain the virus, because community spread quickly becomes the dominant mode of transmission*. 
+
+{.small} This exercise is more open-ended than the others in this course. You might want to do this exploration in a [Jupyter notebook](https://mybinder.org/v2/gh/data-gymnasia/julia-binder/master). 
 :::
 
     pre(julia-executable)
       | 
+      
+    x-quill
 
 ---
 > id: links
 ## Links
 
-Many data visualization and model visualization tools have been released in the weeks since the COVID-19 story began to break. 
+Many data visualization and model visualization tools have been released in the weeks since the COVID-19 story began to break. Here are a few of my favorites:
 
 1. UVA's Biocomplexity Institute [dashboard](https://nssac.bii.virginia.edu/covid-19/dashboard/) shows the geographic spread of the virus over time. 
 2. [3Blue1Brown](https://www.3blue1brown.com/videos-blog/simulating-an-epidemic) presents a video narration examining the effects of various agent-based simulation features.
 3. Gabriel Goh provides a [simple, elegant calculator](http://gabgoh.github.io/COVID/index.html) for illustrating how parameter changes affect trajectory of the infection curve.
 4. Kevin Simler's [blog post](https://meltingasphalt.com/outbreak/) introduces and discusses quite a few manipulatives for varying simulation parameters.
-5. The [COVID-19 Forecasting Project](http://epidemicforecasting.org) gives estimates for current numbers of active cases as well as projections for the future. 
-6. [rt.live](https://rt.live) tracks state-by-state estimates for the current reproduction number ($R\_t$) over time.
+5. The [COVID-19 Forecasting Project](http://epidemicforecasting.org) gives estimates for current numbers of active cases as well as projections for the future.
+6. [COVID Projections](https://covid19-projections.com/) is another forecasting site with positive reviews from experts.
+7. [rt.live](https://rt.live) tracks state-by-state estimates for the current reproduction number ($R\_t$) over time.
+
+A couple notable data sources if you want to explore the data yourself: 
+
+1. The [Johns Hopkins](https://github.com/CSSEGISandData/COVID-19) data is perhaps the most canonical source on global COVID-19 data. 
+2. The [COVID Tracking Project](https://covidtracking.com) includes data on *negative* tests as well positive ones, but it only covers the United States.
+
+Check out this [Jupyter notebook](https://colab.research.google.com/drive/12IyckouU_Mqr9x5uTNvFyVuJ2ZGO5g9m) if you want to see an example of how to load the Johns Hopkins data into a Python session and perform some data manipulation and visualization tasks with it.
