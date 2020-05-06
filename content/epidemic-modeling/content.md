@@ -195,8 +195,8 @@ This model is still missing some desirable features (select all that apply):
 
     x-picker.list
       .item.pill.bblue Transmission events are not really independent
-      .item.pill.bblue(data-error="incorrect") One person can't transmit to several others
-      .item.pill.bblue(data-error="incorrect") You can transmit to someone even if they aren't geographically close
+      .item.pill.bblue(data-error="can-transmit") One person can't transmit to several others
+      .item.pill.bblue(data-error="geographic") You can transmit to someone even if they aren't geographically close
       .item.pill.bblue Geographic proximity is an important consideration
 
 :::
