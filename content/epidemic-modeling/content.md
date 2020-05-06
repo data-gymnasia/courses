@@ -116,7 +116,7 @@ Then adjust the values in the definition of the function `{jl} sim` to start wit
 (b) If $\lambda$ is on the larger side, the number of infectious persons [[usually|always]] grows eventually, while if $\lambda$ is on the smaller side, the number of infected persons [[always|usually]] decays eventually.
 :::
 
-(Note: the executable code cells are provided here for convenience, but if you have difficulty seeing the plots, or if you'd prefer a notebook interface, you can [launch a Binder notebook with one click](https://mybinder.org/v2/gh/data-gymnasia/julia-binder/master)).
+{.small} Note: the executable code cells are provided here for convenience, but if you'd prefer a notebook interface, you can launch a Jupyter notebook on Binder, with all packages pre-loaded, with [one click](https://mybinder.org/v2/gh/data-gymnasia/julia-binder/master)).
 
     pre(julia-executable)
       | using Plots, Distributions
@@ -195,9 +195,10 @@ This model is still missing some desirable features (select all that apply):
 
     x-picker.list
       .item.pill.bblue Transmission events are not really independent
-      .item.pill.bblue(data-error="can-transmit-to-others") One person can't transmit to several others
-      .item.pill.bblue(data-error="geographic-transmission") You can transmit to someone even if they aren't geographically close
+      .item.pill.bblue(data-error="incorrect") One person can't transmit to several others
+      .item.pill.bblue(data-error="incorrect") You can transmit to someone even if they aren't geographically close
       .item.pill.bblue Geographic proximity is an important consideration
+
 :::
 
 ---
