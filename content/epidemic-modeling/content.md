@@ -611,6 +611,9 @@ While this system does not have an analytical solution, we can solve it numerica
     figure
       img(src="images/differential-equation-plot.svg" width="60%")
       p.caption.md The differential equation solution is very similar to the difference equation solution.
+
+One advantage of the differential equations approach is that it allows us to make a rigorous statement about how the behavior of the random, discrete system is very close to the behavior of the deterministic, continuous system (in the sense that the infection curves are close with high probability). If you'd like to see a theorem to this effect, check out [this 2015 paper](https://arxiv.org/abs/1511.08572) by Ekkehard Beck and Benjamin Armbruster of Northwestern University.
+
       
 ::: .exercise
 **Exercise**  
