@@ -1578,7 +1578,7 @@ What step value can be used to *reverse* a list? [[-1]] (Hint: you can reason it
 ---
 > id: step-99
 
-*Solution*. Going in reverse order through a list corresponds to stepping by $-1$ each time. Setting `{py} k = -1` in the code block above, we see that `{py} [::-1]` does indeed reverse the list. Apparently the start and stop values for a list `{py} L` implicitly are implicitly set to `{py} -1` and `{py} -len(L)` when a negative step value is used. 
+*Solution*. Going in reverse order through a list corresponds to stepping by $-1$ each time. Setting `{py} k = -1` in the code block above, we see that `{py} [::-1]` does indeed reverse the list. Apparently the start and stop values for a list `{py} L` implicitly are implicitly set to `{py} -1` and `{py} -len(L)-1` when a negative step value is used. 
 
 [Continue](btn:next)
 
