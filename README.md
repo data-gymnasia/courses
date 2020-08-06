@@ -36,9 +36,6 @@ Every course is divided into multiple steps, each with a unique ID. These IDs
 are used as function names in `functions.ts` when exporting the setup code
 for every section.
 
-The [server directory](server) contains a simplified version of Mathigon's web
-server. It is used for local testing, but should not usually be modified.
-
 ## Markdown features
 
 ### Structure

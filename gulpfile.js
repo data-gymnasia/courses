@@ -1,6 +1,5 @@
 // =============================================================================
-// Mathigon Textbooks Gulpfile
-// (c) Mathigon
+// Data Gymnasia Gulpfile
 // =============================================================================
 
 
@@ -10,32 +9,24 @@ const less = require('gulp-less');
 const postcss = require('gulp-postcss');
 const rename = require('gulp-rename');
 
-const resolve = require('rollup-plugin-node-resolve');
+const {nodeResolve} = require('@rollup/plugin-node-resolve');
 const typescript = require('rollup-plugin-typescript');
 const autoprefixer = require('autoprefixer');
-const gulpTextbooks = require('@mathigon/parser').gulp;
-const tsconfig = require('./tsconfig.json');
-
-const LANGUAGES = ['en', 'de'];
-const CACHE = __dirname + '/content/.cache.json';
+const textbooks = require('@mathigon/parser').gulp;
 
 
 function markdown() {
-  return gulp.src(['content/*/', '!content/shared/'])
-      .pipe(gulpTextbooks(LANGUAGES, CACHE))
-      .pipe(gulp.dest('server/assets/resources'));
+  return gulp.src(['content/*/', '!content/shared/', '!content/_*/'])
+      .pipe(textbooks(['en'], __dirname + '/build/.cache.json'))
+      .pipe(gulp.dest('build'));
 }
 
 function scripts() {
   return gulp.src(['content/*/*.ts', '!content/shared/**'])
-      .pipe(rollup({
-        plugins: [typescript(tsconfig.compilerOptions), resolve()],
-        onwarn(e) {
-          if (e.code !== 'CIRCULAR_DEPENDENCY') console.warn(e.message);
-        }
-      }, {format: 'iife', name: 'StepFunctions'}))
+      .pipe(rollup({plugins: [nodeResolve(), typescript()],},
+                   {format: 'iife', name: 'StepFunctions'}))
       .pipe(rename({extname: '.js'}))
-      .pipe(gulp.dest('server/assets/resources'));
+      .pipe(gulp.dest('build'));
 }
 
 function stylesheets() {
@@ -43,7 +34,7 @@ function stylesheets() {
       .pipe(less())
       .pipe(postcss([autoprefixer()]))
       .pipe(rename({extname: '.css'}))
-      .pipe(gulp.dest('server/assets/resources'));
+      .pipe(gulp.dest('build'));
 }
 
 exports.watch = () => {

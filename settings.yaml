@@ -1,0 +1,23 @@
+# ==============================================================================
+# Qiskit Settings
+# ==============================================================================
+
+
+title: Data Gymnasia
+description: Data science courses developed by Brown University
+
+about: |
+  Data Gymnasia is brought to you by <a href="http://sswatson.com">Samuel S.
+  Watson</a> and the Brown University <a href="http://dsi.brown.edu">Data
+  Science Initiative</a>. These courses were developed to help students prepare
+  to enter the program.
+
+header:
+  logo: /logo.svg
+  logoWidth: 36
+  title: Data Gymnasia
+  banner: /banner.jpg
+
+tutor:
+  name: Bruno
+  icon: /bruno.svg

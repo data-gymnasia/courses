@@ -14,7 +14,8 @@
     "strictFunctionTypes": true,
     "strictPropertyInitialization": true,
     "noImplicitThis": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "allowUmdGlobalAccess": true
   },
   "exclude": [
     "node_modules"
