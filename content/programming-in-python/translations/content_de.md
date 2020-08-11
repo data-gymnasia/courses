@@ -616,7 +616,7 @@ Sei vorsichtig mit Vergleichen der Form `{py} a == True` oder `{py} b == False`.
 ::: .exercise
 **Übung**  
 
-Schreibe einen Code zur Berechnung von $\frac }${1}{a+\frac{2}{3}. $a$ ist dabei gleich der Anzahl der Zeichen im String `{py} "Semriacher Sennenhunde sind sehr selten selber senil"`
+Schreibe einen Code zur Berechnung von $\frac{1}{a+\frac{2}{3}}$. $a$ ist dabei gleich der Anzahl der Zeichen im String `{py} "Semriacher Sennenhunde sind sehr selten selber senil"`
 
 :::
 
