@@ -13,6 +13,7 @@ const {nodeResolve} = require('@rollup/plugin-node-resolve');
 const typescript = require('rollup-plugin-typescript');
 const autoprefixer = require('autoprefixer');
 const textbooks = require('@mathigon/parser').gulp;
+const rtl = require('postcss-rtl');
 
 
 function markdown() {
@@ -29,10 +30,13 @@ function scripts() {
       .pipe(gulp.dest('build'));
 }
 
+const RTL_BLACKLIST = ['background', 'background-color', 'background-image',
+  'background-repeat', 'background-size', 'cursor'];
+
 function stylesheets() {
   return gulp.src(['content/*/*.less', '!content/shared/**'])
       .pipe(less())
-      .pipe(postcss([autoprefixer()]))
+      .pipe(postcss([rtl({blacklist: RTL_BLACKLIST}), autoprefixer()]))
       .pipe(rename({extname: '.css'}))
       .pipe(gulp.dest('build'));
 }
