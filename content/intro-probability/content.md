@@ -2207,7 +2207,7 @@ All of the tools we developed for discrete probability spaces have analogues for
 
 ::: .example
 **Example**  
-Suppose that $f$ is the function which returns $2$ for any point in the triangle $\Omega$ with vertices $(0,0)$, $(1,0)$, and $(0,1)$ and otherwise returns 0. Suppose that $(X,Y)$ has density $f$. Find the conditional density of $X$ given $\\{Y = y\\}$, where $y$ is a number between and 0 and 1. 
+Suppose that $f$ is the function which returns $2$ for any point in the triangle $\Omega$ with vertices $(0,0)$, $(1,0)$, and $(1,1)$ and otherwise returns 0. Suppose that $(X,Y)$ has density $f$. Find the conditional density of $X$ given $\\{Y = y\\}$, where $y$ is a number between and 0 and 1. 
 :::
 
     x-quill

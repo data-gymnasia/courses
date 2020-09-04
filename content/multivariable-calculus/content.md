@@ -119,7 +119,7 @@ Another valid statement suggested by the "terms go to 0 fast enough" intuition i
 **Theorem** (Comparison test)  
 If $\sum\_{n=1}^\infty b\_n$ converges and if $|a\_n| \leq b\_n$ for all $n$, then $\sum\_{n=1}^\infty a\_n$ converges. 
 
-Conversely, if $\sum\_{n=1}^\infty b\_n$ does not converge and $0 \leq b\_n <
+Conversely, if $\sum\_{n=1}^\infty b\_n$ does not converge and $0 \leq b\_n \leq
 a\_n$, then $\Sigma\_{n=1}^\infty a\_n$ also does not converge. 
 :::
 
@@ -137,7 +137,6 @@ The comparison test works well in conjunction with a list of basic series whose 
 * The series $\sum\_{n=1}^\infty a^n$ converges if and only if $-1 < a < 1$. 
 
 :::
-
 
 ::: .exercise
 **Exercise**  
