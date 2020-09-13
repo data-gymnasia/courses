@@ -2118,10 +2118,10 @@ F = \begin{bmatrix}
 \end{bmatrix},
 G = \begin{bmatrix}
  6 \\\ 1
-\end{bmatrix},
+\end{bmatrix}, \text{ and }
 H = \begin{bmatrix}
   2 & 0 \\\ 0 & 2
-\end{bmatrix}
+\end{bmatrix}.
 ```
 :::
 
