@@ -3042,7 +3042,7 @@ By linearity $B^n(\mathbf{u}) = 2B^n\mathbf{v}\_1 + B^n \mathbf{v}\_2.$ But $B^n
 
 ### Positive definite matrices
 
-A **positive definite** matrix $A$ is a symmetric matrix whose eigenvalues are all positive. A **positive semidefinite** matrix $A$ is a symmetric matrix whose eigenvalues are all nonnegative. Equivalently, a matrix $A$ is positive semidefinite if $\mathbf{x}' A \mathbf{x} \ge 0$ for all $\mathbf{x}$.
+A **positive definite** matrix $A$ is a symmetric matrix whose eigenvalues are all positive. A **positive semidefinite** matrix $A$ is a symmetric matrix whose eigenvalues are all nonnegative. Equivalently, a symmetric matrix $A$ is positive semidefinite if $\mathbf{x}' A \mathbf{x} \ge 0$ for all $\mathbf{x}$.
 
 [Continue](btn:next)
 
@@ -3059,9 +3059,6 @@ A **positive definite** matrix $A$ is a symmetric matrix whose eigenvalues are a
 ::: .exercise
 **Exercise**  
 (i) Is the sum of two positive definite matrices necessarily positive definite? [[Yes|No]]
-
-(ii) Is the product of two positive definite matrices necessarily positive definite? [[No|Yes]]
-
 :::
 
 ---
@@ -3074,42 +3071,7 @@ A **positive definite** matrix $A$ is a symmetric matrix whose eigenvalues are a
 &= \mathbf{x}' A\mathbf{x} + \mathbf{x}' B\mathbf{x}
 ```
 
- for any vector $\mathbf{x} \in \mathbb{R}^n.$
-
-(ii) However, $AB$ need not be positive definite. Consider the $45$-degree counterclockwise rotation matrix $ A = \frac{\sqrt{2}}{2}
-    \begin{bmatrix}
-      1 & -1 \\\\\\
-      1 & 1
-    \end{bmatrix}
-    $ in $\mathbb{R}^2.$ Then, for any $
-    \mathbf{x} =
-    \begin{bmatrix}
-      x \\\\\\
-      y
-    \end{bmatrix} \in \mathbb{R}^2,
-    $ we have
-
-``` latex
-A\mathbf{x} = \frac{\sqrt{2}}{2}
-              \begin{bmatrix}
-                x - y \\
-                x + y
-              \end{bmatrix}.
-```
-
-Then $A$ is positive definite because
-
-``` latex
-\mathbf{x}' A\mathbf{x} = \frac{\sqrt{2}}{2}(x^2 - xy + yx + y^2)  = \frac{\sqrt{2}}{2} | \mathbf{x} |^2
-```
-
-for all $\mathbf{x} \in \mathbb{R}^2.$ However, $
-    A^2 = \frac{1}{2}
-    \begin{bmatrix}
-      0 & -2 \\\\\\
-      2 & 0
-    \end{bmatrix}
-    $ is the $90$-degree counterclockwise rotation matrix, meaning $A^2\mathbf{x}$ is orthogonal to $\mathbf{x}$ for all $\mathbf{x} \in \mathbb{R}^2$ and thus $A^2$ cannot be positive definite.
+for any vector $\mathbf{x} \in \mathbb{R}^n.$
 
 [Continue](btn:next)
 
@@ -3653,7 +3615,7 @@ We close this section with a computational exercise illustrating another widely 
   $\mathbf{u}\_1$, $\mathbf{u}\_2$, $\mathbf{u}\_3$, $\mathbf{v}\_1$,
   $\mathbf{v}\_2$, $\mathbf{v}\_3$ have in total?
 
-* The Julia code below creates a matrix $A$ with pixel values for the image
+* The Python code below creates a matrix $A$ with pixel values for the image
   shown. How many nonzero singular values does $A$ have? Explain how you can
   tell just from looking at the picture.
 
