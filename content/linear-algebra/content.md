@@ -65,7 +65,7 @@ $\mathbf{v} = \begin{bmatrix} -2 \\\\\\ 0 \\\\\\ 1 \end{bmatrix}$ is a vector in
 ---
 > id: step-6
 
-For typographical convenience, and for consistency with Python, we will often write vectors horizontally, like $[-2,0,1]$. This notation means the same thing as $\begin{bmatrix} -2 \\\\\\ 0 \\\\\\ 1 \end{bmatrix}$.
+For typographical convenience, and for consistency with [{.py-only} Python](https://mathigon.org/course/programming-in-python) [{.jl-only} Julia](https://mathigon.org/course/programming-in-juila) we will often write vectors horizontally, like $[-2,0,1]$. This notation means the same thing as $\begin{bmatrix} -2 \\\\\\ 0 \\\\\\ 1 \end{bmatrix}$.
 
 [Continue](btn:next)
 
@@ -277,7 +277,7 @@ Find values $\alpha$ and $\beta$ such that $\mathbf{w} = \alpha \mathbf{u} + \be
 ---
 > id: step-24
 
-We visualize a set $S$ of vectors in $\mathbb{R}^n$ by associating the vector $[v_1, v_2, \ldots, v_n]$ with the point $(v_1,\ldots, v_n)$—in other words, we associate each vector with the location of its head when its tail is drawn at the origin. Apply geometric reasoning to solve the following exercise.
+We visualize a set $S$ of vectors in $\mathbb{R}^n$ by associating the vector $[v_1, v_2, \ldots, v_n]$ with the point $(v_1,\ldots, v_n)$—in other words, we associate each vector with the location of its head when its tail is drawn at the origin. Apply geometric reasoning to solve the following exercises.
 
 ::: .exercise
 **Exercise**  
@@ -290,6 +290,13 @@ The span of two vectors in $\mathbb{R}^2$
       .item.pill.bblue(data-error="line-or-point") must be either a line or a point
       .item.pill.bblue.md must be either a line or a point or all of $\mathbb{R}^2$
 
+:::
+
+---
+> id: step-24b
+
+::: .exercise
+**Exercise**  
 The span of three vectors in $\mathbb{R}^3$
 
     x-picker.list
@@ -694,7 +701,7 @@ ex + fy + gz &= h \\\
 ix + jy + kz &= l
 ```
 
-in Python as follows:
+{.py-only} in Python as follows:
 
 ``` python
 import numpy as np
@@ -703,20 +710,36 @@ b = np.array([d,h,l])
 np.linalg.solve(A,b)
 ```
 
+{.jl-only} in Julia as follows:
+
+``` julia
+A = [a b c; e f g; i j k]
+b = [d, h, l]
+a \ b
+```
+
 However, it's also possible to reason your way through this one without computational assistance (or pen-and-paper calculation).
 
 The three coordinates are [[2]], [[2]], [[0]].
 
 :::
 
+::: .py-only
     pre(python-executable)
       | import numpy as np
+:::
+
+::: .jl-only
+    pre.jl-only(julia-executable)
+      |
+:::
 
 ---
 > id: step-56
 
-*Solution*. We can calculate using NumPy as suggested:
+{.py-only}*Solution*. We can calculate using NumPy as suggested:
 
+::: .py-only
     pre(python-executable)
       | import numpy as np
       | A = np.array([[1,1,np.sqrt(2)],
@@ -724,8 +747,16 @@ The three coordinates are [[2]], [[2]], [[0]].
       |               [1,-1,0]])
       | b = np.array([4,4,0])
       | np.linalg.solve(A,b)
+:::
 
-<p></p>
+{.jl-only}*Solution*. We can calculate using Julia as suggested:
+
+::: .jl-only
+    pre(julia-executable)
+      | A = [1 1 sqrt(2); 1 1 -sqrt(2); 1 -1 0]
+      | b = [4, 4, 0]
+      | A \ b
+:::
 
 However, we can obtain the same result by inspection, noticing the relationship between the $[1,1]$ values at the beginning of the first two basis vectors and the $[4,4]$ result.
 
@@ -960,8 +991,8 @@ So, the possible values for the dimension of $V \cap W$ are 2, 3, and 4.
 > id: step-80
 
 ::: .exercise
-**Exercise**  
-In Python, a set of 5 column vectors in $\mathbb{R}^7$ with entries selected uniformly at random from $[0,1]$ may be generated using **{code.language-python}np.random.random_sample((7,5))**. The dimension of the span of the columns of a matrix may then by computed using the function **{code.language-python}np.linalg.matrix_rank**.
+**Exercise**
+A set of 5 column vectors in $\mathbb{R}^7$ with entries selected uniformly at random from $[0,1]$ may be generated using `{py} np.random.random_sample((7,5))` `{jl} rand(7, 5)`. The dimension of the span of the columns of a matrix may then by computed using the function `{py} np.linalg.matrix_rank` `{jl} rank`.
 
 Calculate the dimension of many such spans of random lists of five vectors in $\mathbb{R}^7$. What can you say about the values you get?
 
@@ -969,33 +1000,64 @@ Calculate the dimension of many such spans of random lists of five vectors in $\
       .item.pill.bblue All fives
       .item.pill.bblue(data-error="less-five") Mostly fives, some numbers fewer than five
       .item.pill.bblue(data-error="less-five") Mostly threes, some twos and fours, occasional ones and fives
+:::
 
-Repeat with random vectors whose entries are 0 or 1 with probability $\frac{1}{2}$.
+::: .py-only
+    pre(python-executable)
+      | import numpy as np
+:::
+
+::: .jl-only
+    pre(julia-executable)
+      |
+:::
+
+---
+> id: step-80b
+
+::: .exercise
+**Exercise**  
+Repeat the preceding exercise with random vectors whose entries are 0 or 1 with probability $\frac{1}{2}$.
 
     x-picker.list
       .item.pill.bblue(data-error="all-fives") All fives
       .item.pill.bblue Mostly fives, some numbers fewer than five
       .item.pill.bblue(data-error="all-fives") Mostly threes, some twos and fours, occasional zeros, ones and fives
 
-Hint: for part (b): _{code.language-python}np.random.randint(0,2,(5,7))_ generates the desired random matrix, and importing _{code.language-python}Counter_ from _{code.language-python}collections_ might be helpful for helping you inspect the contents of the list of ranks.
+{.py-only} Hint: for part (b): `{py} np.random.randint(0,2,(5,7))` generates the desired random matrix, and importing `{py} Counter` from `{py} collections` might be helpful for helping you inspect the contents of the list of ranks.
 :::
 
+::: .py-only
     pre(python-executable)
       | import numpy as np
+:::
+
+::: .jl-only
+    pre(julia-executable)
+      |
+:::
 
 ---
 > id: step-81
 
 *Solution*. If we run
 
+::: .py-only
     pre(python-executable)
       | rank = np.linalg.matrix_rank
       | def randmat():
       |     return np.random.random_sample((7,5))
       |
       | set([rank(randmat()) for _ in range(100_000)])
+:::
 
-we get a set containing only _{code.language-python}5_. Therefore, five random vectors in $\mathbb{R}^7$ with entries selected uniformly from $[0,1]$ are always or nearly always linearly independent. So the first answer is correct.
+::: .jl-only
+    pre(julia-executable)
+      | using LinearAlgebra
+      | Set([rank(rand(7,5)) for _ in range(100_000)])
+:::
+
+we get a set containing only `5`. Therefore, five random vectors in $\mathbb{R}^7$ with entries selected uniformly from $[0,1]$ are always or nearly always linearly independent. So the first answer is correct.
 
 [Continue](btn:next)
 
@@ -1004,9 +1066,18 @@ we get a set containing only _{code.language-python}5_. Therefore, five random v
 
 If we run
 
+::: .py-only
     pre(python-executable)
       | from collections import Counter
       | Counter([rank(np.random.randint(0,2,(7,5))) for i in range(100_000)])
+:::
+
+::: .jl-only
+    pre(julia-executable)
+      | import StatsBase: countmap
+      | import LinearAlgebra: rank
+      | countmap([rank(rand(0:1, 7, 5)) for i in range(100_000)])
+:::
 
 we get mostly fives, quite a few fours, some threes and perhaps a few twos. Therefore, the vectors are not always linearly independent in this case.
 
@@ -1297,7 +1368,9 @@ We report the size of a matrix using the convention *number of rows by number of
 ---
 > id: step-101
 
-We refer to the entry in the $i$ th row and $j$ th column of a matrix $A$ as $A$'s (i,j)th entry, and we denote it as $A\_{i,j}$. In Python, the (i,j)th entry may be referenced as _{code.language-python}A[i,j]_.
+{.py-only} We refer to the entry in the $i$ th row and $j$ th column of a matrix $A$ as $A$'s (i,j)th entry, and we denote it as $A\_{i,j}$. In Python, the (i,j)th entry may be referenced as `{py} A[i,j]`.
+
+{.jl-only} We refer to the entry in the $i$ th row and $j$ th column of a matrix $A$ as $A$'s (i,j)th entry, and we denote it as $A\_{i,j}$. In Julia, the (i,j)th entry may be referenced as `{jl} A[i,j]`.
 
 [Continue](btn:next)
 
@@ -2125,10 +2198,16 @@ H = \begin{bmatrix}
 ```
 :::
 
+::: .py-only
     pre(python-executable)
       |
+:::
 
-<p></p>
+::: .jl-only
+    pre(julia-executable)
+      |
+:::
+
 
 [Continue](btn:next)
 
@@ -2236,13 +2315,24 @@ Taking the transpose also interacts nicely with matrix multiplication:
 **Exercise**  
 Suppose that $A$ is an $m \times n$ matrix and that $B$ is an $n \times p$ matrix. Exactly one of the following expressions is equal to $(AB)'$ in general—identify the correct answer choice by checking the dimensions of each matrix in each expression. [[`B' A'`|`A' B'`|`ABA'`]]
 
-Confirm your conjecture numerically in Python with some random matrices. You can generate a random $m \times n$ matrix using **{code.language-python}np.random.random_sample((m,n))**, the transpose of _{code.language-python}A_ is accessed as _{code.language-python}A.T_, and the product of _{code.language-python}A_ and _{code.language-python}B_ is _{code.language-python}A @ B_.
+::: .py-only
+Confirm your conjecture numerically in Python with some random matrices. You can generate a random $m \times n$ matrix using `{py} np.random.random_sample((m,n))`, the transpose of `{py} A` is accessed as `{py} A.T`, and the product of `{py} A` and `{py} B` is `{py} A * B`.
 :::
 
+::: .jl-only
+Confirm your conjecture numerically in Julia with some random matrices. You can generate a random $m \times n$ matrix using `{jl} rand(m, n)`.
+:::
+:::
+
+::: .py-only
     pre(python-executable)
       | import numpy as np
+:::
 
-<p></p>
+::: .jl-only
+    pre(julia-executable)
+      |
+:::
 
     x-quill
 
@@ -2265,11 +2355,20 @@ in general.
 
 The following block of code checks the equation for a particular random example.
 
+::: .py-only
     pre(python-executable)
       | import numpy as np
       | A = np.random.random_sample((3,7))
       | B = np.random.random_sample((7,3))
       | np.allclose((A @ B).T, B.T @ A.T)
+:::
+
+::: .jl-only
+    pre(julia-executable)
+      | A = rand(3, 7)
+      | B = rand(7, 3)
+      | isapprox((A * B)', B' * A')
+:::
 
 [Continue](btn:next)
 
@@ -2700,13 +2799,21 @@ which implies that $\mathbf{x} = (A'A)^{-1}(A'\mathbf{b})$, assuming $A'A$ is in
 **Exercise**  
 Use the code below to build a random 100 × 6 matrix whose first five columns are linearly dependent and whose sixth column is not in the span of the first five. Use the normal equation to try to solve for the weights of the linear combination of the first five columns which gets closest to the sixth column. What goes wrong?
 
-Note: _{code.language-python}np.linalg.solve(A,b)_ solves the equation $A\mathbf{x} = \mathbf{b}$ for $\mathbf{x}$.
+Note: `{py} np.linalg.solve(A,b)` `{jl} A \\ b` solves the equation $A\mathbf{x} = \mathbf{b}$ for $\mathbf{x}$.
 :::
 
+::: .py-only
     pre(python-executable)
       | import numpy as np
       | A = np.random.randint(0,2,(100,6))
       | A[:,4] = A[:,3] + A[:,2]
+:::
+
+::: .jl-only
+    pre(julia-executable)
+      | A = rand(0:1, 100, 6)
+      | A[:, 5] = A[:, 4] + A[:, 3]
+:::
 
     x-quill
 
@@ -2715,10 +2822,19 @@ Note: _{code.language-python}np.linalg.solve(A,b)_ solves the equation $A\mathbf
 
 *Solution* We try
 
+::: .py-only
     pre(python-executable)
       | b = A[:,5]
       | A = A[:,:-1]
       | np.linalg.solve(A.T @ A, A.T @ b)
+:::
+
+::: .jl-only
+    pre(julia-executable)
+      | b = A[:,5]
+      | A = A[:,1:end-1]
+      | (A' * A) \ (A' * b)
+:::
 
 and we get an error telling us that $A'A$ is not invertible. This makes sense, because $A'A$ has the same rank as $A$, and we know $A$ is [rank deficient](gloss:rankdeficient). Since there are different ways of combining the columns of $A$ to get the vector in its column space which is as close as possible to $\mathbf{b}$, it is not possible that we would have gotten a unique answer using this method.
 
@@ -2732,11 +2848,20 @@ and we get an error telling us that $A'A$ is not invertible. This makes sense, b
 Try the previous exercise again, but this time with the linear dependence relation holding only approximately. What goes wrong this time?
 :::
 
+::: .py-only
     pre(python-executable)
       | import numpy as np
       | A = 1.0*np.random.randint(0,2,(100,5))
       | b = np.random.randint(0,2,(100,))
       | A[:,4] = A[:,3] + A[:,2] + 1e-3*np.random.standard_normal(100)
+:::
+
+::: .jl-only
+    pre(julia-executable)
+      | A = 1.0*rand(0:1, 100, 5)
+      | b = 1.0*rand(0:1, 100)
+      | A[:,4] = A[:,3] + A[:,2] + 1e-3*randn(100)
+:::
 
     x-quill
 
@@ -2745,9 +2870,16 @@ Try the previous exercise again, but this time with the linear dependence relati
 
 *Solution*. We take a look at the solution:
 
+::: .py-only
     pre(python-executable)
-      | import matplotlib.pyplot as plt
       | plt.bar(range(5),np.linalg.solve(A.T @ A, A.T @ b))
+:::
+
+::: .jl-only
+    pre(julia-executable)
+      | using Plots
+      | bar(1:5,(A' * A) \ (A' * b), label = "solution components")
+:::
 
 We see that it gives large and oppositely-signed coefficients for the last three vectors. We can tell that the optimization process is leveraging the tiny difference between the last vector and the sum of the two before it to "reach" in the direction of $\mathbf{b}$. Although we did not get a singularity error this time, the result is no less undesirable, because predictions which depend on tiny differences between measured values are clearly not going to be useful. We will see what we can do about this problem when we develop the *singular value decomposition*.
 
@@ -3183,18 +3315,27 @@ To be concrete, let's say "nearly equal" means "having ratio between 0.99 and 1.
 ---
 > id: step-211
 
-*Solution*. One simple way to do this is make $\mathbf{b}$ and $\widehat{\mathbf{b}}$ the columns of the matrix. For example, _{code.language-python}solve(array([[1,1],[1, 1.01]]),[1,1])_ returns _{code.language-python}[1,0]_ while _{code.language-python}solve(array([[1,1],[1, 1.01]]),[1,1.01])_ returns _{code.language-python}[0,1]_.
+{.py-only} *Solution*. One simple way to do this is make $\mathbf{b}$ and $\widehat{\mathbf{b}}$ the columns of the matrix. For example, _{code.language-python}solve(array([[1,1],[1, 1.01]]),[1,1])_ returns _{code.language-python}[1,0]_ while _{code.language-python}solve(array([[1,1],[1, 1.01]]),[1,1.01])_ returns _{code.language-python}[0,1]_.
 
+{.jl-only} *Solution*. One simple way to do this is make $\mathbf{b}$ and $\widehat{\mathbf{b}}$ the columns of the matrix. For example, `{jl} [1 1; 1 1.01] \ [1, 1]` returns `{jl} [1, 0]`, while `{jl} [1 1; 1 1.01] \ [1, 1.01]` returns `{jl} [0, 1]`.
+
+::: .py-only
     pre(python-executable)
       | from numpy.linalg import solve
       | from numpy import array
+:::
+
+::: .jl-only
+    pre(julia-executable)
+      | [1 1; 1 1.01] \ [1, 1]
+:::
 
 [Continue](btn:next)
 
 ---
 > id: step-212
 
-The eigenvalues of this matrix are approximately 0.005 and 2.005. In particular, the ratio of the eigenvalues is very large. You will find that the ratio of eigenvalues for your matrix is also large, because a matrix $A$ with a modest maximum eigenvalue ratio is *backwards stable*, meaning that small changes in $\mathbf{b}$ do not lead to large changes in $A^{-1}\mathbf{b}$,
+The eigenvalues of the matrix `{code} [1 1; 1 1.01]` are approximately 0.005 and 2.005. In particular, the ratio of the eigenvalues is very large. You will find that the ratio of eigenvalues for your matrix is also large, because a matrix $A$ with a modest maximum eigenvalue ratio is *backwards stable*, meaning that small changes in $\mathbf{b}$ do not lead to large changes in $A^{-1}\mathbf{b}$,
 
 ---
 > id: svd
@@ -3304,12 +3445,23 @@ import numpy as np
 A = np.array([[1,3,4],[7,-2,5],[-3,4,11]])
 ```
 
+``` julia
+A = [1 3 4; 7 -2 5; -3 4 11]
+```
+
 and confirm that the resulting matrices $R$ and $P$ satisfy $R' R = I$ and $P^2 = A' A$.
 
 :::
 
+::: .py-only
     pre(python-executable)
       |
+:::
+
+::: .jl-only
+    pre(julia-executable)
+      |
+:::
 
     x-quill
 
@@ -3356,6 +3508,7 @@ Thus the $P\_{k}$'s converge to the matrix $V \Lambda\_\infty V^{-1}$, where $\L
 
 For example:
 
+::: .py-only
     pre(python-executable)
       | import numpy as np
       |
@@ -3369,6 +3522,25 @@ For example:
       | A = np.array([[1, 3, 4],[7, -2, 5], [-3, 4, 11]])
       | R, P = polar(A,100)
       | R.T @ R - I, P @ P - A.T @ A
+:::
+
+::: .jl-only
+    pre(julia-executable)
+      | using LinearAlgebra
+      |
+      | function polar(A,n)
+      |     R = A
+      |     for i=1:n
+      |         R = (R + inv(R'))/2
+      |     end
+      |     R, R \ A
+      | end
+      |
+      | A = [1 3 4; 7 -2 5; -3 4 11]
+      | R, P = polar(A,100)
+      | R'*R - I, P^2 - A'*A
+:::
+
 
 Both of the matrices returned on the last line have entries which are within $3\times 10^{-14}$ of zero.
 
@@ -3504,8 +3676,15 @@ Show that $\left[\begin{smallmatrix}-160 & -120 \\\\\\ -12 & -134 \\\\\\
       \\\\\\ \end{smallmatrix}\right]$. Find its Moore-Penrose pseudoinverse.
 :::
 
+::: .py-only
     pre(python-executable)
       |
+:::
+
+::: .jl-only
+    pre(julia-executable)
+      |
+:::
 
     x-quill
 
@@ -3565,8 +3744,15 @@ This intuition is accurate, and it highlights the utility of having a generaliza
 Define a matrix with 100 rows and 5 columns, and do it in such a way that two of the five columns are nearly equal to some linear combination of the other three. Calculate the singular values of the matrix, and make a conjecture about how the number of approximate linear dependencies could have been detected from the list of singular values.
 :::
 
+::: .py-only
     pre(python-executable)
       | import numpy as np
+:::
+
+::: .jl-only
+    pre(julia-executable)
+      |
+:::
 
     x-quill
 
@@ -3575,6 +3761,7 @@ Define a matrix with 100 rows and 5 columns, and do it in such a way that two of
 
 *Solution*. We see that two of the singular values are much smaller than the other three. (Remember that you have to run the cell twice to get the plot to show.)
 
+::: .py-only
     pre(python-executable)
       | import numpy as np
       | import matplotlib.pyplot as plt
@@ -3582,6 +3769,16 @@ Define a matrix with 100 rows and 5 columns, and do it in such a way that two of
       | A[:,3] = A[:,2] + A[:,1] + 1e-2*np.random.standard_normal(100)
       | A[:,4] = A[:,1] - A[:,0] + 1e-2*np.random.standard_normal(100)
       | plt.bar(range(5),np.linalg.svd(A)[1])
+:::
+
+::: .jl-only
+    pre(julia-executable)
+      | using Plots, LinearAlgebra
+      | A = randn(100, 5)
+      | A[:,4] = A[:,3] + A[:,2] + 1e-2*randn(100)
+      | A[:,5] = A[:,2] - A[:,1] + 1e-2*randn(100)
+      | bar(1:5, svdvals(A), label = "singular values")
+:::
 
 We conjecture that $k$ very small singular values indicates that $k$ columns would need to be removed to obtain a matrix which does not have approximate linear dependence relationships among its columns.
 
@@ -3590,7 +3787,9 @@ We conjecture that $k$ very small singular values indicates that $k$ columns wou
 ---
 > id: step-238
 
-In fact, the idea developed in this exercise is used by the NumPy function `{py} np.linalg.matrix_rank` to calculate the rank of a matrix. Because of the roundoff errors associated with representing real numbers in memory on a computer, most matrices with float entries technically have [full rank](gloss:fullrank). Thus `{py} np.linalg.matrix_rank` computes the singular value decomposition and returns the number of [[singular values|eigenvalues]] of the matrix which are larger than a given threshold. The threshold is adjustable, but one common setting is $10^{-15}$ times the largest entry of the matrix times the largest dimension of the matrix.
+{.py-only} In fact, the idea developed in this exercise is used by the NumPy function `{py} np.linalg.matrix_rank` to calculate the rank of a matrix. Because of the roundoff errors associated with representing real numbers in memory on a computer, most matrices with float entries technically have [full rank](gloss:fullrank). Thus `{py} np.linalg.matrix_rank` computes the singular value decomposition and returns the number of [[singular values|eigenvalues]] of the matrix which are larger than a given threshold. The threshold is adjustable, but one common setting is $10^{-15}$ times the largest entry of the matrix times the largest dimension of the matrix.
+
+{.jl-only} In fact, the idea developed in this exercise is used by the Julia function `{jl} rank` to calculate the rank of a matrix. Because of the roundoff errors associated with representing real numbers in memory on a computer, most matrices with float entries technically have [full rank](gloss:fullrank). Thus `{py} rank` computes the singular value decomposition and returns the number of [[singular values|eigenvalues]] of the matrix which are larger than a given threshold. The threshold is adjustable, but one common setting is $10^{-15}$ times the largest entry of the matrix times the largest dimension of the matrix.
 
 ---
 > id: step-239
@@ -3646,16 +3845,55 @@ U, Σ, V = np.linalg.svd(A)
 plt.matshow(A)
 ```
 
+``` julia
+using LinearAlgebra, Plots
+m = 80
+n = 100
+a = m ÷ 8
+b = m ÷ 4
+A = ones(m,n)
+
+function pixel(i,j)
+    if (a ≤ i ≤ b || m-b ≤ i ≤ m-a) && a ≤ j ≤ n - a
+        0
+    elseif (a ≤ j ≤ b || n-b ≤ j ≤ n-a) && a ≤ i ≤ m - a
+        0
+    else
+        1
+    end
+end
+
+A = [pixel(i,j) for i=1:m,j=1:n]
+
+U, Σ, V = svd(A)
+heatmap(A)
+```
+
 * Now add some noise to the image:
 
+``` python
+B = A +  0.05*np.linalg.standard_normal((m,n))
+```
 
-    pre: code.language-python
-      | B = A +  0.05*np.linalg.standard_normal((m,n))
+``` julia
+B = A + 0.05 * randn(m, n)
+```
 
 Display this new matrix $B$, and also find the matrix obtained by keeping only the first three terms of $\sigma\_{1}\mathbf{u}\_{1}\mathbf{v}\_{1}' +\sigma\_{2}\mathbf{u}\_{2}\mathbf{v}\_{2}' +\cdots+\sigma\_{n}\mathbf{u}\_{n}\mathbf{v}\_{n}'$ for this matrix $B$. Which looks more like the original image $A$: (i) $B$ or (ii) the three-term approximation of $B$?
 
-Hint: you can achieve this computationally either by setting some singular values to 0 or by indexing the matrices $U$, $\Sigma$, and $V'$ appropriately. Also, you will need the function _{code.language-python}np.diagonal_ to generate a diagonal matrix from the vector of $\Sigma$ values returned by _{code.language-python}svd_.
+Hint: you can achieve this computationally either by setting some singular values to 0 or by indexing the matrices $U$, $\Sigma$, and $V'$ appropriately. Also, you will need the function `{py} np.diagonal` `{jl} diagm` to generate a diagonal matrix from the vector of $\Sigma$ values returned by `{py} svd`.
 
+:::
+
+::: .py-only
+    pre(python-executable)
+      | import numpy as np
+      | import matplotlib.pyplot as plt
+:::
+
+::: .jl-only
+    pre(julia-executable)
+      |
 :::
 
     x-quill
@@ -3706,9 +3944,18 @@ as required.
 
 We can select only the first three terms by suitably indexing the vectors, as follows:
 
+::: .py-only
     pre: code.language-python
       | U, Σ, V = np.linalg.svd(B)
       | plt.matshow(U[:,:3] * np.diag(Σ[:3]) * V.T[:3,:])
+:::
+
+::: .jl-only
+    pre(julia-executable)
+      | U, Σ, V = svd(B)
+      | heatmap(U[:,1:3] * diagm(Σ[1:3]) * V'[1:3,:])
+:::
+
 
 ---
 > id: determinants
@@ -3801,17 +4048,29 @@ Interpret $A = \begin{bmatrix}
 \end{array}\right| = ad - bc
 ```
 
- is the determinant of a $2 \times 2$ matrix. However this formula is terribly inefficient if $A$ has many entries (it has $n!$ terms for an $n\times n$ matrix), and all scientific computing environments have a _{code.language-python}det_ function which uses much faster methods.
+ is the determinant of a $2 \times 2$ matrix. However this formula is terribly inefficient if $A$ has many entries (it has $n!$ terms for an $n\times n$ matrix), and all scientific computing environments have a `{code} det` function which uses much faster methods.
 
 ::: .exercise
 **Exercise**  
-For various values of $n$, use the Python expression _{code.language-python}np.linalg.det(np.random.randint(-9,10,(n,n)))_ to find the determinant of an $n\times n$ matrix filled with random single-digit numbers. How large does $n$ have to be for the determinant to be large enough to consistently overflow? [[187±2]]
+For various values of $n$, use the expression `{py} np.linalg.det(np.random.randint(-9,10,(n,n)))` `{jl} det(rand(-9:9, n, n))` to find the determinant of an $n\times n$ matrix filled with random single-digit numbers. How large does $n$ have to be for the determinant to be large enough to consistently overflow? [[187±2]]
+:::
+
+::: .py-only
+    pre(python-executable)
+      | import numpy as np
+      | np.linalg.det(np.random.randint(-9,10,(n,n)))
+:::
+
+::: .jl-only
+    pre(julia-executable)
+      | using LinearAlgebra
+      | det(rand(-9:9, n, n))
 :::
 
 ---
 > id: step-248
 
-*Solution*. Trial and error reveals that this determinant starts to consistently return _{code.language-python}inf_ at $n = 187$.
+*Solution*. Trial and error reveals that this determinant starts to consistently return `{py} inf` `{jl} Inf` at $n = 187$.
 
 [Continue](btn:next)
 
@@ -3940,17 +4199,7 @@ Is every matrix with positive determinant positive definite? [[No|Yes]]
 ---
 > id: step-260
 
-*Solution*. No. Consider the $180$-degree rotation matrix $ A =
-\begin{bmatrix}
-	-1 & 0 \\\\\\
-	0 & -1
-\end{bmatrix}$ in $\mathbb{R}^2.$ This matrix maps $\mathbf{x}$ to $- \mathbf{x}$ and preserves orientation and volume so it has determinant $1$. However,
-
-``` latex
-\mathbf{x}' A \mathbf{x} = \mathbf{x}' (-\mathbf{x}) = - |\mathbf{x}|^2 \leq 0
-```
-
-for all $\mathbf{x} \in \mathbb{R}^2$ so $A$ is not positive semidefinite.
+*Solution*. No. Consider the negation of the $2 \times 2$ identity matrix. It has determinant 1, yet its eigenvalues are both negative.
 
 [Continue](btn:next)
 
