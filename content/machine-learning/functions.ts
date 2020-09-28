@@ -1,4 +1,4 @@
-import {Point} from '@mathigon/fermat';
+import {Point} from '@mathigon/euclid';
 import {CoordinateSystem, Step} from '../shared/types';
 import '../shared/shared';
 

@@ -1,5 +1,5 @@
 import {CoordinateSystem, Step} from '../shared/types';
-import {Point} from '@mathigon/fermat';
+import {Point} from '@mathigon/euclid';
 import '../shared/shared';
 
 
@@ -30,7 +30,7 @@ export function gaussiandensity($step: Step) {
 
   const points = xs.map(p => new Point(p, 0));
 
-  $step.model.watch(s => {
+  $step.model.watch((s: any) => {
     const fn = pdf(s.μ, s.σ);
     //$chart.mathBounds = new Bounds(55, 75, 0, 0.5);
     $chart.setFunctions(fn);
@@ -46,7 +46,7 @@ function tricube(l: number) {
 export function tricubegraph($step: Step) {
   const $chart = $step.$('x-coordinate-system') as CoordinateSystem;
 
-  $step.model.watch(s => {
+  $step.model.watch((s: any) => {
     const fn = tricube(s.λ);
     $chart.setFunctions(fn);
   });
@@ -64,7 +64,7 @@ export function kdecrossvalidate($step: Step) {
   const xs = [-3.2, 0.1, 0.2, 3.015, 4.5, 7.2];
   const points = xs.map(p => new Point(p, 0));
 
-  $step.model.watch(s => {
+  $step.model.watch((s: any) => {
     const fn = estimator(xs, s.i, s.λ);
     $chart.setFunctions(fn);
     $chart.drawPoints(points);
