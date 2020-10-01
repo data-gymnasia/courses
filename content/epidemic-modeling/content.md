@@ -50,7 +50,7 @@ List three ways in which the previous paragraph represents an oversimplification
 ---
 > id: solution-oversimplification
 
-*Solution*. Here are some caveats:
+*Solution.* Here are some caveats:
 
 1. An infected person does not necessarily recover, since some people die with the illness.
 2. A person may become infected again if the virus mutates in such a way that the antibodies are no longer effective on the new [strain](gloss:strain). 
@@ -148,7 +148,7 @@ Then adjust the values in the definition of the function `{jl} sim` to start wit
 ---
 > id: step-solution-galton-watson-experiment
 
-*Solution*. 
+*Solution.* 
 
 (a) If $\lambda > 1$, then more people are infected in each new time step (on average). Therefore, the infection typically spreads in this case. If $\lambda < 1$, then the number of infected persons tends to decrease in each new generation. This comports with numerical experimention using the given code.
 
@@ -214,7 +214,7 @@ Suppose that at a given time $t-1$, there are $j$ infected individuals and $k$ s
 ---
 > id: step-solution-basic-SIR
 
-*Solution*. The probability that an individual avoids infection is the probability that each infection opportunity fails to transmit. This probability is $(1-p)^j$, since there are $j$ infected individuals, and each one transmits with probability $p$. Therefore, the probability of infection for the individual is $1-(1-p)^j$. 
+*Solution.* The probability that an individual avoids infection is the probability that each infection opportunity fails to transmit. This probability is $(1-p)^j$, since there are $j$ infected individuals, and each one transmits with probability $p$. Therefore, the probability of infection for the individual is $1-(1-p)^j$. 
 
 [Continue](btn:next)
 
@@ -229,7 +229,7 @@ In terms of $n$ and $p$, the expected number of infectious persons at the second
 ---
 > id: exp-calc-solution
 
-*Solution*. If we define $I_k$ to be 1 if person $k$ is infected on the second time step and 0 otherwise, then the random variable we're looking to find the expected value of is $I\_2 + I\_3 + \\ldots + I\_n$. Furthermore, each of these random variables has an expectation of $p(1) + (1-p)(0) = p$. By linearity of expectation, the expected number of infectious persons is $\\mathbf{E}[I\_2] + \\cdots + \\mathbf{E}[I\_n] = p + \\cdots + p = p(n-1)$. 
+*Solution.* If we define $I_k$ to be 1 if person $k$ is infected on the second time step and 0 otherwise, then the random variable we're looking to find the expected value of is $I\_2 + I\_3 + \\ldots + I\_n$. Furthermore, each of these random variables has an expectation of $p(1) + (1-p)(0) = p$. By linearity of expectation, the expected number of infectious persons is $\\mathbf{E}[I\_2] + \\cdots + \\mathbf{E}[I\_n] = p + \\cdots + p = p(n-1)$. 
 
 [Continue](btn:next)
 
@@ -320,7 +320,7 @@ To make it easier to see the whole array, we map the status values to colors and
 ---
 > id: step-simulation-solution
 
-*Solution*. 
+*Solution.* 
 
 (a) The number of infectious individuals eventually reaches the value 0 and stays there forever, since each time step with a positive number of infectious individuals either results in no new infections, or it reduces the finite number of susceptible individuals by at least 1. When the number of susceptible individuals reaches zero, no new infections can occur.
 
@@ -359,7 +359,7 @@ The code block below computes the eventual number of recovered individuals over 
 ---
 > id: step-solution-R0
 
-*Solution*. When the value is around 1 or lower, the infection tends to reach only a few individuals. When the value is larger than 1, the infection sometimes reaches very few individuals and sometimes reaches approximately some particular fraction of the population. For example, when the value is 1.5, the final number of recovered individuals is often around 60% of the population. Furthermore, this proportion is extremely likely to be either close to 60% or close to 0%.
+*Solution.* When the value is around 1 or lower, the infection tends to reach only a few individuals. When the value is larger than 1, the infection sometimes reaches very few individuals and sometimes reaches approximately some particular fraction of the population. For example, when the value is 1.5, the final number of recovered individuals is often around 60% of the population. Furthermore, this proportion is extremely likely to be either close to 60% or close to 0%.
 
     figure
       img(src="images/histogram-final-recovered.svg" width="60%")
@@ -475,7 +475,7 @@ Early estimates of the $R\_0$ value of COVID-19 (under transmission conditions a
 ---
 > id: step-R0-covid-solution
 
-*Solution*. Based on the graph, we can say the proportion would be between 80% and 90%. Values estimated by experts vary in the 20%-70% range, so clearly the differences between the SIR model and the more advanced models being used by epidemiologists do have an impact on the proportion of the population the infection would eventually reach (under the assumption that no mitigation measures are employed). 
+*Solution.* Based on the graph, we can say the proportion would be between 80% and 90%. Values estimated by experts vary in the 20%-70% range, so clearly the differences between the SIR model and the more advanced models being used by epidemiologists do have an impact on the proportion of the population the infection would eventually reach (under the assumption that no mitigation measures are employed). 
 
 ---
 > id: deterministic-sir-models
@@ -654,7 +654,7 @@ Even for the simple SIR model, we can see numerically how flattening the curve i
 ---
 > id: step-solution-flattening-the-curve
 
-*Solution*. 
+*Solution.* 
 
     pre(julia-executable)
       | plt = plot(ylabel = "number infected")
@@ -734,7 +734,7 @@ Use your observation to draw a conclusion about the strategy of *temporary* redu
 ---
 > id: step-solution-different-number-initial
 
-*Solution*. What we see is that even with 10 initially infectious individuals, the disease spreads to a substantial percentage of the population with very high probability:
+*Solution.* What we see is that even with 10 initially infectious individuals, the disease spreads to a substantial percentage of the population with very high probability:
 
     pre(julia-executable)
       | using Plots

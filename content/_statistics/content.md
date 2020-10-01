@@ -61,7 +61,7 @@ Draw 500 independent samples from an exponential distribution with parameter 1. 
 
  
 
-*Solution*.  We use the step geom to graph $\widehat{F}$: 
+*Solution.*  We use the step geom to graph $\widehat{F}$: 
 
 ``` python
 n <- 500
@@ -94,7 +94,7 @@ Find the plug-in estimator of the mean of a distribution. Find the plug-in estim
 
  
 
-*Solution*. The plug-in estimator of the mean is the mean of the empirical distribution, which is the average of the locations of the samples. We call this the **sample mean**: 
+*Solution.* The plug-in estimator of the mean is the mean of the empirical distribution, which is the average of the locations of the samples. We call this the **sample mean**: 
 
 ``` latex
 \overline{X} = \frac{X_1 + \cdots + X_n}{n}. 
@@ -133,7 +133,7 @@ Consider the estimator
 of the maximum functional. Assuming that the distribution has a density function, show that $\widehat{\theta}$ is biased. 
 ::: 
 
-*Solution*. If $\nu$ is a continuous distribution, then the probability of the event $\\{X\_i &lt; T(\nu)\\}$ is $1$ for all $i=1,2,\ldots,n$. This implies that $\widehat{\theta} &lt; T(\nu)$ with probability 1. Taking expectation of both sides, we find that $\mathbb{E}[\widehat{\theta}] &lt;
+*Solution.* If $\nu$ is a continuous distribution, then the probability of the event $\\{X\_i &lt; T(\nu)\\}$ is $1$ for all $i=1,2,\ldots,n$. This implies that $\widehat{\theta} &lt; T(\nu)$ with probability 1. Taking expectation of both sides, we find that $\mathbb{E}[\widehat{\theta}] &lt;
   T(\nu)$. Therefore, this estimator has negative bias. 
 
  
@@ -154,7 +154,7 @@ Find the standard error of the sample mean if the distribution $\nu$ with varian
 
  
 
-*Solution*. We have 
+*Solution.* We have 
 
 ``` latex
 Var\left(\frac{X_1 + X_2 + \cdots + X_n}{n}\right) =
@@ -188,7 +188,7 @@ The mean squared error of an estimator $\theta$ is equal to its variance plus it
 
  
 
-*Proof*. The idea is to add and subtract the mean of $\widehat{\theta}$. We find that 
+*Proof.* The idea is to add and subtract the mean of $\widehat{\theta}$. We find that 
 
 ``` latex
 \mathbb{E}[(\widehat{\theta} - \theta)^2] &=
@@ -218,7 +218,7 @@ Show that the plug-in maximum estimator $\widehat{\theta}\_n = \max(X\_1, \ldots
 
  
 
-*Solution*. The probability that $\widehat{\theta}\_n$ is more than $\epsilon$ units from $\theta$ is equal to the probability that every sample is less than $\theta - \epsilon$, which by independence is equal to 
+*Solution.* The probability that $\widehat{\theta}\_n$ is more than $\epsilon$ units from $\theta$ is equal to the probability that every sample is less than $\theta - \epsilon$, which by independence is equal to 
 
 ``` latex
 \left(\frac{\theta - \epsilon}{\theta}\right)^n. 
@@ -239,7 +239,7 @@ Show that the sample variance $S^2 = \frac{1}{n}\sum\_{i=1}^n (X\_i -
 
  
 
-*Solution*. We will perform the calculation for $n = 3$. It may be generalized to other values of $n$ by replacing 3 with $n$ and $2$ with $n-1$. We have 
+*Solution.* We will perform the calculation for $n = 3$. It may be generalized to other values of $n$ by replacing 3 with $n$ and $2$ with $n-1$. We have 
 
 ``` latex
 \mathbb{E}[S^2] = \frac{1}{3}\mathbb{E}\left[ \left(\frac{2}{3}X_1 -
@@ -330,7 +330,7 @@ Suppose $x\mapsto f(x;\theta)$ is the density of a uniform random variable on $[
 
  
 
-*Solution*. The likelihood at 5 is zero, since $f\_{5}(x\_{3})
+*Solution.* The likelihood at 5 is zero, since $f\_{5}(x\_{3})
   = 0$. The likelihood at $10^6$ is very small, since $\mathcal{L}(10^6) = (1/10^6)^4 = 10^{-24}$. The likelihood at 7 is larger: $(1/7)^4 = 1/2401$. 
 
  
@@ -349,7 +349,7 @@ Suppose that $x\mapsto f(x;\mu,\sigma^2)$ is the normal density with mean $\mu$ 
 
  
 
-*Solution*. The maximum likelihood estimator is the minimizer of the logarithm of the likelihood function, which is 
+*Solution.* The maximum likelihood estimator is the minimizer of the logarithm of the likelihood function, which is 
 
 ``` latex
 -\frac{n}{2}\log 2\pi - n \log \sigma - \frac{n}{2}\log 2\pi - n
@@ -396,7 +396,7 @@ Muriel Bristol claims that she can tell by taste whether the tea or the milk was
 
  
 
-*Solution*. Under the null hypothesis, the number of cups identified correctly is 4 with probability $1/\binom{8}{4} \approx 1.4\%$ and at least 3 with probability $17/70 \approx 24\%$. Therefore, at the 5% significance level, only a correct identification of all the cups would give us grounds to reject the null hypothesis. The $p$-value in that case would be 1.4%. 
+*Solution.* Under the null hypothesis, the number of cups identified correctly is 4 with probability $1/\binom{8}{4} \approx 1.4\%$ and at least 3 with probability $17/70 \approx 24\%$. Therefore, at the 5% significance level, only a correct identification of all the cups would give us grounds to reject the null hypothesis. The $p$-value in that case would be 1.4%. 
 
  Failure to reject the null hypothesis is not necessarily evidence *for* the null hypothesis. The **power** of a hypothesis test is the conditional probability of rejecting the null hypothesis given that the alternative hypothesis is true. A $p$-value may be low either because the null hypothesis is true or because the test has low power. 
 
@@ -412,7 +412,7 @@ Consider the alternative hypothesis that 8-cylinder engines have lower fuel econ
 
  
 
-*Solution*. We frame the problem as a question about whether the *difference in means* between the distribution of 8-cylinder \rinline{mpg} values and the distribution of 6-cylinder \rinline{mpg} values is zero. We use the difference between the sample means $\overline{X}$ and $\overline{Y}$ of the two populations as an estimator of the difference in means. If we think of the records in the data frame as independent, then $\overline{X}$ and $\overline{Y}$ are independent. Since each is approximately normally distributed by the central limit theorem, their difference is therefore also approximately normal. So, let's calculate the sample mean and sample variance for the 8-cylinder cars and for the 6-cylinder cars. 
+*Solution.* We frame the problem as a question about whether the *difference in means* between the distribution of 8-cylinder \rinline{mpg} values and the distribution of 6-cylinder \rinline{mpg} values is zero. We use the difference between the sample means $\overline{X}$ and $\overline{Y}$ of the two populations as an estimator of the difference in means. If we think of the records in the data frame as independent, then $\overline{X}$ and $\overline{Y}$ are independent. Since each is approximately normally distributed by the central limit theorem, their difference is therefore also approximately normal. So, let's calculate the sample mean and sample variance for the 8-cylinder cars and for the 6-cylinder cars. 
 
 ``` python
 library(tidyverse)
@@ -462,7 +462,7 @@ Suppose the heights of the Romero sons are 72, 69, 68, and 66 inches, and the he
 
  
 
-*Solution*. We find that the absolute sample mean difference of about 2.4 inches is larger than only about 68% of the mean differences obtained by resampling many times. 
+*Solution.* We find that the absolute sample mean difference of about 2.4 inches is larger than only about 68% of the mean differences obtained by resampling many times. 
 
 ``` python
 set.seed(123)
@@ -508,5 +508,5 @@ Suppose that 10 different genes are tested to determine whether they have an aff
 
  
 
-*Solution*. At the 5% level, only $p$ values less than 5%/10 = 0.5% are reported as significant (since we ran ten hypothesis tests). Since none of the $p$ values are below 0.5%, none of the genes will be considered significant. 
+*Solution.* At the 5% level, only $p$ values less than 5%/10 = 0.5% are reported as significant (since we ran ten hypothesis tests). Since none of the $p$ values are below 0.5%, none of the genes will be considered significant. 
 

@@ -41,7 +41,7 @@ Each of the questions below is a probability question or a statistics question. 
 ---
 > id: step-4
 
-*Solution*. The first question is **statistics**. We don't know the probability of rain, and we are trying to draw an inference about it based on observed samples.
+*Solution.* The first question is **statistics**. We don't know the probability of rain, and we are trying to draw an inference about it based on observed samples.
 
 The second question is a **probability** question. We are given the setup and asked a question which assumes its validity.
 
@@ -109,7 +109,7 @@ The number of ordered triples of *distinct* elements from $\\{1,2,3,4\\}$ is [[2
 ---
 > id: step-9
 
-*Solution*. This problem is different from the previous one because the choice for which number goes in the first slot in the tuple affects the subsequent choices. If we choose 3 first, then we can't choose it for the second or third slots. However, the *number* of options for each choice is the same regardless of the previous choices: we have four choices for the first slot, then three for the second (once the first choice has been made), then two for the third. Thus there are $4 \times 3 \times 2 = 24$ ordered triples.
+*Solution.* This problem is different from the previous one because the choice for which number goes in the first slot in the tuple affects the subsequent choices. If we choose 3 first, then we can't choose it for the second or third slots. However, the *number* of options for each choice is the same regardless of the previous choices: we have four choices for the first slot, then three for the second (once the first choice has been made), then two for the third. Thus there are $4 \times 3 \times 2 = 24$ ordered triples.
 
 [Continue](btn:next)
 
@@ -148,7 +148,7 @@ Note: a positive integer must be between 100 and 999 (inclusive) to count as a t
 ---
 > id: step-13
 
-*Solution*. There are 9 choices for the first digit, then for any of those choices there are 9 choices for the second digit. Finally, given any pair of digits in the first two positions, there are 8 choices for the last entry. So there are $9\cdot 9 \cdot 8  = \boxed{648}$ choices in total.
+*Solution.* There are 9 choices for the first digit, then for any of those choices there are 9 choices for the second digit. Finally, given any pair of digits in the first two positions, there are 8 choices for the last entry. So there are $9\cdot 9 \cdot 8  = \boxed{648}$ choices in total.
 
 [Continue](btn:next)
 
@@ -201,7 +201,7 @@ Of the 1024 total length-10 strings composed of the symbols `{code} H` and `{cod
 ---
 > id: step-16
 
-*Solution*. For each 6-element subset of the 10 positions in the string, we can place `{code} T`'s in those six positions and `{code} H`'s in the remaining positions to get a sequence of the given description. Therefore, there are $\binom{10}{6} = 210$ total strings with exactly 6 `{code} T`'s.
+*Solution.* For each 6-element subset of the 10 positions in the string, we can place `{code} T`'s in those six positions and `{code} H`'s in the remaining positions to get a sequence of the given description. Therefore, there are $\binom{10}{6} = 210$ total strings with exactly 6 `{code} T`'s.
 
 [Continue](btn:next)
 
@@ -224,7 +224,7 @@ Let $\Omega = \\{0, 1, 2, \cdots, 100\\}$ be the set of natural numbers up to an
 ---
 > id: step-18
 
-*Solution*.  
+*Solution.*  
 * There are $33$ multiples of $3$ between $1$ and $100.$ Including zero in the count as well, we get $|A| = 34.$
 
 
@@ -256,7 +256,7 @@ For example, $\\{\mathrm{a}, \mathrm{r}, \mathrm{w}\\}$ and $\\{\mathrm{d}, \mat
 ---
 > id: step-20
 
-*Solution*. There are $2^{26} = 67{,}108{,}864$ subsets of the alphabet, because we can form a subset by choosing for each letter whether to include it or exclude it. By the fundamental principle of counting, the number of ways to make these 26 choices is $2 \times 2 \times \cdots
+*Solution.* There are $2^{26} = 67{,}108{,}864$ subsets of the alphabet, because we can form a subset by choosing for each letter whether to include it or exclude it. By the fundamental principle of counting, the number of ways to make these 26 choices is $2 \times 2 \times \cdots
   \times 2 = 2^{26}$.
 
 [Continue](btn:next)
@@ -281,7 +281,7 @@ Write an analogous expansion for $(x+y)^4$.
 ---
 > id: step-22
 
-*Solution*. The first equation holds since both sides work out to $(x+y)^3 = x^3 + 3x^2y + 3xy^2 + y^3$. The second holds since both sides are equal to
+*Solution.* The first equation holds since both sides work out to $(x+y)^3 = x^3 + 3x^2y + 3xy^2 + y^3$. The second holds since both sides are equal to
 
 ``` latex
 (x+y)^4 = x^4 + 4x^3y + 6x^2y^2 + 4xy^3 + y^4.
@@ -374,7 +374,7 @@ Identify a mathematical object in our model $(\Omega, m)$ which can be said to c
 ---
 > id: step-28
 
-*Solution*. The outcomes $(\texttt{H},\texttt{H})$ and $(\texttt{H},\texttt{T})$ are the ones which satisfy the condition "the first flip turns up heads". Therefore, the event corresponds to a **subset** of $\Omega$, namely the subset $\\{(\texttt{H},\texttt{H}), (\texttt{H},\texttt{T})\\}$.
+*Solution.* The outcomes $(\texttt{H},\texttt{H})$ and $(\texttt{H},\texttt{T})$ are the ones which satisfy the condition "the first flip turns up heads". Therefore, the event corresponds to a **subset** of $\Omega$, namely the subset $\\{(\texttt{H},\texttt{H}), (\texttt{H},\texttt{T})\\}$.
 
 ---
 > id: step-29
@@ -391,7 +391,7 @@ For concreteness, consider $\Omega = \\{(\texttt{H},\texttt{H}), (\texttt{H},\te
 ---
 > id: step-30
 
-*Solution*. The probability of the event $\\{(\texttt{H},\texttt{H}), (\texttt{H},\texttt{T})\\}$ is the **sum** of the probabilities of the two outcomes in the event, namely $\frac{1}{4} + \frac{1}{4} = \frac{1}{2}$.
+*Solution.* The probability of the event $\\{(\texttt{H},\texttt{H}), (\texttt{H},\texttt{T})\\}$ is the **sum** of the probabilities of the two outcomes in the event, namely $\frac{1}{4} + \frac{1}{4} = \frac{1}{2}$.
 
 In general, we sum all of the probability masses of the outcomes in the event to find the probability of the event.
 
@@ -419,7 +419,7 @@ For concreteness, you can think about the events "first flip comes up heads" and
 ---
 > id: step-31
 
-*Solution*. The event that both $E$ and $F$ occur is $E \cap F$, since $E \cap F$ is the set of outcomes in both $E$ and $F$.
+*Solution.* The event that both $E$ and $F$ occur is $E \cap F$, since $E \cap F$ is the set of outcomes in both $E$ and $F$.
 
 The event that $E$ does not occur is $E^{\mathsf{c}}$, since the complement of $E$ includes all the outcomes that are not in $E$.
 
@@ -444,7 +444,7 @@ Suppose a group of $n$ friends enter the lottery. For $i \in \\{1, \dots , n\\}$
 ---
 > id: step-33
 
-*Solution*.  
+*Solution.*  
 * The event that at least one friend loses is $\bigcup\_{i = 1}^n E\_i^c.$
 * The event that all friends win is $\bigcap\_{i=1}^n E\_i.$
 * The event that at least one friend wins is $\bigcup\_{i=1}^n E\_i.$
@@ -484,7 +484,7 @@ then the number of elements in the domain of $\mathbb{P}$ is [[16]].
 
 :::
 
-*Solution*. The domain of $\mathbb{P}$ is the set of subsets of $\Omega$. Since $\Omega$ has 4 elements, there are $2 \times 2 \times 2 \times 2 = \boxed{16}$ elements in the domain of $\mathbb{P}$.
+*Solution.* The domain of $\mathbb{P}$ is the set of subsets of $\Omega$. Since $\Omega$ has 4 elements, there are $2 \times 2 \times 2 \times 2 = \boxed{16}$ elements in the domain of $\mathbb{P}$.
 
 [Continue](btn:next)
 
@@ -523,7 +523,7 @@ Use the additivity property and the fact that $A = (A \cap B) \cup (A \cap B^{\m
 ---
 > id: step-38
 
-*Solution*. We have $\mathbb{P}(A) = \mathbb{P}(A \cap B) + \mathbb{P}(A \cap B^c)$ by additivity. Since $A \cap B = B$ and probabilities are non-negative, it follows that
+*Solution.* We have $\mathbb{P}(A) = \mathbb{P}(A \cap B) + \mathbb{P}(A \cap B^c)$ by additivity. Since $A \cap B = B$ and probabilities are non-negative, it follows that
 
 ``` latex
 \mathbb{P}(A) = \mathbb{P}(B) + \mathbb{P}(A \cap B^c) \geq \mathbb{P}(B)
@@ -548,7 +548,7 @@ Use this property to show that if $A$ occurs with probability zero and $B$ occur
 ---
 > id: step-40
 
-*Solution*. Define $\tilde{A}$ to be the set of $\omega$'s which are in $A$ but not $B$, and let $\tilde{B}$ be the set of $\omega$'s which are in $B$ but not $A$. Then
+*Solution.* Define $\tilde{A}$ to be the set of $\omega$'s which are in $A$ but not $B$, and let $\tilde{B}$ be the set of $\omega$'s which are in $B$ but not $A$. Then
 
 ``` latex
 \mathbb{P}(A \cup B) = \mathbb{P}(\tilde{A} \cup \tilde{B} \cup (A \cap B)) =
@@ -586,7 +586,7 @@ Suppose that $\Omega$ is the set of ordered pairs of positive integers, with pro
 ---
 > id: step-42
 
-*Solution*. The probability of the event $\\{(i,j) \in \Omega : i > 2\\}$ is the sum of the probability masses of all the points in $\Omega$ which lie to the right of the line $x = 2$. The probability of the event $\\{(i,j) \in \Omega : i = t\\}$ is the sum of the probability masses of all of the points on the vertical line $x = t$. So summing these probabilities over each $t$ value in $\\{3, 4, 5, \ldots\\}$ amounts to totalling the probability mass right of the line $x = 2$ in columns. Since positive quantities may be summed in any order, this column-wise sum will indeed yield the total mass right of the line $x = 2$.
+*Solution.* The probability of the event $\\{(i,j) \in \Omega : i > 2\\}$ is the sum of the probability masses of all the points in $\Omega$ which lie to the right of the line $x = 2$. The probability of the event $\\{(i,j) \in \Omega : i = t\\}$ is the sum of the probability masses of all of the points on the vertical line $x = t$. So summing these probabilities over each $t$ value in $\\{3, 4, 5, \ldots\\}$ amounts to totalling the probability mass right of the line $x = 2$ in columns. Since positive quantities may be summed in any order, this column-wise sum will indeed yield the total mass right of the line $x = 2$.
 
 [Continue](btn:next)
 
@@ -603,7 +603,7 @@ Show that the function $m((i,j)) = 2^{-i-j}$ sums to 1 as $(i,j)$ ranges over th
 ---
 > id: step-44
 
-*Solution*. The sum along the first column is $1/4 + 1/8 + 1/16 + \cdots = 1/2$, and the sum along the second column is $1/8 + 1/16 + 1/32 + \ldots = 1/4$, and so on. Summing these column sums, we get $1/2 + 1/4 + 1/8 + \cdots = 1$, as desired.
+*Solution.* The sum along the first column is $1/4 + 1/8 + 1/16 + \cdots = 1/2$, and the sum along the second column is $1/8 + 1/16 + 1/32 + \ldots = 1/4$, and so on. Summing these column sums, we get $1/2 + 1/4 + 1/8 + \cdots = 1$, as desired.
 
 
 ---
@@ -673,7 +673,7 @@ Define a six-element probability space $\Omega$ on which $X$ and $Y$ may be defi
 ---
 > id: step-51
 
-*Solution*. We set $\Omega = \\{(1, 1), (2, 2), (3, 3), (4, 0), (5, 1), (6, 2)\\}.$ From the sample space, we see that for any integer value $k,$ we have
+*Solution.* We set $\Omega = \\{(1, 1), (2, 2), (3, 3), (4, 0), (5, 1), (6, 2)\\}.$ From the sample space, we see that for any integer value $k,$ we have
 
 ``` latex
 \mathbb{P}(X - Y = k) = \begin{cases}
@@ -711,7 +711,7 @@ Consider a sample space $\Omega$ and an event $E \subset \Omega$. We define the 
 ---
 > id: step-53
 
-*Solution*.  
+*Solution.*  
 * Since $\mathbf{1}\_E \cdot \mathbf{1}\_F = 1$ if and only if $\mathbf{1}\_E = 1$ and $\mathbf{1}\_F = 1,$ we see that $\mathbf{1}\_{E \cap F} = \mathbf{1}\_E \cdot \mathbf{1}\_F.$
 
 * Because $\mathbf{1}\_E + \mathbf{1}\_F$ may be equal to 2 (on the intersection of $E$ and $F$), we cannot have $\mathbf{1}\_{E \cup F} = \mathbf{1}\_E + \mathbf{1}\_F$ in general.
@@ -770,7 +770,7 @@ A problem on a test requires students to match molecule diagrams to their approp
 ---
 > id: step-58
 
-*Solution*. The number of correctly labeled diagrams is an integer between 0 and 3 inclusive. Suppose the labels are $\mathrm{A},\mathrm{B},\mathrm{C}$, and suppose the correct labeling sequence is $ABC$ (the final result would be the same regardless of the correct labeling sequence). The sample space consists of all six possible labeling sequences, and each of them is equally likely since the student applies the labels uniformly at random. So we have
+*Solution.* The number of correctly labeled diagrams is an integer between 0 and 3 inclusive. Suppose the labels are $\mathrm{A},\mathrm{B},\mathrm{C}$, and suppose the correct labeling sequence is $ABC$ (the final result would be the same regardless of the correct labeling sequence). The sample space consists of all six possible labeling sequences, and each of them is equally likely since the student applies the labels uniformly at random. So we have
 
 ``` latex
 \Omega &= \{\mathrm{ABC}, \mathrm{ACB}, \mathrm{BAC}, \mathrm{BCA}, \mathrm{CAB}, \mathrm{CBA}\}, \\\
@@ -849,7 +849,7 @@ Consider a random variable $X$ whose distribution is as shown in the figure abov
 ---
 > id: step-60
 
-*Solution*. The first one is true, since the CDF goes from about 0.1 at $-1$ to about 0.9 at $+1$. The difference, about 0.8 is larger than 0.6.
+*Solution.* The first one is true, since the CDF goes from about 0.1 at $-1$ to about 0.9 at $+1$. The difference, about 0.8 is larger than 0.6.
 
 The second one is also true, since there is no probability mass past 2.
 
@@ -872,7 +872,7 @@ Suppose that $X$ is a random variable with CDF $F\_X$ and that $Y = X^2$. Expres
 ---
 > id: step-62
 
-*Solution*. By definition of $Y$, we have that $Y^2 > 9$ if $X < -3$ or $X> 3.$ Since these events are mutually exclusive, we have
+*Solution.* By definition of $Y$, we have that $Y^2 > 9$ if $X < -3$ or $X> 3.$ Since these events are mutually exclusive, we have
 
 ``` latex
 \mathbb{P}(Y > 9) &= \mathbb{P}(X < -3) + \mathbb{P}(X > 3) \\\
@@ -894,7 +894,7 @@ For example, consider the two-fair-coin-flip experiment and let $X$ be the numbe
 ---
 > id: step-63
 
-*Solution*. If we define $Y$ to be the number of *tails*, then it's clear from symmetry that it has the same distribution as $X$. Furthermore, $X$ and $Y$ are unequal as random variables because if $X = 0$, then $Y = 2$(and vice versa).
+*Solution.* If we define $Y$ to be the number of *tails*, then it's clear from symmetry that it has the same distribution as $X$. Furthermore, $X$ and $Y$ are unequal as random variables because if $X = 0$, then $Y = 2$(and vice versa).
 
 (In fact, we can express $Y$ in terms of $X$ as $Y = 2-X$.)
 
@@ -934,7 +934,7 @@ Show that $X\_1$, $X\_2$, and $Y\_1$ all have the same marginal distributions an
 ---
 > id: step-66
 
-*Solution*. The random variables $X\_1, X\_2, Y\_1$ all have the same distribution because each can be $1$ or $0$ with probability $\frac{1}{2}.$ On the other hand, $(X\_1, X\_2)$ can take the values $\\{(0, 0), (0, 1), (1, 0), (1, 1)\\}$ with equal probability $\frac{1}{4},$ while $(X\_1, Y\_1)$ can only be either $(0, 1)$ or $(1,0)$ with probability $\frac{1}{2}.$
+*Solution.* The random variables $X\_1, X\_2, Y\_1$ all have the same distribution because each can be $1$ or $0$ with probability $\frac{1}{2}.$ On the other hand, $(X\_1, X\_2)$ can take the values $\\{(0, 0), (0, 1), (1, 0), (1, 1)\\}$ with equal probability $\frac{1}{4},$ while $(X\_1, Y\_1)$ can only be either $(0, 1)$ or $(1,0)$ with probability $\frac{1}{2}.$
 
 [Continue](btn:next)
 
@@ -957,7 +957,7 @@ The probability that die 1 shows 4 is [[0.1527±0.01]].
 ---
 > id: step-68
 
-*Solution*. The event that the first die shows 4 can be written as a disjoint union of the events $\\{\text{Die 1} = 4\\} \cap \text{Die 2} = j$ where $j$ ranges over the integers 1 to 6. We get
+*Solution.* The event that the first die shows 4 can be written as a disjoint union of the events $\\{\text{Die 1} = 4\\} \cap \text{Die 2} = j$ where $j$ ranges over the integers 1 to 6. We get
 
 ``` latex
 \mathbb{P}(\text{Die 1} = 4) &= \sum_{j=1}^6 \mathbb{P}(\text{Die 1} = 4, \text{ Die 2} = j) \\\ &= \frac{1}{36} + \frac{1}{36} +  \frac{1}{72} + \frac{1}{36} + \frac{1}{36} + \frac{1}{36} \\\ &= \frac{11}{72}.
@@ -995,7 +995,7 @@ For each of the three joint distributions in the previous exercise, the probabil
 ---
 > id: step-71
 
-*Solution*. Since all of the probability mass is in the first quadrant, both $X$ and $Y$ are positive with probability 1. The probability that $Y > X$ is the total amount of probability mass in the region in the plane above the line $y = x$. The figure with the most mass in that region is the first one.
+*Solution.* Since all of the probability mass is in the first quadrant, both $X$ and $Y$ are positive with probability 1. The probability that $Y > X$ is the total amount of probability mass in the region in the plane above the line $y = x$. The figure with the most mass in that region is the first one.
 
 ---
 > id: conditional-probability
@@ -1058,7 +1058,7 @@ After the objects are released, an observer sees one of them emerge at the water
 ---
 > id: step-75
 
-*Solution*. Let's use the given sample space:
+*Solution.* Let's use the given sample space:
 
 ``` latex
 \Omega = \{\text{both positive}, \text{opposite buoyancy}, \text{both negative}\}
@@ -1096,7 +1096,7 @@ Find a probability space $\Omega$ which models this experiment, find a pair of e
 ---
 > id: step-77
 
-*Solution*. The four possible outcomes of this experiment are (A, blue), (A, red), (B, blue), and (B, red). So we let our probability space $\Omega$ consist of those four outcomes.
+*Solution.* The four possible outcomes of this experiment are (A, blue), (A, red), (B, blue), and (B, red). So we let our probability space $\Omega$ consist of those four outcomes.
 
 The probability of the outcome (A, blue) is equal to the probability that Urn A is selected times the conditional probability of selecting a blue ball given that Urn A was selected. We interpret the information that Urn A contains an equal number of blue and red balls as a statement that this conditional probability should be $\frac{1}{2}$. Therefore, we assign the probability $\frac{1}{2} \cdot \frac{1}{3} = \frac{1}{6}$ to the event (A, blue).
 
@@ -1130,7 +1130,7 @@ Consider three random variables $X\_1$, $X\_2$, and $X\_3$, each of which is equ
 ---
 > id: step-79
 
-*Solution*.  
+*Solution.*  
 * By monotonicity, we have
 
 ``` latex
@@ -1174,7 +1174,7 @@ Suppose you're 90% sure that your package was delivered today and 75% sure that 
 ---
 > id: step-82
 
-*Solution*. The desired conditional probability is $\mathbb{P}(\text{delivered} | \text{invisible})$, which by Bayes' theorem is
+*Solution.* The desired conditional probability is $\mathbb{P}(\text{delivered} | \text{invisible})$, which by Bayes' theorem is
 
 ``` latex
 \frac{\mathbb{P}(\text{invisible} | \text{delivered})
@@ -1202,7 +1202,7 @@ Suppose a disease has 0.1% prevalence in the population and has a test with 90% 
 ---
 > id: step-84
 
-*Solution*. Let $D$ be the event that a person has the disease and $P$ be the event that a person tests positive to the test. We would like to find $\mathbb{P}(D | P)$ given that $P(D) = 0.001$, $\mathbb{P}(P | D) = 0.9$ and $\mathbb{P}(P | D^c) = 0.1$. By Bayes' Theorem,
+*Solution.* Let $D$ be the event that a person has the disease and $P$ be the event that a person tests positive to the test. We would like to find $\mathbb{P}(D | P)$ given that $P(D) = 0.001$, $\mathbb{P}(P | D) = 0.9$ and $\mathbb{P}(P | D^c) = 0.1$. By Bayes' Theorem,
 
 ``` latex
 \mathbb{P}(D |P) &= \frac{\mathbb{P}(P | D) \cdot \mathbb{P}(D)}{\mathbb{P}(P |D) \cdot \mathbb{P}(D) + \mathbb{P}(P | D^c) \cdot \mathbb{P}(D^c)} \\
@@ -1274,7 +1274,7 @@ Are events $A$ and $B$ independent? [[No|Yes]] Are events $A$ and $C$ independen
 ---
 > id: step-88
 
-*Solution*.  
+*Solution.*  
 * We have $\mathbb{P}(A \cap B) = 0$ (because $X$ cannot be odd and even), while $\mathbb{P}(A)\mathbb{P}(B) = \frac{1}{4}$. Since $\mathbb{P}(A \cap B) \neq \mathbb{P}(A)\mathbb{P}(B)$, the events $A$ and $B$ are not independent.
 * We have $\mathbb{P}(A | C) = \frac{\mathbb{P}(A \cap C)}{\mathbb{P}(C)} = \frac{1/3}{2/3} = \frac{1}{2}$. Because $\mathbb{P}(A| C) = \mathbb{P}(A)$, the events $A$ and $C$ are independent.
 
@@ -1292,7 +1292,7 @@ Suppose that $\Omega = \\{(\texttt{H},\texttt{H}),   (\texttt{H},\texttt{T}), (\
 ---
 > id: step-89
 
-*Solution*. The pair $(X\_1, X\_2)$ takes values in $\\{(1, 1), (1,0), (0, 1), (0, 0)\\}$ each with probability $\frac{1}{4} = \frac{1}{2} \times \frac{1}{2}.$ Since both $X\_1$ and $X\_2$ can be $0$ or $1$ with probability $\frac{1}{2},$ we conclude that $X\_1$ and $X\_2$ are independent.
+*Solution.* The pair $(X\_1, X\_2)$ takes values in $\\{(1, 1), (1,0), (0, 1), (0, 0)\\}$ each with probability $\frac{1}{4} = \frac{1}{2} \times \frac{1}{2}.$ Since both $X\_1$ and $X\_2$ can be $0$ or $1$ with probability $\frac{1}{2},$ we conclude that $X\_1$ and $X\_2$ are independent.
 
 Directly showing that random variables are independent can be tedious, because there are many events to check. However, there is a general way to construct $\Omega$ to get independent random variables. The idea is to build $\Omega$ as a rectangle:
 
@@ -1350,7 +1350,7 @@ Define a probability space $\Omega$ and 10 independent random variables which ar
 ---
 > id: step-92
 
-*Solution*. We follow the product space construction and define $\Omega$ to be the set of all length-10 tuples of elements in $\\{1,2,3,4,5,6\\}$. For each $i \in \\{1, 2, \dots, 10\\}$ let $\Omega\_i = \\{1, 2, 3, 4, 5, 6\\}$ and let $m\_i$ be the uniform probability mass function on $\Omega\_i.$ Then desired probability space is $\Omega$ where
+*Solution.* We follow the product space construction and define $\Omega$ to be the set of all length-10 tuples of elements in $\\{1,2,3,4,5,6\\}$. For each $i \in \\{1, 2, \dots, 10\\}$ let $\Omega\_i = \\{1, 2, 3, 4, 5, 6\\}$ and let $m\_i$ be the uniform probability mass function on $\Omega\_i.$ Then desired probability space is $\Omega$ where
 
 ``` latex
 \Omega = \Omega_1 \times \Omega_2 \times \cdots \times
@@ -1415,7 +1415,7 @@ Show that the equation $\mathbb{P}(A \cap B \cap C) = \mathbb{P}(A) \mathbb{P}(B
 ---
 > id: step-95
 
-*Solution*. By definition, $A = \\{(1,0, 1), (1, 1, 0)\\},$ $B = \\{(0, 1, 1), (1, 1, 0)\\}$ and $C = \\{(0, 1, 1), (1, 0, 1)\\}.$ Therefore,
+*Solution.* By definition, $A = \\{(1,0, 1), (1, 1, 0)\\},$ $B = \\{(0, 1, 1), (1, 1, 0)\\}$ and $C = \\{(0, 1, 1), (1, 0, 1)\\}.$ Therefore,
 
 ``` latex
 \mathbb{P}(A) = \mathbb{P}(B) = \mathbb{P}(C) = \frac{1}{2}.
@@ -1483,7 +1483,7 @@ Consider as sequence of 8 independent coin flips. Show that the probability of g
 ---
 > id: step-98
 
-*Solution*. The probability that the first two flips are both heads is $\frac{1}{4}$. Similarly, the probability that the third and fourth flips are heads and heads, [respectively](gloss:respectively), is $\frac{1}{4}$. Furthermore, these events are independent, since their [indicator](gloss:indicator) random variables are functions of distinct independent random variables. Therefore, the probability that we get consecutive heads either in the first pair of flips or in the third and fourth flips is $1 - \left(1-\frac{1}{4}\right)^2$.
+*Solution.* The probability that the first two flips are both heads is $\frac{1}{4}$. Similarly, the probability that the third and fourth flips are heads and heads, [respectively](gloss:respectively), is $\frac{1}{4}$. Furthermore, these events are independent, since their [indicator](gloss:indicator) random variables are functions of distinct independent random variables. Therefore, the probability that we get consecutive heads either in the first pair of flips or in the third and fourth flips is $1 - \left(1-\frac{1}{4}\right)^2$.
 
 Continuing in this way, we find that the probability of getting consecutive heads in the first pair, the second pair, or the third pair of flips is $1 - \left(1-\frac{1}{4}\right)^3$, and finally the probability of getting consecutive heads somewhere in the four position pairs is $1 - \left(1-\frac{1}{4}\right)^4$.
 
@@ -1561,7 +1561,7 @@ How close to 1 is the result typically? Choose the best answer.
 ---
 > id: step-102
 
-*Solution*. Running the code several times, we see that the error is seldom as large as 0.01 or as small as 0.0000001. So the correct answer choice is the third one.
+*Solution.* Running the code several times, we see that the error is seldom as large as 0.01 or as small as 0.0000001. So the correct answer choice is the third one.
 
 [Continue](btn:next)
 
@@ -1591,11 +1591,11 @@ Use a Monte Carlo simulation to estimate the expectation of $X/Y$, where $X$ and
 > id: step-104
 
 ::: .py-only
-*Solution*. `{py} sum(randint(1,7)/randint(1,7) for i in range(10_000_000))/10_000_000` returns approximately 1.43. The actual mean is `{py} sum(x/y for x in range(1,7) for y in range(1,7))/36`, which is $\frac{343}{240} = 1.4291\overline{6}$. So we can say that the Monte Carlo result with 10 million trials is quite close to the correct value.
+*Solution.* `{py} sum(randint(1,7)/randint(1,7) for i in range(10_000_000))/10_000_000` returns approximately 1.43. The actual mean is `{py} sum(x/y for x in range(1,7) for y in range(1,7))/36`, which is $\frac{343}{240} = 1.4291\overline{6}$. So we can say that the Monte Carlo result with 10 million trials is quite close to the correct value.
 :::
 
 ::: .jl-only
-*Solution*. `{jl} mean(rand(1:6)/rand(1:6) for i=1:10^8)` returns approximately 1.43. The actual mean is `{jl} mean(x/y for x=1:6, y=1:6)`, which is $\frac{343}{240} = 1.4291\overline{6}$, so we can say that the Monte Carlo result with 100 million trials is very close to the correct value.
+*Solution.* `{jl} mean(rand(1:6)/rand(1:6) for i=1:10^8)` returns approximately 1.43. The actual mean is `{jl} mean(x/y for x=1:6, y=1:6)`, which is $\frac{343}{240} = 1.4291\overline{6}$, so we can say that the Monte Carlo result with 100 million trials is very close to the correct value.
 :::
 
 [Continue](btn:next)
@@ -1615,7 +1615,7 @@ Explain why $\mathbb{E}[X] \leq \mathbb{E}[Y]$ if $X(\omega) \leq Y(\omega)$ for
 ---
 > id: step-106
 
-*Solution*. If $X(\omega) \leq Y(\omega)$ for all $\omega \in \Omega,$ then we have
+*Solution.* If $X(\omega) \leq Y(\omega)$ for all $\omega \in \Omega,$ then we have
 
 ``` latex
 \mathbb{E}[X] &= \sum_{\omega \in \Omega}X(\omega)m(\omega) \\\
@@ -1698,7 +1698,7 @@ Consider a random variable $X$ whose distribution assigns a probability mass of 
 ---
 > id: step-108
 
-*Solution*. We multiply the probability mass at each point $x$ by the location $x$ and sum to get
+*Solution.* We multiply the probability mass at each point $x$ by the location $x$ and sum to get
 
 ``` latex
 \sum_{n = 1}^\infty 2^{-n}2^n = \sum_{n=1}^\infty 1 = \infty.
@@ -1722,7 +1722,7 @@ If $f:\mathbb{R}^2 \to \mathbb{R}$, and $X$ and $Y$ are discrete random variable
 ```
 :::
 
-*Proof*. We use the same idea we used in the proof of the expectation formula: group terms in the definition of expectation according the value of the pair $(X(\omega),Y(\omega))$. We get
+*Proof.* We use the same idea we used in the proof of the expectation formula: group terms in the definition of expectation according the value of the pair $(X(\omega),Y(\omega))$. We get
 
 ``` latex
 \mathbb{E}[f(X,Y)] &= \sum_{\omega \in
@@ -1746,7 +1746,7 @@ Show that $\mathbb{E}[XY] = \mathbb{E}[X]\mathbb{E}[Y]$ if $X$ and $Y$ are indep
 ---
 > id: step-110
 
-*Solution*. Using the definition of independence, we have
+*Solution.* Using the definition of independence, we have
 
 ``` latex
 \mathbb{E}[XY] &= \sum_{\omega \in \Omega}XY \mathbb{P}(X = x \text{ and } Y = y) \\\
@@ -1816,7 +1816,7 @@ uniformly at random. Make a rough estimate of the mean and variance of this rand
 ---
 > id: step-113
 
-*Solution*. My estimate of the mean and variance are $0.6$ and $0.1$, [respectively](gloss:respectively). The value 0.6 appears to be around the balance point of the points on the number line, and the squared deviation from 0.6 is very small for a couple of the points and as large as about 0.15 for others.
+*Solution.* My estimate of the mean and variance are $0.6$ and $0.1$, [respectively](gloss:respectively). The value 0.6 appears to be around the balance point of the points on the number line, and the squared deviation from 0.6 is very small for a couple of the points and as large as about 0.15 for others.
 
 Calculating the mean exactly using `{jl} m = mean([0.245, 0.874, 0.998, 0.567, 0.482])`, we get a value of 0.6332. Calculating the variance exactly using `{jl} mean([(a-m)^2 for a in A])` (where $A$ is the array above), we get a value of 0.074. Therefore, my estimate was a little high.
 
@@ -1847,7 +1847,7 @@ Tips: `{jl} rand(0:1000)/1000` returns a sample from the desired distribution. A
 ---
 > id: step-115
 
-*Solution*. We define a function `{code} run` which plays the game once, and we record the result of the game over a million runs. We estimate the mean as the mean of the resulting list, and we estimate the variance using
+*Solution.* We define a function `{code} run` which plays the game once, and we record the result of the game over a million runs. We estimate the mean as the mean of the resulting list, and we estimate the variance using
 
 ``` python
 import numpy as np
@@ -1918,7 +1918,7 @@ if $a$ is a real number and $X$ is a random variable, and if $X$ and $Y$ are **i
 ---
 > id: step-117
 
-*Proof*. The first part of the statement follows easily from linearity of expectation
+*Proof.* The first part of the statement follows easily from linearity of expectation
 
 ``` latex
 \operatorname{Var}(aX) &= \mathbb{E}[a^2X^2] - \mathbb{E}[aX]^2\\\
@@ -1960,7 +1960,7 @@ Show that this distribution has a finite mean but not a finite variance.
 ---
 > id: step-119
 
-*Solution*. Let $X$ be a random variable with this distribution. Then
+*Solution.* Let $X$ be a random variable with this distribution. Then
 
 ``` latex
 \mathbb{E}[X] &= \sum_{n=1}^{\infty} n \cdot \frac{c}{n^3}= c \sum_{n=1}^{\infty} \frac{1}{n^2}.
@@ -2012,7 +2012,7 @@ Identify each of the following joint distributions as representing positive cova
 ---
 > id: step-122
 
-*Solution*. The first graph shows negative covariance, since $X-\mathbb{E}[X]$ and $Y - \mathbb{E}[Y]$ have opposite sign for the top-left mass and for the bottom-right mass, and the contributions of the other two points are smaller since these points are close to the mean $(\mathbb{E}[X],\mathbb{E}[Y])$.
+*Solution.* The first graph shows negative covariance, since $X-\mathbb{E}[X]$ and $Y - \mathbb{E}[Y]$ have opposite sign for the top-left mass and for the bottom-right mass, and the contributions of the other two points are smaller since these points are close to the mean $(\mathbb{E}[X],\mathbb{E}[Y])$.
 
 The second graph shows positive covariance, since the top right and bottom left points contribute positively, and the middle point contributes much less.
 
@@ -2030,7 +2030,7 @@ Does $\operatorname{Cov}(X,Y) = 0$ imply that $X$ and $Y$ are independent?
 Hint: consider the previous exercise. Alternatively, consider a random variable $X$ which is uniformly distributed on $\\{1,2,3\\}$ and an independent random variable $Z$ which is uniformly distributed on $\\{-1,1\\}$. Set $Y = ZX$. Consider the pair $(X,Y)$.
 :::
 
-*Solution*. The third example in the previous exercise shows a non-independent pair of random variables which has zero covariance.
+*Solution.* The third example in the previous exercise shows a non-independent pair of random variables which has zero covariance.
 
 Alternatively, the suggested random variables $X$ and $Y$ have zero covariance, but they are not independent since, for example, $\mathbb{P}(X = 2 \text{ and } Y = 1) = 0$ even though $\mathbb{P}(X = 2)$ and $\mathbb{P}(Y = 1)$ are both positive.
 
@@ -2065,7 +2065,7 @@ Conclude that $-1 \leq \operatorname{Corr}(X,Y) \leq 1$.
 ---
 > id: step-124
 
-*Solution*.  
+*Solution.*  
 
 The polynomial is nonnegative because the left-hand side of the given equation is the expectation of a nonnegative random variable.
 
@@ -2097,7 +2097,7 @@ if $X\_1, \ldots, X_n$ are independent random variables.
 ---
 > id: step-125
 
-*Solution*. The expectation of $(X\_1+\cdots+X\_n)^2$ is the sum of the values in this table:
+*Solution.* The expectation of $(X\_1+\cdots+X\_n)^2$ is the sum of the values in this table:
 
 | $\mathbb{E}[X_1^2]$  | $\mathbb{E}[X_1X_2]$ | $\cdots$ | $\mathbb{E}[X_1X_n]$ |
 | $\mathbb{E}[X_2X_1]$ | $\mathbb{E}[X_2^2]$  | $\cdots$ | $\mathbb{E}[X_2X_n]$ |
@@ -2128,7 +2128,7 @@ Suppose that $X\_1, \ldots, X\_n$ are independent random variables with the same
 
 :::
 
-*Solution*. By linearity of expectation, we have
+*Solution.* By linearity of expectation, we have
 
 ``` latex
 \mathbb{E}\left[\frac{X_1 + X_2 + \cdots + X_n}{n}\right] &= \frac{\mathbb{E}[X_1] + \mathbb{E}[X_2]+ \cdots + \mathbb{E}[X_n]}{n} \\\
@@ -2161,7 +2161,7 @@ Show that $\Sigma = \mathbb{E}[\mathbf{X} \mathbf{X}']$ if all of the random var
 ---
 > id: step-128
 
-*Solution*. The definition of matrix multiplication implies that the $(i,j)$ th entry of $\mathbf{X} \mathbf{X}'$ is equal to $X\_i X\_j$. Therefore, the $(i,j)$ th entry of $\mathbb{E}[\mathbf{X} \mathbf{X}']$ is equal to $\mathbb{E}[X\_iX\_j]$, which in turn is equal to $\operatorname{Cov}(X\_i,X\_j)$ since the random variables have zero mean.
+*Solution.* The definition of matrix multiplication implies that the $(i,j)$ th entry of $\mathbf{X} \mathbf{X}'$ is equal to $X\_i X\_j$. Therefore, the $(i,j)$ th entry of $\mathbb{E}[\mathbf{X} \mathbf{X}']$ is equal to $\mathbb{E}[X\_iX\_j]$, which in turn is equal to $\operatorname{Cov}(X\_i,X\_j)$ since the random variables have zero mean.
 
 ---
 > id: continuous-distributions
@@ -2188,7 +2188,7 @@ The simplest possible choice for $f$ is the function which is $1$ on $[0,1]$ and
 Consider the probability space $\Omega = [0,1]^2$ with the area probability measure. Show that if $X((\omega\_1, \omega\_2)) = \omega\_1$ and $Y((\omega\_1, \omega\_2)) = \omega\_2$, then the events $\\{X \in I\\}$ and $\\{Y \in J\\}$ are independent for any intervals $I\subset [0,1]$ and $J\subset [0,1]$.
 :::
 
-*Solution*. We have
+*Solution.* We have
 
 ``` latex
 \mathbb{P}(\{X \in I\} \cap \{Y \in J\}) = \text{area}(I \times J) =
@@ -2223,7 +2223,7 @@ Consider the probability space with $\Omega = [0,1]$ and probability measure giv
 ---
 > id: step-129
 
-*Solution*. We calculate $\mathbb{P}([\frac{1}{2},1]) = \displaystyle{\int\_{\frac{1}{2}}^1 2x \,\mathrm{d} x = \frac{3}{4}}$.
+*Solution.* We calculate $\mathbb{P}([\frac{1}{2},1]) = \displaystyle{\int\_{\frac{1}{2}}^1 2x \,\mathrm{d} x = \frac{3}{4}}$.
 
 If $f$ is constant on $\Omega$, then we call $f$ the *uniform measure* on $\Omega$. Note that this requires that $\Omega$ have finite volume.
 
@@ -2266,7 +2266,7 @@ Suppose that $f$ is the function which returns $2$ for any point in the triangle
 ---
 > id: step-131
 
-*Solution*. Then the conditional density of $X$ given $\\{Y = y\\}$ is the uniform distribution on the segment $[y,1]$, since that interval is the intersection of the triangle and the horizontal line at height $y$.
+*Solution.* Then the conditional density of $X$ given $\\{Y = y\\}$ is the uniform distribution on the segment $[y,1]$, since that interval is the intersection of the triangle and the horizontal line at height $y$.
 
 
 [Continue](btn:next)
@@ -2284,7 +2284,7 @@ Find the expectation of a random variable whose density is $f(x) = \mathrm{e}^{-
 ---
 > id: step-133
 
-*Solution*. We calculate
+*Solution.* We calculate
 
 ``` latex
 \int_{-\infty}^\infty x \mathrm{e}^{-x} \boldsymbol{1}_{x \in [0,\infty)}
@@ -2303,7 +2303,7 @@ Show that the cumulative distribution function of a continuous random variable i
 ---
 > id: step-134
 
-*Solution*. The CDF is increasing since $F(s) = \int\_{-\infty}^s f(x) \, \mathrm{d} x \leq \int\_{-\infty}^t f(x) \, \mathrm{d} x = F(t)$ whenever $s < t$.
+*Solution.* The CDF is increasing since $F(s) = \int\_{-\infty}^s f(x) \, \mathrm{d} x \leq \int\_{-\infty}^t f(x) \, \mathrm{d} x = F(t)$ whenever $s < t$.
 
 To see that $F$ is continuous, we note that the difference between $F(s)$ and $F(s+\epsilon)$ is the integral of the density $f$ over a width- $\epsilon$ interval. Thus we can use the supplied note to conclude that $F(s + \epsilon) \to F(s)$ as $\epsilon \to 0$ for all $s \in \mathbb{R}$.
 
@@ -2324,7 +2324,7 @@ Use this result to show that if $U$ is uniformly distributed on $[0,1]$, then $U
 ---
 > id: step-136
 
-*Solution*. The equation $F'(x) = f(x)$ follows immediately from the fundamental theorem of calculus. We have
+*Solution.* The equation $F'(x) = f(x)$ follows immediately from the fundamental theorem of calculus. We have
 
 ``` latex
 F'(x) = \frac{\mathrm{d} }{\mathrm{d} x} \int_{-\infty}^x f(t) \, \mathrm{d} t = f(x)
@@ -2358,7 +2358,7 @@ The remarkably useful **inverse CDF trick** gives us a way of sampling from any 
 ---
 > id: step-138
 
-*Solution*.  
+*Solution.*  
 
 It can be shown that, as result of monotonicity and additivity,
 
@@ -2491,7 +2491,7 @@ Find the conditional expectation of $Y$ given $X$ where the pair $(X,Y)$ has den
 ---
 > id: step-142
 
-*Solution*. We calculate the conditional density as
+*Solution.* We calculate the conditional density as
 
 ``` latex
 \frac{f_{X,Y}(x,y)}{f_X(x)} = \frac{x + y}{x + \frac{1}{2}},
@@ -2532,7 +2532,7 @@ Find the expected number of particles extant just after time $t = 2$. Hint: defi
 ---
 > id: step-143
 
-*Solution*. If $Y$ is the number of particles and $X$ is the [indicator](gloss:indicator) of the event that the particle split at time $1$, then
+*Solution.* If $Y$ is the number of particles and $X$ is the [indicator](gloss:indicator) of the event that the particle split at time $1$, then
 
 ``` latex
 \mathbb{E}[Y | \{X = 0\}] = 2(p) + 1(1-p) = 1+p
@@ -2607,7 +2607,7 @@ Consider a sum $X$ of 10 independent Bernoulli random variables with success pro
 ---
 > id: sum-bernoull-solution    
 
-*Solution*.  
+*Solution.*  
 * For $i \in \\{1, 2, \dots, 10\\}$ let $X\_i \thicksim \text{Bernoulli}(0.36),$ then $X = X\_1 + X\_2 + \cdots +X\_{10}.$ Therefore,
 
 ``` latex
@@ -2658,7 +2658,7 @@ What is the probability of rolling exactly 18 sixes in 100 independent rolls of 
 ---
 > id: step-sixes-binomial-solution
 
-*Solution*. There are many ways to roll 18 sixes. We could roll 18 sixes followed by 82 non-sixes, and that happens with probability
+*Solution.* There are many ways to roll 18 sixes. We could roll 18 sixes followed by 82 non-sixes, and that happens with probability
 
 ``` latex
 (1/6)^{18}(5/6)^{82},
@@ -2699,7 +2699,7 @@ Suppose that $n$ is even and that $p = \frac{1}{2}$. Use Stirling's approximatio
 ---
 > id: step-binom-approx-solution
 
-*Solution*. Let $p\_n = \binom{n}{n/2}2^{-n}$ be the probability mass at 0. Substituting Stirling's approximation for the factorial expressions in $\binom{n}{n/2} = \frac{n!}{(n/2)!^2}$ tells us that
+*Solution.* Let $p\_n = \binom{n}{n/2}2^{-n}$ be the probability mass at 0. Substituting Stirling's approximation for the factorial expressions in $\binom{n}{n/2} = \frac{n!}{(n/2)!^2}$ tells us that
 
 ``` latex
 \frac{\binom{n}{n/2}2^{-n}}{\frac{(n/e)^n\sqrt{2\pi
@@ -2735,7 +2735,7 @@ Hint: you can sample from the geometric distribution using the definition: count
 ---
 > id: step-monte-carlo-geometric-solution    
 
-*Solution*. Here's an example solution:
+*Solution.* Here's an example solution:
 
     pre(julia-executable)
       |
@@ -2813,7 +2813,7 @@ Suppose that $X$ is geometric with success probability $\frac{1}{2}$, and consid
 ---
 > id: step-expected-value-geometric-solution
 
-*Solution*. The random variable $Y$ is equal to $2^n$ with probability $2^{-n}$, for all positive integers $n$. Therefore, the expected value is
+*Solution.* The random variable $Y$ is equal to $2^n$ with probability $2^{-n}$, for all positive integers $n$. Therefore, the expected value is
 
 ``` latex
 2 \cdot \frac{1}{2} + 4 \cdot \frac{1}{4} + 8 \cdot \frac{1}{8} +
@@ -2832,7 +2832,7 @@ Explain why `{jl} ceil(log(rand())/log(1-p))` returns a random variable whose di
 ---
 > id: step-ceiling-geometric-solution
 
-*Solution*. Let $\lceil x \rceil = \min\\{k \in \mathbb{Z} : k \geq x\\}$ define the ceiling function on $\mathbb{R}.$ The question is asking to show that if $U$ is uniformly distributed in $[0, 1]$, then
+*Solution.* Let $\lceil x \rceil = \min\\{k \in \mathbb{Z} : k \geq x\\}$ define the ceiling function on $\mathbb{R}.$ The question is asking to show that if $U$ is uniformly distributed in $[0, 1]$, then
 
 ``` latex
 \left\lceil \frac{\log(U)}{\log(1 - p)} \right\rceil
@@ -2879,7 +2879,7 @@ Hint: try letting $X\_k$ be the number of visits from the time you try the $k$ t
 ---
 > id: step-coupon-collector-solution
 
-*Solution*. For $k \in \\{1, 2, \dots, 9\\}$ let $X\_k$ be the number of visits it takes to try the $(k+1)$ th unique meal after trying the $k$ th unique meal. Then the number of visits it takes to try all the meals is $1 + X\_1 + X\_2 + \cdots X\_9.$ Now, for any non-negative integer $n,$ $X\_k = n$ if all the previous $n - 1$ visits yielded the $k$ meals that have already been tried. Because the meals are chosen independently and uniformly at random, we find that
+*Solution.* For $k \in \\{1, 2, \dots, 9\\}$ let $X\_k$ be the number of visits it takes to try the $(k+1)$ th unique meal after trying the $k$ th unique meal. Then the number of visits it takes to try all the meals is $1 + X\_1 + X\_2 + \cdots X\_9.$ Now, for any non-negative integer $n,$ $X\_k = n$ if all the previous $n - 1$ visits yielded the $k$ meals that have already been tried. Because the meals are chosen independently and uniformly at random, we find that
 
 ``` latex
 \mathbb{P}(X_k = n) = \left(1 -
@@ -2940,7 +2940,7 @@ The *Poisson distribution* arises as the number of 1's observed in a large numbe
 ---
 > id: step-overshoot-solution
 
-*Solution*. (i) The expected value of each Bernoulli random variable is $\frac{3}{1000}$, so by linearity of expectation the expected value of $S$ is $3$.
+*Solution.* (i) The expected value of each Bernoulli random variable is $\frac{3}{1000}$, so by linearity of expectation the expected value of $S$ is $3$.
 
 (ii) Consider all $2^{1000}$ possible length-1000 strings of 0's or 1's. Of these, there are $\binom{1000}{k}$ with $k$ ones and $1000-k$ zeros, and each of those $\binom{1000}{k}$ strings has a probability of $p^k(1-p)^{1000-k}$ of being the result of independent sequence of $\text{Bernoulli}(p)$ random variables (where $p = \frac{3}{1000}$). Therefore, the probability of the event $\\{S = k\\}$ is $\binom{1000}{k}p^k(1-p)^{1000-k}$. We can obtain a vector of these probabilities as follows:
 
@@ -3011,7 +3011,7 @@ Suppose that the number of typos on a page is a Poisson random variable with mea
 ---
 > id: step-poisson-explanation-solution
 
-*Solution*. (i) A typo opportunities on a page convert to actual typos with a small but roughly constant probability, there are quite a few of them, and different typos are (roughly) independent of one another. Thus the number of typos is a sum of independent Bernoulli random variables. (ii) The probability that a Poisson random variable with parameter $\lambda= \frac{1}{3}$ is equal to 0 is
+*Solution.* (i) A typo opportunities on a page convert to actual typos with a small but roughly constant probability, there are quite a few of them, and different typos are (roughly) independent of one another. Thus the number of typos is a sum of independent Bernoulli random variables. (ii) The probability that a Poisson random variable with parameter $\lambda= \frac{1}{3}$ is equal to 0 is
 
 ``` latex
 \frac{\lambda^0}{0!}e^{-\lambda} = e^{-1/3} \approx 71.6\%.  
@@ -3056,7 +3056,7 @@ Find the mean of the exponential distribution with parameter $\lambda$.
 ---
 > id: step-mean-exponential-solution
 
-*Solution*. We calculate
+*Solution.* We calculate
 
 ``` latex
 \int_{0}^\infty x \lambda e^{-\lambda x} \, \mathrm{d} x =
@@ -3073,7 +3073,7 @@ Suppose that $X$ is an exponentially distributed random variable with mean $\lam
 ```
 :::
 
-*Solution*. Observing that $(s + t, \infty) \subset (t, \infty),$ we use the definition of conditional probability to get
+*Solution.* Observing that $(s + t, \infty) \subset (t, \infty),$ we use the definition of conditional probability to get
 
 ``` latex
 \mathbb{P}(X > s + t | X > t) &= \frac{\mathbb{P}(X > s+t \; \text{and} \; X > t)}{\mathbb{P}(X > t)} \\
@@ -3123,7 +3123,7 @@ Show that the mean of the Cauchy distribution is not well-defined.
 ---
 > id: step-cauchy-distribution-mean
 
-*Solution*. Let $X$ be Cauchy-distributed. Then
+*Solution.* Let $X$ be Cauchy-distributed. Then
 
 ``` latex
 \mathbb{E}[X] &= \int_{-\infty}^{\infty}\frac{1}{\pi}\frac{x}{1 + x^2} dx \\
@@ -3143,7 +3143,7 @@ Choose $\theta$ uniformly at random from the interval $[0,\pi]$ and fire a ray f
 ---
 > id: step-cauchy-fire-ray
 
-*Solution*. Let $F$ and $f$ be the cdf and pdf of $X,$ respectively. We need to show that $f(x) = \frac{1}{\pi} \frac{1}{1 + x^2}.$ Now, for all $X \neq 0,$ a ray from the origin that intersects the line $y = 1$ at $(X, 1)$ has slope $\frac{1}{X},$ giving $\theta = \arctan\left(\frac{1}{X}\right).$ If the ray intersects $y = 1$ at $(0, 1)$ then $\theta = \frac{\pi}{2}.$ Let $g : \mathbb{R} \to [0, \pi]$ be defined by
+*Solution.* Let $F$ and $f$ be the cdf and pdf of $X,$ respectively. We need to show that $f(x) = \frac{1}{\pi} \frac{1}{1 + x^2}.$ Now, for all $X \neq 0,$ a ray from the origin that intersects the line $y = 1$ at $(X, 1)$ has slope $\frac{1}{X},$ giving $\theta = \arctan\left(\frac{1}{X}\right).$ If the ray intersects $y = 1$ at $(0, 1)$ then $\theta = \frac{\pi}{2}.$ Let $g : \mathbb{R} \to [0, \pi]$ be defined by
 
 ``` latex
 g(x) =
@@ -3211,7 +3211,7 @@ Show that if $Z$ is a standard normal random variable and $\sigma > 0$, then the
 ---
 > id: step-shift-variable
 
-*Solution*. Let $F$ and $f$ be the CDF and PDF of $\sigma Z + \mu,$ respectively. We need to show that
+*Solution.* Let $F$ and $f$ be the CDF and PDF of $\sigma Z + \mu,$ respectively. We need to show that
 
 ``` latex
 f(x) = \frac{1}{\sigma \sqrt{2\pi}}e ^{-(x - \mu)^2/ (2\sigma^2)}
@@ -3245,7 +3245,7 @@ In terms of the cumulative distribution function $\Phi$ of the standard normal, 
 > id: step-cdf
 
 
-*Solution*. Let's denote by $X$ a random variable with mean $1$ and variance $3$. Then $Z = (X-1)/\sqrt{3}$ is a standard normal random variable. Furthermore, $X$ is between 2 and 4 if and only if $Z$ is between $(2-1)/\sqrt{3} = 1/\sqrt{3}$ and $(4-1)/\sqrt{3} = 3/\sqrt{3}$.
+*Solution.* Let's denote by $X$ a random variable with mean $1$ and variance $3$. Then $Z = (X-1)/\sqrt{3}$ is a standard normal random variable. Furthermore, $X$ is between 2 and 4 if and only if $Z$ is between $(2-1)/\sqrt{3} = 1/\sqrt{3}$ and $(4-1)/\sqrt{3} = 3/\sqrt{3}$.
 
 Therefore, the desired probability is
 
@@ -3287,7 +3287,7 @@ Suppose that $n\geq 1$ and that $X\_1, X\_2, \ldots, X\_n$ are independent stand
 ---
 > id: step-distribution-normal-mean
 
-*Solution*. We know that $X\_1+X\_2$ is normal with mean 0 and variance $1+1 = 2$. Then $X\_1+X\_2+X\_3$, which is a sum of $X\_1+X\_2$ and $X\_3$ is normal with mean 0 and variance $2 + 1 = 3$.
+*Solution.* We know that $X\_1+X\_2$ is normal with mean 0 and variance $1+1 = 2$. Then $X\_1+X\_2+X\_3$, which is a sum of $X\_1+X\_2$ and $X\_3$ is normal with mean 0 and variance $2 + 1 = 3$.
 
 Continuing in this way, we find that $X\_1 + \cdots + X\_n$ is a normal random variable with mean 0 and variance $n$. Dividing this random variable by $\sqrt{n}$ divides its variance by $\sqrt{n}^2 = n$, so we find that the distribution of $\frac{X\_1 + X\_2 + \cdots + X\_n}{\sqrt{n}}$ is $\mathcal{N}(0,1)$.
 
@@ -3332,7 +3332,7 @@ Note: you may use the following properties: $\operatorname{Cov}(Y\_1, Y\_2 + c) 
 ---
 > id: step-multivariate-covariance-solution
 
-*Solution*. Before showing that $\Sigma = AA',$ we first make two observations. First, for any $c \in \mathbb{R}$ and two real-valued random variables $Y\_1$ and $Y\_2,$ we have
+*Solution.* Before showing that $\Sigma = AA',$ we first make two observations. First, for any $c \in \mathbb{R}$ and two real-valued random variables $Y\_1$ and $Y\_2,$ we have
 
 ``` latex
 \operatorname{Cov}(Y_1, Y_2 + c) &= \mathbb{E}[Y_1(Y_2 + a)] - \mathbb{E}[Y_1](\mathbb{E}[Y_2 + c])\\
@@ -3418,7 +3418,7 @@ Define $f\_n(x)$ to be $n$ when $0 \leq x \leq 1/n$ and 0 otherwise, and let $\n
 ---
 > id: step-147
 
-*Solution*. Suppose $I=(a,b)$ is a continuity interval of $\nu$.
+*Solution.* Suppose $I=(a,b)$ is a continuity interval of $\nu$.
 
 If $I$ contains the origin, then the terms of sequence $\nu\_1(I), \nu\_2(I), \ldots$ are equal to $1$ for large enough $n$, since all of the probability mass of $\nu\_n$ is in the interval $\left[0,\frac{1}{n}\right]$ and eventually $\left[0,\frac{1}{n}\right] \subset I$.
 
@@ -3515,7 +3515,7 @@ Suppose we flip a coin which has probability 60% of turning up heads $n$ times. 
 ---
 > id: step-154
 
-*Solution*. We calculate the standard deviation $\sigma = \sqrt{(0.4)(0.6)}$ and the mean $\mu = 0.6$ of each flip, and we use these values to rewrite the desired probability in terms of $S\_n^*$. We find
+*Solution.* We calculate the standard deviation $\sigma = \sqrt{(0.4)(0.6)}$ and the mean $\mu = 0.6$ of each flip, and we use these values to rewrite the desired probability in terms of $S\_n^*$. We find
 
 ``` latex
 P\left( 0.59 < \frac{1}{n}S_n < 0.61\right) &= P\left( -0.01  < \frac{S_n - \mu n}{n}
@@ -3602,7 +3602,7 @@ For simplicity, you may assume that $n$ is even.
       | binom_stickplot(1000)
 :::
 
-*Solution*. Executing the cells, we see that the height of the tallest stick indeed goes to zero as the argument to `{code} binom_stickplot` is increased.
+*Solution.* Executing the cells, we see that the height of the tallest stick indeed goes to zero as the argument to `{code} binom_stickplot` is increased.
 
 This finding does not contract the central limit theorem, since convergence in distribution is not based on convergence of the amount of probability mass at individual points but rather on the amount of probability mass assigned to *intervals*. In any positive-width interval, the distribution of $S\_n^\*$ has many points with nonzero probability mass. Since there are many of them, they can be small individually while nevertheless totaling up to a non-small mass.
 
@@ -3626,7 +3626,7 @@ Suppose that the percentage of residents in favor of a particular policy is 64%.
 ---
 > id: step-158
 
-*Solution*. Let $X\_i$ be the $i$ th sample from the population (1 if the resident is in favor, and 0 otherwise). Then the proportion of the residents in favor of the policy is $\overline{X} = \frac{X\_1+X\_2 + \cdots +X\_n}{n}.$ Each $X\_i$ is a Bernoulli $(0.64)$ random variable with $\mathbb{E}[X\_i] = 0.64$ and $\sigma(X\_i)= \sqrt{0.64(1 - 0.64)} = 0.48$.
+*Solution.* Let $X\_i$ be the $i$ th sample from the population (1 if the resident is in favor, and 0 otherwise). Then the proportion of the residents in favor of the policy is $\overline{X} = \frac{X\_1+X\_2 + \cdots +X\_n}{n}.$ Each $X\_i$ is a Bernoulli $(0.64)$ random variable with $\mathbb{E}[X\_i] = 0.64$ and $\sigma(X\_i)= \sqrt{0.64(1 - 0.64)} = 0.48$.
 
 We need to find $\operatorname{Var}\epsilon > 0$ such that $\mathbb{P}\left(0.64 - \operatorname{Var}\epsilon \leq \overline{X} \leq 0.64 + \operatorname{Var}\epsilon\right) = 0.95.$ Equivalently, we need to find $\operatorname{Var}\epsilon > 0$ such that $\mathbb{P}\left(\frac{-n\operatorname{Var}\epsilon}{\sigma(X\_1)\sqrt{n}} \leq \frac{X\_1+X\_2+ \cdots + X\_n - 0.64n}{\sigma(X\_1)\sqrt{n}} \leq \frac{n\operatorname{Var}\epsilon}{\sigma(X\_1)\sqrt{n}}\right) = 0.95.$ Now by the Central Limit Theorem, $\frac{X\_1+X\_2+ \cdots + X\_n - 0.64n}{\sigma(X\_1)\sqrt{n}} \thicksim \mathcal{N}(0, 1)$ for $n$ large. Since $\mathbb{P}(-1.96 \leq Z \leq 1.96) \approx 0.95$ for $Z \thicksim \mathcal{N}(0, 1),$ we look to solve
 
@@ -3664,7 +3664,7 @@ Suppose that $X\_1, X\_2, \ldots$ is a sequence of independent, identically dist
 ---
 > id: step-160
 
-*Solution*. Let $Z \thicksim \mathcal{N}(0, 1).$
+*Solution.* Let $Z \thicksim \mathcal{N}(0, 1).$
 
 For each non-negative integer $n,$ we have $\mathbb{P}(X_1+\cdots+X_n = 7n) = \mathbb{P}\left(\frac{X_1+\cdots +X_n - 7n}{\sqrt{2n}} = 0\right).$ By the Central Limit Theorem (CLT),
 

@@ -185,7 +185,7 @@ x = y
 ---
 > id: step-18
 
-*Solution*. The value 3 is assigned to `{py} x` and then also to `{py} y` on the second line. After the third line, the value of `{py} x` is 4, since the right-hand side works out to 4 an is *then* assigned to the variable `{py} x`. After the fourth line `{py} 3` is of `{py} x` again, since the value of `{py} y` is still 3 when the fourth line is executed. 
+*Solution.* The value 3 is assigned to `{py} x` and then also to `{py} y` on the second line. After the third line, the value of `{py} x` is 4, since the right-hand side works out to 4 an is *then* assigned to the variable `{py} x`. After the fourth line `{py} 3` is of `{py} x` again, since the value of `{py} y` is still 3 when the fourth line is executed. 
 
 [Continue](btn:next)
 
@@ -500,7 +500,7 @@ If either `{py} i` or `{py} j` is omitted in the expression `{py} s[i:j]` (where
 ---
 > id: step-44
 
-*Solution*. Omitting `{py} i` or `{py} j` has the effect of setting `{py} i = 0` or `{py} j = len(s)`. 
+*Solution.* Omitting `{py} i` or `{py} j` has the effect of setting `{py} i = 0` or `{py} j = len(s)`. 
 
 [Continue](btn:next)
 
@@ -532,7 +532,7 @@ Use string interpolation to write a single line of code which prints `{py} multi
 ---
 > id: step-46
 
-*Solution*. The expression `{py} print(f"multiplying by 6.2 yields {6.2*A}")` works. 
+*Solution.* The expression `{py} print(f"multiplying by 6.2 yields {6.2*A}")` works. 
 
 [Continue](btn:next)
 
@@ -559,7 +559,7 @@ Does Python convert types when doing equality comparison? In other words, does `
 ---
 > id: step-49
 
-*Solution*. Yes, Python does convert types for equality comparison. So `{py} 1 == 1.0` returns `{py} True`. 
+*Solution.* Yes, Python does convert types for equality comparison. So `{py} 1 == 1.0` returns `{py} True`. 
 
 [Continue](btn:next)
 
@@ -592,7 +592,7 @@ Write a one-line [function](gloss:function) which takes 3 bools as arguments and
 ---
 > id: step-51
 
-*Solution*. Here's an example of a simple way to do it: 
+*Solution.* Here's an example of a simple way to do it: 
 
 ``` python
 def f(a,b,c):
@@ -623,7 +623,7 @@ Write some code for computing $\frac{1}{a+\frac{2}{3}}$ where $a$ is equal to th
 ---
 > id: step-53
 
-*Solution*. We store the length of the given string in a variable `{py} a` and evaluate the given expression as follows: 
+*Solution.* We store the length of the given string in a variable `{py} a` and evaluate the given expression as follows: 
 
 ``` python
 a = len("The quick brown fox jumped over the lazy dog")
@@ -759,7 +759,7 @@ Consider nesting `{py} if...else` blocks inside of an `{py} if...else` block.
 ---
 > id: step-61
 
-*Solution*. Here's an example solution: 
+*Solution.* Here's an example solution: 
 
     pre(python-executable)
       | 
@@ -822,7 +822,7 @@ def remove_three_leading_spaces(S):
 ---
 > id: step-63
 
-*Solution*. We should have a single function to remove whatever number of leading spaces the string happens to have. The design above has the problem that we have to figure out how many leading spaces there are before we can call the appropriate function, which means that most of the work that should be performed by the function will have to be performed when the function is called. Thus separation of concerns is not achieved.
+*Solution.* We should have a single function to remove whatever number of leading spaces the string happens to have. The design above has the problem that we have to figure out how many leading spaces there are before we can call the appropriate function, which means that most of the work that should be performed by the function will have to be performed when the function is called. Thus separation of concerns is not achieved.
 
 [Continue](btn:next)
 
@@ -912,7 +912,7 @@ Write a function that takes two arguments `{py} a` and `{py} b` and a function `
 ---
 > id: step-71
 
-*Solution*. Here's an example solution:
+*Solution.* Here's an example solution:
 
 ``` python
 def which_smaller(a, b, f):
@@ -965,7 +965,7 @@ Try nesting one function definition inside another. Are variables in the enclosi
 ---
 > id: step-73
 
-*Solution*. The variable defined in the inner function is not in scope in the body of the outer function, but the variable defined in the body of the outer function is in scope in the body of the inner function.
+*Solution.* The variable defined in the inner function is not in scope in the body of the outer function, but the variable defined in the body of the outer function is in scope in the body of the inner function.
     
 [Continue](btn:next)
 
@@ -1007,7 +1007,7 @@ The test cases above don't cover the *degenerate* situation where one of the str
 ---
 > id: step-75
 
-*Solution*. We check the empty string conditions prior to checking the last/first characters. This solves the problem because `{py} or` is **short-circuiting**: if the first bool is `{py} True` in an `{py} or` operation, the second is never evaluated.
+*Solution.* We check the empty string conditions prior to checking the last/first characters. This solves the problem because `{py} or` is **short-circuiting**: if the first bool is `{py} True` in an `{py} or` operation, the second is never evaluated.
 
     pre(python-executable)
       | def space_concat(s,t):
@@ -1054,7 +1054,7 @@ _Hint_: Make a guess about which operator can be used to compare strings alphabe
 ---
 > id: step-76
 
-*Solution*. 
+*Solution.* 
 
     pre(python-executable)
       | def alphabetical_concat(s,t):
@@ -1285,7 +1285,7 @@ In the expression `{py} "".join("hello")`, the method `{py} join` has [[2|1|0|3]
 ---
 > id: step-88
 
-*Solution*. There are two arguments: the first is the empty string, and the second is `{py} "hello"`. 
+*Solution.* There are two arguments: the first is the empty string, and the second is `{py} "hello"`. 
       
 [Continue](btn:next)
 
@@ -1313,7 +1313,7 @@ Implement a class called `{py} Fraction` which represents a ratio of two positiv
 ---
 > id: step-90
 
-*Solution*. We divide by the gcd in the init method, and we define the other two methods according to the rules of arithmetic:
+*Solution.* We divide by the gcd in the init method, and we define the other two methods according to the rules of arithmetic:
 
     pre(python-executable)
       | from math import gcd
@@ -1496,7 +1496,7 @@ What happens to `{py} myOtherList` in the example above if a different value is 
 ---
 > id: step-92
 
-*Solution*. The list doesn't change. The object associated with the variable `{py} x` is retrieved when the list is created, and after that point the list is no longer connected to the name `{py} x`. 
+*Solution.* The list doesn't change. The object associated with the variable `{py} x` is retrieved when the list is created, and after that point the list is no longer connected to the name `{py} x`. 
 
 [Continue](btn:next)
 
@@ -1578,7 +1578,7 @@ What step value can be used to *reverse* a list? [[-1]] (Hint: you can reason it
 ---
 > id: step-99
 
-*Solution*. Going in reverse order through a list corresponds to stepping by $-1$ each time. Setting `{py} k = -1` in the code block above, we see that `{py} [::-1]` does indeed reverse the list. Apparently the start and stop values for a list `{py} L` implicitly are implicitly set to `{py} -1` and `{py} -len(L)-1` when a negative step value is used. 
+*Solution.* Going in reverse order through a list corresponds to stepping by $-1$ each time. Setting `{py} k = -1` in the code block above, we see that `{py} [::-1]` does indeed reverse the list. Apparently the start and stop values for a list `{py} L` implicitly are implicitly set to `{py} -1` and `{py} -len(L)-1` when a negative step value is used. 
 
 [Continue](btn:next)
 
@@ -1613,7 +1613,7 @@ Write a [function](gloss:function) which takes as arguments a list `{py} L` and 
 ---
 > id: step-101
 
-*Solution*. We figure out where the list needs to be split and concatenate the two resulting sublists in the opposite order:
+*Solution.* We figure out where the list needs to be split and concatenate the two resulting sublists in the opposite order:
 
     pre(python-executable)
       | def rotate(L, n):
@@ -1647,7 +1647,7 @@ Write a line of code which sets every even-indexed entry of a list `{py} L` to z
 ---
 > id: step-103
 
-*Solution*. `{py} L[::2] = [0] * (len(L)//2)`
+*Solution.* `{py} L[::2] = [0] * (len(L)//2)`
 
 [Continue](btn:next)
 
@@ -1697,7 +1697,7 @@ print(remove_fives(["1", "5", "5", "10"]))
 ---
 > id: step-105
 
-*Solution*. The `{py} remove` method only removes one instances of `{py} "5"` (the first one). Also, this method modifies the argument supplied to the function; it does not return new list with the `{py} "5"` removed.
+*Solution.* The `{py} remove` method only removes one instances of `{py} "5"` (the first one). Also, this method modifies the argument supplied to the function; it does not return new list with the `{py} "5"` removed.
 
 [Continue](btn:next)
 
@@ -1747,7 +1747,7 @@ Write a list comprehension which returns a list whose kth entry is the last digi
 ---
 > id: step-108
 
-*Solution*. Here's an example solution:
+*Solution.* Here's an example solution:
 
     pre(python-executable)
       | from sympy import isprime
@@ -1771,7 +1771,7 @@ Write a list comprehension which takes a list of lists and returns only those li
 ---
 > id: step-110
 
-*Solution*. Here's one solution:
+*Solution.* Here's one solution:
 
     pre(python-executable)
       | [record for record in records if len(record[1]) >= 5]
@@ -1834,7 +1834,7 @@ Write a list comprehension which adds the first two elements of each tuple in `{
 ---
 > id: step-114
 
-*Solution*. Same idea: 
+*Solution.* Same idea: 
 
     pre(python-executable)
       | L = [(1,2,3),(4,5,6),(7,8,9)]
@@ -1871,7 +1871,7 @@ Find the fractional parts of the first 100 positive integer multiples of $\pi$. 
 ---
 > id: step-116
 
-*Solution*. We use tuple unpacking to extract the min and max values from the tuple returned by the `{py} extrema` function.
+*Solution.* We use tuple unpacking to extract the min and max values from the tuple returned by the `{py} extrema` function.
 
     pre(python-executable)
       | m,M = extrema([pi*k-int(pi*k) for k in range(1,101)])
@@ -1908,7 +1908,7 @@ Suppose that $H$ is a list which stores the heights of 100 cylinders and $R$ is 
 ---
 > id: step-118
 
-*Solution*. We zip `{py} H` and `{py} R` and use the volume formula $\pi r^2 h$: 
+*Solution.* We zip `{py} H` and `{py} R` and use the volume formula $\pi r^2 h$: 
 
     pre(python-executable)
       | from numpy import pi
@@ -1963,7 +1963,7 @@ Write a function which takes a matrix `{py} M` and an index `{py} i` and returns
 ---
 > id: step-121
 
-*Solution*. We use a list comprehension to select the appropriate entry from each row. 
+*Solution.* We use a list comprehension to select the appropriate entry from each row. 
 
     pre(python-executable)
       | def select_col(M, i):
@@ -2004,7 +2004,7 @@ _Hint_: The string methods `{py} join` and `{py} split` might be helpful. You ca
 ---
 > id: step-123
 
-*Solution*. We use the string method `{py} split`, which splits a string on a given character. This gives us a list of the words in the sentence, which we can reverse by indexing with a negative step and rejoin with the `{py} join` method.
+*Solution.* We use the string method `{py} split`, which splits a string on a given character. This gives us a list of the words in the sentence, which we can reverse by indexing with a negative step and rejoin with the `{py} join` method.
 
     pre(python-executable)
       | def reverse_words(sentence):
@@ -2056,7 +2056,7 @@ _Note 2_: The computation below takes some time to run (20 seconds, say). It ret
 ---
 > id: step-124
 
-*Solution*. To get exactly 10,000 primes, we index the list obtained by filtering out the composite numbers:
+*Solution.* To get exactly 10,000 primes, we index the list obtained by filtering out the composite numbers:
 
     pre(python-executable)
       | import timeit
@@ -2191,7 +2191,7 @@ _{button.next-step} Submit_
 ---
 > id: step-130
 
-*Solution*. We use the `{py} dict` function to convert the list of pairs back into a dictionary: `{py} dict(map(reversed, arrival_times.items()))`. 
+*Solution.* We use the `{py} dict` function to convert the list of pairs back into a dictionary: `{py} dict(map(reversed, arrival_times.items()))`. 
 
 [Continue](btn:next)
 
@@ -2219,7 +2219,7 @@ Use a dict comprehension to make a dictionary which maps each of the first 100 p
 ---
 > id: step-132
 
-*Solution*. We convert to a string, get the last character, and convert back to an integer: 
+*Solution.* We convert to a string, get the last character, and convert back to an integer: 
 
     pre(python-executable)
       |   {2**k: int(str(2**k)[-1]) for k in range(100)}
@@ -2239,7 +2239,7 @@ Suppose you want to store student IDs in a part of a web application where the m
 ---
 > id: step-134
 
-*Solution*. This is an ideal use case for sets. Lists and tuples will be slower for checking membership, and dictionaries aren't quite appropriate because it isn't clear what the values would be.
+*Solution.* This is an ideal use case for sets. Lists and tuples will be slower for checking membership, and dictionaries aren't quite appropriate because it isn't clear what the values would be.
 
 ---
 
@@ -2328,7 +2328,7 @@ Suppose you have imported a function `{py} file_bug_report` with two parameters:
 ---
 > id: step-137a
 
-*Solution*. We loop over the items: 
+*Solution.* We loop over the items: 
 
     pre(python-executable)
       | for id, desc in bugs.items():
@@ -2362,7 +2362,7 @@ Write a [function](gloss:function) called `{py} factorial` which takes a positiv
 ---
 > id: step-139
 
-*Solution*. We loop through `{py} range(1, n+1)` and multiply as we go. 
+*Solution.* We loop through `{py} range(1, n+1)` and multiply as we go. 
 
     pre(python-executable)
       | def factorial(n):
@@ -2446,7 +2446,7 @@ Note that $10^{-8}$ can be represented in Python using scientific notation `{py}
 ---
 > id: step-141
 
-*Solution*. We keep up with two separate variables, which we call `{py} x` and *`{py} old_x`*, to compare the most recent two iterates: 
+*Solution.* We keep up with two separate variables, which we call `{py} x` and *`{py} old_x`*, to compare the most recent two iterates: 
 
     pre(python-executable)
       | def newtonsqrt(n):
@@ -2488,7 +2488,7 @@ _Note_: `{py} \\n` in a string literal represents the "newline" character. You'l
 ---
 > id: step-143
 
-*Solution*. We loop through the rows and use an `{py} if` statement to print a different output depending on whether the row is even-numbered or odd-numbered.
+*Solution.* We loop through the rows and use an `{py} if` statement to print a different output depending on whether the row is even-numbered or odd-numbered.
 
     pre(python-executable)
       | def checkerboard(n):
@@ -2705,7 +2705,7 @@ Write a [list comprehension](gloss:listcomp) to calculate the list of all of the
 ---
 > id: step-155
 
-*Solution*. *`{py} [item for item in original_tracks['items']]`* would return the `{py} 'items'` list. To map each item to its playlist id, we index it with `{py} 'track'` and then with `{py} 'id'` as above. So we get *`{py} [item['track']['id'] for item in original_tracks['items']]`* 
+*Solution.* *`{py} [item for item in original_tracks['items']]`* would return the `{py} 'items'` list. To map each item to its playlist id, we index it with `{py} 'track'` and then with `{py} 'id'` as above. So we get *`{py} [item['track']['id'] for item in original_tracks['items']]`* 
 
 [Continue](btn:next)
 
@@ -2870,7 +2870,7 @@ Tie all of the above together to write a couple more lines of code that will act
 ---
 > id: step-166
 
-*Solution*. We supply the `{py} Email` attribute of `{py} row` to the `{py} to` argument, and  `{py} message(row)` to `{py} contents`:
+*Solution.* We supply the `{py} Email` attribute of `{py} row` to the `{py} to` argument, and  `{py} message(row)` to `{py} contents`:
 
 ``` python
 for row in mailData.itertuples():

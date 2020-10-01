@@ -192,7 +192,7 @@ Write three lines of Unix code in the cell below which change directory into `{s
 ---
 > id: step-cd-solution
       
-*Solution*. Here's an example solution
+*Solution.* Here's an example solution
 
     pre(bash-executable)
       | cd my-data-science-project
@@ -219,7 +219,7 @@ List the files in the subdirectory `{sh} bin` of the root directory.
 ---
 > id: step-ls-bin-directories
      
-*Solution*. The simplest way to do it in one line is `{sh} ls /bin`.
+*Solution.* The simplest way to do it in one line is `{sh} ls /bin`.
 
 [Continue](btn:next)
 
@@ -315,7 +315,7 @@ Some helpful information: (i) `{sh} grep -r text directory` searches recursively
 ---
 > id: step-grep-solution
 
-*Solution*. Running the commands below, we find that `{sh} setup.py` contains the `{sh} find_packages` function.   
+*Solution.* Running the commands below, we find that `{sh} setup.py` contains the `{sh} find_packages` function.   
 
     pre(bash-executable)
       | cd my-data-science-project
@@ -355,7 +355,7 @@ The single most important vim command is the one for force-exiting, because some
 ---
 > id: escape-vim-exercise
 
-*Solution*. The correct key sequence is `{sh} [esc]:q!`: the escape button switches to command mode, and then `{sh} :q!` force-exits. 
+*Solution.* The correct key sequence is `{sh} [esc]:q!`: the escape button switches to command mode, and then `{sh} :q!` force-exits. 
 
 [Continue](btn:next)
 
@@ -409,7 +409,7 @@ Write a line of bash code that adds `{sh} /Library/Frameworks/R.framework/Resour
 ---
 > id: path-exercise
 
-*Solution*. The appropriate bash command is `{sh} export PATH="$PATH:/Library/Frameworks/R.framework"`, and it should go in `{sh} ~/.bash_profile`.
+*Solution.* The appropriate bash command is `{sh} export PATH="$PATH:/Library/Frameworks/R.framework"`, and it should go in `{sh} ~/.bash_profile`.
 
 [Continue](btn:next)
 
@@ -460,7 +460,7 @@ Write a three-command pipe, using `{sh} cat`, `{sh} head` and `{sh} tail`, print
 ---
 > id: pipe-sol-1
     
-*Solution*. If we select the first 110 lines, then the desired lines are the last 11 lines of that selection. So we can do 
+*Solution.* If we select the first 110 lines, then the desired lines are the last 11 lines of that selection. So we can do 
 
     pre(bash-executable)
       | cat mydoc.txt | head -n 110 | tail -n 11
@@ -495,7 +495,7 @@ Which of the following names match the glob pattern `{sh} [aA]nswer.*`?
 ---
 > id: glob-exercise-solution
     
-*Solution*. The first and third options match. The second one doesn't because the pattern specifies that the first character must be uppercase or lowercase `{sh} a`.
+*Solution.* The first and third options match. The second one doesn't because the pattern specifies that the first character must be uppercase or lowercase `{sh} a`.
 
 ---
 > id: git
@@ -942,7 +942,7 @@ Write a Git command to replace the contents of `{code} main.py` with their conte
 ---
 > id: git-checkout-file-solution
     
-*Solution*. We checkout the file at that commit: `{code} git checkout HEAD~4 main.py`. 
+*Solution.* We checkout the file at that commit: `{code} git checkout HEAD~4 main.py`. 
 
 [Continue](btn:next)
 
@@ -956,7 +956,7 @@ Write a Git command to show the changes in the file `{sh} main.py` from four com
 
     x-quill
     
-*Solution*. We use `{sh} git diff` and specify the two revisions: `{sh} git diff HEAD~4 HEAD~2 main.py`. 
+*Solution.* We use `{sh} git diff` and specify the two revisions: `{sh} git diff HEAD~4 HEAD~2 main.py`. 
 
 [Continue](btn:next)
 
@@ -1870,7 +1870,7 @@ Write a Makefile which runs `{code} pdflatex my-document.tex` to produce `{code}
 
     x-quill
     
-*Solution*. We remove the auxiliary files with `{code} clean` and make `{code} all` include just the target `{code} my-document.pdf`: 
+*Solution.* We remove the auxiliary files with `{code} clean` and make `{code} all` include just the target `{code} my-document.pdf`: 
 
 ``` makefile
 

@@ -63,7 +63,7 @@ Suppose that $|x\_n| \leq n^{-1/2}$ for all $n \geq 1$. Show that $x\_n \to 0$ a
 ---
 > id: step-5
 
-*Solution*. We have $-n^{-1/2} \leq x\_n \leq n^{-1/2}$ for all $n$, so we may apply the squeeze theorem to the sequences $-n^{-1/2}$ and $n^{-1/2}$ to conclude that $x\_n \to 0$ as $n\to\infty$.
+*Solution.* We have $-n^{-1/2} \leq x\_n \leq n^{-1/2}$ for all $n$, so we may apply the squeeze theorem to the sequences $-n^{-1/2}$ and $n^{-1/2}$ to conclude that $x\_n \to 0$ as $n\to\infty$.
 
 [Continue](btn:next)
 
@@ -106,7 +106,7 @@ Show that $\displaystyle{\sum\_{n=1}^\infty \frac{n}{n+1}}$ does not converge. P
 ---
 > id: step-8
 
-*Solution*. Since $n/(n+1)$ converges to 1 as $n\to\infty$, the sum of these terms does not converge to zero, by the term test. The graph of the sequence of partial sums shows how the partial sums increase (approximately linearly) without bound, illustrating the series' lack of convergence to a finite value.
+*Solution.* Since $n/(n+1)$ converges to 1 as $n\to\infty$, the sum of these terms does not converge to zero, by the term test. The graph of the sequence of partial sums shows how the partial sums increase (approximately linearly) without bound, illustrating the series' lack of convergence to a finite value.
 
 [Continue](btn:next)
 
@@ -148,7 +148,7 @@ Show that the series $\sum\_{n=1}^\infty \frac{1}{n^2 + n}$ converges.
 ---
 > id: step-11
 
-*Solution*. We know that $\frac{1}{n^2 + n} < \frac{1}{n^2}$ and that $\sum\_{n=1}^\infty \frac{1}{n^2}$ converges. Therefore, the comparison test implies that $\frac{1}{n^2 + n}$ converges.
+*Solution.* We know that $\frac{1}{n^2 + n} < \frac{1}{n^2}$ and that $\sum\_{n=1}^\infty \frac{1}{n^2}$ converges. Therefore, the comparison test implies that $\frac{1}{n^2 + n}$ converges.
 
 [Continue](btn:next)
 
@@ -168,7 +168,7 @@ Numerically examine the statement that $\sum\_{n=1}^\infty \frac{1}{n^2}$ conver
 ---
 > id: step-13
 
-*Solution*. The expression
+*Solution.* The expression
 
     pre(python-executable)
       | sum(1/n**2 for n in range(1,1001)) - np.pi**2/6
@@ -209,7 +209,7 @@ First, a bit of review on the exponential function $x\mapsto \exp(x)$: we define
 Find the quadratic polynomial $P\_2$ whose zeroth, first, and second derivatives at the origin match those of the exponential function.
 :::
 
-*Solution*. Since $P\_2$ is quadratic, we must have
+*Solution.* Since $P\_2$ is quadratic, we must have
 
 ``` latex
 P_2(x) = a_0 + a_1x + a_2x^2
@@ -260,7 +260,7 @@ f(c) + f'(c)(x-c) + \frac{f''(c)}{2!}(x-c)^2 +
 Find the Taylor series centered at the origin for the exponential function.
 :::
 
-*Solution*. We continue the pattern we discovered for the quadratic approximation of the exponential function at the origin: the $n$th derivative of $a\_0 + a\_1x + \cdots + a\_n x^n + \cdots$ is $n!a\_n$, while the $n$th derivative of the exponential function is $1$ at the origin. Therefore, $a\_n = 1/n!$, and we obtain the Taylor series
+*Solution.* We continue the pattern we discovered for the quadratic approximation of the exponential function at the origin: the $n$th derivative of $a\_0 + a\_1x + \cdots + a\_n x^n + \cdots$ is $n!a\_n$, while the $n$th derivative of the exponential function is $1$ at the origin. Therefore, $a\_n = 1/n!$, and we obtain the Taylor series
 
 ``` latex
 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots
@@ -298,7 +298,7 @@ The following example shows how convenient this theorem can be for finding Taylo
 Find the Taylor series for $f(x) = \cos x + x \mathrm{e}^{x^2}$ centered at $c = 0$.
 :::
 
-*Solution*. Taking many derivatives is going to be no fun, especially with that second term. What we can do, however, is just substitute $x^2$ into the Taylor series for the exponential function, multiply that by $x$, and add the Taylor series for cosine:
+*Solution.* Taking many derivatives is going to be no fun, especially with that second term. What we can do, however, is just substitute $x^2$ into the Taylor series for the exponential function, multiply that by $x$, and add the Taylor series for cosine:
 
 ``` latex
 &\left(1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots\right) + x\left(1 + x^2 +
@@ -331,7 +331,7 @@ Use your result to find $x + 2x^2 + 3x^3 + 4x^4 + \cdots$. Hint: think about dif
 ---
 > id: step-23
 
-*Solution*. Calculating derivatives of $1/(1-x)$, we find that the Taylor series centered at the origin is $1 + x + x^2 + \cdots$. Furthermore, we know that
+*Solution.* Calculating derivatives of $1/(1-x)$, we find that the Taylor series centered at the origin is $1 + x + x^2 + \cdots$. Furthermore, we know that
 
 ``` latex
 \frac{1}{1-x} = 1 + x + x^2 + x^3 + \cdots,
@@ -366,7 +366,7 @@ Show that $\lim\_{n\to\infty}(1+x/n)^n$ is equal to $\mathrm{e}^x$ by showing th
 ---
 > id: step-25
 
-*Solution*. Integrating the equation
+*Solution.* Integrating the equation
 
 ``` latex
 \frac{1}{1+x} = 1 - x + x^2 - x^3 + x^4 - \cdots
@@ -415,7 +415,7 @@ Consider the function $f$ whose graph is shown. Determine the sign of $f\_x(1,1)
 ---
 > id: step-28
 
-*Solution*. If we increase $x$ a little while holding $y$ constant, then $f$ decreases. Therefore, $f\_x(1,1) < 0$. If we increase $y$ a little while holding $x$ constant, then $f$ increases. Therefore, $f\_y(1,1) > 0$.
+*Solution.* If we increase $x$ a little while holding $y$ constant, then $f$ decreases. Therefore, $f\_x(1,1) < 0$. If we increase $y$ a little while holding $x$ constant, then $f$ increases. Therefore, $f\_y(1,1) > 0$.
 
 Graphically, the partial derivative with respect to $x$ at a point is equal to the slope of the trace of the graph in the "$y =\text{constant}$" plane passing through that point. Similarly, the partial derivative with respect to $y$ at a point is equal to the slope of the trace of the graph in the "$x =\text{constant}$" plane passing through that point.
 
@@ -436,7 +436,7 @@ Consider the function $f(x,y) = \mathrm{e}^{xy}\sin(y)$. Show that differentiati
 ---
 > id: step-30
 
-*Solution*. The partial derivative of $f$ with respect to $x$ is $y\mathrm{e}^{xy}\sin(y)$, and the derivative of that with respect to $y$ is $\mathrm{e}^{xy} (x y \sin(y) + \sin(y) + y \cos(y))$. The partial derivative of $f$ with respect to $y$ is $e^{xy} (x sin(y) + cos(y))$, and the derivative of that with respect to $x$ is $\mathrm{e}^{xy} (x y \sin(y) + \sin(y) + y \cos(y))$. Therefore, the conclusion of Clairaut's theorem is satisfied in this case.
+*Solution.* The partial derivative of $f$ with respect to $x$ is $y\mathrm{e}^{xy}\sin(y)$, and the derivative of that with respect to $y$ is $\mathrm{e}^{xy} (x y \sin(y) + \sin(y) + y \cos(y))$. The partial derivative of $f$ with respect to $y$ is $e^{xy} (x sin(y) + cos(y))$, and the derivative of that with respect to $x$ is $\mathrm{e}^{xy} (x y \sin(y) + \sin(y) + y \cos(y))$. Therefore, the conclusion of Clairaut's theorem is satisfied in this case.
 
 [Continue](btn:next)
 
@@ -503,7 +503,7 @@ Suppose that $f:\mathbb{R}^2 \to \mathbb{R}$ is a differentiable function at the
 ---
 > id: step-36
 
-*Solution*. The problem stipulates that we are given equations of the form
+*Solution.* The problem stipulates that we are given equations of the form
 
 ``` latex
 u_1 f_x(a,b) + u_2 f_y(a,b) &= c_1  \\
@@ -533,7 +533,7 @@ Consider a differentiable function $f$ from $\mathbb{R}^2$ to $\mathbb{R}$ and a
 ---
 > id: step-38
 
-*Solution*. $f$ increases maximally in the direction of its gradient and decreases maximally in the opposite direction. It remains approximately constant in the two directions orthogonal to its gradient.
+*Solution.* $f$ increases maximally in the direction of its gradient and decreases maximally in the opposite direction. It remains approximately constant in the two directions orthogonal to its gradient.
 
 [Continue](btn:next)
 
@@ -548,7 +548,7 @@ Consider a differentiable function $f$ from $\mathbb{R}^3$ to $\mathbb{R}$ and a
 ---
 > id: step-40
 
-*Solution*. $f$ increases maximally in the direction of its gradient and decreases maximally in the opposite direction. It remains approximately constant in the plane of directions orthogonal to its gradient. Since a plane contains infinitely many directions, the number of directions in which $f$ remains approximately constant is infinite.
+*Solution.* $f$ increases maximally in the direction of its gradient and decreases maximally in the opposite direction. It remains approximately constant in the plane of directions orthogonal to its gradient. Since a plane contains infinitely many directions, the number of directions in which $f$ remains approximately constant is infinite.
 
 [Continue](btn:next)
 
@@ -600,7 +600,7 @@ Suppose that $a,b,c,d,e$ and $f$ are real numbers and that $f(x,y) = a + bx + cy
 ---
 > id: step-43
 
-*Solution*. The gradient of $f$ evaluated at the origin is $[b, c]$, so the linear approximation of $f$ is
+*Solution.* The gradient of $f$ evaluated at the origin is $[b, c]$, so the linear approximation of $f$ is
 
 ``` latex
 f(0,0) + f_x(0,0) x + f_y(0,0) = a + bx + cy.
@@ -693,7 +693,7 @@ Suppose that $f:\mathbb{R}^2 \to \mathbb{R}$ has zero gradient at a given point,
 ---
 > id: step-46
 
-*Solution*. If $\lambda_1$ and $\lambda_2$ are both positive, with one close to zero and the other very large, then the graph of $f$ will be ravine-shaped. That's because the steep increase in one direction corresponds to one of the eigenvalues being very large, and the shallow increase in the orthogonal direction is indicated by the other eigenvalue being very small.
+*Solution.* If $\lambda_1$ and $\lambda_2$ are both positive, with one close to zero and the other very large, then the graph of $f$ will be ravine-shaped. That's because the steep increase in one direction corresponds to one of the eigenvalues being very large, and the shallow increase in the orthogonal direction is indicated by the other eigenvalue being very small.
 
 ---
 > id: optimization
@@ -866,7 +866,7 @@ This theorem suggests a program for optimizing a function $f$ on a domain $D$ wh
 ---
 > id: step-57
 
-*Solution*.   The system of equations $\frac{\partial}{\partial x} f = \frac{\partial}{\partial y} f = 0$ tells us that $y = x^3$ and $x = y^3$. Substituting, we find $x = x^9$, which can be rearranged and factored (by repeated applications of difference of squares) to get
+*Solution.*   The system of equations $\frac{\partial}{\partial x} f = \frac{\partial}{\partial y} f = 0$ tells us that $y = x^3$ and $x = y^3$. Substituting, we find $x = x^9$, which can be rearranged and factored (by repeated applications of difference of squares) to get
 
 ``` latex
 x(x-1)(x+1)(x^2 + 1)(x^4+1) = 0.   
@@ -910,7 +910,7 @@ Find the point closest to the origin in the region $3x + 2y + z \geq 6$.
 ---
 > id: step-59
 
-*Solution*. We can rule out the possibility that the point nearest the origin is in the interior of the region, on geometric grounds. To find the boundary critical points, we set the *objective* function
+*Solution.* We can rule out the possibility that the point nearest the origin is in the interior of the region, on geometric grounds. To find the boundary critical points, we set the *objective* function
 
 ``` latex
 f(x,y,z) = x^2 + y^2 + z^2
@@ -976,7 +976,7 @@ Use the method of Lagrange multipliers to explain why the lasso minimizer tends 
 ---
 > id: step-64
 
-*Solution*. Let's define $f(a,b) = (ax\_1 + by\_1 - z\_1)^2 + \cdots + (ax\_n + by\_n - z\_n)^2$ and $g(a,b) = a^2 + b^2$. The function $f(a,b) + \lambda g(a,b)$ is minimized at a point where $\nabla f(a,b) + \lambda \nabla g(a,b) = 0$. In other words, the minimizer must be a point where $\nabla f$ and $\nabla g$ are [[parallel|perpendicular]] vectors.
+*Solution.* Let's define $f(a,b) = (ax\_1 + by\_1 - z\_1)^2 + \cdots + (ax\_n + by\_n - z\_n)^2$ and $g(a,b) = a^2 + b^2$. The function $f(a,b) + \lambda g(a,b)$ is minimized at a point where $\nabla f(a,b) + \lambda \nabla g(a,b) = 0$. In other words, the minimizer must be a point where $\nabla f$ and $\nabla g$ are [[parallel|perpendicular]] vectors.
 
 ---
 > id: step-65
@@ -1010,7 +1010,7 @@ Many airlines require that the sum of the length, width and height of a checked 
 ---
 > id: step-67
 
-*Solution*. The objective function is the volume formula for a box, namely $f(l,w,h) = lwh$. The constraint equation is $g(l,w,h) = lw + wh + hl = 62$. The Lagrange equation tells us that
+*Solution.* The objective function is the volume formula for a box, namely $f(l,w,h) = lwh$. The constraint equation is $g(l,w,h) = lw + wh + hl = 62$. The Lagrange equation tells us that
 
 ``` latex
 wh &= \lambda \\\
@@ -1075,7 +1075,7 @@ Let $f: \mathbb{R}^n \to \mathbb{R}$ be defined by $f(\mathbf{x}) = \mathbf{x}' 
 ---
 > id: step-69
 
-*Solution*. We can apply the product rule to find that
+*Solution.* We can apply the product rule to find that
 
 ``` latex
 \frac{\partial f}{\partial \mathbf{x}} = \mathbf{x}'
@@ -1101,7 +1101,7 @@ Suppose $A$ is an $m\times n$ matrix and $\mathbf{b} \in \mathbb{R}^m$. Use matr
 ---
 > id: step-71
 
-*Solution*. We write
+*Solution.* We write
 
 ``` latex
 |A \mathbf{x} - \mathbf{b}|^2 &= (A \mathbf{x} -
@@ -1165,7 +1165,7 @@ Suppose that $\frac{\partial f}{\partial x}(3,2) = 4$, that $\frac{\partial f}{\
 ---
 > id: step-78
 
-*Solution*. The chain rule implies that the derivative of $f(x(t),y(t))$ is
+*Solution.* The chain rule implies that the derivative of $f(x(t),y(t))$ is
 
 ``` latex
 [f_x(x(t),y(t)), f_y(x(t),y(t))]\cdot [x'(t), y'(t)] = (4)(2) + (-2)(-4) = \boxed{16}.
@@ -1186,7 +1186,7 @@ Find the derivative with respect to $t$ of the function $g(t) = t^t$ by writing 
 ---
 > id: step-80
 
-*Solution*. Let $f(x(t),y(t)) = x^y$ where $x(t) = t$ and $y(t) = t$.  We have that $\frac{\partial f}{\partial x} = yx^{y-1}$ and $\frac{\partial f}{\partial y} = x^{y} \ln{x}$.  Since both derivatives of $x$ and $y$ with respect to $t$ are 1, the chain rule implies that
+*Solution.* Let $f(x(t),y(t)) = x^y$ where $x(t) = t$ and $y(t) = t$.  We have that $\frac{\partial f}{\partial x} = yx^{y-1}$ and $\frac{\partial f}{\partial y} = x^{y} \ln{x}$.  Since both derivatives of $x$ and $y$ with respect to $t$ are 1, the chain rule implies that
 
 ``` latex
 g'(t) = t\cdot t^{t-1} + t^t\ln{t} = t^t(1 + \ln{t}).
@@ -1207,7 +1207,7 @@ Note: you might find it convenient to express your answer using the function dia
 ---
 > id: step-81
 
-*Solution*. The derivative matrix of $f$ is diagonal, since the derivative of $y_j^2$ with respect to $y_i$ is zero unless $i = j$. The diagonal entries are $2y_1, 2y_2, \ldots$. The derivative of $g$ is $A$, as we saw in the section on matrix differentiation. Therefore, the derivative of the composition is
+*Solution.* The derivative matrix of $f$ is diagonal, since the derivative of $y_j^2$ with respect to $y_i$ is zero unless $i = j$. The diagonal entries are $2y_1, 2y_2, \ldots$. The derivative of $g$ is $A$, as we saw in the section on matrix differentiation. Therefore, the derivative of the composition is
 
 ``` latex
 \left[
@@ -1260,7 +1260,7 @@ Find the integral over the triangle $T$ with vertices $(0,0)$, $(2,0)$, and $(0,
 ---
 > id: step-72
 
-*Solution*. The least and greatest values of $y$ for any point in the region are 0 and 3, while the least and greatest values of $x$ for each given $y$-slice are 0 and $2 - \frac{2}{3}y$. Therefore, the integral is
+*Solution.* The least and greatest values of $y$ for any point in the region are 0 and 3, while the least and greatest values of $x$ for each given $y$-slice are 0 and $2 - \frac{2}{3}y$. Therefore, the integral is
 
 ``` latex
 \int_0^3 \int_0^{2 - \frac{2}{3}y} x^2 y \, \mathrm{d} x \, \mathrm{d} y =
@@ -1286,7 +1286,7 @@ Integrate the function $f(x,y,z) = 1$ over the tetrahedron with vertices $(0,0,0
 ---
 > id: step-74
 
-*Solution*.  The least and greatest values of $z$ are 0 and 4, so those are our outer limits (see the figure below). For a fixed value of $z$, the least and greatest values of $y$ for a point in $D$ are 0 and $3 - \tfrac{3}{4}z$, respectively. Finally, for fixed $y$ and $z$, the least and greatest values of $x$ for a point in $D$ are 0 and the point on the plane $6x + 4y + 3z = 12$ with the given values of $y$ and $z$. So we get
+*Solution.*  The least and greatest values of $z$ are 0 and 4, so those are our outer limits (see the figure below). For a fixed value of $z$, the least and greatest values of $y$ for a point in $D$ are 0 and $3 - \tfrac{3}{4}z$, respectively. Finally, for fixed $y$ and $z$, the least and greatest values of $x$ for a point in $D$ are 0 and the point on the plane $6x + 4y + 3z = 12$ with the given values of $y$ and $z$. So we get
 
 ``` latex
 \text{volume}(D) &= \int_{0}^{4}\int_{0}^{3-\frac{3}{4}z}\int_{0}^{2 - \frac{2}{3}y - \frac{1}{2}z} 1 \, \mathrm{d}x \, \mathrm{d}y \, \mathrm{d}z  \\\ &= \int_{0}^{4}\int_{0}^{3-\frac{3}{4}z} \left(2 - \frac{2}{3}y - \frac{1}{2}z \right) \, \mathrm{d}y \, \mathrm{d}z \\\
@@ -1332,7 +1332,7 @@ $y=x^2-7$. Find $\iint_R xy \\, \mathrm{d} A$.
 ---
 > id: step-76
 
-*Solution*. We see that the curves intersect at $x = -2$ and $x =
+*Solution.* We see that the curves intersect at $x = -2$ and $x =
 2$. So we get
 
 ``` latex
@@ -1394,7 +1394,7 @@ Use the map $(u,v) \mapsto (u \cos v, u \sin v)$ from the rectangle $[0,1] \time
 ---
 > id: step-85
 
-*Solution*. The Jacobian of the given transformation is
+*Solution.* The Jacobian of the given transformation is
 
 ``` latex
 \left|\begin{array}{cc}

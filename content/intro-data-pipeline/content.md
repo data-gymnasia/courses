@@ -152,7 +152,7 @@ Use the `{py} pydataset` package to load the `{py} 'Boston'` data set. Select al
     
 ---
 
-*Solution*. We index columns using `{py} loc` and the rows using `{py} iloc`
+*Solution.* We index columns using `{py} loc` and the rows using `{py} iloc`
 
     pre(python-executable)
       | boston = pydataset.data('Boston')
@@ -300,7 +300,7 @@ Use the `{code} query` method to identify the records in the `{py} 'Boston'` dat
 ---
 > id: filter-exercise-solution
 
-*Solution*. We use parentheses to group the given logical conditions:
+*Solution.* We use parentheses to group the given logical conditions:
 
     pre(python-executable)
       | import pydataset
@@ -339,7 +339,7 @@ Sort the `{py} 'Boston'` data set in decreasing order of the value in the first 
 ---
 > id: sort-exercise-solution
 
-*Solution*. We can inspect `{py} columns` or look at the data frame's head to see that the first column is `{py} 'crim'`. Then we sort:
+*Solution.* We can inspect `{py} columns` or look at the data frame's head to see that the first column is `{py} 'crim'`. Then we sort:
 
     pre(python-executable)
       | boston = pydataset.data('Boston')
@@ -386,7 +386,7 @@ Select the columns in the Boston data frame which contain floating point numbers
 ---
 > id: select-exercise-solution
 
-*Solution*. We inspect the data frame to find that the columns which are not floats are `{py} 'chas'`, `{py} rad`, and `{py} 'tax'`. So we use drop instead of selecting: 
+*Solution.* We inspect the data frame to find that the columns which are not floats are `{py} 'chas'`, `{py} rad`, and `{py} 'tax'`. So we use drop instead of selecting: 
 
     pre(python-executable)
       | boston_float_only = boston.drop(['chas', 'rad', 'tax'],axis=1)
@@ -433,7 +433,7 @@ For each observation in the `{py} 'toothpaste'` data set, find the ratio of the 
 ---
 > id: assign-exercise-solution
 
-*Solution*. Since the formula is quite involved, we use an anonymous function: 
+*Solution.* Since the formula is quite involved, we use an anonymous function: 
 
     pre(python-executable)
       | import numpy as np
@@ -487,7 +487,7 @@ Find the range (the difference between max and min) for each of the four quantit
 ---
 > id: range-exercise-solution
 
-*Solution*. We have to drop the categorical column first since we can't compute a range for that. 
+*Solution.* We have to drop the categorical column first since we can't compute a range for that. 
 
     pre(python-executable)
       | import numpy as np
@@ -562,7 +562,7 @@ Hint: make a new column to group by.
 
 ---
 
-*Solution*. We create a new column using the `{py} np.floor` function. Then we perform the grouping, select the column we want, and aggregate using the `{py} mean` function:
+*Solution.* We create a new column using the `{py} np.floor` function. Then we perform the grouping, select the column we want, and aggregate using the `{py} mean` function:
 
     pre(python-executable)
       | import pydataset
@@ -655,7 +655,7 @@ Create a new data frame by appending a new column called "area" which is compute
     
 ---
     
-*Solution*. We use the `{py} assign` method to add the suggested column, and we include an additiona keyword argument to map the new column to the `{py} size` aesthetic.
+*Solution.* We use the `{py} assign` method to add the suggested column, and we include an additiona keyword argument to map the new column to the `{py} size` aesthetic.
 
     pre(python-executable)
       | show(px.scatter(iris.assign(area = iris["Petal.Length"] * 
@@ -728,7 +728,7 @@ Hint: begin by making a new data frame with appropriate columns. You might find 
 
 ---
 
-*Solution*. We use `{py} np.linspace` to define an array of $x$-values, and we exponentiate it to make a list of $y$-values. We package these together into a data frame and plot it with `{py} px.line` as usual:
+*Solution.* We use `{py} np.linspace` to define an array of $x$-values, and we exponentiate it to make a list of $y$-values. We package these together into a data frame and plot it with `{py} px.line` as usual:
 
     pre(python-executable)
       | import numpy as np
@@ -784,7 +784,7 @@ Does it make sense to map a categorical variable to the `{py} color` aesthetic f
     
 ---
     
-*Solution*. Yes, we can split each bar into multiple colors to visualize the contribution to each bar from each category. This works in Plotly Express: 
+*Solution.* Yes, we can split each bar into multiple colors to visualize the contribution to each bar from each category. This works in Plotly Express: 
 
     pre(python-executable)
       | show(px.histogram(iris, 

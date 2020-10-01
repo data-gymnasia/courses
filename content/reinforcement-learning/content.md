@@ -782,7 +782,7 @@ the *derivative* of this function.
 
 ---
 
-*Solution*. Recall that statistical error is quite large compared to
+*Solution.* Recall that statistical error is quite large compared to
 other common sources of numerical error: the mean of the random
 variable is estimated with an error that decreases as the square root
 of the number of samples. Therefore, both values in the finite

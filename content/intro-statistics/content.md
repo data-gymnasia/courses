@@ -107,7 +107,7 @@ Note: you can evaluate the pdf of `{jl} N₁` at `{jl} x` using `{jl} pdf(N₁,x
 ---
 > id: step-histogram-solution
 
-*Solution*. The density function describing the distribution that `{jl} mysample` draws from is a linear combination of the two given Gaussian density functions, with weights $\frac{4}{5}$ and $\frac{1}{5}$: 
+*Solution.* The density function describing the distribution that `{jl} mysample` draws from is a linear combination of the two given Gaussian density functions, with weights $\frac{4}{5}$ and $\frac{1}{5}$: 
 
 ``` julia
 actualdensity(x) = 0.8pdf(N₁,x)+0.2pdf(N₂,x)
@@ -180,7 +180,7 @@ Consider a random variable $X$ that you know takes values in $\\{0,1,2\\}$. Supp
 ---
 > id: step-discrete-solution
 
-*Solution*. Since 70% of the observations are 2's, we posit that the probability of the event $\\{X = 2\\}$ is 70%. Likewise, the probabilities of the events $\\{X = 1\\}$ and $\\{X = 0\\}$ we estimate to be 13% and 17%, respectively. 
+*Solution.* Since 70% of the observations are 2's, we posit that the probability of the event $\\{X = 2\\}$ is 70%. Likewise, the probabilities of the events $\\{X = 1\\}$ and $\\{X = 0\\}$ we estimate to be 13% and 17%, respectively. 
 
 ---
 > id: joint-density-estimation
@@ -207,7 +207,7 @@ The following scenario will be our running example throughout this section. We w
 ---
 > id: example-solution-1
 
-*Solution*.  The best guess of a random variable (as measured by mean squared error) is the expectation of the random variable. Likewise, the best guess of $Y$ given $\\{X=x\\}$ is the *conditional* expectation of $Y$ given $\\{X=x\\}$. Inspecting the density function, we recognize that restricting it to a vertical line at position $x$ gives an expression which is proportional to the Gaussian density centered at $2 + \frac{1}{50}x(30-x)$. Therefore,
+*Solution.*  The best guess of a random variable (as measured by mean squared error) is the expectation of the random variable. Likewise, the best guess of $Y$ given $\\{X=x\\}$ is the *conditional* expectation of $Y$ given $\\{X=x\\}$. Inspecting the density function, we recognize that restricting it to a vertical line at position $x$ gives an expression which is proportional to the Gaussian density centered at $2 + \frac{1}{50}x(30-x)$. Therefore,
 
 ``` latex
 \mathbb{E}[Y | X=x] = 2 + \frac{1}{50}x(30-x).
@@ -244,7 +244,7 @@ Describe an example of a random experiment where the probability measure may be 
 ---
 > id: solution-1
 
-*Solution*. There are many random experiments for which it is reasonable to use a measure derived from principle rather than from experimentation. For example, if we are drawing a card from a well-shuffled deck, or drawing a marble from a well-stirred urn, then we would assume that the probability measure is *uniform*. This assumption would lead to more accurate predictions than if we used an inferred measure based on repeated observations of the experiment. By extension, if we have many random variables whose distributions are known from principle and which are known from principle to be independent, then we know that their average is approximately normally distributed.
+*Solution.* There are many random experiments for which it is reasonable to use a measure derived from principle rather than from experimentation. For example, if we are drawing a card from a well-shuffled deck, or drawing a marble from a well-stirred urn, then we would assume that the probability measure is *uniform*. This assumption would lead to more accurate predictions than if we used an inferred measure based on repeated observations of the experiment. By extension, if we have many random variables whose distributions are known from principle and which are known from principle to be independent, then we know that their average is approximately normally distributed.
 
 The key difference between these examples and those requiring an empirical approach is the use of symmetry. There is no *a  priori* reason to believe that, for example, the possible scores on an exam are equally likely, or that an exam score is a sum of independent random variables.
 
@@ -272,7 +272,7 @@ In the context of Figure 1.3, why doesn't it work to approximate the conditional
 ---
 > id: solution-2
 
-*Solution*. Because for almost all values of $x$, there will be *no* points along the vertical line at position $x$!
+*Solution.* Because for almost all values of $x$, there will be *no* points along the vertical line at position $x$!
 
 [Continue](btn:next)
 
@@ -332,7 +332,7 @@ Is the probability mass more or less tightly concentrated around the origin when
 ---
 > id: solution-3
 
-*Solution*. Note that $K\_\lambda(x,y)$ as soon as either $x$ or $y$ is larger than $\lambda$. Therefore, all of the probability mass is less than $\lambda \sqrt{2}$ units from the origin. So small $\lambda$ corresponds to tight concentration of the mass near zero.
+*Solution.* Note that $K\_\lambda(x,y)$ as soon as either $x$ or $y$ is larger than $\lambda$. Therefore, all of the probability mass is less than $\lambda \sqrt{2}$ units from the origin. So small $\lambda$ corresponds to tight concentration of the mass near zero.
 
 [Continue](btn:next)
 
@@ -361,7 +361,7 @@ Estimate the best value of $\lambda$ by eyeballing the figure above (the values 
 ---
 > id: step-solution-eyeball-lambda
 
-*Solution*. In the $\lambda=1$ picture, it looks like the estimated measure is taking individual points too seriously, since there are lots of points with more mass around them than in the gaps between observations. In the $\lambda = 10$ picture, the mass looks way too spread out. Among the ones shown, $\lambda = 3$ appears to be the best. 
+*Solution.* In the $\lambda=1$ picture, it looks like the estimated measure is taking individual points too seriously, since there are lots of points with more mass around them than in the gaps between observations. In the $\lambda = 10$ picture, the mass looks way too spread out. Among the ones shown, $\lambda = 3$ appears to be the best. 
 
 [Continue](btn:next)
 
@@ -645,7 +645,7 @@ Draw 500 independent observations from an exponential distribution with paramete
 :::
 
 
-*Solution*.  We can graph $\widehat{F}$ using a step plot: 
+*Solution.*  We can graph $\widehat{F}$ using a step plot: 
 
     pre(julia-executable)
       | using Plots, Distributions
@@ -681,7 +681,7 @@ The plug-in estimator of $\theta = T(\nu)$ is $\widehat{\theta} = T(\widehat{\nu
 Find the plug-in estimator of the mean of a distribution. Find the plug-in estimator of the variance. 
 :::
 
-*Solution*. The plug-in estimator of the mean is the mean of the empirical distribution, which is the average of the locations of the observations. We call this the **sample mean**: 
+*Solution.* The plug-in estimator of the mean is the mean of the empirical distribution, which is the average of the locations of the observations. We call this the **sample mean**: 
 
 ``` latex
 \overline{X} = \frac{X_1 + \cdots + X_n}{n}. 
@@ -729,7 +729,7 @@ of the maximum functional. Assuming that the distribution is described by a dens
 ---
 > id: step-biased-estimator-solution
 
-*Solution*. If $\nu$ is a continuous distribution, then the probability of the event $\\{X\_i < T(\nu)\\}$ is $1$ for all $i=1,2,\ldots,n$. This implies that $\widehat{\theta} < T(\nu)$ with probability 1. Taking expectation of both sides, we find that $\mathbb{E}[\widehat{\theta}] < T(\nu)$. Therefore, this estimator has negative bias. 
+*Solution.* If $\nu$ is a continuous distribution, then the probability of the event $\\{X\_i < T(\nu)\\}$ is $1$ for all $i=1,2,\ldots,n$. This implies that $\widehat{\theta} < T(\nu)$ with probability 1. Taking expectation of both sides, we find that $\mathbb{E}[\widehat{\theta}] < T(\nu)$. Therefore, this estimator has negative bias. 
 
 We can numerically experiment to approximate the bias of this estimator in a specific instance. For example, if we estimate the maximum of a uniform distribution on $[0,b]$ with the sample maximum of 100 observations, we get a bias of approximately
 
@@ -769,7 +769,7 @@ Find the standard error of the sample mean if the distribution $\nu$ with varian
 ---
 > id: step-standard-error-sample-mean
 
-*Solution*. We have 
+*Solution.* We have 
 
 ``` latex
 \operatorname{Var}\left(\frac{X_1 + X_2 + \cdots + X_n}{n}\right) =
@@ -811,7 +811,7 @@ The mean squared error of an estimator $\theta$ is equal to its variance plus it
 :::
 
 
-*Proof*. The idea is to add and subtract the mean of $\widehat{\theta}$. We find that 
+*Proof.* The idea is to add and subtract the mean of $\widehat{\theta}$. We find that 
 
 ``` latex
 \mathbb{E}[(\widehat{\theta} - \theta)^2] &=
@@ -843,7 +843,7 @@ Show that the plug-in maximum estimator $\widehat{\theta}\_n = \max(X\_1, \ldots
 ---
 > id: step-consistent-solution
 
-*Solution*. The probability that $\widehat{\theta}\_n$ is more than $\epsilon$ units from $\theta$ is equal to the probability that every sample is less than $\theta - \epsilon$, which by independence is equal to 
+*Solution.* The probability that $\widehat{\theta}\_n$ is more than $\epsilon$ units from $\theta$ is equal to the probability that every sample is less than $\theta - \epsilon$, which by independence is equal to 
 
 ``` latex
 \left(\frac{\theta - \epsilon}{\theta}\right)^n. 
@@ -868,7 +868,7 @@ Show that the sample variance $S^2 = \frac{1}{n}\sum\_{i=1}^n (X\_i -
   \overline{X})^2$ is biased. 
 ::: 
 
-*Solution*. We will perform the calculation for $n = 3$. It may be generalized to other values of $n$ by replacing 3 with $n$ and $2$ with $n-1$. We have 
+*Solution.* We will perform the calculation for $n = 3$. It may be generalized to other values of $n$ by replacing 3 with $n$ and $2$ with $n-1$. We have 
 
 ``` latex
 \mathbb{E}[S^2] = \frac{1}{3}\mathbb{E}\left[ \left(\frac{2}{3}X_1 -
@@ -927,7 +927,7 @@ Calculate these estimators for the height data.
 ---
 > id: height-parameters-solution
 
-*Solution*. Julia has built-in functions for this: 
+*Solution.* Julia has built-in functions for this: 
 
     pre(julia-executable)
       | mean(heights), var(heights)
@@ -967,7 +967,7 @@ Consider a distribution $\nu$ of the form $\operatorname{Unif}([0,b])$, and let 
 ---
 > id: step-simple-conf-interval-solution
 
-*Solution*. We expect $b$ to be a little larger than the largest observation, so we look for a confidence interval of the form $(b, b+\text{something})$. We'd like to make the interval short so that it's [[more informative|more likely to trap $b$]], but we can't make it too short or else [[it won't be likely to trap $b$|it won't be informative]]. 
+*Solution.* We expect $b$ to be a little larger than the largest observation, so we look for a confidence interval of the form $(b, b+\text{something})$. We'd like to make the interval short so that it's [[more informative|more likely to trap $b$]], but we can't make it too short or else [[it won't be likely to trap $b$|it won't be informative]]. 
 
 ---
 > id: step-simple-conf-example-90-percent
@@ -996,7 +996,7 @@ Show that if $\widehat{\theta}$ is unbiased and approximately normally distribut
 ---
 > id: step-normal-confidence-interval
 
-*Solution*. A normal random variable is within $k$ standard deviations of its mean with probability $\Phi(k) - \Phi(-k) = 1-\Phi(-k) - \Phi(-k) = 1 - 2\Phi(-k)$. Since the mean of $\widehat{\theta}$ is $\theta$, this implies that $(\widehat{\theta} - k \operatorname{se}(\widehat{\theta}), \widehat{\theta} + k \operatorname{se}(\widehat{\theta}))$ includes $\theta$ with probability approximately $1 - 2\Phi(-k)$. 
+*Solution.* A normal random variable is within $k$ standard deviations of its mean with probability $\Phi(k) - \Phi(-k) = 1-\Phi(-k) - \Phi(-k) = 1 - 2\Phi(-k)$. Since the mean of $\widehat{\theta}$ is $\theta$, this implies that $(\widehat{\theta} - k \operatorname{se}(\widehat{\theta}), \widehat{\theta} + k \operatorname{se}(\widehat{\theta}))$ includes $\theta$ with probability approximately $1 - 2\Phi(-k)$. 
 
 [Continue](btn:next)
 
@@ -1015,7 +1015,7 @@ Note: although it is a bit of a cheat, you can approximate $m_{\text{A}}$ with $
 ---
 > id: example-solution
 
-*Solution*. The standard deviation of a Bernoulli random variable with parameter $m_\text{A}$ is $\sqrt{m_\text{A}(1-m_\text{A})}$. Therefore, the average of 1000 independent observations from such a distribution is within $1.96\sqrt{m_\text{A}(1-m_\text{A})/1000}$ units of $m_\text{A}$ (on the number line) with probability about 95%. 
+*Solution.* The standard deviation of a Bernoulli random variable with parameter $m_\text{A}$ is $\sqrt{m_\text{A}(1-m_\text{A})}$. Therefore, the average of 1000 independent observations from such a distribution is within $1.96\sqrt{m_\text{A}(1-m_\text{A})/1000}$ units of $m_\text{A}$ (on the number line) with probability about 95%. 
 
 Although we don't know the value of $m_\text{A}$ in this expression, we don't lose too much by approximating it with $\widehat{m}_\text{A} = 0.462$. Making this substitution, we get a confidence interval of $46.2\\% \pm 3.1\\%$. The standard deviation for B works out to the same value to the nearest tenth, so we get $41.7\\% \pm 3.1\\%$ as a 95% confidence interval for $m_\text{B}$. 
 
@@ -1120,7 +1120,7 @@ Show that if $\epsilon_n = \sqrt{\frac{1}{2n}\log(\frac{2}{\alpha})}$, then with
 ---
 > id: step-dkw-analytic-solution
 
-*Solution*. If we substitute the given value of $\epsilon$, the right-hand side reduces to $\epsilon$. So the desired equation follows from the DKW inequality.
+*Solution.* If we substitute the given value of $\epsilon$, the right-hand side reduces to $\epsilon$. So the desired equation follows from the DKW inequality.
 
 ---
 > id: Bootstrapping
@@ -1141,7 +1141,7 @@ Consider the statistical functional $T(\nu) = $ the expected difference between 
 ---
 > id: step-boostrap-simple-example-solution
 
-*Solution*. The value of $T(\widehat{\nu})$ is defined to be the expectation of a distribution that we have instructions for how to sample from. So we sample 10 times with replacement from $X_1, \ldots , X_{50}$, identify the largest and smallest of the 10 observations, and record the difference. We repeat $B$ times for some large integer $B$, and we return the sample mean of these $B$ values.
+*Solution.* The value of $T(\widehat{\nu})$ is defined to be the expectation of a distribution that we have instructions for how to sample from. So we sample 10 times with replacement from $X_1, \ldots , X_{50}$, identify the largest and smallest of the 10 observations, and record the difference. We repeat $B$ times for some large integer $B$, and we return the sample mean of these $B$ values.
 
 By the law of large numbers, the result can be made arbitrarily close to $T(\widehat{\nu})$ with arbitrarily high probability by choosing $B$ sufficiently large. 
 
@@ -1157,7 +1157,7 @@ Although this example might seem a bit contrived, bootstrapping is useful in pra
 Suppose that we estimate the median $\theta$ of a distribution using the plug-in estimator $\widehat{\theta}$ for 75 observations, and we want to produce a confidence interval for $\theta$. Show how to use bootstrapping to estimate the standard error of the estimator.
 :::
 
-*Solution*. By definition, the standard error of $\widehat{\theta}$ is the square root of the variance of the median of 75 independent draws from $\nu$. Therefore, the plug-in estimator of the standard error is the square root of the variance of the median of 75 independent draws from $\widehat{\nu}$. This can be readily simulated. If the observations are stored in a vector `{jl} X`, then 
+*Solution.* By definition, the standard error of $\widehat{\theta}$ is the square root of the variance of the median of 75 independent draws from $\nu$. Therefore, the plug-in estimator of the standard error is the square root of the variance of the median of 75 independent draws from $\widehat{\nu}$. This can be readily simulated. If the observations are stored in a vector `{jl} X`, then 
 
     pre(julia-executable)
       | using Random, Statistics, StatsBase
@@ -1189,7 +1189,7 @@ Suppose that $\nu$ is the uniform distribution on $[0,1]$. Generate 75 observati
 ---
 > id: step-bootstrap-warning-solution
 
-*Solution*. The gap cannot be made arbitrarily small. We would need to get more than 75 samples from the distribution to get closer to the exact value of $T(\operatorname{Unif}([0,1]))$.
+*Solution.* The gap cannot be made arbitrarily small. We would need to get more than 75 samples from the distribution to get closer to the exact value of $T(\operatorname{Unif}([0,1]))$.
 
     pre(julia-executable)
       | X = rand(75)
@@ -1266,7 +1266,7 @@ Suppose $x\mapsto f(x;\theta)$ is the density of a uniform random variable on $[
 
 > id: step-basic-likelihood-solution
 
-*Solution*. The likelihood at 5 is zero, since $f\_{5}(x\_{3}) = 0$. The likelihood at $10^6$ is very small, since $\mathcal{L}(10^6) = (1/10^6)^4 = 10^{-24}$. The likelihood at 7 is larger: $(1/7)^4 = 1/2401$. 
+*Solution.* The likelihood at 5 is zero, since $f\_{5}(x\_{3}) = 0$. The likelihood at $10^6$ is very small, since $\mathcal{L}(10^6) = (1/10^6)^4 = 10^{-24}$. The likelihood at 7 is larger: $(1/7)^4 = 1/2401$. 
 
 [Continue](btn:next)
 
@@ -1295,7 +1295,7 @@ Suppose that $x\mapsto f(x;\mu,\sigma^2)$ is the normal density with mean $\mu$ 
 ---
 > id: step-gaussian-mle-solution
 
-*Solution*. The maximum likelihood estimator is the minimizer of the logarithm of the likelihood function, which works out to
+*Solution.* The maximum likelihood estimator is the minimizer of the logarithm of the likelihood function, which works out to
 
 ``` latex
 - \frac{n}{2}\log 2\pi - \frac{n}{2}
@@ -1335,7 +1335,7 @@ Show that it follows the maximum likelihood estimator $\widehat{\lambda}$ is equ
 ---
 > id: step-poisson-mle-solution
 
-*Solution*.  When we take the derivative with respect to $\lambda$ and set it equal to zero, we get 
+*Solution.*  When we take the derivative with respect to $\lambda$ and set it equal to zero, we get 
 
 ```latex
 \frac{\sum_{i = 1}^n X_i }{\widehat{\lambda}} - n = 0 ,
@@ -1356,7 +1356,7 @@ Suppose  $Y = X\beta + \epsilon$ for $i = 1, 2, \cdots, n$, where $\epsilon$ has
 
 Show that the least squares estimator for $\beta$ is the same as the MLE for $\beta$ by making observations about your log likelihood.
 :::
-*Solution*. The log likelihood is 
+*Solution.* The log likelihood is 
 ```latex
 \log \left(\mathcal{L}_{\mathbf{X}}(\beta)\right) = \sum_{i = 1}^n\left[ \log\left(\frac{1}{\sqrt{2\pi \sigma^2}}\right) - \frac{(Y_i - X_i\beta)^2}{2\sigma^2}\right]. 
 ```
@@ -1412,7 +1412,7 @@ Show that the plug-in variance estimator for a sequence of $n$ i.i.d.\ samples f
 ---
 > id: step-MLE-consistency-solution
  
-*Solution*. We've seen that the plug-in variance estimator is the maximum likelihood estimator for variance. Therefore, it converges to $\sigma^2$ by MLE consistency. 
+*Solution.* We've seen that the plug-in variance estimator is the maximum likelihood estimator for variance. Therefore, it converges to $\sigma^2$ by MLE consistency. 
 
 [Continue](btn:next)
 
@@ -1429,7 +1429,7 @@ Show that it is not possible to estimate the mean of a distribution in a way tha
 ---
 > id: step-MLE-optimality-solution
 
-*Solution*. The sample mean is the maximum likelihood estimator, and it converges to the mean at a rate proportional to the inverse square root of the number of observations. Therefore, there is not another estimator which converges with an asymptote rate faster than that. 
+*Solution.* The sample mean is the maximum likelihood estimator, and it converges to the mean at a rate proportional to the inverse square root of the number of observations. Therefore, there is not another estimator which converges with an asymptote rate faster than that. 
 
 [Continue](btn:next)
 
@@ -1465,7 +1465,7 @@ where $a < b < c < d$, and where $\gamma$ and $\delta$ are nonnegative real numb
 ---
 > id: mle-unbounded-example-solution
 
-*Solution*. We identify the largest value in our data set and choose $c$ to be $\epsilon$ less than that value and $d$ to be $\epsilon$ more than it. We choose $a$ and $b$ so that the interval $[a,b]$ contains all of the other observations (since otherwise we would get a likelihood value of zero). Then we can send $\epsilon$ to zero while holding $a,b$ and $\gamma$ fixed. That sends $\delta$ to $\infty$, which in turn causes the likelihood to grow without bound. 
+*Solution.* We identify the largest value in our data set and choose $c$ to be $\epsilon$ less than that value and $d$ to be $\epsilon$ more than it. We choose $a$ and $b$ so that the interval $[a,b]$ contains all of the other observations (since otherwise we would get a likelihood value of zero). Then we can send $\epsilon$ to zero while holding $a,b$ and $\gamma$ fixed. That sends $\delta$ to $\infty$, which in turn causes the likelihood to grow without bound. 
 
 [Continue](btn:next)
 
@@ -1502,7 +1502,7 @@ We posit a null hypothesis that she isn't able to discern the pouring method, an
 ---
 > id: step-MLE-solution
 
-*Solution*. Under the null hypothesis, the number of cups identified correctly is 4 with probability $1/\binom{8}{4} \approx 1.4\%$ and at least 3 with probability $17/70 \approx 24\%$. Therefore, at the 5% significance level, only a correct identification of all the cups would give us grounds to reject the null hypothesis. The $p$-value in that case would be 1.4%. 
+*Solution.* Under the null hypothesis, the number of cups identified correctly is 4 with probability $1/\binom{8}{4} \approx 1.4\%$ and at least 3 with probability $17/70 \approx 24\%$. Therefore, at the 5% significance level, only a correct identification of all the cups would give us grounds to reject the null hypothesis. The $p$-value in that case would be 1.4%. 
 
 [Continue](btn:next)
 
@@ -1532,7 +1532,7 @@ eight_cyl_mpgs = [18.7, 14.3, 16.4, 17.3, 15.2, 10.4, 10.4, 14.7, 15.5, 15.2, 13
 ```
 :::
 
-*Solution*. We frame the problem as a question about whether the *difference in means* between the distribution of 8-cylinder `{r} mpg` values and the distribution of 6-cylinder `{r} mpg` values is zero. We use the difference between the sample means $\overline{X}$ and $\overline{Y}$ of the two populations as an estimator of the difference in means. If we think of the records in the data frame as independent, then $\overline{X}$ and $\overline{Y}$ are independent. Since each is approximately normally distributed by the central limit theorem, their difference is therefore also approximately normal. So, let's calculate the sample mean and sample variance for the 8-cylinder cars and for the 6-cylinder cars. 
+*Solution.* We frame the problem as a question about whether the *difference in means* between the distribution of 8-cylinder `{r} mpg` values and the distribution of 6-cylinder `{r} mpg` values is zero. We use the difference between the sample means $\overline{X}$ and $\overline{Y}$ of the two populations as an estimator of the difference in means. If we think of the records in the data frame as independent, then $\overline{X}$ and $\overline{Y}$ are independent. Since each is approximately normally distributed by the central limit theorem, their difference is therefore also approximately normal. So, let's calculate the sample mean and sample variance for the 8-cylinder cars and for the 6-cylinder cars. 
 
     pre(julia-executable)
       | using Statistics
@@ -1595,7 +1595,7 @@ Experiment with the code block below to see how, even when the initial distribut
 ---
 > id: step-t-dist-solution
 
-*Solution*. The distribution of $\frac{A_n - \mu}{S/\sqrt{n}}$ apparently has heavier tails that the normal distribution. Based on the graph, it appears that this effect is more noticeable for $n$ less than 30 than for $n$ greater than 100. (Both of these numbers are arbitrary; the main point is that it doesn't take huge values of $n$ for the distribution to start looking fairly normal.)
+*Solution.* The distribution of $\frac{A_n - \mu}{S/\sqrt{n}}$ apparently has heavier tails that the normal distribution. Based on the graph, it appears that this effect is more noticeable for $n$ less than 30 than for $n$ greater than 100. (Both of these numbers are arbitrary; the main point is that it doesn't take huge values of $n$ for the distribution to start looking fairly normal.)
 
 [Continue](btn:next)
 
@@ -1622,7 +1622,7 @@ Note: you can create an object to represent the t-distribution with `{jl} ν` de
 ---
 > id: step-t-basic-solution
 
-*Solution*. We define the statistic $t = (X - 4)/(S/\sqrt{n})$, which under the null hypothesis is $t$-distributed with 9 degrees of freedom. We compute
+*Solution.* We define the statistic $t = (X - 4)/(S/\sqrt{n})$, which under the null hypothesis is $t$-distributed with 9 degrees of freedom. We compute
 
     pre(julia-executable)
       | t = (mean(X) - 4) / (std(X)/length(X))
@@ -1669,7 +1669,7 @@ degrees of freedom.
 ---
 > id: step-solution-redo-mpg
 
-*Solution*. We calculate 
+*Solution.* We calculate 
 
     pre(julia-executable)
       | a = s₁^2/n₁
@@ -1702,7 +1702,7 @@ Suppose the heights of the Romero sons are 72, 69, 68, and 66 inches, and the he
 :::
 
 
-*Solution*. We find that the absolute sample mean difference of about 2.4 inches is larger than only about 68% of the mean differences obtained by resampling many times. 
+*Solution.* We find that the absolute sample mean difference of about 2.4 inches is larger than only about 68% of the mean differences obtained by resampling many times. 
 
     pre.rblock(r-executable)
       | 
@@ -1755,7 +1755,7 @@ Suppose that 10 different genes are tested to determine whether they have an aff
 Which results are reported as significant at the 5% level, according to the Bonferroni method? 
 ::: 
 
-*Solution*. At the 5% level, only $p$ values less than 5%/10 = 0.5% are reported as significant (since we ran ten hypothesis tests). Since none of the $p$ values are below 0.5%, none of the genes will be considered significant. 
+*Solution.* At the 5% level, only $p$ values less than 5%/10 = 0.5% are reported as significant (since we ran ten hypothesis tests). Since none of the $p$ values are below 0.5%, none of the genes will be considered significant. 
 
 
 [Continue](btn:next)
@@ -1786,7 +1786,7 @@ Suppose that your company's ad spending and revenue are found to have the relati
 ---
 > id: step-ad-spending-solution
 
-*Solution*. Perhaps both revenue and ad spending are associated with a third variable, such as proximity to the holiday season. Or maybe management decides to spend more on ads when they have more revenue. Or maybe more ad spending results in more ad impressions and leads to increased sales.
+*Solution.* Perhaps both revenue and ad spending are associated with a third variable, such as proximity to the holiday season. Or maybe management decides to spend more on ads when they have more revenue. Or maybe more ad spending results in more ad impressions and leads to increased sales.
 
 [Continue](btn:next)
 
@@ -1849,7 +1849,7 @@ Find the association as well as the largest and smallest possible values for the
 ---
 > id: step-basic-causal-example-solution
     
-*Solution*. 
+*Solution.* 
 
 The association is $1 - 0 = 1$, while the largest possible value for the average causal effect occurs when the last column is all ones and the next-to-last is all zeros. That gives an average causal effect of 1. The smallest value would be zero, if the first four rows are all zeros in the last two columns, and the last four rows are all ones.
 
@@ -1955,7 +1955,7 @@ C = \left\{ \begin{array}{cl} x \mapsto x + \sin (Ux) & \text{if }Z + V > 5 \\ x
 Plot several instances of $C$, over $[0,10]$. 
 :::
 
-*Solution*. 
+*Solution.* 
 
     pre(julia-executable)
       | plot(xlabel = "x", ylabel = "C(x)")
@@ -1977,7 +1977,7 @@ Plot several instances of $C$, over $[0,10]$.
 Draw 1000 observations from the joint distribution on $X\sim\operatorname{Unif}(0,10)$ and $Y = C(X)$, and make a scatter plot. 
 :::
 
-*Solution*. 
+*Solution.* 
       
     pre(julia-executable)
       | points = Tuple{Float64, Float64}[]
@@ -2020,7 +2020,7 @@ How does the causal regression function compare to the regression function? Feel
 ---
 > id: step-causal-regression-solution
 
-*Solution*. The causal regression function weights the $Z + V < 5$ and $Z + V > 5$ parts of the probability space equally all along the range from $[0,10]$, rather than giving more weight to the former condition when $X$ is close to 0 and more to the latter when $X$ is close to 10. 
+*Solution.* The causal regression function weights the $Z + V < 5$ and $Z + V > 5$ parts of the probability space equally all along the range from $[0,10]$, rather than giving more weight to the former condition when $X$ is close to 0 and more to the latter when $X$ is close to 10. 
 
 You can imagine the distinction between the regression function and causal regression function by visualizing a person sitting a particular value of $x$ and watching a sequence of observations of $(X,C)$. For the causal regression function, they record every value of $C(x)$ they observe. For the ordinary regression function, they wait until they see a value of $X$ which is very close to $x$, and only then do they record the $(X,Y)$ pair for that observation. 
 
@@ -2072,7 +2072,7 @@ C(x) &= x - 2Z + 0.01U_{Y}.
 ---
 > id: step-causal-linear-solution
 
-*Solution*. 
+*Solution.* 
 (a) We have $r(x,z) = x - 2z + 0.01\mathbb{E}[U_Y] = x - 2z + 0.005$
 
 (b) We have $\mathbb{E}[C(x)] = x -2 \mathbb{E}[Z] + 0.01 \mathbb{E}[U_Y] = x - 1 + 0.005 = x - 0.995$.

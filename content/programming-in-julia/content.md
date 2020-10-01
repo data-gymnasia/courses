@@ -197,7 +197,7 @@ x = y
 ---
 > id: step-18
 
-*Solution*. The value 3 is assigned to `{jl} x` and then also to `{jl} y` on the second line. After the third line, the value of `{jl} x` is 4, since the right-hand side works out to 4 an is *then* assigned to the variable `{jl} x`. After the fourth line `{jl} 3` is of `{jl} x` again, since the value of `{jl} y` is still 3 when the fourth line is executed.
+*Solution.* The value 3 is assigned to `{jl} x` and then also to `{jl} y` on the second line. After the third line, the value of `{jl} x` is 4, since the right-hand side works out to 4 an is *then* assigned to the variable `{jl} x`. After the fourth line `{jl} 3` is of `{jl} x` again, since the value of `{jl} y` is still 3 when the fourth line is executed.
 
 [Continue](btn:next)
 
@@ -415,7 +415,7 @@ Also, note that you have *two* boxes: the first is for scratch, and the second i
 ---
 > id: step-nth-odd-solution
 
-*Solution*. The function in question is $n\mapsto 2n-1$:
+*Solution.* The function in question is $n\mapsto 2n-1$:
 
     pre(julia-executable)
       |
@@ -560,7 +560,7 @@ If `{jl} j` is replaced with `{jl} end` in the expression `{jl} s[i:j]` (where `
 ---
 > id: step-44
 
-*Solution*. Indexing with an expression involving `{jl} end` is the same as replacing `{jl} end` with the length of the string.
+*Solution.* Indexing with an expression involving `{jl} end` is the same as replacing `{jl} end` with the length of the string.
 
 [Continue](btn:next)
 
@@ -592,7 +592,7 @@ Use string interpolation to write a single line of code which prints `{jl} multi
 ---
 > id: step-46
 
-*Solution*. The expression `{jl} "multiplying by 6.2 yields $(6.2*A)"` works.
+*Solution.* The expression `{jl} "multiplying by 6.2 yields $(6.2*A)"` works.
 
 [Continue](btn:next)
 
@@ -619,7 +619,7 @@ Does Julia convert types when doing equality comparison? In other words, does `{
 ---
 > id: step-49
 
-*Solution*. Yes, Julia does convert types for equality comparison. So `{jl} 1 == 1.0` returns `{jl} true`.
+*Solution.* Yes, Julia does convert types for equality comparison. So `{jl} 1 == 1.0` returns `{jl} true`.
 
 [Continue](btn:next)
 
@@ -647,7 +647,7 @@ Write a one-line [function](gloss:function-julia) which takes 3 bools as argumen
 ---
 > id: step-51
 
-*Solution*. Here's an example of a simple way to do it:
+*Solution.* Here's an example of a simple way to do it:
 
 ``` julia
 f(a,b,c) = a && b || !c
@@ -677,7 +677,7 @@ Write some code for computing $\frac{1}{a+\frac{2}{3}}$ where $a$ is equal to th
 ---
 > id: step-53
 
-*Solution*. We store the length of the given string in a variable `{jl} a` and evaluate the given expression as follows:
+*Solution.* We store the length of the given string in a variable `{jl} a` and evaluate the given expression as follows:
 
 ``` julia
 a = length("The quick brown fox jumped over the lazy dog")
@@ -785,7 +785,7 @@ Write a function called `{jl} my_abs` which computes the absolute value of its i
 ---
 > id: step-myabs-solution
 
-*Solution*. We use a single if-else expression:
+*Solution.* We use a single if-else expression:
 
     pre(julia-executable)
       |
@@ -824,7 +824,7 @@ Consider nesting if-else blocks inside of an if-else block.
 ---
 > id: step-61
 
-*Solution*. Here's an example solution:
+*Solution.* Here's an example solution:
 
     pre(julia-executable)
       |
@@ -894,7 +894,7 @@ end
 ---
 > id: step-63
 
-*Solution*. We should have a single function to remove whatever number of leading spaces the string happens to have. The design above has the problem that we have to figure out how many leading spaces there are before we can call the appropriate function, which means that most of the work that should be performed by the function will have to be performed when the function is called. Thus separation of concerns is not achieved.
+*Solution.* We should have a single function to remove whatever number of leading spaces the string happens to have. The design above has the problem that we have to figure out how many leading spaces there are before we can call the appropriate function, which means that most of the work that should be performed by the function will have to be performed when the function is called. Thus separation of concerns is not achieved.
 
 [Continue](btn:next)
 
@@ -983,7 +983,7 @@ Write a function that takes two arguments `{jl} a` and `{jl} b` and a function `
 ---
 > id: step-71
 
-*Solution*. Here's an example solution:
+*Solution.* Here's an example solution:
 
     pre(julia-executable)
       | function which_bigger(a, b, f)
@@ -1050,7 +1050,7 @@ Try nesting one function definition inside another. Are variables in the enclosi
 ---
 > id: step-73
 
-*Solution*. The variable defined in the inner function is not in scope in the body of the outer function, but the variable defined in the body of the outer function is in scope in the body of the inner function.
+*Solution.* The variable defined in the inner function is not in scope in the body of the outer function, but the variable defined in the body of the outer function is in scope in the body of the inner function.
 
 [Continue](btn:next)
 
@@ -1094,7 +1094,7 @@ The test cases above don't cover the *degenerate* situation where one of the str
 ---
 > id: step-75
 
-*Solution*. We check the empty string conditions prior to checking the last/first characters. This solves the problem because `{jl} ||` is **short-circuiting**: if the first bool is `{jl} true` in an `{jl} ||` operation, the second is never evaluated.
+*Solution.* We check the empty string conditions prior to checking the last/first characters. This solves the problem because `{jl} ||` is **short-circuiting**: if the first bool is `{jl} true` in an `{jl} ||` operation, the second is never evaluated.
 
     pre(julia-executable)
       | function space_concat(s,t)
@@ -1140,7 +1140,7 @@ _Hint_: Make a guess about which operator can be used to compare strings alphabe
 ---
 > id: step-76
 
-*Solution*.
+*Solution.*
 
     pre(julia-executable)
       | function alphabetical_concat(s,t)
@@ -1286,7 +1286,7 @@ Write a type `{jl} Line` for representing non-vertical lines in the plane. Write
 ---
 > id: step-line-type-solution    
 
-*Solution*. Since we only need to store non-vertical lines, we can represent every line via its slope and intercept. We can specify that these data types should be `{jl} Float64`s if we want:
+*Solution.* Since we only need to store non-vertical lines, we can represent every line via its slope and intercept. We can specify that these data types should be `{jl} Float64`s if we want:
 
     pre(julia-executable)
       | struct Line
@@ -1458,7 +1458,7 @@ What happens to `{jl} myOtherArray` in the example above if a different value is
 ---
 > id: step-92
 
-*Solution*. The list doesn't change. The object associated with the variable `{jl} x` is retrieved when the list is created, and after that point the list is no longer connected to the name `{jl} x`.
+*Solution.* The list doesn't change. The object associated with the variable `{jl} x` is retrieved when the list is created, and after that point the list is no longer connected to the name `{jl} x`.
 
 [Continue](btn:next)
 
@@ -1514,7 +1514,7 @@ What step value can be used to *reverse* a list? [[-1]] (Hint: you can reason it
 ---
 > id: step-99
 
-*Solution*. Going in reverse order through a list corresponds to stepping by $-1$ each time. Using the range object `{jl} end : -1 : 1` to index an array reverses the array.
+*Solution.* Going in reverse order through a list corresponds to stepping by $-1$ each time. Using the range object `{jl} end : -1 : 1` to index an array reverses the array.
 
 [Continue](btn:next)
 
@@ -1583,7 +1583,7 @@ Write a [function](gloss:function-julia) which takes as arguments an array `{jl}
 ---
 > id: step-101
 
-*Solution*. We figure out where the list needs to be split and concatenate the two resulting sublists in the opposite order:
+*Solution.* We figure out where the list needs to be split and concatenate the two resulting sublists in the opposite order:
 
     pre(julia-executable)
       | function rotate(L, n)
@@ -1618,7 +1618,7 @@ Write a line of code which sets every even-indexed entry of an array `{jl} A` to
 ---
 > id: step-103
 
-*Solution*. `{jl} A[2::2::end] = fill(0,length(A)÷2)`
+*Solution.* `{jl} A[2::2::end] = fill(0,length(A)÷2)`
 
 [Continue](btn:next)
 
@@ -1664,7 +1664,7 @@ Write an array comprehension which returns a list whose kth entry is the last di
 ---
 > id: step-108
 
-*Solution*. Here's an example solution:
+*Solution.* Here's an example solution:
 
     pre(julia-executable)
       | using Primes: isprime
@@ -1688,7 +1688,7 @@ Write an array comprehension which takes a array of arrays and returns only thos
 ---
 > id: step-110
 
-*Solution*. Here's one solution:
+*Solution.* Here's one solution:
 
     pre(julia-executable)      
       | [record for record in records if length(record[2]) ≥ 5]
@@ -1751,7 +1751,7 @@ Write a list comprehension which adds the first two elements of each tuple in `{
 ---
 > id: step-114
 
-*Solution*. Same idea:
+*Solution.* Same idea:
 
     pre(julia-executable)
       | A = [(1,2,3),(4,5,6),(7,8,9)]
@@ -1777,7 +1777,7 @@ Find the fractional parts of the first 100 positive integer multiples of $\pi$. 
 ---
 > id: step-116
 
-*Solution*. We use tuple unpacking to extract the min and max values from the tuple returned by the `{jl} extrema` function.
+*Solution.* We use tuple unpacking to extract the min and max values from the tuple returned by the `{jl} extrema` function.
 
     pre(julia-executable)
       | m,M = extrema([mod(pi*k,1) for k in 1:100])
@@ -1812,7 +1812,7 @@ Suppose that $H$ is a list which stores the heights of 100 cylinders and $R$ is 
 ---
 > id: step-118
 
-*Solution*. We zip `{jl} H` and `{jl} R` and use the volume formula $\pi r^2 h$:
+*Solution.* We zip `{jl} H` and `{jl} R` and use the volume formula $\pi r^2 h$:
 
     pre(julia-executable)
       | H = [1, 2, 3]
@@ -1844,7 +1844,7 @@ Write a function which takes a matrix `{jl} M` and an index `{jl} i` and returns
 ---
 > id: step-121
 
-*Solution*. We use an array comprehension to select the appropriate entry from each row.
+*Solution.* We use an array comprehension to select the appropriate entry from each row.
 
     pre(julia-executable)
       | function select_col(M, i)
@@ -1878,7 +1878,7 @@ _Hint_: The functions `{jl} join` and `{jl} split` might be helpful.
 ---
 > id: step-123
 
-*Solution*. We use the string method `{jl} split`, which splits a string on a given character. This gives us a list of the words in the sentence, which we can reverse by indexing with a negative step and rejoin with the `{jl} join` method.
+*Solution.* We use the string method `{jl} split`, which splits a string on a given character. This gives us a list of the words in the sentence, which we can reverse by indexing with a negative step and rejoin with the `{jl} join` method.
 
     pre(julia-executable)
       | function reverse_words(sentence)
@@ -1922,7 +1922,7 @@ _Hint_: It suffices to look for primes among the first 110,000 integers. Compare
 ---
 > id: step-124
 
-*Solution*. To get exactly 10,000 primes, we index the list obtained by filtering out the composite numbers:
+*Solution.* To get exactly 10,000 primes, we index the list obtained by filtering out the composite numbers:
 
     pre(julia-executable)
       | using Primes: isprime
@@ -2054,7 +2054,7 @@ _{button.next-step} Submit_
 ---
 > id: step-130
 
-*Solution*. We use the `{jl} Dict` function to convert the list of pairs back into a dictionary: `{jl} Dict([(b,a) for (a,b) in pairs(arrival_times)])`.
+*Solution.* We use the `{jl} Dict` function to convert the list of pairs back into a dictionary: `{jl} Dict([(b,a) for (a,b) in pairs(arrival_times)])`.
 
 [Continue](btn:next)
 
@@ -2082,7 +2082,7 @@ Use a dictionary comprehension to make a dictionary which maps each of the first
 ---
 > id: step-132
 
-*Solution*. We convert to a string, get the last character, and convert back to an integer:
+*Solution.* We convert to a string, get the last character, and convert back to an integer:
 
     pre(julia-executable)
       |   Dict([big(2)^k => parse(Int64, string(big(2)^k)[end]) for k in 1:100])
@@ -2102,7 +2102,7 @@ Suppose you want to store student IDs in a part of a web application where the m
 ---
 > id: step-134
 
-*Solution*. This is an ideal use case for sets. Lists and tuples will be slower for checking membership, and dictionaries aren't quite appropriate because it isn't clear what the values would be.
+*Solution.* This is an ideal use case for sets. Lists and tuples will be slower for checking membership, and dictionaries aren't quite appropriate because it isn't clear what the values would be.
 
 ---
 
@@ -2193,7 +2193,7 @@ Suppose you have imported a function `{jl} file_bug_report` with two parameters:
 ---
 > id: step-137a
 
-*Solution*. We loop over the pairs of the dictionary:
+*Solution.* We loop over the pairs of the dictionary:
 
     pre(julia-executable)
       | for (id, desc) in pairs(bugs)
@@ -2226,7 +2226,7 @@ Write a [function](gloss:function-julia) called `{jl} sumorial` which takes a po
 ---
 > id: step-139
 
-*Solution*. We loop through `{jl} 1:n` and add as we go.
+*Solution.* We loop through `{jl} 1:n` and add as we go.
 
     pre(julia-executable)
       | function sumorial(n)
@@ -2307,7 +2307,7 @@ Note that $10^{-8}$ can be represented in Julia using scientific notation `{jl} 
 ---
 > id: step-141
 
-*Solution*. We keep up with two separate variables, which we call `{jl} x` and `{jl} old_x`, to compare the most recent two iterates:
+*Solution.* We keep up with two separate variables, which we call `{jl} x` and `{jl} old_x`, to compare the most recent two iterates:
 
     pre(julia-executable)
       | """Use Newton's algorithm to approximate √n"""
@@ -2355,7 +2355,7 @@ _Note_: `{jl} \n` in a string literal represents the "newline" character. You'll
 ---
 > id: step-143
 
-*Solution*. We loop through the rows and use an `{jl} if` statement to print a different output depending on whether the row is even-numbered or odd-numbered.
+*Solution.* We loop through the rows and use an `{jl} if` statement to print a different output depending on whether the row is even-numbered or odd-numbered.
 
     pre(julia-executable)
       | "Prints an n × n checkerboard"
@@ -2516,7 +2516,7 @@ store it to a variable, and write a line of code to select the submatrix
 Hint: you might want to use the function `{jl} rem`—look it up from a Julia session to check how it works.
 :::
 
-*Solution*. `{jl} A = [rem(i+j,5) for i=0:4,j=0:4]` generates the first matrix and stores it to the variable `{jl} A`. Then `{jl} A[end-1:end,:]` takes the last two rows of `{jl} A`.
+*Solution.* `{jl} A = [rem(i+j,5) for i=0:4,j=0:4]` generates the first matrix and stores it to the variable `{jl} A`. Then `{jl} A[end-1:end,:]` takes the last two rows of `{jl} A`.
 
 ---
 > id: plotting

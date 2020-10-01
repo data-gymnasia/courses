@@ -19,7 +19,7 @@ In which situation would you be more inclined to be skeptical of the null hypoth
 ---
 > id: solution-coin-flip-bayes
 
-*Solution*. We'd be more inclined to be skeptical in the magician scenario, since it isn't unusual for a magician to have a trick coin or card deck. Given a random coin from our change purse, it is extraordinarily unlikely that the coin is actually significantly biased towards heads. Although it's also unlikely for a fair coin to turn up heads five times in a row, that isn't going to be enough evidence to be persuasive.
+*Solution.* We'd be more inclined to be skeptical in the magician scenario, since it isn't unusual for a magician to have a trick coin or card deck. Given a random coin from our change purse, it is extraordinarily unlikely that the coin is actually significantly biased towards heads. Although it's also unlikely for a fair coin to turn up heads five times in a row, that isn't going to be enough evidence to be persuasive.
 
 [Continue](btn:next)
 
@@ -63,7 +63,7 @@ Bayes rule takes an especially simple form when our distributions are supported 
 Suppose that the heads probability of a coin is $p$. Consider a uniform prior distribution for $p$, and suppose that $n$ flips of the coin are observed. Express the posterior density in terms of the number of heads $H(x)$ and tails $T(x)$ in the observed sequence $x$ of $n$ flips. 
 :::
 
-*Solution*. We calculate the posterior density $f$ as likelihood times prior. Let's call $X$ the random sequence of flips, and suppose $x$ is a possible value of $X$. We get
+*Solution.* We calculate the posterior density $f$ as likelihood times prior. Let's call $X$ the random sequence of flips, and suppose $x$ is a possible value of $X$. We get
 
 ``` latex
 \overbrace{f(p|x)}^{\text{posterior}} \varpropto \overbrace{f(x|p)}^{\text{likelihood}}\overbrace{f(p)}^{\text{prior}} = p^{H(x)}(1-p)^{T(x)}(1)
@@ -99,7 +99,7 @@ Show that the coin flip posterior for a Beta prior is also a Beta distribution. 
 ---
 > id: beta-posterior-solution
 
-*Solution*. If the prior density is proportional to $p^{\alpha-1}(1-p)^{\beta-1}$, then the posterior distribution is proportional to $p^{\alpha + H(x) -1}(1-p)^{\beta + T(x)-1}$, following the same calculation as above. In other words, each head in the observed sequence increments the $\alpha$ parameter of the distribution, while each tail increments the $\beta$ parameter. 
+*Solution.* If the prior density is proportional to $p^{\alpha-1}(1-p)^{\beta-1}$, then the posterior distribution is proportional to $p^{\alpha + H(x) -1}(1-p)^{\beta + T(x)-1}$, following the same calculation as above. In other words, each head in the observed sequence increments the $\alpha$ parameter of the distribution, while each tail increments the $\beta$ parameter. 
 
 When the posterior distribution has the same parametric form as the prior distribution, this property is called *conjugacy*. For the example above, we say that the Beta distribution is a conjugate family for the binomial likelihood.
 
@@ -122,7 +122,7 @@ Derive a formula for the posterior mean of $\theta$, given a single observation 
 ---
 > id: step-posterior-intractable-solution
 
-*Solution*. The posterior mean is given by
+*Solution.* The posterior mean is given by
 
 ``` latex
 \mathbb{E}[\theta|x] &=
@@ -168,7 +168,7 @@ Write down the matrix $P$ whose $(i,j)$th entry is the probability of transition
 ---
 > id: exercise-transmat-solution
 
-*Solution*. The **transition matrix** $P$ is given by
+*Solution.* The **transition matrix** $P$ is given by
 
 ```julia
 P = [1/2 1/2  0    0   
@@ -191,7 +191,7 @@ Plot an example trajectory of the Markov chain above starting from state A.
 ---
 > id: exercise-example-mc-trajectory
 
-*Solution*. 
+*Solution.* 
 
 We sample the next state from the corresponding row of $P$: 
 
@@ -224,7 +224,7 @@ We sample the next state from the corresponding row of $P$:
 Show that $(P^2)\_{1,1}$ (the top left entry of $P^2$) yields the probability of being at state 1 in two steps given that you start from state $1$. 
 :::
 
-*Solution*. Squaring $P$ and looking at the top left entry gives $(1/2)(1/2) + (1/2)(1/2) = 1/2$, while calculating the probability of being at state 1 in two steps starting from state 1 gives the same result: $(1/2)(1/2)$ for the probability that we stay at A for both steps, plus $(1/2)(1/2)$ for the probability that we go to B and come back to A. 
+*Solution.* Squaring $P$ and looking at the top left entry gives $(1/2)(1/2) + (1/2)(1/2) = 1/2$, while calculating the probability of being at state 1 in two steps starting from state 1 gives the same result: $(1/2)(1/2)$ for the probability that we stay at A for both steps, plus $(1/2)(1/2)$ for the probability that we go to B and come back to A. 
 
 More generally, we can say that the $(i,j)$th entry of $P^n$ is equal to the probability of being at state $j$ after $n$ steps, given that we began in state $i$.
 
@@ -264,7 +264,7 @@ This algorithm is called **Metropolis-Hastings**. To the extent that Metropolis-
 Apply Metropolis-Hastings to the four-state Markov chain above, with the stationary distribution $[4/9, 2/9, 2/9, 1/9]$. 
 :::
 
-*Solution*. The probability of moving from $B$ given that you start at $A$ is the probability that the proposal suggests $B$, which is $1/2$, multiplied by the probability you accept the proposal, which is $\frac{2/9}{4/9} = 1/2$. So that entry is 1/4. Likewise, the transition probability from $A$ to $D$ is $\frac{1}{8}$. Continuing in this way, we fill out the matrix, and it indeed gives rise to the desired stationary distribution:
+*Solution.* The probability of moving from $B$ given that you start at $A$ is the probability that the proposal suggests $B$, which is $1/2$, multiplied by the probability you accept the proposal, which is $\frac{2/9}{4/9} = 1/2$. So that entry is 1/4. Likewise, the transition probability from $A$ to $D$ is $\frac{1}{8}$. Continuing in this way, we fill out the matrix, and it indeed gives rise to the desired stationary distribution:
 
     pre(julia-executable)
       | P = [5/8 1/4 0 1/8
@@ -287,7 +287,7 @@ Suppose we want to sample from a probability measure on the set of length-100 bi
 (b) How do we sample from the distribution whose probability mass function $f$ assigns to each string a mass proportional to the number of 1's (for example, a string with 82 ones would be twice as likely as a string with 41 ones)?
 :::
 
-*Solution*. In neither case do we want to try inverse CDF sampling, because splitting the unit interval into $2^{100}$ tiny intervals is impractical (even the [Float64](gloss:float64) system doesn't allow that much resolution throughout the interval). However, we can sample from the measure specified in (a) without any new ideas, since the values in each position are independent under the the uniform measure. So we can just do 
+*Solution.* In neither case do we want to try inverse CDF sampling, because splitting the unit interval into $2^{100}$ tiny intervals is impractical (even the [Float64](gloss:float64) system doesn't allow that much resolution throughout the interval). However, we can sample from the measure specified in (a) without any new ideas, since the values in each position are independent under the the uniform measure. So we can just do 
 
     pre(julia-executable)
       | rand(0:1, 100)
@@ -351,7 +351,7 @@ To sample from the posterior, we'll use Metropolis-Hastings on the parameters $m
 What is the acceptance ratio for the posterior distribution, given the observations?
 :::
 
-*Solution*. Since posterior is proportional to likelihood times prior, we need to compute likelihood ratios and ratios of priors. The latter we'll get by deferring to Julia's `pdf`, but the former we can do analytically. Given $m$ and $b$, the probability density evaluated at the observed data is 
+*Solution.* Since posterior is proportional to likelihood times prior, we need to compute likelihood ratios and ratios of priors. The latter we'll get by deferring to Julia's `pdf`, but the former we can do analytically. Given $m$ and $b$, the probability density evaluated at the observed data is 
 
 ``` latex
 \prod_{i=1}^n\exp(-(y_i - mx_i - b)^2/2) = \exp\left(-\sum_{i=1}^n(y_i - mx_i - b)^2/2\right). 
@@ -407,7 +407,7 @@ Explain why it makes intuitive sense that the joint posterior distribution of $m
 ---
 > id: m-b-negative-correlation-solution
 
-*Solution*. If $b$ happens to be on the large side, then the slope needs to be smaller than usual to be reasonably compatible with the data (that is, to cut through the middle of the point cloud). Said another way, $m$ and $b$ are both exceptionally large, then the likelihood for that pair would be extremely small because of the Gaussian factors picking up large vertical differences between the observed points and the line. Similarly, if $b$ is smaller than usual, then $m$ is likely to be larger than usual. 
+*Solution.* If $b$ happens to be on the large side, then the slope needs to be smaller than usual to be reasonably compatible with the data (that is, to cut through the middle of the point cloud). Said another way, $m$ and $b$ are both exceptionally large, then the likelihood for that pair would be extremely small because of the Gaussian factors picking up large vertical differences between the observed points and the line. Similarly, if $b$ is smaller than usual, then $m$ is likely to be larger than usual. 
 
 ---
 > id: bayes-nets
@@ -436,7 +436,7 @@ Is this the only such diagram consistent with the specified probability measure 
 ---
 > id: bayes-net-simple-example-solution
 
-*Solution*. No, there's nothing about smoking and exercising that requires that we sample the smoking indicator and then the exercising indicator from its conditional distribution giving smoking. We could have done it the other way around. 
+*Solution.* No, there's nothing about smoking and exercising that requires that we sample the smoking indicator and then the exercising indicator from its conditional distribution giving smoking. We could have done it the other way around. 
 
 The diagram tells us that having the gene is independent of smoking and exercising (since those nodes have no common ancestors in the diagram). If we included another descendant of the "smokes" node, like "develops premature wrinkles", then that would be communicating that premature wrinkles and lung cancel—while not independent—are *conditionally* independent given the smoking random variable.
 
@@ -471,7 +471,7 @@ Explain how you might estimate the means, covariances, and $\alpha$ values based
 ---
 > id: gmm-intuition-solution
 
-*Solution*. We identify the two clusters visually, and we associate each point with one of the clusters or the other. Then we estimate means and covariances of the sample means and covariances for the two clusters, and we estimate the $\alpha$'s as the proportions of points belonging to each cluster. 
+*Solution.* We identify the two clusters visually, and we associate each point with one of the clusters or the other. Then we estimate means and covariances of the sample means and covariances for the two clusters, and we estimate the $\alpha$'s as the proportions of points belonging to each cluster. 
 
 In the next section (on Expectation-Maximization), we'll talk about how to do this in a way that doesn't require a human to hand-pick the $Z$ value for each point.
 
@@ -490,7 +490,7 @@ The second example of a Bayesian network we'll look is the **Hidden Markov Model
 Simulate a hidden Markov model and plot the vector of $Z$'s and the vector of $X$'s on the same graph.
 :::
 
-*Solution*. 
+*Solution.* 
 
     pre(julia-executable)
       | using Plots, OffsetArrays
@@ -535,7 +535,7 @@ Given the observed $X$ values shown, how many times would you guess the underlyi
 ---
 > id: hmm-basic-solution
 
-*Solution*. It looks like the sequence of $Z$'s was most likely this path (which switches 8 times):
+*Solution.* It looks like the sequence of $Z$'s was most likely this path (which switches 8 times):
 
     figure
       img(src="images/hmm-with-z.svg")
@@ -562,7 +562,7 @@ Find the likelihood of the following data for the hidden Markov model described 
 ```
 :::
 
-*Solution*. The probability of observing $Z_1 = 0$ is $1/2$. The probability of observing $Z_1 = 0$ and $Z_2 = 1$ is $(1/2)(1-q)$. The probability of observing all three of the given $Z$ values is $(1/2)(1-q)(q)$. 
+*Solution.* The probability of observing $Z_1 = 0$ is $1/2$. The probability of observing $Z_1 = 0$ and $Z_2 = 1$ is $(1/2)(1-q)$. The probability of observing all three of the given $Z$ values is $(1/2)(1-q)(q)$. 
 
 The conditional probability of seeing an $x\_1$ value close to 0.2 given $\\{Z\_1=0\\}$ is proportional to value of the standard Gaussian density at $0.2$, which is $\frac{1}{\sqrt{2\pi}}\operatorname{e}^{-0.2^2/2}$. Likewise, the likelihood gets a factor of $\frac{1}{\sqrt{2\pi}}\operatorname{e}^{-(1-(-0.4))^2/2}$ for $X\_2$ and a factor of $\frac{1}{\sqrt{2\pi}}\operatorname{e}^{-(1-(0.85))^2/2}$ for $X\_3$, given the values for $Z_2$ and $Z_3$ under consideration. All together, the likelihood is 
 
@@ -845,7 +845,7 @@ Give verbal descriptions of the quantities $a$, $b$, and $c$.
 ---
 > id: verbal-desc-solution
 
-*Solution*. We can describe $a$ as the expected number of times the Markov chain stays in the same state, $b$ as the expected number of Markov chain switches, and $c$ as the expected squared distance between the vector of $X$'s and the vector of $Z$'s. 
+*Solution.* We can describe $a$ as the expected number of times the Markov chain stays in the same state, $b$ as the expected number of Markov chain switches, and $c$ as the expected squared distance between the vector of $X$'s and the vector of $Z$'s. 
 
 The main difficulty in estimating $a$, $b$, and $c$ is that the conditional distribution of the $Z$'s given the $X$'s is a reasonably complex probability measure. It has to account for the $X$ values as well as the conditional distribution of each $Z_j$ given the value of $Z_{j-1}$. 
 
@@ -868,7 +868,7 @@ In terms of $q$ and $\sigma^2$, work out the acceptance ratio for the proposal t
 ---
 > id: step-solution-simple-acceptance-ratio
 
-*Solution*. We get 
+*Solution.* We get 
 
 ``` latex
 \frac{\frac{1}{2}(1-q)qqf_\sigma(0.25)f_\sigma(-1.3)f_\sigma(-0.2)f_\sigma(0.1)}{\frac{1}{2}q(1-q)qf_\sigma(0.25)f_\sigma(-0.3)f_\sigma(-0.2)f_\sigma(0.1)}, 
@@ -949,7 +949,7 @@ obtain samples from the posterior.
 ---
 > id: step-six-sided-die-solution
 
-*Solution*. We begin by specifying the model from which the data was drawn:
+*Solution.* We begin by specifying the model from which the data was drawn:
 
     pre(julia-executable)
       | 
@@ -1051,7 +1051,7 @@ Suppose we have observed the variables $X_1, X_2, \ldots, X_{15}$ available
 ---
 > id: step-small-hmm-solution
 
-*Solution*. We will assume a uniform prior on $p_1$ and $p_2$. We can define the model as follows:
+*Solution.* We will assume a uniform prior on $p_1$ and $p_2$. We can define the model as follows:
 
     pre(julia-executable)
       | 

@@ -174,7 +174,7 @@ _{button.next-step} Reveal_
 
 ---
 
-*Solution*. Each server should execute code to map the function and
+*Solution.* Each server should execute code to map the function and
 reduce over the subset of data that it stores. Then the 1000 resulting
 values can be aggregated and mapreduced by a single machine. 
 
@@ -412,7 +412,7 @@ _{button.next-step} Reveal_
 
 ---
 
-*Solution*. No. It selects each row with probability 20\%,
+*Solution.* No. It selects each row with probability 20\%,
 independently of the others. If you run it several times and call the
 _{code.language-python}count_ method, you'll find that its length
 varies (according to the binomial distribution). 

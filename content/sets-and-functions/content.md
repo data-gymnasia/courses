@@ -151,7 +151,7 @@ Suppose that $E$ is the set of even positive integers and that $F$ is the set of
 ---
 > id: step-15
 
-*Solution*. We have $E\subset F$, since the statement "$n$ is a positive even
+*Solution.* We have $E\subset F$, since the statement "$n$ is a positive even
 integer" [[implies|is implied by]] the statement "$n$ is one more than an odd
 number". In other words, $n \in E$ implies that $n \in F$.
 
@@ -239,7 +239,7 @@ Let $S = \\\{4,3,4,1\\\}$. Then $|S|$ = [[3|4|2|`oo`]].
 ---
 > id: step-22
 
-*Solution*. There are three values $s$ with the property that $s \in S$. Therefore, $|S| = 3$.
+*Solution.* There are three values $s$ with the property that $s \in S$. Therefore, $|S| = 3$.
 
 [Continue](btn:next)
 
@@ -288,7 +288,7 @@ Show that the set of all ordered pairs of positive integers is countably infinit
 ---
 > id: step-26
 
-*Solution*. We visualize the pairs as a grid of points in the first quadrant. We arrange the points in a sequence by beginning in the lower left corner at $(1,1)$ and snake through the grid: we go right to $(2,1)$, then diagonally northwest to $(1,2)$, then up to $(1,3)$, then diagonally southeast to $(2,2)$ and through to $(3,2)$, and so on. 
+*Solution.* We visualize the pairs as a grid of points in the first quadrant. We arrange the points in a sequence by beginning in the lower left corner at $(1,1)$ and snake through the grid: we go right to $(2,1)$, then diagonally northwest to $(1,2)$, then up to $(1,3)$, then diagonally southeast to $(2,2)$ and through to $(3,2)$, and so on. 
 
     figure: img(src="images/snake.svg")
 
@@ -358,7 +358,7 @@ Suppose $S = \\\{1,2,3,4,5\\\}$ and $A = \\\{4,2\\\}$. Find the complement   $A^
 ---
 > id: step-33
 
-*Solution*. The complement is $A^{\mathsf{c}} = \\\{1,3,5\\\}$, since 1, 3, and 5 are the elements of $S$ which are not in $A$. 
+*Solution.* The complement is $A^{\mathsf{c}} = \\\{1,3,5\\\}$, since 1, 3, and 5 are the elements of $S$ which are not in $A$. 
 
 [Continue](btn:next)
 
@@ -377,7 +377,7 @@ Is the assumption that $A \subset S$ necessary for the problem to be well-specif
 ---
 > id: step-35
 
-*Solution*. Since $S$ has 55 elements and $A$ has 13, then there are   $\boxed{42}$ elements in $S$ which are not in $A$. 
+*Solution.* Since $S$ has 55 elements and $A$ has 13, then there are   $\boxed{42}$ elements in $S$ which are not in $A$. 
 
 The assumption is necessary, since if some of the elements of $A$ were not in $S$, $|S \setminus A|$ would be larger.
 
@@ -412,7 +412,7 @@ Let $S = \\\{1,2,4,5\\\}$ and $T = \\\{1,5,6,7,8\\\}$. Find $S \cup T$. It has [
 ---
 > id: step-38
 
-*Solution*. Listing all the elements of $S$ and all elements of $T$ and eliminating duplicates, we get 
+*Solution.* Listing all the elements of $S$ and all elements of $T$ and eliminating duplicates, we get 
 
 ``` latex
 S \cup T = \{1,2,4,5,6,7,8\}.
@@ -508,7 +508,7 @@ Find three sets $A$, $B$, and $C$ which have $A \cap B \cap C = \emptyset$, but 
 ---
 > id: step-46
 
-*Solution*. We can take $A = \\{1,2\\}$, $B = \\{1,3\\}$, and $C = \\{2,3\\}$. These sets are pairwise *non*-disjoint, but there are no elements common to all three sets. 
+*Solution.* We can take $A = \\{1,2\\}$, $B = \\{1,3\\}$, and $C = \\{2,3\\}$. These sets are pairwise *non*-disjoint, but there are no elements common to all three sets. 
 
 [Continue](btn:next)
 
@@ -547,7 +547,7 @@ Find a partition of $\\\{1,2,3,4,5\\\}$ into three sets. Is there a partition of
 ---
 > id: step-49
 
-*Solution*. There are many partitions of $\\\{1,2,3,4,5\\\}$ into three sets. For example,
+*Solution.* There are many partitions of $\\\{1,2,3,4,5\\\}$ into three sets. For example,
 
 ``` latex
 \{\{1,2\},\{3,4\},\{5\}\} \text{ or }
@@ -626,7 +626,7 @@ If $|S| = 4$ and $|T| = 100$, then $|S \times T| = $ [[400]].
 ---
 > id: step-54
 
-*Solution*. In the coin-and-die example, the cardinality of the Cartesian product was 12, which is equal to the product of the cardinalities of the original sets. We listed the elements of $S$ in a way which suggests why this is the case: the elements of $S \times T$ can always be arranged in a $|S|$ by $|T|$ grid.
+*Solution.* In the coin-and-die example, the cardinality of the Cartesian product was 12, which is equal to the product of the cardinalities of the original sets. We listed the elements of $S$ in a way which suggests why this is the case: the elements of $S \times T$ can always be arranged in a $|S|$ by $|T|$ grid.
 
 Therefore, $|S \times T| = 400$. 
 
@@ -676,7 +676,7 @@ S \cup (R \cap T) &= (S \cup R) \cap (S \cup T) \\
 ---
 > id: step-57
 
-*Solution*. If an element $s$ is in $S \cap (R \cup T)$, then it is in $S$ and it is either in $R$ or $T$. This implies that either (i) $s\in S$ and $s\in
+*Solution.* If an element $s$ is in $S \cap (R \cup T)$, then it is in $S$ and it is either in $R$ or $T$. This implies that either (i) $s\in S$ and $s\in
 R$, or (ii) $s\in S$ and $s\in T$. In other words, either $s\in S
 \cap R$ or $s \in S \cap T$. In other words, $s \in (S \cap R) \cup
 (S \cap T)$. Therefore, the left-hand side is a [[subset]] of the right-hand side.
@@ -754,7 +754,7 @@ How many *lists* of length 4 have all of their elements in $\\\{1,2,3\\\}$? [[81
 ---
 > id: step-63
 
-*Solution*. There are 8 subsets of $\\\{1,2,3\\\}$:
+*Solution.* There are 8 subsets of $\\\{1,2,3\\\}$:
 
 ``` latex
 \emptyset, \{1\}, \{2\}, \{3\}, \{1,2\}, \{1,3\}, \{2,3\}, \{1,2,3\}.
@@ -884,7 +884,7 @@ Find the range of the function from {apple, bread, squash} to $\mathbb{N}$ repre
 ---
 > id: step-72
 
-*Solution*. The range is the set of quantity counts which get mapped to from some grocery item, so the range is the two-element set $\\\{1,3\\\}$.
+*Solution.* The range is the set of quantity counts which get mapped to from some grocery item, so the range is the two-element set $\\\{1,3\\\}$.
 
 [Continue](btn:next)
 
@@ -905,7 +905,7 @@ Consider the *social-security-number function* $f$ from the set of US citizens a
 ---
 > id: step-74
 
-*Solution*. (i) The value of $\frac{|f(A)|}{|A|}$ is 1 for any set $A$: since no two people are issued the same social security number, the number of elements in $f(A)$ is equal to the number of elements in $A$.
+*Solution.* (i) The value of $\frac{|f(A)|}{|A|}$ is 1 for any set $A$: since no two people are issued the same social security number, the number of elements in $f(A)$ is equal to the number of elements in $A$.
 
 (ii) There are $10^{9}$ elements in the codomain of $f$, and about 450 million numbers have been issued. Therefore, the ratio of the cardinality of the range to the cardinality of the codomain is about $0.45$. Since a macroscopic percentage of possible SSNs have been used, it's clear that eventually the SSA will eventually have to either issue duplicate SSNs or increase the number of digits they use for each one.
 
@@ -940,7 +940,7 @@ This is the subset of $A$ consisting of every element of $A$ that maps to some e
 ---
 > id: step-76
 
-*Solution*. The first statement is true; for example, consider the squaring function from the real number line to itself. The preimage of any set of negative numbers is empty.
+*Solution.* The first statement is true; for example, consider the squaring function from the real number line to itself. The preimage of any set of negative numbers is empty.
 
 The second statement is also true, since multiple input elements may map to the same codomain element. 
 
@@ -979,7 +979,7 @@ Which of the are true for all functions $f$ and all subsets $A$ and $B$ of the d
 ---
 > id: step-78
 
-*Solution*. The correct answer is (e). To show that (ii)   $f(A \cup B) = f(A) \cup f(B)$, we note that if $y \in f(A \cup B)$,   then $y = f(x)$ for some $x \in A \cup B$. This element $x$ is in either $A$ or $B$, which means that $y = f(x)$ is in either $f(A)$ or $f(B)$. Thus, $y \in f(A) \cup f(B)$. So $f(A \cup B) \subset f(A) \cup f(B)$. Similar reasoning shows that $f(A) \cup f(B) \subset f(A \cup B)$ as well. Statements (iii) and (iv) may likewise be confirmed.
+*Solution.* The correct answer is (e). To show that (ii)   $f(A \cup B) = f(A) \cup f(B)$, we note that if $y \in f(A \cup B)$,   then $y = f(x)$ for some $x \in A \cup B$. This element $x$ is in either $A$ or $B$, which means that $y = f(x)$ is in either $f(A)$ or $f(B)$. Thus, $y \in f(A) \cup f(B)$. So $f(A \cup B) \subset f(A) \cup f(B)$. Similar reasoning shows that $f(A) \cup f(B) \subset f(A \cup B)$ as well. Statements (iii) and (iv) may likewise be confirmed.
 
 To see that (i) may fail, consider the function from $\\\{-1,0,1\\\}$ to $\\\{0,1\\\}$ which squares its input. Let $A =
 \\\{-1,0\\\}$ and $B = \\\{0,1\\\}$. Then $f(A \cap B) = \\\{0\\\}$, while $f(A) \cap f(B) = \\\{0,1\\\}$.
@@ -1070,7 +1070,7 @@ State a general relationship involving the terms *restriction*, *image*, and *ra
 ---
 > id: step-82
 
-*Solution*. If $f:A \to B$ and $A' \subset A$, then the range of the restriction
+*Solution.* If $f:A \to B$ and $A' \subset A$, then the range of the restriction
 
 ``` latex
 \left. f \right|_{A'}
@@ -1112,7 +1112,7 @@ Show that composition is associative: $(f\circ g)\circ h = f \circ
 ---
 > id: step-85
 
-*Solution*. We check that two functions are equal by checking that they have the same domain and codomain and that they map all input values to the same output values.
+*Solution.* We check that two functions are equal by checking that they have the same domain and codomain and that they map all input values to the same output values.
 
 The domain of $(f\circ g)\circ h$ is the domain of $h$, and the domain of $f \circ (g \circ h)$ is $h$. Similarly both functions have a codomain equal to the codomain of $f$.
 
@@ -1136,7 +1136,7 @@ Suppose that $f$ is the function $(x\mapsto \sqrt{x}) \circ (y\mapsto
 ---
 > id: step-87
 
-*Solution*. We first substitute $\frac{1}{12}$ into the tripling function to get $\frac{1}{4}$, and then we substitute that value into the square root function to get $f\left(\frac{1}{12}\right) = \boxed{\tfrac{1}{2}}$. 
+*Solution.* We first substitute $\frac{1}{12}$ into the tripling function to get $\frac{1}{4}$, and then we substitute that value into the square root function to get $f\left(\frac{1}{12}\right) = \boxed{\tfrac{1}{2}}$. 
 
 [Continue](btn:next)
 
@@ -1169,7 +1169,7 @@ Find the inverse of the function $f(x) = x^2 + 1$ from the interval $[0,\infty)$
 ---
 > id: step-91
 
-*Solution*. Given $y \in [1,\infty)$, we want to find the value of $x$ that $f$ maps to it. In other words, we want to solve $x^2 + 1 = y$ for [[`x`|`y`]]. Doing so, we get $x = \sqrt{y-1}$. Therefore, $f^{-1}(y) = \sqrt{y-1}$. 
+*Solution.* Given $y \in [1,\infty)$, we want to find the value of $x$ that $f$ maps to it. In other words, we want to solve $x^2 + 1 = y$ for [[`x`|`y`]]. Doing so, we get $x = \sqrt{y-1}$. Therefore, $f^{-1}(y) = \sqrt{y-1}$. 
 
 [Continue](btn:next)
 
@@ -1204,7 +1204,7 @@ Which of the following is equal to $(g\circ f)^{-1}$, if $f$ and $g$ are inverti
 ---
 > id: step-94
 
-*Solution*. We have $(f^{-1} \circ g^{-1}) \circ (g \circ f(x)) = f^{-1}(f(x)) = x$, so $f^{-1} \circ g^{-1}$ is the inverse of $f\circ g$.
+*Solution.* We have $(f^{-1} \circ g^{-1}) \circ (g \circ f(x)) = f^{-1}(f(x)) = x$, so $f^{-1} \circ g^{-1}$ is the inverse of $f\circ g$.
 
 ---
 

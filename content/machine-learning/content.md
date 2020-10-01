@@ -20,7 +20,7 @@ Do you expect the prediction function to be more sensitive to changes in $X_1$ o
 ---
 > id: step-banana-solution
 
-*Solution*. We would expect $X_1$ to have more influence on $Y$, since bananas can taste great whether small or large, while green or dark brown bananas generally taste very bad and yellow bananas mostly taste good. 
+*Solution.* We would expect $X_1$ to have more influence on $Y$, since bananas can taste great whether small or large, while green or dark brown bananas generally taste very bad and yellow bananas mostly taste good. 
 
 [Continue](btn:next)
 
@@ -57,7 +57,7 @@ Explain how a machine learning task like image recognition fits into this framew
 ---
 > id: step-image-recognition
 
-*Solution*. We can take $\mathcal{X}$ to be $[0,1]^P$, where $P$ is the number of pixels in each image., because a grayscale image with $P$ pixels can be thought of as list of 1000 numbers in $[0,1]$, with each component indicating the darkness of a single pixel. Let's suppose $P = 10^6$, which is a fairly typical image size for modern cameras.
+*Solution.* We can take $\mathcal{X}$ to be $[0,1]^P$, where $P$ is the number of pixels in each image., because a grayscale image with $P$ pixels can be thought of as list of 1000 numbers in $[0,1]$, with each component indicating the darkness of a single pixel. Let's suppose $P = 10^6$, which is a fairly typical image size for modern cameras.
 
 The output set $\mathcal{Y}$ contains labels. For example, if we just have cat images and dog images to classify, then $\mathcal{Y}$ would be {"cat", "dog"}. 
 
@@ -141,7 +141,7 @@ Recall the exam scores example from the KDE section of the statistics course in 
 
     x-quill
     
-*Solution*. (a) The class of candidate functions must contain $r$. For example, it might consistnt of all quadratic functions, or all differentiable functions. If it only contained linear functions, then the target function would be different from the regression function.
+*Solution.* (a) The class of candidate functions must contain $r$. For example, it might consistnt of all quadratic functions, or all differentiable functions. If it only contained linear functions, then the target function would be different from the regression function.
 
 (b) No, the loss value of the prediction function depends on the actual probability measure, not on training observations. If we know the probability measure, then we have the best possible information for making future predictions, and we can write off a handful of training samples as anomolous.
 
@@ -182,7 +182,7 @@ f(x,y) = \begin{cases}
 ---
 > id: one-dim-classification-example
 
-*Solution*. If $x$ is between 0 and 1, the target prediction function will return 0. If $x$ is between 2 and 3, the target prediction function will return 1. If $x$ is between 1 and 2, then the more likely outcome is 0, so $r$ should return 0 for those values as well. 
+*Solution.* If $x$ is between 0 and 1, the target prediction function will return 0. If $x$ is between 2 and 3, the target prediction function will return 1. If $x$ is between 1 and 2, then the more likely outcome is 0, so $r$ should return 0 for those values as well. 
 
     pre(julia-executable)
       | 
@@ -220,7 +220,7 @@ Let $\mathcal{H}$ be the set of monic polynomials of degree six or less. Given t
 ---
 > id: step-overfit-example-solution
 
-*Solution*. The risk minimizer is $\mathbb{E}[Y | X]$, which is given in the problem statement as $X/2 + 1$. The empirical loss function is obtained by replacing the expectation in the loss functional with an expectation with respect to the empirical measure. So the empirical risk minimizer is the function which minimizes 
+*Solution.* The risk minimizer is $\mathbb{E}[Y | X]$, which is given in the problem statement as $X/2 + 1$. The empirical loss function is obtained by replacing the expectation in the loss functional with an expectation with respect to the empirical measure. So the empirical risk minimizer is the function which minimizes 
 
 ``` latex
 \sum_{i=1}^{n} (Y_i - h(\mathbf{X}_i))^2.
@@ -270,7 +270,7 @@ We mitigate overfitting by building [**inductive bias**](gloss:inductive-bias) i
 ---
 > id: step-example-overfit-mitigation
 
-*Solution*.  
+*Solution.*  
 * Linear regression uses a restrictive class $\mathcal{H}$ of candidate functions. The kind of overfitting that we saw in the polynomial example above is impossible if such curvy functions are excluded from consideration. 
 * We used cross-validation. We suggested a family of density estimators $\widehat{f}\_\lambda$ parameterized by bandwidth $\lambda$, and we chose a value of $\lambda$ by withholding a single data point at a time to estimate the integrated squared error. 
 
@@ -309,7 +309,7 @@ Cross-validation seems to be free of inductive bias: insisting that an algorithm
 ---
 > id: step-no-free-lunch-solution
 
-*Solution*. The no-free-lunch theorem implies that a learner which employs cross-validation performs exactly the same on average as a learner which employs anti-cross-validation (that is, selection based on the *worst* performance on withheld observations). 
+*Solution.* The no-free-lunch theorem implies that a learner which employs cross-validation performs exactly the same on average as a learner which employs anti-cross-validation (that is, selection based on the *worst* performance on withheld observations). 
 
 Of course, cross-validation works much better than anti-cross-validation in practice. But for any class of problems where it performs better, it is necessarily worse on the complement of that class. So using cross-validation does implicitly assume that the problem at hand is in a class which is amenable to cross-validation. This is OK in practice because the class of problems machine learning researchers encounter in real life do have some structure that make them different from a distribution chosen uniformly at random from the set of all distributions.
 
@@ -337,7 +337,7 @@ A very common approach to estimating the regression function for a particular jo
 Find the value of $\boldsymbol{\beta}$ which minimizes $\operatorname{RSS}(\boldsymbol{\beta})$. 
 :::
 
-*Solution*. We can write $\operatorname{RSS}(\boldsymbol{\beta})$ as 
+*Solution.* We can write $\operatorname{RSS}(\boldsymbol{\beta})$ as 
 
 ``` latex
 |\mathbf{y} - X\boldsymbol{\beta}|^2,
@@ -431,7 +431,7 @@ Perform a quadratic regression on the exam-scores example, and show that its int
 ---
 > id: step-quadreg-example
 
-*Solution*.  
+*Solution.*  
 
 We perform the quadratic regression by doing the same calculation as for the linear regression but with an extra column in $X$. We approximate the integrated squared error using a Riemann sum as we did for the kernel density estimator. We find that the integrated squared errors for the quadratic estimator, the kernel density estimator, and the linear estimator are 0.61, 1.9, and 9.24 respectively. 
 
@@ -503,7 +503,7 @@ Which model does the best job of zeroing out the coefficients that should be zer
 ---
 > id: ridge-lasso-solution
 
-*Solution*. With no regularization, the coefficients for the last two features are very large. Ridge and lasso both reduce this problem substantially, although lasso does a better job of getting the coefficients that should be zero very close to zero. An explanation for this phenomenon is discussed in the [optimization section of the Multivariable Calculus course](https://mathigon.org/course/multivariable-calculus/optimization). 
+*Solution.* With no regularization, the coefficients for the last two features are very large. Ridge and lasso both reduce this problem substantially, although lasso does a better job of getting the coefficients that should be zero very close to zero. An explanation for this phenomenon is discussed in the [optimization section of the Multivariable Calculus course](https://mathigon.org/course/multivariable-calculus/optimization). 
 
 ---
 > id: classification-example
@@ -521,7 +521,7 @@ Suppose that $(X,Y)$ are random variables defined on the same probability space,
 ---
 > id: step-answer-reasonable-error
 
-*Solution*. The mean squared error penalizes a misclassification differently  depending on how far apart the class labels are (for example, misclassifying a squirrel as a fox would be worse than misclassifying it as a bear).
+*Solution.* The mean squared error penalizes a misclassification differently  depending on how far apart the class labels are (for example, misclassifying a squirrel as a fox would be worse than misclassifying it as a bear).
 
 [Continue](btn:next)
 
@@ -589,7 +589,7 @@ Find the best predictor of $Y$ given $(X\_1,X\_2) = (x\_1, x\_2)$ (using the 0-1
 ---
 > id: step-flower-solution
   
-*Solution*. As in the regression example, we can do a decent job of classification with our eyes. If $(X\_1,X\_2)$ is located where there are lots of green observations, we would predict its classification as green, and similarly for blue and red. Let's think about how to approach this task mathematically. 
+*Solution.* As in the regression example, we can do a decent job of classification with our eyes. If $(X\_1,X\_2)$ is located where there are lots of green observations, we would predict its classification as green, and similarly for blue and red. Let's think about how to approach this task mathematically. 
 
 To start, let's proceed using our knowledge of the joint distribution of $(X\_1,X\_2,Y)$. The predictor which has minimal misclassification probability is the one which maps $(x\_1,x\_2)$ to the classification with maximal conditional probability given $(x\_1,x\_2)$. For example, if the conditional distribution on $\\{\mathrm{R},\mathrm{G},\mathrm{B}\\}$ given $(x\_1,x\_2)$ were $\\\{45\\%, 30\\%, 25\\%\\\}$, then we would guess a classification of [[R|G|B]] for the point $(x\_1, x\_2)$. 
 
@@ -735,7 +735,7 @@ The **precision** of a classifier $h$ is the conditional probability of $\\{Y = 
 ---
 > id: step-precision-solution
 
-*Solution*. Suppose that $p\_{-1} = 0.999$ and that $h$ has detection rate 0.99 and false alarm rate 0.01. Then the precision of $h$ is 
+*Solution.* Suppose that $p\_{-1} = 0.999$ and that $h$ has detection rate 0.99 and false alarm rate 0.01. Then the precision of $h$ is 
 
 ``` latex
     \mathbb{P}(Y = +1 | h(X) = +1) =
@@ -785,7 +785,7 @@ Show that the likelihood ratio classifier is a generalization of the Bayes class
 ---
 > id: step-lrc-generalize-bayes
 
-*Solution*. If we let $t = p\_{-1}/p\_{+1}$, then the inequality $\frac{f\_{+1}(\mathbf{x})}{f\_{-1}(\mathbf{x})} \geq t$ simplifies to $p\_{+1}f\_{+1}(\mathbf{x}) \geq p\_{-1}f\_{-1}(\mathbf{x})$. Therefore, the Bayes classifier is equal to $h\_{p\_{-1}/p\_{+1}}$. 
+*Solution.* If we let $t = p\_{-1}/p\_{+1}$, then the inequality $\frac{f\_{+1}(\mathbf{x})}{f\_{-1}(\mathbf{x})} \geq t$ simplifies to $p\_{+1}f\_{+1}(\mathbf{x}) \geq p\_{-1}f\_{-1}(\mathbf{x})$. Therefore, the Bayes classifier is equal to $h\_{p\_{-1}/p\_{+1}}$. 
 
 [Continue](btn:next)
 
@@ -817,7 +817,7 @@ Suppose that $\mathcal{X} = \mathbb{R}$ and that the class conditional densities
 ---
 > id: step-roc-solution
 
-*Solution*. We predict that the ROC will be nearly diagonal for $\mu = \frac{1}{4}$, since the class conditional distributions overlap heavily, and therefore any increase in detection rate will induce an approximately equal increase in false alarm rate. When $\mu = 4$, we expect to get a very large AUROC, since in that case the distributions overlap very little. The $\mu = 1$ curve will lie between these extremes. To plot these curves, we begin by calculating the likelihood ratio 
+*Solution.* We predict that the ROC will be nearly diagonal for $\mu = \frac{1}{4}$, since the class conditional distributions overlap heavily, and therefore any increase in detection rate will induce an approximately equal increase in false alarm rate. When $\mu = 4$, we expect to get a very large AUROC, since in that case the distributions overlap very little. The $\mu = 1$ curve will lie between these extremes. To plot these curves, we begin by calculating the likelihood ratio 
 
 ``` latex
     \frac{f_{+1}(x)}{f_{-1}(x)} =
@@ -890,7 +890,7 @@ Use the code cell below to confirm for the given covariance matrix and mean vect
 ---
 > id: solution-hyperplane      
 
-*Solution*. The last line returns $12.182 \operatorname{e}^{2x - 3y + 4z}$, so the set of points where this ratio is equal to $p\_1/p\_2$ is the solution set of $2x - 3y + 4z = \log(p\_1/(12.182p\_2))$, which is a plane. 
+*Solution.* The last line returns $12.182 \operatorname{e}^{2x - 3y + 4z}$, so the set of points where this ratio is equal to $p\_1/p\_2$ is the solution set of $2x - 3y + 4z = \log(p\_1/(12.182p\_2))$, which is a plane. 
 
 Although we used specific numbers in this example, it does illustrate the general point: the only quadratic term in the argument of the exponential in the formula for the multivariate normal distribution is $\mathbf{x}' \Sigma^{-1} \mathbf{x}$. Thus if we divide two such densities with the same $\Sigma$, the quadratic terms will cancel, and the only remaining variables will appear in the form of a linear combination in the exponent. When such expressions are set equal to a constant, the equation can be rearranged by dividing and taking logs to obtain a linear equation. 
 
@@ -930,7 +930,7 @@ Each scatter plot shows a set of sample points for a three-category classificati
 ---
 > id: three-categories-bayes-lda-qda    
 
-*Solution*. The correct order is (c), (a), (b), since the third plot shows class conditional densities which factor as a product of marginals, the first plot shows Gaussian class conditional probabilities with the same covariance matrices, and the second plot shows Gaussian class conditional probabilities with distinct covariance matrices.
+*Solution.* The correct order is (c), (a), (b), since the third plot shows class conditional densities which factor as a product of marginals, the first plot shows Gaussian class conditional probabilities with the same covariance matrices, and the second plot shows Gaussian class conditional probabilities with distinct covariance matrices.
 
 ::: .exercise
 **Exercise**  
@@ -946,7 +946,7 @@ Consider a classification problem where the features $X_1$ and $X_2$ have the pr
 
     x-quill
     
-*Solution*. (a) The classifier which minimizes the misclassification probability predicts class 1 for points in the northwest quadrant of the square (since the class-1 density is larger there), and class 0 for points in the southeast quadrant (since the class-0 density is larger there).
+*Solution.* (a) The classifier which minimizes the misclassification probability predicts class 1 for points in the northwest quadrant of the square (since the class-1 density is larger there), and class 0 for points in the southeast quadrant (since the class-0 density is larger there).
 
 (b) The probability of the event $\\{Y = 1\\}$ is 
 
@@ -1016,7 +1016,7 @@ Consider a binary classification problem where the two classes are equally proba
 
     img(src="images/two-densities.svg" style="float: right;" width=260)
 
-*Solution*.  The Bayes classifier is $(x,y) \mapsto \operatorname{argmax}\_i p\_if\_i(x,y)$, where 
+*Solution.*  The Bayes classifier is $(x,y) \mapsto \operatorname{argmax}\_i p\_if\_i(x,y)$, where 
 
 ``` latex
 f_0(x,y) &= \frac{1}{2\pi} \operatorname{e}^{-\frac{1}{2}(x^2+y^2)}\text{, and}\\
@@ -1041,7 +1041,7 @@ which simplifies to $x + y = 1$, as desired.
 Find the regression function $r(\mathbf{x}) = \mathbb{E}[Y | \mathbf{X} = \mathbf{x}] = \mathbb{P}(Y = 1 | \mathbf{X} = \mathbf{x})$ for the example above. Plot a heatmap of this function. 
 :::
 
-*Solution*. Let's use the multivariate normal type `{jl} MvNormal` from the `{jl} Distributions` package. 
+*Solution.* Let's use the multivariate normal type `{jl} MvNormal` from the `{jl} Distributions` package. 
 
     pre(julia-executable)
       | using Plots, Distributions, Optim
@@ -1128,7 +1128,7 @@ L(r) = \sum_{i=1}^{n} \left[y_i \log \frac{1}{r(x_i)} +
 ---
 > id: step-logistic-regression-exercise
 
-*Solution*. We begin by sampling the points as suggested. 
+*Solution.* We begin by sampling the points as suggested. 
 
     pre(julia-executable)
       | observations = [rand(Bool) ? (rand(A),0) : (rand(B),1) for i in 1:1000]
@@ -1160,7 +1160,7 @@ In the example above, is it true that $r(\mathbf{x}) = \sigma(\boldsymbol{\beta}
 > id: step-is-equal-sigmoid
 
 
-*Solution*. We calculate 
+*Solution.* We calculate 
 
 ``` latex
     \frac{\frac{1}{2}f_0(x,y)}{\frac{1}{2}f_0(x,y) +
@@ -1188,7 +1188,7 @@ Consider a binary classification problem for which the regression function $r$ s
 ---
 > id: step-solution-linear-decision-boundary
 
-*Solution*.  We solve $r(\mathbf{x}) = \frac{1}{2}$ to find the decision  boundary. This equation is equivalent to $\boldsymbol{\beta} \cdot \mathbf{x} + \alpha = 0$, the solution set of which is linear (by definition,  since the equation is linear).  
+*Solution.*  We solve $r(\mathbf{x}) = \frac{1}{2}$ to find the decision  boundary. This equation is equivalent to $\boldsymbol{\beta} \cdot \mathbf{x} + \alpha = 0$, the solution set of which is linear (by definition,  since the equation is linear).  
 
 This exercise shows that directly applying logistic regression always yields linear decision boundaries. However, we can use logistic regression to find nonlinear decision boundaries by appending components to the feature vectors which are derived from the original features. For example, if we apply the map $[x\_1, x\_2] \mapsto [x\_1,x\_2,x\_1^2,x\_2^2,x\_1x\_2]$ to each feature vector, then the linear boundary we discover in $\mathbb{R}^5$ will correspond to a quadric curve in the original feature space $\mathbb{R}^2$. 
 
@@ -1209,7 +1209,7 @@ Find the distance from the plane $3x + 2y + z = 6$ to the point $P = (4,7,1)$.
 ---
 > id: step-svm-plane-solution
 
-*Solution*. The vector $[3,2,1]$ is perpendicular to the given plane, so moving $t$ units directly away from some point in the plane means adding the vector 
+*Solution.* The vector $[3,2,1]$ is perpendicular to the given plane, so moving $t$ units directly away from some point in the plane means adding the vector 
 
 ``` latex
     t\frac{[3,2,1]}{|[3,2,1]|} = t\frac{[3,2,1]}{\sqrt{14}}
@@ -1241,7 +1241,7 @@ Find the distance from the hyperplane $\\{\mathbf{x} \in \mathbb{R}^n :  \boldsy
 ---
 > id: step-svm-yperplane-solution
 
-*Solution*. Generalizing the idea we developed in the previous problem, we can say that $\boldsymbol{\beta}$ is the normal vector to the hyperplane, and moving $t$ units directly away from the hyperplane corresponds to adding $t|\boldsymbol{\beta}|$ to the value of $\boldsymbol{\beta}' \mathbf{x} + \alpha$. Therefore, we can check the value of the function $\mathbf{x} \mapsto \boldsymbol{\beta}' \mathbf{x} + \alpha$ at our point $\mathbf{x}$ and divide by $|\boldsymbol{\beta}|$ to find the distance from $\mathbf{x}$ to the plane. So our distance formula is $\frac{|\boldsymbol{\beta}' \mathbf{x} + \alpha|}{|\boldsymbol{\beta}|}$. 
+*Solution.* Generalizing the idea we developed in the previous problem, we can say that $\boldsymbol{\beta}$ is the normal vector to the hyperplane, and moving $t$ units directly away from the hyperplane corresponds to adding $t|\boldsymbol{\beta}|$ to the value of $\boldsymbol{\beta}' \mathbf{x} + \alpha$. Therefore, we can check the value of the function $\mathbf{x} \mapsto \boldsymbol{\beta}' \mathbf{x} + \alpha$ at our point $\mathbf{x}$ and divide by $|\boldsymbol{\beta}|$ to find the distance from $\mathbf{x}$ to the plane. So our distance formula is $\frac{|\boldsymbol{\beta}' \mathbf{x} + \alpha|}{|\boldsymbol{\beta}|}$. 
 
 [Continue](btn:next)
 
@@ -1258,7 +1258,7 @@ Simulate data for a binary classification problem in the plane for which the two
 ---
 > id: step-solution-thickest-slab
 
-*Solution*. Suppose that the observations are $\\{(\mathbf{x}\_i,y\_i)\\}\_{i=1}^n$, where $y\_i \in \\{-1,1\\}$ for each $1 \leq i \leq n$. Let us describe the separating slab as $\\{\mathbf{x} \in \mathbb{R}^2 : -1 \leq \boldsymbol{\beta}' \mathbf{x} + \alpha \leq 1 \\}$. The width of this slab is $2/|\boldsymbol{\beta}|$, by the preceding example. We can check whether a point is on the correct side of the slab by checking whether $\boldsymbol{\beta} '  \mathbf{x} + \alpha \geq 1$ for points of class 1 and less than or equal to $-1$ for points of class $-1$. More succinctly, we can check whether $y\_i(\boldsymbol{\beta} \cdot \mathbf{x}\_i + \alpha) \geq 1$ for all $1 \leq i \leq n$. 
+*Solution.* Suppose that the observations are $\\{(\mathbf{x}\_i,y\_i)\\}\_{i=1}^n$, where $y\_i \in \\{-1,1\\}$ for each $1 \leq i \leq n$. Let us describe the separating slab as $\\{\mathbf{x} \in \mathbb{R}^2 : -1 \leq \boldsymbol{\beta}' \mathbf{x} + \alpha \leq 1 \\}$. The width of this slab is $2/|\boldsymbol{\beta}|$, by the preceding example. We can check whether a point is on the correct side of the slab by checking whether $\boldsymbol{\beta} '  \mathbf{x} + \alpha \geq 1$ for points of class 1 and less than or equal to $-1$ for points of class $-1$. More succinctly, we can check whether $y\_i(\boldsymbol{\beta} \cdot \mathbf{x}\_i + \alpha) \geq 1$ for all $1 \leq i \leq n$. 
 
 So, we are looking for the values of $\boldsymbol{\beta}$ and $\alpha$ which minimize $|\boldsymbol{\beta}|$ subject to the conditions $y\_i(\boldsymbol{\beta}'  \mathbf{x}\_i + \alpha) \ge 1$ for all $1 \leq i \leq n$. This is a **constrained** optimization problem, since we are looking to maximize the value of a function over a domain defined by some constraining inequalities. 
 
@@ -1346,7 +1346,7 @@ is a reasonable quantity to minimize.
 ---
 > id: step-soft-margin-intro-solution
 
-*Solution*. Minimizing the first term $\lambda |\boldsymbol{\beta}|^2$ is the same as minimizing the value of $|\boldsymbol{\beta}|$, which is the *hard-margin* objective function. The second term penalizes points which are not on the right side of the slab (in units of margin widths: points on the slab midline get a penalty of 1, on the wrong edge of the slab they get a penalty of 2, and so on). Thus this term imposes misclassification penalty. The parameter $\lambda$ governs the tradeoff between the large-margin incentive of the first term and the correctness incentive of the second. 
+*Solution.* Minimizing the first term $\lambda |\boldsymbol{\beta}|^2$ is the same as minimizing the value of $|\boldsymbol{\beta}|$, which is the *hard-margin* objective function. The second term penalizes points which are not on the right side of the slab (in units of margin widths: points on the slab midline get a penalty of 1, on the wrong edge of the slab they get a penalty of 2, and so on). Thus this term imposes misclassification penalty. The parameter $\lambda$ governs the tradeoff between the large-margin incentive of the first term and the correctness incentive of the second. 
  
 ::: .example
 **Example** (Soft-margin SVM)  
@@ -1358,7 +1358,7 @@ Simulate some overlapping data and minimize the soft-margin loss function. Selec
 ---
 > id: step-soft-margin-simulation-solution
 
-*Solution*. We begin by generating our observations. To create overlap, we make the mean of the second distribution closer to the origin. 
+*Solution.* We begin by generating our observations. To create overlap, we make the mean of the second distribution closer to the origin. 
 
     pre(julia-executable)
       | observations = [samplepoint([1,1]) for i in 1:n]
@@ -1427,7 +1427,7 @@ Find a map from $\mathbb{R}^2$ to a higher dimensional space such that the two c
 ---
 > id: step-SVM-soft-margin-solution 
 
-*Solution*. The distinguishing feature of the points is distance from the origin, so we supplement the features $x\_1$ and $x\_2$ with the combination $x\_1^2 + x\_2^2$. So our map is 
+*Solution.* The distinguishing feature of the points is distance from the origin, so we supplement the features $x\_1$ and $x\_2$ with the combination $x\_1^2 + x\_2^2$. So our map is 
 
 ``` latex
       \phi(x_1,x_2)  = (x_1,x_2,x_1^2+x_2^2). 
@@ -1557,7 +1557,7 @@ Note: the figure shows that $\boldsymbol{\eta}$ values for each point, together 
 ---
 > id: svm-dual-interpretation-solution
 
-*Solution*. The first statement says that $0 \preccurlyeq \boldsymbol{\eta} \preccurlyeq C$, which is indeed one of the constraints. The second statement is equivalent to $\boldsymbol{\eta}' \boldsymbol{y} = 0$, since dotting with $\boldsymbol{y}$ yields the difference between the entries corresponding to positive training examples and the entries corresponding to negative training examples. 
+*Solution.* The first statement says that $0 \preccurlyeq \boldsymbol{\eta} \preccurlyeq C$, which is indeed one of the constraints. The second statement is equivalent to $\boldsymbol{\eta}' \boldsymbol{y} = 0$, since dotting with $\boldsymbol{y}$ yields the difference between the entries corresponding to positive training examples and the entries corresponding to negative training examples. 
 
 The objective function includes one term for the total amount of weight (that's $\boldsymbol{1}'\boldsymbol{\eta}$), and one term which is $-\frac{1}{2}|\boldsymbol{\beta}|^2$, where $\boldsymbol{\beta} = X'(\boldsymbol{\eta} \odot \boldsymbol{y})$. We can see that the vector $\beta$ is in fact the difference between the $\boldsymbol{\eta}$-weighted sums of the negative and positive training examples by writing $X'(\boldsymbol{\eta} \odot \boldsymbol{y})$ as $(X'\_{+1}\boldsymbol{\eta}\_{+1} - X'\_{-1}\boldsymbol{\eta}\_{-1})$, where the +1 and -1 subscripts mean "discard rows corresponding to negative observations" and "discard rows corresponding to positive observations", respectively. 
 
@@ -1713,7 +1713,7 @@ Write a Julia function which accepts two arguments `{jl} x1` and `{jl} x2` and r
 ---
 > id: step-basic-decision-tree-sol
 
-*Solution*. We can do this with a sequence of branching `{jl} if` statements: 
+*Solution.* We can do this with a sequence of branching `{jl} if` statements: 
 
     pre(julia-executable)
       | function myprediction(x1,x2)
@@ -1769,7 +1769,7 @@ Which of the following are possible classification diagrams for a decision tree?
 ---
 > id: step-decision-tree-possible-shapes     
 
-*Solution*. Only the first and third diagrams are possible. The second one would require making a decision based on the sum of the coordinates, which is not permitted (by the definition of a decision tree).    
+*Solution.* Only the first and third diagrams are possible. The second one would require making a decision based on the sum of the coordinates, which is not permitted (by the definition of a decision tree).    
 
 ---
 > id: training-a-decision-tree
@@ -1880,7 +1880,7 @@ Use the code block below to train and visualize a decision tree on the iris data
 ---
 > id: step-practical-decision-tree-solution
 
-*Solution*. We find that with a depth of 3, we can classify 146 out of 150 training observations correctly. Even with a depth of 1, we can get 100 out of 150 correct (since the setosas split perfectly from the other two species along the third feature). 
+*Solution.* We find that with a depth of 3, we can classify 146 out of 150 training observations correctly. Even with a depth of 1, we can get 100 out of 150 correct (since the setosas split perfectly from the other two species along the third feature). 
 
 ---
 > id: regression-trees
@@ -1916,7 +1916,7 @@ Consider a set of data points in the unit square which fall close to the diagona
 ---
 > id: step-reg-tree-sol-1
 
-*Solution*. We would expect the optimal threshold to be in the middle, at $\frac{1}{2}$, so that one piece of the piecewise constant function can approximate half the points as well as possible, and the other piece can approximate the other half. Plotting the overall MSE as a function of the threshold `{jl} x`, we see that indeed the minimum happens right around $0.5$. 
+*Solution.* We would expect the optimal threshold to be in the middle, at $\frac{1}{2}$, so that one piece of the piecewise constant function can approximate half the points as well as possible, and the other piece can approximate the other half. Plotting the overall MSE as a function of the threshold `{jl} x`, we see that indeed the minimum happens right around $0.5$. 
 
 [Continue](btn:next)
 
@@ -2134,7 +2134,7 @@ An **affine function** from $\mathbb{R}^t$ to $\mathbb{R}^s$ is a function of th
 ---
 > id: step-affine-solution
 
-*Solution*. We have $W\_2(W\_1 \mathbf{x} + \mathbf{b}\_1) + \mathbf{b}\_2 = W\_2W\_1 \mathbf{x} + (W\_1 \mathbf{b}\_1 + \mathbf{b}\_2)$, which is of the form (matrix times $\mathbf{x}$ plus vector). 
+*Solution.* We have $W\_2(W\_1 \mathbf{x} + \mathbf{b}\_1) + \mathbf{b}\_2 = W\_2W\_1 \mathbf{x} + (W\_1 \mathbf{b}\_1 + \mathbf{b}\_2)$, which is of the form (matrix times $\mathbf{x}$ plus vector). 
 
 This example shows that composing affine functions does not yield any new functions. We will introduce nonlinearity by applying a fixed function $K: \mathbb{R} \to \mathbb{R}$ componentwise after each affine map application. We call $K$ the **activation** function. The modern default activation to use is the **ReLU** function $K(x) = \max(0,x)$. We borrow some Julia syntax and write $K.$ for the function which applies $K$ pointwise: 
 
@@ -2154,7 +2154,7 @@ Suppose that $A\_1(\mathbf{x}) = \left[\begin{smallmatrix} 3 & -2 \\\\ 1 & 4 \en
 ---
 > id: step-basic-affine-example 
 
-*Solution*. We have $A\_1(\mathbf{x}) = \left[\begin{smallmatrix} 3 \\\\
+*Solution.* We have $A\_1(\mathbf{x}) = \left[\begin{smallmatrix} 3 \\\\
 -17 \end{smallmatrix}\right]$. Applying $K$ to each component yields $\left[\begin{smallmatrix} 3 \\\\ 0 \end{smallmatrix}\right]$. Finally, applying $A\_2$ yields 
 
 ``` latex
@@ -2206,7 +2206,7 @@ Create data types in Julia to represent affine maps and neural net functions. Wr
 ---
 > id: step-julia-neural-net-from-scratch
 
-*Solution*. We supply a `{jl} NeuralNet` with the sequence of affine maps, the activation function, and also the activation function's derivative. We write call methods for the `{jl} AffineMap` and `{jl} NeuralNet` types so they can be applied as functions to appropriate inputs. (One of these methods refers to a function we will define in the next example.) 
+*Solution.* We supply a `{jl} NeuralNet` with the sequence of affine maps, the activation function, and also the activation function's derivative. We write call methods for the `{jl} AffineMap` and `{jl} NeuralNet` types so they can be applied as functions to appropriate inputs. (One of these methods refers to a function we will define in the next example.) 
 
     pre(julia-executable)
       | using LinearAlgebra, StatsBase, Test
@@ -2247,7 +2247,7 @@ Write a Julia function `{jl} forwardprop` which calculates the sequence of vecto
 ---
 > id: step-forwardprop-solution
 
-*Solution*. We store the sequence of values we obtain in an array called `{jl} vectors`. The very last map is the identity function rather than $K.$, so it must be handled separately. 
+*Solution.* We store the sequence of values we obtain in an array called `{jl} vectors`. The very last map is the identity function rather than $K.$, so it must be handled separately. 
 
     pre(julia-executable)
       | function forwardprop(NN::NeuralNet,x)
@@ -2288,7 +2288,7 @@ So we can work from right to left in the diagram and calculate the derivative va
 ---
 > id: step-basic-derivatives
 
-*Solution*.  
+*Solution.*  
 * The derivative of $C\_i$ is 
 
 ``` latex
@@ -2313,7 +2313,7 @@ Write a Julia function `{jl} backprop` which calculates the for each node the de
 ---
 > id: step-julia-backprop
 
-*Solution*. We can use all the derivatives we calculated in the previous example. We define functions which return the index of the $j$ th green node and the $j$ th purple node in the diagram, for convenience. 
+*Solution.* We can use all the derivatives we calculated in the previous example. We define functions which return the index of the $j$ th green node and the $j$ th purple node in the diagram, for convenience. 
 
     pre(julia-executable)
       | "Index of jth green node"
@@ -2375,7 +2375,7 @@ where $w\_{i,j}$ is the entry in the $i$ th row and $j$ th column of $W$. Suppos
 ---
 > id: step-differentiation-wrt-matrix
 
-*Solution*. We have
+*Solution.* We have
 
 ``` latex
 \mathbf{u}' A \mathbf{v} = w_{1,1}u_1v_1 + w_{1,2}u_1v_2 + \cdots + w_{m,n} u_m v_n.    
@@ -2406,7 +2406,7 @@ Write two functions `{jl} weight_gradients` and `{jl} bias_gradients` which comp
 ---
 > id: step-julia-compute-gradients
 
-*Solution*. In each case, we calculate the derivative of the map to the next node (either $W\_j \mapsto W\_j \mathbf{x} + \mathbf{b}\_j$ or $\mathbf{b} \mapsto W\_j \mathbf{x} + \mathbf{b}\_j$) and left-multiply by the derivative of the cost function with respect to the value at that node. The derivative of $W\_j \mathbf{x} + \mathbf{b}\_j$ with respect to $\mathbf{b}\_j$ is the identity matrix, and by the exercise above, differentiating $W \mathbf{v}$ with respect to $W$ and left-multiplying by $\mathbf{u}$ yields $\mathbf{u}' \mathbf{v}'$: 
+*Solution.* In each case, we calculate the derivative of the map to the next node (either $W\_j \mapsto W\_j \mathbf{x} + \mathbf{b}\_j$ or $\mathbf{b} \mapsto W\_j \mathbf{x} + \mathbf{b}\_j$) and left-multiply by the derivative of the cost function with respect to the value at that node. The derivative of $W\_j \mathbf{x} + \mathbf{b}\_j$ with respect to $\mathbf{b}\_j$ is the identity matrix, and by the exercise above, differentiating $W \mathbf{v}$ with respect to $W$ and left-multiplying by $\mathbf{u}$ yields $\mathbf{u}' \mathbf{v}'$: 
 
     pre(julia-executable)
       | function weight_gradients(NN::NeuralNet,activations,gradients)
@@ -2439,7 +2439,7 @@ Your function should take 7 arguments: (1) desired architecture, (2) the activat
 :::
 
 
-*Solution*. We write a function which calculates the average suggested changes in the weights and biases and call it from inside the `{jl} train` function. 
+*Solution.* We write a function which calculates the average suggested changes in the weights and biases and call it from inside the `{jl} train` function. 
 
     pre(julia-executable)
       | function suggested_param_changes(NN::NeuralNet, observations,
@@ -2496,7 +2496,7 @@ Try training your model on some data which are sampled by taking $\mathbf{X}$ un
 ---
 > id: step-neural-net-see-result
  
-*Solution*. We sample our data: 
+*Solution.* We sample our data: 
 
     pre(julia-executable)
       | using Random; Random.seed!(123)
@@ -2555,7 +2555,7 @@ Finding a map $\phi$ from $\mathbb{R}^2$ to $\mathbb{R}$ such that each point $(
 ---
 > id: step-pca
 
-*Solution*. Consider the line $y = mx + b$ which, roughly speaking, runs along the primary axis of the ellipse-shaped point cloud. If we know how far along this line one of the points is, then we know pretty accurately where it's located. 
+*Solution.* Consider the line $y = mx + b$ which, roughly speaking, runs along the primary axis of the ellipse-shaped point cloud. If we know how far along this line one of the points is, then we know pretty accurately where it's located. 
 
 More precisely, for each point, we let $\phi(x,y)$ be the orthogonal projection of $(x,y)$ onto the line $y = mx + b$. We would like to minimize the average squared error approximation $\phi(x,y) \approx (x,y)$. 
 
@@ -2582,7 +2582,7 @@ Apply principal component analysis to project the handwritten digit images in th
 ---
 > id: step-pca-on-mnist-sol
 
-*Solution*. We begin by loading the dataset and reshaping the training data feature array.
+*Solution.* We begin by loading the dataset and reshaping the training data feature array.
 
     pre(julia-executable)
       | using MLDatasets, Images, Plots
@@ -2663,7 +2663,7 @@ Consider the points $\mathbf{x}\_1 = [0,0]$, $\mathbf{x}\_2 = [0,1]$, $\mathbf{x
 ---
 > id: step-tsne-exercise 
 
-*Solution*. We define a function to compute $P\_{i,j}(\sigma)$. 
+*Solution.* We define a function to compute $P\_{i,j}(\sigma)$. 
 
     pre(julia-executable)
       | x = [[0,0],[0,1],[1,1],[4,0]]
@@ -2721,7 +2721,7 @@ Why might it valuable to use the heavier tailed Cauchy function to compute the $
 ---
 > id: solution-heavy-tailed-tsne
 
-*Solution*. If two points which are supposed to be close are very far apart, the gradient of the Gaussian measuring their neighborliness will be tiny (since the Gaussian has derivative extremely close to zero outside of a small zone around the origin). This effect is much less pronounced with the Cauchy function, so the gradient signal in the optimization process is stronger.
+*Solution.* If two points which are supposed to be close are very far apart, the gradient of the Gaussian measuring their neighborliness will be tiny (since the Gaussian has derivative extremely close to zero outside of a small zone around the origin). This effect is much less pronounced with the Cauchy function, so the gradient signal in the optimization process is stronger.
 
 [Continue](btn:next)
 
@@ -2740,7 +2740,7 @@ Use the Julia package `{jl} TSne` to plot a two-dimensional $t$-SNE embedding of
 ---
 > id: step-tsne-real-example
 
-*Solution*.  We call the `{jl} tsne` function on the first $k = 2000$ rows of the MNIST matrix `{jl} A` defined above. 
+*Solution.*  We call the `{jl} tsne` function on the first $k = 2000$ rows of the MNIST matrix `{jl} A` defined above. 
 
     pre(julia-executable)
       | using TSne, Random
