@@ -19,7 +19,7 @@ Consider a spreadsheet whose rows correspond to individuals and whose three colu
 ---
 > id: step-2
 
-*Solution*. Yes, the third column is redundant. If we know a person's height in centimeters, we can work out their height in inches by multiplying their height in centimeters by 2.54.
+*Solution.* Yes, the third column is redundant. If we know a person's height in centimeters, we can work out their height in inches by multiplying their height in centimeters by 2.54.
 
 Alternatively, we could say that the second column is redundant, since we could obtain it by dividing the numbers in the third column by 2.54. So there are two ways to trim the number of columns from 3 to 2 without losing information.
 
@@ -38,7 +38,7 @@ Is it possible to have numbers populating three columns in a spreadsheet such th
 ---
 > id: step-4
 
-*Solution*. Yes! If the third column is the sum of the first two, then any column can be recovered from any other (either by adding to get the third from the first and second, or by subtracting to get the first from the third and second or the second from the first and third). However, if the first two columns contain different data, then you do need at least two columns to figure out the rest.
+*Solution.* Yes! If the third column is the sum of the first two, then any column can be recovered from any other (either by adding to get the third from the first and second, or by subtracting to get the first from the third and second or the second from the first and third). However, if the first two columns contain different data, then you do need at least two columns to figure out the rest.
 
 
 In this course, we will develop a more general and mathematically rigorous version of the idea of redundancy developed in the two exercises above.
@@ -129,7 +129,7 @@ The first component of $3\begin{bmatrix} -2 \\\\\\ 11 \end{bmatrix} - \begin{bma
 ---
 > id: step-12
 
-*Solution*. By definition, we have
+*Solution.* By definition, we have
 
 ``` latex
 3 \begin{bmatrix} -2 \\\ 11 \end{bmatrix} -
@@ -163,7 +163,7 @@ r \begin{bmatrix} -3 \\\ 2 \end{bmatrix} -
 ---
 > id: step-14
 
-*Solution*. For the first component of the two vectors to be equal, the equation $-3r - 2 = 4$ would have to hold. This implies that $r = -2$. If we substitute $r = -2$, then the second component on the left-hand side is $-5$, so there is no such number.
+*Solution.* For the first component of the two vectors to be equal, the equation $-3r - 2 = 4$ would have to hold. This implies that $r = -2$. If we substitute $r = -2$, then the second component on the left-hand side is $-5$, so there is no such number.
 
 [Continue](btn:next)
 
@@ -180,7 +180,7 @@ Show that every nonzero vector $\mathbf{v}$ can be written as the product of a n
 ---
 > id: step-16
 
-*Solution*. We can see that the unit vector $\mathbf{u}$ must point in the same direction as $\mathbf{v}$, since multiplying it by $c$ does not change its direction. Furthermore, if $\mathbf{u}$ is the unit vector pointing in the same direction as $\mathbf{v}$, then we must scale $\mathbf{u}$ by a factor of $|\mathbf{v}|$ to get $\mathbf{v}$. Thus we find that $\mathbf{u} =
+*Solution.* We can see that the unit vector $\mathbf{u}$ must point in the same direction as $\mathbf{v}$, since multiplying it by $c$ does not change its direction. Furthermore, if $\mathbf{u}$ is the unit vector pointing in the same direction as $\mathbf{v}$, then we must scale $\mathbf{u}$ by a factor of $|\mathbf{v}|$ to get $\mathbf{v}$. Thus we find that $\mathbf{u} =
     \mathbf{v}/|\mathbf{v}|$ and $c = |\mathbf{v}|$.
 
 [Continue](btn:next)
@@ -200,7 +200,7 @@ _Note_: Two vectors' tails coincide when they originate from the same point.
 ---
 > id: step-18
 
-*Solution*. The desired vector $\mathbf{w}$ has the property that adding it to $\mathbf{v}$ gives $\mathbf{u}$. In other words, $\mathbf{w} +
+*Solution.* The desired vector $\mathbf{w}$ has the property that adding it to $\mathbf{v}$ gives $\mathbf{u}$. In other words, $\mathbf{w} +
     \mathbf{v} = \mathbf{u}$, which implies that $\mathbf{w} =
     \mathbf{u} - \mathbf{v}$.
 
@@ -219,7 +219,7 @@ Solve for $\mathbf{u}$ in terms of $c$ and $\mathbf{v}$ in the equation $c \math
 ---
 > id: step-20
 
-*Solution*. We add $-\mathbf{v}$ to both sides and multiply both sides by $c^{-1}$ to get $\mathbf{u} = -c^{-1} \mathbf{v}$.
+*Solution.* We add $-\mathbf{v}$ to both sides and multiply both sides by $c^{-1}$ to get $\mathbf{u} = -c^{-1} \mathbf{v}$.
 
 ---
 
@@ -255,7 +255,7 @@ _Note_: An integer linear combination is a linear combination where the weights 
 ---
 > id: step-22
 
-*Solution*.  A bit of experimentation reveals that the integer linear combinations of these two vectors form a lattice as shown.
+*Solution.*  A bit of experimentation reveals that the integer linear combinations of these two vectors form a lattice as shown.
 
     figure: img(src="images/lattice.svg" width="400px")
 
@@ -311,7 +311,7 @@ The span of three vectors in $\mathbb{R}^3$
 ---
 > id: step-25
 
-*Solution*. The span of a list containing only the zero vector is just the origin. The span of a list containing a single vector $\mathbf{v}$ is a line through the origin, since $\alpha \mathbf{v}$ points in the same direction as $\mathbf{v}$ for any $\alpha \in \mathbb{R}$. The span of a list containing two non-parallel vectors $\mathbf{u}$ and $\mathbf{v}$ is all of $\mathbb{R}^2$, since the span consists of the union of all lines which run in the $\mathbf{u}$ direction and pass through any point in the span of $\\\{\mathbf{v}\\\}$. Including more vectors can't increase the span further, so these are the only possibilities. So the correct answer is (e).
+*Solution.* The span of a list containing only the zero vector is just the origin. The span of a list containing a single vector $\mathbf{v}$ is a line through the origin, since $\alpha \mathbf{v}$ points in the same direction as $\mathbf{v}$ for any $\alpha \in \mathbb{R}$. The span of a list containing two non-parallel vectors $\mathbf{u}$ and $\mathbf{v}$ is all of $\mathbb{R}^2$, since the span consists of the union of all lines which run in the $\mathbf{u}$ direction and pass through any point in the span of $\\\{\mathbf{v}\\\}$. Including more vectors can't increase the span further, so these are the only possibilities. So the correct answer is (e).
 
 The same reasoning implies that the span of a list of vectors in $\mathbb{R}^3$ must be either the origin, or a line or plane through the origin, or all of $\mathbb{R}^3$. So the correct answer choice is the fourth one.
 
@@ -398,7 +398,7 @@ Explain geometrically why a list of three vectors in $\mathbb{R}^2$ is necessari
 ---
 > id: step-30
 
-*Solution*. If any vector in the list is zero, then the list is linearly independent, since the zero vector can be written as the sum of zero times each of the other vectors. So we may assume that the vectors are [[nonzero|zero]].
+*Solution.* If any vector in the list is zero, then the list is linearly independent, since the zero vector can be written as the sum of zero times each of the other vectors. So we may assume that the vectors are [[nonzero|zero]].
 
 ---
 > id: step-31
@@ -431,7 +431,7 @@ Let's walk through a proof of this theorem.
 ---
 > id: step-34
 
-*Proof*. If a list is linearly independent, then no vector in the list can be represented as a linear combination of others (by definition), so no vector can be in the span of the previous ones. This shows that linear independence [[implies|is implied by]] the condition of having no vector in the span of the preceding ones.
+*Proof.* If a list is linearly independent, then no vector in the list can be represented as a linear combination of others (by definition), so no vector can be in the span of the previous ones. This shows that linear independence [[implies|is implied by]] the condition of having no vector in the span of the preceding ones.
 
 ---
 > id: step-35
@@ -472,7 +472,7 @@ Show that a list of vectors is linearly independent if and only if every nontriv
 ---
 > id: step-38
 
-*Solution*. Suppose that a list of vectors $\\{\mathbf{v}\_1, \ldots, \mathbf{v}\_n\\}$ is not linearly independent. Then one of the vectors, say the first one, is equal to some linear combination of the others:
+*Solution.* Suppose that a list of vectors $\\{\mathbf{v}\_1, \ldots, \mathbf{v}\_n\\}$ is not linearly independent. Then one of the vectors, say the first one, is equal to some linear combination of the others:
 
 ``` latex
 \mathbf{v}_1 = c_2\mathbf{v}_2 + \cdots + c_n \mathbf{v}_n
@@ -527,7 +527,7 @@ Hint: start by assuming that $\mathbf{x} \in V \cap W$ and $\mathbf{y} \in V \ca
 ---
 > id: step-42
 
-*Solution*. Our goal is to show that $V \cap W$ is [[closed|open]] under the vector space operations. In other words, we want to show that if $\mathbf{x} \in V \cap W$ and $\mathbf{y} \in V \cap W$, then the sum $\mathbf{x} + \mathbf{y}$ [[is also in|is not in]] $V \cap W$ (and similarly for scalar multiplication).
+*Solution.* Our goal is to show that $V \cap W$ is [[closed|open]] under the vector space operations. In other words, we want to show that if $\mathbf{x} \in V \cap W$ and $\mathbf{y} \in V \cap W$, then the sum $\mathbf{x} + \mathbf{y}$ [[is also in|is not in]] $V \cap W$ (and similarly for scalar multiplication).
 
 ---
 > id: step-43
@@ -737,7 +737,7 @@ The three coordinates are [[2]], [[2]], [[0]].
 ---
 > id: step-56
 
-{.py-only}*Solution*. We can calculate using NumPy as suggested:
+{.py-only}*Solution.* We can calculate using NumPy as suggested:
 
 ::: .py-only
     pre(python-executable)
@@ -749,7 +749,7 @@ The three coordinates are [[2]], [[2]], [[0]].
       | np.linalg.solve(A,b)
 :::
 
-{.jl-only}*Solution*. We can calculate using Julia as suggested:
+{.jl-only}*Solution.* We can calculate using Julia as suggested:
 
 ::: .jl-only
     pre(julia-executable)
@@ -773,7 +773,7 @@ Consider a basis $\mathcal{B} = \\{\mathbf{v}\_1, \ldots, \mathbf{v}\_5\\}$ of a
 ---
 > id: step-58
 
-*Solution*. Since $\mathbf{w}$ can be written as a linear combination of the first four vectors, it can be written as a linear combination of all five basis vectors by appending the term $0\mathbf{v}\_5$. Since the coordinate representation is unique, this means that $\boxed{0}$ is the fifth coordinate of $\mathbf{w}$ with respect to $\mathcal{B}$.
+*Solution.* Since $\mathbf{w}$ can be written as a linear combination of the first four vectors, it can be written as a linear combination of all five basis vectors by appending the term $0\mathbf{v}\_5$. Since the coordinate representation is unique, this means that $\boxed{0}$ is the fifth coordinate of $\mathbf{w}$ with respect to $\mathcal{B}$.
 
 [Continue](btn:next)
 
@@ -790,7 +790,7 @@ Consider a three-column spreadsheet of numerical data, with each entry in the th
 ---
 > id: step-60
 
-*Solution*. The first two columns form a basis for the span. The coordinates of the three columns with respect to this basis are $[1,0]$, $[0,1]$, and $[1,1]$.
+*Solution.* The first two columns form a basis for the span. The coordinates of the three columns with respect to this basis are $[1,0]$, $[0,1]$, and $[1,1]$.
 
 [Continue](btn:next)
 
@@ -813,7 +813,7 @@ In other words, the dimension lemma says that if $L\_1$ is a linearly independen
 ---
 > id: step-62
 
-*Proof*. The following beautiful idea is presented in Sheldon Axler's book *Linear Algebra Done Right*.
+*Proof.* The following beautiful idea is presented in Sheldon Axler's book *Linear Algebra Done Right*.
 
 Consider a linearly independent list $\mathbf{l}\_1, \ldots, \mathbf{l}\_m$ of vectors in $V$ and a spanning list $\mathbf{s}\_1, \ldots, \mathbf{s}\_n$ of $V$. Our goal is to show that there are [[at least|at most]] as many $\mathbf{s}$'s as $\mathbf{l}$'s.
 
@@ -857,7 +857,7 @@ Use the dimension lemma to show that all bases of a vector space $V$ have the sa
 ---
 > id: step-67
 
-*Solution*. Since $B\_1$ is a spanning list and $B\_2$ is linearly independent, we know that $B\_1$ is at [[least|most]] as long as $B\_2$. Similarly, $B\_2$ is at least as long as $B\_1$. Therefore, their lengths are the same.
+*Solution.* Since $B\_1$ is a spanning list and $B\_2$ is linearly independent, we know that $B\_1$ is at [[least|most]] as long as $B\_2$. Similarly, $B\_2$ is at least as long as $B\_1$. Therefore, their lengths are the same.
 
 [Continue](btn:next)
 
@@ -878,7 +878,7 @@ Show that any linearly independent list of vectors in a vector space $V\subset \
 ---
 > id: step-69
 
-*Solution*. Consider a linearly independent list $L$ of vectors in $V$. If it spans $V$, then it is already a [[basis|linearly independent list]]. If not, then there is a vector in $V$ which is not in the span of $L$. Appending this vector to our list, we obtain a list which is still [[linearly independent|spanning]] by the [linear dependence lemma](gloss:LDL). Continuing in this way, we will eventually get a linearly independent list which spans $V$ (the process can't go on forever since by the time the list has $n$ linearly independent vectors in it, it spans $\mathbb{R}^n$ and therefore also $V$).
+*Solution.* Consider a linearly independent list $L$ of vectors in $V$. If it spans $V$, then it is already a [[basis|linearly independent list]]. If not, then there is a vector in $V$ which is not in the span of $L$. Appending this vector to our list, we obtain a list which is still [[linearly independent|spanning]] by the [linear dependence lemma](gloss:LDL). Continuing in this way, we will eventually get a linearly independent list which spans $V$ (the process can't go on forever since by the time the list has $n$ linearly independent vectors in it, it spans $\mathbb{R}^n$ and therefore also $V$).
 
 ---
 > id: step-70
@@ -911,7 +911,7 @@ Note: this exercise is on the challenging side. You might want to make your best
 ---
 > id: step-72
 
-*Solution*. By the [linear dependence lemma](gloss:LDL), it suffices to check that no vector in the list is in the span of the vectors before it in the list. Since the first $k$ vectors form a basis for $U$, they are linearly [[independent|dependent]]. Therefore, none of these is in the span of the preceding vectors.
+*Solution.* By the [linear dependence lemma](gloss:LDL), it suffices to check that no vector in the list is in the span of the vectors before it in the list. Since the first $k$ vectors form a basis for $U$, they are linearly [[independent|dependent]]. Therefore, none of these is in the span of the preceding vectors.
 
 ---
 > id: step-73
@@ -973,7 +973,7 @@ Hint: consider two two-dimensional spaces in $\mathbb{R}^3$: what are the possib
 ---
 > id: step-77
 
-*Solution*. Since $V \cap W\subset V$, the dimension of $V\cap W$ is no larger than [[4]]. If $V \subset W$, then $V \cap W = V$, so the dimension of $V$ could be as large as 4. If $\\{\mathbf{v}\_1, \ldots, \mathbf{v}\_{10}\\}$ is a basis of $\mathbb{R}^{10}$, and $W$ is the span of $\\{\mathbf{v}\_1, \ldots, \mathbf{v}\_{8}\\}$ and $V$ is the span of $\\{\mathbf{v}\_1, \mathbf{v}\_2, \mathbf{v}\_3, \mathbf{v}\_9\\}$, then $V \cap W$ would be the span of $\\{\mathbf{v}\_1, \mathbf{v}\_2, \mathbf{v}\_3\\}$, so the dimension could also be 3. Likewise, the dimension of $V\cap W$ could be 2.
+*Solution.* Since $V \cap W\subset V$, the dimension of $V\cap W$ is no larger than [[4]]. If $V \subset W$, then $V \cap W = V$, so the dimension of $V$ could be as large as 4. If $\\{\mathbf{v}\_1, \ldots, \mathbf{v}\_{10}\\}$ is a basis of $\mathbb{R}^{10}$, and $W$ is the span of $\\{\mathbf{v}\_1, \ldots, \mathbf{v}\_{8}\\}$ and $V$ is the span of $\\{\mathbf{v}\_1, \mathbf{v}\_2, \mathbf{v}\_3, \mathbf{v}\_9\\}$, then $V \cap W$ would be the span of $\\{\mathbf{v}\_1, \mathbf{v}\_2, \mathbf{v}\_3\\}$, so the dimension could also be 3. Likewise, the dimension of $V\cap W$ could be 2.
 
 ---
 > id: step-78
@@ -1040,7 +1040,7 @@ Repeat the preceding exercise with random vectors whose entries are 0 or 1 with 
 ---
 > id: step-81
 
-*Solution*. If we run
+*Solution.* If we run
 
 ::: .py-only
     pre(python-executable)
@@ -1185,7 +1185,7 @@ Find the rank of the linear transformation $L$ which maps each vector $[x,y]$ to
 ---
 > id: step-89
 
-*Solution*. The range of $L$ is the line $y = 2x$, since every point in the plane maps to a point on this line, and every point on the line is the image under $L$ of infinitely many points in the plane (all of the points on the line [[orthogonal|parallel]] to $y=2x$ through that point). Since a line is a one-dimensional vector space, the rank is $\boxed{1}$.
+*Solution.* The range of $L$ is the line $y = 2x$, since every point in the plane maps to a point on this line, and every point on the line is the image under $L$ of infinitely many points in the plane (all of the points on the line [[orthogonal|parallel]] to $y=2x$ through that point). Since a line is a one-dimensional vector space, the rank is $\boxed{1}$.
 
 [Continue](btn:next)
 
@@ -1238,7 +1238,7 @@ Suppose that $V$ and $W$ are vector spaces and that $L\_1$ and $L\_2$ are linear
 ---
 > id: step-94
 
-*Solution*. Let $\mathbf{v} \in V$ be an arbitrary vector. Since $\mathcal{B}$ is a basis, we can find coefficients $c\_1, \cdots, c\_{n} \in \mathbb{R}$ such that $\mathbf{v} = c\_{1}\mathbf{b}\_1 + \cdots + c\_{n}\mathbf{b}\_n$. Since $L\_1$ and $L\_2$ are linear, we have
+*Solution.* Let $\mathbf{v} \in V$ be an arbitrary vector. Since $\mathcal{B}$ is a basis, we can find coefficients $c\_1, \cdots, c\_{n} \in \mathbb{R}$ such that $\mathbf{v} = c\_{1}\mathbf{b}\_1 + \cdots + c\_{n}\mathbf{b}\_n$. Since $L\_1$ and $L\_2$ are linear, we have
 
 ``` latex
 L_1(\mathbf{v}) &= L_{1}(c_{1}\mathbf{b}_1 + \cdots + c_{n}\mathbf{b}_n) \\\\
@@ -1265,7 +1265,7 @@ The dimension of the null space is [[1]] and the rank is [[2]].
 ---
 > id: step-95a
 
-*Solution*. To find the dimension of the nullspace, let us first describe it explicitly. $L(x,y,z) = (y,z,0) = 0$ when $y = z= 0$, regardless of what $x$ is. Thus the nullspace is $\\{[x,0,0] \mid x \in \mathbb{R}\\}$, which is just a line with basis vector $[1,0,0]$. Thus, the dimension of the nullspace is $1$. The range of $L$ is the $xy$ plane, which has dimension $\boxed{2}$.
+*Solution.* To find the dimension of the nullspace, let us first describe it explicitly. $L(x,y,z) = (y,z,0) = 0$ when $y = z= 0$, regardless of what $x$ is. Thus the nullspace is $\\{[x,0,0] \mid x \in \mathbb{R}\\}$, which is just a line with basis vector $[1,0,0]$. Thus, the dimension of the nullspace is $1$. The range of $L$ is the $xy$ plane, which has dimension $\boxed{2}$.
 
 [Continue](btn:next)
 
@@ -1284,7 +1284,7 @@ We call the dimension of the null space of a linear transformation the **nullity
 If $V$ and $W$ are vector spaces and $L: V \to W$ is a linear transformation, then the rank of $L$ and the nullity of $L$ sum to the dimension of $V$.
 :::
 
-*Proof*. If we [[extend|trim]] any basis $\\{\mathbf{v}\_1, \ldots \mathbf{v}\_k\\}$ of the null space of $L$ to a basis
+*Proof.* If we [[extend|trim]] any basis $\\{\mathbf{v}\_1, \ldots \mathbf{v}\_k\\}$ of the null space of $L$ to a basis
 
 ``` latex
 \{\mathbf{v}_1, \ldots, \mathbf{v}_k, \mathbf{v}_{k+1}, \ldots, \mathbf{v}_n\}
@@ -1344,7 +1344,7 @@ After some time, you find that storing all twenty variables takes up too much sp
 ---
 > id: step-100a
 
-*Solution*. The image of the transformation $R \circ S: \mathbb{R}^{20} \to \mathbb{R}^{10}$ is contained in the image of the transformation $R:\mathbb{R}^{3} \to \mathbb{R}^{10}$. As a result, the rank of $R \circ S$ is at most the rank of $S$, which is at most three. By reducing your twenty basic variables to three combined scores, your recommendation system only has three degrees of freedom, and can therefore only distinguish customers along three axes.
+*Solution.* The image of the transformation $R \circ S: \mathbb{R}^{20} \to \mathbb{R}^{10}$ is contained in the image of the transformation $R:\mathbb{R}^{3} \to \mathbb{R}^{10}$. As a result, the rank of $R \circ S$ is at most the rank of $S$, which is at most three. By reducing your twenty basic variables to three combined scores, your recommendation system only has three degrees of freedom, and can therefore only distinguish customers along three axes.
 
 ---
 
@@ -1432,7 +1432,7 @@ The solution is $c = $ [[3]].
 ---
 > id: step-105
 
-*Solution*. If we look at the middle entry of the bottom row of the two sides of the equation, get
+*Solution.* If we look at the middle entry of the bottom row of the two sides of the equation, get
 
 ``` latex
 3 + (1-c)0 = 3
@@ -1502,7 +1502,7 @@ As advertised, the transformations described in the definition of matrix-vector 
 Suppose that $A$ is an $m \times n$ matrix. Show that $\mathbf{x} \mapsto A\mathbf{x}$ is a linear transformation.
 :::
 
-*Solution*. Suppose $A$ has columns $\mathbf{a}\_1, \cdots \mathbf{a}\_n$ and $\mathbf{x} = [x\_1, \cdots, x\_n]$. By definition,
+*Solution.* Suppose $A$ has columns $\mathbf{a}\_1, \cdots \mathbf{a}\_n$ and $\mathbf{x} = [x\_1, \cdots, x\_n]$. By definition,
 
 ``` latex
 A\mathbf{x}= x_1 \mathbf{a}_1 + \cdots + x_n \mathbf{a}_n
@@ -1547,7 +1547,7 @@ Find the matrix corresponding to the linear transformation $T([x,y,z]) = [z,x,y]
 ---
 > id: step-111
 
-*Solution*. Based on the first component of the expression for $T([x,y,z])$, we find that the first column of the matrix representing $T$ is $[0, 1, 0]$. Similarly, the next two columns are $[0,0,1]$, and $[1,0,0]$. Altogether, we find that the matrix is
+*Solution.* Based on the first component of the expression for $T([x,y,z])$, we find that the first column of the matrix representing $T$ is $[0, 1, 0]$. Similarly, the next two columns are $[0,0,1]$, and $[1,0,0]$. Altogether, we find that the matrix is
 
 ``` latex
 \begin{bmatrix}
@@ -1574,7 +1574,7 @@ The intuition is that $\mathbf{x}$ provides a recipe for how much of each column
 ---
 > id: step-113
 
-*Solution*. If the columns $\mathbf{a}\_1, \ldots \mathbf{a}\_n$ of $A$ are not linearly independent, then one of the columns is a linear combination of the columns to its left, say
+*Solution.* If the columns $\mathbf{a}\_1, \ldots \mathbf{a}\_n$ of $A$ are not linearly independent, then one of the columns is a linear combination of the columns to its left, say
 
 ``` latex
 \mathbf{a}_k = c_1\mathbf{a}_1 + \cdots + c_{k-1}\mathbf{a}_{k-1}.
@@ -1624,7 +1624,7 @@ Suppose that $ A =
 :::
 
 
-*Solution*. Let $\mathbf{x} = [x\_1,x\_2,x\_3,x\_4]$ be an arbitrary vector in $\mathbb{R}^4$. By definition,
+*Solution.* Let $\mathbf{x} = [x\_1,x\_2,x\_3,x\_4]$ be an arbitrary vector in $\mathbb{R}^4$. By definition,
 
 ``` latex
 (AB)\mathbf{x} = A(B\mathbf{x})
@@ -1703,7 +1703,7 @@ Show that a matrix represents an injective transformation if and only if its nul
 ---
 > id: step-119
 
-*Solution*. A linear transformation always maps a zero vector to the zero vector, so an [[injective]] linear transformation cannot map any other vector to the zero vector. Therefore, the null space of an injective transformation is the set containing only the zero vector.
+*Solution.* A linear transformation always maps a zero vector to the zero vector, so an [[injective]] linear transformation cannot map any other vector to the zero vector. Therefore, the null space of an injective transformation is the set containing only the zero vector.
 
 ---
 > id: step-120
@@ -1742,7 +1742,7 @@ Suppose that $A$ is an $n\times n$ matrix. Then the following are equivalent (th
 
 In other words, for a linear transformation from $\mathbb{R}^n$ to $\mathbb{R}^n$, bijectivity, surjectivity, and injectivity are equivalent.
 
-*Proof*. We begin by showing that (ii) and (iii) are equivalent. If the columns of $A$ are linearly dependent, then the range of $A$ is spanned by fewer than $n$ vectors. Therefore, if the rank of $A$ is equal to $n$, then the columns of $A$ are linearly independent. This implies that a linear combination of the columns is equal to the zero vector only if the weights are all zero. In other words, the only solution of the equation $A\mathbf{x} = \boldsymbol{0}$ is the zero vector. In other words, the null space of $A$ is $\\{\boldsymbol{0}\\}$.
+*Proof.* We begin by showing that (ii) and (iii) are equivalent. If the columns of $A$ are linearly dependent, then the range of $A$ is spanned by fewer than $n$ vectors. Therefore, if the rank of $A$ is equal to $n$, then the columns of $A$ are linearly independent. This implies that a linear combination of the columns is equal to the zero vector only if the weights are all zero. In other words, the only solution of the equation $A\mathbf{x} = \boldsymbol{0}$ is the zero vector. In other words, the null space of $A$ is $\\{\boldsymbol{0}\\}$.
 
 [Continue](btn:next)
 
@@ -1777,7 +1777,7 @@ Show that if $L$ is a bijective linear transformation, then the inverse function
 ---
 > id: step-125a
 
-*Solution*. Consider the linearity equation $L(a\mathbf{x} + b\mathbf{y}) = aL(\mathbf{x}) + bL(\mathbf{y})$ and two vectors $\mathbf{v} = L(\mathbf{x})$ and $\mathbf{w} = L(\mathbf{y})$ in the range of $L$. Substitute $\mathbf{x} = L^{-1}(\mathbf{v})$ and $\mathbf{x} = L^{-1}(\mathbf{v})$ into the linearity equation for $L$ to obtain
+*Solution.* Consider the linearity equation $L(a\mathbf{x} + b\mathbf{y}) = aL(\mathbf{x}) + bL(\mathbf{y})$ and two vectors $\mathbf{v} = L(\mathbf{x})$ and $\mathbf{w} = L(\mathbf{y})$ in the range of $L$. Substitute $\mathbf{x} = L^{-1}(\mathbf{v})$ and $\mathbf{x} = L^{-1}(\mathbf{v})$ into the linearity equation for $L$ to obtain
 
 ``` latex
 L(a L^{-1}(\mathbf{v}) + b L^{-1}(\mathbf{w})) = a\mathbf{v} + b\mathbf{w},
@@ -1854,7 +1854,7 @@ Use the above example to write $(AB)^{-1}$ in terms of $A$ and $B$, when $A$ and
 ---
 > id: step-128
 
-*Solution*. The correct answer is (b). The transformation in (a) maps $
+*Solution.* The correct answer is (b). The transformation in (a) maps $
 T\left(
 \begin{bmatrix}
 1 \\\\\\
@@ -1887,7 +1887,7 @@ Based on the above observations, can the equation $A\mathbf{x} = \mathbf{b}$ hav
 ---
 > id: step-128a
 
-*Solution*.  
+*Solution.*  
 
 1. If $ k = n,$ then the columns of $A$ form a basis for $\mathbb{R}^n$ and so the range of $A$ is $\mathbb{R}^n.$ Therefore the corresponding linear transformation is invertible and the only vector that satisfies $A\mathbf{x} = \mathbf{b}$ is given by $\mathbf{x} = A^{-1}\mathbf{b}.$
 
@@ -1989,7 +1989,7 @@ Show that $|\mathbf{a} +\mathbf{b}|^2 =
 ---
 > id: step-130
 
-*Solution*. Using linearity of the dot product, we get
+*Solution.* Using linearity of the dot product, we get
 
 ``` latex
 (\mathbf{a} + \mathbf{b}) \cdot (\mathbf{a} + \mathbf{b}) &= \mathbf{a} \cdot (\mathbf{a} + \mathbf{b}) + \mathbf{b}\cdot (\mathbf{a} + \mathbf{b})  \\\
@@ -2038,7 +2038,7 @@ is [[0.647±0.02]].
 
 :::
 
-*Solution*. Listing the words in the order *the, in, rain, Spain, falls, mainly, plain, lane, pain, is, a*, the two vectorized word counts are $[2,2,1,1,1,1,1,0,0,0,0]$ and $[1,1,0,1,0,1,1,1,1,1,1]$. Substituting into the definition of $S$, we get a similarity of approximately 0.647.
+*Solution.* Listing the words in the order *the, in, rain, Spain, falls, mainly, plain, lane, pain, is, a*, the two vectorized word counts are $[2,2,1,1,1,1,1,0,0,0,0]$ and $[1,1,0,1,0,1,1,1,1,1,1]$. Substituting into the definition of $S$, we get a similarity of approximately 0.647.
 
 [Continue](btn:next)
 
@@ -2055,7 +2055,7 @@ Let $\mathbf{v}\_1, \dots, \mathbf{v}\_n$ be a list of orthogonal non-zero vecto
 ---
 > id: step-134
 
-*Solution*. Suppose, for the sake of contradiction, that the vectors are linearly [[dependent|independent]]. Then one of the vectors can be written as a linear combination of the others. Suppose $\mathbf{v}\_1$ is such a vector. Then there exists a list of weights $c\_2, \dots, c\_n$ such that
+*Solution.* Suppose, for the sake of contradiction, that the vectors are linearly [[dependent|independent]]. Then one of the vectors can be written as a linear combination of the others. Suppose $\mathbf{v}\_1$ is such a vector. Then there exists a list of weights $c\_2, \dots, c\_n$ such that
 
 ``` latex
 \mathbf{v}_1 = c_2\mathbf{v}_2 + \cdots + c_n\mathbf{v}_n.
@@ -2099,7 +2099,7 @@ Let $A =
 ---
 > id: step-137
 
-*Solution*. By the [product column rule](gloss:productcolumnrule), the first column of $AB$ is $A\mathbf{b}\_1$, where $\mathbf{b}\_1$ is the first [[column|row]] of $B$. Therefore, the first entry of that column is $A_{1,1}B_{1,1} + A_{1,2}B_{2,1} +\cdots + A_{1,n}B_{n,1}$. This is the dot product of the first row of $A$ and the first column of $B$. The same reasoning applies to the other entries.
+*Solution.* By the [product column rule](gloss:productcolumnrule), the first column of $AB$ is $A\mathbf{b}\_1$, where $\mathbf{b}\_1$ is the first [[column|row]] of $B$. Therefore, the first entry of that column is $A_{1,1}B_{1,1} + A_{1,2}B_{2,1} +\cdots + A_{1,n}B_{n,1}$. This is the dot product of the first row of $A$ and the first column of $B$. The same reasoning applies to the other entries.
 
 Calculating all eight such dot products, we find that
 
@@ -2214,7 +2214,7 @@ H = \begin{bmatrix}
 ---
 > id: step-142
 
-*Solution*. We have
+*Solution.* We have
 
 ``` latex
 AE + BG &= \begin{bmatrix} 61 \\\ 65 \end{bmatrix} \\
@@ -2255,7 +2255,7 @@ Show that if $A$ is a matrix whose columns are $\mathbf{a}\_1, \ldots,  \mathbf{
 ---
 > id: step-144
 
-*Solution*. This follows directly from the block matrix product formula by writing $A$ is a block matrix with its columns as blocks and $B$ with its rows as blocks.
+*Solution.* This follows directly from the block matrix product formula by writing $A$ is a block matrix with its columns as blocks and $B$ with its rows as blocks.
 
 [Continue](btn:next)
 
@@ -2339,7 +2339,7 @@ Confirm your conjecture numerically in Julia with some random matrices. You can 
 ---
 > id: step-148
 
-*Solution*. Since $AB$ is an $m \times p$ matrix, the matrix $(AB)'$ is $p \times m$.
+*Solution.* Since $AB$ is an $m \times p$ matrix, the matrix $(AB)'$ is $p \times m$.
 
 *  $A' B'$: this is an $n \times m$ matrix multiplied by a $p \times n$ matrix, and if $m \neq p$ it is not defined. If it is defined, it gives an $n \times n$ matrix.
 *  $B' A'$: this is a $p \times n$ matrix multiplied by an $n \times m$ matrix and hence is a $p \times m$ matrix.
@@ -2402,7 +2402,7 @@ Suppose that $A$ is a symmetric matrix, $B$ is a matrix, and $c \in  \mathbb{R}$
 
 :::
 
-*Solution*.  We have
+*Solution.*  We have
 
 ``` latex
 (c^2 (A+B)' + A)' & = (c^2 (A' + B') + A)' \\
@@ -2440,7 +2440,7 @@ for all $m\times n$ matrices $A$ and all vectors $\mathbf{u} \in
 :::
 
 
-*Solution*. Since $\left(A'\right)' = A,$ we have
+*Solution.* Since $\left(A'\right)' = A,$ we have
 
 ``` latex
 \left(A' \mathbf{u}\right) \cdot \mathbf{v} &= \left(A' \mathbf{u}\right)' \mathbf{v} \\
@@ -2466,7 +2466,7 @@ Show that $\mathbf{x}\cdot (A' A\mathbf{x}) \geq 0$ for all $m\times n$ matrices
 ---
 > id: step-154
 
-*Solution*. We have
+*Solution.* We have
 
 ``` latex
 \mathbf{x}\cdot (A' A\mathbf{x}) =
@@ -2492,7 +2492,7 @@ The orthogonal complement of the span of the columns of a matrix $A$ is equal to
 ---
 > id: step-156
 
-*Solution*. The correct answer is the null space of `A'`, because for a vector $\mathbf{x}$ to be orthogonal to all of the columns of $A$, the equation $A' \mathbf{x} = \boldsymbol{0}$ must hold, by the [matrix product dot formula](gloss:matrixproductdot). In other words, $\mathbf{x}$ must be in the null space of $A'$.
+*Solution.* The correct answer is the null space of `A'`, because for a vector $\mathbf{x}$ to be orthogonal to all of the columns of $A$, the equation $A' \mathbf{x} = \boldsymbol{0}$ must hold, by the [matrix product dot formula](gloss:matrixproductdot). In other words, $\mathbf{x}$ must be in the null space of $A'$.
 
 Furthermore, if $\mathbf{x}$ is in the null space of $A'$, then it is orthogonal to any linear combination of the columns of $A$, since
 
@@ -2533,7 +2533,7 @@ for $k$ to find the multiple of $\mathbf{v}$ which is perpendicular to its diffe
 ---
 > id: step-158
 
-*Solution*. The equation gives $k\mathbf{u}\cdot \mathbf{v} - k^2 |\mathbf{v}|^2 = 0$, which implies that
+*Solution.* The equation gives $k\mathbf{u}\cdot \mathbf{v} - k^2 |\mathbf{v}|^2 = 0$, which implies that
 
 ``` latex
 k = \frac{\mathbf{u}\cdot \mathbf{v}}{|\mathbf{v}|^2}.
@@ -2558,7 +2558,7 @@ Every vector space $V\subset \mathbb{R}^n$ has an orthogonal basis.
 ---
 > id: step-160
 
-*Proof*. Suppose that $\mathcal{V} = \{\mathbf{v}\_1, \ldots, \mathbf{v}\_k\}$ is a basis of $\mathbb{R}^n$. We will build our orthogonal basis by orthogonalizing $\mathcal{V}$ one vector at a time.
+*Proof.* Suppose that $\mathcal{V} = \{\mathbf{v}\_1, \ldots, \mathbf{v}\_k\}$ is a basis of $\mathbb{R}^n$. We will build our orthogonal basis by orthogonalizing $\mathcal{V}$ one vector at a time.
 
 Define $\mathbf{b}\_1 = \mathbf{v}\_1$, and then define $\mathbf{b}\_2$ to be the part of $\mathbf{v}\_2$ which is orthogonal to $\mathbf{b}\_1$:
 
@@ -2597,7 +2597,7 @@ Suppose $V\subset \mathbb{R}^n$ is a vector space. Then every vector $\mathbf{u}
 ---
 > id: step-163
 
-*Proof*. Consider an orthogonal basis $\\{\mathbf{v}\_1, \ldots, \mathbf{v}\_k\\}$ of $V$, and define
+*Proof.* Consider an orthogonal basis $\\{\mathbf{v}\_1, \ldots, \mathbf{v}\_k\\}$ of $V$, and define
 
 ``` latex
 \mathbf{v} = \frac{\mathbf{v}_1 \cdot
@@ -2620,7 +2620,7 @@ Suppose that $V$ is a $d$-dimensional vector space in $\mathbb{R}^n$. Show that 
 ---
 > id: step-165
 
-*Solution*. Suppose that $\\{\mathbf{v}\_{1},\mathbf{v}\_{2},\ldots,\mathbf{v}\_{d}\\}$ is a basis for $V$ and $\\{\mathbf{w}\_{1},\mathbf{w}\_{2},\ldots,\mathbf{w}\_{e}\\}$ is a basis for $W = V^\perp$. We claim that
+*Solution.* Suppose that $\\{\mathbf{v}\_{1},\mathbf{v}\_{2},\ldots,\mathbf{v}\_{d}\\}$ is a basis for $V$ and $\\{\mathbf{w}\_{1},\mathbf{w}\_{2},\ldots,\mathbf{w}\_{e}\\}$ is a basis for $W = V^\perp$. We claim that
 
 ``` latex  
 \{\mathbf{v}_{1},\mathbf{v}_{2},\ldots,\mathbf{v}_{d},
@@ -2716,7 +2716,7 @@ Equivalently, we can say that a square matrix is orthogonal if and only if its c
 ---
 > id: step-174
 
-*Solution*.  
+*Solution.*  
 * We first recall that the number of linearly independent columns in $U$ cannot be greater than $m$ because the range of $U$ is a subspace of $\mathbb{R}^m.$ Now, by definition, the $n$ columns of $U$ are orthogonal and non-zero. These columns must be linearly independent, so $n \leq m.$
 
 * The rank of $U$ is equal to the number of linearly independent columns in $U,$ which is $n$ in this case.
@@ -2738,7 +2738,7 @@ Show that if $U$ is an $m \times n$ matrix with orthonormal columns, then $UU'$ 
 ---
 > id: step-176
 
-*Solution*. The transformation which maps a vector $\mathbf{w}$ onto the span of the columns $\mathbf{u}\_1, \ldots \mathbf{u}\_n$ of $U$ is given by
+*Solution.* The transformation which maps a vector $\mathbf{w}$ onto the span of the columns $\mathbf{u}\_1, \ldots \mathbf{u}\_n$ of $U$ is given by
 
 ``` latex
 T(\mathbf{w}) =
@@ -2771,7 +2771,7 @@ Let $\mathbf{v}$ be a vector in $\mathbb{R}^n$, and consider the linear transfor
 ---
 > id: step-178
 
-*Solution*. The rank of $T$ is $1$ if $\mathbf{v} \neq \mathbf{0},$ otherwise the rank is $0.$ Geometrically, the null space of $T$ is the set of vectors in $\mathbb{R}^n$ that are orthogonal to $\mathbf{v}.$
+*Solution.* The rank of $T$ is $1$ if $\mathbf{v} \neq \mathbf{0},$ otherwise the rank is $0.$ Geometrically, the null space of $T$ is the set of vectors in $\mathbb{R}^n$ that are orthogonal to $\mathbf{v}.$
 
 [Continue](btn:next)
 
@@ -2868,7 +2868,7 @@ Try the previous exercise again, but this time with the linear dependence relati
 ---
 > id: step-183
 
-*Solution*. We take a look at the solution:
+*Solution.* We take a look at the solution:
 
 ::: .py-only
     pre(python-executable)
@@ -2935,7 +2935,7 @@ Find a matrix with eigenpairs $([1,0],2)$ and $([1,1],3)$. Sketch the images of 
 ---
 > id: step-189
 
-*Solution*. Writing out the equations implied by the given eigenpair relations, we see that the first implies that the first column of the matrix is $[2,0]$, and the second (together with the first) implies that the second column of the matrix is $[1,3]$.
+*Solution.* Writing out the equations implied by the given eigenpair relations, we see that the first implies that the first column of the matrix is $[2,0]$, and the second (together with the first) implies that the second column of the matrix is $[1,3]$.
 
 The following gridline images show how the transformation distorts space. Equally spaced points which are separated in the east-west direction get spread out by a factor of 2, while the diagonal line gets stretched out by a factor of 3. Since $3 > 2$, this introduces a bottom-left-to-top-right tilt for the images of the vertical gridlines.
 
@@ -2980,7 +2980,7 @@ Let $A$ be a $4 \times 4$ matrix, with eigenvectors $\begin{bmatrix} 1
 ---
 > id: step-192
 
-*Solution*. Since $
+*Solution.* Since $
 \begin{bmatrix}
 5 \\\\\\
 5 \\\\\\
@@ -3040,7 +3040,7 @@ Let $V \subset \mathbb{R}^n$ be a subspace spanned by the eigenvectors of a matr
 ---
 > id: step-194
 
-*Solution*. Let $\mathbf{a}\_1, \dots, \mathbf{a}\_k$ be the eigenvectors of $A$ that span $V$ and let $\lambda\_1, \dots, \lambda\_k$ be the corresponding eigenvalues. Then $\mathbf{v} \in V$ admits a representation $\mathbf{v} = v\_1\mathbf{a}\_1 + \cdots + v\_k\mathbf{a}\_k.$ Since
+*Solution.* Let $\mathbf{a}\_1, \dots, \mathbf{a}\_k$ be the eigenvectors of $A$ that span $V$ and let $\lambda\_1, \dots, \lambda\_k$ be the corresponding eigenvalues. Then $\mathbf{v} \in V$ admits a representation $\mathbf{v} = v\_1\mathbf{a}\_1 + \cdots + v\_k\mathbf{a}\_k.$ Since
 
 ``` latex
 A\mathbf{v} &=  v_1 A\mathbf{a}_1 + \cdots + v_k A \mathbf{a}_k \\
@@ -3069,7 +3069,7 @@ Suppose $A$ is a matrix with a eigenvector $\mathbf{v}$ whose eigenvalue is 2 an
 ---
 > id: step-196
 
-*Solution*. Let $n \geq 1$ be an integer. Then by the eigenvalue equation, we have
+*Solution.* Let $n \geq 1$ be an integer. Then by the eigenvalue equation, we have
 
 ``` latex
 A^n\mathbf{u} &= A^n (\mathbf{v} + \mathbf{w}) \\
@@ -3124,7 +3124,7 @@ Some matrices are not diagonalizable, because they correspond to geometric trans
 ---
 > id: step-198
 
-*Solution*. Rotation matrices in $\mathbb{R}^2$(except for 0 degree rotations and 180-degree rotations) are not diagonalizable. For example, the 90-degree rotation matrix
+*Solution.* Rotation matrices in $\mathbb{R}^2$(except for 0 degree rotations and 180-degree rotations) are not diagonalizable. For example, the 90-degree rotation matrix
 
 ``` latex
 A = \begin{bmatrix}
@@ -3157,7 +3157,7 @@ Let $B$ be another matrix, with eigenpairs $(\mathbf{v}\_1,3)$ and $(\mathbf{v}\
 ---
 > id: step-200
 
-*Solution*. We have
+*Solution.* We have
 
 ``` latex
 A^2 = VDV^{-1} VDV^{-1} = V D^2 V^{-1}
@@ -3196,7 +3196,7 @@ A **positive definite** matrix $A$ is a symmetric matrix whose eigenvalues are a
 ---
 > id: step-204
 
-*Solution*. (i) If $A$ and $B$ are $ n \times n$ positive definite matrices, then $A + B$ is also positive definite because
+*Solution.* (i) If $A$ and $B$ are $ n \times n$ positive definite matrices, then $A + B$ is also positive definite because
 
 ``` latex
 \mathbf{x}' (A + B) \mathbf{x} &= \mathbf{x}' (A\mathbf{x} + B\mathbf{x}) \\
@@ -3226,7 +3226,7 @@ Let $X = A' A$ be a Gram matrix, and let $\mathbf{v}$ be a vector. Which of the 
 Using your answer above, explain why a Gram matrix is always positive semidefinite, but not necessarily positive definite.
 :::
 
-*Solution*. The correct answer is $|A\mathbf{v}|^2$ because
+*Solution.* The correct answer is $|A\mathbf{v}|^2$ because
 
 ``` latex
 |A\mathbf{v} |^2 &= (A\mathbf{v}) \cdot (A\mathbf{v}) \\\
@@ -3251,7 +3251,7 @@ Explain why the rank of $A$ is equal to the rank of $A'A$. (Hint: consider the n
 ---
 > id: step-207
 
-*Solution*. If $A\mathbf{x} = \boldsymbol{0}$, then multiplying both sides by $A'$ gives $A' A \mathbf{x} = \boldsymbol{0}$. Therefore, the null space of $A$ is a subset of the null space of $A' A$.
+*Solution.* If $A\mathbf{x} = \boldsymbol{0}$, then multiplying both sides by $A'$ gives $A' A \mathbf{x} = \boldsymbol{0}$. Therefore, the null space of $A$ is a subset of the null space of $A' A$.
 
 Conversely, if $A' A \mathbf{x} = \boldsymbol{0}$, then we can multiply this equation on the left by $\mathbf{x}'$ to get
 
@@ -3315,9 +3315,9 @@ To be concrete, let's say "nearly equal" means "having ratio between 0.99 and 1.
 ---
 > id: step-211
 
-{.py-only} *Solution*. One simple way to do this is make $\mathbf{b}$ and $\widehat{\mathbf{b}}$ the columns of the matrix. For example, _{code.language-python}solve(array([[1,1],[1, 1.01]]),[1,1])_ returns _{code.language-python}[1,0]_ while _{code.language-python}solve(array([[1,1],[1, 1.01]]),[1,1.01])_ returns _{code.language-python}[0,1]_.
+{.py-only} *Solution.* One simple way to do this is make $\mathbf{b}$ and $\widehat{\mathbf{b}}$ the columns of the matrix. For example, _{code.language-python}solve(array([[1,1],[1, 1.01]]),[1,1])_ returns _{code.language-python}[1,0]_ while _{code.language-python}solve(array([[1,1],[1, 1.01]]),[1,1.01])_ returns _{code.language-python}[0,1]_.
 
-{.jl-only} *Solution*. One simple way to do this is make $\mathbf{b}$ and $\widehat{\mathbf{b}}$ the columns of the matrix. For example, `{jl} [1 1; 1 1.01] \ [1, 1]` returns `{jl} [1, 0]`, while `{jl} [1 1; 1 1.01] \ [1, 1.01]` returns `{jl} [0, 1]`.
+{.jl-only} *Solution.* One simple way to do this is make $\mathbf{b}$ and $\widehat{\mathbf{b}}$ the columns of the matrix. For example, `{jl} [1 1; 1 1.01] \ [1, 1]` returns `{jl} [1, 0]`, while `{jl} [1 1; 1 1.01] \ [1, 1.01]` returns `{jl} [0, 1]`.
 
 ::: .py-only
     pre(python-executable)
@@ -3468,7 +3468,7 @@ and confirm that the resulting matrices $R$ and $P$ satisfy $R' R = I$ and $P^2 
 ---
 > id: step-220
 
-*Solution*. Since both conjugation and inversion reverse the order of matrix products, we get
+*Solution.* Since both conjugation and inversion reverse the order of matrix products, we get
 
 ``` latex
 R_{1} = \frac{RP + ((RP)')^{-1}}{2} = \frac{RP +
@@ -3559,7 +3559,7 @@ Show that the product of two matrices with orthonormal columns has orthonormal c
 ---
 > id: step-224
 
-*Solution*. If $U' U = I$ and $V' V = I$, then $(UV)' UV = V' U' UV = V' V =
+*Solution.* If $U' U = I$ and $V' V = I$, then $(UV)' UV = V' U' UV = V' V =
   I$.
 
 [Continue](btn:next)
@@ -3691,7 +3691,7 @@ Show that $\left[\begin{smallmatrix}-160 & -120 \\\\\\ -12 & -134 \\\\\\
 ---
 > id: step-234
 
-*Solution*. Let
+*Solution.* Let
 
 ``` latex
 A = \left[\begin{smallmatrix}-160 & -120 \\\ -12 & -134 \\\ 141 & 12 \\\ \end{smallmatrix}\right],
@@ -3759,7 +3759,7 @@ Define a matrix with 100 rows and 5 columns, and do it in such a way that two of
 ---
 > id: step-237
 
-*Solution*. We see that two of the singular values are much smaller than the other three. (Remember that you have to run the cell twice to get the plot to show.)
+*Solution.* We see that two of the singular values are much smaller than the other three. (Remember that you have to run the cell twice to get the plot to show.)
 
 ::: .py-only
     pre(python-executable)
@@ -3901,7 +3901,7 @@ Hint: you can achieve this computationally either by setting some singular value
 ---
 > id: step-240
 
-*Solution*.  
+*Solution.*  
 * Let $M = \sigma\_1\mathbf{u}\_1\mathbf{v}\_1' + \cdots + \sigma\_n\mathbf{u}\_n\mathbf{v}\_n'.$ We need to show that $A = M.$ We will do this by first showing that $A\mathbf{x} =  M\mathbf{x}$ for all $\mathbf{x} \in \mathbb{R}^n.$
 
 Now, $A\mathbf{x} =  U \Sigma V' \mathbf{x}$ for all $\mathbf{x} \in \mathbb{R}^n.$ By definition of matrix-vector product, $U \Sigma V' \mathbf{x}$ is a linear combination of the columns of $U \Sigma$ with weights given by $V' \mathbf{x}.$ Since $\Sigma$ is diagonal, it is not hard to see that the $i$ th column of $U\Sigma$ is $\Sigma\_{ii}\mathbf{u}\_i = \sigma\_i \mathbf{u}\_i.$ Using definition of matrix-vector product again, we find that the $i$ th weight $\left(V' \mathbf{x}\right)\_i$ is the dot product of the $i$ th row of $V'$ and $\mathbf{x}.$ But the $i$ th row of $V'$ is $\mathbf{v}\_i$ by definition, and thus $\left(V' \mathbf{x}\right)\_i = \mathbf{v}\_i \cdot \mathbf{x}.$ Therefore,
@@ -3980,7 +3980,7 @@ Suppose that $R$ is a region in $\mathbb{R}^n$ and that $A$ is an $n
 ---
 > id: step-243
 
-*Solution*. Since $U$ and $V$ are orthogonal, $L\_1$ and $L\_3$ both preserve volumes. So they multiply volumes by a factor of 1. Since $L\_2$ scales volumes by a factor of $\sigma\_1$ along the first axis, $\sigma\_2$ along the second, and so on, it scales volumes by a factor of $\sigma\_1 \sigma\_2 \ldots \sigma\_n$.
+*Solution.* Since $U$ and $V$ are orthogonal, $L\_1$ and $L\_3$ both preserve volumes. So they multiply volumes by a factor of 1. Since $L\_2$ scales volumes by a factor of $\sigma\_1$ along the first axis, $\sigma\_2$ along the second, and so on, it scales volumes by a factor of $\sigma\_1 \sigma\_2 \ldots \sigma\_n$.
 
 [Continue](btn:next)
 
@@ -4005,7 +4005,7 @@ Find the volume scale factor of the matrix $A = \begin{bmatrix}
 ---
 > id: step-245
 
-*Solution*. Since $A[x,y,z] = [x,z,ky]$, we see that $A$ stretches (or compresses) regions in $\mathbb{R}^3$ by a factor $k$ along the $y$-axis and then reflects across the plane $y = z$. For example, the unit cube is mapped to a $1 \times 1 \times k$ box Since such a box has volume $k,$ the volume scale factor of $S$ is $k.$
+*Solution.* Since $A[x,y,z] = [x,z,ky]$, we see that $A$ stretches (or compresses) regions in $\mathbb{R}^3$ by a factor $k$ along the $y$-axis and then reflects across the plane $y = z$. For example, the unit cube is mapped to a $1 \times 1 \times k$ box Since such a box has volume $k,$ the volume scale factor of $S$ is $k.$
 
 ### Orientation factor
 
@@ -4037,7 +4037,7 @@ Interpret $A = \begin{bmatrix}
 ---
 > id: step-247
 
-*Solution*. Since $A\begin{bmatrix} x \\\\\\ y \end{bmatrix} = \begin{bmatrix} -y \\\\\\ -x
+*Solution.* Since $A\begin{bmatrix} x \\\\\\ y \end{bmatrix} = \begin{bmatrix} -y \\\\\\ -x
   \end{bmatrix}$, $A$ reflects points in $\mathbb{R}^2$ across the line $y = -x$. Therefore, it preserves areas and reverses orientations. So its determinant is $-1$.
 
  There is relatively simple formula for $\det A$ in terms of the entries of $A$. For example,
@@ -4070,7 +4070,7 @@ For various values of $n$, use the expression `{py} np.linalg.det(np.random.rand
 ---
 > id: step-248
 
-*Solution*. Trial and error reveals that this determinant starts to consistently return `{py} inf` `{jl} Inf` at $n = 187$.
+*Solution.* Trial and error reveals that this determinant starts to consistently return `{py} inf` `{jl} Inf` at $n = 187$.
 
 [Continue](btn:next)
 
@@ -4092,7 +4092,7 @@ Suppose that $A$ and $B$ are $3 \times 3$ matrices, with determinant $5$ and $\f
 ---
 > id: step-250
 
-*Solution*. The volume of $A(R)$ is $5 \cdot 14 = 70$. The volume of $BA(R) = B(A(R))$ is $\tfrac{1}{2} \cdot 70 = 35$.
+*Solution.* The volume of $A(R)$ is $5 \cdot 14 = 70$. The volume of $BA(R) = B(A(R))$ is $\tfrac{1}{2} \cdot 70 = 35$.
 
 [Continue](btn:next)
 
@@ -4107,7 +4107,7 @@ Let $R \subset \mathbb{R}^3$ be 3D region modeling a fish, and suppose $A$ an in
 ---
 > id: step-252
 
-*Solution*. We can see that the matrix $A^{-1}$ scales volumes by $\frac{1}{3}$, and hence $\det A^{-1} = \frac{1}{3}$. This implies that $\det A = 3$.
+*Solution.* We can see that the matrix $A^{-1}$ scales volumes by $\frac{1}{3}$, and hence $\det A^{-1} = \frac{1}{3}$. This implies that $\det A = 3$.
 
 Determinants can be used to check whether a matrix is invertible, since $A$ is noninvertible if and only if it maps $\mathbb{R}^n$ to a lower-dimensional subspace of $\mathbb{R}^n$, and in that case $A$ squishes positive-volume regions down to zero-volume regions.
 
@@ -4129,7 +4129,7 @@ Let $A =
 ---
 > id: step-254
 
-*Solution*. We can rewrite $A\mathbf{v} = \lambda \mathbf{v}$ as $A\mathbf{v} = (\lambda I) \mathbf{v}$, where $I$ is the identity matrix. We can rearrange this to give the equation $(A - \lambda I)\mathbf{v} = 0$. This has a nontrivial solution if $(A - \lambda I)$ has a nonzero nullspace. Since $A - \lambda I$ is a square matrix, this is equivalent to it having determinant zero.
+*Solution.* We can rewrite $A\mathbf{v} = \lambda \mathbf{v}$ as $A\mathbf{v} = (\lambda I) \mathbf{v}$, where $I$ is the identity matrix. We can rearrange this to give the equation $(A - \lambda I)\mathbf{v} = 0$. This has a nontrivial solution if $(A - \lambda I)$ has a nonzero nullspace. Since $A - \lambda I$ is a square matrix, this is equivalent to it having determinant zero.
 
 ``` latex
 \det \left(A - \lambda I \right) = \det \left(\begin{bmatrix}
@@ -4175,7 +4175,7 @@ For an $n \times n$ square matrix, which of the following is the relationship be
 ---
 > id: step-257
 
-*Solution*. The answer is (4) $\det(3A) = 3^{n} \det (A)$. There are two ways to see this, [algebraically](gloss:algebraically) and [geometrically](gloss:geometrically).
+*Solution.* The answer is (4) $\det(3A) = 3^{n} \det (A)$. There are two ways to see this, [algebraically](gloss:algebraically) and [geometrically](gloss:geometrically).
 
 To check that this is the right answer using algebra, let $A = I\_{n}$ be the $n \times n$ identity matrix, with determinant $1$. The matrix $3A$ is diagonal, with threes on the diagonal. Its determinant is the product of the entries on its diagonal, $3 \times 3 \times \cdots \times 3 = 3^{n}$.
 
@@ -4199,7 +4199,7 @@ Is every matrix with positive determinant positive definite? [[No|Yes]]
 ---
 > id: step-260
 
-*Solution*. No. Consider the negation of the $2 \times 2$ identity matrix. It has determinant 1, yet its eigenvalues are both negative.
+*Solution.* No. Consider the negation of the $2 \times 2$ identity matrix. It has determinant 1, yet its eigenvalues are both negative.
 
 [Continue](btn:next)
 
