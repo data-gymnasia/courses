@@ -1,5 +1,4 @@
 import {CoordinateSystem, Step} from '../shared/types';
-import {Point} from '@mathigon/fermat';
 import '../shared/shared';
 
 function pdfBeta(α: number, β: number) {
@@ -9,7 +8,7 @@ function pdfBeta(α: number, β: number) {
 export function betadensity($step: Step) {
   const $chart = $step.$('x-coordinate-system') as CoordinateSystem;
 
-  $step.model.watch(s => {
+  $step.model.watch((s: any) => {
     const fn = pdfBeta(s.α, s.β);
     //$chart.mathBounds = new Bounds(55, 75, 0, 0.5);
     $chart.setFunctions(fn);
@@ -61,7 +60,7 @@ function gamma(x: number) {
   else if (x < 0.001) {
     return 1.0/(x*(1.0 + GAMMA_CONST*x));
   }
-  
+
   // The algorithm directly approximates gamma over (1,2) and uses
   // reduction identities to reduce other arguments to this interval.
   else if (x < 12.0) {
@@ -74,7 +73,7 @@ function gamma(x: number) {
       n = Math.floor(y) - 1;
       y -= n;
     }
-    
+
     var num = 0.0, den = 1.0, z = y - 1;
     for (var i = 0; i < 8; i++) {
       num = (num + P_COFF[i])*z;
@@ -98,7 +97,7 @@ function gamma(x: number) {
   else if (x > 171.624) {
 		return Infinity;
   }
-  
+
   else {
     return Math.exp(logGamma(x));
   }
@@ -122,7 +121,7 @@ var C_COFF = [
 
 var HALF_LOG_TWO_PI = 0.91893853320467274178032973640562;
 
-function logGamma(x: number) {
+function logGamma(x: number): any {
   if (x <= 0.0) {
     throw new RangeError('Argument must be positive.');
 	}
@@ -135,7 +134,7 @@ function logGamma(x: number) {
   // Asymptotic series should be good to at least 11 or 12 figures
   // For error analysis, see Whittiker and Watson
   // A Course in Modern Analysis (1927), page 252
-  
+
   else {
     var  z = 1.0/(x*x);
     var sum = C_COFF[7];

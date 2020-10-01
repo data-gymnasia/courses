@@ -1,4 +1,4 @@
-import {Point} from '@mathigon/fermat';
+import {Point} from '@mathigon/euclid';
 import {CoordinateSystem, Step} from '../shared/types';
 import '../shared/shared';
 
@@ -22,7 +22,7 @@ export function optimization($step: Step) {
   const points = xs.map(p => new Point(p, someFn(p) - 3 + 6 * Math.random()));
 
   // draw the line based on user's slider inputs
-  $step.model.watch(s => {
+  $step.model.watch((s: any) => {
     const fn = lineOf(s.m, s.b);
     $chart.setFunctions(fn);
     $chart.drawPoints(points);
@@ -42,7 +42,7 @@ export function simpleparabola($step: Step) {
   const $chart = $step.$('x-coordinate-system') as CoordinateSystem;
 
   // draw the line based on user's slider inputs
-  $step.model.watch(s => {
+  $step.model.watch((s: any) => {
     const fn = parabolaOf(s.a);
     $chart.setFunctions(fn);
   });
