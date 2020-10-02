@@ -14,7 +14,7 @@ In a similar way, taking advantage of the collective wisdom of the statistical a
 ---
 > id: step-2
 
-The set of programs and formats we will cover in the course aspires to be as close as possible to a canonical open source data science toolkit. In particular, all of the tools are widely used in industry or academia and have large user bases. 
+The set of programs and formats we will cover in the course aspires to be as close as possible to a canonical open source data science toolkit. In particular, all of the tools are widely used in industry or academia and have large user bases.
 
 [Continue](btn:next)
 
@@ -31,7 +31,7 @@ On the other hand, some toolkit roles are filled by more than one popular progra
 
 Learning from the principles of best practice offers several advantages to the data science practitioner:
 
-1. **Efficiency**. It's preferable avoid taking far longer than necessary to perform common, often mundane tasks. 
+1. **Efficiency**. It's preferable avoid taking far longer than necessary to perform common, often mundane tasks.
 
 [Continue](btn:next)
 
@@ -60,7 +60,7 @@ Learning from the principles of best practice offers several advantages to the d
 > id: open-source-data-science
 ### Open Source Data Science
 
-All of the software introduced in this course is **free** and **open-source**. This means that source code is available for anyone to inspect, alter, and extend. Using open-source software has many advantages for companies and individuals, even if they have access to commercial software. 
+All of the software introduced in this course is **free** and **open-source**. This means that source code is available for anyone to inspect, alter, and extend. Using open-source software has many advantages for companies and individuals, even if they have access to commercial software.
 
 1. **Agility**. If you need to change tools or try something out, you can just do it. There's no need to make a hasty decision just because a license renewal is coming up, or to negotiate with a representative from the software provider about something novel you want to do.
 
@@ -83,14 +83,14 @@ All of the software introduced in this course is **free** and **open-source**. T
 ---
 > id: step-accessibility
 
-4. **Accessibility**. If you want to make your work available to others, you can take advantage of services like [CoCalc](https://cocalc.com) or [Binder](https://mybinder.org) or ask that people download the necessary software to their machines. If your work requires an expensive license to reproduce, your target audience is less likely to engage. 
+4. **Accessibility**. If you want to make your work available to others, you can take advantage of services like [CoCalc](https://cocalc.com) or [Binder](https://mybinder.org) or ask that people download the necessary software to their machines. If your work requires an expensive license to reproduce, your target audience is less likely to engage.
 
 [Continue](btn:next)
 
 ---
 > id: step-dominate-industry
 
-Because of their advantages as open-source programming languages with large and committed user bases, Python and R dominate data science in industry (although several proprietary systems also enjoy widespread usage). Many of the other tools we will discuss in this course are the [de facto](gloss:de-facto) standard tool for their [use case](gloss:use-case) and have no real competition from commercial offerings. 
+Because of their advantages as open-source programming languages with large and committed user bases, Python and R dominate data science in industry (although several proprietary systems also enjoy widespread usage). Many of the other tools we will discuss in this course are the [de facto](gloss:de-facto) standard tool for their [use case](gloss:use-case) and have no real competition from commercial offerings.
 
 [Continue](btn:next)
 
@@ -112,30 +112,30 @@ Select the true statements.
 > id: unix
 ## Unix
 
-Unix is an operating system invented in the early 1970s at AT&T Bell Labs. Today there are many variants of Unix in wide use around the world, including the Linux operating systems and macOS. 
+Unix is an operating system invented in the early 1970s at AT&T Bell Labs. Today there are many variants of Unix in wide use around the world, including the Linux operating systems and macOS.
 
 [Continue](btn:next)
 
 ---
 > id: unix-like
 
-The key elements provided by a Unix-like operating system are 
+The key elements provided by a Unix-like operating system are
 
 1. a file system, consisting of folders which can nest and store [[files|websites|phone calls]],
-2. a set of programs, each serving a limited function, 
+2. a set of programs, each serving a limited function,
 3. a **shell** which provides mechanisms for constructing workflows involving multiple programs and files.
 
 ---
 > id: shells
 
-Several Unix shells are available, but the most popular ones provide approximately the same functionality and interface. The most popular shell is called **bash**. Bash is the default shell in macOS (Mojave and earlier) and some Linux distributions. As of 2016, you can also run bash [natively on Windows](https://docs.microsoft.com/en-us/windows/wsl/install-win10). If you are a Windows user, it is recommended that you go ahead and install the Windows Subsystem for Linux so you can use the same commands as Linux and Mac users. 
+Several Unix shells are available, but the most popular ones provide approximately the same functionality and interface. The most popular shell is called **bash**. Bash is the default shell in macOS (Mojave and earlier) and some Linux distributions. As of 2016, you can also run bash [natively on Windows](https://docs.microsoft.com/en-us/windows/wsl/install-win10). If you are a Windows user, it is recommended that you go ahead and install the Windows Subsystem for Linux so you can use the same commands as Linux and Mac users.
 
 [Continue](btn:next)
 
 ---
 > id: follow-along-binder
 
-If you want to follow along below before you figure out your local setup, you can use the executable cells you see in this page (which are *bash* cells, not Python cells) or launch a [Binder instance](https://mybinder.org/v2/gh/jovyan/simple-python-stack/master) (select Terminal or bash from the *New* pull-down menu in the top right). The latter approach is recommended, because that environment provides some shortcuts that will be helpful to practice (like completing commands and file names when you hit the tab key). 
+If you want to follow along below before you figure out your local setup, you can use the executable cells you see in this page (which are *bash* cells, not Python cells) or launch a [Binder instance](https://mybinder.org/v2/gh/jovyan/simple-python-stack/master) (select Terminal or bash from the *New* pull-down menu in the top right). The latter approach is recommended, because that environment provides some shortcuts that will be helpful to practice (like completing commands and file names when you hit the tab key).
 
 [Continue](btn:next)
 
@@ -143,7 +143,7 @@ If you want to follow along below before you figure out your local setup, you ca
 > id: unix-navigation
 ### Navigation
 
-When you first open the shell, you'll be in your **home [directory](gloss:directory)**. You can check this by [running](gloss:unix-run) the command `{sh} pwd` (which stands for *print working directory*). 
+When you first open the shell, you'll be in your **home [directory](gloss:directory)**. You can check this by [running](gloss:unix-run) the command `{sh} pwd` (which stands for *print working directory*).
 
     pre(bash-executable)
       | pwd
@@ -168,14 +168,14 @@ On Linux, the users' home directories are in a directory called `{sh} /home/`, w
 ---
 > id: step-unix-path
 
-The string `{sh} /home/jovyan` is called a **path**. The forward slashes in a path separate directories, and each directory or file in the path is in the directory immediately to its left. For example, [[`{sh} jovyan`|`{sh} home`]] is a subdirectory of [[`{sh} home`|`{sh} jovyan`]]. 
+The string `{sh} /home/jovyan` is called a **path**. The forward slashes in a path separate directories, and each directory or file in the path is in the directory immediately to its left. For example, [[`{sh} jovyan`|`{sh} home`]] is a subdirectory of [[`{sh} home`|`{sh} jovyan`]].
 
 [Continue](btn:next)
 
 ---
 > id: step-root-directory
 
-The very first slash is the **root** directory, and all of the files and directories on the machine are nested in this directory. 
+The very first slash is the **root** directory, and all of the files and directories on the machine are nested in this directory.
 
 You can view the contents of directory with `{sh} ls`, and you can change directory using the `{sh} cd` command. If the initial slash is omitted in a directory name, the name is interpreted *relative* to the current directory. For example, you can navigate to `{sh} /Users/jovyan` from the `{sh} /Users` directory by running `{sh} cd jovyan`. Note that arguments are supplied to Unix commands by separating them with spaces following the name of the command. You can also navigate to containing folders using `{sh} ..`. For example, `{sh} cd ../../` navigates to the grandparent directory of the current directory.
 
@@ -185,20 +185,20 @@ Write three lines of Unix code in the cell below which change directory into `{s
 :::
 
     pre(bash-executable)
-      | 
-      
+      |
+
     x-quill
 
 ---
 > id: step-cd-solution
-      
+
 *Solution.* Here's an example solution
 
     pre(bash-executable)
       | cd my-data-science-project
       | ls
       | cd ../
-      
+
 Since the original directory was the user's home directory, we could have used `{sh} cd ~` instead in the last step.
 
 [Continue](btn:next)
@@ -208,17 +208,17 @@ Since the original directory was the user's home directory, we could have used `
 
 ::: .exercise
 **Exercise**  
-List the files in the subdirectory `{sh} bin` of the root directory. 
+List the files in the subdirectory `{sh} bin` of the root directory.
 :::
 
     pre(bash-executable)
-      | 
-     
+      |
+
     x-quill
-   
+
 ---
 > id: step-ls-bin-directories
-     
+
 *Solution.* The simplest way to do it in one line is `{sh} ls /bin`.
 
 [Continue](btn:next)
@@ -226,14 +226,14 @@ List the files in the subdirectory `{sh} bin` of the root directory.
 ---
 > id: step-mkdir
 
-The `{sh} mkdir` command makes a new directory. So we can make a new directory, check that it's there, and navigate into it as follows: 
+The `{sh} mkdir` command makes a new directory. So we can make a new directory, check that it's there, and navigate into it as follows:
 
     pre(bash-executable)
       | mkdir example-directory # won't return anything!
-      
+
     pre(bash-executable)
       | ls
-      
+
     pre(bash-executable)
       | cd example-directory # won't return anything!
 
@@ -249,7 +249,7 @@ One extremely useful shortcut is to type an initial part of the file or director
 ---
 > id: bash-history-command
 
-Another time-saving device is the use of the up and down arrow keys to access previously used commands. You can see a list of what you've run in the shell with the `{sh} history` command. 
+Another time-saving device is the use of the up and down arrow keys to access previously used commands. You can see a list of what you've run in the shell with the `{sh} history` command.
 
 [Continue](btn:next)
 
@@ -279,7 +279,7 @@ Note that you can't directly use a space character in a Unix path name, because 
 
 Here are some other important commands:
 
-* `{sh} mv` Move a file from one directory to another 
+* `{sh} mv` Move a file from one directory to another
 * `{sh} rm` Remove a file
 * `{sh} cp` Copy a file from one directory to another
 * `{sh} touch` Create a file or update its last-modified time
@@ -302,16 +302,16 @@ Many commands in bash take [*options*](gloss:bash-options) (analogous to keyword
 
 ::: .exercise
 **Exercise**  
-Navigate into the `{sh} my-data-science-project` directory and the use the `{sh} grep` command to figure out which file contains the text `{sh} find_packages`. 
+Navigate into the `{sh} my-data-science-project` directory and the use the `{sh} grep` command to figure out which file contains the text `{sh} find_packages`.
 
 Some helpful information: (i) `{sh} grep -r text directory` searches recursively for `{sh} text` in the `{sh} directory`, and (ii) `{sh} .` is an alias for the current directory.
 :::
 
     pre(bash-executable)
-      | 
+      |
 
     x-quill
-    
+
 ---
 > id: step-grep-solution
 
@@ -327,21 +327,21 @@ Some helpful information: (i) `{sh} grep -r text directory` searches recursively
 ### Vim
 > id: vim
 
-Vim is the command line text editor which most consistently available on Unix systems. As a result, you will sometimes find yourself needing some basic familiarity with it, even if you use another editor for the bulk of your work. Furthermore, vim is designed to prioritize efficiency over intuitiveness, so it's really helpful to learn a few vim ideas *before* you need them. To practice with Vim, open this course's [Binder page](https://mybinder.org/v2/gh/sswatson/utilities-course/master), open a new Terminal ("New", top right), and run `{sh} vim tmp.txt`. Alternatively, you can run vim in your own Terminal if you have macOS or Linux, or you can download it for Windows. 
+Vim is the command line text editor which most consistently available on Unix systems. As a result, you will sometimes find yourself needing some basic familiarity with it, even if you use another editor for the bulk of your work. Furthermore, vim is designed to prioritize efficiency over intuitiveness, so it's really helpful to learn a few vim ideas *before* you need them. To practice with Vim, open this course's [Binder page](https://mybinder.org/v2/gh/sswatson/utilities-course/master), open a new Terminal ("New", top right), and run `{sh} vim tmp.txt`. Alternatively, you can run vim in your own Terminal if you have macOS or Linux, or you can download it for Windows.
 
 [Continue](btn:next)
 
 ---
 > id: vim-modes
 
-The most important distinction between vim and most other text editors is that it has multiple **modes**, the main ones being *insert* mode and *command* mode. Insert mode is similar to what other editors provide: keystrokes you type appear as characters in the file. Command mode is for performing various actions on the file. 
+The most important distinction between vim and most other text editors is that it has multiple **modes**, the main ones being *insert* mode and *command* mode. Insert mode is similar to what other editors provide: keystrokes you type appear as characters in the file. Command mode is for performing various actions on the file.
 
 [Continue](btn:next)
 
 ---
 > id: step-vim-navigating-modes
 
-A vim session often opens to command mode by default. To activate insert mode, press `{sh} i`. To get back to command mode, press the escape key. To save a file, type `{sh} :w` while in command mode and press enter. To close the file, type `{sh} :q` from command mode and press enter. To force-exit vim, type `{sh} :q!` while in command mode and press enter. 
+A vim session often opens to command mode by default. To activate insert mode, press `{sh} i`. To get back to command mode, press the escape key. To save a file, type `{sh} :w` while in command mode and press enter. To close the file, type `{sh} :q` from command mode and press enter. To force-exit vim, type `{sh} :q!` while in command mode and press enter.
 
 To undo and redo, use `{sh} u` and `{sh} ctrl-r`. Copy and paste are `{sh} yy` and `{sh} p`; Page up and page down are `{sh} ctrl-u` and `{sh} ctrl-d`.
 
@@ -355,7 +355,7 @@ The single most important vim command is the one for force-exiting, because some
 ---
 > id: escape-vim-exercise
 
-*Solution.* The correct key sequence is `{sh} [esc]:q!`: the escape button switches to command mode, and then `{sh} :q!` force-exits. 
+*Solution.* The correct key sequence is `{sh} [esc]:q!`: the escape button switches to command mode, and then `{sh} :q!` force-exits.
 
 [Continue](btn:next)
 
@@ -363,13 +363,13 @@ The single most important vim command is the one for force-exiting, because some
 > id: variables
 ### Variables
 
-Bash supports variable definition using similar syntax to Python. The main differences are (1) spaces *cannot* be used around the equals sign, and (2) variable names are conventionally all upper case. Another distinction from Python is that a dollar sign is required to access a variable's value: 
+Bash supports variable definition using similar syntax to Python. The main differences are (1) spaces *cannot* be used around the equals sign, and (2) variable names are conventionally all upper case. Another distinction from Python is that a dollar sign is required to access a variable's value:
 
     pre(bash-executable)
       | MY_FAVORITE_NUMBER=3
       | echo $MY_FAVORITE_NUMBER
 
-The command `{sh} echo` simply prints its arguments. 
+The command `{sh} echo` simply prints its arguments.
 
 [Continue](btn:next)
 
@@ -383,7 +383,7 @@ Some special variables are available in a bash session without you having to def
 ---
 > id: step-bash-profile
 
-Utilities you install on your computer often make their [executables](gloss:executable) available at the command line by modifying `{sh} PATH`. This is done by inserting a line of code in your **bash profile**, which is a file with a special name that is read by bash every time you start a bash session. For example, if you have a directory, say `{sh} Users/jovyan/anaconda3/bin`, which contains executables that you want to be able to run from the command line, you can add the line 
+Utilities you install on your computer often make their [executables](gloss:executable) available at the command line by modifying `{sh} PATH`. This is done by inserting a line of code in your **bash profile**, which is a file with a special name that is read by bash every time you start a bash session. For example, if you have a directory, say `{sh} Users/jovyan/anaconda3/bin`, which contains executables that you want to be able to run from the command line, you can add the line
 
     pre(bash-executable)
       | export PATH="/Users/jovyan/anaconda3/bin:$PATH"
@@ -395,7 +395,7 @@ to `{sh} ~/.bash_profile` (the `{sh} ~` refers to your [[home directory|root dir
 ---
 > id: step-exporting-PATH
 
-In the command `{sh} export PATH="/Users/jovyan/anaconda3/bin:$PATH"`, the dollar sign is used to access the original value of `{sh} PATH` (so that you're adding to the set of `{sh} PATH` directories, not replacing all of the ones that were stored in `{sh} PATH` previously), and the `{sh} export` command makes the new value of `{sh} PATH` available to the bash session (rather than just the `{sh} ~/.bash_profile` script). 
+In the command `{sh} export PATH="/Users/jovyan/anaconda3/bin:$PATH"`, the dollar sign is used to access the original value of `{sh} PATH` (so that you're adding to the set of `{sh} PATH` directories, not replacing all of the ones that were stored in `{sh} PATH` previously), and the `{sh} export` command makes the new value of `{sh} PATH` available to the bash session (rather than just the `{sh} ~/.bash_profile` script).
 
 If you try to run a command and bash says `{sh} command not found`, one strong possibility is that the executable file that should run that command is "not on your PATH" (a phrase you will see often on StackOverflow!). The solution to this problem is to locate the executable's directory—usually by searching the internet to figure out where the installer puts the executable by default—and edit your `{sh} ~/.bash_profile` accordingly.
 
@@ -422,45 +422,45 @@ The output of a command like `{sh} echo $PATH`, which prints to the screen by de
 [Continue](btn:next)
 
 ---
-> id: step-difference-between-file-operators 
+> id: step-difference-between-file-operators
 
-The difference between `{sh} >` and `{sh} >>` is that the former eliminates whatever might have been in the file previously, and the latter appends to the end of the target file's current contents. 
+The difference between `{sh} >` and `{sh} >>` is that the former eliminates whatever might have been in the file previously, and the latter appends to the end of the target file's current contents.
 
 For example, `{sh} tmp.txt` will contain two lines of text after these two commands are run:
 
     pre(bash-executable)
       | echo "This is the first line" > tmp.txt
       | echo "This is the second line" >> tmp.txt
-      
-You can check that this worked as expected by running [[`{sh} cat tmp.txt`|`{sh} touch tmp.txt`|`{sh} ls tmp.txt`]]: 
+
+You can check that this worked as expected by running [[`{sh} cat tmp.txt`|`{sh} touch tmp.txt`|`{sh} ls tmp.txt`]]:
 
     pre(bash-executable)
-      | 
+      |
 
 ---
 > id: piping-2
 
-The pipe operator is the mechanism for *composing* commands in Unix. For example, 
+The pipe operator is the mechanism for *composing* commands in Unix. For example,
 
     pre(bash-executable)
       | echo "The quick brown fox jumped over the lazy dog" | wc
 
-forwards the text returned by the first command to the `{sh} wc` command, thereby counting the number of lines, words, and characters in the sentence `{sh} "The quick brown fox jumped over the lazy dog"`. 
+forwards the text returned by the first command to the `{sh} wc` command, thereby counting the number of lines, words, and characters in the sentence `{sh} "The quick brown fox jumped over the lazy dog"`.
 
 ::: .exercise
 **Exercise**  
-Write a three-command pipe, using `{sh} cat`, `{sh} head` and `{sh} tail`, prints the portion of a document `{sh} mydoc.txt` between lines 100 and 110. 
+Write a three-command pipe, using `{sh} cat`, `{sh} head` and `{sh} tail`, prints the portion of a document `{sh} mydoc.txt` between lines 100 and 110.
 :::
 
     pre(bash-executable)
-      | 
-      
+      |
+
     x-quill
-    
+
 ---
 > id: pipe-sol-1
-    
-*Solution.* If we select the first 110 lines, then the desired lines are the last 11 lines of that selection. So we can do 
+
+*Solution.* If we select the first 110 lines, then the desired lines are the last 11 lines of that selection. So we can do
 
     pre(bash-executable)
       | cat mydoc.txt | head -n 110 | tail -n 11
@@ -474,7 +474,7 @@ Write a three-command pipe, using `{sh} cat`, `{sh} head` and `{sh} tail`, print
 Performing actions on a single file at a time can get pretty time-consuming if there are many files involved. Consider, for example, a directory with 1000 images files, one for each frame of a short video. Suppose the images are named `{sh} img000.png`, `{sh} img001.png`, and so on. If you want to move all of these files into a subdirectory called `{sh} frames`, you can do the third and fourth lines of this block:
 
     pre(bash-executable)
-      | touch img000.png # make sure there are actually 
+      | touch img000.png # make sure there are actually
       | touch img001.png # image files to move
       | mkdir frames
       | mv img*.png frames/
@@ -494,7 +494,7 @@ Which of the following names match the glob pattern `{sh} [aA]nswer.*`?
 
 ---
 > id: glob-exercise-solution
-    
+
 *Solution.* The first and third options match. The second one doesn't because the pattern specifies that the first character must be uppercase or lowercase `{sh} a`.
 
 ---
@@ -517,21 +517,21 @@ Managing your files by simply saving them in folders on a hard drive runs afoul 
 ---
 > id: step-managing-version
 
-3. **Managing versions**. Slightly different use cases often require you to maintain different versions of a given codebase. For example, clients might have different requirements that require custom modifications. If you choose to maintain these versions in separate directories, you have to deal with transferring any changes to the common part of the codebase to all of the different copies. This quickly becomes a major maintenance headache. 
+3. **Managing versions**. Slightly different use cases often require you to maintain different versions of a given codebase. For example, clients might have different requirements that require custom modifications. If you choose to maintain these versions in separate directories, you have to deal with transferring any changes to the common part of the codebase to all of the different copies. This quickly becomes a major maintenance headache.
 
 [Continue](btn:next)
 
 ---
 > id: step-facilitating-teamwork
 
-4. **Facilitating teamwork**. Each team member should have maximum flexibility to work on a project and have that work reflected in their teammates' copies of the project. Some care must be taken to achieve this, because if two people make changes to the same file at the same time, their new versions must be merged. 
+4. **Facilitating teamwork**. Each team member should have maximum flexibility to work on a project and have that work reflected in their teammates' copies of the project. Some care must be taken to achieve this, because if two people make changes to the same file at the same time, their new versions must be merged.
 
 [Continue](btn:next)
 
 ---
 > id: step-version-control
 
-Software designed to address these concerns is called **version control**. We will be working with a specific version control system called `{sh} git` which was created by [Linus Torvalds](gloss:linus) in 2005 and has since grabbed a plurality of the version control market share among software developers. 
+Software designed to address these concerns is called **version control**. We will be working with a specific version control system called `{sh} git` which was created by [Linus Torvalds](gloss:linus) in 2005 and has since grabbed a plurality of the version control market share among software developers.
 
 [Continue](btn:next)
 
@@ -553,7 +553,7 @@ Git uses two components to manage a repository in a given directory: a command-l
 ---
 > id: step-git-vs-drive
 
-Unlike syncing services like Dropbox or Google Drive, Git doesn't do anything automatically. All interactions are deliberate. This is helpful, because it means that changes made by a colleague won't be uninvitedly pushed to your machine where they might break your environment. 
+Unlike syncing services like Dropbox or Google Drive, Git doesn't do anything automatically. All interactions are deliberate. This is helpful, because it means that changes made by a colleague won't be uninvitedly pushed to your machine where they might break your environment.
 
 [Continue](btn:next)
 
@@ -566,7 +566,7 @@ Conceptually, a git repository consists a collection of complete snapshots of th
 
 ::: .exercise
 **Exercise**  
-1. The name of the hidden subdirectory containing the files Git uses to maintain a repository is [[.git]]. 
+1. The name of the hidden subdirectory containing the files Git uses to maintain a repository is [[.git]].
 2. Git keeps your folder synced to the cloud at all times [[False|True]].
 3. Commits in a Git repository are organized using parent-child relationships between commits [[True|False]].
 4. A commit corresponds most closely to a [[directory state|difference between two directory states]].
@@ -575,7 +575,7 @@ Conceptually, a git repository consists a collection of complete snapshots of th
 ---
 > id: step-git-zones
 
-Changes in a Git project migrate through a series of zones. When you make changes in your directory, Git initially knows nothing about them. You **stage** your changes to a staging area, then **commit** them to the repository. A project involving multiple contributors typically has a remote copy of the repository on a website like GitHub. When you are ready for your colleagues to get your changes, you **push** your local repository to the remote repository. 
+Changes in a Git project migrate through a series of zones. When you make changes in your directory, Git initially knows nothing about them. You **stage** your changes to a staging area, then **commit** them to the repository. A project involving multiple contributors typically has a remote copy of the repository on a website like GitHub. When you are ready for your colleagues to get your changes, you **push** your local repository to the remote repository.
 
     figure
       img(src="images/git-sections.svg")
@@ -619,7 +619,7 @@ You can maintain these two separate lines of development in the same repository 
 
 ---
 > id: git-branch-pointer-exercise
-      
+
 ::: .exercise
 **Exercise**  
 A branch is a [[pointer to a commit|a sequence of commits]].
@@ -634,14 +634,14 @@ Typically you will want to **merge** the changes from your branch back into mast
 
     figure
       img(src="images/git-split-ff.svg")
-      p.caption.md If no commits have been added to `{code} master`, the changes in `{code} mybranch` can be merged into master by simplying moving the `{code} master` pointer forward. This is called a **fast-forward** merge. 
+      p.caption.md If no commits have been added to `{code} master`, the changes in `{code} mybranch` can be merged into master by simplying moving the `{code} master` pointer forward. This is called a **fast-forward** merge.
 
 [Continue](btn:next)
 
 ---
 > id: step-git-merge      
 
-After your branch is merged into master, your colleague wants to merge their branch as well. If you edited the same parts of the same files as your colleague, a decision will have to be made about what version of those sections to incorporate into master. Git handles this by putting markings in the file which look like: 
+After your branch is merged into master, your colleague wants to merge their branch as well. If you edited the same parts of the same files as your colleague, a decision will have to be made about what version of those sections to incorporate into master. Git handles this by putting markings in the file which look like:
 
 ``` markup
 <<<<<<< master
@@ -656,8 +656,8 @@ Your colleague will have to locate and remove these conflict markers one-by-one,
     figure
       img(src="images/git-split-merge.svg")
       p.caption.md If two branches have diverged, then changes from one branch (`{code} theirbranch`) can be merged into the other (`{code} master`). The result is a new *merge commit*.
-      
-We will discuss the commands for performing these operations in the *Core Git workflow* section below. 
+
+We will discuss the commands for performing these operations in the *Core Git workflow* section below.
 
 [Continue](btn:next)
 
@@ -675,12 +675,12 @@ Suppose that you make a copy of a popular repository on GitHub (called a *fork*)
 ### Configuring Git
 > id: configuring-git
 
-When you first set up Git on your machine, there are a few configuration steps you want to take. The first is to let Git know about your name and email address. 
+When you first set up Git on your machine, there are a few configuration steps you want to take. The first is to let Git know about your name and email address.
 
     pre(bash-executable)
       | git config --global user.name "Jane Doe"
       | git config --global user.email "jdoe@gmail.com"
-      
+
 You might also want to turn on colors:
 
     pre(bash-executable)
@@ -692,7 +692,7 @@ You might also want to turn on colors:
 ### Core Git workflow
 > id: core-git-workflow
 
-In this section, we'll work through all of the commands necessary to carry out the most common Git operations. We'll begin by creating a directory and initializing a Git repository inside it. 
+In this section, we'll work through all of the commands necessary to carry out the most common Git operations. We'll begin by creating a directory and initializing a Git repository inside it.
 
     pre(bash-executable)
       | mkdir our-novel
@@ -700,7 +700,7 @@ In this section, we'll work through all of the commands necessary to carry out t
       | git init
       | ls -a
 
-We can see that `{sh} git init` did create a `{code} .git` directory. The other way to get a Git repository is to [clone](gloss:git-clone) one from a website like GitHub. 
+We can see that `{sh} git init` did create a `{code} .git` directory. The other way to get a Git repository is to [clone](gloss:git-clone) one from a website like GitHub.
 
 [Continue](btn:next)
 
@@ -717,25 +717,25 @@ Next, let's create a file for our initial commit. The git command for staging a 
 
 ---
 > id: step-git-status
-      
-We can inspect the status of our working directory and repository using `{sh} git status`. 
+
+We can inspect the status of our working directory and repository using `{sh} git status`.
 
     pre(bash-executable)
       | git status
 
-The contents of the staging area are indented under the heading `{sh} Changes to be committed`. 
+The contents of the staging area are indented under the heading `{sh} Changes to be committed`.
 
 [Continue](btn:next)
 
 ---
 > id: step-git-commit-message
-      
-Now we can commit the staged changes, including a descriptive **commit message** with `{sh} -m`: 
+
+Now we can commit the staged changes, including a descriptive **commit message** with `{sh} -m`:
 
     pre(bash-executable)
       | git commit -m 'Initial commit'
 
-We can display a record of commits using `{sh} git log`. 
+We can display a record of commits using `{sh} git log`.
 
     pre(bash-executable)
       | git log
@@ -744,8 +744,8 @@ We can display a record of commits using `{sh} git log`.
 
 ---
 > id: step-long-hex-string
-      
-You'll notice that commits are identified by a long hexadecimal string like `{code} d9599305d257a40c0b394a1af78dfe995f0010c7`. This string is a [hash](gloss:hash) of all of the data relevant to the commit. The name `{sh} HEAD` is a pointer to the branch you're currently on, so `{sh} HEAD -> master` indicates that the `{sh} master` branch is the currently **checked out** branch. 
+
+You'll notice that commits are identified by a long hexadecimal string like `{code} d9599305d257a40c0b394a1af78dfe995f0010c7`. This string is a [hash](gloss:hash) of all of the data relevant to the commit. The name `{sh} HEAD` is a pointer to the branch you're currently on, so `{sh} HEAD -> master` indicates that the `{sh} master` branch is the currently **checked out** branch.
 
 [Continue](btn:next)
 
@@ -757,7 +757,7 @@ The output of the `{sh} git log` command is more helpful with a few of its optio
     pre(bash-executable)
       | git config --global alias.lol "log --graph --decorate --all --oneline"
       | git lol
-      
+
 [Continue](btn:next)
 
 ---
@@ -783,7 +783,7 @@ It's a good habit to begin each work session by running `{sh} git pull` to fetch
       | git pull
       | git stash apply
 
-The command `{sh} git stash` creates a new commit which is not on any branch, and `{sh} git stash apply` merges the latest stash into the current branch. 
+The command `{sh} git stash` creates a new commit which is not on any branch, and `{sh} git stash apply` merges the latest stash into the current branch.
 
 [Continue](btn:next)
 
@@ -805,7 +805,7 @@ The command `{sh} git stash` creates a new commit which is not on any branch, an
 > id: git-branching-commands
 ### Git Branching Commands
 
-Suppose we want to experiment with dragons in the novel's storyline. We can make a new branch called `{sh} dragons` for working on this idea. 
+Suppose we want to experiment with dragons in the novel's storyline. We can make a new branch called `{sh} dragons` for working on this idea.
 
     pre(bash-executable)
       | git branch dragons
@@ -829,7 +829,7 @@ We can now add some dragon content and commit it:
       | git add chapter-1.txt
       | git commit -m 'Add some dragons'
 
-Now let's switch back to the master branch and commit some different changes: 
+Now let's switch back to the master branch and commit some different changes:
 
     pre(bash-executable)
       | git checkout master
@@ -838,17 +838,17 @@ Now let's switch back to the master branch and commit some different changes:
       | git commit -m 'Write another line'
       | git lol
 
-Suppose we decide we do want to incorporate the dragons into the story. We want to [[merge]] the dragon branch into master. 
+Suppose we decide we do want to incorporate the dragons into the story. We want to [[merge]] the dragon branch into master.
 
 ---
 > id: git-merge-dragons
 
-While we have the master branch checked out, we do 
+While we have the master branch checked out, we do
 
     pre(bash-executable)
       | git merge dragons
-      
-Git tells us that this merge led to conflicts, and we'll have to resolve them before making merge commits. Let's look at the new contents of `{sh} chapter-1.txt`: 
+
+Git tells us that this merge led to conflicts, and we'll have to resolve them before making merge commits. Let's look at the new contents of `{sh} chapter-1.txt`:
 
     pre(bash-executable)
       | cat chapter-1.txt
@@ -857,14 +857,14 @@ Git tells us that this merge led to conflicts, and we'll have to resolve them be
 
 ---
 > id: echo-merge-dragons
-      
+
 The next step is to edit the file and commit it. Typically you would edit the file in a text editor (we'll see a particularly good way to do it later in this course when we cover VS Code), but here we'll just use `{sh} echo`.
 
     pre(bash-executable)
       | echo 'Once upon a time..., in a galaxy far away..., there be dragons!' > chapter-1.txt
       | git commit -m "Merge the dragons into the story"
       | git lol
-      
+
 Now we can delete the `{sh} dragons` branch. Since branches are just pointers to commits, this operation does not result in the loss of any snapshots in our project history.
 
     pre(bash-executable)
@@ -877,11 +877,11 @@ Now we can delete the `{sh} dragons` branch. Since branches are just pointers to
 
 ::: .exercise
 **Exercise**  
-Write a sequence of Git commands to create two new branches, one with dragons in the story and one with wizards in the story. Commit a change to each branch, then merge the wizard branch into the dragons branch, and finally merge the dragons branch into `{sh} master`. Use `{sh} git lol` to confirm that your repository log reflects the wizards to dragons to master merging sequence. 
+Write a sequence of Git commands to create two new branches, one with dragons in the story and one with wizards in the story. Commit a change to each branch, then merge the wizard branch into the dragons branch, and finally merge the dragons branch into `{sh} master`. Use `{sh} git lol` to confirm that your repository log reflects the wizards to dragons to master merging sequence.
 :::
 
     pre(bash-executable)
-      | 
+      |
 
     x-quill
 
@@ -889,11 +889,11 @@ Write a sequence of Git commands to create two new branches, one with dragons in
 > id: undoing-changes
 ### Undoing changes
 
-Suppose you want to have a look at the state of your novel one commit ago. You refer to the commit which is any number of commits back using a tilde followed by the desired number of commits, as in `{sh} HEAD~1`. The `{sh} git show` command lets us extract a single file from a given commit: 
+Suppose you want to have a look at the state of your novel one commit ago. You refer to the commit which is any number of commits back using a tilde followed by the desired number of commits, as in `{sh} HEAD~1`. The `{sh} git show` command lets us extract a single file from a given commit:
 
     pre(bash-executable)
       | git show HEAD~1:chapter-1.txt
-      
+
 [Continue](btn:next)
 
 ---
@@ -913,13 +913,13 @@ We can see just the changes between two commits with a `{sh} diff`:
 
     pre(bash-executable)
       | git diff HEAD HEAD~1 chapter-1.txt
-      
+
 [Continue](btn:next)
 
 ---
 > id: step-checkout-single-file      
-      
-Let's say you decide you want to go back to the version of a file two commits ago. You can `{sh} checkout` a single file. 
+
+Let's say you decide you want to go back to the version of a file two commits ago. You can `{sh} checkout` a single file.
 
     pre(bash-executable)
       | git checkout HEAD~2 chapter-1.txt
@@ -934,15 +934,15 @@ This operation changes the file in the local working directory. You can then sta
 
 ::: .exercise
 **Exercise**  
-Write a Git command to replace the contents of `{code} main.py` with their contents four commits ago. 
+Write a Git command to replace the contents of `{code} main.py` with their contents four commits ago.
 :::
 
     x-quill
-  
+
 ---
 > id: git-checkout-file-solution
-    
-*Solution.* We checkout the file at that commit: `{code} git checkout HEAD~4 main.py`. 
+
+*Solution.* We checkout the file at that commit: `{code} git checkout HEAD~4 main.py`.
 
 [Continue](btn:next)
 
@@ -955,8 +955,8 @@ Write a Git command to show the changes in the file `{sh} main.py` from four com
 :::
 
     x-quill
-    
-*Solution.* We use `{sh} git diff` and specify the two revisions: `{sh} git diff HEAD~4 HEAD~2 main.py`. 
+
+*Solution.* We use `{sh} git diff` and specify the two revisions: `{sh} git diff HEAD~4 HEAD~2 main.py`.
 
 [Continue](btn:next)
 
@@ -964,7 +964,7 @@ Write a Git command to show the changes in the file `{sh} main.py` from four com
 > id: latex
 ## LaTeX
 
-TeX (pronounced *tech*) is an open-source typesetting engine for technical documents. It was created in the late 1970s by Donald Knuth, and it has since become almost universally adopted in the mathematical research community and widely adopted in other scientific communities. The most common way to use TeX is through *LaTeX* (*lay-tex* or *lah-tex*; both pronunciations are common), which provides extra tools that make TeX easier to use.
+TeX (pronounced *tech*) is an open-source typesetting engine for technical documents. It was created in the late 1970s by Donald Knuth, and it has since become almost universally adopted in the mathematical research community and widely adopted in other scientific communities. The most common way to use TeX is through *LaTeX* (*lay-tex* or *lah-tex;* both pronunciations are common), which provides extra tools that make TeX easier to use.
 
 [Continue](btn:next)
 
@@ -980,17 +980,17 @@ A LaTeX document consists of a plain text file which is processed by a command-l
 In this course, we will not learn to typeset documents in LaTeX, because we will use more dynamic alternatives which are built on web technologies. However, these alternatives do rely on LaTeX's legacy for one important purpose: *rendering mathematical expressions*. For example, the text
 
 ``` code
-\operatorname{KL}(p\|q) = 
+\operatorname{KL}(p\|q) =
   \int_{\mathbb{R}^n}p(x) \log \frac{p(x)}{q(x)} \, \mathrm{d}x.
 ```
 
-renders as 
+renders as
 
 ``` latex
 \operatorname{KL}(p\|q) = \int_{\mathbb{R}^n}p(x) \log \frac{p(x)}{q(x)} \, \mathrm{d}x.
 ```
 
-We will discuss some basics of specifying math expressions in LaTeX, but recent developments have made it easy to produce LaTeX source code without having to type it out directly. You can produce a math expression using a graphical user interphase like [SymboLab](https://www.symbolab.com) and then use [MathPix](https://mathpix.com) to snip the resulting expression on your screen and convert it to LaTeX. MathPix works directly from the taskbar, so the whole process is quite efficient. Alternatively, if you have an iPhone, you can use install a handwriting-input keyboard for LaTeX by installing the app [MathKey](https://mathkey-app.com). 
+We will discuss some basics of specifying math expressions in LaTeX, but recent developments have made it easy to produce LaTeX source code without having to type it out directly. You can produce a math expression using a graphical user interphase like [SymboLab](https://www.symbolab.com) and then use [MathPix](https://mathpix.com) to snip the resulting expression on your screen and convert it to LaTeX. MathPix works directly from the taskbar, so the whole process is quite efficient. Alternatively, if you have an iPhone, you can use install a handwriting-input keyboard for LaTeX by installing the app [MathKey](https://mathkey-app.com).
 
     center: figure: video(src="images/mathkey.mp4" width="75%" controls)
 
@@ -1005,8 +1005,8 @@ We will discuss some basics of specifying math expressions in LaTeX, but recent 
 Inline mathematical expressions in LaTeX are delimited by dollar signs. For example:
 
 ``` code
-The Pythagorean theorem says that $a^2 + b^2 = c^2$, where 
-$a$ and $b$ are the lengths of the legs and $c$ is the 
+The Pythagorean theorem says that $a^2 + b^2 = c^2$, where
+$a$ and $b$ are the lengths of the legs and $c$ is the
 length of the hypotenuse of a right triangle.
 ```
 
@@ -1019,7 +1019,7 @@ The Pythagorean theorem says that $a^2 + b^2 = c^2$, where $a$ and $b$ are the l
 ---
 > id: step-latex-superscripts
 
-As demonstrated in the example above, superscripts are indicated with carats. Subscripts are indicated with underscores: 
+As demonstrated in the example above, superscripts are indicated with carats. Subscripts are indicated with underscores:
 
 ``` code
 a_1, a_2, a_3, \ldots, a_{100}
@@ -1031,7 +1031,7 @@ becomes
 a_1, a_2, a_3, \ldots, a_{100}
 ```
 
-Curly braces are used for grouping and do not appear in the rendered expression. If you want a literal curly brace, it must be escaped with a backslash: 
+Curly braces are used for grouping and do not appear in the rendered expression. If you want a literal curly brace, it must be escaped with a backslash:
 
 ``` code
 \{1,2,3\}
@@ -1049,7 +1049,7 @@ is the LaTeX code for
 > id: latex-fractions
 #### Fractions
 
-The syntax for fractions in LaTeX is `{code} \frac{numerator}{denominator}`. For example, `{code} \frac{x^3}{3}` renders as $\frac{x^3}{3}$. Fractions can be nested: 
+The syntax for fractions in LaTeX is `{code} \frac{numerator}{denominator}`. For example, `{code} \frac{x^3}{3}` renders as $\frac{x^3}{3}$. Fractions can be nested:
 
 ``` code
 \frac{1}{1+\frac{2}{3}}
@@ -1066,9 +1066,9 @@ looks like
 > id: step-greek-symbols-latex
 #### Greek symbols and math symbols
 
-Greek letters may be typeset by putting a backslash in front of the letter name. For example, `{code} \alpha, \beta, \gamma` becomes $\alpha, \beta, \gamma$. 
+Greek letters may be typeset by putting a backslash in front of the letter name. For example, `{code} \alpha, \beta, \gamma` becomes $\alpha, \beta, \gamma$.
 
-[Many common math symbols](https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols) have built-in support in LaTeX: 
+[Many common math symbols](https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols) have built-in support in LaTeX:
 
 ``` code
 \sum_{i=1}^{10} i^2 = 385 + 0 \times \int_1^\infty dx/x^2
@@ -1096,7 +1096,7 @@ is the code for
 |\mathbf{a}|^2 = \mathbf{a} \cdot \mathbf{a}
 ```
 
-Blackboard bold symbols like $\mathbb{R}, \mathbb{Z}, \mathbb{N}$ are typeset like `{code} \mathbb{R}, \mathbb{Z}, \mathbb{N}`. 
+Blackboard bold symbols like $\mathbb{R}, \mathbb{Z}, \mathbb{N}$ are typeset like `{code} \mathbb{R}, \mathbb{Z}, \mathbb{N}`.
 
 [Continue](btn:next)
 
@@ -1104,7 +1104,7 @@ Blackboard bold symbols like $\mathbb{R}, \mathbb{Z}, \mathbb{N}$ are typeset li
 > id: step-latex-delimiters
 #### Delimiters
 
-Delimiters (like parentheses or brackets) can be made to reach vertically as far as necessary to properly enclose the content they surround. The delimiting characters must be preceded by `{code} \left` and `{code} right`. 
+Delimiters (like parentheses or brackets) can be made to reach vertically as far as necessary to properly enclose the content they surround. The delimiting characters must be preceded by `{code} \left` and `{code} right`.
 
 ``` code
 \mathrm{e}^x = \lim_{n \to \infty} \left( 1 + \frac{x}{n} \right)^n
@@ -1122,11 +1122,11 @@ renders as
 > id: step-latex-displayed-equations
 #### Displayed equations
 
-Multi-line displayed equations (which are rendered in the center of the page and on their own lines) open with `{sh} \begin{align*}` and close with `{sh} \end{align*}`. Lines are separated with a double backslash, and an ampersand goes in front of the character in each line that should be used for alignment (usually the equals sign): 
+Multi-line displayed equations (which are rendered in the center of the page and on their own lines) open with `{sh} \begin{align*}` and close with `{sh} \end{align*}`. Lines are separated with a double backslash, and an ampersand goes in front of the character in each line that should be used for alignment (usually the equals sign):
 
 ``` code
 \begin{align*}
-(x+y)^2 &= (x+y)(x+y) \\\ 
+(x+y)^2 &= (x+y)(x+y) \\\
         &= x^2 + 2xy + y^2
 \end{align*}
 ```
@@ -1148,7 +1148,7 @@ The easiest way to create a matrix is to use a `{sh} bmatrix` environment. Rows 
 
 ``` code
 \begin{bmatrix}
-1 & 2 \\\ 
+1 & 2 \\\
 3 & 4
 \end{bmatrix}
 ```
@@ -1166,7 +1166,7 @@ becomes
 > id: Conda
 ## Conda
 
-Suppose you've written some Python code that you want to share. Other users will have to get your code and perform some setup operations, including making their Python environment aware of your package so they can `{code} import` it. Ideally you'd communicate information about any other modules that your module requires, so that users can make sure they have all of the requirements before they try to use your module. When you make improvements to your code, you'd like for your users to be able to get those changes as effortlessly as possible, preferably without having to go through installation steps again. 
+Suppose you've written some Python code that you want to share. Other users will have to get your code and perform some setup operations, including making their Python environment aware of your package so they can `{code} import` it. Ideally you'd communicate information about any other modules that your module requires, so that users can make sure they have all of the requirements before they try to use your module. When you make improvements to your code, you'd like for your users to be able to get those changes as effortlessly as possible, preferably without having to go through installation steps again.
 
 [Continue](btn:next)
 
@@ -1180,7 +1180,7 @@ These code distribution challenges are difficult to manage manually, so develope
 ---
 > id: step-install-anaconda
 
-We recommend [installing Anaconda](https://docs.anaconda.com/anaconda/install/) and using it to manage your packages. Anaconda has a few important advantages over Pip: 
+We recommend [installing Anaconda](https://docs.anaconda.com/anaconda/install/) and using it to manage your packages. Anaconda has a few important advantages over Pip:
 
 1. Anaconda ensures that all requirements of all available packages are satisfied. Pip updates your environment when you install a package based on *that* package's requirements. Such an update might break previously installed packages, since they might depend on a different version of the same package.
 
@@ -1210,7 +1210,7 @@ Some packages are available on PyPI but not Anaconda, and in these cases we reco
 ::: .exercise
 **Exercise**  
 1. Virtual environments are important for [[reproducibility|speed]].
-2. Because Conda is doing [[more|less]] computation to ensure all required dependencies are met, it often takes longer than Pip to install a new package. 
+2. Because Conda is doing [[more|less]] computation to ensure all required dependencies are met, it often takes longer than Pip to install a new package.
 3. Separate virtual environments can be used to manage incompatible dependencies between two projects. [[True|False]]
 :::
 
@@ -1225,19 +1225,19 @@ Your Python **environment** is the set of packages you have available to `{sh} i
 ---
 > id: step-virtual-env-numpy-example
 
-For example, if you need NumPy 1.16.3 for one project and NumPy 1.16.4 for a different project, your package manager can install *both* versions and just change which one is used when you execute `{py} import numpy`. This is much more convenient than uninstalling one version and installing the other every time you need to switch between the two projects. 
+For example, if you need NumPy 1.16.3 for one project and NumPy 1.16.4 for a different project, your package manager can install *both* versions and just change which one is used when you execute `{py} import numpy`. This is much more convenient than uninstalling one version and installing the other every time you need to switch between the two projects.
 
 [Continue](btn:next)
 
 ---
 > id: step-set-up-conda
 
-To use conda virtual environments, we first have to set up conda to work with our shell. This requires restarting bash. 
+To use conda virtual environments, we first have to set up conda to work with our shell. This requires restarting bash.
 
     pre(bash-executable)
-      | conda init bash 
+      | conda init bash
       | conda config --set changeps1 False
-      | exit 
+      | exit
 
 The second line configures conda to refrain from its default behavior of printing the name of the current environment every time a command is run from the command line. You might find this setting preferable on your own computer, but it will be essential for us as we execute the bash cells in this section.
 
@@ -1251,7 +1251,7 @@ To create a new Anaconda virtual environment, use `{sh} conda create`. To activa
     pre(bash-executable)
       | conda create -n myenv python numpy=1.16.4 --yes
       | conda activate myenv
-      
+
 [Continue](btn:next)
 
 ---
@@ -1264,13 +1264,13 @@ We can check that our newly activated environment has NumPy but not Pandas.
       | echo "print(numpy.version.version)" >> tmp.py
       | echo "import pandas" >> tmp.py
       | python tmp.py
-      
+
 [Continue](btn:next)
 
 ---
 > id: step-conda-env-list     
 
-We can view all of the environments we've set up with `{sh} conda env list`: 
+We can view all of the environments we've set up with `{sh} conda env list`:
 
     pre(bash-executable)
       | conda env list
@@ -1291,7 +1291,7 @@ Conda installation operations modify the current environment. For example, we ca
 ---
 > id: step-conda-export
 
-We can get a readable version of the current environment using `{sh} export`: 
+We can get a readable version of the current environment using `{sh} export`:
 
     pre(bash-executable)
       | conda env export
@@ -1310,18 +1310,18 @@ Note that we used the `{sh} -f` argument to make `{sh} conda env create` get the
 If you want a colleague to be able to reproduce the Python environment you used in a particular project, one convenient way to do that is to give them your [[environment.yml|contents.txt]] file, using [[`{code} conda env export`|`{code} conda env list`]].
 :::
 
---- 
+---
 ### Other reproducibility solutions
 > id: other-reproducibility-solutions
 
-We will close this section by mentioning two other solutions for the reproducibility problem. If you're working with a non-Conda Python installation, you can use pip together with **virtualenv** to reproduce the virtual environment functionality of Conda. You can also get pip to give you a list of the packages and versions available in the local virtual environment using `{py} pip freeze`. 
+We will close this section by mentioning two other solutions for the reproducibility problem. If you're working with a non-Conda Python installation, you can use pip together with **virtualenv** to reproduce the virtual environment functionality of Conda. You can also get pip to give you a list of the packages and versions available in the local virtual environment using `{py} pip freeze`.
 
 [Continue](btn:next)
 
 ---
 > id: docker
 
-A much more general-purpose tool for achieving reproducibility is **Docker**. We'll discuss Docker more extensively in the final section in this course. 
+A much more general-purpose tool for achieving reproducibility is **Docker**. We'll discuss Docker more extensively in the final section in this course.
 
 ---
 > id: markdown
@@ -1358,14 +1358,14 @@ Markdown has since become a [lingua franca](gloss:lingua-franca) among developer
       img(src="images/github-markdown-output.png")
 
 [Continue](btn:next)
-      
+
 ---
 > id: markdown-rules
 ### Markdown rules
 
-The list of essential Markdown rules is pretty short: 
+The list of essential Markdown rules is pretty short:
 
-1. Boldface is indicated with double underscores or double asterisks: `{code} __This text is bold__` or `{code} **This text is bold**`. 
+1. Boldface is indicated with double underscores or double asterisks: `{code} __This text is bold__` or `{code} **This text is bold**`.
 
 [Continue](btn:next)
 
@@ -1393,7 +1393,7 @@ The list of essential Markdown rules is pretty short:
 ---
 > id: step-markdown-links
 
-4. Links use square brackets around the text to be displayed and parentheses around the URL to be linked: `{code} [Click here](http://www.google.com)`. 
+4. Links use square brackets around the text to be displayed and parentheses around the URL to be linked: `{code} [Click here](http://www.google.com)`.
 
 [Continue](btn:next)
 
@@ -1411,7 +1411,7 @@ The list of essential Markdown rules is pretty short:
 ---
 > id: step-markdown-blockquotes
 
-6. *Blockquotes* are marked with a greater-than sign at the beginning of the line: 
+6. *Blockquotes* are marked with a greater-than sign at the beginning of the line:
 
     ``` markdown
     > "Imagination is more important than knowledge." -Albert Einstein
@@ -1422,7 +1422,7 @@ The list of essential Markdown rules is pretty short:
 ---
 > id: step-markdown-bullet-lists
 
-7. Bullet lists are achieved with an asterisk and a space at the beginning of each line containing a list item: 
+7. Bullet lists are achieved with an asterisk and a space at the beginning of each line containing a list item:
 
     ``` markdown
     * Limits
@@ -1479,9 +1479,9 @@ The list of essential Markdown rules is pretty short:
 Answer each of the following questions about Markdown.  
 1. Code fences are marked using [[3|2|1]] [[backticks|hyphens|colons]].
 2. Markdown will automatically correct the numbering in your numbered lists [[True|False]].
-3. The syntax for inserting an image is an [[exclamation point|period|colon]] followed by [[square brackets|parentheses]] containing the [[alt text|url]] followed by [[parentheses|square brackets]] containing the [[url|alt text]]. 
+3. The syntax for inserting an image is an [[exclamation point|period|colon]] followed by [[square brackets|parentheses]] containing the [[alt text|url]] followed by [[parentheses|square brackets]] containing the [[url|alt text]].
 4. The syntax for inserting links is [[square brackets|parentheses]] containing the [[link text|url]] followed by [[parentheses|square brackets]] containing the [[url|link text]].
-5. Inline code is indicated using [[single backticks|quotation marks|curly braces]]. 
+5. Inline code is indicated using [[single backticks|quotation marks|curly braces]].
 6. Section headings are indicated using [[hashmarks|asterisks]] followed by a [[space|newline|tilde]].
 7. For boldface or italics, use [[double|single]] or [[single|double]] underscores (or asterisks), [respectively](gloss:respectively).
 :::
@@ -1490,21 +1490,21 @@ Answer each of the following questions about Markdown.
 > id: jupyter
 ## Jupyter
 
-Findings in quantitative disciplines have historically been communicated primarily through written reports. In many cases, accompanying code is unavailable or difficult to replicate for readers who might wish to reproduce the analysis. This dissociation of exposition and code has major drawbacks: (i) ease of replication has significant implications for the [[reliability|discovery]] of the results being reported, and (ii) the code must be carefully organized and commented to document the relationship between its elements and the corresponding elements of the written report. 
+Findings in quantitative disciplines have historically been communicated primarily through written reports. In many cases, accompanying code is unavailable or difficult to replicate for readers who might wish to reproduce the analysis. This dissociation of exposition and code has major drawbacks: (i) ease of replication has significant implications for the [[reliability|discovery]] of the results being reported, and (ii) the code must be carefully organized and commented to document the relationship between its elements and the corresponding elements of the written report.
 
 [Continue](btn:next)
 
 ---
 > id: step-project-jupyter
 
-*Project Jupyter* provides researchers with tools for combining exposition and code into a single document called a *Jupyter notebook*. Notebook files are managed by a command line program called `{sh} jupyter` and are presented to the user for viewing and editing in their preferred web browser. A Jupyter notebook contains of a list of *cells*, each of which is either a Markdown cell for exposition or a code cell for execution. The code is passed by Jupyter to a program called a *kernel* which runs in the background. The default kernel is a Python interpreter, but kernels are available for a huge variety of languages (including Julia and R, which, along with Python, form the portmanteau *Jupyter*). 
+*Project Jupyter* provides researchers with tools for combining exposition and code into a single document called a *Jupyter notebook.* Notebook files are managed by a command line program called `{sh} jupyter` and are presented to the user for viewing and editing in their preferred web browser. A Jupyter notebook contains of a list of *cells*, each of which is either a Markdown cell for exposition or a code cell for execution. The code is passed by Jupyter to a program called a *kernel* which runs in the background. The default kernel is a Python interpreter, but kernels are available for a huge variety of languages (including Julia and R, which, along with Python, form the portmanteau *Jupyter*).
 
 [Continue](btn:next)
 
 ---
 > id: step-rich-jupyter-output
 
-Many rich code cell output types are supported, including both static and interactive graphics which appear in the notebook. Here's an example session: 
+Many rich code cell output types are supported, including both static and interactive graphics which appear in the notebook. Here's an example session:
 
     figure
       img(src="images/jupyter-example.png")
@@ -1522,9 +1522,9 @@ Project Jupyter is currently in a period of transition from the *Classic Jupyter
 > id: magic-commands
 ### Magic Commands
 
-You might have noticed that one line in the executable cell in the screenshot above is *not* valid Python: `{code} %matplotlib inline`. This instruction, which makes matplotlib figures appear directly in the notebook, is specific to the Jupyter interface and is not part of matplotlib itself. Such instructions are called **magic commands** and are indicated in Python with a leading percent sign. 
+You might have noticed that one line in the executable cell in the screenshot above is *not* valid Python: `{code} %matplotlib inline`. This instruction, which makes matplotlib figures appear directly in the notebook, is specific to the Jupyter interface and is not part of matplotlib itself. Such instructions are called **magic commands** and are indicated in Python with a leading percent sign.
 
-Here are some handy magic commands: 
+Here are some handy magic commands:
 
 * `{code} %run`. If you have a large or ungainly block of code that you don't want taking up space in your notebook, you can save it in a `{code} .py` file in the current directory and use the `{code} %run` magic to execute all of the code in that file.
 
@@ -1533,7 +1533,7 @@ Here are some handy magic commands:
 ---
 > id: step-magic-timeit
 
-* `{code} %timeit`. Place this line in front of any line of Python code to approximate how long it takes to execute. 
+* `{code} %timeit`. Place this line in front of any line of Python code to approximate how long it takes to execute.
 
 [Continue](btn:next)
 
@@ -1569,7 +1569,7 @@ Jupyter has an **edit mode** for entering text in cells and a **command mode** f
 ---
 > id: step-jupyter-cell-operations
 
-Cells are deleted in command mode with two strokes of the `{code} d` key. You can highlight cells in command mode by holding shift and using your arrow keys, and you can merge the highlighted cells into a single cell using `{code} shift-m`. Insertion of new cells is accomplished with either `{code} a` (insert cell *above*) or `{code} b` (insert cell *below*) in command mode. Cells can be switched between Markdown (`{code} m`) and code (`{code} y`) in command mode.
+Cells are deleted in command mode with two strokes of the `{code} d` key. You can highlight cells in command mode by holding shift and using your arrow keys, and you can merge the highlighted cells into a single cell using `{code} shift-m`. Insertion of new cells is accomplished with either `{code} a` (insert cell *above* ) or `{code} b` (insert cell *below* ) in command mode. Cells can be switched between Markdown (`{code} m`) and code (`{code} y`) in command mode.
 
 [Continue](btn:next)
 
@@ -1592,13 +1592,13 @@ If you want to perform an action that you don't know a keyboard shortcut yet, yo
 3. The enter key switches from edit mode to command mode. [[False|True]]
 :::
 
-[Continue](btn:next) 
+[Continue](btn:next)
 
 ---
 > id: notebook-consoles
 ### Notebook Consoles
 
-One difficulty with Jupyter notebooks is that it's easy for your workspace to get cluttered. The problem is that all code in the notebook is handled in the same way regardless of its role: 
+One difficulty with Jupyter notebooks is that it's easy for your workspace to get cluttered. The problem is that all code in the notebook is handled in the same way regardless of its role:
 
 1. **Publication code**. Code that contributes to the narrative should be included in the final Jupyter notebook.
 
@@ -1621,7 +1621,7 @@ One difficulty with Jupyter notebooks is that it's easy for your workspace to ge
 ---
 > id: step-jupyter-three-types
 
-JupyterLab includes functionality for interacting with all three types of code in a manner appropriate to their roles. The idea is to open three tabs: a Jupyter notebook for publication code, a Python text file for library code, and a *console* linked to the notebook for scratch code. The linked console is a [REPL](gloss:REPL) which interacts with the same kernel instance as the notebook. 
+JupyterLab includes functionality for interacting with all three types of code in a manner appropriate to their roles. The idea is to open three tabs: a Jupyter notebook for publication code, a Python text file for library code, and a *console* linked to the notebook for scratch code. The linked console is a [REPL](gloss:REPL) which interacts with the same kernel instance as the notebook.
 
     figure
       img(src="images/jupyterlab-setup.png")
@@ -1630,7 +1630,7 @@ To achieve this setup in JupyterLab, begin by opening a Jupyter notebook and a t
 
 ::: .exercise
 **Exercise**  
-If you bind the value `{py} 7` to the variable `{sh} x` in your Jupyter notebook, then the value of `{py} x` in the linked console will be [[7|undefined]]. The value of `{py} x` in a Python file in the same directory will be [[defined only if it's defined in that file|7]]. 
+If you bind the value `{py} 7` to the variable `{sh} x` in your Jupyter notebook, then the value of `{py} x` in the linked console will be [[7|undefined]]. The value of `{py} x` in a Python file in the same directory will be [[defined only if it's defined in that file|7]].
 :::
 
 ---
@@ -1659,41 +1659,41 @@ Let's do a walkthrough of some basic VS Code features. We begin a VS Code sessio
 1. **File Navigation**. When you open a project folder, the *Explorer* pops open on the left side of the window. In the Explorer you can navigate the directory tree and do common file operations like adding new files, moving them around, and re-naming them. Right-clicking a file or folder brings up the available options along with keyboard shortcuts so you can learn to access them without having to right-click in the future. Clicking on a file opens it in the main window to the right. You can hide the Explorer to create more space for the main window with `{code} cmd-b`.
 
        center: figure: video(src="images/vs-code-explorer.mp4" width="75%" controls)
-      
+
 [Continue](btn:next)
 
 ---
 > id: step-command-palette
-        
-2. **Command Palette**. VS Code has enough functionality that it would be inefficient to access all of it through menus and infeasible to assign and remember keyboard shortcuts for every operation. The *Command Palette* is a way to find functions quickly based on descriptive names of those functions. For example, if you want to replace one string with another throughout a file, you can do `{code} cmd-shift-P` and start typing "replace". Use the arrow keys to select the desired function and hit `{code} enter` to run it. Note that the Command Palette displays keyboard shortcuts if you want to learn them. However, the Command Palette is fast enough that you might want to use it instead of keyboard shortcuts as your primary way of accessing some functions. 
-      
+
+2. **Command Palette**. VS Code has enough functionality that it would be inefficient to access all of it through menus and infeasible to assign and remember keyboard shortcuts for every operation. The *Command Palette* is a way to find functions quickly based on descriptive names of those functions. For example, if you want to replace one string with another throughout a file, you can do `{code} cmd-shift-P` and start typing "replace". Use the arrow keys to select the desired function and hit `{code} enter` to run it. Note that the Command Palette displays keyboard shortcuts if you want to learn them. However, the Command Palette is fast enough that you might want to use it instead of keyboard shortcuts as your primary way of accessing some functions.
+
        center: figure: video(src="images/vs-code-command-palette.mp4" width="75%" controls)
 
 [Continue](btn:next)
 
 ---
 > id: step-integrated-terminal
-      
-3. **Integrated Terminal**. VS Code has an integrated terminal that you can pop up and down using ``{code} ctrl-` `` (that's a backtick, top left corner of the keyboard). 
-      
+
+3. **Integrated Terminal**. VS Code has an integrated terminal that you can pop up and down using ``{code} ctrl-` `` (that's a backtick, top left corner of the keyboard).
+
        center: figure: video(src="images/vs-code-terminal.mp4" width="75%" controls)
-      
+
 [Continue](btn:next)
 
 ---
 > id: step-marketplace
 
-4. **Marketplace**. Much of VS Code's functionality is provided through *extensions*, which are third-party packages provided in the VS Code *Marketplace*. The Marketplace can be accessed using the square icon on the left side of the window. You can search for and install extensions with a click, and you can right-click the gear icon on an installed extension to edit the settings for that extension. You'll want to go ahead and install the Python extension. 
-      
+4. **Marketplace**. Much of VS Code's functionality is provided through *extensions*, which are third-party packages provided in the VS Code *Marketplace*. The Marketplace can be accessed using the square icon on the left side of the window. You can search for and install extensions with a click, and you can right-click the gear icon on an installed extension to edit the settings for that extension. You'll want to go ahead and install the Python extension.
+
        center: figure: video(src="images/vs-code-marketplace.mp4" width="75%" controls)
 
 [Continue](btn:next)
 
 ---
 > id: step-vscode-bookmarks
-      
+
 5. **Bookmarks**. When you're working with a large file, you'll often want to save your place so you can inspect a different part of file and quickly get back to where you were. VS Code has a bookmark system to facilitate this kind of navigation: `{code} cmd-opt-k` sets or removes a bookmark on the current line, and `{code} cmd-opt-j` and `{code} cmd-opt-l` navigate through the bookmarks forwards and backwards. You can also use bookmarks to highlight large blocks of text for copying or deleting; try "Bookmarks" in the Command Palette to see all of the available options.
-      
+
        center: figure: video(src="images/vs-code-bookmarks.mp4" width="75%" controls)
 
 [Continue](btn:next)
@@ -1702,27 +1702,27 @@ Let's do a walkthrough of some basic VS Code features. We begin a VS Code sessio
 > id: step-vscode-git-integration      
 
 6. **Git Integration**. VS Code provides a graphical user interface for performing common Git operations like staging and committing changes and resolving merge conflicts.
-      
+
 Suppose we've just run `{sh} git merge` from the command line, and conflicts were introduced in the file `{code} setup.py`. We can resolve these conflicts and commit the resolutions all in VS Code:
-      
+
     center
       figure: video(src="images/vs-code-merge-conflicts.mp4" width="75%" controls)
       figure: video(src="images/vs-code-git-commit.mp4" width="75%" controls)
-      
+
 [Continue](btn:next)
 
 ---
 > id: step-vscode-snippets
 
 7. **Snippets**. If you want to save time writing boilerplate code or text, you can bind chunks of text to short key sequences using VS Code's *snippet* mechanism. For example, you can enter a Markdown code fence if you have a snippets file with the following entry:
-      
+
        center: figure: img(src="images/fence.png" width="75%")
-      
+
 The dollar-sign expressions indicate points where the user is prompted for text when the snippet is triggered. These points are visited in order starting from `{code} ＄1`, with `{code} ＄0` indicating the location of the cursor when the snippet is exited.
-      
+
     center: figure: video(src="images/vs-code-snippets.mp4" width="75%" controls)
-      
-Many extensions come with snippets, and you can create your own by creating a new global snippet configuration file by searching in the Command Palette for "Configure User Snippets". 
+
+Many extensions come with snippets, and you can create your own by creating a new global snippet configuration file by searching in the Command Palette for "Configure User Snippets".
 
 [Continue](btn:next)
 
@@ -1735,21 +1735,21 @@ Many extensions come with snippets, and you can create your own by creating a ne
 :::
 
 [Continue](btn:next)
-      
+
 ---
 > id: python-ide
 ### Python IDE
 
-An **integrated development environment** (or *IDE*) is a full-featured environment for writing code. Advanced features that distinguish an IDE from a plain text editor include autocompletion, variable inspection, debugging, and [refactoring](gloss:refactoring) and [linting](gloss:linting) tools. 
+An **integrated development environment** (or *IDE*) is a full-featured environment for writing code. Advanced features that distinguish an IDE from a plain text editor include autocompletion, variable inspection, debugging, and [refactoring](gloss:refactoring) and [linting](gloss:linting) tools.
 
 [Continue](btn:next)
 
 ---
 > id: step-vscode-python-extension
 
-The most popular extension in the VS Code Marketplace, the Microsoft-supported *Python* extension, effectively turns VS Code into a full-fledged IDE for Python. Let's take a tour of the most important features. Begin by opening a new buffer (`{code} cmd-n`) and switching to Python mode (click on "Plain Text" in the bottom left corner and choose Python from the menu). It's important to [install](gloss:vscode-install) Python from the Marketplace if you haven't already. 
+The most popular extension in the VS Code Marketplace, the Microsoft-supported *Python* extension, effectively turns VS Code into a full-fledged IDE for Python. Let's take a tour of the most important features. Begin by opening a new buffer (`{code} cmd-n`) and switching to Python mode (click on "Plain Text" in the bottom left corner and choose Python from the menu). It's important to [install](gloss:vscode-install) Python from the Marketplace if you haven't already.
 
-1. **Code execution**. `{code} shift-enter` sends the highlighted text to a kernel for execution. Lines containing `{py} #%%` can be used to split your code into Jupyter-like cells, so you don't have to highlight the whole block you want to execute. We recommend that you [use a Jupyter kernel](gloss:vscode-jupyter-option) rather than a Terminal for code execution. 
+1. **Code execution**. `{code} shift-enter` sends the highlighted text to a kernel for execution. Lines containing `{py} #%%` can be used to split your code into Jupyter-like cells, so you don't have to highlight the whole block you want to execute. We recommend that you [use a Jupyter kernel](gloss:vscode-jupyter-option) rather than a Terminal for code execution.
 
        center: figure: video(src="images/vs-code-code-execution.mp4" width="75%" controls)
 
@@ -1761,7 +1761,7 @@ The most popular extension in the VS Code Marketplace, the Microsoft-supported *
 
        center: figure: video(src="images/vs-code-variable-inspection.mp4" width="75%" controls)
 
-4. **Debugging**. VS Code provides several tools for inspecting the execution of a Python program as it runs. These tools are organized in a unified interface called a *debugger*. To debug a Python file in VS Code, begin by clicking in the gutter (the region left of the line numbers) to place red dots indicating **breakpoints** on specific lines where you would like to pause the interpreter. Then click the bug icon in the panel on the left. In the *Watch* section, you can any expressions whose values you would like to be able to monitor as the debugger runs. Press the green play button to begin debugging, and use the controls to navigate. 
+4. **Debugging**. VS Code provides several tools for inspecting the execution of a Python program as it runs. These tools are organized in a unified interface called a *debugger.* To debug a Python file in VS Code, begin by clicking in the gutter (the region left of the line numbers) to place red dots indicating **breakpoints** on specific lines where you would like to pause the interpreter. Then click the bug icon in the panel on the left. In the *Watch* section, you can any expressions whose values you would like to be able to monitor as the debugger runs. Press the green play button to begin debugging, and use the controls to navigate.
 
        center: figure: video(src="images/vs-code-debugging.mp4" width="75%" controls)
 
@@ -1773,7 +1773,7 @@ The most popular extension in the VS Code Marketplace, the Microsoft-supported *
 
        center: figure: video(src="images/vs-code-linting.mp4" width="75%" controls)
 
-7. **Testing**. VS Code provides support for `{code} pytest` for unit testing. The process is designed to involve minimal [boilerplate](gloss:boilerplate): you write test functions whose names begin with `{code} test_` in files whose names begin with `{code} test_`, and VS Code will discover them for you. From the command palette, run "Python: Discover Tests". The first time you run this command, you'll need to configure it. Just select "pytest" and follow the instructions. 
+7. **Testing**. VS Code provides support for `{code} pytest` for unit testing. The process is designed to involve minimal [boilerplate](gloss:boilerplate): you write test functions whose names begin with `{code} test_` in files whose names begin with `{code} test_`, and VS Code will discover them for you. From the command palette, run "Python: Discover Tests". The first time you run this command, you'll need to configure it. Just select "pytest" and follow the instructions.
 
 After VS code has discovered your tests, you can run all tests with a button at the bottom of the window. You can also run individual tests using a button which appears in the editor above the function.
 
@@ -1783,17 +1783,17 @@ After VS code has discovered your tests, you can run all tests with a button at 
 **Exercise**  
 1. If you want to understand an algorithm by implementing it in Python and watching it execute line-by-line, you can use the [[debugging|linting|testing]] feature of VS Code.
 2. NumPy arrays can be difficult to read in the format in which they are printed by default at the command line in Python. To see an easier-to-read version, use [[the variable inspector|code completion|the debugger]].
-3. Replacing a repeated expression with a variable is an example of [[refactoring|linting|debugging]]. 
-4. To send Python code to the kernel for execution, do [[shift-enter|enter|cmd-enter]]. 
+3. Replacing a repeated expression with a variable is an example of [[refactoring|linting|debugging]].
+4. To send Python code to the kernel for execution, do [[shift-enter|enter|cmd-enter]].
 5. Identifying style improvements in code is called [[linting|refactoring|debugging]].
-6. To write unit tests in Python using `{sh} pytest`, you just have to write functions that begin with [[test_]] in files that begin with [[test_]]. 
+6. To write unit tests in Python using `{sh} pytest`, you just have to write functions that begin with [[test_]] in files that begin with [[test_]].
 :::
 
 ---
 > id: gnu-make
 ## Make
 
-In a typical coding project, some files will be processed to produce other files as output. For example, programs written in C are compiled into [binary](gloss:binary-file) executable files. LaTeX files are compiled to PDF files. Python files process raw data files and produce clean versions of the data. The clean versions of the data are in turn used to produce analysis and visualizations. 
+In a typical coding project, some files will be processed to produce other files as output. For example, programs written in C are compiled into [binary](gloss:binary-file) executable files. LaTeX files are compiled to PDF files. Python files process raw data files and produce clean versions of the data. The clean versions of the data are in turn used to produce analysis and visualizations.
 
 [Continue](btn:next)
 
@@ -1807,7 +1807,7 @@ We call the output files *target* files, and the input files are called *source*
 ---
 > id: step-makefile
 
-There are at least two ways to address this problem: (1) document the processing steps in a README file, or (2) write a *Makefile*, which can be processed by a command-line utility called *make* to actually carry out the processing steps. The second approach documents the source-target relationships *and* makes them executable. 
+There are at least two ways to address this problem: (1) document the processing steps in a README file, or (2) write a *Makefile*, which can be processed by a command-line utility called *make* to actually carry out the processing steps. The second approach documents the source-target relationships *and* makes them executable.
 
 [Continue](btn:next)
 
@@ -1825,8 +1825,8 @@ model.pkl : model.py clean-data.csv
 
 clean-data.csv : clean-data.py raw-data.csv
     python clean-data.py
-  
-clean : 
+
+clean :
     rm model.pkl
     rm clean-data.csv
 
@@ -1839,21 +1839,21 @@ clean :
 ---
 > id: step-makefile-entry-formula
 
-The basic formula for a Makefile entry is 
+The basic formula for a Makefile entry is
 
 ``` makefile
 target : dependencies
     recipe
 ```
 
-The command-line function `{code} make` looks at whether the dependencies have changed since the target was last built, if they have then it runs the commands in the corresponding recipe. 
+The command-line function `{code} make` looks at whether the dependencies have changed since the target was last built, if they have then it runs the commands in the corresponding recipe.
 
 [Continue](btn:next)
 
 ---
 > id: step-make-phony-targets
 
-The `{code} target` can either be an actual target file or a *phony* target, which is a name used to refer to a given processing step. The phony targets should be declared in a line that begins `{code} .PHONY` and lists the phony targets. It's conventional to include the phony targets `{code} all` and `{code} clean`. These correspond to the operations "build everything" and "remove the target files". 
+The `{code} target` can either be an actual target file or a *phony* target, which is a name used to refer to a given processing step. The phony targets should be declared in a line that begins `{code} .PHONY` and lists the phony targets. It's conventional to include the phony targets `{code} all` and `{code} clean`. These correspond to the operations "build everything" and "remove the target files".
 
 
 [Continue](btn:next)
@@ -1861,7 +1861,7 @@ The `{code} target` can either be an actual target file or a *phony* target, whi
 ---
 > id: step-specific-targets
 
-Specific targets can be invoked at the command line by running `{code} make targetname`. For example, `{code} make all` builds everything and `{code} make clean` removes the target files. The target may be omitted, in which case it defaults to the first target in the file. 
+Specific targets can be invoked at the command line by running `{code} make targetname`. For example, `{code} make all` builds everything and `{code} make clean` removes the target files. The target may be omitted, in which case it defaults to the first target in the file.
 
 ::: .exercise
 **Exercise**  
@@ -1869,8 +1869,8 @@ Write a Makefile which runs `{code} pdflatex my-document.tex` to produce `{code}
 :::
 
     x-quill
-    
-*Solution.* We remove the auxiliary files with `{code} clean` and make `{code} all` include just the target `{code} my-document.pdf`: 
+
+*Solution.* We remove the auxiliary files with `{code} clean` and make `{code} all` include just the target `{code} my-document.pdf`:
 
 ``` makefile
 
@@ -1879,10 +1879,10 @@ all : my-document.pdf
 my-document.pdf : my-document.tex
     pdflatex my-document.tex
 
-clean : 
+clean :
     rm my-document.aux
     rm my-document.log
-  
+
 .PHONY all clean
 
 ```
@@ -1891,41 +1891,41 @@ clean :
 > id: docker-section
 ## Docker
 
-If you've had the experience of trying to get programs and configuration files installed the same way on multiple computers, then you can appreciate the appeal of Docker: what Conda and Pip provide to Python in environment reproducibility, Docker achieves for *anything you can run on Linux*. This is a big deal in the software engineering world, because installation wrangling can suck up a lot of developer time. It's also valuable to scientists and data scientists, because research can be reproduced with rock solid reliability with the execution of a single OS-independent command. These benefits have driven the steady rise in popularity that Docker has enjoyed since it was introduced in 2013. 
+If you've had the experience of trying to get programs and configuration files installed the same way on multiple computers, then you can appreciate the appeal of Docker: what Conda and Pip provide to Python in environment reproducibility, Docker achieves for *anything you can run on Linux*. This is a big deal in the software engineering world, because installation wrangling can suck up a lot of developer time. It's also valuable to scientists and data scientists, because research can be reproduced with rock solid reliability with the execution of a single OS-independent command. These benefits have driven the steady rise in popularity that Docker has enjoyed since it was introduced in 2013.
 
 [Continue](btn:next)
 
 ---
 > id: step-docker-overview
 
-To oversimplify a bit, using Docker involves figuring out how to build your desired computational environment by running a sequence of shell commands starting from a bare-bones Linux operating system. You store this sequence of commands in a text file called **Dockerfile**, and the results achieved by performing the specified installation steps are stored as a Docker **image**. Docker (the company) provides a free cross-platform application called Docker Desktop which allows any user to download Docker images from a repository of published Dockerfiles and run them on their own machine. These image instances, called **containers**, run in their own isolated filesystem on the user's computer. 
+To oversimplify a bit, using Docker involves figuring out how to build your desired computational environment by running a sequence of shell commands starting from a bare-bones Linux operating system. You store this sequence of commands in a text file called **Dockerfile**, and the results achieved by performing the specified installation steps are stored as a Docker **image**. Docker (the company) provides a free cross-platform application called Docker Desktop which allows any user to download Docker images from a repository of published Dockerfiles and run them on their own machine. These image instances, called **containers**, run in their own isolated filesystem on the user's computer.
 
 [Continue](btn:next)
 
 ---
 > id: docker-no-assumptions
 
-Since no assumptions are made about anything else on the user's system, Docker applications reliably run the same way for everyone. Furthermore, Docker containers are *not* virtual machines, so they are lightweight and can run code with near-native performance. They are especially useful in cloud computing contexts, because you can debug a system on your computer and deploy it to the cloud without worrying about how to configure everything to work in the cloud the same way it works on your personal machine. 
+Since no assumptions are made about anything else on the user's system, Docker applications reliably run the same way for everyone. Furthermore, Docker containers are *not* virtual machines, so they are lightweight and can run code with near-native performance. They are especially useful in cloud computing contexts, because you can debug a system on your computer and deploy it to the cloud without worrying about how to configure everything to work in the cloud the same way it works on your personal machine.
 
 [Continue](btn:next)
 
 ---
 > id: docker-desktop-example
 
-To give you a sense of how profound this can be, if you install Docker Desktop and run 
+To give you a sense of how profound this can be, if you install Docker Desktop and run
 
 ``` code
 docker run -p 8888:8888 jupyter/datascience-notebook
 ```
 
-then several Docker images that are a part of the `{code} datascience-notebook` stack published by the Jupyter team will be downloaded to your machine. The download takes a while, but when it's complete, you will have a running Jupyter instance accessible at `{code} localhost:8888` in your browser (the `{code} -p 8888:8888` part of the command connects the port 8888 in the container to the port 8888 in the host operating system). This notebook will have Python, R, and Julia kernels, each complete with curated sets of data science packages. It would take much more work to follow a list of installation instructions to achieve the same setup using native installations. Furthermore, the time cost of downloading images is incurred only the first time you run the command, because downloaded images are saved on your computer for fast loading in the future. 
+then several Docker images that are a part of the `{code} datascience-notebook` stack published by the Jupyter team will be downloaded to your machine. The download takes a while, but when it's complete, you will have a running Jupyter instance accessible at `{code} localhost:8888` in your browser (the `{code} -p 8888:8888` part of the command connects the port 8888 in the container to the port 8888 in the host operating system). This notebook will have Python, R, and Julia kernels, each complete with curated sets of data science packages. It would take much more work to follow a list of installation instructions to achieve the same setup using native installations. Furthermore, the time cost of downloading images is incurred only the first time you run the command, because downloaded images are saved on your computer for fast loading in the future.
 
 [Continue](btn:next)
 
 ---
 > id: docker-disadvantages
 
-Disadvantages of using Docker include: (1) running a given piece of software both through Docker and natively on your operating system requires having two installations of it, and (2) care must be taken to connect the container to your operating system so you can interact with it (for example, using Jupyter notebooks, or saving files from within the container and having them show up in your primary file system). 
+Disadvantages of using Docker include: (1) running a given piece of software both through Docker and natively on your operating system requires having two installations of it, and (2) care must be taken to connect the container to your operating system so you can interact with it (for example, using Jupyter notebooks, or saving files from within the container and having them show up in your primary file system).
 
 [Continue](btn:next)
 
@@ -1936,25 +1936,25 @@ Disadvantages of using Docker include: (1) running a given piece of software bot
 To see how Docker works and how we might use it in practice, let's take a closer look at the Jupyter data-science notebook. When we run `{code} docker run -p 8888:8888 jupyter/datascience-notebook` from the command line, we're telling Docker that we want a container running the `{code} jupyter/datascience-notebook` image. Docker Desktop is able to find that image because it's registered on [**Docker Hub**](https://hub.docker.com/r/jupyter/datascience-notebook/). If we take a look at the [Dockerfile](https://hub.docker.com/r/jupyter/datascience-notebook/dockerfile) used to build that image, we see a sequence of Dockerfile commands beginning with all-caps instructions. The most important ones are:
 
 * **FROM**. Specifies an image to build on top of. This can be an image from Docker Hub or one you've built locally from another Dockerfile.
-* **RUN**. Executes shell commands. Useful for downloading files from the internet and performing other installation steps. 
-* **COPY**. Copy files from the directory containing the Dockerfile into the image. Useful for configuration files or shell scripts (so you don't have to put all of the instructions into the Dockerfile). 
+* **RUN**. Executes shell commands. Useful for downloading files from the internet and performing other installation steps.
+* **COPY**. Copy files from the directory containing the Dockerfile into the image. Useful for configuration files or shell scripts (so you don't have to put all of the instructions into the Dockerfile).
 * **CMD**. Specifies a default command to run when executing a container. The most common default is `{code} bash` (so running a container drops you into a shell session), but the Jupyter notebook images launch Jupyter Lab so you can connect to the container using your browser.
-* **EXPOSE**. Make a container port available for the host operating system to connect to. For Jupyter, it's customary to use port `{code} 8888`. 
-* **USER**. Some installation steps require enhanced filesystem permissions; the Dockerfile solution is to switch to the root user with the line `{code} USER root`. 
+* **EXPOSE**. Make a container port available for the host operating system to connect to. For Jupyter, it's customary to use port `{code} 8888`.
+* **USER**. Some installation steps require enhanced filesystem permissions; the Dockerfile solution is to switch to the root user with the line `{code} USER root`.
 
 [Continue](btn:next)
 
 ---
 > id: step-docker-our-own-Dockerfile
 
-Let's use some of these command to make our own Docker image for a [toy](gloss:toy) data science project. We'll structure our project using a simplified version of the [Data Science Cookiecutter](https://github.com/drivendata/cookiecutter-data-science). We begin by creating a directory structure like this: 
+Let's use some of these command to make our own Docker image for a [toy](gloss:toy) data science project. We'll structure our project using a simplified version of the [Data Science Cookiecutter](https://github.com/drivendata/cookiecutter-data-science). We begin by creating a directory structure like this:
 
 ``` code
 .
 ├── README.md ← Explanation of the project and instructions on how to use
 ├── Dockerfile ← Script to build the Docker image
 ├── Makefile ← Encode project dependency structure for reproducibility
-├── data 
+├── data
 │   ├── raw ← stores original data (untouched)
 │   └── processed ← stores files computed from original data
 ├── models ← stores Python objects for trained models
@@ -1971,12 +1971,12 @@ Let's use some of these command to make our own Docker image for a [toy](gloss:t
         └── visualize.R
 ```
 
-You can do this by cloning a Git repo prepared for this purpose: 
+You can do this by cloning a Git repo prepared for this purpose:
 ``` code
 git clone git@github.com:data-gymnasia/data-science-docker.git
 ```
 
-In our Dockerfile we begin with the following contents: 
+In our Dockerfile we begin with the following contents:
 
 ``` code
 FROM jupyter/datascience-notebook
@@ -1991,13 +1991,13 @@ COPY . project
 RUN cd project/data/raw && \
     wget https://browndsi.github.io/data/iris.csv
 
-# Enter bash session in the project directory when 
+# Enter bash session in the project directory when
 # the container is run
 WORKDIR project
 CMD /bin/bash
 ```
 
-We build on the Jupyter `{code} datascience-notebook` image, copy our local files into the image, acquire the data from the internet, and start the container in a `{code} bash` session. Then we build the docker image by running (from the top level of the directory) 
+We build on the Jupyter `{code} datascience-notebook` image, copy our local files into the image, acquire the data from the internet, and start the container in a `{code} bash` session. Then we build the docker image by running (from the top level of the directory)
 
 ``` code
 docker build -t myproject .
@@ -2028,7 +2028,7 @@ RUN fix-permissions project && \
     wget https://browndsi.github.io/data/iris.csv
 USER jovyan
 
-# Enter bash session in the project directory when 
+# Enter bash session in the project directory when
 # the container is run
 WORKDIR project
 CMD /bin/bash
@@ -2073,14 +2073,14 @@ reports: reports/report.tex predict figures
 	pdflatex report.tex
 ```
 
-We can visualize the dependency structure described by this Makefile as a directed graph: 
+We can visualize the dependency structure described by this Makefile as a directed graph:
 
     center: figure: img(src="images/project-dag.svg" width="200px")
 
 We can build the whole project from the Docker container with `{code} make all`. However, when we do that we realize that the `{code} joblib` package (which is being used by some of the Python files) isn't available in the Jupyter `{code} datascience-notebook` docker image. Therefore, we need to put that insstallation step into our Dockerfile and rebuild. We add the lines
 
 ``` code
-# Install joblib for storing Python models. The 
+# Install joblib for storing Python models. The
 # '--yes' option preempts "proceed?" questions
 RUN conda install joblib --yes
 ```
@@ -2095,9 +2095,9 @@ Building and running again, we can do `{code} make all` from inside the running 
 [Continue](btn:next)
 
 ---
-> id: step-docker-cp 
+> id: step-docker-cp
 
-The command for transferring files out of containers is `{code} docker cp`. We'll need to know the name of the container, which we can get using `{code} docker ps` (note that this has to be run from your OS, so you should open a separate Terminal tab). In the last column of the `{code} docker ps` output, we see a random name like `{code} great_mayer`. Then you can copy the file to `{code} ~/Desktop` (for example) using 
+The command for transferring files out of containers is `{code} docker cp`. We'll need to know the name of the container, which we can get using `{code} docker ps` (note that this has to be run from your OS, so you should open a separate Terminal tab). In the last column of the `{code} docker ps` output, we see a random name like `{code} great_mayer`. Then you can copy the file to `{code} ~/Desktop` (for example) using
 
 ``` code
 docker cp great_mayer:/home/jovyan/project/reports/report.pdf ~/Desktop
@@ -2110,7 +2110,7 @@ We could have given our project a name with the `{code} --name` option when we d
 ---
 > id: step-docker-volumes
 
-The `{code} docker cp` utility can be inadequate for extensive file transferring between the container and host OS. Docker supports a more robust approach using **volumes**, which are directories shared between the container and host. You can read more about volumes [here](https://docs.docker.com/engine/reference/builder/#volume). 
+The `{code} docker cp` utility can be inadequate for extensive file transferring between the container and host OS. Docker supports a more robust approach using **volumes**, which are directories shared between the container and host. You can read more about volumes [here](https://docs.docker.com/engine/reference/builder/#volume).
 
 [Continue](btn:next)
 

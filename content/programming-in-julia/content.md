@@ -849,7 +849,7 @@ Consider nesting if-else blocks inside of an if-else block.
 > id: functions
 ## Functions
 
-[Functions](gloss:function-julia) can be used to organize code and achieve *separation of concerns*: once a function is written, it may be relied upon to perform its designated task without the programmer having to think about *how* it accomplishes that task. This conceptual aid is crucial for writing maintainable code to solve large, complex problems.
+[Functions](gloss:function-julia) can be used to organize code and achieve *separation of concerns:* once a function is written, it may be relied upon to perform its designated task without the programmer having to think about *how* it accomplishes that task. This conceptual aid is crucial for writing maintainable code to solve large, complex problems.
 
 [Continue](btn:next)
 

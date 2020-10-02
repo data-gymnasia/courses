@@ -3604,7 +3604,7 @@ For simplicity, you may assume that $n$ is even.
 
 *Solution.* Executing the cells, we see that the height of the tallest stick indeed goes to zero as the argument to `{code} binom_stickplot` is increased.
 
-This finding does not contract the central limit theorem, since convergence in distribution is not based on convergence of the amount of probability mass at individual points but rather on the amount of probability mass assigned to *intervals*. In any positive-width interval, the distribution of $S\_n^\*$ has many points with nonzero probability mass. Since there are many of them, they can be small individually while nevertheless totaling up to a non-small mass.
+This finding does not contract the central limit theorem, since convergence in distribution is not based on convergence of the amount of probability mass at individual points but rather on the amount of probability mass assigned to _intervals_. In any positive-width interval, the distribution of $S\_n^\*$ has many points with nonzero probability mass. Since there are many of them, they can be small individually while nevertheless totaling up to a non-small mass.
 
 [Continue](btn:next)
 
