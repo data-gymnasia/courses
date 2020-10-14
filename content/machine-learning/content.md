@@ -766,7 +766,7 @@ minimizes the probability of misclassification. In other words, it is the classi
   \mathbb{P}(h(X) = -1 \text{ and }Y = +1)
 ```
 
-is as small as possible. However, the two types of misclassification often have different real-world consequences, and we might therefore wish to weight them differently. Given $t \geq 0$, we define the classifier
+is as small as possible. However, the two types of misclassification often have different real-world consequences, and we might therefore wish to weight them differently. Given $t \geq 0$, we define the **likelihood ratio classifier**
 
 ``` latex
   h_t(\mathbf{x}) = \begin{cases}
