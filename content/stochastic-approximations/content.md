@@ -147,7 +147,7 @@ $n$ needs to be larger so that the error between $I$ and $I_n$ remains small.
 [Continue](btn:next)
 
 ---
-> id: step-4
+> id: step-4a
 
 Since the accuracy of our estimate is dependent on the variance of the
 estimator, we would like to make the variance as small as possible. The variance

@@ -34,10 +34,10 @@ export class QuillComponent extends CustomElementView {
 
   async ready() {
     await loadEditorAssets();
-    Browser.ready(() => this.setup());
+    Browser.ready(() => this.build());
   }
 
-  setup() {
+  build() {
     const $step = this.getParentModel().$step as Step|undefined;
 
     this.quill = new window.Quill($N('div', {}, this)._el, {
@@ -69,5 +69,9 @@ export class QuillComponent extends CustomElementView {
         $step.storeData('quill', this.quill.getText());
       }
     });
+  }
+
+  setup($step: Step, goal: string) {
+    this.one('submit', () => $step.score(goal));
   }
 }

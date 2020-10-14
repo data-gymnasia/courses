@@ -1148,7 +1148,7 @@ As in the previous example, we'll use a Gibbs sampler to combine HMC and particl
       | chains = sample(HMM(X), G, 50)
       | plot(chains[:q])
 
-      [Continue](btn:next)
+[Continue](btn:next)
 
 ---
 > id: step-congratulations-bayesian
