@@ -89,7 +89,8 @@ export function gaussiandensity_mle($step: Step) {
 
   $step.model.watch((s: any) => {
     const fn = pdf(s.μ, s.σ);
-    s.$step.model.LL = xs.map(fn).map(Math.log).reduce((a, b) => a + b);
+    const loglikelihood = xs.map(fn).map(Math.log).reduce((a, b) => a + b);
+    $step.model.LL = Math.round(100*loglikelihood)/100;
     //$chart.mathBounds = new Bounds(55, 75, 0, 0.5);
     $chart.setFunctions(fn);
     $chart.drawPoints(points);
@@ -110,7 +111,7 @@ export function mleCaution($step: Step) {
 
   $step.model.watch((s: any) => {
     const fn = twoStep(s.a, s.b, s.c, s.d, s.γ);
-    s.$step.model.likelihood = xs.map(fn).reduce((a, b) => a * b);
+    $step.model.likelihood = xs.map(fn).reduce((a, b) => a * b);
     $chart.setFunctions(fn);
     $chart.drawPoints(points);
   });

@@ -22,7 +22,7 @@ export function logisticAnimationExercise($step: Step) {
         .reduce((a, b) => a + b, 0);
     var zerosloss = zeros.map(x => Math.log(1 / (1 - fn(x))))
         .reduce((a, b) => a + b, 0);
-    s.$step.model.loss = Math.round(10 ** 3 * (onesloss + zerosloss)) / 10 ** 3;
+    $step.model.loss = Math.round(10 ** 3 * (onesloss + zerosloss)) / 10 ** 3;
     $chart.setFunctions(fn);
     $chart.drawPoints(points0);
     $chart.drawPoints(points1);

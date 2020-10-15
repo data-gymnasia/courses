@@ -1220,7 +1220,7 @@ Adjust the knobs to get the goodness score as high as possible (hint: you can ge
 
 {.text-center} `σ =`${σ}{σ|2|2,8,0.05}
 
-{.text-center} log likelihood = ${Math.round(100*LL)/100}
+{.text-center} log likelihood = ${LL}
 
     x-coordinate-system(width=600 height=400 x-axis="55,100,5" y-axis="0,0.3,0.1")
 
