@@ -1429,7 +1429,7 @@ Show that it is not possible to estimate the mean of a distribution in a way tha
 ---
 > id: step-MLE-optimality-solution
 
-*Solution.* The sample mean is the maximum likelihood estimator, and it converges to the mean at a rate proportional to the inverse square root of the number of observations. Therefore, there is not another estimator which converges with an asymptote rate faster than that.
+*Solution.* The sample mean is the maximum likelihood estimator, and it converges to the mean at a rate proportional to the inverse square root of the number of observations. Therefore, there is not another estimator which converges with an asymptotic rate faster than that.
 
 [Continue](btn:next)
 
@@ -1439,8 +1439,8 @@ Show that it is not possible to estimate the mean of a distribution in a way tha
 
 The maximum likelihood estimator is not a panacea. We've already seen that the maximum likelihood estimator can be biased (the sample maximum for the family of uniform distributions on $[0,b]$, where $b \in \mathbb{R}$). There are several other issues that can arise when maximizing likelihoods.
 
-* **Computational difficulties**. It might be difficult to work out where the maximum of the likelihood occurs, either analytically or numerically. This would be a particular concern in high dimensions (that is, if we have many parameters) and if the maximum likelihood function is [[concave|nonconcave|differentiable]].
-* **Misspecification**. The MLE may be inaccurate if the distribution of the samples is not in the specified parametric family. For example, if we assume the underlying distribution is Gaussian, when in fact its shape is not even close to that of a Gaussian, we very well might get unreasonable results.
+* **Computational difficulties**. It might be difficult to work out where the maximum of the likelihood occurs, either analytically or numerically. This would be a particular concern in high dimensions (that is, if we have many parameters) and if the maximum likelihood function is [[non-concave|differentiable|concave]].
+* **Misspecification**. The MLE may be inaccurate if the distribution of the observations is not in the specified parametric family. For example, if we assume the underlying distribution is Gaussian, when in fact its shape is not even close to that of a Gaussian, we very well might get unreasonable results.
 * **Unbounded likelihood**. If the likelihood function is not bounded, then $\widehat{\theta}\_{\mathrm{MLE}}$ is not even defined:
 
 ::: .exercise
@@ -1698,7 +1698,7 @@ The **random permutation test** is applicable when the null hypothesis is that t
 
 ::: .example
 **Example**  
-Suppose the heights of the Romero sons are 72, 69, 68, and 66 inches, and the heights of the Larsen sons are 70, 65, and 64 inches. Consider the null hypothesis that the height distributions for the two families are the same, with the alternative hypothesis that they are not. Determine whether a random permutation test applied to the absolute sample mean difference rejects the null hypothesis at significance level $\alpha = 5\%$.
+Suppose the heights of the Romero sons are 72, 69, 68, and 66 inches, and the heights of the Larsen sons are 70, 65, and 64 inches. Consider the null hypothesis that the height distributions for the two families are the same, with the alternative hypothesis that they are not. Determine whether a random permutation test applied to the absolute sample mean difference rejects the null hypothesis at significance level $\alpha = 0.05$.
 :::
 
 
