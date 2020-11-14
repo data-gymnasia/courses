@@ -3,8 +3,8 @@
 // =============================================================================
 
 
-import {CustomElementView, register, loadScript, $N, $, Browser} from '@mathigon/boost';
-import {Step} from '../types';
+import {CustomElementView, register, loadScript, $N, $} from '@mathigon/boost';
+import {UserData, Step} from '../types';
 
 
 declare global {
@@ -32,13 +32,8 @@ async function loadEditorAssets() {
 export class QuillComponent extends CustomElementView {
   private quill: any;
 
-  async ready() {
+  async setup($step: Step, goal: string, userData?: UserData) {
     await loadEditorAssets();
-    Browser.ready(() => this.build());
-  }
-
-  build() {
-    const $step = this.getParentModel().$step as Step|undefined;
 
     this.quill = new window.Quill($N('div', {}, this)._el, {
       modules: {
@@ -49,10 +44,8 @@ export class QuillComponent extends CustomElementView {
       theme: 'snow'
     });
 
-    if ($step && $step.initialData && $step.initialData.data) {
-      const initialText = $step.initialData.data.quill;
-      if (initialText) this.quill.setText(initialText);
-    }
+    let initialText = userData?.data?.quill || '';
+    if (initialText) this.quill.setText(initialText);
 
     // Set a maximum length for the editor. Significantly larger requests will
     // be rejected by the Mathigon server.
@@ -64,14 +57,8 @@ export class QuillComponent extends CustomElementView {
     const $button = $N('button', {class: 'btn btn-red', text: 'Submit'}, this);
     $button.on('click', () => {
       this.trigger('submit');
-      if ($step) {
-        $step.score('quill');
-        $step.storeData('quill', this.quill.getText());
-      }
+      $step.score(goal);
+      $step.storeData('quill', this.quill.getText());
     });
-  }
-
-  setup($step: Step, goal: string) {
-    this.one('submit', () => $step.score(goal));
   }
 }
