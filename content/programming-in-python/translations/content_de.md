@@ -457,8 +457,8 @@ Textdaten werden durch eine Folge von Zeichen dargestellt, die als **String** be
       | Sie kann sogar "Anführungszeichen" enthalten, kein Problem.
       | """
       | 
-      | "pre(python-executable)
-      | Das ist eine gewöhnliche Zeichenkette. \"Anführungszeichen\" erfordern hier einen Backslash."
+    pre(python-executable)
+      | "Das ist eine gewöhnliche Zeichenkette. \"Anführungszeichen\" erfordern hier einen Backslash."
 
 [Weiter](btn:next)
 
@@ -559,7 +559,7 @@ Wandelt Python Typen um wenn man sie miteinander vergleicht? Mit anderen Worten,
 :::
 
     pre(python-executable)
-      | 1 == 1,0
+      | 1 == 1.0
 
 ---
 > id: step-49
@@ -1082,7 +1082,7 @@ _Tipp_: Was meinst du, mit welchem Operator Strings alphabetisch verglichen werd
 > id: packages
 > section: packages
 
-Ein [**Paket**](gloss:package) ist eine Sammlung von Python-Dateien, die Funktionen zur Verfügung stellen, die über die Kernfunktionen hinausgehen, die in jedem Python-Programm verfügbar sind. Pakete bewirken eine Trennung der Anliegen auf Gemeindeebene: Jemand anderes löst ein Problem von allgemeinem Interesse, und dann können Sie seine Arbeit nutzen und sich darauf konzentrieren, es auf das anstehende Problem anzuwenden.
+Ein [**Paket**](gloss:package) ist eine Sammlung von Python-Dateien, die Funktionen zur Verfügung stellen, die über die Kernfunktionen hinausgehen, die in jedem Python-Programm verfügbar sind. Packages achieve separation of concerns at the community level: someone else solves a problem of general interest, and then you can leverage their work and focus on applying it to the problem at hand.
 
 Many Python packages are available in every standard distribution of Python and can be used without having to worry about whether they're installed. These packages make up the **standard library**. To see a list of standard library packages, visit the standard library page of the [Python documentation](https://docs.python.org/3/library/). Here's an example showing how to import the  `{py} math` package and use the `{py} sqrt` function it contains: 
 
