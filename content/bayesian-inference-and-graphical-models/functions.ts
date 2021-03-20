@@ -1,4 +1,5 @@
-import {CoordinateSystem, Step} from '../shared/types';
+import {Step} from '@mathigon/studio';
+import {CoordinateSystem} from '../shared/components/chart';
 import '../shared/shared';
 
 function pdfBeta(α: number, β: number) {

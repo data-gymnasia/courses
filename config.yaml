@@ -1,0 +1,31 @@
+siteName: Data Gymnasia
+description: Data science courses developed by Samuel S. Watson and the Brown University Data Science Initiative
+locales: [en, de]
+
+header:
+  logo: logo.svg
+  titleString: Data Gymnasia
+
+search:
+  enabled: false
+
+tutor:
+  name: Bruno
+  icon: bruno.svg
+
+footer:
+  rows:
+    - links:
+        - title: GitHub
+          url: https://github.com/mathigon/textbooks
+        - title: Brown University Data Science Intiative
+          url: https://www.brown.edu/initiatives/data-science/home
+        - title: Live Website
+          url: https://mathigon.org/data-gymnasia
+  copyright: CC-BY-2.0 License
+
+social:
+  facebook:
+    page: https://www.facebook.com/BrownUniversity
+  twitter:
+    handle: https://twitter.com/BrownUniversity

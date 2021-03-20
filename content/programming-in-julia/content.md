@@ -1,7 +1,11 @@
-
 # Programming in Julia
 
 > id: intro
+> description: An introduction to programming, including types, functions, multidimensional arrays, tuples, dictionaries, flow control, and plotting.
+> color: "#bf3131"
+> next: numerical-computing
+> author: Samuel S. Watson
+
 ## Introduction
 
 In subsequent Data Gymnasia courses, we will develop mathematical ideas in concert with corresponding computational skills. This relationship is symbiotic: writing programs is an important ingredient for applying mathematical ideas to real-world problems, but it also helps us explore and visualize math ideas in ways that go beyond what we could achieve with pen, paper, and imagination.

@@ -1,7 +1,11 @@
-
 # Utilities
 
 > id: intro
+> description: Learn about Unix, Git, Conda, Jupyter, VS Code and Markdown.
+> color: a53a5b
+> next: data-and-society
+> author: Samuel S. Watson
+
 ## Introduction
 
 When it comes to data science, **tools matter**. Some workflows facilitate efficiency and insight, while others can leave you spending most of your time putting out fires. To borrow a familiar example from document editing, it might take 15 minutes to go through a report and capitalize every instance of a particular word, but your editor's find-and-replace feature can do the job with no errors and in less than [[10|100|1000]] seconds. Merely being aware of the find-and-replace concept leads to significant time savings, because you can look up how to do it if you don't remember.

@@ -5,6 +5,7 @@
 
 import {loadScript} from '@mathigon/boost';
 import './components/quill';
+import './components/chart';
 
 
 declare global {
@@ -15,9 +16,9 @@ declare global {
 }
 
 
-loadScript('/resources/shared/static/prism.js');
+loadScript(' /content/shared/static/prism.js');
 
-loadScript('/resources/shared/static/juniper.min.js').then(() => {
+loadScript(' /content/shared/static/juniper.min.js').then(() => {
   if (window.CodeMirror) window.CodeMirror.defaults.indentUnit = 4;
   new window.Juniper({
     selector: '[python-executable]',

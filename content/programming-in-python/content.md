@@ -1,10 +1,13 @@
-
 # Programming in Python
 
 ## Introduction
 
 > id: intro
 > section: introduction
+> description: A hands-on, test-driven introduction to programming in Python, including types, functions, classes, lists, tuples, dictionaries and flow control.
+> color: "#88349a"
+> next: linear-algebra
+> author: Samuel S. Watson
 
 This chapter is an introduction to programming in **Python**, which is a general-purpose language with a very large user base in the software engineering world. With the emergence of a powerful stack of scientific computing [packages](gloss:package) since the early 2000s, it has emerged as the most popular language for data science.
 

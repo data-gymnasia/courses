@@ -4,7 +4,7 @@
 
 
 import {CustomElementView, register, loadScript, $N, $} from '@mathigon/boost';
-import {UserData, Step} from '../types';
+import {UserData, Step} from '@mathigon/studio';
 
 
 declare global {

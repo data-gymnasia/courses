@@ -1,6 +1,11 @@
 # Epidemic modeling
 
 > id: intro
+> description: Mathematical models for describing the spread of viruses
+> next: sets-and-functions
+> color: "#5d2b2f"
+> author: Samuel S. Watson
+
 ## Introduction
 
 This year we have witnessed the rise of a global pandemic threat: a virus called SARS-CoV-2. In this lesson, we'll develop some of the basic elements of epidemic modeling, so that we can understand a small part of what public health researchers are looking at when they make projections and inform public policy. 

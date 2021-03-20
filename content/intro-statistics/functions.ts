@@ -1,5 +1,6 @@
-import {CoordinateSystem, Step} from '../shared/types';
 import {Point} from '@mathigon/euclid';
+import {Step} from '@mathigon/studio';
+import {CoordinateSystem} from '../shared/components/chart';
 import '../shared/shared';
 
 

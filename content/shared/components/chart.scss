@@ -1,0 +1,42 @@
+// =============================================================================
+// Chart Component Styles
+// (c) Mathigon
+// =============================================================================
+
+
+@import "../../../node_modules/@mathigon/studio/frontend/styles/variables";
+
+marker#axis-arrow { @include theme(fill, $grey, white); }
+
+x-coordinate-system {
+  display: block;
+  position: relative;
+  margin: 2em auto;
+  touch-action: pan-y;
+  color: $red;
+
+  svg.canvas {
+    display: block;
+    width: 100%;
+    height: 100% !important;
+    user-select: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .grid { @include theme(opacity, 0.1, 0.25); }
+  .grid line { @include theme(stroke, black, white); stroke-width: 2px; }
+  .axes line { @include theme(stroke, $grey, white); stroke-width: 2px; }
+  .grid, .axes { stroke-linecap: round; transition: opacity .2s; }
+  .axes line:not(.tick) { marker-end: url(#axis-arrow); }
+  .labels text { fill: $grey; font-size: 14px; @include svg-text-outline(4px); }
+
+  .plot path { fill: none; stroke: currentColor; stroke-width: 3px; }
+  .plot circle { fill: currentColor; }
+
+  &.blue, g.blue { color: $blue; }
+  &.green, g.green { color: $green; }
+  &.yellow, g.yellow { color: $yellow; }
+
+  x-gesture { position: absolute; top: 0; left: 0; }
+}

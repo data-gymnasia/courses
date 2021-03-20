@@ -1,7 +1,11 @@
-
 # The Data Science Pipeline
 
 > id: intro
+> description: Learn the basics of data wrangling, visualization, and modeling in Python.
+> color: "#319bbf"
+> next: programming-in-julia
+> author: Samuel S. Watson
+
 ## Introduction
 
 In this mini-course, we will introduce a collection of skills commonly applied to solve data problems in industry and science. These skills correspond to stages of a typical data science project: we **acquire** data, **wrangle** it into a form conducive to further analysis, **visualize** the data to better understand it, **model** the data to gain further insight and make predictions about the process that generated the data, and **communicate** our results to stakeholders.

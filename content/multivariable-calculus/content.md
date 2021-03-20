@@ -1,6 +1,10 @@
 # Multivariable Calculus
 
 > id: intro
+> description: Review of multivariate differentiation, integration, and optimization, with applications to data science.
+> color: "#679a34"
+> next: intro-probability
+> author: Samuel S. Watson
 
 ## Introduction
 
@@ -1022,7 +1026,7 @@ Since we also have the equation $lw + wh + hl = 62$, we have four equations and 
 
 ---
 
-> id: Matrix differentiation
+> id: matrix-differentiation
 ## Matrix differentiation
 
 Just as elementary differentiation rules are helpful for optimizing single-variable functions, *matrix* differentiation rules are helpful for optimizing expressions written in matrix form. This technique is used often in statistics.

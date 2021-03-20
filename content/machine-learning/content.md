@@ -1,7 +1,11 @@
-
 # Machine Learning
 
 > id: intro
+> description: A tour of statistical learning theory and classical machine learning algorithms, including linear models, logistic regression, support vector machines, decision trees, bagging and boosting, neural networks, and dimension reduction methods.
+> color: "#4d64b3"
+> next: bayesian-inference-and-graphical-models
+> author: Samuel S. Watson
+
 ## Introduction
 
 At the highest level, the goal of [**statistical learning**](gloss:statistical-learning) is to draw conclusions about an unknown probability measure given independent observations drawn from the measure. These observations are called **training data**. In **supervised learning**, the unknown measure $\mathbb{P}$ is on a product space $\mathcal{X} \times \mathcal{Y}$. In other words, each training observation has the form $(\mathbf{X}, Y)$ where $\mathbf{X}$ is an element of $\mathcal{X}$ and $\mathbf{Y}$ is an element of $\mathcal{Y}$.

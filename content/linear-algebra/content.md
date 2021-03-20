@@ -1,7 +1,11 @@
-
 # Linear Algebra
 
 > id: intro
+> description: Vector spaces, orthogonality, and eigenanalysis from a data point of view.
+> color: "#c75f43"
+> next: multivariable-calculus
+> author: Samuel S. Watson
+
 ## Introduction
 
 Using and interpreting data requires storing and manipulating sets of numbers in conceptually and computationally helpful ways. The language of *linear algebra* provides basic vocabulary, visualizations, and mathematical results for understanding the structure of a dataset.

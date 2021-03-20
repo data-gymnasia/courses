@@ -3,11 +3,10 @@
 // =============================================================================
 
 
-@import "./variables";
+@import "../../node_modules/@mathigon/studio/frontend/styles/variables";
 @import "./components/quill";
+@import "./components/chart";
 
-
-svg.mathjax { display: inline-block; }
 
 .juniper-cell, code, pre, x-step code {
   font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -69,8 +68,8 @@ p { hanging-punctuation: none; }
 }
 
 x-picker .item.pill.bblue {
-  background: @blue;
-  &:not(.correct):not(.incorrect):hover { background: darken(@blue, 15%); }
+  background: $blue;
+  &:not(.correct):not(.incorrect):hover { background: darken($blue, 15%); }
   &:after { border-width: 2px; margin: 2px; }
 }
 
@@ -84,7 +83,7 @@ x-step code {
   position: relative;
   height: 0;
   padding-bottom: 56.25%;
-  iframe { .fillParent(); }
+  iframe { @include fillParent; }
 }
 
 
@@ -94,7 +93,7 @@ x-step code {
 .CodeMirror pre { margin: 0; }
 
 .juniper-cell {
-  border: 1px solid @border-light;
+  border: 1px solid $border-light;
   border-radius: 4px;
   margin: 1.5em 0;
   line-height: 1.8;
@@ -108,13 +107,13 @@ x-step code {
   background: #eee;
   padding: .6em 1em;
   white-space: pre-wrap;
-  border-top: 1px solid @border-light;
+  border-top: 1px solid $border-light;
   min-height: 27px;
   color: inherit;
 }
 
 .juniper-button {
-  .button();
+  @include button;
   position: absolute;
   top: 12px;
   right: 12px;
@@ -125,10 +124,10 @@ x-step code {
   line-height: 2em;
   font-weight: 600;
   letter-spacing: .2px;
-  background-color: @green;
-  transition: transform .4s @bounce, background .2s, color .2s, box-shadow .2s;
+  background-color: $green;
+  transition: transform .4s $bounce, background .2s, color .2s, box-shadow .2s;
   &:active { transition: transform .2s, background .2s, color .2s, box-shadow .2s; transform: scale(0.9); }
-  &:hover, &:focus, &:active { background-color: lighten(@green, 8%); }
+  &:hover, &:focus, &:active { background-color: lighten($green, 8%); }
 }
 
 

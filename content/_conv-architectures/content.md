@@ -30,7 +30,7 @@ publication:
 
 ::: column(width=540)
     
-    img(src="/resources/neural-nets/images/lenet-5.png")
+    img(src=" /content/neural-nets/images/lenet-5.png")
 
 :::
 
@@ -63,7 +63,7 @@ In other words, the neural network seeks to map an input digit image
 
 ::: column(width=30)
     
-    img(src="/resources/neural-nets/images/seven.jpg")
+    img(src=" /content/neural-nets/images/seven.jpg")
 
 :::
 
@@ -71,7 +71,7 @@ to an 84-dimensional vector (shown in a 12 × 7 arrangement)
 
 ::: column(width=360)
     
-    img(src="/resources/neural-nets/images/seven-output.png")
+    img(src=" /content/neural-nets/images/seven-output.png")
 
 :::
 
@@ -80,7 +80,7 @@ looks like a 7:
 
 ::: column(width=120)
     
-    img(src="/resources/neural-nets/images/seven-desired-output.png")
+    img(src=" /content/neural-nets/images/seven-desired-output.png")
 
 :::
 
@@ -102,7 +102,7 @@ Toronto. Here's a figure from the article:
 
 ::: column(width=540)
     
-    img(src="/resources/neural-nets/images/alexnet.png")
+    img(src=" /content/neural-nets/images/alexnet.png")
 
 :::
 
@@ -158,7 +158,7 @@ flavor of VGG called VGG16:
 
 ::: column(width=240)
     
-    img(src="/resources/neural-nets/svg/vgg.svg")
+    img(src=" /content/neural-nets/svg/vgg.svg")
 
 :::
 
@@ -190,7 +190,7 @@ in full (from the original paper):
 
 ::: column(width=360)
     
-    img(src="/resources/neural-nets/svg/inception.svg")
+    img(src=" /content/neural-nets/svg/inception.svg")
 
 :::
 
@@ -200,7 +200,7 @@ block:
 
 ::: column(width=360)
     
-    img(src="/resources/neural-nets/svg/inception-module.svg")
+    img(src=" /content/neural-nets/svg/inception-module.svg")
 
 :::
 
@@ -214,7 +214,7 @@ illustrated here:
 
 ::: column(width=360)
     
-    img(src="/resources/neural-nets/svg/inception-naive.svg")
+    img(src=" /content/neural-nets/svg/inception-naive.svg")
 
 :::
 
@@ -249,7 +249,7 @@ from the paper illustrating a 34-layer version:
 
 ::: column(width=360)
     
-    img(src="/resources/neural-nets/svg/resnet.svg")
+    img(src=" /content/neural-nets/svg/resnet.svg")
 
 :::
 
@@ -277,7 +277,7 @@ a figure from the original ResNet paper:
 
 ::: column(width=360)
     
-    img(src="/resources/neural-nets/svg/resnet-unit.svg")
+    img(src=" /content/neural-nets/svg/resnet-unit.svg")
 
 :::
 
@@ -298,7 +298,7 @@ ResNet won the 2015 contest by a significant margin.
 
 ::: column(width=440)
 
-    img(src="/resources/neural-nets/svg/imagenet-results.svg")
+    img(src=" /content/neural-nets/svg/imagenet-results.svg")
 
 :::
 

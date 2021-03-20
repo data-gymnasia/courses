@@ -1,6 +1,11 @@
 # Sets and functions
 
 > id: intro
+> description: Mathematical foundations for computer science, probability, and statistics.
+> color: "#4d64b3"
+> next: programming-in-python
+> author: Samuel S. Watson
+
 ## Introduction 
 
 Sets and functions are foundational to the study of mathematics and

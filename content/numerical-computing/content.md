@@ -1,7 +1,11 @@
-
 # Numerical Computation
 
 > id: machine-arithmetic
+> description: Machine arithmetic, numerical error, pseudorandom numbers, automatic differentiation, and gradient descent optimization algorithms.
+> color: "#31bf74"
+> next: intro-statistics
+> author: Samuel S. Watson
+
 ## Machine Arithmetic
 
 Computers store all information, including numerical values, as sequences of [[bits|cookies|chips]]. The **type** of a numeric value specifies how the underlying sequence of bits should be interpreted as a number.
@@ -776,7 +780,7 @@ If $a$ is very close to $2$, then $\kappa(a)$ is very large, and the matrix is i
 [Continue](btn:next)
 
 ---
-> id: machine epsilon
+> id: machine-epsilon
 #### Machine epsilon
 
 **Machine epsilon**, denoted $\epsilon\_{\text{mach}}$, is the maximum relative error associated with rounding a real number to the nearest value representable as a given floating point type. For `{jl} Float64`, this value is $\epsilon\_{\text{mach}} = 2^{-53} \approx 1.11 \times 10^{-16}$.
@@ -992,7 +996,7 @@ We could use 1/8 = 0.125 instead of 0.1 to get the expected behavior, since smal
 
 ---
 
-> id: pseudorandom number generation
+> id: pseudorandom-number-generation
 ## Pseudorandom Number Generation
 
 When random numbers are needed in a scientific computing application, we generally use deterministic processes which mimic the behavior of random processes. These are called **pseudo-random number generators** (PRNG). A PRNG takes an initial value, called the **seed**, and uses it to produce a sequence of numbers which are supposed to "look random". The seed determines the sequence, so you can make the random number generation in a program reproducible by providing an explicit seed. If no seed is provided, a different one will be used each time the program runs.
@@ -1090,7 +1094,7 @@ As a simple example of a PRNG that is not cryptographically secure, consider the
 
 ---
 
-> id: automatic differentiation
+> id: automatic-differentiation
 ## Automatic Differentiation
 
 Suppose that $f: \mathbb{R} \to \mathbb{R}$ is a function whose definition is too complicated for us to feasibly differentiate symbolically. Perhaps the most straightforward way to approximate the derivative of $f$ is to calculate the difference quotient
@@ -1452,7 +1456,7 @@ Use JuMP to find the line of best fit for the points $(1,2), (2, 5),
 
 ---
 
-> id: parallel computing
+> id: parallel-computing
 ## Parallel Computing
 
 Parallel computing involves decomposing a computational task into subtasks which may be performed concurrently.

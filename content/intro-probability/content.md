@@ -1,7 +1,11 @@
-
 # Probability
 
 > id: intro
+> description: Introduction to mathematical probability, including probability models, conditional probability, expectation, and the central limit theorem.
+> color: "#349a8e"
+> next: data-science-utilities
+> author: Samuel S. Watson
+
 ## Introduction
 
 When we do data science, we begin with a data set and work to gain insights about the process that generated the data. Crucial to this endeavor is a robust vocabulary for discussing the behavior of data-generating processes.
@@ -608,7 +612,7 @@ Show that the function $m((i,j)) = 2^{-i-j}$ sums to 1 as $(i,j)$ ranges over th
 
 ---
 > id: step-45
->id: random-variables
+> section: random-variables
 ## Random Variables
 
 An event may be regarded as [[a binary|an unbounded|a bijective]] function of the outcome of an experiment: based on the outcome, we can say that the event occurred or didn't occur. We will often be interested in specifying richer information about the outcome of an experiment than a simple yes or no. Specifically, we will often want to specify information in the form of a *real number*.

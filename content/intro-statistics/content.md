@@ -1,6 +1,11 @@
 # Statistics
 
 > id: intro
+> description: Density and point estimation, confidence intervals, bootstrapping, maximum likelihood estimation, and hypothesis testing.
+> color: "#6543b5"
+> next: sets-and-functions
+> author: Samuel S. Watson
+
 ## Introduction
 
 Mathematical probability is about drawing conclusions about the outcomes of random experiments whose randomness is known and specified precisely. *Statistics* works in the opposite direction: the outcomes are observed, but the probability measure giving rise to those outcomes is unknown. The goal of statistics is to draw conclusions about probability distributions based observations sampled from them.
@@ -533,7 +538,7 @@ Suppose that $f$ is a bounded probability density function. Let $\widehat{f}^{\m
 [Continue](btn:next)
 
 ---
-> id: nonparametric regression
+> id: nonparametric-regression
 #### Nonparametric Regression
 
 With an estimate of the joint density of $X$ and $Y$ in hand, we can turn to the problem of estimating the regression function $r(x) = \mathbb{E}[Y | X = x]$. If we restrict the density estimate $\widehat{f}\_\lambda$ to the vertical line at position $x$, we find that the conditional density is

@@ -1,10 +1,12 @@
-
 # Programmieren mit Python
 
 ## Einführung
 
 > id: intro
 > section: introduction
+> color: "#88349a"
+> next: linear-algebra
+> author: Samuel S. Watson
 
 Dieses Kapitel ist eine Einführung in die Programmierung in **Python**, einer vielseitig einsetzbaren Sprache die unter Softwareentwicklern sehr beliebt ist. Vor allem auch im wissenschaftlichen Bereich aufgrund der  seit Anfang der 2000er Jahre entwickelten [Pakete](gloss:package) ist sie zur beliebtesten Sprache im Zusammenhang mit Data Science (Datenwissenschaft) geworden.
 

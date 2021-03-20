@@ -1,7 +1,11 @@
-
 # Data and Society
 
 > id: intro
+> description: Learn about Data Ethics and Biased Word Embeddings.
+> color: "#ccb532"
+> next: intro-data-pipeline
+> author: Sarah M. Brown
+
 ## Introduction
 
 Data Science is an exciting area that has helped us automate many processes using machine learning and other techniques.

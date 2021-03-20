@@ -1,7 +1,11 @@
-
 # Bayesian Inference and Graphical Models
 
 > id: intro
+> description: Bayesian vs frequentist statistics, conjugate priors, Markov Chain Monte Carlo, Bayesian networks, Expectation-Maximization, and Probabilistic Programming.
+> color: "#4d64b3"
+> next: epidemic-modeling
+> author: Samuel S. Watson and Elvis Nunez
+
 ## Introduction
 
 ::: .exercise
