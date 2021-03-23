@@ -7,7 +7,7 @@ function pdfBeta(α: number, β: number) {
 }
 
 export function betadensity($step: Step) {
-  const $chart = $step.$('x-coordinate-system') as CoordinateSystem;
+  const $chart = $step.$('x-chart') as CoordinateSystem;
 
   $step.model.watch((s: any) => {
     const fn = pdfBeta(s.α, s.β);

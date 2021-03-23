@@ -86,7 +86,7 @@ The continuous distribution on $[0,1]$ whose density is proportional to $p^{H}(1
 
 {.text-center} `β =`${β}{β|20|1,50,1}
 
-    x-coordinate-system(width=600 height=400 x-axis="0,1,0.2" y-axis="0,14,2" axis-names="p,pdf(Beta(α,β),p)")
+    x-chart(width=600 height=400 x-axis="0,1,0.2" y-axis="0,14,2" axis-names="p,pdf(Beta(α,β),p)")
 
 [Continue](btn:next)
 

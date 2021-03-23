@@ -10,7 +10,7 @@ function lineOf(m: number, b: number) {
 }
 
 export function optimization($step: Step) {
-  const $chart = $step.$('x-coordinate-system') as CoordinateSystem;
+  const $chart = $step.$('x-chart') as CoordinateSystem;
 
   // generate random linear equation
   const m = 4 * Math.random() - 2;
@@ -40,7 +40,7 @@ function parabolaOf(a: number) {
 }
 
 export function simpleparabola($step: Step) {
-  const $chart = $step.$('x-coordinate-system') as CoordinateSystem;
+  const $chart = $step.$('x-chart') as CoordinateSystem;
 
   // draw the line based on user's slider inputs
   $step.model.watch((s: any) => {

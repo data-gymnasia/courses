@@ -17,7 +17,7 @@ const MARKER = `<marker id="axis-arrow" refX="3" refY="3" markerWidth="6"
     markerHeight="6" orient="auto"><path d="M 0 0 L 6 3 L 0 6 z"/></marker>`;
 
 
-@register('x-coordinate-system')
+@register('x-chart')
 export class CoordinateSystem extends CustomElementView {
   private $svg!: SVGParentView;
   private $grid?: ElementView;

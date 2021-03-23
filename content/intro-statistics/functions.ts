@@ -16,7 +16,7 @@ function pdf(m: number, s: number) {
 }
 
 export function gaussiandensity($step: Step) {
-  const $chart = $step.$('x-coordinate-system') as CoordinateSystem;
+  const $chart = $step.$('x-chart') as CoordinateSystem;
 
   const xs = [71.54, 66.62, 64.11, 62.72, 68.12,
     69.07, 64.82, 61.92, 68.45, 66.3,
@@ -45,7 +45,7 @@ function tricube(l: number) {
 }
 
 export function tricubegraph($step: Step) {
-  const $chart = $step.$('x-coordinate-system') as CoordinateSystem;
+  const $chart = $step.$('x-chart') as CoordinateSystem;
 
   $step.model.watch((s: any) => {
     const fn = tricube(s.λ);
@@ -60,7 +60,7 @@ function estimator(xs: number[], i: number, l: number) {
 }
 
 export function kdecrossvalidate($step: Step) {
-  const $chart = $step.$('x-coordinate-system') as CoordinateSystem;
+  const $chart = $step.$('x-chart') as CoordinateSystem;
 
   const xs = [-3.2, 0.1, 0.2, 3.015, 4.5, 7.2];
   const points = xs.map(p => new Point(p, 0));
@@ -73,7 +73,7 @@ export function kdecrossvalidate($step: Step) {
 }
 
 export function gaussiandensity_mle($step: Step) {
-  const $chart = $step.$('x-coordinate-system') as CoordinateSystem;
+  const $chart = $step.$('x-chart') as CoordinateSystem;
 
   const xs = [71.54, 66.62, 64.11, 62.72, 68.12,
     69.07, 64.82, 61.92, 68.45, 66.3,
@@ -104,7 +104,7 @@ function twoStep(a: number, b: number, c: number, d: number, g: number) {
 }
 
 export function mleCaution($step: Step) {
-  const $chart = $step.$('x-coordinate-system') as CoordinateSystem;
+  const $chart = $step.$('x-chart') as CoordinateSystem;
 
   const xs = [-2.4, -2.2, -2.1, -1.5, 0.2, 1.2, 1.3, 3.0025];
 

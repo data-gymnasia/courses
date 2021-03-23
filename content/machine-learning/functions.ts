@@ -9,7 +9,7 @@ function sigmoid(a: number, b: number) {
 }
 
 export function logisticAnimationExercise($step: Step) {
-  const $chart = $step.$('x-coordinate-system') as CoordinateSystem;
+  const $chart = $step.$('x-chart') as CoordinateSystem;
 
   const zeros = [-1.2, -0.8, -0.7, 0.4, -2.4, 1.13];
   const ones = [2.2, 1.3, 0.8, 2.5, 2.62];

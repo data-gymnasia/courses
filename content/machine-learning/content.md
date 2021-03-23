@@ -1090,7 +1090,7 @@ Experiment with the sliders below and get the loss value below 2.45.
 
 {.text-center} loss = ${loss}
 
-    x-coordinate-system(width=600 height=400 x-axis="-5,5,0.5" y-axis="0,1,0.25")
+    x-chart(width=600 height=400 x-axis="-5,5,0.5" y-axis="0,1,0.25")
 
     pre(julia-executable)
       | using Optim
