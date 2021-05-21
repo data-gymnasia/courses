@@ -1,5 +1,5 @@
 import { Draggable } from '@mathigon/boost';
-import {Step} from '../shared/types';
+import {Step} from '@mathigon/studio';
 import '../shared/shared';
 
 // Geopad example
