@@ -14,10 +14,12 @@
     "node": ">=16"
   },
   "dependencies": {
-    "@mathigon/boost": "^1.1.1",
-    "@mathigon/euclid": "^1.1.1",
-    "@mathigon/fermat": "^1.1.1",
-    "@mathigon/studio": "^0.1.22",
+    "@mathigon/boost": "1.2.10",
+    "@mathigon/core": "1.1.7",
+    "@mathigon/euclid": "1.1.10",
+    "@mathigon/fermat": "1.1.7",
+    "@mathigon/hilbert": "1.1.7",
+    "@mathigon/studio": "0.1.33",
     "npm-run-all": "^4.1.5",
     "typescript": "^4.0.3"
   }
