@@ -11,7 +11,7 @@
     "start": "npm-run-all --parallel assets server"
   },
   "engines": {
-    "node": "16.x"
+    "node": ">=16"
   },
   "dependencies": {
     "@mathigon/boost": "^1.1.1",
